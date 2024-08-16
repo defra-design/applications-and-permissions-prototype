@@ -1,0 +1,299 @@
+{% extends "layouts/main.html" %}
+
+
+{% block pageTitle %}
+    Tax year dates HTML examples
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+        <div class="govuk-form-group">
+
+
+            <h1 class="govuk-heading-l">
+                Tax year dates examples
+            </h1>
+
+            <p>Using HTML Nunjucks includes.</p>
+
+            <details class="govuk-details" data-module="govuk-details">
+                <summary class="govuk-details__summary">
+                    <span class="govuk-details__summary-text">
+                          Why bother using these?
+                    </span>
+                </summary>
+                <div class="govuk-details__text">
+                    <p>Accessibility: The day, month and year don't get split across 2 lines.</p>
+                    <p>When a new tax year begins only the 'session-data-defaults' in the prototype needs updating.  Rather than every page.</p>
+                </div>
+            </details>
+
+
+            <h2 class="govuk-heading-s">Current open tax year ({% include "includes/dates/currentOpenTaxYearStartDateYearOnly.html" %} to {% include "includes/dates/currentOpenTaxYearEndDateYearOnly.html" %})</h2>
+
+            <details class="govuk-details" data-module="govuk-details">
+                <summary class="govuk-details__summary">
+                    <span class="govuk-details__summary-text">
+                          View
+                    </span>
+                </summary>
+                <div class="govuk-details__text">
+
+                    <div class="govuk-!-margin-bottom-2">
+                        <p class="govuk-!-margin-bottom-1 govuk-!-font-weight-bold">Start date</p>
+                        <p class="govuk-!-margin-bottom-2"> {% include "includes/dates/currentOpenTaxYearStartDate.html" %}</p>
+                        <pre class="app-code">{%raw%}<span>{% include "includes/dates/currentOpenTaxYearStartDate.html" %}</span>{%endraw%}</pre>
+                        <button class="govuk-button" onclick="copytext(this)">Copy code</button>
+                        <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-9" style="display: none;" >Copied to clipboard</p>
+                    </div>
+
+                    <div class="govuk-!-margin-bottom-2">
+                        <p class="govuk-!-margin-bottom-1 govuk-!-font-weight-bold">End date</p>
+                        <p class="govuk-!-margin-bottom-2">{% include "includes/dates/currentOpenTaxYearEndDate.html" %}</p>
+                        <pre class="app-code">{%raw%}<span>{% include "includes/dates/currentOpenTaxYearEndDate.html" %}</span>{%endraw%}</pre>
+                        <button class="govuk-button" onclick="copytext(this)">Copy code</button>
+                        <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-9" style="display: none;" >Copied to clipboard</p>
+                    </div>
+
+                    <div class="govuk-!-margin-bottom-2">
+                        <p class="govuk-!-margin-bottom-1 govuk-!-font-weight-bold">Start TO end date</p>
+                        <p class="govuk-!-margin-bottom-2">{% include "includes/dates/currentOpenTaxYearFullText.html" %}</p>
+                        <pre class="app-code">{%raw%}<span>{% include "includes/dates/currentOpenTaxYearFullText.html" %}</span>{%endraw%}</pre>
+                        <button class="govuk-button" onclick="copytext(this)">Copy code</button>
+                        <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-9" style="display: none;" >Copied to clipboard</p>
+                    </div>
+
+                    <div class="govuk-!-margin-bottom-2">
+                        <p class="govuk-!-margin-bottom-1 govuk-!-font-weight-bold">Start AND end date</p>
+                        <p class="govuk-!-margin-bottom-2">{% include "includes/dates/currentOpenTaxYearFullTextAnd.html" %}</p>
+                        <pre class="app-code">{%raw%}<span>{% include "includes/dates/currentOpenTaxYearFullTextAnd.html" %}</span>{%endraw%}</pre>
+                        <button class="govuk-button" onclick="copytext(this)">Copy code</button>
+                        <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-9" style="display: none;" >Copied to clipboard</p>
+                    </div>
+
+                    <div class="govuk-!-margin-bottom-2">
+                        <p class="govuk-!-margin-bottom-1 govuk-!-font-weight-bold">Start date year only</p>
+                        <p class="govuk-!-margin-bottom-2">{% include "includes/dates/currentOpenTaxYearStartDateYearOnly.html" %}</p>
+                        <pre class="app-code">{%raw%}<span>{% include "includes/dates/currentOpenTaxYearStartDateYearOnly.html" %}</span>{%endraw%}</pre>
+                        <button class="govuk-button" onclick="copytext(this)">Copy code</button>
+                        <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-9" style="display: none;" >Copied to clipboard</p>
+                    </div>
+
+                    <div class="govuk-!-margin-bottom-2">
+                        <p class="govuk-!-margin-bottom-1 govuk-!-font-weight-bold">End date year only</p>
+                        <p class="govuk-!-margin-bottom-2">{% include "includes/dates/currentOpenTaxYearEndDateYearOnly.html" %}</p>
+                        <pre class="app-code">{%raw%}<span>{% include "includes/dates/currentOpenTaxYearEndDateYearOnly.html" %}</span>{%endraw%}</pre>
+                        <button class="govuk-button" onclick="copytext(this)">Copy code</button>
+                        <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-9" style="display: none;" >Copied to clipboard</p>
+                    </div>
+                </div>
+            </details>
+
+
+            <h2 class="govuk-heading-s">Previous tax year ({% include "includes/dates/previousTaxYearStartDateYearOnly.html" %} to {% include "includes/dates/previousTaxYearEndDateYearOnly.html" %})</h2>
+
+            <details class="govuk-details" data-module="govuk-details">
+                <summary class="govuk-details__summary">
+                    <span class="govuk-details__summary-text">
+                          View
+                    </span>
+                </summary>
+                <div class="govuk-details__text">
+
+                    <div class="govuk-!-margin-bottom-2">
+                        <p class="govuk-!-margin-bottom-1 govuk-!-font-weight-bold">Start date</p>
+                        <p class="govuk-!-margin-bottom-2">{% include "includes/dates/previousTaxYearStartDate.html" %}</p>
+                        <pre class="app-code">{%raw%}<span>{% include "includes/dates/previousTaxYearStartDate.html" %}</span>{%endraw%}</pre>
+                        <button class="govuk-button" onclick="copytext(this)">Copy code</button>
+                        <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-9" style="display: none;" >Copied to clipboard</p>
+                    </div>
+
+                    <div class="govuk-!-margin-bottom-2">
+                        <p class="govuk-!-margin-bottom-1 govuk-!-font-weight-bold">End date</p>
+                        <p class="govuk-!-margin-bottom-2">{% include "includes/dates/previousTaxYearEndDate.html" %}</p>
+                        <pre class="app-code">{%raw%}<span>{% include "includes/dates/previousTaxYearEndDate.html" %}</span>{%endraw%}</pre>
+                        <button class="govuk-button" onclick="copytext(this)">Copy code</button>
+                        <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-9" style="display: none;" >Copied to clipboard</p>
+                    </div>
+
+                    <div class="govuk-!-margin-bottom-2">
+                        <p class="govuk-!-margin-bottom-1 govuk-!-font-weight-bold">Start TO end date</p>
+                        <p class="govuk-!-margin-bottom-2">{% include "includes/dates/previousTaxYearFullText.html" %}</p>
+                        <pre class="app-code">{%raw%}<span>{% include "includes/dates/previousTaxYearFullText.html" %}</span>{%endraw%}</pre>
+                        <button class="govuk-button" onclick="copytext(this)">Copy code</button>
+                        <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-9" style="display: none;" >Copied to clipboard</p>
+                    </div>
+
+                    <div class="govuk-!-margin-bottom-2">
+                        <p class="govuk-!-margin-bottom-1 govuk-!-font-weight-bold">Start AND end date</p>
+                        <p class="govuk-!-margin-bottom-2">{% include "includes/dates/previousTaxYearFullTextAnd.html" %}</p>
+                        <pre class="app-code">{%raw%}<span>{% include "includes/dates/previousTaxYearFullTextAnd.html" %}</span>{%endraw%}</pre>
+                        <button class="govuk-button" onclick="copytext(this)">Copy code</button>
+                        <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-9" style="display: none;" >Copied to clipboard</p>
+                    </div>
+
+                    <div class="govuk-!-margin-bottom-2">
+                        <p class="govuk-!-margin-bottom-1 govuk-!-font-weight-bold">Start date year only</p>
+                        <p class="govuk-!-margin-bottom-2">{% include "includes/dates/previousTaxYearStartDateYearOnly.html" %}</p>
+                        <pre class="app-code">{%raw%}<span>{% include "includes/dates/previousTaxYearStartDateYearOnly.html" %}</span>{%endraw%}</pre>
+                        <button class="govuk-button" onclick="copytext(this)">Copy code</button>
+                        <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-9" style="display: none;" >Copied to clipboard</p>
+                    </div>
+
+                    <div class="govuk-!-margin-bottom-2">
+                        <p class="govuk-!-margin-bottom-1 govuk-!-font-weight-bold">End date year only</p>
+                        <p class="govuk-!-margin-bottom-2">{% include "includes/dates/previousTaxYearEndDateYearOnly.html" %}</p>
+                        <pre class="app-code">{%raw%}<span>{% include "includes/dates/previousTaxYearEndDateYearOnly.html" %}</span>{%endraw%}</pre>
+                        <button class="govuk-button" onclick="copytext(this)">Copy code</button>
+                        <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-9" style="display: none;" >Copied to clipboard</p>
+                    </div>
+                </div>
+            </details>
+
+
+            <h2 class="govuk-heading-s">Year before previous tax year ({% include "includes/dates/yearbeforepreviousTaxYearStartDateYearOnly.html" %} to {% include "includes/dates/yearbeforepreviousTaxYearEndDateYearOnly.html" %})</h2>
+
+            <details class="govuk-details" data-module="govuk-details">
+                <summary class="govuk-details__summary">
+                    <span class="govuk-details__summary-text">
+                          View
+                    </span>
+                </summary>
+                <div class="govuk-details__text">
+
+                    <div class="govuk-!-margin-bottom-2">
+                        <p class="govuk-!-margin-bottom-1 govuk-!-font-weight-bold">Start date</p>
+                        <p class="govuk-!-margin-bottom-2">{% include "includes/dates/yearbeforepreviousTaxYearStartDate.html" %}</p>
+                        <pre class="app-code">{%raw%}<span>{% include "includes/dates/yearbeforepreviousTaxYearStartDate.html" %}</span>{%endraw%}</pre>
+                        <button class="govuk-button" onclick="copytext(this)">Copy code</button>
+                        <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-9" style="display: none;" >Copied to clipboard</p>
+                    </div>
+
+                    <div class="govuk-!-margin-bottom-2">
+                        <p class="govuk-!-margin-bottom-1 govuk-!-font-weight-bold">End date</p>
+                        <p class="govuk-!-margin-bottom-2">{% include "includes/dates/yearbeforepreviousTaxYearEndDate.html" %}</p>
+                        <pre class="app-code">{%raw%}<span>{% include "includes/dates/yearbeforepreviousTaxYearEndDate.html" %}</span>{%endraw%}</pre>
+                        <button class="govuk-button" onclick="copytext(this)">Copy code</button>
+                        <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-9" style="display: none;" >Copied to clipboard</p>
+                    </div>
+
+                    <div class="govuk-!-margin-bottom-2">
+                        <p class="govuk-!-margin-bottom-1 govuk-!-font-weight-bold">Start TO end date</p>
+                        <p class="govuk-!-margin-bottom-2">{% include "includes/dates/yearbeforepreviousTaxYearFullText.html" %}</p>
+                        <pre class="app-code">{%raw%}<span>{% include "includes/dates/yearbeforepreviousTaxYearFullText.html" %}</span>{%endraw%}</pre>
+                        <button class="govuk-button" onclick="copytext(this)">Copy code</button>
+                        <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-9" style="display: none;" >Copied to clipboard</p>
+                    </div>
+
+                    <div class="govuk-!-margin-bottom-2">
+                        <p class="govuk-!-margin-bottom-1 govuk-!-font-weight-bold">Start AND end date</p>
+                        <p class="govuk-!-margin-bottom-2">{% include "includes/dates/yearbeforepreviousTaxYearFullTextAnd.html" %}</p>
+                        <pre class="app-code">{%raw%}<span>{% include "includes/dates/yearbeforepreviousTaxYearFullTextAnd.html" %}</span>{%endraw%}</pre>
+                        <button class="govuk-button" onclick="copytext(this)">Copy code</button>
+                        <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-9" style="display: none;" >Copied to clipboard</p>
+                    </div>
+
+                    <div class="govuk-!-margin-bottom-2">
+                        <p class="govuk-!-margin-bottom-1 govuk-!-font-weight-bold">Start date year only</p>
+                        <p class="govuk-!-margin-bottom-2">{% include "includes/dates/yearbeforepreviousTaxYearStartDateYearOnly.html" %}</p>
+                        <pre class="app-code">{%raw%}<span>{% include "includes/dates/yearbeforepreviousTaxYearStartDateYearOnly.html" %}</span>{%endraw%}</pre>
+                        <button class="govuk-button" onclick="copytext(this)">Copy code</button>
+                        <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-9" style="display: none;" >Copied to clipboard</p>
+                    </div>
+
+                    <div class="govuk-!-margin-bottom-2">
+                        <p class="govuk-!-margin-bottom-1 govuk-!-font-weight-bold">End date year only</p>
+                        <p class="govuk-!-margin-bottom-2">{% include "includes/dates/yearbeforepreviousTaxYearEndDateYearOnly.html" %}</p>
+                        <pre class="app-code">{%raw%}<span>{% include "includes/dates/yearbeforepreviousTaxYearEndDateYearOnly.html" %}</span>{%endraw%}</pre>
+                        <button class="govuk-button" onclick="copytext(this)">Copy code</button>
+                        <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-9" style="display: none;" >Copied to clipboard</p>
+                    </div>
+                </div>
+            </details>
+
+
+            <h2 class="govuk-heading-s">Caption above page heading</h2>
+
+            <details class="govuk-details" data-module="govuk-details">
+                <summary class="govuk-details__summary">
+                    <span class="govuk-details__summary-text">
+                          View
+                    </span>
+                </summary>
+                <div class="govuk-details__text">
+
+                    <div class="govuk-!-margin-bottom-2">
+                        <p class="govuk-!-margin-bottom-1 govuk-!-font-weight-bold">Caption date</p>
+                        <p class="govuk-body">This date auomatically changes when the tax year is toggled in the prototype.
+                        <br>This toggle is on the home/index page of the prototype.
+                        <br>Note: Unlike other dates this also includes the caption html element.</p>
+                        <p class="govuk-!-margin-bottom-2"><span class="govuk-caption-l">{% include "includes/dates/taxyearheading.html" %}</span></pre>
+                        <p class=""><span>&ltspan class="govuk-caption-l"&gt</span> {%raw%} <span>{% include "includes/dates/taxyearheading.html" %}</span> {%endraw%} <span>&lt/span&gt</span></p>
+                        <button class="govuk-button" onclick="copytext(this)">Copy code</button>
+                        <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-9" style="display: none;" >Copied to clipboard</p>
+                    </div>
+
+                </div>
+            </details>
+
+        </div>
+
+
+
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+
+
+
+  </div>
+</div>
+
+
+<script>
+    function copytext(button)
+    {
+        var paragraph = button.previousElementSibling;
+
+        var outputtext = "";
+
+        var spans = paragraph.getElementsByTagName("span");
+
+        // copy text from spans
+        for( i=0; i<spans.length; i++ )
+        {
+            outputtext =  outputtext + spans[i].innerHTML;
+        }
+
+        // remove HTML stuff that was used to visaully show syntax on the page
+        var finaloutput =  outputtext.replaceAll("&lt;", "<").replaceAll("&gt;", ">");
+
+        // Copy the text inside the text field
+        navigator.clipboard.writeText(finaloutput);
+
+        // show the confirmation text that text was copied to clipboard
+        let confirmationOfClickText = button.nextElementSibling;
+        confirmationOfClickText.style.display = "block";
+
+        // Hide confirmation text again after 3 seconds
+        window.setTimeout(
+            function()
+            {
+                confirmationOfClickText.style.display = "none";
+            },
+            3000);
+    }
+
+
+
+</script>
+
+{% endblock %}
+
+
+
