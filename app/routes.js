@@ -10,7 +10,7 @@ const router = govukPrototypeKit.requests.setupRouter()
 // Including other routing javascript
 // This single line tells this 'routes.js' file to include the routing from the 'templates.js' file
 require('./routes/templates.js')(router);
-
+require('./routes/what.js')(router);
 
 // viewing session data
 // When the user goes to 'prototype-admin/view-data' this collects all the session data
