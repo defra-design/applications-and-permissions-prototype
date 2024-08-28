@@ -16,7 +16,7 @@ This will save you time.
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-        What PLACEHOLDER is being moved?
+    What are you planning to move?
 {% endset %}
 
 
@@ -24,7 +24,7 @@ This will save you time.
 {% set errorTextHTML %}
     <!-- Nothing was selected -->
     {% if data['errortypeone'] == "true" %}
-        Select PLACEHOLDER
+        Select what you are planning to move
     {% endif %}
 {% endset %}
 
@@ -92,14 +92,14 @@ This will save you time.
                     items:
                     [
                         {
-                            value: "Birds (Alive)",
-                            text: "Birds (Alive)",
-                            checked: data['what-thing-being-moved-radios'] == "Birds (Alive)"
+                            value: "Live birds",
+                            text: "Live birds",
+                            checked: data['what-thing-being-moved-radios'] == "Live birds"
                         },
                         {
-                            value: "Cattle (Alive)",
-                            text: "Cattle (Alive)",
-                            checked: data['what-thing-being-moved-radios'] == "Cattle (Alive)"
+                            value: "Live cattle",
+                            text: "Live cattle",
+                            checked: data['what-thing-being-moved-radios'] == "Live cattle"
                         },
                         {
                             value: "Product",

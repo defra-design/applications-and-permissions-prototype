@@ -15,7 +15,7 @@ This will save you time.
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    How many PLACEHOLDER are being moved?
+    How many animals are being moved?
 {% endset %}
 
 
@@ -23,25 +23,25 @@ This will save you time.
 {% set errorTextHTML %}
     <!-- Error 1 - If answer is not a number when it should be -->
     {%  if  data['errortypeone'] == "true"  %}
-        PLACEHOLDER must be a number
+        Value entered is not numeric
 
     <!-- Error 2 - If answer is not a whole number -->
     {% elif data['errortypetwo'] == "true"  %}
-        PLACEHOLDER must be a whole number
+        Value entered is not whole
 
     <!-- Error 3 - If answer (number) is 0 -->
     {% elif data['errortypethree'] == "true"  %}
-        PLACEHOLDER must be more than 0
+        Value entered is too low
 
     <!-- Error 4 - If answer (number) is less than 0 (negative) -->
     {% elif data['errortypefour'] == "true"  %}
-        PLACEHOLDER must not be a negative number
+        Value entered must not be a negative number
 
 
 
     <!-- Error 6 - If answer (number) is too high -->
     {% elif data['errortypesix'] == "true"  %}
-        PLACEHOLDER must be HIGHEST_NUMBER or fewer
+        Value entered is too high
 
 
     {%  endif  %}
@@ -148,7 +148,7 @@ This will save you time.
         >Error 4 - If answer (number) is less than 0 (negative)</option>
 
 
-        <option value="errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=false&errortypefour=false&errortypefive=true&errortypesix=false&errortypeseven=false&"
+        <option value="errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=false&errortypefour=false&errortypefive=true&errortypesix=true&errortypeseven=false&"
                 {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] != 'true'  and  data['errortypefive'] != 'true'  and  data['errortypesix'] == 'true'  and  data['errortypeseven'] != 'true'  %}selected{% endif %}
         >Error 6 - If answer (number) is too high</option>
 

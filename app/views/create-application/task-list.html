@@ -4,7 +4,7 @@
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    Sign in using Government Gateway
+    Your animal disease movement licence application
 {% endset %}
 
 
@@ -22,6 +22,7 @@
 
         <h1 class="govuk-heading-l">{{ pageHeadingTextHTML }}</h1>
 
+        <p>You need to complete X/Y sections</p>
 
         <ul class="govuk-task-list">
             <li class="govuk-task-list__item govuk-task-list__item--with-link">
@@ -32,10 +33,10 @@
                         <a class="govuk-link govuk-task-list__link" href="what/thing-being-moved" aria-describedby="company-details-1-status">
                     {%  endif  %}
 
-                            What and when Placeholder
+                            What you plan to move and when
                         </a>
                 </div>
-                <div class="govuk-task-list__status" id="company-details-1-status">
+                <div class="govuk-task-list__status" id="">
                     {%  if  data['section-what-complete'] == "true"  %}
                         Completed
                     {%  else  %}
@@ -43,12 +44,13 @@
                             Incomplete
                         </strong>
                     {%  endif  %}
-
                 </div>
             </li>
+
+            <!--
             <li class="govuk-task-list__item govuk-task-list__item--with-link">
                 <div class="govuk-task-list__name-and-hint">
-                    <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-2-status">
+                    <a class="govuk-link govuk-task-list__link" href="" aria-describedby="company-details-2-status">
                         About the journey Placeholder
                     </a>
                 </div>
@@ -58,28 +60,34 @@
                     </strong>
                 </div>
             </li>
+            -->
+
             <li class="govuk-task-list__item govuk-task-list__item--with-link">
                 <div class="govuk-task-list__name-and-hint">
-                    <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-3-hint company-details-3-status">
-                        Origin Placeholder
-                    </a>
-                    <!--
-                    <div id="company-details-3-hint" class="govuk-task-list__hint">
-                        Include 5 years of the company’s relevant financial information.
-                    </div>
-                    -->
+                    {%  if  data['section-origin-complete'] == "true"  %}
+                        <a class="govuk-link govuk-task-list__link" href="origin/check-answers" aria-describedby="company-details-1-status">
+                    {%  else  %}
+                        <a class="govuk-link govuk-task-list__link" href="origin/to-or-from-own-premises" aria-describedby="company-details-1-status">
+                    {%  endif  %}
+
+                           Movement origin
+                        </a>
                 </div>
-                <div class="govuk-task-list__status" id="company-details-3-status">
-                    <strong class="govuk-tag govuk-tag--blue">
-                        Incomplete
-                    </strong>
+                <div class="govuk-task-list__status" id="origin-section">
+                    {%  if  data['section-origin-complete'] == "true"  %}
+                        Completed
+                    {%  else  %}
+                        <strong class="govuk-tag govuk-tag--blue">
+                            Incomplete
+                        </strong>
+                    {%  endif  %}
                 </div>
             </li>
 
             <li class="govuk-task-list__item govuk-task-list__item--with-link">
                 <div class="govuk-task-list__name-and-hint">
                     <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-4-status">
-                        Destination Placeholder
+                        Movement destination
                     </a>
                 </div>
                 <div class="govuk-task-list__status" id="company-details-4-status">
@@ -94,7 +102,7 @@
             <li class="govuk-task-list__item govuk-task-list__item--with-link">
                 <div class="govuk-task-list__name-and-hint">
                     <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-5-status">
-                        Tests and vaccinations Placeholder
+                        Tests and vaccinations
                     </a>
                 </div>
                 <div class="govuk-task-list__status" id="company-details-5-status">
@@ -107,7 +115,7 @@
             <li class="govuk-task-list__item govuk-task-list__item--with-link">
                 <div class="govuk-task-list__name-and-hint">
                     <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-5-status">
-                        Biosecurity Placeholder
+                        Biosecurity details
                     </a>
                 </div>
                 <div class="govuk-task-list__status" id="company-details-6-status">
@@ -120,7 +128,7 @@
             <li class="govuk-task-list__item govuk-task-list__item--with-link">
                 <div class="govuk-task-list__name-and-hint">
                     <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-5-status">
-                        Animal Identification Placeholder
+                        Animal identification details
                     </a>
                 </div>
                 <div class="govuk-task-list__status" id="company-details-7-status">
@@ -130,20 +138,10 @@
                 </div>
             </li>
 
-            <li class="govuk-task-list__item govuk-task-list__item--with-link">
-                <div class="govuk-task-list__name-and-hint">
-                    <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-5-status">
-                        Tests and vaccinations Placeholder
-                    </a>
-                </div>
-                <div class="govuk-task-list__status" id="company-details-8-status">
-                    <strong class="govuk-tag govuk-tag--blue">
-                        Incomplete
-                    </strong>
-                </div>
-            </li>
-
         </ul>
+
+
+        <p>You can <a href="#">message the outbreak team</a> if you need help with your application.</p>
 
 
         <!-- go to routes.js for routing  -->

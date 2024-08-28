@@ -5,6 +5,20 @@ https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
 
 {% extends "govuk-prototype-kit/layouts/govuk-branded.njk" %}
 
+{% block beforeContent %}
+    {{ govukPhaseBanner
+        ({
+        tag:
+        {
+            text: "Alpha"
+        },
+        html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+        })
+    }}
+
+    <a onclick="history.back();" href="#" class="govuk-back-link">Back</a>
+{% endblock %}
+
 {% block footer %}
  {{ govukFooter({
    meta: {

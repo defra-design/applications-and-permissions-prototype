@@ -58,7 +58,7 @@ module.exports = function (router) {
         req.session.data['errortypeone'] = "false";
 
         // If Yes was selected, continue to next page
-        if (req.session.data['what-thing-being-moved-radios'] == "Birds (Alive)")
+        if (req.session.data['what-thing-being-moved-radios'] == "Live birds")
         {
             // Continue to the next page
 
@@ -74,7 +74,7 @@ module.exports = function (router) {
                 res.redirect('THE_NEXT_PAGE_NAME');
             }
         }
-        else if (req.session.data['what-thing-being-moved-radios'] == "Cattle (Alive)")
+        else if (req.session.data['what-thing-being-moved-radios'] == "Live cattle")
         {
             // Continue to the next page
 
@@ -222,7 +222,7 @@ module.exports = function (router) {
                     res.redirect('how-many');
                 }
 
-                else if ( 13 < numberinputfloat )
+                else if ( 500 < numberinputfloat )
                 {
                     // Trigger validation and relaunch the page for number lower than 4
                     req.session.data['errorthispage'] = "true";
