@@ -87,11 +87,11 @@
             <li class="govuk-task-list__item govuk-task-list__item--with-link">
 
                 <div class="govuk-task-list__name-and-hint">
-                    {%  if  data['section-origin-complete'] == "true"  %}
-                    <a class="govuk-link govuk-task-list__link" href="destination/check-answers" aria-describedby="company-details-1-status">
-                        {%  else  %}
+                    {%  if  data['section-destination-complete'] == "true"  %}
+                        <a class="govuk-link govuk-task-list__link" href="destination/check-answers" aria-describedby="company-details-1-status">
+                    {%  else  %}
                         <a class="govuk-link govuk-task-list__link" href="destination/routing-start" aria-describedby="company-details-1-status">
-                            {%  endif  %}
+                    {%  endif  %}
 
                             Movement destination
                         </a>
@@ -113,16 +113,23 @@
 
             <li class="govuk-task-list__item govuk-task-list__item--with-link">
                 <div class="govuk-task-list__name-and-hint">
-                    <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-5-status">
+                    <a class="govuk-link govuk-task-list__link" href="tests/routing-tests" aria-describedby="company-details-1-status">
                         Tests and vaccinations
                     </a>
                 </div>
-                <div class="govuk-task-list__status" id="company-details-5-status">
-                    <strong class="govuk-tag govuk-tag--blue">
-                        Incomplete
-                    </strong>
+
+                <div class="govuk-task-list__status" id="tests-section">
+                    {%  if  data['section-tests-complete'] == "true"  %}
+                        Completed
+                    {%  else  %}
+                        <strong class="govuk-tag govuk-tag--blue">
+                            Incomplete
+                        </strong>
+                    {%  endif  %}
                 </div>
             </li>
+
+
 
             <li class="govuk-task-list__item govuk-task-list__item--with-link">
                 <div class="govuk-task-list__name-and-hint">

@@ -13,7 +13,7 @@ require('./routes/templates.js')(router);
 require('./routes/what.js')(router);
 require('./routes/origin.js')(router);
 require('./routes/destination.js')(router);
-
+require('./routes/tests.js')(router);
 
 
 // viewing session data
