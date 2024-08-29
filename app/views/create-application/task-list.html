@@ -84,13 +84,14 @@
                 </div>
             </li>
 
+
             <li class="govuk-task-list__item govuk-task-list__item--with-link">
 
                 <div class="govuk-task-list__name-and-hint">
                     {%  if  data['section-destination-complete'] == "true"  %}
-                        <a class="govuk-link govuk-task-list__link" href="destination/check-answers" aria-describedby="company-details-1-status">
+                        <a class="govuk-link govuk-task-list__link" href="destination/check-answers" aria-describedby="">
                     {%  else  %}
-                        <a class="govuk-link govuk-task-list__link" href="destination/routing-start" aria-describedby="company-details-1-status">
+                        <a class="govuk-link govuk-task-list__link" href="destination/routing-start" aria-describedby="">
                     {%  endif  %}
 
                             Movement destination
@@ -113,7 +114,7 @@
 
             <li class="govuk-task-list__item govuk-task-list__item--with-link">
                 <div class="govuk-task-list__name-and-hint">
-                    <a class="govuk-link govuk-task-list__link" href="tests/routing-tests" aria-describedby="company-details-1-status">
+                    <a class="govuk-link govuk-task-list__link" href="tests/routing-tests" aria-describedby="">
                         Tests and vaccinations
                     </a>
                 </div>
@@ -132,17 +133,31 @@
 
 
             <li class="govuk-task-list__item govuk-task-list__item--with-link">
+
                 <div class="govuk-task-list__name-and-hint">
-                    <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-5-status">
-                        Biosecurity details
-                    </a>
+                    {%  if  data['section-biosecurity-complete'] == "true"  %}
+                        <a class="govuk-link govuk-task-list__link" href="biosecurity/check-answers" aria-describedby="">
+                    {%  else  %}
+                        <a class="govuk-link govuk-task-list__link" href="biosecurity/kept-separately" aria-describedby="">
+                    {%  endif  %}
+
+                            Biosecurity details
+                        </a>
                 </div>
-                <div class="govuk-task-list__status" id="company-details-6-status">
-                    <strong class="govuk-tag govuk-tag--blue">
-                        Incomplete
-                    </strong>
+
+                <div class="govuk-task-list__status" id="biosecurity-section">
+                    {%  if  data['section-biosecurity-complete'] == "true"  %}
+                        Completed
+                    {%  else  %}
+                        <strong class="govuk-tag govuk-tag--blue">
+                            Incomplete
+                        </strong>
+                    {%  endif  %}
                 </div>
+
             </li>
+
+
 
             <li class="govuk-task-list__item govuk-task-list__item--with-link">
                 <div class="govuk-task-list__name-and-hint">

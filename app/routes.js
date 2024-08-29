@@ -14,6 +14,7 @@ require('./routes/what.js')(router);
 require('./routes/origin.js')(router);
 require('./routes/destination.js')(router);
 require('./routes/tests.js')(router);
+require('./routes/biosecurity.js')(router);
 
 
 // viewing session data
