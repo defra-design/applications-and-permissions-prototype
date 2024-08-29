@@ -85,16 +85,28 @@
             </li>
 
             <li class="govuk-task-list__item govuk-task-list__item--with-link">
+
                 <div class="govuk-task-list__name-and-hint">
-                    <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-4-status">
-                        Movement destination
-                    </a>
+                    {%  if  data['section-origin-complete'] == "true"  %}
+                    <a class="govuk-link govuk-task-list__link" href="destination/check-answers" aria-describedby="company-details-1-status">
+                        {%  else  %}
+                        <a class="govuk-link govuk-task-list__link" href="destination/routing-start" aria-describedby="company-details-1-status">
+                            {%  endif  %}
+
+                            Movement destination
+                        </a>
                 </div>
-                <div class="govuk-task-list__status" id="company-details-4-status">
-                    <strong class="govuk-tag govuk-tag--blue">
-                        Incomplete
-                    </strong>
+
+                <div class="govuk-task-list__status" id="destination-section">
+                    {%  if  data['section-destination-complete'] == "true"  %}
+                        Completed
+                    {%  else  %}
+                        <strong class="govuk-tag govuk-tag--blue">
+                            Incomplete
+                        </strong>
+                    {%  endif  %}
                 </div>
+
             </li>
 
 

@@ -12,7 +12,7 @@ const router = govukPrototypeKit.requests.setupRouter()
 require('./routes/templates.js')(router);
 require('./routes/what.js')(router);
 require('./routes/origin.js')(router);
-
+require('./routes/destination.js')(router);
 
 
 

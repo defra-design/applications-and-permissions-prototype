@@ -15,7 +15,7 @@ module.exports = function (router) {
         e.g  registration.js   and   search.js
         This avoids having one huge hard to manage routes.js
      */
-    let section = "create-application/origin";
+    let section = "create-application/destination";
 
 
     /*
@@ -41,134 +41,35 @@ module.exports = function (router) {
 
 
 
-
-
-
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////                                                    ////////////////
-    ////////////////          Movement to or from own from              ////////////////
+    ////////////////        type of destination premises/farm           ////////////////
+    ////////////////                                                    ////////////////
     ////////////////                                                    ////////////////
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////
-
 
     // NOT COMPLEX PAGE
-    router.post('/' + version + section + '/to-or-from-own-premises-router', function (req, res)
+    router.get('/' + version + section + '/routing-start', function (req, res)
     {
-        // Turn errors off by default
-        req.session.data['errorthispage'] = "false";
-        req.session.data['errortypeone'] = "false";
-
         // If Yes was selected, continue to next page
-        if (req.session.data['origin-to-or-from-own-premises-radios'] == "Away from my premises/farm")
+        if (req.session.data['origin-to-or-from-own-premises-radios'] == "On to my premises/farm")
         {
-            // Continue to the next page
+            // Continue to the next pages where farmer is the origin
 
-            // If the user needs to go back to 'check your answers' then take them directly there
-            if (req.session.data['camefromcheckanswers'] == 'true')
-            {
-                req.session.data['camefromcheckanswers'] = false;
-                res.redirect('check-answers');
-            }
-            else
-            {
-                // This page name needs to be the next page the user gets to after successfully continuing
-                res.redirect('selection-of-own-premises');
-            }
-        }
-
-        else if (req.session.data['origin-to-or-from-own-premises-radios'] == "On to my premises/farm")
-        {
-            // Continue to the next page
-
-            // If the user needs to go back to 'check your answers' then take them directly there
-            if (req.session.data['camefromcheckanswers'] == 'true')
-            {
-                req.session.data['camefromcheckanswers'] = false;
-                res.redirect('check-answers');
-            }
-            else
-            {
-                // This page name needs to be the next page the user gets to after successfully continuing
-                res.redirect('type-of-origin');
-            }
-        }
-
-        else
-        {
-            // Trigger validation and reload the page
-            req.session.data['errorthispage'] = "true";
-            req.session.data['errortypeone'] = "true";
-
-            // This page name needs to match the page the user was just on
-            res.redirect('to-or-from-own-premises');
-        }
-    })
-
-
-
-
-
-
-    ////////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////////
-    ////////////////                                                    ////////////////
-    ////////////////        Select own farm or new own farm             ////////////////
-    ////////////////                                                    ////////////////
-    ////////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////////
-
-
-    // NOT COMPLEX PAGE
-    router.post('/' + version + section + '/selection-of-own-premises-router', function (req, res)
-    {
-        // Turn errors off by default
-        req.session.data['errorthispage'] = "false";
-        req.session.data['errortypeone'] = "false";
-
-        // If Yes was selected, continue to next page
-        if (req.session.data['destination-selection-of-own-premises-radios'] == "Hill pasture farm, New road, EK32 9LR")
-        {
-            // Continue to the next page
-
-            // If the user needs to go back to 'check your answers' then take them directly there
-            if (req.session.data['camefromcheckanswers'] == 'true')
-            {
-                req.session.data['camefromcheckanswers'] = false;
-                res.redirect('check-answers');
-            }
-            else
-            {
-                // This page name needs to be the next page the user gets to after successfully continuing
-                res.redirect('check-answers');
-            }
-        }
-        else if (req.session.data['origin-selection-of-own-premises-radios'] == "Another location")
-        {
-            // Continue to the next page
-
-            // If the user needs to go back to 'check your answers' then take them directly there
-            if (req.session.data['camefromcheckanswers'] == 'true')
-            {
-                req.session.data['camefromcheckanswers'] = false;
-                res.redirect('check-answers');
-            }
-            else
-            {
-                // This page name needs to be the next page the user gets to after successfully continuing
-                res.redirect('check-answers');
-            }
-        }
-        else
-        {
-            // Trigger validation and reload the page
-            req.session.data['errorthispage'] = "true";
-            req.session.data['errortypeone'] = "true";
-
-            // This page name needs to match the page the user was just on
             res.redirect('selection-of-own-premises');
+
         }
+
+        else
+        {
+            // Continue to the next pages where farmer is the destination
+
+            res.redirect('type-of-destination');
+
+        }
+
     })
 
 
@@ -176,25 +77,27 @@ module.exports = function (router) {
 
 
 
-    ////////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////////
-    ////////////////                                                    ////////////////
-    ////////////////        Type of origin premises                     ////////////////
-    ////////////////                 for inbound animals                ////////////////
-    ////////////////                                                    ////////////////
-    ////////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////////
 
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////        type of destination premises/farm           ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
 
     // NOT COMPLEX PAGE
-    router.post('/' + version + section + '/type-of-origin-router', function (req, res)
+    router.post('/' + version + section + '/type-of-destination-router', function (req, res)
     {
         // Turn errors off by default
         req.session.data['errorthispage'] = "false";
         req.session.data['errortypeone'] = "false";
 
         // If Yes was selected, continue to next page
-        if (req.session.data['origin-type-of-origin-radios'] == "A market")
+        if (req.session.data['destination-type-of-destination-radios'] == "A slaughterhouse")
         {
             // Continue to the next page
 
@@ -210,7 +113,8 @@ module.exports = function (router) {
                 res.redirect('check-answers');
             }
         }
-        else if (req.session.data['origin-type-of-origin-radios'] == "A farm")
+
+        else if (req.session.data['destination-type-of-destination-radios'] == "A market")
         {
             // Continue to the next page
 
@@ -223,9 +127,27 @@ module.exports = function (router) {
             else
             {
                 // This page name needs to be the next page the user gets to after successfully continuing
-                res.redirect('origin-farm-cph');
+                res.redirect('market-type');
             }
         }
+
+        else if (req.session.data['destination-type-of-destination-radios'] == "A farm")
+        {
+            // Continue to the next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('check-answers');
+            }
+            else
+            {
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('destination-farm-cph');
+            }
+        }
+
         else
         {
             // Trigger validation and reload the page
@@ -233,18 +155,16 @@ module.exports = function (router) {
             req.session.data['errortypeone'] = "true";
 
             // This page name needs to match the page the user was just on
-            res.redirect('type-of-origin');
+            res.redirect('type-of-destination');
         }
     })
-
-
 
 
 
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////                                                    ////////////////
-    ////////////////        CPH of origin premises/farm                 ////////////////
+    ////////////////        CPH of destination premises/farm            ////////////////
     ////////////////                                                    ////////////////
     ////////////////                                                    ////////////////
     ////////////////////////////////////////////////////////////////////////////////////
@@ -252,7 +172,7 @@ module.exports = function (router) {
 
 
     // NOT COMPLEX PAGE
-    router.post('/' + version + section + '/origin-farm-cph-router', function (req, res)
+    router.post('/' + version + section + '/destination-farm-cph-router', function (req, res)
     {
         req.session.data['errorthispage'] = "false";
         req.session.data['errortypeone'] = "false";
@@ -261,41 +181,41 @@ module.exports = function (router) {
         req.session.data['errortypefour'] = "false";
 
         // Validation check if field is blank
-        if (req.session.data['origin-origin-farm-cph-text-input'] == undefined || req.session.data['origin-origin-farm-cph-text-input'] == "")
+        if (req.session.data['destination-destination-farm-cph-text-input'] == undefined || req.session.data['destination-destination-farm-cph-text-input'] == "")
         {
             // Trigger validation and relaunch the page
             req.session.data['errorthispage'] = "true";
             req.session.data['errortypeone'] = "true";
 
             // This page name needs to match the page the user was just on
-            res.redirect('origin-farm-cph');
+            res.redirect('destination-farm-cph');
         }
 
-        else if (req.session.data['origin-origin-farm-cph-text-input'].length > 13)
+        else if (req.session.data['destination-destination-farm-cph-text-input'].length > 13)
         {
             // Trigger validation and relaunch the page for over 15 characters
             req.session.data['errorthispage'] = "true";
             req.session.data['errortypetwo'] = "true";
 
             // This page name needs to match the page the user was just on
-            res.redirect('origin-farm-cph');
+            res.redirect('destination-farm-cph');
         }
 
-        else if (req.session.data['origin-origin-farm-cph-text-input'].length < 9)
+        else if (req.session.data['destination-destination-farm-cph-text-input'].length < 9)
         {
             // Trigger validation and relaunch the page for under 5 characters
             req.session.data['errorthispage'] = "true";
             req.session.data['errortypethree'] = "true";
 
             // This page name needs to match the page the user was just on
-            res.redirect('origin-farm-cph');
+            res.redirect('destination-farm-cph');
         }
 
         else
         {
             // check no illegal charcters have been used
             const acceptableCharacters =  " 0123456789/-";
-            let inputtext = req.session.data['origin-origin-farm-cph-text-input'];
+            let inputtext = req.session.data['destination-destination-farm-cph-text-input'];
 
             let dissallowedCharacters = "";
 
@@ -328,7 +248,7 @@ module.exports = function (router) {
                 req.session.data['errortypefour'] = "true";
 
                 // This page name needs to match the page the user was just on
-                res.redirect('origin-farm-cph');
+                res.redirect('destination-farm-cph');
             }
             else
             {
@@ -348,6 +268,157 @@ module.exports = function (router) {
             }
         }
     })
+
+
+
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////            destination market type                 ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    // NOT COMPLEX PAGE
+    router.post('/' + version + section + '/market-type-router', function (req, res)
+    {
+        // Turn errors off by default
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+
+        // If Yes was selected, continue to next page
+        if (req.session.data['destination-market-type-radios'] == "Orange market")
+        {
+            // Continue to the next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('check-answers');
+            }
+            else
+            {
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('check-answers');
+            }
+        }
+
+        else if (req.session.data['destination-market-type-radios'] == "Red market")
+        {
+            // Continue to the next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('check-answers');
+            }
+            else
+            {
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('check-answers');
+            }
+        }
+
+        else if (req.session.data['destination-market-type-radios'] == "Another type of market")
+        {
+            // Continue to the next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('check-answers');
+            }
+            else
+            {
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('check-answers');
+            }
+        }
+
+        else
+        {
+            // Trigger validation and reload the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('market-type');
+        }
+    })
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////            Select own farm or new own farm             ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    // NOT COMPLEX PAGE
+    router.post('/' + version + section + '/selection-of-own-premises-router', function (req, res)
+    {
+        // Turn errors off by default
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+
+        // If Yes was selected, continue to next page
+        if (req.session.data['destination-selection-of-own-premises-radios'] == "Hill pasture farm, New road, EK32 9LR")
+        {
+            // Continue to the next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('check-answers');
+            }
+            else
+            {
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('check-answers');
+            }
+        }
+
+        else if (req.session.data['destination-selection-of-own-premises-radios'] == "Another location")
+        {
+            // Continue to the next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('check-answers');
+            }
+            else
+            {
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('check-answers');
+            }
+        }
+
+        else
+        {
+            // Trigger validation and reload the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('selection-of-own-premises');
+        }
+    })
+
 
 
 
