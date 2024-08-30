@@ -16,7 +16,7 @@ This will save you time.
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    Are you moving the animas away from or to your premises?
+    Are you moving the animals away from or to your farm or premises?
 {% endset %}
 
 
@@ -24,7 +24,7 @@ This will save you time.
 {% set errorTextHTML %}
     <!-- Nothing was selected -->
     {% if data['errortypeone'] == "true" %}
-        Select where you did PLACEHOLDER
+        Select if you are moving the animals away from or to your farm premises
     {% endif %}
 {% endset %}
 
@@ -92,14 +92,14 @@ This will save you time.
                     items:
                     [
                         {
-                            value: "Away from my premises/farm",
-                            text: "Away from my premises/farm",
-                            checked: data['origin-to-or-from-own-premises-radios'] == "Away from my premises/farm"
+                            value: "Away from my farm or premises",
+                            text: "Away from my farm or premises",
+                            checked: data['origin-to-or-from-own-premises-radios'] == "Away from my farm or premises"
                         },
                         {
-                            value: "On to my premises/farm",
-                            text: "On to my premises/farm",
-                            checked: data['origin-to-or-from-own-premises-radios'] == "On to my premises/farm"
+                            value: "On to my farm or premises",
+                            text: "On to my farm or premises",
+                            checked: data['origin-to-or-from-own-premises-radios'] == "On to my farm or premises"
                         }
                     ]
                 })

@@ -22,7 +22,10 @@
 
         <h1 class="govuk-heading-l">{{ pageHeadingTextHTML }}</h1>
 
-        <p>You need to complete X/Y sections</p>
+        <p class="govuk-body ">You need to complete
+            <span id="section-progress-count"></span> sections
+        </p>
+
 
         <ul class="govuk-task-list">
             <li class="govuk-task-list__item govuk-task-list__item--with-link">
@@ -174,7 +177,7 @@
 
                 <div class="govuk-task-list__status" id="identification-section">
                     {%  if  data['section-identification-complete'] == "true"  %}
-                    Completed
+                        Completed
                     {%  else  %}
                     <strong class="govuk-tag govuk-tag--blue">
                         Incomplete
@@ -194,7 +197,13 @@
         <!-- go to routes.js for routing  -->
         <form action="#" method="post" novalidate>
 
-            {{ govukButton({ text: "Review" }) }}
+            {{
+                govukButton
+                ({
+                    text: "Review",
+                    classes: "govuk-button--secondary"
+                })
+            }}
 
         </form>
 
@@ -202,9 +211,47 @@
 </div>
 
 
+
+
+
+
+
+<script>
+
+    // Update the progress count
+    window.onload = function ()
+    {
+        const elements = document.querySelectorAll('div.govuk-task-list__status');
+
+        let numItems = elements.length;
+
+        let completecounter = 0;
+
+        elements.forEach((element) =>
+        {
+            var tagtext = element.textContent;
+
+            if(tagtext.includes('Completed') )
+            {
+                completecounter++;
+            }
+        });
+
+        document.getElementById("section-progress-count").textContent = completecounter + " of " + numItems;
+
+        // make button primary green if all done
+        if (completecounter == numItems)
+        {
+            const elementbutton = document.querySelector('.govuk-button');
+            elementbutton.classList.remove('govuk-button--secondary');
+        }
+
+
+
+    }
+
+</script>
+
 {% endblock %}
-
-
-
 
 
