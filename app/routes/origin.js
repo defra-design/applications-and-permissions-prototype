@@ -128,7 +128,7 @@ module.exports = function (router) {
         req.session.data['errortypeone'] = "false";
 
         // If Yes was selected, continue to next page
-        if (req.session.data['destination-selection-of-own-premises-radios'] == "Hill pasture farm, New road, EK32 9LR")
+        if (req.session.data['origin-selection-of-own-premises-radios'] == "Hill pasture farm, New road, EK32 9LR")
         {
             // Continue to the next page
 
