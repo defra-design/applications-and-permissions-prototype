@@ -237,7 +237,12 @@
             }
         });
 
-        document.getElementById("section-progress-count").textContent = completecounter + " of " + numItems;
+        let remaniningcount = numItems - completecounter;
+
+
+        document.getElementById("section-progress-count").textContent = remaniningcount + " of " + numItems;
+
+
 
         // make button primary green if all done
         if (completecounter == numItems)
