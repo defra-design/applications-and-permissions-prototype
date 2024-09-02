@@ -19,7 +19,7 @@ This will save you time.
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    Tests on the origin premises/farm
+    Tests on the origin farm or premises
 {% endset %}
 
 <!-- Setting the smaller secondary heading lower down the page -->
@@ -76,13 +76,14 @@ This will save you time.
         </h1>
 
 
-        <p>The cattle being moved from the farm have all had skin or blood tests and the results received by APHA/Defra.</p>
+        <p>You must confirm the following test conditionas have been met:</p>
 
-        <p>No Inconclusive reactors are being moved to another farm.???</p>
+        <ul class="govuk-body govuk-list--bullet">
+            <li>APHA has received all skin and blood test results</li>
+            <li>any inconclusive reactors have had a negative test result in no less thn 60 days after the inconclusive result</li>
+        </ul>
 
-        <p>A link on <a target="_blank" href="#">PLACEHOLDER about PLACEHOLDER (opens in a new tab)</a>.</p>
 
-        <p>PLACEHOLDER about PLACEHOLDER</p>
 
 
 
@@ -116,9 +117,9 @@ This will save you time.
                     items:
                     [
                         {
-                            value: "I confirm this has been done",
-                            text: "I confirm this has been done",
-                            checked: (data['tests-origin-confirmation-checkboxes'] or []).indexOf('I confirm this has been done') > -1
+                            value: "I confirm these test conditions have been met",
+                            text: "I confirm these test conditions have been met",
+                            checked: (data['tests-origin-confirmation-checkboxes'] or []).indexOf('I confirm these test conditions have been met') > -1
                         }
                     ]
                 })

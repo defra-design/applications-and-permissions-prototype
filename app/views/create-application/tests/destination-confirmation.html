@@ -19,7 +19,7 @@ This will save you time.
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    Tests on the destination premises/farm
+    Tests on the destination farm or premises
 {% endset %}
 
 <!-- Setting the smaller secondary heading lower down the page -->
@@ -75,9 +75,9 @@ This will save you time.
             {{ pageHeadingTextHTML }}
         </h1>
 
-        <p>IF MOVING TO A TB RESTRICTED HEARD: </p>
+        <p>You must complete a first shot interval test (SIT) on all eligible animals before you move new stock.</p>
 
-        <p>The destination has had at least 1 Short Intervals Tests (SIT) in the past 120 days.????</p>
+        <p></p>
 
 
 
@@ -113,9 +113,9 @@ This will save you time.
                     items:
                     [
                         {
-                            value: "I confirm this has been done",
-                            text: "I confirm this has been done",
-                            checked: (data['tests-destination-confirmation-checkboxes'] or []).indexOf('I confirm this has been done') > -1
+                            value: "I confirm a first short interval test has been completed and sent to APHA",
+                            text: "I confirm a first short interval test has been completed and sent to APHA",
+                            checked: (data['tests-destination-confirmation-checkboxes'] or []).indexOf('I confirm a first short interval test has been completed and sent to APHA') > -1
                         }
                     ]
                 })

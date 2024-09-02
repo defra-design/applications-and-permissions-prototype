@@ -15,7 +15,7 @@ This will save you time.
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    Enter the ear tag numbers of the animals you plan to move
+    Enter the ear tag numbers of the animals you are planning to move
 {% endset %}
 
 
@@ -23,7 +23,7 @@ This will save you time.
 {% set errorTextHTML %}
     <!-- Error 1 - No answer selected -->
     {% if data['errortypeone'] == "true" %}
-        Enter the ear tag numbers of the animals you plan to move
+        Enter the ear tag numbers of the animals you are planning to move
 
     <!-- Error 2 - If answer is too long -->
     {% elif data['errortypetwo'] == "true" %}
