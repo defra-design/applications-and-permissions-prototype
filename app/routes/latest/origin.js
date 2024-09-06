@@ -1,13 +1,6 @@
 const {log} = require("govuk-prototype-kit/migrator/logger");
 module.exports = function (router) {
 
-    /*
-        Setting a version in each routes.js file
-        This allows you to make new version of the prototype and have the old versions still work
-        This is done by making a copy of the routes files and updating just this version variable for the new version
-     */
-    let version = "";
-
 
     /*
         Setting a section in each routes.js file
@@ -15,7 +8,7 @@ module.exports = function (router) {
         e.g  registration.js   and   search.js
         This avoids having one huge hard to manage routes.js
      */
-    let section = "create-application/origin";
+    const section = "/create-application/origin";
 
 
     /*
@@ -54,7 +47,7 @@ module.exports = function (router) {
 
 
     // NOT COMPLEX PAGE
-    router.post('/' + version + section + '/to-or-from-own-premises-router', function (req, res)
+    router.post( section + '/to-or-from-own-premises-router', function (req, res)
     {
         // Turn errors off by default
         req.session.data['errorthispage'] = "false";
@@ -121,7 +114,7 @@ module.exports = function (router) {
 
 
     // NOT COMPLEX PAGE
-    router.post('/' + version + section + '/selection-of-own-premises-router', function (req, res)
+    router.post( section + '/selection-of-own-premises-router', function (req, res)
     {
         // Turn errors off by default
         req.session.data['errorthispage'] = "false";
@@ -187,7 +180,7 @@ module.exports = function (router) {
 
 
     // NOT COMPLEX PAGE
-    router.post('/' + version + section + '/type-of-origin-router', function (req, res)
+    router.post( section + '/type-of-origin-router', function (req, res)
     {
         // Turn errors off by default
         req.session.data['errorthispage'] = "false";
@@ -252,7 +245,7 @@ module.exports = function (router) {
 
 
     // NOT COMPLEX PAGE
-    router.post('/' + version + section + '/origin-farm-cph-router', function (req, res)
+    router.post( section + '/origin-farm-cph-router', function (req, res)
     {
         req.session.data['errorthispage'] = "false";
         req.session.data['errortypeone'] = "false";

@@ -4,18 +4,14 @@
 //
 
 const govukPrototypeKit = require('govuk-prototype-kit')
+
 const router = govukPrototypeKit.requests.setupRouter()
 
 
 // Including other routing javascript
 // This single line tells this 'routes.js' file to include the routing from the 'templates.js' file
-require('./routes/templates.js')(router);
-require('./routes/what.js')(router);
-require('./routes/origin.js')(router);
-require('./routes/destination.js')(router);
-require('./routes/tests.js')(router);
-require('./routes/biosecurity.js')(router);
-require('./routes/identification.js')(router);
+require('./routes/templates.js');
+require('./routes/latest/version.js');
 
 
 
