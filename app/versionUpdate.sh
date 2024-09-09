@@ -69,7 +69,7 @@ sed  -i '' -e "s/require('.\/routes\/latest\/version.js');/require('.\/routes\/$
 
 
 # add new version to archive index
-sed  -i '' -e "s/  \<\!-- NEW VERSION --\>/  \<\!-- NEW VERSION --\>\n  \<li\>\n    \<h2 class=\"govuk-heading-m\"\>\<a class=\"govuk-link\" href=\"\/${version}\"\>${versionDot}\<\/a\> - $(date +"%d %B %Y")\<\/h2\>\n    \<p class=\"govuk-body\"\>Summary of changes\<\/p\>\n  \<\/li\>/g" views/index.html
+sed  -i '' -e "s/<!-- NEW VERSION -->/\<\!-- NEW VERSION --\>\n            \<li class=\"govuk-!-margin-bottom-7\"\>\n                \<h2 class=\"govuk-heading-s\"\>${versionDot} - $(date +"%d %B %Y")\<\/h2\>\n                \<p class=\"govuk-body\"\> \<a class=\"govuk-link\" href=\"${version}\/version-index\" \>View version\<\/a\> \<\/p\>\n                \<p class=\"govuk-body\"\>Summary of changes\<\/p\>\n                \<ul class=\"govuk-list govuk-list--bullet\"\>\n                    \<li\>PLACEHOLDER<\/li\>\n                    \<li\>PLACEHOLDER<\/li\>\n                    \<li\>PLACEHOLDER<\/li\>\n                \<\/ul\>\n            \<\/li\>\n/g" views/index.html
 
 # remove archive list from archive index page
 #sed  -i '' -e "/\<\!-- VERSION HISTORY START --\>/,/\<\!-- VERSION HISTORY END --\>/d" views/${version}/index.html

@@ -1,0 +1,65 @@
+{% extends "layouts/main.html" %}
+
+
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-l">Check your answers before you continue your application</h1>
+
+        <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                    Are any of the animals microchipped?
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    {{ data['identification-microchipped-radios-yes-no'] }}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="microchipped">Change<span class="govuk-visually-hidden"> </span></a>
+                </dd>
+            </div>
+
+            {%  if  data['identification-microchipped-radios-yes-no'] == "No"  %}
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Enter the ear tag numbers of the animals you plan to move
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{ data['identification-enter-ear-tags-text-input'] }}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="enter-ear-tags">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                </div>
+
+            {%  endif  %}
+
+
+        </dl>
+
+
+         <form action="../task-list?section-identification-complete=true&" method="post" novalidate>
+
+            <button type="submit" class="govuk-button" data-module="govuk-button">
+                Save and continue
+            </button>
+
+        </form>
+
+    </div>
+</div>
+
+
+
+
+
+{% endblock %}
+
+
+
+
+
