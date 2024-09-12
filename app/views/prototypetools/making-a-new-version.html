@@ -45,9 +45,15 @@
                 <p>Each version lives in a folder in the views folder.
                     <br>For example views/v1_0_0/</p>
 
-                <p>Each version version has it's own index page.
+                <p>Each version has it's own index page.
                     <br>For example views/v1_0_0/version-index</p>
 
+                <p>Each version has it's own folder for routes files.
+                    <br>That folder always contains a version.js file
+                    <br>This is where you can imports any js in that same version folder</p>
+
+                <p>Each version has it's own sass file in assets.sass
+                    <br>The application.sass needs to reference all the sass files</p>
 
                 <h2 class="govuk-heading-m">Benefits of archiving</h2>
                 <ul class="govuk-list--bullet govuk-body">
@@ -99,17 +105,20 @@
                     <li>Navigate into the app folder in the prototype folder</li>
                     <li>Create a copy of the views/latest folder called views/v1_2_3</li>
                     <li>Create a copy of routes/latest folder called routes/v1_2_3.js</li>
-                    <li>Create a copy of assets/sass/_latest.scss called assets/sass/_v1_2_3.scss - note this begins with an underscore</li>
+                    <li>Create a copy of assets/sass/_latest.scss called assets/sass/_v1_2_3.scss
+                        <br>Note this begins with an underscore</li>
                     <li>Create a copy of views/layouts/latest.html called views/layouts/v1_2_3.html</li>
                     <li>In routes/v1_2_3/version.js:
                         <br>Change const version = 'latest';
                         <br>to const version = 'v1_2_3';
                     </li>
                     <li>In assets/sass/_v1_2_3.scss
-                        <br>Change .latest to .v1_2_3
+                        <br>Change .latest
+                        <br>to .v1_2_3
                     </li>
                     <li>In views/layouts/v1_2_3.html
-                        <br>Change {% set version = "latest" %} to {% set version = "v1_2_3" %}
+                        <br>Change {% set version = "latest" %}
+                        <br>to {% set version = "v1_2_3" %}
                     </li>
                     <li>In the views/v1_2_3 folder, do a find and replace across all files in that folder and any subfolders:
                         <br>Change extends "layouts/latest.html"
@@ -122,7 +131,7 @@
                         <br>Add the line require('./routes/v1_2_3.js');
                     </li>
                     <li>Update the index page of the prototype to show the new version.
-                        <br>Include a summary of chnages and a links to the version index page.</li>
+                        <br>Include a summary of changes and a links to the version index page.</li>
                 </ol>
             </div>
         </details>
