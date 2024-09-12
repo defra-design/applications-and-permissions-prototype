@@ -1,6 +1,4 @@
-{% extends "layouts/main.html" %}
-
-{% set pageName="Home" %}
+{% extends "layouts/latest.html" %}
 
 {% block content %}
 
@@ -11,8 +9,8 @@
       {{ serviceName }}
     </h1>
 
-    <h2 class="govuk-heading-m">
-        Latest version
+    <h2 class="govuk-heading-s govuk-!-margin-bottom-6">
+        Version: {{ version }}
     </h2>
 
     <p>Account
