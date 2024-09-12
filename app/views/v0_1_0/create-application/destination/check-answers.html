@@ -1,0 +1,94 @@
+{% extends "layouts/v0_1_0.html" %}
+
+
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-l">Check your answers before you continue your application</h1>
+
+        <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+
+
+            {%  if  data['origin-to-or-from-own-premises-radios'] == "On to my premises/farm"  %}
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Where are the animals moving to?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{ data['destination-selection-of-own-premises-radios'] }}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="selection-of-own-premises">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                </div>
+
+            {%  else  %}
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Where are the animals going to?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{ data['destination-type-of-destination-radios'] }}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="type-of-destination">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                </div>
+
+                {%  if  data['destination-type-of-destination-radios'] == "A market"  %}
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                            What type of market are the animals going to?
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                            {{ data['destination-market-type-radios'] }}
+                        </dd>
+                        <dd class="govuk-summary-list__actions">
+                            <a class="govuk-link" href="market-type">Change<span class="govuk-visually-hidden"> </span></a>
+                        </dd>
+                    </div>
+
+                {%  elif  data['destination-type-of-destination-radios'] == "A farm"  %}
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                            What is the CPH number of the farm where the animals are going to?
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                            {{ data['destination-destination-farm-cph-text-input'] }}
+                        </dd>
+                        <dd class="govuk-summary-list__actions">
+                            <a class="govuk-link" href="destination-farm-cph">Change<span class="govuk-visually-hidden"> </span></a>
+                        </dd>
+                    </div>
+                {%  endif  %}
+
+            {%  endif  %}
+
+
+        </dl>
+
+
+         <form action="../task-list?section-destination-complete=true&" method="post" novalidate>
+
+            <button type="submit" class="govuk-button" data-module="govuk-button">
+                Save and continue
+            </button>
+
+        </form>
+
+    </div>
+</div>
+
+
+
+
+
+{% endblock %}
+
+
+
+
+

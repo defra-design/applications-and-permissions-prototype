@@ -1,0 +1,260 @@
+{% extends "layouts/v0_1_0.html" %}
+
+
+
+<!-- Setting the big main heading at the top of the page -->
+{% set pageHeadingTextHTML %}
+    Your animal disease movement licence application
+{% endset %}
+
+
+
+<!-- Text that show in the browser tab. Does NOT need changing -->
+{% block pageTitle %}
+    {{ pageHeadingTextHTML }}
+{% endblock %}
+
+
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-l">{{ pageHeadingTextHTML }}</h1>
+
+        <p class="govuk-body ">You need to complete
+            <span id="section-progress-count"></span> sections
+        </p>
+
+
+        <ul class="govuk-task-list">
+            <li class="govuk-task-list__item govuk-task-list__item--with-link">
+                <div class="govuk-task-list__name-and-hint">
+                    {%  if  data['section-what-complete'] == "true"  %}
+                        <a class="govuk-link govuk-task-list__link" href="what/check-answers" aria-describedby="company-details-1-status">
+                    {%  else  %}
+                        <a class="govuk-link govuk-task-list__link" href="what/thing-being-moved" aria-describedby="company-details-1-status">
+                    {%  endif  %}
+
+                            What you plan to move and when
+                        </a>
+                </div>
+                <div class="govuk-task-list__status" id="">
+                    {%  if  data['section-what-complete'] == "true"  %}
+                        Completed
+                    {%  else  %}
+                        <strong class="govuk-tag govuk-tag--blue">
+                            Incomplete
+                        </strong>
+                    {%  endif  %}
+                </div>
+            </li>
+
+            <!--
+            <li class="govuk-task-list__item govuk-task-list__item--with-link">
+                <div class="govuk-task-list__name-and-hint">
+                    <a class="govuk-link govuk-task-list__link" href="" aria-describedby="company-details-2-status">
+                        About the journey Placeholder
+                    </a>
+                </div>
+                <div class="govuk-task-list__status" id="company-details-2-status">
+                    <strong class="govuk-tag govuk-tag--blue">
+                        Incomplete
+                    </strong>
+                </div>
+            </li>
+            -->
+
+            <li class="govuk-task-list__item govuk-task-list__item--with-link">
+                <div class="govuk-task-list__name-and-hint">
+                    {%  if  data['section-origin-complete'] == "true"  %}
+                        <a class="govuk-link govuk-task-list__link" href="origin/check-answers" aria-describedby="company-details-1-status">
+                    {%  else  %}
+                        <a class="govuk-link govuk-task-list__link" href="origin/to-or-from-own-premises" aria-describedby="company-details-1-status">
+                    {%  endif  %}
+
+                           Movement origin
+                        </a>
+                </div>
+                <div class="govuk-task-list__status" id="origin-section">
+                    {%  if  data['section-origin-complete'] == "true"  %}
+                        Completed
+                    {%  else  %}
+                        <strong class="govuk-tag govuk-tag--blue">
+                            Incomplete
+                        </strong>
+                    {%  endif  %}
+                </div>
+            </li>
+
+
+            <li class="govuk-task-list__item govuk-task-list__item--with-link">
+
+                <div class="govuk-task-list__name-and-hint">
+                    {%  if  data['section-destination-complete'] == "true"  %}
+                        <a class="govuk-link govuk-task-list__link" href="destination/check-answers" aria-describedby="">
+                    {%  else  %}
+                        <a class="govuk-link govuk-task-list__link" href="destination/routing-start" aria-describedby="">
+                    {%  endif  %}
+
+                            Movement destination
+                        </a>
+                </div>
+
+                <div class="govuk-task-list__status" id="destination-section">
+                    {%  if  data['section-destination-complete'] == "true"  %}
+                        Completed
+                    {%  else  %}
+                        <strong class="govuk-tag govuk-tag--blue">
+                            Incomplete
+                        </strong>
+                    {%  endif  %}
+                </div>
+
+            </li>
+
+
+
+            <li class="govuk-task-list__item govuk-task-list__item--with-link">
+                <div class="govuk-task-list__name-and-hint">
+                    <a class="govuk-link govuk-task-list__link" href="tests/routing-tests" aria-describedby="">
+                        Tests and vaccinations
+                    </a>
+                </div>
+
+                <div class="govuk-task-list__status" id="tests-section">
+                    {%  if  data['section-tests-complete'] == "true"  %}
+                        Completed
+                    {%  else  %}
+                        <strong class="govuk-tag govuk-tag--blue">
+                            Incomplete
+                        </strong>
+                    {%  endif  %}
+                </div>
+            </li>
+
+
+
+            <li class="govuk-task-list__item govuk-task-list__item--with-link">
+
+                <div class="govuk-task-list__name-and-hint">
+                    {%  if  data['section-biosecurity-complete'] == "true"  %}
+                        <a class="govuk-link govuk-task-list__link" href="biosecurity/check-answers" aria-describedby="">
+                    {%  else  %}
+                        <a class="govuk-link govuk-task-list__link" href="biosecurity/kept-separately" aria-describedby="">
+                    {%  endif  %}
+
+                            Biosecurity details
+                        </a>
+                </div>
+
+                <div class="govuk-task-list__status" id="biosecurity-section">
+                    {%  if  data['section-biosecurity-complete'] == "true"  %}
+                        Completed
+                    {%  else  %}
+                        <strong class="govuk-tag govuk-tag--blue">
+                            Incomplete
+                        </strong>
+                    {%  endif  %}
+                </div>
+
+            </li>
+
+
+
+            <li class="govuk-task-list__item govuk-task-list__item--with-link">
+
+                <div class="govuk-task-list__name-and-hint">
+                    {%  if  data['section-identification-complete'] == "true"  %}
+                        <a class="govuk-link govuk-task-list__link" href="identification/check-answers" aria-describedby="">
+                    {%  else  %}
+                        <a class="govuk-link govuk-task-list__link" href="identification/microchipped" aria-describedby="">
+                    {%  endif  %}
+
+                            Animal identification details
+                        </a>
+                </div>
+
+                <div class="govuk-task-list__status" id="identification-section">
+                    {%  if  data['section-identification-complete'] == "true"  %}
+                        Completed
+                    {%  else  %}
+                    <strong class="govuk-tag govuk-tag--blue">
+                        Incomplete
+                    </strong>
+                    {%  endif  %}
+                </div>
+
+            </li>
+
+
+        </ul>
+
+
+        <p>You can <a href="#">message the outbreak team</a> if you need help with your application.</p>
+
+
+        <!-- go to routes.js for routing  -->
+        <form action="#" method="post" novalidate>
+
+            {{
+                govukButton
+                ({
+                    text: "Review",
+                    classes: "govuk-button--secondary"
+                })
+            }}
+
+        </form>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+<script>
+
+    // Update the progress count
+    window.onload = function ()
+    {
+        const elements = document.querySelectorAll('div.govuk-task-list__status');
+
+        let numItems = elements.length;
+
+        let completecounter = 0;
+
+        elements.forEach((element) =>
+        {
+            var tagtext = element.textContent;
+
+            if(tagtext.includes('Completed') )
+            {
+                completecounter++;
+            }
+        });
+
+        let remaniningcount = numItems - completecounter;
+
+
+        document.getElementById("section-progress-count").textContent = remaniningcount + " of " + numItems;
+
+
+        // make button primary green if all done
+        if (completecounter == numItems)
+        {
+            const elementbutton = document.querySelector('.govuk-button');
+            elementbutton.classList.remove('govuk-button--secondary');
+        }
+
+
+    }
+
+</script>
+
+{% endblock %}
+
+
