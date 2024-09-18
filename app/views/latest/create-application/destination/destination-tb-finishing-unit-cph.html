@@ -15,7 +15,7 @@ This will save you time.
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    What is the County Parish Holding (CPH) number of the farm where the animals are going to?
+    What is the County Parish Holding (CPH) number of the approved TB unit where the animals are going to?
 {% endset %}
 
 
@@ -66,7 +66,7 @@ This will save you time.
                     [
                         {
                             html: errorTextHTML,
-                            href: "#destination-destination-farm-cph-text-input"
+                            href: "#destination-tb-finishing-unit-cph-text-input"
                         }
                     ]
                 })
@@ -76,7 +76,7 @@ This will save you time.
 
 
         <!-- go to routes.js for routing  -->
-        <form action="destination-farm-cph-router" method="post" novalidate>
+        <form action="destination-tb-finishing-unit-cph-router" method="post" novalidate>
 
             {{ govukInput
                 ({
@@ -87,9 +87,9 @@ This will save you time.
                         isPageHeading: true
                     },
 
-                    id: "destination-destination-farm-cph-text-input",
+                    id: "destination-tb-finishing-unit-cph-text-input",
 
-                    name: "destination-destination-farm-cph-text-input",
+                    name: "destination-tb-finishing-unit-cph-text-input",
 
                     hint:
                     {
@@ -99,7 +99,7 @@ This will save you time.
                     errorMessage: null if data['errorthispage'] != "true"
                                        else { html: errorTextHTML },
 
-                    value: data['destination-destination-farm-cph-text-input'],
+                    value: data['destination-tb-finishing-unit-cph-text-input'],
 
                     classes: "govuk-input--width-10"
                 })
@@ -144,7 +144,6 @@ This will save you time.
 
 </form>
 <!--  END OF ERROR LOGIC -->
-
 
 
 
