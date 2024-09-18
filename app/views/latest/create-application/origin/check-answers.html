@@ -23,7 +23,7 @@
             </div>
 
 
-            {%  if  data['origin-to-or-from-own-premises-radios'] == "Away from my farm or premises"  %}
+            {%  if  data['origin-to-or-from-own-premises-radios'] == "Off the farm"  %}
                 <div class="govuk-summary-list__row">
                     <dt class="govuk-summary-list__key">
                         Where are the animals moving from?
@@ -35,6 +35,38 @@
                         <a class="govuk-link" href="selection-of-own-premises">Change<span class="govuk-visually-hidden"> </span></a>
                     </dd>
                 </div>
+
+                {%  if  data['origin-selection-of-own-premises-radios'] == "Another location"  %}
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                            What is the CPH number of the farm where the animals are moving off?
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                            {{ data['origin-origin-farm-cph-text-input'] }}
+                        </dd>
+                        <dd class="govuk-summary-list__actions">
+                            <a class="govuk-link" href="origin-farm-cph">Change<span class="govuk-visually-hidden"> </span></a>
+                        </dd>
+                    </div>
+
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                            What is the address of the farm where the animals are moving off?
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                            {{ data['origin-addressLine1'] }}<br>
+                            {{ data['origin-addressLine2'] }}<br>
+                            {{ data['origin-addressTown'] }}<br>
+                            {{ data['origin-addressCounty'] }}<br>
+                            {{ data['origin-addressPostcode'] }}
+                        </dd>
+                        <dd class="govuk-summary-list__actions">
+                            <a class="govuk-link" href="origin-farm-address">Change<span class="govuk-visually-hidden"> </span></a>
+                        </dd>
+                    </div>
+                {%  endif  %}
+
+
             {%  else  %}
 
                 <div class="govuk-summary-list__row">
@@ -52,13 +84,30 @@
                 {%  if  data['origin-type-of-origin-radios'] == "A farm"  %}
                     <div class="govuk-summary-list__row">
                         <dt class="govuk-summary-list__key">
-                            What is the CPH number of the farm where the animals are coming from?
+                            What is the CPH number of the farm where the animals are moving from?
                         </dt>
                         <dd class="govuk-summary-list__value">
                             {{ data['origin-origin-farm-cph-text-input'] }}
                         </dd>
                         <dd class="govuk-summary-list__actions">
                             <a class="govuk-link" href="origin-farm-cph">Change<span class="govuk-visually-hidden"> </span></a>
+                        </dd>
+                    </div>
+
+
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                            What is the address of the farm where the animals are moving off?
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                            {{ data['origin-addressLine1'] }}<br>
+                            {{ data['origin-addressLine2'] }}<br>
+                            {{ data['origin-addressTown'] }}<br>
+                            {{ data['origin-addressCounty'] }}<br>
+                            {{ data['origin-addressPostcode'] }}
+                        </dd>
+                        <dd class="govuk-summary-list__actions">
+                            <a class="govuk-link" href="origin-farm-address">Change<span class="govuk-visually-hidden"> </span></a>
                         </dd>
                     </div>
                 {%  endif  %}

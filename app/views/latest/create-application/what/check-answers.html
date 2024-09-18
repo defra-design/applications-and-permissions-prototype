@@ -24,6 +24,20 @@
 
             <div class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key">
+                    What is the earliest date you will move some or all of the cattle?
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    {{ data['what-move-date-window-start-date-input-day'] }} {{ data['what-move-date-window-start-date-input-month-text'] }} {{ data['what-move-date-window-start-date-input-year'] }}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="move-date-window-start">Change<span class="govuk-visually-hidden"> </span></a>
+                </dd>
+            </div>
+
+
+            <!--
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
                     How many animals are being moved?
                 </dt>
                 <dd class="govuk-summary-list__value">
@@ -86,7 +100,7 @@
                 </div>
 
             {%  endif  %}
-
+    -->
 
         </dl>
 

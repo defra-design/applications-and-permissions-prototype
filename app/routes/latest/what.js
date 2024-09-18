@@ -58,7 +58,7 @@ module.exports = function (router) {
         req.session.data['errortypeone'] = "false";
 
         // If Yes was selected, continue to next page
-        if (req.session.data['what-thing-being-moved-radios'] == "Live birds")
+        if (req.session.data['what-thing-being-moved-radios'] == "Birds")
         {
             // Continue to the next page
 
@@ -74,7 +74,7 @@ module.exports = function (router) {
                 res.redirect('THE_NEXT_PAGE_NAME');
             }
         }
-        else if (req.session.data['what-thing-being-moved-radios'] == "Live cattle")
+        else if (req.session.data['what-thing-being-moved-radios'] == "Cattle")
         {
             // Continue to the next page
 
@@ -87,10 +87,26 @@ module.exports = function (router) {
             else
             {
                 // This page name needs to be the next page the user gets to after successfully continuing
-                res.redirect('how-many');
+                res.redirect('move-date-window-start');
             }
         }
-        else if (req.session.data['what-thing-being-moved-radios'] == "Product")
+        else if (req.session.data['what-thing-being-moved-radios'] == "Pigs")
+        {
+            // Continue to the next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('check-answers');
+            }
+            else
+            {
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('THE_NEXT_PAGE_NAME');
+            }
+        }
+        else if (req.session.data['what-thing-being-moved-radios'] == "Sheep")
         {
             // Continue to the next page
 
@@ -137,12 +153,12 @@ module.exports = function (router) {
 
 
 
-
+//NOT NEEDED HERE ANYMORE
 
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////                                                    ////////////////
-    ////////////////                    NUMBER ENTRY                    ////////////////
+    ////////////////               Qantity of animals                   ////////////////
     ////////////////                                                    ////////////////
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////
@@ -264,7 +280,7 @@ module.exports = function (router) {
 
 
 
-
+// NOT NEEDED FOR NOW
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////                                                    ////////////////
@@ -341,7 +357,7 @@ module.exports = function (router) {
 
 
 
-
+// NOT NEEDED FOR NOW
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////                                                    ////////////////
@@ -667,6 +683,8 @@ module.exports = function (router) {
 
 
 
+
+
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////                                                    ////////////////
@@ -984,7 +1002,7 @@ module.exports = function (router) {
             // redirect to the next page
 
             // For PLACEHOLDER template only. This should go to the next page.
-            res.redirect('move-date-window-end')
+            res.redirect('check-answers')
         }
 
 
@@ -993,6 +1011,9 @@ module.exports = function (router) {
 
 
 
+
+
+// NOT NEEDED FOR NOW
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////                                                    ////////////////
