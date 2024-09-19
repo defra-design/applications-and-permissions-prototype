@@ -134,22 +134,86 @@
             </li>
 
 
+            <!-- Only show this Biosecurity if destination is a farm -->
+            {%  if      data['origin-to-or-from-own-premises-radios'] == "On the farm"
+                    or data['destination-type-of-destination-radios'] == "A farm"
+            %}
+                <li class="govuk-task-list__item govuk-task-list__item--with-link">
+
+                    <div class="govuk-task-list__name-and-hint">
+                        {%  if  data['section-biosecurity-complete'] == "true"  %}
+                            <a class="govuk-link govuk-task-list__link" href="biosecurity/check-answers" aria-describedby="">
+                        {%  else  %}
+                            <a class="govuk-link govuk-task-list__link" href="biosecurity/kept-separately" aria-describedby="">
+                        {%  endif  %}
+
+                                Biosecurity details
+                            </a>
+                    </div>
+
+                    <div class="govuk-task-list__status" id="biosecurity-section">
+                        {%  if  data['section-biosecurity-complete'] == "true"  %}
+                            Completed
+                        {%  else  %}
+                            <strong class="govuk-tag govuk-tag--blue">
+                                Incomplete
+                            </strong>
+                        {%  endif  %}
+                    </div>
+
+                </li>
+            {%  endif  %}
+
+
+
+
+            <!-- Only show this ID section if a part test or farm to farm -->
+            {%  if  (data['origin-to-or-from-own-premises-radios'] == "On the farm"
+                    and data['destination-type-of-destination-radios'] == "A farm")
+                or data['tests-whole-herd-test-radios-yes-no'] == "No"
+            %}
+                <li class="govuk-task-list__item govuk-task-list__item--with-link">
+
+                    <div class="govuk-task-list__name-and-hint">
+                        {%  if  data['section-identification-complete'] == "true"  %}
+                            <a class="govuk-link govuk-task-list__link" href="identification/check-answers" aria-describedby="">
+                        {%  else  %}
+                            <a class="govuk-link govuk-task-list__link" href="identification/microchipped" aria-describedby="">
+                        {%  endif  %}
+
+                                Animal identification details
+                            </a>
+                    </div>
+
+                    <div class="govuk-task-list__status" id="identification-section">
+                        {%  if  data['section-identification-complete'] == "true"  %}
+                            Completed
+                        {%  else  %}
+                        <strong class="govuk-tag govuk-tag--blue">
+                            Incomplete
+                        </strong>
+                        {%  endif  %}
+                    </div>
+
+                </li>
+            {%  endif  %}
+
 
             <li class="govuk-task-list__item govuk-task-list__item--with-link">
 
                 <div class="govuk-task-list__name-and-hint">
                     {%  if  data['section-biosecurity-complete'] == "true"  %}
-                        <a class="govuk-link govuk-task-list__link" href="biosecurity/check-answers" aria-describedby="">
+                        <a class="govuk-link govuk-task-list__link" href="contact-and-updates/check-answers" aria-describedby="">
                     {%  else  %}
-                        <a class="govuk-link govuk-task-list__link" href="biosecurity/kept-separately" aria-describedby="">
+                        <a class="govuk-link govuk-task-list__link" href="contact-and-updates/routing-contact-and-updates" aria-describedby="">
                     {%  endif  %}
 
-                            Biosecurity details
+                            Contact and updates
                         </a>
                 </div>
 
-                <div class="govuk-task-list__status" id="biosecurity-section">
-                    {%  if  data['section-biosecurity-complete'] == "true"  %}
+                <div class="govuk-task-list__status" id="contact-and-updates-section">
+                    {%  if  data['section-contact-and-updates-complete'] == "true"  %}
                         Completed
                     {%  else  %}
                         <strong class="govuk-tag govuk-tag--blue">
@@ -160,32 +224,6 @@
 
             </li>
 
-
-
-            <li class="govuk-task-list__item govuk-task-list__item--with-link">
-
-                <div class="govuk-task-list__name-and-hint">
-                    {%  if  data['section-identification-complete'] == "true"  %}
-                        <a class="govuk-link govuk-task-list__link" href="identification/check-answers" aria-describedby="">
-                    {%  else  %}
-                        <a class="govuk-link govuk-task-list__link" href="identification/microchipped" aria-describedby="">
-                    {%  endif  %}
-
-                            Animal identification details
-                        </a>
-                </div>
-
-                <div class="govuk-task-list__status" id="identification-section">
-                    {%  if  data['section-identification-complete'] == "true"  %}
-                        Completed
-                    {%  else  %}
-                    <strong class="govuk-tag govuk-tag--blue">
-                        Incomplete
-                    </strong>
-                    {%  endif  %}
-                </div>
-
-            </li>
 
 
         </ul>

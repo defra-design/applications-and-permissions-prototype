@@ -1,0 +1,78 @@
+{% extends "layouts/latest.html" %}
+
+
+<!-- Setting the big main heading at the top of the page -->
+{% set pageHeadingTextHTML %}
+    Where are the animals coming from?
+{% endset %}
+
+
+<!-- Set the text for the error type -->
+{% set errorTextHTML %}
+    <!-- Nothing was selected -->
+    {% if data['errortypeone'] == "true" %}
+        Select where the animals are moving from
+    {% endif %}
+{% endset %}
+
+
+<!-- Text that show in the browser tab. Does NOT need changing -->
+{% block pageTitle %}
+    {% if  data['errorthispage'] == "true"  %}
+        Error:
+    {% endif %}
+
+    {{ pageHeadingTextHTML }}
+{% endblock %}
+
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+        <h1 class="govuk-heading-l">Compensation information</h1>
+
+        <p>Cattle moved into a TB breakdown herd are subject to a 50% reduction in compensation if they are
+            subsequently removed as reactors or direct contacts before the herd regains its
+            Officially Tuberculosis Free (OTF) status.
+        </p>
+
+        <p>This does not apply if the destination herd is registered to a bovine TB health scheme accredited under
+            The Cattle Health Certification Standards (CHECS),
+            <a href="https://checs.co.uk/">https://checs.co.uk/ (opens in a new tab)</a>
+            provided that accreditation was gained before the breakdown began.
+        </p>
+
+        <p>Please note that this does not include CHECS TB entry level membership.
+
+        </p>
+
+        <p>Approved Finishing Units (AFU), Approved Finishing Units (Enhanced) with Grazing (AFUE),
+            Licensed Finishing Units (LFU) and
+            TB Isolation Units (TB IUs) are not subject to this potential reduction in compensation.</p>
+
+
+
+        <!-- go to routes.js for routing  -->
+        <form action="check-answers" method="post" novalidate>
+
+
+
+            {{ govukButton({ text: "Continue" }) }}
+
+        </form>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+{% endblock %}
+
+

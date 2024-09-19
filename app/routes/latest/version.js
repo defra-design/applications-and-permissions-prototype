@@ -11,6 +11,7 @@ require('./destination.js')(router);
 require('./tests.js')(router);
 require('./biosecurity.js')(router);
 require('./identification.js')(router);
+require('./contact-and-updates.js')(router);
 
 
 

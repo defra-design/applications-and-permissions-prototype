@@ -1,5 +1,4 @@
-{% extends "layouts/latest.html" %}
-
+{% extends "layouts/main.html" %}
 
 <!--
 NOTES ON USING THIS TEMPLATE Page
@@ -8,31 +7,24 @@ This will save you time.
 1. Type your heading for the page after '% set pageHeadingTextHTML %'
 2. Type/customise the error message after '% set errorTextHTML %'
 3. Use 'Find and replace' to replace "SECTION" with the name of the section of the service you're working on.
-4. Use 'Find and replace' to replace "PAGENAME_CHECKBOXES" with whatever you named this page/file.
-5. Use 'Find and replace' to replace each of the checkbox values. Starting with 'PLACEHOLDER_ANSWER_1'
-6. Go to the javascript file 'templates.js' and copy the section 'CHECKBOXES - MANDATORY' into your routes.js file.
-7. Follow instructions at the top of the 'templates.js'.
+4. Use 'Find and replace' to replace "PAGENAME_RADIOS" with whatever you named this page/file.
+5. Use 'Find and replace' to replace each of the radio button values. Starting with 'PLACEHOLDER_ANSWER_1'
+6. Go to the javascript file 'templates.js' and copy the section 'RADIO BUTTONS - MANDATORY' into your routes.js file.
+7. Follow instructions at the top of the 'templates.js'
 -->
-
-
 
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    Tests on the animals being moved
-{% endset %}
-
-<!-- Setting the smaller secondary heading lower down the page -->
-{% set questionHeadingTextHTML %}
-    Confirmation
+    What mobile phone number would you like updates sent to?
 {% endset %}
 
 
 <!-- Set the text for the error type -->
 {% set errorTextHTML %}
     <!-- Nothing was selected -->
-    {%  if  data['errortypeone'] == "true"  %}
-         Select at least one PLACEHOLDER
+    {% if data['errortypeone'] == "true" %}
+        Select where you did PLACEHOLDER
     {% endif %}
 {% endset %}
 
@@ -61,7 +53,7 @@ This will save you time.
                     [
                         {
                             html: errorTextHTML,
-                            href: "#tests-origin-confirmation-checkboxes"
+                            href: "#contact-and-updates-updates-select-text-number-radios"
                         }
                     ]
                 })
@@ -70,39 +62,22 @@ This will save you time.
         <!--  END OF 'error summary' -->
 
 
+        <!-- go to routes.js for routing  -->
+        <form action="check-answers" method="post" novalidate>
 
-        <h1 class="govuk-heading-l">
-            {{ pageHeadingTextHTML }}
-        </h1>
-
-
-        <p>You must confirm the following test conditionas have been met:</p>
-
-        <ul class="govuk-body govuk-list--bullet">
-            <li>APHA has received all skin and blood test results</li>
-            <li>any inconclusive reactors have had a negative test result in no less than 60 days after the inconclusive result</li>
-        </ul>
-
-
-
-
-
-        <!-- form URL below turns off errors on the next page  -->
-        <form action="origin-confirmation-router" method="post" novalidate>
-
-            {{ govukCheckboxes
+            {{ govukRadios
                 ({
-                    name: "tests-origin-confirmation-checkboxes",
+                    name: "contact-and-updates-updates-select-text-number-radios",
 
-                    id: "tests-origin-confirmation-checkboxes",
+                    id: "contact-and-updates-updates-select-text-number-radios",
 
                     fieldset:
                     {
                         legend:
                         {
-                            text: questionHeadingTextHTML,
-                            isPageHeading: false,
-                            classes: "govuk-fieldset__legend--m"
+                            html: pageHeadingTextHTML,
+                            isPageHeading: true,
+                            classes: "govuk-fieldset__legend--l"
                         }
                     },
 
@@ -117,26 +92,26 @@ This will save you time.
                     items:
                     [
                         {
-                            value: "I confirm these test conditions have been met",
-                            text: "I confirm these test conditions have been met",
-                            checked: (data['tests-origin-confirmation-checkboxes'] or []).indexOf('I confirm these test conditions have been met') > -1
+                            value: "0789 1234 567",
+                            text: "0789 1234 567",
+                            checked: data['contact-and-updates-licence-select-text-number-radios'] == "0789 1234 567"
+                        },
+                        {
+                            value: "Another address",
+                            text: "Another address",
+                            checked: data['contact-and-updates-updates-select-text-number-radios'] == "Another phone number"
                         }
                     ]
                 })
             }}
 
 
-
             {{ govukButton({ text: "Continue" }) }}
-
 
         </form>
 
     </div>
 </div>
-
-
-
 
 
 <!-- ERROR LOGIC  drop down to toggle states  -->
@@ -148,7 +123,6 @@ This will save you time.
                 {% if (data['errorthispage'] != "true") %}selected{% endif %}
         >Errors - Off</option>
 
-        <!-- Nothing was selected -->
         <option value="errorthispage=true&errortypeone=true&errortypetwo=false&"
                 {% if (data['errortypeone'] == 'true' and data['errortypetwo'] != 'true')  %}selected{% endif %}
         >Error 1 - Must select at least one</option>
@@ -162,8 +136,6 @@ This will save you time.
 
 
 
-
 {% endblock %}
-
 
 

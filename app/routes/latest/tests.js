@@ -55,7 +55,7 @@ module.exports = function (router) {
     router.get('/' + version + section + '/routing-tests', function (req, res)
     {
         // If Yes was selected, continue to next page
-        if (req.session.data['origin-to-or-from-own-premises-radios'] == "On to my premises/farm")
+        if (req.session.data['origin-to-or-from-own-premises-radios'] == "On the farm")
         {
             // Continue to the next pages where farmer is the origin
             res.redirect('destination-confirmation');
@@ -64,7 +64,7 @@ module.exports = function (router) {
         else
         {
             // Continue to the next pages where farmer is the destination
-            res.redirect('origin-confirmation');
+            res.redirect('whole-herd-test');
         }
 
     })
