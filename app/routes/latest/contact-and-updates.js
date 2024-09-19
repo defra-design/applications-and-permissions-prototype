@@ -48,8 +48,8 @@ module.exports = function (router) {
     {
         // If the origin is unrestricted then communication details go to the restricted destination
         // Simulate this ROUGHLY FOR NOW by checking that destination is a farm
-        if (req.session.data['origin-to-or-from-own-premises-radios'] != "On the farm"
-            && req.session.data['destination-type-of-destination-radios'] != "A farm")
+        if (req.session.data['origin-to-or-from-own-premises-radios'] == "Off the farm"
+            && req.session.data['destination-type-of-destination-radios'] == "A farm")
         {
             // Continue to the next pages where the destination is TB restricted and assume origin is unrestricted
             res.redirect('licence-send-to-destination');
