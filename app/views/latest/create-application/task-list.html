@@ -22,8 +22,8 @@
 
         <h1 class="govuk-heading-l">{{ pageHeadingTextHTML }}</h1>
 
-        <p class="govuk-body ">You need to complete
-            <span id="section-progress-count"></span> sections
+        <p class="govuk-body ">You have
+            <span id="section-progress-count"></span> sections left to complete.
         </p>
 
 
@@ -278,7 +278,7 @@
         let remaniningcount = numItems - completecounter;
 
 
-        document.getElementById("section-progress-count").textContent = remaniningcount + " of " + numItems;
+        document.getElementById("section-progress-count").textContent = remaniningcount + "/" + numItems;
 
 
         // make button primary green if all done

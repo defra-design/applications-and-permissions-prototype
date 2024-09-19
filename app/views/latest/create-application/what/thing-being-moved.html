@@ -16,7 +16,7 @@ This will save you time.
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    What are you planning to move?
+    What are you planning on moving?
 {% endset %}
 
 
@@ -114,6 +114,10 @@ This will save you time.
                         {
                             value: "Something else",
                             text: "Something else",
+                            hint:
+                            {
+                                text: "Such as samples, feed, waste materials, people or equipment"
+                            },
                             checked: data['what-thing-being-moved-radios'] == "Something else"
                         }
                     ]
