@@ -1,4 +1,4 @@
-{% extends "layouts/latest.html" %}
+{% extends "layouts/v0_2_0.html" %}
 
 
 
@@ -22,158 +22,70 @@
 
         <h1 class="govuk-heading-l">{{ pageHeadingTextHTML }}</h1>
 
-        <p id="whole-text-progress-count" class="govuk-body">You have
+        <p class="govuk-body ">You have
             <span id="section-progress-count"></span> sections left to complete.
         </p>
 
-        <p id="whole-text-all-complete" style="display: none;">All section are complete.</p>
-
-
-        {{
-            govukTaskList
-            ({
-                idPrefix: "company-details",
-                items:
-                [
-                    {
-                        title:
-                        {
-                            text: "What you plan to move and when"
-                        },
-                        href: "what/check-answers" if data['section-what-complete'] == "true" else "what/thing-being-moved",
-                        status:
-                        {
-                            text: "Completed",
-                            tag:
-                            {
-                                text: "Incomplete",
-                                classes: "govuk-tag--blue"
-                            } if data['section-what-complete'] != "true"
-                        }
-                    },
-
-                    {
-                        title:
-                        {
-                            text: "Movement origin"
-                        },
-                        href: "",
-                        status:
-                        {
-                            text:  "Cannot start yet",
-                            classes: "govuk-task-list__status--cannot-start-yet"
-                        }
-                    } if data['section-what-complete'] != "true",
-
-
-                    {
-                        title:
-                        {
-                            text: "Movement origin"
-                        },
-                        href: "origin/check-answers" if data['section-origin-complete'] == "true"  else "origin/to-or-from-own-premises",
-                        status:
-                        {
-                            text: "Completed",
-                            tag:
-                            {
-                                text: "Incomplete",
-                                classes: "govuk-tag--blue"
-                            } if data['section-origin-complete'] != "true"
-                        }
-                    } if data['section-what-complete'] == "true",
-
-
-
-                    {
-                        title:
-                        {
-                            text: "PLACEHOLDER_TITLE"
-                        },
-                        href: "PLACEHOLDER_URL_CHECK_ANSWERS/check-answers" if data['PLACEHOLDER_DATA_SECTION_COMPLETE'] == "true" else "PLACEHOLDER_FIRST_PAGE",
-                        status:
-                        {
-                            text: "Completed",
-                            tag:
-                            {
-                                text: "Incomplete",
-                                classes: "govuk-tag--blue"
-                            } if data['PLACEHOLDER_DATA_SECTION_COMPLETE'] != "true"
-                        }
-                    },
-
-                    {
-                        title:
-                        {
-                            text: "PLACEHOLDER_TITLE"
-                        },
-                        href: "PLACEHOLDER_URL_CHECK_ANSWERS/check-answers" if data['PLACEHOLDER_DATA_SECTION_COMPLETE'] == "true" else "PLACEHOLDER_FIRST_PAGE",
-                        status:
-                        {
-                            text: "Completed",
-                            tag:
-                            {
-                                text: "Incomplete",
-                                classes: "govuk-tag--blue"
-                            } if data['PLACEHOLDER_DATA_SECTION_COMPLETE'] != "true"
-                        }
-                    },
-
-                    {
-                        title:
-                        {
-                            text: "PLACEHOLDER_TITLE"
-                        },
-                        href: "PLACEHOLDER_URL_CHECK_ANSWERS/check-answers" if data['PLACEHOLDER_DATA_SECTION_COMPLETE'] == "true" else "PLACEHOLDER_FIRST_PAGE",
-                        status:
-                        {
-                            text: "Completed",
-                            tag:
-                            {
-                                text: "Incomplete",
-                                classes: "govuk-tag--blue"
-                            } if data['PLACEHOLDER_DATA_SECTION_COMPLETE'] != "true"
-                        }
-                    },
-
-                    {
-                        title:
-                        {
-                            text: "PLACEHOLDER_TITLE"
-                        },
-                        href: "PLACEHOLDER_URL_CHECK_ANSWERS/check-answers" if data['PLACEHOLDER_DATA_SECTION_COMPLETE'] == "true" else "PLACEHOLDER_FIRST_PAGE",
-                        status:
-                        {
-                            text: "Completed",
-                            tag:
-                            {
-                                text: "Incomplete",
-                                classes: "govuk-tag--blue"
-                            } if data['PLACEHOLDER_DATA_SECTION_COMPLETE'] != "true"
-                        }
-                    },
-
-                    {
-                        title:
-                        {
-                            text: "PLACEHOLDER_TITLE"
-                        },
-                        href: "PLACEHOLDER_URL_CHECK_ANSWERS/check-answers" if data['PLACEHOLDER_DATA_SECTION_COMPLETE'] == "true" else "PLACEHOLDER_FIRST_PAGE",
-                        status:
-                        {
-                            classes: "govuk-task-list__status--cannot-start-yet" if data['PLACEHOLDER_DATA_SECTION_COMPLETE'] != "true",
-                            text: "Completed" if data['PLACEHOLDER_DATA_SECTION_COMPLETE'] != "true" else "Cannot start yet"
-                        }
-                    }
-
-                ]
-            })
-        }}
-
-
 
         <ul class="govuk-task-list">
+            <li class="govuk-task-list__item govuk-task-list__item--with-link">
+                <div class="govuk-task-list__name-and-hint">
+                    {%  if  data['section-what-complete'] == "true"  %}
+                        <a class="govuk-link govuk-task-list__link" href="what/check-answers" aria-describedby="company-details-1-status">
+                    {%  else  %}
+                        <a class="govuk-link govuk-task-list__link" href="what/thing-being-moved" aria-describedby="company-details-1-status">
+                    {%  endif  %}
 
+                            What you plan to move and when
+                        </a>
+                </div>
+                <div class="govuk-task-list__status" id="">
+                    {%  if  data['section-what-complete'] == "true"  %}
+                        Completed
+                    {%  else  %}
+                        <strong class="govuk-tag govuk-tag--blue">
+                            Incomplete
+                        </strong>
+                    {%  endif  %}
+                </div>
+            </li>
+
+            <!--
+            <li class="govuk-task-list__item govuk-task-list__item--with-link">
+                <div class="govuk-task-list__name-and-hint">
+                    <a class="govuk-link govuk-task-list__link" href="" aria-describedby="company-details-2-status">
+                        About the journey Placeholder
+                    </a>
+                </div>
+                <div class="govuk-task-list__status" id="company-details-2-status">
+                    <strong class="govuk-tag govuk-tag--blue">
+                        Incomplete
+                    </strong>
+                </div>
+            </li>
+            -->
+
+            <li class="govuk-task-list__item govuk-task-list__item--with-link">
+                <div class="govuk-task-list__name-and-hint">
+                    {%  if  data['section-origin-complete'] == "true"  %}
+                        <a class="govuk-link govuk-task-list__link" href="origin/check-answers" aria-describedby="company-details-1-status">
+                    {%  else  %}
+                        <a class="govuk-link govuk-task-list__link" href="origin/to-or-from-own-premises" aria-describedby="company-details-1-status">
+                    {%  endif  %}
+
+                           Movement origin
+                        </a>
+                </div>
+                <div class="govuk-task-list__status" id="origin-section">
+                    {%  if  data['section-origin-complete'] == "true"  %}
+                        Completed
+                    {%  else  %}
+                        <strong class="govuk-tag govuk-tag--blue">
+                            Incomplete
+                        </strong>
+                    {%  endif  %}
+                </div>
+            </li>
 
 
             <li class="govuk-task-list__item govuk-task-list__item--with-link">
@@ -326,7 +238,7 @@
             {{
                 govukButton
                 ({
-                    text: "Review and submit",
+                    text: "Review",
                     classes: "govuk-button--secondary"
                 })
             }}
@@ -370,14 +282,10 @@
 
 
         // make button primary green if all done
-        // also change text at the top
         if (completecounter == numItems)
         {
             const elementbutton = document.querySelector('.govuk-button');
             elementbutton.classList.remove('govuk-button--secondary');
-
-            document.getElementById('whole-text-progress-count').style.display = 'none';
-            document.getElementById('whole-text-all-complete').style.display = 'block';
         }
 
 

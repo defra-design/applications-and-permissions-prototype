@@ -1,0 +1,139 @@
+{% extends "layouts/v0_2_0.html" %}
+
+<!--
+NOTES ON USING THIS TEMPLATE Page
+This will save you time.
+
+1. Type your heading for the page after '% set pageHeadingTextHTML %'
+2. Type/customise the error message after '% set errorTextHTML %'
+3. Use 'Find and replace' to replace "SECTION" with the name of the section of the service you're working on.
+4. Use 'Find and replace' to replace "PAGENAME_RADIOS" with whatever you named this page/file.
+5. Use 'Find and replace' to replace each of the radio button values. Starting with 'A farm'
+6. Go to the javascript file 'templates.js' and copy the section 'RADIO BUTTONS - MANDATORY' into your routes.js file.
+7. Follow instructions at the top of the 'templates.js'
+-->
+
+
+<!-- Setting the big main heading at the top of the page -->
+{% set pageHeadingTextHTML %}
+    Where are the animals going to?
+{% endset %}
+
+
+<!-- Set the text for the error type -->
+{% set errorTextHTML %}
+    <!-- Nothing was selected -->
+    {% if data['errortypeone'] == "true" %}
+        Select where you did PLACEHOLDER
+    {% endif %}
+{% endset %}
+
+
+<!-- Text that show in the browser tab. Does NOT need changing -->
+{% block pageTitle %}
+    {% if  data['errorthispage'] == "true"  %}
+        Error:
+    {% endif %}
+
+    {{ pageHeadingTextHTML }}
+{% endblock %}
+
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+        <!-- ERROR LOGIC 'error summary' -->
+        {% if data['errorthispage'] == "true" %}
+            {{ govukErrorSummary
+                ({
+                    titleText: "There is a problem",
+                    errorList:
+                    [
+                        {
+                            html: errorTextHTML,
+                            href: "#destination-type-of-destination-radios"
+                        }
+                    ]
+                })
+            }}
+        {% endif %}
+        <!--  END OF 'error summary' -->
+
+
+        <!-- go to routes.js for routing  -->
+        <form action="type-of-destination-router" method="post" novalidate>
+
+            {{ govukRadios
+                ({
+                    name: "destination-type-of-destination-radios",
+
+                    id: "destination-type-of-destination-radios",
+
+                    fieldset:
+                    {
+                        legend:
+                        {
+                            html: pageHeadingTextHTML,
+                            isPageHeading: true,
+                            classes: "govuk-fieldset__legend--l"
+                        }
+                    },
+
+                    hint:
+                    {
+                        text: ""
+                    },
+
+                    errorMessage: null if data['errorthispage'] != "true"
+                                       else { html: errorTextHTML },
+
+                    items:
+                    [
+                        {
+                            value: "A slaughterhouse",
+                            text: "A slaughterhouse",
+                            checked: data['destination-type-of-destination-radios'] == "A slaughterhouse"
+                        },
+                        {
+                            value: "A market",
+                            text: "A market",
+                            checked: data['destination-type-of-destination-radios'] == "A market"
+                        },
+                        {
+                            value: "A farm",
+                            text: "A farm",
+                            checked: data['destination-type-of-destination-radios'] == "A farm"
+                        },
+                        {
+                            value: "An approved TB unit",
+                            text: "An approved TB unit",
+                            checked: data['destination-type-of-destination-radios'] == "An approved TB unit"
+                        },
+                        {
+                            value: "Another destination",
+                            text: "Another destination",
+                            checked: data['destination-type-of-destination-radios'] == "Another destination"
+                        }
+
+                    ]
+                })
+            }}
+
+
+            {{ govukButton({ text: "Continue" }) }}
+
+        </form>
+
+    </div>
+</div>
+
+
+
+
+
+
+{% endblock %}
+
+
