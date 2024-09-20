@@ -263,4 +263,57 @@ module.exports = function (router) {
     })
 
 
+
+
+
+
+
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////        routing from updates email selection        ////////////////
+    ////////////////      to check answers or text message              ////////////////
+    ////////////////          if text was selected                      ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+    // NOT COMPLEX PAGE
+    router.get('/' + section + '/updates-select-email-address-router', function (req, res)
+    {
+        if( req.session.data['contact-and-updates-updates-method-checkboxes'].includes("Text message") )
+        {
+            // Go to text page
+            res.redirect('updates-select-text-number');
+        }
+
+        else
+        {
+            // Continue to the next pages where farmer is the destination
+            res.redirect('check-answers');
+        }
+
+    })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

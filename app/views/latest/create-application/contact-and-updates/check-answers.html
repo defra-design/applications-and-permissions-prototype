@@ -10,55 +10,50 @@
 
         <dl class="govuk-summary-list govuk-!-margin-bottom-9">
 
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key govuk-!-width-one-half">
+                    How would you like this licence sent to you?
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    {{ data['contact-and-updates-licence-email-or-post-radios'] }}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="licence-email-or-post">Change<span class="govuk-visually-hidden"> </span></a>
+                </dd>
+            </div>
 
-            {%  if  data['origin-to-or-from-own-premises-radios'] != "On the farm"  %}
-            <!-- Applicant is destination -->
+
+            {%  if  data['contact-and-updates-licence-email-or-post-radios'] == "Email"  %}
 
                 <div class="govuk-summary-list__row">
                     <dt class="govuk-summary-list__key">
-                        How would you like this licence sent to you?
+                        What email address would you like the licence sent to?
                     </dt>
                     <dd class="govuk-summary-list__value">
-                        {{ data['contact-and-updates-licence-email-or-post-radios'] }}
+                        {{ data['contact-and-updates-licence-select-email-address-radios'] }}
                     </dd>
                     <dd class="govuk-summary-list__actions">
-                        <a class="govuk-link" href="licence-email-or-post">Change<span class="govuk-visually-hidden"> </span></a>
+                        <a class="govuk-link" href="licence-select-email-address">Change<span class="govuk-visually-hidden"> </span></a>
                     </dd>
                 </div>
 
+            {%  else  %}
 
-                {%  if  data['contact-and-updates-licence-email-or-post-radios'] != "Email"  %}
-
-                    <div class="govuk-summary-list__row">
-                        <dt class="govuk-summary-list__key">
-                            What email address would you like the licence sent to?
-                        </dt>
-                        <dd class="govuk-summary-list__value">
-                            {{ data['contact-and-updates-licence-select-email-address-radios'] }}
-                        </dd>
-                        <dd class="govuk-summary-list__actions">
-                            <a class="govuk-link" href="licence-select-email-address">Change<span class="govuk-visually-hidden"> </span></a>
-                        </dd>
-                    </div>
-
-                {%  else  %}
-
-                    <div class="govuk-summary-list__row">
-                        <dt class="govuk-summary-list__key">
-                            What address would you like the licence sent to?
-                        </dt>
-                        <dd class="govuk-summary-list__value">
-                            {{ data['contact-and-updates-licence-select-post-address-radios'] }}
-                        </dd>
-                        <dd class="govuk-summary-list__actions">
-                            <a class="govuk-link" href="licence-select-post-address">Change<span class="govuk-visually-hidden"> </span></a>
-                        </dd>
-                    </div>
-
-                {%  endif  %}
-
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        What address would you like the licence sent to?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{ data['contact-and-updates-licence-select-post-address-radios'] }}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="licence-select-post-address">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                </div>
 
             {%  endif  %}
+
+
 
 
 
