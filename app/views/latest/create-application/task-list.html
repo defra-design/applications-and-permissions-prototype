@@ -52,6 +52,8 @@
                         }
                     },
 
+
+
                     {
                         title:
                         {
@@ -85,10 +87,86 @@
 
 
 
+
                     {
                         title:
                         {
-                            text: "PLACEHOLDER_TITLE"
+                            text: "Movement destination"
+                        },
+                        href: "",
+                        status:
+                        {
+                            text:  "Cannot start yet",
+                            classes: "govuk-task-list__status--cannot-start-yet"
+                        }
+                    } if data['section-origin-complete'] != "true",
+
+
+                    {
+                        title:
+                        {
+                            text: "Movement destination"
+                        },
+                        href: "destination/check-answers" if data['section-origin-completesection-destination-complete'] == "true"  else "destination/routing-start",
+                        status:
+                        {
+                            text: "Completed",
+                            tag:
+                            {
+                                text: "Incomplete",
+                                classes: "govuk-tag--blue"
+                            } if data['section-origin-complete'] != "true"
+                        }
+                    } if data['section-origin-complete'] == "true",
+
+
+
+
+
+
+                    {
+                        title:
+                        {
+                            text: "Tests and vaccinations"
+                        },
+                        href: "tests/check-answers" if data['section-tests-complete'] == "true" else "tests/routing-tests",
+                        status:
+                        {
+                            text: "Completed",
+                            tag:
+                            {
+                                text: "Incomplete",
+                                classes: "govuk-tag--blue"
+                            } if data['section-tests-complete'] != "true"
+                        }
+                    },
+
+
+
+
+                    {
+                        title:
+                        {
+                            text: "Biosecurity details"
+                        },
+                        href: "biosecurity/check-answers" if data['section-biosecurity-complete'] == "true" else "biosecurity/kept-separately",
+                        status:
+                        {
+                            text: "Completed",
+                            tag:
+                            {
+                                text: "Incomplete",
+                                classes: "govuk-tag--blue"
+                            } if data['section-biosecurity-complete'] != "true"
+                        }
+                    } if      data['origin-to-or-from-own-premises-radios'] == "On the farm"
+                           or data['destination-type-of-destination-radios'] == "A farm",
+
+
+                    {
+                        title:
+                        {
+                            text: "Biosecurity Map"
                         },
                         href: "PLACEHOLDER_URL_CHECK_ANSWERS/check-answers" if data['PLACEHOLDER_DATA_SECTION_COMPLETE'] == "true" else "PLACEHOLDER_FIRST_PAGE",
                         status:
@@ -100,14 +178,17 @@
                                 classes: "govuk-tag--blue"
                             } if data['PLACEHOLDER_DATA_SECTION_COMPLETE'] != "true"
                         }
-                    },
+                    } if      data['origin-to-or-from-own-premises-radios'] == "On the farm"
+                           or data['destination-type-of-destination-radios'] == "A farm",
+
+
 
                     {
                         title:
                         {
-                            text: "PLACEHOLDER_TITLE"
+                            text: "Animal identification details"
                         },
-                        href: "PLACEHOLDER_URL_CHECK_ANSWERS/check-answers" if data['PLACEHOLDER_DATA_SECTION_COMPLETE'] == "true" else "PLACEHOLDER_FIRST_PAGE",
+                        href: "identification/check-answers" if data['section-identification-complete'] == "true" else "identification/microchipped",
                         status:
                         {
                             text: "Completed",
@@ -115,16 +196,19 @@
                             {
                                 text: "Incomplete",
                                 classes: "govuk-tag--blue"
-                            } if data['PLACEHOLDER_DATA_SECTION_COMPLETE'] != "true"
+                            } if data['section-identification-complete'] != "true"
                         }
-                    },
+                    } if  (data['origin-to-or-from-own-premises-radios'] == "On the farm"
+                            and data['destination-type-of-destination-radios'] == "A farm")
+                           or data['tests-whole-herd-test-radios-yes-no'] == "No",
+
 
                     {
                         title:
                         {
-                            text: "PLACEHOLDER_TITLE"
+                            text: "Contact and updates"
                         },
-                        href: "PLACEHOLDER_URL_CHECK_ANSWERS/check-answers" if data['PLACEHOLDER_DATA_SECTION_COMPLETE'] == "true" else "PLACEHOLDER_FIRST_PAGE",
+                        href: "contact-and-updates/check-answers" if data['section-contact-and-updates-complete'] == "true" else "contact-and-updates/routing-contact-and-updates",
                         status:
                         {
                             text: "Completed",
@@ -132,189 +216,15 @@
                             {
                                 text: "Incomplete",
                                 classes: "govuk-tag--blue"
-                            } if data['PLACEHOLDER_DATA_SECTION_COMPLETE'] != "true"
-                        }
-                    },
-
-                    {
-                        title:
-                        {
-                            text: "PLACEHOLDER_TITLE"
-                        },
-                        href: "PLACEHOLDER_URL_CHECK_ANSWERS/check-answers" if data['PLACEHOLDER_DATA_SECTION_COMPLETE'] == "true" else "PLACEHOLDER_FIRST_PAGE",
-                        status:
-                        {
-                            text: "Completed",
-                            tag:
-                            {
-                                text: "Incomplete",
-                                classes: "govuk-tag--blue"
-                            } if data['PLACEHOLDER_DATA_SECTION_COMPLETE'] != "true"
-                        }
-                    },
-
-                    {
-                        title:
-                        {
-                            text: "PLACEHOLDER_TITLE"
-                        },
-                        href: "PLACEHOLDER_URL_CHECK_ANSWERS/check-answers" if data['PLACEHOLDER_DATA_SECTION_COMPLETE'] == "true" else "PLACEHOLDER_FIRST_PAGE",
-                        status:
-                        {
-                            classes: "govuk-task-list__status--cannot-start-yet" if data['PLACEHOLDER_DATA_SECTION_COMPLETE'] != "true",
-                            text: "Completed" if data['PLACEHOLDER_DATA_SECTION_COMPLETE'] != "true" else "Cannot start yet"
+                            } if data['section-contact-and-updates-complete'] != "true"
                         }
                     }
+
 
                 ]
             })
         }}
 
-
-
-        <ul class="govuk-task-list">
-
-
-
-            <li class="govuk-task-list__item govuk-task-list__item--with-link">
-
-                <div class="govuk-task-list__name-and-hint">
-                    {%  if  data['section-destination-complete'] == "true"  %}
-                        <a class="govuk-link govuk-task-list__link" href="destination/check-answers" aria-describedby="">
-                    {%  else  %}
-                        <a class="govuk-link govuk-task-list__link" href="destination/routing-start" aria-describedby="">
-                    {%  endif  %}
-
-                            Movement destination
-                        </a>
-                </div>
-
-                <div class="govuk-task-list__status" id="destination-section">
-                    {%  if  data['section-destination-complete'] == "true"  %}
-                        Completed
-                    {%  else  %}
-                        <strong class="govuk-tag govuk-tag--blue">
-                            Incomplete
-                        </strong>
-                    {%  endif  %}
-                </div>
-
-            </li>
-
-
-
-            <li class="govuk-task-list__item govuk-task-list__item--with-link">
-                <div class="govuk-task-list__name-and-hint">
-                    <a class="govuk-link govuk-task-list__link" href="tests/routing-tests" aria-describedby="">
-                        Tests and vaccinations
-                    </a>
-                </div>
-
-                <div class="govuk-task-list__status" id="tests-section">
-                    {%  if  data['section-tests-complete'] == "true"  %}
-                        Completed
-                    {%  else  %}
-                        <strong class="govuk-tag govuk-tag--blue">
-                            Incomplete
-                        </strong>
-                    {%  endif  %}
-                </div>
-            </li>
-
-
-            <!-- Only show this Biosecurity if destination is a farm -->
-            {%  if      data['origin-to-or-from-own-premises-radios'] == "On the farm"
-                    or data['destination-type-of-destination-radios'] == "A farm"
-            %}
-                <li class="govuk-task-list__item govuk-task-list__item--with-link">
-
-                    <div class="govuk-task-list__name-and-hint">
-                        {%  if  data['section-biosecurity-complete'] == "true"  %}
-                            <a class="govuk-link govuk-task-list__link" href="biosecurity/check-answers" aria-describedby="">
-                        {%  else  %}
-                            <a class="govuk-link govuk-task-list__link" href="biosecurity/kept-separately" aria-describedby="">
-                        {%  endif  %}
-
-                                Biosecurity details
-                            </a>
-                    </div>
-
-                    <div class="govuk-task-list__status" id="biosecurity-section">
-                        {%  if  data['section-biosecurity-complete'] == "true"  %}
-                            Completed
-                        {%  else  %}
-                            <strong class="govuk-tag govuk-tag--blue">
-                                Incomplete
-                            </strong>
-                        {%  endif  %}
-                    </div>
-
-                </li>
-            {%  endif  %}
-
-
-
-
-            <!-- Only show this ID section if a part test or farm to farm -->
-            {%  if  (data['origin-to-or-from-own-premises-radios'] == "On the farm"
-                    and data['destination-type-of-destination-radios'] == "A farm")
-                or data['tests-whole-herd-test-radios-yes-no'] == "No"
-            %}
-                <li class="govuk-task-list__item govuk-task-list__item--with-link">
-
-                    <div class="govuk-task-list__name-and-hint">
-                        {%  if  data['section-identification-complete'] == "true"  %}
-                            <a class="govuk-link govuk-task-list__link" href="identification/check-answers" aria-describedby="">
-                        {%  else  %}
-                            <a class="govuk-link govuk-task-list__link" href="identification/microchipped" aria-describedby="">
-                        {%  endif  %}
-
-                                Animal identification details
-                            </a>
-                    </div>
-
-                    <div class="govuk-task-list__status" id="identification-section">
-                        {%  if  data['section-identification-complete'] == "true"  %}
-                            Completed
-                        {%  else  %}
-                        <strong class="govuk-tag govuk-tag--blue">
-                            Incomplete
-                        </strong>
-                        {%  endif  %}
-                    </div>
-
-                </li>
-            {%  endif  %}
-
-
-            <li class="govuk-task-list__item govuk-task-list__item--with-link">
-
-                <div class="govuk-task-list__name-and-hint">
-                    {%  if  data['section-contact-and-updates-complete'] == "true"  %}
-                        <a class="govuk-link govuk-task-list__link" href="contact-and-updates/check-answers" aria-describedby="">
-                    {%  else  %}
-                        <a class="govuk-link govuk-task-list__link" href="contact-and-updates/routing-contact-and-updates" aria-describedby="">
-                    {%  endif  %}
-
-                            Contact and updates
-                        </a>
-                </div>
-
-                <div class="govuk-task-list__status" id="contact-and-updates-section">
-                    {%  if  data['section-contact-and-updates-complete'] == "true"  %}
-                        Completed
-                    {%  else  %}
-                        <strong class="govuk-tag govuk-tag--blue">
-                            Incomplete
-                        </strong>
-                    {%  endif  %}
-                </div>
-
-            </li>
-
-
-
-        </ul>
 
 
         <p>You can <a href="#">message the outbreak team</a> if you need help with your application.</p>
