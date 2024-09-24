@@ -7,7 +7,7 @@ module.exports = function (router) {
         This allows you to make new version of the prototype and have the old versions still work
         This is done by making a copy of the routes files and updating just this version variable for the new version
      */
-    let version = "";
+
 
 
     /*
@@ -51,7 +51,7 @@ module.exports = function (router) {
 
 
     // NOT COMPLEX PAGE
-    router.post('/' + version + section + '/kept-separately-router', function (req, res)
+    router.post('/' + section + '/kept-separately-router', function (req, res)
     {
         // Turn errors off by default
         req.session.data['errorthispage'] = "false";
@@ -115,7 +115,7 @@ module.exports = function (router) {
 
 
     // NOT COMPLEX PAGE
-    router.post('/' + version + section + '/grazing-router', function (req, res)
+    router.post('/' + section + '/grazing-router', function (req, res)
     {
         // Turn errors off by default
         req.session.data['errorthispage'] = "false";
@@ -178,7 +178,7 @@ module.exports = function (router) {
     ////////////////////////////////////////////////////////////////////////////////////
 
     // NOT COMPLEX PAGE
-    router.post('/' + version + section + '/last-grazed-router', function (req, res)
+    router.post('/' + section + '/last-grazed-router', function (req, res)
     {
         req.session.data['errorthispage'] = "false";
         req.session.data['errortypeone'] = "false";
@@ -224,7 +224,7 @@ module.exports = function (router) {
     /////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////
 
-    router.post('/' + version + section + '/upload-plan-router', function (req, res)
+    router.post('/' + section + '/map/upload-plan-router', function (req, res)
     {
         // Turn errors off by default
         req.session.data['errorthispage'] = "false";
