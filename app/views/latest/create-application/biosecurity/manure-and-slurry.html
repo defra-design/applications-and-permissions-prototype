@@ -7,16 +7,15 @@ This will save you time.
 1. Type your heading for the page after '% set pageHeadingTextHTML %'
 2. Type/customise the error message after '% set errorTextHTML %'
 3. Use 'Find and replace' to replace "SECTION" with the name of the section of the service you're working on.
-4. Use 'Find and replace' to replace "PAGENAME_RADIOS" with whatever you named this page/file.
-5. Use 'Find and replace' to replace each of the radio button values. Starting with 'PLACEHOLDER_ANSWER_1'
-6. Go to the javascript file 'templates.js' and copy the section 'RADIO BUTTONS - MANDATORY' into your routes.js file.
-7. Follow instructions at the top of the 'templates.js'
+4. Use 'Find and replace' to replace "PAGENAME_YES_NO" with whatever you named this page/file.
+5. Go to the javascript file 'templates.js' and copy the section 'YES AND NO - RADIO BUTTONS - MANDATORY' into your routes.js file.
+6. Follow instructions at the top of the 'templates.js'
 -->
 
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    Will you move more than 75 cattle?
+    Has any manure or slurry been put on the grazing field in the past 60 days?
 {% endset %}
 
 
@@ -24,7 +23,7 @@ This will save you time.
 {% set errorTextHTML %}
     <!-- Nothing was selected -->
     {% if data['errortypeone'] == "true" %}
-        Select where you did PLACEHOLDER
+        Select yes if you PLACEHOLDER between PLACEHOLDER and PLACEHOLDER
     {% endif %}
 {% endset %}
 
@@ -41,7 +40,7 @@ This will save you time.
 
 {% block content %}
 <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-grid-column-two-thirds ">
 
 
         <!-- ERROR LOGIC 'error summary' -->
@@ -53,7 +52,7 @@ This will save you time.
                     [
                         {
                             html: errorTextHTML,
-                            href: "#destination-quantity-options-radios"
+                            href: "#biosecurity-manure-and-slurry-radios-yes-no"
                         }
                     ]
                 })
@@ -63,13 +62,15 @@ This will save you time.
 
 
         <!-- go to routes.js for routing  -->
-        <form action="quantity-options-router" method="post" novalidate>
+        <form action="manure-and-slurry-router" method="post" novalidate>
 
             {{ govukRadios
                 ({
-                    name: "destination-quantity-options-radios",
+                    classes: "govuk-radios--inline",
 
-                    id: "destination-quantity-options-radios",
+                    name: "biosecurity-manure-and-slurry-radios-yes-no",
+
+                    id: "biosecurity-manure-and-slurry-radios-yes-no",
 
                     fieldset:
                     {
@@ -86,27 +87,22 @@ This will save you time.
                         text: ""
                     },
 
-                    errorMessage: null if data['errorthispage'] != "true"
-                                       else { html: errorTextHTML },
-
                     items:
                     [
                         {
-                            value: "No",
-                            text: "No",
-                            checked: data['destination-quantity-options-radios'] == "No"
-                        },
-                        {
                             value: "Yes",
                             text: "Yes",
-                            checked: data['destination-quantity-options-radios'] == "Yes"
+                            checked: data['biosecurity-manure-and-slurry-radios-yes-no'] == "Yes"
                         },
                         {
-                            value: "I don't know",
-                            text: "I don't know",
-                            checked: data['destination-quantity-options-radios'] == "I don't know"
+                            value: "No",
+                            text: "No",
+                            checked: data['biosecurity-manure-and-slurry-radios-yes-no'] == "No"
                         }
-                    ]
+                    ],
+
+                    errorMessage: null if data['errorthispage'] != "true"
+                                       else { html: errorTextHTML }
                 })
             }}
 
@@ -119,18 +115,19 @@ This will save you time.
 </div>
 
 
+
 <!-- ERROR LOGIC  drop down to toggle states  -->
 <form method="post"  action="#" class="for4" style=" float: left; position: relative; bottom:-225px;  ">
 
     <select style="height:30px;" onchange="window.location.href='?'+this.value">
 
-        <option value="errorthispage=false&errortypeone=false&errortypetwo=false&"
-                {% if (data['errorthispage'] != "true") %}selected{% endif %}
+        <option value="errorthispage=false&errortypeone=false"
+                {% if  data['errorthispage'] != "true"  %}selected{% endif %}
         >Errors - Off</option>
 
-        <option value="errorthispage=true&errortypeone=true&errortypetwo=false&"
-                {% if (data['errortypeone'] == 'true' and data['errortypetwo'] != 'true')  %}selected{% endif %}
-        >Error 1 - Must select at least one</option>
+        <option value="errorthispage=true&errortypeone=true"
+                {% if  data['errortypeone'] == 'true'  %}selected{% endif %}
+        >Error 1 - Not selected</option>
 
     </select>
 
@@ -156,7 +153,6 @@ This will save you time.
 
 </form>
 <!--  END USER TYPE TOGGLE -->
-
 
 
 {% endblock %}

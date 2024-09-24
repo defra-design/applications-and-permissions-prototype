@@ -578,7 +578,7 @@ module.exports = function (router) {
         req.session.data['errortypeone'] = "false";
 
         // If Yes was selected, continue to next page
-        if (req.session.data['destination-reason-for-movement-radios'] == "Restocking")
+        if (req.session.data['destination-reason-for-movement-radios'] == "Routine restocking")
         {
             // Continue to the next page
 
@@ -595,22 +595,6 @@ module.exports = function (router) {
             }
         }
         else if (req.session.data['destination-reason-for-movement-radios'] == "Bull")
-        {
-            // Continue to the next page
-
-            // If the user needs to go back to 'check your answers' then take them directly there
-            if (req.session.data['camefromcheckanswers'] == 'true')
-            {
-                req.session.data['camefromcheckanswers'] = false;
-                res.redirect('check-answers');
-            }
-            else
-            {
-                // This page name needs to be the next page the user gets to after successfully continuing
-                res.redirect('any-additional-info');
-            }
-        }
-        else if (req.session.data['destination-reason-for-movement-radios'] == "Calf welfare")
         {
             // Continue to the next page
 

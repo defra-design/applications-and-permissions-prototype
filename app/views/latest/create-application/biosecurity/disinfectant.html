@@ -1,4 +1,4 @@
-{% extends "layouts/latest.html" %}
+{% extends "layouts/main.html" %}
 
 <!--
 NOTES ON USING THIS TEMPLATE Page
@@ -15,7 +15,7 @@ This will save you time.
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    How long ago was the field last grazed by cattle?
+    Disinfectant
 {% endset %}
 
 
@@ -23,7 +23,7 @@ This will save you time.
 {% set errorTextHTML %}
     <!-- Error 1 - No answer selected -->
     {% if data['errortypeone'] == "true" %}
-        Enter when land was last grazed by the cattle
+        Enter your PLACEHOLDER
 
     <!-- Error 2 - If answer is too long -->
     {% elif data['errortypetwo'] == "true" %}
@@ -66,7 +66,7 @@ This will save you time.
                     [
                         {
                             html: errorTextHTML,
-                            href: "#biosecurity-last-grazed-text-input"
+                            href: "#biosecurity-disinfectant-text-input"
                         }
                     ]
                 })
@@ -75,21 +75,29 @@ This will save you time.
         <!--  END OF 'error summary' -->
 
 
+
+        <h1 class="govuk-heading-l">
+            {{ pageHeadingTextHTML }}
+        </h1>
+
+
+        <p>Defra <a target="_blank" href="http://disinfectants.defra.gov.uk/DisinfectantsExternal/Default.aspx?Module=ApprovalsList_SI">approved disinfectants</a> (opens in a new tab).</p>
+
         <!-- go to routes.js for routing  -->
-        <form action="last-grazed-router" method="post" novalidate>
+        <form action="disinfectant-router" method="post" novalidate>
 
             {{ govukInput
                 ({
                     label:
                     {
-                        html: pageHeadingTextHTML,
-                        classes: "govuk-label--l",
-                        isPageHeading: true
+                        text: "What disinfectant are you using?",
+                        classes: "govuk-label--m",
+                        isPageHeading: false
                     },
 
-                    id: "biosecurity-last-grazed-text-input",
+                    id: "biosecurity-disinfectant-text-input",
 
-                    name: "biosecurity-last-grazed-text-input",
+                    name: "biosecurity-disinfectant-text-input",
 
                     hint:
                     {
@@ -99,7 +107,7 @@ This will save you time.
                     errorMessage: null if data['errorthispage'] != "true"
                                        else { html: errorTextHTML },
 
-                    value: data['biosecurity-last-grazed-text-input'],
+                    value: data['biosecurity-disinfectant-text-input'],
 
                     classes: "govuk-input--width-10"
                 })
