@@ -16,12 +16,12 @@ This will save you time.
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    Disinfection concentration
+    Disinfectant dilution
 {% endset %}
 
 <!-- Setting the smaller secondary heading lower down the page -->
 {% set questionHeadingTextHTML %}
-    What percentage concentration are you using for {{ data['biosecurity-disinfectant-text-input'] }}?
+    What dilution rate are you using for {{ data['biosecurity-disinfectant-text-input'] }}?
 {% endset %}
 
 
@@ -97,35 +97,13 @@ This will save you time.
         </h1>
 
 
-        <p>PLACEHOLDER for more than one sentence of guidance.</p>
+        <p>Dilution rate is the amount of water added to the disinfectant compared to the amount of disinfectant.</p>
 
-        <p>A link on <a target="_blank" href="#">PLACEHOLDER about PLACEHOLDER (opens in a new tab)</a>.</p>
-
-
-        <details class="govuk-details" data-module="govuk-details">
-            <summary class="govuk-details__summary">
-                <span class="govuk-details__summary-text">
-                    Understanding PLACEHOLDER
-                </span>
-            </summary>
-            <div class="govuk-details__text">
-
-                <p>This includes:</p>
-
-                <ul class="govuk-body govuk-list--bullet">
-                    <li>PLACEHOLDER</li>
-                    <li>PLACEHOLDER</li>
-                    <li>PLACEHOLDER</li>
-                    <li>PLACEHOLDER</li>
-                </ul>
-
-            </div>
-        </details>
-
+        <p>e.g. 1 liter disinfectant and 12 liters of water is a rate of 12.</p>
 
 
         <!-- go to routes.js for routing  -->
-        <form action="disinfectant-percentage-router" method="post" novalidate>
+        <form action="disinfectant-dilution-router" method="post" novalidate>
 
             {{ govukInput
                 ({
@@ -136,9 +114,9 @@ This will save you time.
                         isPageHeading: false
                     },
 
-                    id: "biosecurity-disinfectant-percentage-number-input",
+                    id: "biosecurity-disinfectant-dilution-number-input",
 
-                    name: "biosecurity-disinfectant-percentage-number-input",
+                    name: "biosecurity-disinfectant-dilution-number-input",
 
                     hint:
                     {
@@ -148,7 +126,7 @@ This will save you time.
                     errorMessage: null if data['errorthispage'] != "true"
                                        else { html: errorTextHTML },
 
-                    value: data['biosecurity-disinfectant-percentage-number-input'],
+                    value: data['biosecurity-disinfectant-dilution-number-input'],
 
                     classes: "govuk-input--width-2"
                 })
@@ -208,23 +186,6 @@ This will save you time.
 <!--  END OF ERROR LOGIC -->
 
 
-<!-- USER TYPE TOGGLE  -->
-<form method="post"  action="#" class="for4" style=" float: left; position: relative; bottom:-225px;  ">
-
-    <select style="height:30px;" onchange="window.location.href='?'+this.value">
-
-        <option value="user=citizen&"
-                {% if  data['user'] != "agent"  %} selected {% endif %}
-        >User type - Individual</option>
-
-        <option value="user=agent&"
-                {% if  data['user'] == "agent"  %} selected {% endif %}
-        >User type - Agent</option>
-
-    </select>
-
-</form>
-<!--  END USER TYPE TOGGLE -->
 
 
 {% endblock %}

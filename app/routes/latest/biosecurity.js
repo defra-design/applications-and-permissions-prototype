@@ -544,7 +544,7 @@ module.exports = function (router) {
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////                                                    ////////////////
-    ////////////////        What disinfectant are is being used         ////////////////
+    ////////////////        What disinfectants are is being used        ////////////////
     ////////////////                                                    ////////////////
     ////////////////               TEXT ENTRY - MANDATORY               ////////////////
     ////////////////                                                    ////////////////
@@ -559,6 +559,8 @@ module.exports = function (router) {
         req.session.data['errortypeone'] = "false";
         req.session.data['errortypetwo'] = "false";
         req.session.data['errortypethree'] = "false";
+        req.session.data['errortypefour'] = "false";
+        req.session.data['errortypefive'] = "false";
         req.session.data['errortypefour'] = "false";
 
         // Validation check if field is blank
@@ -584,8 +586,6 @@ module.exports = function (router) {
         }
 
 
-
-
         // everything with the input is fine so move on to next page
 
         // If the user needs to go back to 'check your answers' then take them directly there
@@ -597,7 +597,7 @@ module.exports = function (router) {
         else
         {
             // This page name needs to be the next page the user gets to after successfully continuing
-            res.redirect('disinfectant-percentage');
+            res.redirect('disinfectant-dilution');
         }
 
 
@@ -610,6 +610,130 @@ module.exports = function (router) {
 
 
 
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////                    Disinfection rate               ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////                    NUMBER ENTRY                    ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    router.post('/' + section + '/disinfectant-dilution-router', function (req, res)
+    {
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+        req.session.data['errortypetwo'] = "false";
+        req.session.data['errortypethree'] = "false";
+        req.session.data['errortypefour'] = "false";
+        req.session.data['errortypefive'] = "false";
+        req.session.data['errortypesix'] = "false";
+        req.session.data['errortypeseven'] = "false";
+
+
+        // Validation check if field is blank
+        if (req.session.data['biosecurity-disinfectant-dilution-number-input'] == undefined || req.session.data['biosecurity-disinfectant-dilution-number-input'] == "")
+        {
+            // Trigger validation and relaunch the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('disinfectant-dilution');
+        }
+        else
+        {
+            // Remove any commas which the user or this routing added
+            let nocommasinput = req.session.data['biosecurity-disinfectant-dilution-number-input'].replace(/,/g, '');
+
+            // if not a number throw first error
+            if( isNaN(req.session.data['biosecurity-disinfectant-dilution-number-input']) )
+            {
+                // Trigger validation and relaunch the page
+                req.session.data['errorthispage'] = "true";
+                req.session.data['errortypeone'] = "true";
+
+                // This page name needs to match the page the user was just on
+                res.redirect('disinfectant-dilution');
+            }
+            else
+            {
+                // convert String input to a number
+                let numberinputfloat =  parseFloat( nocommasinput );
+
+
+
+                if ( numberinputfloat == 0 )
+                {
+                    // Trigger validation and relaunch the page for number lower than 4
+                    req.session.data['errorthispage'] = "true";
+                    req.session.data['errortypethree'] = "true";
+
+                    // This page name needs to match the page the user was just on
+                    res.redirect('disinfectant-dilution');
+                }
+
+
+                else if ( 100 < numberinputfloat )
+                {
+                    // Trigger validation and relaunch the page for number hgiher than 100
+                    req.session.data['errorthispage'] = "true";
+                    req.session.data['errortypesix'] = "true";
+
+                    // Format the number with commas
+                    req.session.data['biosecurity-disinfectant-dilution-number-input'] = numberinputfloat.toLocaleString();
+
+                    // This page name needs to match the page the user was just on
+                    res.redirect('disinfectant-dilution');
+                }
+
+
+                // everything with the input is fine so move on to next page
+                else
+                {
+                    // Format the number with commas
+                    req.session.data['biosecurity-disinfectant-dilution-number-input'] = numberinputfloat.toLocaleString();
+
+
+                    // If the user needs to go back to 'check your answers' then take them directly there
+                    if (req.session.data['camefromcheckanswers'] == 'true')
+                    {
+                        req.session.data['camefromcheckanswers'] = false;
+                        res.redirect('check-answers');
+                    }
+                    else
+                    {
+                        // This page name needs to be the next page the user gets to after successfully continuing
+                        res.redirect('badgers');
+                    }
+                }
+            }
+
+        }
+
+    })
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////          Badger separation                         ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////                    NUMBER ENTRY                    ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+    router.get('/' + section + '/badgers-router', function (req, res)
+    {
+        // Always proceed to the next questions on shared tracks
+
+        res.redirect('check-answers');
+        // Possibly add empty field error in future
+    })
 
 
 

@@ -15,7 +15,7 @@ This will save you time.
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    How is the grazing field separated from the herd?
+    Badgers
 {% endset %}
 
 
@@ -43,21 +43,37 @@ This will save you time.
     <div class="govuk-grid-column-two-thirds ">
 
 
+
+        <h1 class="govuk-heading-l">
+            {{ pageHeadingTextHTML }}
+        </h1>
+
+
+        <p>Include details about how badgers are kept away from</p>
+
+
+        <ul class="govuk-body govuk-list--bullet">
+            <li>Feeding troughs</li>
+            <li>Water troughs</li>
+            <li>Mineral licks</li>
+            <li>Feed stores</li>
+        </ul>
+
         <!-- go to routes.js for routing  -->
-        <form action="grazing-field-how-separated-router" method="post" novalidate>
+        <form action="badgers-router" method="post" novalidate>
 
             {{ govukTextarea
                 ({
                     label:
                     {
-                        html: pageHeadingTextHTML,
-                        classes: "govuk-label--l",
-                        isPageHeading: true
+                        text: "How will you minimise TB contamination from badgers?",
+                        classes: "govuk-label--m",
+                        isPageHeading: false
                     },
 
-                    id: "biosecurity-grazing-field-how-separated-text-input",
+                    id: "biosecurity-badgers-text-input",
 
-                    name: "biosecurity-grazing-field-how-separated-text-input",
+                    name: "biosecurity-badgers-text-input",
 
                     hint:
                     {
@@ -67,7 +83,7 @@ This will save you time.
                     errorMessage: null if data['errorthispage'] != "true"
                                        else { html: errorTextHTML },
 
-                    value: data['biosecurity-grazing-field-how-separated-text-input'],
+                    value: data['biosecurity-badgers-text-input'],
 
                     rows: "8"
                 })
