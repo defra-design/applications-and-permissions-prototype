@@ -42,7 +42,7 @@ This will save you time.
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds ">
 
-
+        <!--
 
         <h1 class="govuk-heading-l">
             {{ pageHeadingTextHTML }}
@@ -59,6 +59,8 @@ This will save you time.
             <li>Feed stores</li>
         </ul>
 
+        -->
+
         <!-- go to routes.js for routing  -->
         <form action="badgers-router" method="post" novalidate>
 
@@ -66,9 +68,9 @@ This will save you time.
                 ({
                     label:
                     {
-                        text: "How will you minimise TB contamination from badgers?",
-                        classes: "govuk-label--m",
-                        isPageHeading: false
+                        text: "How will you minimise contamination from badgers?",
+                        classes: "govuk-label--l",
+                        isPageHeading: yes
                     },
 
                     id: "biosecurity-badgers-text-input",
@@ -77,7 +79,7 @@ This will save you time.
 
                     hint:
                     {
-                        text: ""
+                        text: "Include details on feeding and water troughs, mineral licks and feed stores"
                     },
 
                     errorMessage: null if data['errorthispage'] != "true"
