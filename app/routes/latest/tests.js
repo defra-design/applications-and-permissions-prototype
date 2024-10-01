@@ -40,7 +40,6 @@ module.exports = function (router) {
 
 
 
-
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////                                                    ////////////////
@@ -54,6 +53,11 @@ module.exports = function (router) {
     // NOT COMPLEX PAGE
     router.get('/' + version + section + '/routing-tests', function (req, res)
     {
+        // If bluetongue
+        if (req.session.data['bluetongue'] == "true")
+        {
+            res.redirect('bluetongue-vaccinations');
+        }
         // If Yes was selected, continue to next page
         if (req.session.data['origin-to-or-from-own-premises-radios'] == "On the farm")
         {
@@ -72,6 +76,155 @@ module.exports = function (router) {
 
 
 
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////            Bluetongue vaccinations                 ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////       YES AND NO - RADIO BUTTONS - MANDATORY       ////////////////
+    ////////////////                  NOT COMPLEX PAGE                  ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    router.post('/' + section + '/bluetongue-vaccinations-router', function (req, res)
+    {
+        // Turn errors off by default
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+
+        // If Yes was selected, continue to next page
+        if (req.session.data['tests-bluetongue-vaccinations-radios-yes-no'] == "Yes")
+        {
+            // Continue to the next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('check-answers');
+            }
+            else
+            {
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('bluetongue-vaccination-age');
+            }
+        }
+        else if (req.session.data['tests-bluetongue-vaccinations-radios-yes-no'] == "No")
+        {
+            // Continue to the next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('check-answers');
+            }
+            else
+            {
+                // Continue to next page
+                if (req.session.data['origin-to-or-from-own-premises-radios'] == "On the farm")
+                {
+                    // Continue to the next pages where farmer is the origin
+                    res.redirect('destination-confirmation');
+                }
+
+                else
+                {
+                    // Continue to the next pages where farmer is the destination
+                    res.redirect('whole-herd-test');
+                }
+            }
+        }
+        else
+        {
+            // Trigger validation and reload the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('bluetongue-vaccinations');
+        }
+    })
+
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////               PLACEHOLDER_SUMMARY                  ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////            RADIO BUTTONS - MANDATORY               ////////////////
+    ////////////////                 NOT COMPLEX PAGE                   ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    router.post('/' + section + '/bluetongue-vaccination-age-router', function (req, res)
+    {
+        // Turn errors off by default
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+
+        // If Yes was selected, continue to next page
+        if (req.session.data['tests-bluetongue-vaccination-age-radios'] == "Less than 1 month" ||
+            req.session.data['tests-bluetongue-vaccination-age-radios'] == "Less than 3 month" ||
+            req.session.data['tests-bluetongue-vaccination-age-radios'] == "Less than 9 month" ||
+            req.session.data['tests-bluetongue-vaccination-age-radios'] == "More than than 9 month"
+        )
+        {
+            // Continue to the next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('check-answers');
+            }
+            else
+            {
+                // Continue to next page
+                if (req.session.data['origin-to-or-from-own-premises-radios'] == "On the farm")
+                {
+                    // Continue to the next pages where farmer is the origin
+                    res.redirect('destination-confirmation');
+                }
+
+                else
+                {
+                    // Continue to the next pages where farmer is the destination
+                    res.redirect('whole-herd-test');
+                }
+            }
+        }
+        else
+        {
+            // Trigger validation and reload the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('bluetongue-vaccination-age');
+        }
+    })
+
+
+
+
+
+
+
+
+
+
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////                                                    ////////////////
@@ -83,7 +236,7 @@ module.exports = function (router) {
     ////////////////////////////////////////////////////////////////////////////////////
 
     // NOT COMPLEX PAGE
-    router.get('/' + version + section + '/origin-confirmation-router', function (req, res)
+    router.get('/' + section + '/origin-confirmation-router', function (req, res)
     {
         // If Yes was selected, continue to next page
         if (req.session.data['destination-type-of-destination-radios'] == "A farm")
