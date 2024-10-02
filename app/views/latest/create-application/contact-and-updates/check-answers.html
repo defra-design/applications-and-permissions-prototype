@@ -117,10 +117,38 @@
             {%  endif  %}
 
 
+
+            {%  if data['bluetongue'] == "true"  %}
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        What is your vet's name?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{ data['contact-and-updates-vet-name-text-input'] }}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="vet-name">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                </div>
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        What is your vet's email address?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{ data['contact-and-updates-vet-email-address-text-input'] }}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="vet-email-address">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                </div>
+            {%  endif  %}
+
+
         </dl>
 
 
-         <form action="../task-list?section-contact-and-updates-complete=true&" method="post" novalidate>
+        <form action="../task-list?section-contact-and-updates-complete=true&" method="post" novalidate>
 
             <button type="submit" class="govuk-button" data-module="govuk-button">
                 Save and continue

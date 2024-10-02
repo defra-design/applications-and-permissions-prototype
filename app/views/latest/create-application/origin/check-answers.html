@@ -115,6 +115,36 @@
             {%  endif  %}
 
 
+
+
+            {%  if data['bluetongue'] == "true"  %}
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Did you have any ruminants come onto your farm in the past 60 days?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{ data['origin-ruminants-any-60-days-radios-yes-no'] }}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="ruminants-any-60-days">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                </div>
+
+                {%  if data['origin-ruminants-any-60-days-radios-yes-no'] == "Yes"  %}
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                            What is the County Parish Holding (CPH) number of the farm where the ruminants came from?
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                            {{ data['origin-ruminants-60-days-cph-text-input'] }}
+                        </dd>
+                        <dd class="govuk-summary-list__actions">
+                            <a class="govuk-link" href="ruminants-60-days-cph">Change<span class="govuk-visually-hidden"> </span></a>
+                        </dd>
+                    </div>
+                {%  endif  %}
+            {%  endif  %}
+
         </dl>
 
 
