@@ -12,12 +12,7 @@ require('./templates/date.js')(router);
 const {log} = require("govuk-prototype-kit/migrator/logger");
 module.exports = function (router) {
 
-    /*
-        Setting a version in each routes.js file
-        This allows you to make new version of the prototype and have the old versions still work
-        This is done by making a copy of the routes files and updating just this version variable for the new version
-     */
-    let version = "";
+
 
 
     /*
