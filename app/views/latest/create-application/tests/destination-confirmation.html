@@ -75,11 +75,16 @@ This will save you time.
             {{ pageHeadingTextHTML }}
         </h1>
 
-        <p>You must complete a first short interval test (SIT) on all eligible animals before you move new stock.</p>
+        <p>You must complete TB skin tests on all eligible animals in the herd.
+            The tests need to be carried out a minimum of every 60 days.
+            This is called short interval testing.
+        </p>
 
-        <p></p>
+        <p>The 60 day period starts from the date the last reactor left the herd,
+            or the injection date of the previous test if there were no reactors</p>
 
 
+        <p>Calves less than 42 days old do not need to be tested unless a risk has been identified.</p>
 
 
 
@@ -113,9 +118,9 @@ This will save you time.
                     items:
                     [
                         {
-                            value: "I confirm a first short interval test has been completed and sent to APHA",
-                            text: "I confirm a first short interval test has been completed and sent to APHA",
-                            checked: (data['tests-destination-confirmation-checkboxes'] or []).indexOf('I confirm a first short interval test has been completed and sent to APHA') > -1
+                            value: "I confirm TB skin tests have been completed and sent to APHA",
+                            text: "I confirm TB skin tests have been completed and sent to APHA",
+                            checked: (data['tests-destination-confirmation-checkboxes'] or []).indexOf('I confirm TB skin tests have been completed and sent to APHA') > -1
                         }
                     ]
                 })
