@@ -1,6 +1,6 @@
 const {log} = require("govuk-prototype-kit/migrator/logger");
 
-let section = "templates";
+let section = "/templates/";
 
 module.exports = function (router)
 {
@@ -17,7 +17,7 @@ module.exports = function (router)
     ////////////////////////////////////////////////////////////////////////////////////
 
 
-    router.post('/' + section + '/PAGENAME_TEXT-router', function (req, res)
+    router.post(section + 'PAGENAME_TEXT-router', function (req, res)
     {
         req.session.data['errorthispage'] = "false";
         req.session.data['errortypeone'] = "false";
@@ -141,7 +141,7 @@ module.exports = function (router)
     ////////////////////////////////////////////////////////////////////////////////////
 
 
-    router.post('/' + section + '/PAGENAME_TEXT_COMPLEX-router', function (req, res)
+    router.post(section + 'PAGENAME_TEXT_COMPLEX-router', function (req, res)
     {
         req.session.data['errorthispage'] = "false";
         req.session.data['errortypeone'] = "false";
