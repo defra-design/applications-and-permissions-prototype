@@ -15,7 +15,7 @@ This will save you time.
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    Badgers
+    Contamination from badgers
 {% endset %}
 
 
@@ -42,55 +42,64 @@ This will save you time.
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds ">
 
-        <!--
-
-        <h1 class="govuk-heading-l">
+       <h1 class="govuk-heading-l">
             {{ pageHeadingTextHTML }}
         </h1>
 
 
-        <p>Include details about how badgers are kept away from</p>
+        <p>You need to keep badgers are kept away from cattle by:</p>
 
 
         <ul class="govuk-body govuk-list--bullet">
-            <li>Feeding troughs</li>
-            <li>Water troughs</li>
-            <li>Mineral licks</li>
-            <li>Feed stores</li>
+            <li>Using badger proof fencing.  Aluminium sheets, Electric fence, etc</li>
+            <li>Keep gates closed</li>
+            <li>Make food stores inaccessible to badger</li>
+            <li>Feeding troughs 3 feet </li>
+            <li>Water troughs above 90cm</li>
+            <li>Mineral licks kept out of reach of badgers</li>
         </ul>
 
-        -->
+        <p>More details on <a href="https://tbhub.co.uk/preventing-tb-breakdowns/protect-your-herd-from-bovine-tb/protect-your-herd-from-tb-a-review-of-the-science/" target="_blank">TB HUB</a> (opens in a new tab)</p>
+
+
 
         <!-- go to routes.js for routing  -->
         <form action="badgers-router" method="post" novalidate>
 
-            {{ govukTextarea
+           {{ govukCheckboxes
                 ({
-                    label:
+                    name: "tests-destination-confirmation-checkboxes",
+
+                    id: "tests-destination-confirmation-checkboxes",
+
+                    fieldset:
                     {
-                        text: "How will you minimise contamination from badgers?",
-                        classes: "govuk-label--l",
-                        isPageHeading: yes
+                        legend:
+                        {
+                            text: questionHeadingTextHTML,
+                            isPageHeading: false,
+                            classes: "govuk-fieldset__legend--m"
+                        }
                     },
-
-                    id: "biosecurity-badgers-text-input",
-
-                    name: "biosecurity-badgers-text-input",
 
                     hint:
                     {
-                        text: "Include details on feeding and water troughs, mineral licks and feed stores"
+                        text: ""
                     },
 
                     errorMessage: null if data['errorthispage'] != "true"
                                        else { html: errorTextHTML },
 
-                    value: data['biosecurity-badgers-text-input'],
-
-                    rows: "8"
+                    items:
+                    [
+                        {
+                            value: "I confirm I have taken these measures",
+                            text: "I confirm I have taken these measures",
+                            checked: (data['biosecurity-badgers-confirmation-checkboxes'] or []).indexOf('I confirm I have taken these measures') > -1
+                        }
+                    ]
                 })
             }}
-
 
             {{ govukButton({ text: "Continue" }) }}
 
