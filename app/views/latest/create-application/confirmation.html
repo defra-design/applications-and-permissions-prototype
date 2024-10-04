@@ -1,0 +1,231 @@
+{% extends "layouts/latest.html" %}
+
+
+
+<!-- Setting the big main heading at the top of the page -->
+{% set pageHeadingTextHTML %}
+    Your animal disease movement licence application
+{% endset %}
+
+
+
+<!-- Text that show in the browser tab. Does NOT need changing -->
+{% block pageTitle %}
+    {{ pageHeadingTextHTML }}
+{% endblock %}
+
+
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+
+        {{
+            govukPanel
+            ({
+                titleText: "Application complete",
+                html: "Your reference number<br><strong>HDJ2123F</strong>"
+            })
+        }}
+
+        <p class="govuk-body">We have sent you a confirmation email.</p>
+
+        <h2 class="govuk-heading-m">What happens next</h2>
+
+        <p class="govuk-body">
+            We’ve recived your application.
+        </p>
+        <p class="govuk-body">
+            They will contact you either to confirm your licence, or to ask for more information.
+        </p>
+
+        <p class="govuk-body">
+            <a href="#" class="govuk-link">What did you think of this service?</a> (takes 30 seconds)
+        </p>
+
+
+        <!-- go to routes.js for routing  -->
+        <form action="../account/list-of-licence-applications" method="post" novalidate>
+
+            {{
+                govukButton
+                ({
+                    text: "Go to my account",
+                    classes: "govuk-button--secondary"
+                })
+            }}
+
+        </form>
+
+    </div>
+</div>
+
+
+
+
+<!-- TASKLIST STATES  drop down to toggle states  -->
+<form method="post"  action="#" class="for4" style=" float: left; position: relative; bottom:-225px;  ">
+
+    <select style="height:30px;" onchange="window.location.href='?'+this.value">
+
+        <!--  NOTHING STARTED  -->
+        <option value="section-what-complete=false&section-origin-complete=false&section-destination-complete=false&section-tests-complete=false&section-biosecurity-complete=false&section-biosecurity-map-complete=false&section-identification-complete=false&section-contact-and-updates-complete=false&origin-to-or-from-own-premises-radios=null&destination-type-of-destination-radios=null&tests-whole-herd-test-radios-yes-no=null&"
+            {% if  data['section-what-complete'] != "true" and
+                   data['section-origin-complete'] != "true" and
+                   data['section-destination-complete'] != "true" and
+                   data['section-tests-complete'] != "true" and
+                   data['section-biosecurity-complete'] != "true" and
+                   data['section-biosecurity-map-complete'] != "true" and
+                   data['section-identification-complete'] != "true" and
+                   data['section-contact-and-updates-complete'] != "true" and
+                   data['origin-to-or-from-own-premises-radios'] != "On the farm" and
+                   data['destination-type-of-destination-radios'] != "A farm"  and
+                   data['tests-whole-herd-test-radios-yes-no'] != "No"
+            %}selected{% endif %}
+        >Not Started</option>
+
+
+        <!--  ONTO THE FARM FROM A MARKET -->
+        <option value="section-what-complete=true&section-origin-complete=true&section-destination-complete=true&section-tests-complete=false&section-biosecurity-complete=false&section-biosecurity-map-complete=false&section-identification-complete=false&section-contact-and-updates-complete=false&origin-to-or-from-own-premises-radios=On the farm&destination-type-of-destination-radios=null&tests-whole-herd-test-radios-yes-no=null&"
+            {% if  data['section-what-complete'] == "true" and
+                   data['section-origin-complete'] == "true" and
+                   data['section-destination-complete'] == "true" and
+                   data['section-tests-complete'] != "true" and
+                   data['section-biosecurity-complete'] != "true" and
+                   data['section-biosecurity-map-complete'] != "true" and
+                   data['section-identification-complete'] != "true" and
+                   data['section-contact-and-updates-complete'] != "true" and
+                   data['origin-to-or-from-own-premises-radios'] == "On the farm" and
+                   data['destination-type-of-destination-radios'] != "A farm"  and
+                   data['tests-whole-herd-test-radios-yes-no'] != "No"
+            %}selected{% endif %}
+        >Onto the farm - From a market or unrestricted farm</option>
+
+
+        <!--  ON TO THE FARM FROM A FARM -->
+        <option value="section-what-complete=true&section-origin-complete=true&section-destination-complete=true&section-tests-complete=false&section-biosecurity-complete=false&section-biosecurity-map-complete=false&section-identification-complete=false&section-contact-and-updates-complete=false&origin-to-or-from-own-premises-radios=On the farm&destination-type-of-destination-radios=A farm&tests-whole-herd-test-radios-yes-no=null&"
+            {% if  data['section-what-complete'] == "true" and
+                   data['section-origin-complete'] == "true" and
+                   data['section-destination-complete'] == "true" and
+                   data['section-tests-complete'] != "true" and
+                   data['section-biosecurity-complete'] != "true" and
+                   data['section-biosecurity-map-complete'] != "true" and
+                   data['section-identification-complete'] != "true" and
+                   data['section-contact-and-updates-complete'] != "true" and
+                   data['origin-to-or-from-own-premises-radios'] == "On the farm" and
+                   data['destination-type-of-destination-radios'] == "A farm"  and
+                   data['tests-whole-herd-test-radios-yes-no'] != "No"
+            %}selected{% endif %}
+        >Onto the farm - From a restricted farm</option>
+
+
+        <!--  OFF THE FARM TO A MARKET -->
+        <option value="section-what-complete=true&section-origin-complete=true&section-destination-complete=true&section-tests-complete=false&section-biosecurity-complete=false&section-biosecurity-map-complete=false&section-identification-complete=false&section-contact-and-updates-complete=false&origin-to-or-from-own-premises-radios=Off the farm&destination-type-of-destination-radios=A market&tests-whole-herd-test-radios-yes-no=null&"
+            {% if  data['section-what-complete'] == "true" and
+                   data['section-origin-complete'] == "true" and
+                   data['section-destination-complete'] == "true" and
+                   data['section-tests-complete'] != "true" and
+                   data['section-biosecurity-complete'] != "true" and
+                   data['section-biosecurity-map-complete'] != "true" and
+                   data['section-identification-complete'] != "true" and
+                   data['section-contact-and-updates-complete'] != "true" and
+                   data['origin-to-or-from-own-premises-radios'] == "Off the farm" and
+                   data['destination-type-of-destination-radios'] == "A market"  and
+                   data['tests-whole-herd-test-radios-yes-no'] != "No"
+            %}selected{% endif %}
+        >Off the farm - To a market</option>
+
+
+        <!--  OFF THE FARM - PART HERD TEST  -->
+        <option value="section-what-complete=true&section-origin-complete=true&section-destination-complete=true&section-tests-complete=false&section-biosecurity-complete=false&section-biosecurity-map-complete=false&section-identification-complete=false&section-contact-and-updates-complete=false&origin-to-or-from-own-premises-radios=Off the farm&destination-type-of-destination-radios=A market&tests-whole-herd-test-radios-yes-no=No&"
+            {% if  data['section-what-complete'] == "true" and
+                   data['section-origin-complete'] == "true" and
+                   data['section-destination-complete'] == "true" and
+                   data['section-tests-complete'] != "true" and
+                   data['section-biosecurity-complete'] != "true" and
+                   data['section-biosecurity-map-complete'] != "true" and
+                   data['section-identification-complete'] != "true" and
+                   data['section-contact-and-updates-complete'] != "true" and
+                   data['origin-to-or-from-own-premises-radios'] == "Off the farm" and
+                   data['destination-type-of-destination-radios'] == "A market"  and
+                   data['tests-whole-herd-test-radios-yes-no'] == "No"
+            %}selected{% endif %}
+        >Off the farm - To a market - Part test</option>
+
+
+        <!--  EVERYTHING SHOWING -->
+        <option value="section-what-complete=true&section-origin-complete=true&section-destination-complete=true&section-tests-complete=true&section-biosecurity-complete=true&section-biosecurity-map-complete=true&section-identification-complete=true&section-contact-and-updates-complete=true&origin-to-or-from-own-premises-radios=On the farm&destination-type-of-destination-radios=A farm&tests-whole-herd-test-radios-yes-no=No&"
+            {% if  data['section-what-complete'] == "true" and
+                   data['section-origin-complete'] == "true" and
+                   data['section-destination-complete'] == "true" and
+                   data['section-tests-complete'] == "true" and
+                   data['section-biosecurity-complete'] == "true" and
+                   data['section-biosecurity-map-complete'] == "true" and
+                   data['section-identification-complete'] == "true" and
+                   data['section-contact-and-updates-complete'] == "true" and
+                   data['origin-to-or-from-own-premises-radios'] == "On the farm" and
+                   data['destination-type-of-destination-radios'] == "A farm"  and
+                   data['tests-whole-herd-test-radios-yes-no'] == "No"
+            %}selected{% endif %}
+        >Show every section</option>
+
+    </select>
+
+</form>
+<!--  END OF TASKLIST STATES  -->
+
+
+
+
+<script>
+
+    // Update the progress count
+    window.onload = function ()
+    {
+        const elements = document.querySelectorAll('div.govuk-task-list__status');
+
+        let numItems = elements.length;
+
+        let completecounter = 0;
+
+        elements.forEach((element) =>
+        {
+            var tagtext = element.textContent;
+
+            if(tagtext.includes('Completed') )
+            {
+                completecounter++;
+            }
+        });
+
+        let remaniningcount = numItems - completecounter;
+
+
+        document.getElementById("section-progress-count").textContent = remaniningcount + "/" + numItems;
+
+
+        // make button primary green if all done
+        // also change text at the top
+        if (completecounter == numItems)
+        {
+            const elementbutton = document.querySelector('.govuk-button');
+            elementbutton.classList.remove('govuk-button--secondary');
+
+            document.getElementById('whole-text-progress-count').style.display = 'none';
+            document.getElementById('whole-text-all-complete').style.display = 'block';
+        }
+
+
+    }
+
+</script>
+
+{% endblock %}
+
+
+
+
+
+
