@@ -15,7 +15,7 @@ This will save you time.
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    Contamination from badgers
+    Preventing contamination from badgers
 {% endset %}
 
 
@@ -47,19 +47,18 @@ This will save you time.
         </h1>
 
 
-        <p>You need to keep badgers are kept away from cattle by:</p>
+        <p>You can reduce the risk of contamination from badgers with these measures: </p>
 
 
         <ul class="govuk-body govuk-list--bullet">
-            <li>Using badger proof fencing.  Aluminium sheets, Electric fence, etc</li>
-            <li>Keep gates closed</li>
-            <li>Make food stores inaccessible to badger</li>
-            <li>Feeding troughs 3 feet </li>
-            <li>Water troughs above 90cm</li>
-            <li>Mineral licks kept out of reach of badgers</li>
+            <li>Introduce badger proof fencing, such as solid aluminium sheeted gates, aluminium sheeting on rail fences,
+                retractable electric fences and aluminium feed bins</li>
+            <li>Limit access to badger latrines and setts</li>
+            <li>Manage cattle feed and water, including feed troughs raised to 3 feet and water troughs above 90cm</li>
+            <li>Keep mineral licks out of reach </li>
         </ul>
 
-        <p>More details on <a href="https://tbhub.co.uk/preventing-tb-breakdowns/protect-your-herd-from-bovine-tb/protect-your-herd-from-tb-a-review-of-the-science/" target="_blank">TB HUB</a> (opens in a new tab)</p>
+        <p>For more information and examples on how to protect your herd, <a href="https://tbhub.co.uk/preventing-tb-breakdowns/protect-your-herd-from-bovine-tb/protect-your-herd-from-tb-a-review-of-the-science/" target="_blank">read the guidance on the TB Hub</a> (opens in a new tab)</p>
 
 
 
@@ -93,9 +92,9 @@ This will save you time.
                     items:
                     [
                         {
-                            value: "I confirm I have taken these measures",
-                            text: "I confirm I have taken these measures",
-                            checked: (data['biosecurity-badgers-confirmation-checkboxes'] or []).indexOf('I confirm I have taken these measures') > -1
+                            value: "I confirm I have taken measures to prevent the risk of contamination from badgers",
+                            text: "I confirm I have taken measures to prevent the risk of contamination from badgers",
+                            checked: (data['biosecurity-badgers-confirmation-checkboxes'] or []).indexOf('I confirm I have taken measures to prevent the risk of contamination from badgers') > -1
                         }
                     ]
                 })
