@@ -180,7 +180,7 @@
                         {
                             text: "Biosecurity map"
                         },
-                        href: "biosecurity/map/check-answers" if data['section-biosecurity-map-complete'] == "true" else "biosecurity/map/reuse-map",
+                        href: "biosecurity-map/check-answers" if data['section-biosecurity-map-complete'] == "true" else "biosecurity-map/reuse-map",
                         status:
                         {
                             text: "Completed",
@@ -243,7 +243,7 @@
 
 
         <!-- go to routes.js for routing  -->
-        <form action="#" method="post" novalidate>
+        <form action="submit/check-answers" method="post" novalidate>
 
             {{
                 govukButton

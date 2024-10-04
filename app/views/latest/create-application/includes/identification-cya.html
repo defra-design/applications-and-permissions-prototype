@@ -1,0 +1,32 @@
+ <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+            Are any of the animals microchipped?
+        </dt>
+        <dd class="govuk-summary-list__value">
+            {{ data['identification-microchipped-radios-yes-no'] }}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="../identification/microchipped">Change<span class="govuk-visually-hidden"> </span></a>
+        </dd>
+    </div>
+
+    {%  if  data['identification-microchipped-radios-yes-no'] == "No"  %}
+
+        <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+                Enter the ear tag numbers of the animals you plan to move
+            </dt>
+            <dd class="govuk-summary-list__value">
+                {{ data['identification-enter-ear-tags-text-input'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="../identification/enter-ear-tags">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        </div>
+
+    {%  endif  %}
+
+
+</dl>
