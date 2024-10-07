@@ -133,8 +133,16 @@ module.exports = function (router) {
             }
             else
             {
-                // This page name needs to be the next page the user gets to after successfully continuing
-                res.redirect('check-answers');
+                // If Yes was selected, continue to next page
+                if (req.session.data['bluetongue'] == "true")
+                {
+                    res.redirect('ruminants-any-60-days');
+                }
+                else
+                {
+                    // Continue to check answers
+                    res.redirect('check-answers');
+                }
             }
         }
         else if (req.session.data['origin-selection-of-own-premises-radios'] == "Another location")
@@ -277,10 +285,47 @@ module.exports = function (router) {
 
         else if (req.session.data['origin-to-or-from-own-premises-radios'] == "Off the farm")
         {
+            // If Yes was selected, continue to next page
+            if (req.session.data['bluetongue'] == "true")
+            {
+                res.redirect('ruminants-any-60-days');
+            }
+            else
+            {
+                // Continue to check answers
+                res.redirect('check-answers');
+            }
+        }
+    })
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////        50% compensation warning                    ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    // NOT COMPLEX PAGE
+    router.post( section + '/fifty-percent-warning-router', function (req, res)
+    {
+        // If Yes was selected, continue to next page
+        if (req.session.data['bluetongue'] == "true")
+        {
+            res.redirect('ruminants-any-60-days');
+        }
+        else
+        {
             // Continue to check answers
             res.redirect('check-answers');
         }
     })
+
+
 
 
 

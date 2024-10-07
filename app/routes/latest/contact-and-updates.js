@@ -246,33 +246,10 @@ module.exports = function (router) {
             // Go to Email
             res.redirect('updates-select-email-address');
         }
-        else if( req.session.data['contact-and-updates-updates-method-checkboxes'].includes("Text message") )
+        else //( req.session.data['contact-and-updates-updates-method-checkboxes'].includes("Text message") )
         {
             // Go to text page
             res.redirect('updates-select-text-number');
-        }
-        else
-        {
-            // Continue to the next page
-
-            // If the user needs to go back to 'check your answers' then take them directly there
-            if (req.session.data['camefromcheckanswers'] == 'true')
-            {
-                req.session.data['camefromcheckanswers'] = false;
-                res.redirect('check-answers');
-            }
-            else
-            {
-                // If bluetongue
-                if (req.session.data['bluetongue'] == "true")
-                {
-                    res.redirect('vet-name');
-                }
-                else
-                {
-                    res.redirect('check-answers');
-                }
-            }
         }
     })
 
@@ -317,8 +294,36 @@ module.exports = function (router) {
                 res.redirect('check-answers');
             }
         }
-
     })
+
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////        routing from updates email selection        ////////////////
+    ////////////////      to check answers or text message              ////////////////
+    ////////////////          if text was selected                      ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+    // NOT COMPLEX PAGE
+    router.get('/' + section + '/updates-select-text-number-router', function (req, res)
+    {
+        // If bluetongue
+        if (req.session.data['bluetongue'] == "true")
+        {
+            res.redirect('vet-name');
+        }
+        else
+        {
+            res.redirect('check-answers');
+        }
+    })
+
 
 
 

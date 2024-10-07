@@ -45,13 +45,16 @@
             </thead>
 
             <tbody class="govuk-table__body">
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">Received<br>Submitted 1 day ago</td>
-                    <td class="govuk-table__cell"></td>
-                    <td class="govuk-table__cell">Onto premises</td>
-                    <td class="govuk-table__cell govuk-!-text-align-right"><a href="../tasklist">View licence</a>
-                        <br><a href="../tasklist">View application</a></td>
-                </tr>
+
+                {%  if  data['application-submitted-by-user'] == "true"  %}
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">Received<br>Submitted today</td>
+                        <td class="govuk-table__cell"></td>
+                        <td class="govuk-table__cell">Onto premises</td>
+                        <td class="govuk-table__cell govuk-!-text-align-right"><a href="../tasklist">View licence</a>
+                            <br><a href="../tasklist">View application</a></td>
+                    </tr>
+                {%  endif  %}
 
                 <tr class="govuk-table__row">
                     <td class="govuk-table__cell">Issued</td>
