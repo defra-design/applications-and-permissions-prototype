@@ -55,6 +55,15 @@
             {{ pageHeadingTextHTML }}
         </h1>
 
+        <p><a href="#">View a map of your farm</a> (opens in a new window)</p>
+
+        {{
+            govukButton
+            ({
+                text: "Print a map of your farm",
+                classes: "govuk-button--secondary"
+            })
+        }}
 
         <p>You need to upload a map of the farm.  It needs to include:</p>
 
@@ -66,6 +75,8 @@
             <li>location of manure or slurry storage</li>
             <li>location of biosecurity points</li>
         </ul>
+
+
 
 
         <!-- go to routes.js for routing  -->
