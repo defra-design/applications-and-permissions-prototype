@@ -1,0 +1,138 @@
+<dl class="govuk-summary-list">
+
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-!-width-one-half">
+            How would you like this licence sent to you?
+        </dt>
+        <dd class="govuk-summary-list__value">
+            {{ data['contact-and-updates-licence-email-or-post-radios'] }}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="../contact-and-updates/licence-email-or-post">Change<span class="govuk-visually-hidden"> </span></a>
+        </dd>
+    </div>
+
+
+    {%  if  data['contact-and-updates-licence-email-or-post-radios'] == "Email"  %}
+
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+            What email address would you like the licence sent to?
+        </dt>
+        <dd class="govuk-summary-list__value">
+            {{ data['contact-and-updates-licence-select-email-address-radios'] }}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="../contact-and-updates/licence-select-email-address">Change<span class="govuk-visually-hidden"> </span></a>
+        </dd>
+    </div>
+
+    {%  else  %}
+
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+            What address would you like the licence sent to?
+        </dt>
+        <dd class="govuk-summary-list__value">
+            {{ data['contact-and-updates-licence-select-post-address-radios'] }}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="../contact-and-updates/licence-select-post-address">Change<span class="govuk-visually-hidden"> </span></a>
+        </dd>
+    </div>
+
+    {%  endif  %}
+
+
+
+
+
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+            Do you want to receive updates about the application?
+        </dt>
+        <dd class="govuk-summary-list__value">
+            {{ data['contact-and-updates-updates-receive-radios-yes-no'] }}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="../contact-and-updates/updates-receive">Change<span class="govuk-visually-hidden"> </span></a>
+        </dd>
+    </div>
+
+
+    {%  if  data['contact-and-updates-updates-receive-radios-yes-no'] == "Yes"  %}
+
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+            How do you want to receive updates?
+        </dt>
+        <dd class="govuk-summary-list__value">
+            {{ data['contact-and-updates-updates-method-checkboxes'] }}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="../contact-and-updates/updates-method">Change<span class="govuk-visually-hidden"> </span></a>
+        </dd>
+    </div>
+
+
+    {%  if  (data['contact-and-updates-updates-method-checkboxes'] or []).indexOf('Email') > -1 %}
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+            What email address would you like the updates sent to?
+        </dt>
+        <dd class="govuk-summary-list__value">
+            {{ data['contact-and-updates-updates-select-email-address-radios'] }}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="../contact-and-updates/updates-select-email-address">Change<span class="govuk-visually-hidden"> </span></a>
+        </dd>
+    </div>
+    {%  endif  %}
+
+    {%  if (data['contact-and-updates-updates-method-checkboxes'] or []).indexOf('Text message') > -1  %}
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+            What mobile phone number would you like updates sent to?
+        </dt>
+        <dd class="govuk-summary-list__value">
+            {{ data['contact-and-updates-updates-select-text-number-radios'] }}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="../contact-and-updates/updates-select-text-number">Change<span class="govuk-visually-hidden"> </span></a>
+        </dd>
+    </div>
+
+    {%  endif  %}
+
+    {%  endif  %}
+
+
+
+    {%  if data['bluetongue'] == "true"  %}
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+            What is your vet's name?
+        </dt>
+        <dd class="govuk-summary-list__value">
+            {{ data['contact-and-updates-vet-name-text-input'] }}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="../contact-and-updates/vet-name">Change<span class="govuk-visually-hidden"> </span></a>
+        </dd>
+    </div>
+
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+            What is your vet's email address?
+        </dt>
+        <dd class="govuk-summary-list__value">
+            {{ data['contact-and-updates-vet-email-address-text-input'] }}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="../contact-and-updates/vet-email-address">Change<span class="govuk-visually-hidden"> </span></a>
+        </dd>
+    </div>
+    {%  endif  %}
+
+
+</dl>

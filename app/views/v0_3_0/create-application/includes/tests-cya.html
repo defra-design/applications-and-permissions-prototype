@@ -1,0 +1,62 @@
+<dl class="govuk-summary-list">
+
+    {%  if data['bluetongue']  == "true"  %}
+        <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+                Have any of the animals you plan to move been vaccinated against Bluetongue virus?
+            </dt>
+            <dd class="govuk-summary-list__value">
+                {{ data['tests-bluetongue-vaccinations-radios-yes-no'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="../tests/buildings-how-minimise-contamination">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key  govuk-!-width-one-half">
+                How long ago was the earliest vaccination?
+            </dt>
+            <dd class="govuk-summary-list__value">
+                {{ data['tests-bluetongue-vaccination-age-radios'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="../tests/kept-separately">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        </div>
+    {%  endif  %}
+
+
+    {%  if data['origin-to-or-from-own-premises-radios'] == "On the farm"  %}
+        <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key  govuk-!-width-one-half">
+                Tests on the destination farm or premises
+            </dt>
+            <dd class="govuk-summary-list__value">
+                I confirm TB skin tests have been completed and sent to APHA
+            </dd>
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="../tests/kept-separately">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        </div>
+
+    {%  else  %}
+
+        <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key  govuk-!-width-one-half">
+                Tests on the animals you plan to move
+            </dt>
+            <dd class="govuk-summary-list__value">
+                I confirm these test conditions have been met
+            </dd>
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="../tests/kept-separately">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        </div>
+
+    {%  endif  %}
+
+
+
+
+</dl>

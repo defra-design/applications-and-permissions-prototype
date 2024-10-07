@@ -1,0 +1,138 @@
+<dl class="govuk-summary-list">
+
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key  govuk-!-width-one-half">
+            Are you moving the animals away from or to your farm or premises?
+        </dt>
+        <dd class="govuk-summary-list__value">
+            {{ data['origin-to-or-from-own-premises-radios'] }}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="../origin/to-or-from-own-premises">Change<span class="govuk-visually-hidden"> </span></a>
+        </dd>
+    </div>
+
+
+    {%  if  data['origin-to-or-from-own-premises-radios'] == "Off the farm"  %}
+        <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+                Where are the animals moving from?
+            </dt>
+            <dd class="govuk-summary-list__value">
+                {{ data['origin-selection-of-own-premises-radios'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="../origin/selection-of-own-premises">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        </div>
+
+        {%  if  data['origin-selection-of-own-premises-radios'] == "Another location"  %}
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                    What is the CPH number of the farm where the animals are moving off?
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    {{ data['origin-origin-farm-cph-text-input'] }}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="../origin/origin-farm-cph">Change<span class="govuk-visually-hidden"> </span></a>
+                </dd>
+            </div>
+
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                    What is the address of the farm where the animals are moving off?
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    {{ data['origin-addressLine1'] }}<br>
+                    {{ data['origin-addressLine2'] }}<br>
+                    {{ data['origin-addressTown'] }}<br>
+                    {{ data['origin-addressCounty'] }}<br>
+                    {{ data['origin-addressPostcode'] }}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="../origin/origin-farm-address">Change<span class="govuk-visually-hidden"> </span></a>
+                </dd>
+            </div>
+        {%  endif  %}
+
+
+    {%  else  %}
+
+        <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+                Where are the animals coming from?
+            </dt>
+            <dd class="govuk-summary-list__value">
+                {{ data['origin-type-of-origin-radios'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="../origin/type-of-origin">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        </div>
+
+        {%  if  data['origin-type-of-origin-radios'] == "A farm"  %}
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                    What is the CPH number of the farm where the animals are moving from?
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    {{ data['origin-origin-farm-cph-text-input'] }}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="../origin/origin-farm-cph">Change<span class="govuk-visually-hidden"> </span></a>
+                </dd>
+            </div>
+
+
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                    What is the address of the farm where the animals are moving off?
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    {{ data['origin-addressLine1'] }}<br>
+                    {{ data['origin-addressLine2'] }}<br>
+                    {{ data['origin-addressTown'] }}<br>
+                    {{ data['origin-addressCounty'] }}<br>
+                    {{ data['origin-addressPostcode'] }}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="../origin/origin-farm-address">Change<span class="govuk-visually-hidden"> </span></a>
+                </dd>
+            </div>
+        {%  endif  %}
+
+    {%  endif  %}
+
+
+
+
+    {%  if data['bluetongue'] == "true"  %}
+        <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+                Did you have any ruminants come onto your farm in the past 60 days?
+            </dt>
+            <dd class="govuk-summary-list__value">
+                {{ data['origin-ruminants-any-60-days-radios-yes-no'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="../origin/ruminants-any-60-days">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        </div>
+
+        {%  if data['origin-ruminants-any-60-days-radios-yes-no'] == "Yes"  %}
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                    What is the County Parish Holding (CPH) number of the farm where the ruminants came from?
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    {{ data['origin-ruminants-60-days-cph-text-input'] }}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="../origin/ruminants-60-days-cph">Change<span class="govuk-visually-hidden"> </span></a>
+                </dd>
+            </div>
+        {%  endif  %}
+    {%  endif  %}
+
+</dl>
