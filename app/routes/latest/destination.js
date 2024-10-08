@@ -165,6 +165,22 @@ module.exports = function (router) {
             }
         }
 
+        else if (req.session.data['destination-type-of-destination-radios'] == "Another destination")
+        {
+            // Continue to the next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['bluetongue'] == "true")
+            {
+                res.redirect('PLACEHOLDER');
+            }
+            else
+            {
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('reason-for-movement');
+            }
+        }
+
         else
         {
             // Trigger validation and reload the page
@@ -509,7 +525,7 @@ module.exports = function (router) {
         req.session.data['errortypeone'] = "false";
 
         // If Yes was selected, continue to next page
-        if (req.session.data['destination-selection-of-own-premises-radios'] == "Hill pasture farm, New road, EK32 9LR")
+        if (req.session.data['destination-selection-of-own-premises-radios'] == "Your farm, New road, EK32 9LR")
         {
             // Continue to the next page
 

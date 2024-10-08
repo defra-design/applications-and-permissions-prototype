@@ -123,16 +123,32 @@
         {%  if data['origin-ruminants-any-60-days-radios-yes-no'] == "Yes"  %}
             <div class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key">
-                    What is the County Parish Holding (CPH) number of the farm where the ruminants came from?
+                    Do you know the County Parish Holding (CPH) number of where the ruminants came from?
                 </dt>
                 <dd class="govuk-summary-list__value">
-                    {{ data['origin-ruminants-60-days-cph-text-input'] }}
+                    {{ data['origin-ruminants-know-cph-radios-yes-no'] }}
                 </dd>
                 <dd class="govuk-summary-list__actions">
-                    <a class="govuk-link" href="../origin/ruminants-60-days-cph">Change<span class="govuk-visually-hidden"> </span></a>
+                    <a class="govuk-link" href="../origin/ruminants-know-cph">Change<span class="govuk-visually-hidden"> </span></a>
                 </dd>
             </div>
+
+            {%  if data['origin-ruminants-know-cph-radios-yes-no'] == "Yes"  %}
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        What is the County Parish Holding (CPH) number of the farm where the ruminants came from?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{ data['origin-ruminants-60-days-cph-text-input'] }}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="../origin/ruminants-60-days-cph">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                </div>
+            {%  endif %}
+
         {%  endif  %}
+
     {%  endif  %}
 
 </dl>

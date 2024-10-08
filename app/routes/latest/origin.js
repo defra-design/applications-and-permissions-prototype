@@ -8,7 +8,7 @@ module.exports = function (router) {
         e.g  registration.js   and   search.js
         This avoids having one huge hard to manage routes.js
      */
-    const section = "/create-application/origin";
+    const section = "/create-application/origin/";
 
 
     /*
@@ -47,7 +47,7 @@ module.exports = function (router) {
 
 
     // NOT COMPLEX PAGE
-    router.post( section + '/to-or-from-own-premises-router', function (req, res)
+    router.post( section + 'to-or-from-own-premises-router', function (req, res)
     {
         // Turn errors off by default
         req.session.data['errorthispage'] = "false";
@@ -114,14 +114,14 @@ module.exports = function (router) {
 
 
     // NOT COMPLEX PAGE
-    router.post( section + '/selection-of-own-premises-router', function (req, res)
+    router.post( section + 'selection-of-own-premises-router', function (req, res)
     {
         // Turn errors off by default
         req.session.data['errorthispage'] = "false";
         req.session.data['errortypeone'] = "false";
 
         // If Yes was selected, continue to next page
-        if (req.session.data['origin-selection-of-own-premises-radios'] == "Hill pasture farm, New road, EK32 9LR")
+        if (req.session.data['origin-selection-of-own-premises-radios'] == "Your farm, New road, EK32 9LR")
         {
             // Continue to the next page
 
@@ -188,7 +188,7 @@ module.exports = function (router) {
 
 
     // NOT COMPLEX PAGE
-    router.post( section + '/type-of-origin-router', function (req, res)
+    router.post( section + 'type-of-origin-router', function (req, res)
     {
         // Turn errors off by default
         req.session.data['errorthispage'] = "false";
@@ -253,7 +253,7 @@ module.exports = function (router) {
 
 
     // NOT COMPLEX PAGE
-    router.post( section + '/origin-farm-cph-router', function (req, res)
+    router.post( section + 'origin-farm-cph-router', function (req, res)
     {
         // This page name needs to match the page the user was just on
         res.redirect('origin-farm-address');
@@ -275,7 +275,7 @@ module.exports = function (router) {
 
 
     // NOT COMPLEX PAGE
-    router.post( section + '/origin-farm-address-router', function (req, res)
+    router.post( section + 'origin-farm-address-router', function (req, res)
     {
         // If Yes was selected, continue to next page
         if (req.session.data['origin-to-or-from-own-premises-radios'] == "On the farm")
@@ -311,7 +311,7 @@ module.exports = function (router) {
 
 
     // NOT COMPLEX PAGE
-    router.post( section + '/fifty-percent-warning-router', function (req, res)
+    router.post( section + 'fifty-percent-warning-router', function (req, res)
     {
         // If Yes was selected, continue to next page
         if (req.session.data['bluetongue'] == "true")
@@ -341,7 +341,7 @@ module.exports = function (router) {
     ////////////////////////////////////////////////////////////////////////////////////
 
 
-    router.post(section + '/ruminants-any-60-days-router', function (req, res)
+    router.post(section + 'ruminants-any-60-days-router', function (req, res)
     {
         // Turn errors off by default
         req.session.data['errorthispage'] = "false";
@@ -361,7 +361,7 @@ module.exports = function (router) {
             else
             {
                 // This page name needs to be the next page the user gets to after successfully continuing
-                res.redirect('ruminants-60-days-cph');
+                res.redirect('ruminants-know-cph');
             }
         }
         else if (req.session.data['origin-ruminants-any-60-days-radios-yes-no'] == "No")
@@ -396,7 +396,73 @@ module.exports = function (router) {
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////                                                    ////////////////
-    ////////////////        CPH of farm which60 days ruminants          ////////////////
+    ////////////////   Know the CPH of where the ruminants are from     ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////       YES AND NO - RADIO BUTTONS - MANDATORY       ////////////////
+    ////////////////                  NOT COMPLEX PAGE                  ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    router.post( section + 'ruminants-know-cph-router', function (req, res)
+    {
+        // Turn errors off by default
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+
+        // If Yes was selected, continue to next page
+        if (req.session.data['origin-ruminants-know-cph-radios-yes-no'] == "Yes")
+        {
+            // Continue to the next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('ruminants-60-days-cph');
+            }
+            else
+            {
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('ruminants-60-days-cph');
+            }
+        }
+        else if (req.session.data['origin-ruminants-know-cph-radios-yes-no'] == "No")
+        {
+            // Continue to the next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('check-answers');
+            }
+            else
+            {
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('check-answers');
+            }
+        }
+        else
+        {
+            // Trigger validation and reload the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('ruminants-know-cph');
+        }
+    })
+
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////        CPH of farm which 60 days ruminants         ////////////////
     ////////////////                 came from                          ////////////////
     ////////////////                                                    ////////////////
     ////////////////////////////////////////////////////////////////////////////////////
@@ -404,7 +470,7 @@ module.exports = function (router) {
 
 
     // NOT COMPLEX PAGE
-    router.post( section + '/ruminants-60-days-cph-router', function (req, res)
+    router.post( section + 'ruminants-60-days-cph-router', function (req, res)
     {
         // This page name needs to match the page the user was just on
         res.redirect('check-answers');

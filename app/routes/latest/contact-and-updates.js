@@ -471,58 +471,18 @@ module.exports = function (router) {
 
         else
         {
-            // check no illegal charcters have been used
-            const acceptableCharacters =  " abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ&:’\,.()-";
-            let inputtext = req.session.data['contact-and-updates-vet-email-address-text-input'];
+            // everything with the input is fine so move on to next page
 
-            let dissallowedCharacters = "";
-
-            // go through every character in the input and save  illegals ones
-            for (var i = 0; i < inputtext.length; i++)
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
             {
-                let  singlecharacter = inputtext.charAt(i);
-
-                if( acceptableCharacters.includes( singlecharacter ) )
-                {
-                    // character is fine skip it
-                }
-                else
-                {
-                    // save this invalid character
-                    // if character is alread in tsring then don't add it
-                    if( dissallowedCharacters.includes( singlecharacter ) == false )
-                    {
-                        dissallowedCharacters = dissallowedCharacters.concat(singlecharacter);
-                    }
-                }
-            }
-
-            if(0 < dissallowedCharacters.length)
-            {
-                req.session.data['dissallowedcharacters'] = dissallowedCharacters;
-
-                // Trigger validation and relaunch the page for invalid characters
-                req.session.data['errorthispage'] = "true";
-                req.session.data['errortypefour'] = "true";
-
-                // This page name needs to match the page the user was just on
-                res.redirect('vet-email-address');
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('check-answers');
             }
             else
             {
-                // everything with the input is fine so move on to next page
-
-                // If the user needs to go back to 'check your answers' then take them directly there
-                if (req.session.data['camefromcheckanswers'] == 'true')
-                {
-                    req.session.data['camefromcheckanswers'] = false;
-                    res.redirect('check-answers');
-                }
-                else
-                {
-                    // This page name needs to be the next page the user gets to after successfully continuing
-                    res.redirect('check-answers');
-                }
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('check-answers');
             }
         }
     })

@@ -15,11 +15,7 @@ This will save you time.
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    {% if  data['origin-to-or-from-own-premises-radios'] == "On the farm"  %}
-        Have any ruminants come onto the origin farm in the past 60 days?
-    {% else %}
-        Have any ruminants come onto your farm in the past 60 days?
-    {% endif %}
+    Do you know the County Parish Holding (CPH) number of where the ruminants came from?
 {% endset %}
 
 
@@ -56,7 +52,7 @@ This will save you time.
                     [
                         {
                             html: errorTextHTML,
-                            href: "#origin-ruminants-any-60-days-radios-yes-no"
+                            href: "#origin-ruminants-know-cph-radios-yes-no"
                         }
                     ]
                 })
@@ -66,15 +62,15 @@ This will save you time.
 
 
         <!-- go to routes.js for routing  -->
-        <form action="ruminants-any-60-days-router" method="post" novalidate>
+        <form action="ruminants-know-cph-router" method="post" novalidate>
 
             {{ govukRadios
                 ({
                     classes: "govuk-radios--inline",
 
-                    name: "origin-ruminants-any-60-days-radios-yes-no",
+                    name: "origin-ruminants-know-cph-radios-yes-no",
 
-                    id: "origin-ruminants-any-60-days-radios-yes-no",
+                    id: "origin-ruminants-know-cph-radios-yes-no",
 
                     fieldset:
                     {
@@ -88,7 +84,7 @@ This will save you time.
 
                     hint:
                     {
-                        text: "Ruminants include cows, sheep, goats and deer. They are animals that partially digest food to chew it again."
+                        text: ""
                     },
 
                     items:
@@ -96,12 +92,12 @@ This will save you time.
                         {
                             value: "Yes",
                             text: "Yes",
-                            checked: data['origin-ruminants-any-60-days-radios-yes-no'] == "Yes"
+                            checked: data['origin-ruminants-know-cph-radios-yes-no'] == "Yes"
                         },
                         {
                             value: "No",
                             text: "No",
-                            checked: data['origin-ruminants-any-60-days-radios-yes-no'] == "No"
+                            checked: data['origin-ruminants-know-cph-radios-yes-no'] == "No"
                         }
                     ],
 
@@ -141,23 +137,24 @@ This will save you time.
 
 
 <!-- USER TYPE TOGGLE  -->
-
+<!--
 <form method="post"  action="#" class="for4" style=" float: left; position: relative; bottom:-225px;  ">
 
     <select style="height:30px;" onchange="window.location.href='?'+this.value">
 
-        <option value="origin-to-or-from-own-premises-radios=On the farm&"
-                {% if  data['origin-to-or-from-own-premises-radios'] == "On the farm"  %}selected{% endif %}
-        >On the farm</option>
+        <option value="user=citizen&"
+                {% if  data['user'] != "agent"  %} selected {% endif %}
+        >User type - Individual</option>
 
-        <option value="origin-to-or-from-own-premises-radios=Off the farm&"
-                {% if  data['origin-to-or-from-own-premises-radios'] != "On the farm"  %}selected{% endif %}
-        >Off the farm</option>
+        <option value="user=agent&"
+                {% if  data['user'] == "agent"  %} selected {% endif %}
+        >User type - Agent</option>
 
     </select>
 
 </form>
-
+-->
+<!--  END USER TYPE TOGGLE -->
 
 
 {% endblock %}
