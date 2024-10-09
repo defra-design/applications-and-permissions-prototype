@@ -15,7 +15,7 @@ module.exports = function (router) {
         e.g  registration.js   and   search.js
         This avoids having one huge hard to manage routes.js
      */
-    let section = "create-application/destination";
+    let section = "/create-application/destination/";
 
 
     /*
@@ -51,23 +51,19 @@ module.exports = function (router) {
     ////////////////////////////////////////////////////////////////////////////////////
 
     // NOT COMPLEX PAGE
-    router.get('/' + version + section + '/routing-start', function (req, res)
+    router.get( section + 'routing-start', function (req, res)
     {
         // If Yes was selected, continue to next page
         if (req.session.data['origin-to-or-from-own-premises-radios'] == "On the farm")
         {
             // Continue to the next pages where farmer is the origin
-
             res.redirect('selection-of-own-premises');
-
         }
 
         else
         {
             // Continue to the next pages where farmer is the destination
-
             res.redirect('type-of-destination');
-
         }
 
     })
@@ -90,7 +86,7 @@ module.exports = function (router) {
     ////////////////////////////////////////////////////////////////////////////////////
 
     // NOT COMPLEX PAGE
-    router.post('/' + version + section + '/type-of-destination-router', function (req, res)
+    router.post( section + 'type-of-destination-router', function (req, res)
     {
         // Turn errors off by default
         req.session.data['errorthispage'] = "false";
@@ -172,7 +168,7 @@ module.exports = function (router) {
             // If the user needs to go back to 'check your answers' then take them directly there
             if (req.session.data['bluetongue'] == "true")
             {
-                res.redirect('PLACEHOLDER');
+                res.redirect('ruminants-any-60-days');
             }
             else
             {
@@ -205,7 +201,7 @@ module.exports = function (router) {
 
 
     // NOT COMPLEX PAGE
-    router.post('/' + version + section + '/destination-farm-cph-router', function (req, res)
+    router.post( section + 'destination-farm-cph-router', function (req, res)
     {
         req.session.data['errorthispage'] = "false";
         req.session.data['errortypeone'] = "false";
@@ -295,8 +291,16 @@ module.exports = function (router) {
                 }
                 else
                 {
-                    // This page name needs to be the next page the user gets to after successfully continuing
-                    res.redirect('reason-for-movement');
+                    // If the user needs to go back to 'check your answers' then take them directly there
+                    if (req.session.data['bluetongue'] == "true")
+                    {
+                        res.redirect('ruminants-any-60-days');
+                    }
+                    else
+                    {
+                        // This page name needs to be the next page the user gets to after successfully continuing
+                        res.redirect('reason-for-movement');
+                    }
                 }
             }
         }
@@ -318,7 +322,7 @@ module.exports = function (router) {
 
 
     // NOT COMPLEX PAGE
-    router.post('/' + version + section + '/destination-tb-finishing-unit-cph-router', function (req, res)
+    router.post( section + 'destination-tb-finishing-unit-cph-router', function (req, res)
     {
         req.session.data['errorthispage'] = "false";
         req.session.data['errortypeone'] = "false";
@@ -436,7 +440,7 @@ module.exports = function (router) {
 
 
     // NOT COMPLEX PAGE
-    router.post('/' + version + section + '/market-type-router', function (req, res)
+    router.post( section + 'market-type-router', function (req, res)
     {
         // Turn errors off by default
         req.session.data['errorthispage'] = "false";
@@ -508,17 +512,177 @@ module.exports = function (router) {
 
 
 
+
+
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////                                                    ////////////////
-    ////////////////            Select own farm or new own farm             ////////////////
+    ////////////////     Any ruminants onto farm in past 60 days        ////////////////
+    ////////////////                 Bluetongue                         ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////       YES AND NO - RADIO BUTTONS - MANDATORY       ////////////////
+    ////////////////                  NOT COMPLEX PAGE                  ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    router.post(section + 'ruminants-any-60-days-router', function (req, res)
+    {
+        // Turn errors off by default
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+
+        // If Yes was selected, continue to next page
+        if (req.session.data['destination-ruminants-any-60-days-radios-yes-no'] == "Yes")
+        {
+            // Continue to the next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('check-answers');
+            }
+            else
+            {
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('ruminants-know-cph');
+            }
+        }
+        else if (req.session.data['destination-ruminants-any-60-days-radios-yes-no'] == "No")
+        {
+            // Continue to the next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('check-answers');
+            }
+            else
+            {
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('reason-for-movement');
+            }
+        }
+        else
+        {
+            // Trigger validation and reload the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('ruminants-any-60-days');
+        }
+    })
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////                 Bluetongue                         ////////////////
+    ////////////////   Know the CPH of where the ruminants are from     ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////       YES AND NO - RADIO BUTTONS - MANDATORY       ////////////////
+    ////////////////                  NOT COMPLEX PAGE                  ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    router.post( section + 'ruminants-know-cph-router', function (req, res)
+    {
+        // Turn errors off by default
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+
+        // If Yes was selected, continue to next page
+        if (req.session.data['destination-ruminants-know-cph-radios-yes-no'] == "Yes")
+        {
+            // Continue to the next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('ruminants-60-days-cph');
+            }
+            else
+            {
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('ruminants-60-days-cph');
+            }
+        }
+        else if (req.session.data['destination-ruminants-know-cph-radios-yes-no'] == "No")
+        {
+            // Continue to the next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('check-answers');
+            }
+            else
+            {
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('reason-for-movement');
+            }
+        }
+        else
+        {
+            // Trigger validation and reload the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('ruminants-know-cph');
+        }
+    })
+
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////                 Bluetongue                         ////////////////
+    ////////////////        CPH of farm which 60 days ruminants         ////////////////
+    ////////////////                 came from                          ////////////////
     ////////////////                                                    ////////////////
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////
 
 
     // NOT COMPLEX PAGE
-    router.post('/' + version + section + '/selection-of-own-premises-router', function (req, res)
+    router.post( section + 'ruminants-60-days-cph-router', function (req, res)
+    {
+        // This page name needs to match the page the user was just on
+        res.redirect('reason-for-movement');
+    })
+
+
+
+
+
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////         Select own farm or new own farm            ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    // NOT COMPLEX PAGE
+    router.post( section + 'selection-of-own-premises-router', function (req, res)
     {
         // Turn errors off by default
         req.session.data['errorthispage'] = "false";
@@ -537,8 +701,15 @@ module.exports = function (router) {
             }
             else
             {
-                // This page name needs to be the next page the user gets to after successfully continuing
-                res.redirect('reason-for-movement');
+                // If bluetongue
+                if (req.session.data['bluetongue'] == "true")
+                {
+                    res.redirect('ruminants-any-60-days');
+                }
+                else
+                {
+                    res.redirect('reason-for-movement');
+                }
             }
         }
 
@@ -554,8 +725,15 @@ module.exports = function (router) {
             }
             else
             {
-                // This page name needs to be the next page the user gets to after successfully continuing
-                res.redirect('reason-for-movement');
+                // If bluetongue
+                if (req.session.data['bluetongue'] == "true")
+                {
+                    res.redirect('ruminants-any-60-days');
+                }
+                else
+                {
+                    res.redirect('reason-for-movement');
+                }
             }
         }
 
@@ -587,7 +765,7 @@ module.exports = function (router) {
 
 
     // NOT COMPLEX PAGE
-    router.post('/' + version + section + '/reason-for-movement-router', function (req, res)
+    router.post( section + 'reason-for-movement-router', function (req, res)
     {
         // Turn errors off by default
         req.session.data['errorthispage'] = "false";
@@ -707,7 +885,7 @@ module.exports = function (router) {
     ////////////////////////////////////////////////////////////////////////////////////
 
 
-    router.post('/' + section + '/pregnant-any-router', function (req, res)
+    router.post( section + 'pregnant-any-router', function (req, res)
     {
         // Turn errors off by default
         req.session.data['errorthispage'] = "false";
@@ -779,7 +957,7 @@ module.exports = function (router) {
     ////////////////////////////////////////////////////////////////////////////////////
 
 
-    router.post('/' + section + '/pregnant-earliest-birth-date-router', function (req, res)
+    router.post( section + 'pregnant-earliest-birth-date-router', function (req, res)
     {
         ////////////////////////////////////////////////////////////////////////////////////
         ////////////////           Resetting all errors to off              ////////////////
@@ -1072,7 +1250,7 @@ module.exports = function (router) {
     ////////////////////////////////////////////////////////////////////////////////////
 
 
-    router.post('/' + version + section + '/quantity-options-router', function (req, res)
+    router.post( section + 'quantity-options-router', function (req, res)
     {
         // Turn errors off by default
         req.session.data['errorthispage'] = "false";
@@ -1155,7 +1333,7 @@ module.exports = function (router) {
 
 
     // NOT COMPLEX PAGE
-    router.post('/' + version + section + '/quantity-half-herd-router', function (req, res)
+    router.post( section + 'quantity-half-herd-router', function (req, res)
     {
         // Turn errors off by default
         req.session.data['errorthispage'] = "false";

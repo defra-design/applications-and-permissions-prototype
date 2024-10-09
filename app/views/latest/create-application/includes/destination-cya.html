@@ -83,6 +83,52 @@
 
     {%  if      data['origin-to-or-from-own-premises-radios'] == "On the farm"
             or  data['destination-type-of-destination-radios'] == "A farm"  %}
+
+        {%  if data['bluetongue'] == "true"  %}
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                    Did you have any ruminants come onto your farm in the past 60 days?
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    {{ data['destination-ruminants-any-60-days-radios-yes-no'] }}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="../destination/ruminants-any-60-days">Change<span class="govuk-visually-hidden"> </span></a>
+                </dd>
+            </div>
+
+            {%  if data['destination-ruminants-any-60-days-radios-yes-no'] == "Yes"  %}
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Do you know the County Parish Holding (CPH) number of where the ruminants came from?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{ data['destination-ruminants-know-cph-radios-yes-no'] }}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="../destination/ruminants-know-cph">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                </div>
+
+                {%  if data['destination-ruminants-know-cph-radios-yes-no'] == "Yes"  %}
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                            What is the County Parish Holding (CPH) number of the farm where the ruminants came from?
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                            {{ data['destination-ruminants-60-days-cph-text-input'] }}
+                        </dd>
+                        <dd class="govuk-summary-list__actions">
+                            <a class="govuk-link" href="../destination/ruminants-60-days-cph">Change<span class="govuk-visually-hidden"> </span></a>
+                        </dd>
+                    </div>
+                {%  endif %}
+
+            {%  endif  %}
+
+        {%  endif  %}
+
+
         <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
                 What is the reason for the movement?
@@ -96,7 +142,7 @@
         </div>
 
 
-        {%  if data['bluetongue'] == "true"  %}
+        {%  if data['bluetongue'] == "true"  and   data['destination-reason-for-movement-radios'] != "Bull"  %}
 
             <div class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key">
