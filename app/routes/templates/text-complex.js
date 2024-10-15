@@ -12,13 +12,13 @@ module.exports = function (router)
     ////////////////               PLACEHOLDER_SUMMARY                  ////////////////
     ////////////////                                                    ////////////////
     ////////////////              TEXT ENTRY - MANDATORY                ////////////////
-    ////////////////                 NOT COMPLEX PAGE                   ////////////////
+    ////////////////                   COMPLEX PAGE                     ////////////////
     ////////////////                                                    ////////////////
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////
 
 
-    router.post(section + 'PAGENAME_TEXT-router', function (req, res)
+    router.post(section + 'PAGENAME_TEXT_COMPLEX-router', function (req, res)
     {
         req.session.data['errorthispage'] = "false";
         req.session.data['errortypeone'] = "false";
@@ -26,42 +26,43 @@ module.exports = function (router)
         req.session.data['errortypethree'] = "false";
         req.session.data['errortypefour'] = "false";
 
+
         // Validation check if field is blank
-        if (req.session.data['SECTION-PAGENAME_TEXT-text-input'] == undefined || req.session.data['SECTION-PAGENAME_TEXT-text-input'] == "")
+        if (req.session.data['SECTION-PAGENAME_TEXT_COMPLEX-text-input'] == undefined || req.session.data['SECTION-PAGENAME_TEXT_COMPLEX-text-input'] == "")
         {
             // Trigger validation and relaunch the page
             req.session.data['errorthispage'] = "true";
             req.session.data['errortypeone'] = "true";
 
             // This page name needs to match the page the user was just on
-            res.redirect('PAGENAME_TEXT');
+            res.redirect('PAGENAME_TEXT_COMPLEX');
         }
 
-        else if (req.session.data['SECTION-PAGENAME_TEXT-text-input'].length > 15)
+        else if (req.session.data['SECTION-PAGENAME_TEXT_COMPLEX-text-input'].length > 15)
         {
             // Trigger validation and relaunch the page for over 15 characters
             req.session.data['errorthispage'] = "true";
             req.session.data['errortypetwo'] = "true";
 
             // This page name needs to match the page the user was just on
-            res.redirect('PAGENAME_TEXT');
+            res.redirect('PAGENAME_TEXT_COMPLEX');
         }
 
-        else if (req.session.data['SECTION-PAGENAME_TEXT-text-input'].length < 4)
+        else if (req.session.data['SECTION-PAGENAME_TEXT_COMPLEX-text-input'].length < 4)
         {
             // Trigger validation and relaunch the page for under 5 characters
             req.session.data['errorthispage'] = "true";
             req.session.data['errortypethree'] = "true";
 
             // This page name needs to match the page the user was just on
-            res.redirect('PAGENAME_TEXT');
+            res.redirect('PAGENAME_TEXT_COMPLEX');
         }
 
         else
         {
             // check no illegal charcters have been used
             const acceptableCharacters =  " abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ&:’\,.()-";
-            let inputtext = req.session.data['SECTION-PAGENAME_TEXT-text-input'];
+            let inputtext = req.session.data['SECTION-PAGENAME_TEXT_COMPLEX-text-input'];
 
             let dissallowedCharacters = "";
 
@@ -94,7 +95,7 @@ module.exports = function (router)
                 req.session.data['errortypefour'] = "true";
 
                 // This page name needs to match the page the user was just on
-                res.redirect('PAGENAME_TEXT');
+                res.redirect('PAGENAME_TEXT_COMPLEX');
             }
             else
             {
@@ -121,10 +122,12 @@ module.exports = function (router)
     ////////////////                                                    ////////////////
     ////////////////                      END OF                        ////////////////
     ////////////////              TEXT ENTRY - MANDATORY                ////////////////
-    ////////////////                 NOT COMPLEX PAGE                   ////////////////
+    ////////////////                    COMPLEX PAGE                    ////////////////
     ////////////////                                                    ////////////////
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////
+
+
 
 
 

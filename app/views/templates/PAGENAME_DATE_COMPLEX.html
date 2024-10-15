@@ -322,6 +322,7 @@ This will save you time.
 
 
 <!-- USER TYPE TOGGLE  -->
+<!--
 <form method="post"  action="#" class="for4" style=" float: left; position: relative; bottom:-340px;  ">
 
     <select style="height:30px;" onchange="window.location.href='?'+this.value">
@@ -337,28 +338,11 @@ This will save you time.
     </select>
 
 </form>
+-->
 <!--  END USER TYPE TOGGLE -->
 
 
 
-
-<!-- RETURN YEAR TOGGLE  -->
-<form method="post"  action="#" class="for4" style=" float: left; position: relative; bottom:-340px;  ">
-
-    <select style="height:30px;" onchange="window.location.href='?'+this.value">
-
-        <option value="return-status=closed&"
-                {% if  data['return-status'] != "open"  %} selected {% endif %}
-        >Tax year - Previous</option>
-
-        <option value="return-status=open&"
-                {% if  data['return-status'] == "open"  %} %} selected {% endif %}
-        >Tax year - Current</option>
-
-    </select>
-
-</form>
-<!--  RETURN YEAR  TOGGLE -->
 
 
 

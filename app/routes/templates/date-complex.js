@@ -12,13 +12,12 @@ module.exports = function (router)
     ////////////////               PLACEHOLDER_SUMMARY                  ////////////////
     ////////////////                                                    ////////////////
     ////////////////                   DATE ENTRY                       ////////////////
-    ////////////////                NOT COMPLEX PAGE                    ////////////////
+    ////////////////                  COMPLEX PAGE                      ////////////////
     ////////////////                                                    ////////////////
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////
 
-
-    router.post(section + 'PAGENAME_DATE-router', function (req, res)
+    router.post(section + 'PAGENAME_DATE_COMPLEX-router', function (req, res)
     {
         ////////////////////////////////////////////////////////////////////////////////////
         ////////////////           Resetting all errors to off              ////////////////
@@ -111,20 +110,20 @@ module.exports = function (router)
         ////////////////////////////////////////////////////////////////////////////////////
 
         // Validation check if day field is blank
-        if ( req.session.data['SECTION-PAGENAME_DATE-date-input-day'] == undefined
-            || req.session.data['SECTION-PAGENAME_DATE-date-input-day'] == "" )
+        if ( req.session.data['SECTION-PAGENAME_DATE_COMPLEX-date-input-day'] == undefined
+            || req.session.data['SECTION-PAGENAME_DATE_COMPLEX-date-input-day'] == "" )
         {
             dayEmpty = true;
         }
         // Validation check if month field is blank
-        if ( req.session.data['SECTION-PAGENAME_DATE-date-input-month'] == undefined
-            || req.session.data['SECTION-PAGENAME_DATE-date-input-month'] == "" )
+        if ( req.session.data['SECTION-PAGENAME_DATE_COMPLEX-date-input-month'] == undefined
+            || req.session.data['SECTION-PAGENAME_DATE_COMPLEX-date-input-month'] == "" )
         {
             monthEmpty = true;
         }
         // Validation check if year field is blank
-        if ( req.session.data['SECTION-PAGENAME_DATE-date-input-year'] == undefined
-            || req.session.data['SECTION-PAGENAME_DATE-date-input-year'] == "" )
+        if ( req.session.data['SECTION-PAGENAME_DATE_COMPLEX-date-input-year'] == undefined
+            || req.session.data['SECTION-PAGENAME_DATE_COMPLEX-date-input-year'] == "" )
         {
             yearEmpty = true;
         }
@@ -186,7 +185,7 @@ module.exports = function (router)
         if (req.session.data['errorthispage'] != "true")
         {
             // if no error have been found so far then check for non numbers
-            if (  isNaN(req.session.data['SECTION-PAGENAME_DATE-date-input-year']) )
+            if (  isNaN(req.session.data['SECTION-PAGENAME_DATE_COMPLEX-date-input-year']) )
             {
                 // one or more fields isn't a number and isn't empty
                 req.session.data['errorthispage'] = "true";
@@ -202,7 +201,7 @@ module.exports = function (router)
 
         if (req.session.data['errorthispage'] != "true")
         {
-            if (  req.session.data['SECTION-PAGENAME_DATE-date-input-year'] < 1000  ||  9999 < req.session.data['SECTION-PAGENAME_DATE-date-input-year']  )
+            if (  req.session.data['SECTION-PAGENAME_DATE_COMPLEX-date-input-year'] < 1000  ||  9999 < req.session.data['SECTION-PAGENAME_DATE_COMPLEX-date-input-year']  )
             {
                 req.session.data['errorthispage'] = "true";
                 req.session.data['errortypenine'] = "true";
@@ -219,7 +218,7 @@ module.exports = function (router)
         if (req.session.data['errorthispage'] != "true")
         {
             // if no error have been found so far then check for non numbers
-            if ( isNaN(req.session.data['SECTION-PAGENAME_DATE-date-input-month']) )
+            if ( isNaN(req.session.data['SECTION-PAGENAME_DATE_COMPLEX-date-input-month']) )
             {
                 // one or more fields isn't a number and isn't empty
                 req.session.data['errorthispage'] = "true";
@@ -227,7 +226,7 @@ module.exports = function (router)
             }
                 // Check if date numbers are 0 or impossibly high. e.g. 14th month
             // Check for non numbers being entered
-            else if ( req.session.data['SECTION-PAGENAME_DATE-date-input-month'] < 1  ||  12 < req.session.data['SECTION-PAGENAME_DATE-date-input-month'] )
+            else if ( req.session.data['SECTION-PAGENAME_DATE_COMPLEX-date-input-month'] < 1  ||  12 < req.session.data['SECTION-PAGENAME_DATE_COMPLEX-date-input-month'] )
             {
                 // one or more fields isn't a number and isn't empty
                 req.session.data['errorthispage'] = "true";
@@ -244,10 +243,10 @@ module.exports = function (router)
         // Check for non numbers being entered
         if (req.session.data['errorthispage'] != "true")
         {
-            var quanityofdaysinmonth =  new Date(req.session.data['SECTION-PAGENAME_DATE-date-input-year'], req.session.data['SECTION-PAGENAME_DATE-date-input-month'], 0).getDate();
+            var quanityofdaysinmonth =  new Date(req.session.data['SECTION-PAGENAME_DATE_COMPLEX-date-input-year'], req.session.data['SECTION-PAGENAME_DATE_COMPLEX-date-input-month'], 0).getDate();
 
             // if no error have been found so far then check for non numbers
-            if ( isNaN(req.session.data['SECTION-PAGENAME_DATE-date-input-day'])  )
+            if ( isNaN(req.session.data['SECTION-PAGENAME_DATE_COMPLEX-date-input-day'])  )
             {
                 // one or more fields isn't a number and isn't empty
                 req.session.data['errorthispage'] = "true";
@@ -255,7 +254,7 @@ module.exports = function (router)
             }
                 // Check if date numbers are 0 or impossibly high. e.g. 14th month
             // Check for non numbers being entered
-            else if (  req.session.data['SECTION-PAGENAME_DATE-date-input-day'] < 1  ||  quanityofdaysinmonth < req.session.data['SECTION-PAGENAME_DATE-date-input-day'] )
+            else if (  req.session.data['SECTION-PAGENAME_DATE_COMPLEX-date-input-day'] < 1  ||  quanityofdaysinmonth < req.session.data['SECTION-PAGENAME_DATE_COMPLEX-date-input-day'] )
             {
                 // one or more fields isn't a number and isn't empty
                 req.session.data['errorthispage'] = "true";
@@ -274,16 +273,16 @@ module.exports = function (router)
         if (req.session.data['errorthispage'] != "true")
         {
             inputdate = new Date(
-                req.session.data['SECTION-PAGENAME_DATE-date-input-year'],
-                req.session.data['SECTION-PAGENAME_DATE-date-input-month'] - 1,
-                req.session.data['SECTION-PAGENAME_DATE-date-input-day']
+                req.session.data['SECTION-PAGENAME_DATE_COMPLEX-date-input-year'],
+                req.session.data['SECTION-PAGENAME_DATE_COMPLEX-date-input-month'] - 1,
+                req.session.data['SECTION-PAGENAME_DATE_COMPLEX-date-input-day']
             );
 
             // Save user input date without zeros and month has taxt, e.g. March
-            req.session.data['SECTION-PAGENAME_DATE-date-input-day'] = inputdate.getDate();
-            req.session.data['SECTION-PAGENAME_DATE-date-input-month-number'] = inputdate.getMonth() + 1;
-            req.session.data['SECTION-PAGENAME_DATE-date-input-month-text'] = inputdate.toLocaleString('default', {month: 'long'});
-            req.session.data['SECTION-PAGENAME_DATE-date-input-year'] = inputdate.getFullYear();
+            req.session.data['SECTION-PAGENAME_DATE_COMPLEX-date-input-day'] = inputdate.getDate();
+            req.session.data['SECTION-PAGENAME_DATE_COMPLEX-date-input-month-number'] = inputdate.getMonth() + 1;
+            req.session.data['SECTION-PAGENAME_DATE_COMPLEX-date-input-month-text'] = inputdate.toLocaleString('default', {month: 'long'});
+            req.session.data['SECTION-PAGENAME_DATE_COMPLEX-date-input-year'] = inputdate.getFullYear();
         }
 
 
@@ -399,7 +398,7 @@ module.exports = function (router)
         if ( req.session.data['errorthispage'] == 'true' )
         {
             // Redirect to same page with errors
-            res.redirect('PAGENAME_DATE')
+            res.redirect('PAGENAME_DATE_COMPLEX')
         }
         else if ( req.session.data['camefromcheckanswers'] == 'true' )
         {
@@ -415,7 +414,6 @@ module.exports = function (router)
             res.redirect('THE_NEXT_PAGE_NAME')
         }
 
-
     })
 
 
@@ -426,7 +424,7 @@ module.exports = function (router)
     ////////////////                     END OF                         ////////////////
     ////////////////                                                    ////////////////
     ////////////////                   DATE ENTRY                       ////////////////
-    ////////////////                NOT COMPLEX PAGE                    ////////////////
+    ////////////////                  COMPLEX PAGE                      ////////////////
     ////////////////                                                    ////////////////
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////
