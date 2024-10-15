@@ -6,7 +6,6 @@ module.exports = function (router) {
         This allows you to make new version of the prototype and have the old versions still work
         This is done by making a copy of the routes files and updating just this version variable for the new version
      */
-    let version = "";
 
 
     /*
@@ -15,7 +14,7 @@ module.exports = function (router) {
         e.g  registration.js   and   search.js
         This avoids having one huge hard to manage routes.js
      */
-    let section = "create-application/identification";
+    let section = "/create-application/identification/";
 
 
     /*
@@ -49,7 +48,7 @@ module.exports = function (router) {
 
 
     // NOT COMPLEX PAGE
-    router.post('/' + version + section + '/microchipped-router', function (req, res)
+    router.post(section + 'microchipped-router', function (req, res)
     {
         // Turn errors off by default
         req.session.data['errorthispage'] = "false";
@@ -110,7 +109,7 @@ module.exports = function (router) {
 
 
     // NOT COMPLEX PAGE
-    router.post('/' + version + section + '/enter-ear-tags-router', function (req, res)
+    router.post(section + 'enter-ear-tags-router', function (req, res)
     {
         // Turn errors off by default
         req.session.data['errorthispage'] = "false";

@@ -7,7 +7,7 @@ module.exports = function (router) {
         e.g  registration.js   and   search.js
         This avoids having one huge hard to manage routes.js
      */
-    let section = "create-application/contact-and-updates";
+    let section = "/create-application/contact-and-updates/";
 
 
     /*
@@ -44,7 +44,7 @@ module.exports = function (router) {
     ////////////////////////////////////////////////////////////////////////////////////
 
     // NOT COMPLEX PAGE
-    router.get('/' + section + '/routing-contact-and-updates', function (req, res)
+    router.get(section + 'routing-contact-and-updates', function (req, res)
     {
         // If the origin is unrestricted then communication details go to the restricted destination
         // Simulate this ROUGHLY FOR NOW by checking that destination is a farm
@@ -83,7 +83,7 @@ module.exports = function (router) {
 
 
     // NOT COMPLEX PAGE
-    router.post('/' + section + '/licence-email-or-post-router', function (req, res)
+    router.post(section + 'licence-email-or-post-router', function (req, res)
     {
         // Turn errors off by default
         req.session.data['errorthispage'] = "false";
@@ -151,7 +151,7 @@ module.exports = function (router) {
 
 
     // NOT COMPLEX PAGE
-    router.post('/' + section + '/updates-receive-router', function (req, res)
+    router.post(section + 'updates-receive-router', function (req, res)
     {
         // Turn errors off by default
         req.session.data['errorthispage'] = "false";
@@ -224,7 +224,7 @@ module.exports = function (router) {
     ////////////////////////////////////////////////////////////////////////////////////
 
     // NOT COMPLEX PAGE
-    router.post('/' + section + '/updates-method-router', function (req, res)
+    router.post(section + 'updates-method-router', function (req, res)
     {
         // Turn errors off by default
         req.session.data['errorthispage'] = "false";
@@ -274,7 +274,7 @@ module.exports = function (router) {
     ////////////////////////////////////////////////////////////////////////////////////
 
     // NOT COMPLEX PAGE
-    router.get('/' + section + '/updates-select-email-address-router', function (req, res)
+    router.get(section + 'updates-select-email-address-router', function (req, res)
     {
         if( req.session.data['contact-and-updates-updates-method-checkboxes'].includes("Text message") )
         {
@@ -311,7 +311,7 @@ module.exports = function (router) {
     ////////////////////////////////////////////////////////////////////////////////////
 
     // NOT COMPLEX PAGE
-    router.get('/' + section + '/updates-select-text-number-router', function (req, res)
+    router.get(section + 'updates-select-text-number-router', function (req, res)
     {
         // If bluetongue
         if (req.session.data['bluetongue'] == "true")
@@ -339,7 +339,7 @@ module.exports = function (router) {
     ////////////////////////////////////////////////////////////////////////////////////
 
 
-    router.post('/' + section + '/vet-name-router', function (req, res)
+    router.post(section + 'vet-name-router', function (req, res)
     {
         req.session.data['errorthispage'] = "false";
         req.session.data['errortypeone'] = "false";
@@ -440,7 +440,7 @@ module.exports = function (router) {
     ////////////////////////////////////////////////////////////////////////////////////
 
 
-    router.post('/' + section + '/vet-email-address-router', function (req, res)
+    router.post(section + 'vet-email-address-router', function (req, res)
     {
         req.session.data['errorthispage'] = "false";
         req.session.data['errortypeone'] = "false";
@@ -486,16 +486,6 @@ module.exports = function (router) {
             }
         }
     })
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -16,7 +16,7 @@ module.exports = function (router) {
         e.g  registration.js   and   search.js
         This avoids having one huge hard to manage routes.js
      */
-    let section = "create-application/biosecurity-map";
+    let section = "/create-application/biosecurity-map/";
 
 
     /*
@@ -64,7 +64,7 @@ module.exports = function (router) {
 
 
     // NOT COMPLEX PAGE
-    router.post('/' + section + '/reuse-map-router', function (req, res)
+    router.post(section + 'reuse-map-router', function (req, res)
     {
         // Turn errors off by default
         req.session.data['errorthispage'] = "false";
@@ -136,7 +136,7 @@ module.exports = function (router) {
     /////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////
 
-    router.post('/' + section + '/upload-plan-router', function (req, res)
+    router.post(section + 'upload-plan-router', function (req, res)
     {
         // Turn errors off by default
         req.session.data['errorthispage'] = "false";

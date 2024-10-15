@@ -2,13 +2,6 @@ const {log} = require("govuk-prototype-kit/migrator/logger");
 
 module.exports = function (router) {
 
-    /*
-        Setting a version in each routes.js file
-        This allows you to make new version of the prototype and have the old versions still work
-        This is done by making a copy of the routes files and updating just this version variable for the new version
-     */
-
-
 
     /*
         Setting a section in each routes.js file
@@ -16,7 +9,7 @@ module.exports = function (router) {
         e.g  registration.js   and   search.js
         This avoids having one huge hard to manage routes.js
      */
-    let section = "create-application/biosecurity";
+    let section = "/create-application/biosecurity/";
 
 
     /*
@@ -50,7 +43,7 @@ module.exports = function (router) {
     ////////////////////////////////////////////////////////////////////////////////////
 
 
-    router.get('/' + section + '/begin-biosecurity-details-section', function (req, res)
+    router.get(section + 'begin-biosecurity-details-section', function (req, res)
     {
         // If the movement is a bull or welfare then don't ask biosecurity questions
         if (req.session.data['destination-reason-for-movement-radios'] == 'Bull' ||
@@ -77,7 +70,7 @@ module.exports = function (router) {
 
 
     // NOT COMPLEX PAGE
-    router.post('/' + section + '/kept-separately-router', function (req, res)
+    router.post(section + 'kept-separately-router', function (req, res)
     {
         // Turn errors off by default
         req.session.data['errorthispage'] = "false";
@@ -141,7 +134,7 @@ module.exports = function (router) {
 
 
     // NOT COMPLEX PAGE
-    router.post('/' + section + '/grazing-router', function (req, res)
+    router.post(section + 'grazing-router', function (req, res)
     {
         // Turn errors off by default
         req.session.data['errorthispage'] = "false";
@@ -204,7 +197,7 @@ module.exports = function (router) {
     ////////////////////////////////////////////////////////////////////////////////////
 
     // NOT COMPLEX PAGE
-    router.post('/' + section + '/last-grazed-router', function (req, res)
+    router.post(section + 'last-grazed-router', function (req, res)
     {
         req.session.data['errorthispage'] = "false";
         req.session.data['errortypeone'] = "false";
@@ -259,7 +252,7 @@ module.exports = function (router) {
 
 
     // NOT COMPLEX PAGE
-    router.post('/' + section + '/manure-and-slurry-router', function (req, res)
+    router.post(section + 'manure-and-slurry-router', function (req, res)
     {
         // Turn errors off by default
         req.session.data['errorthispage'] = "false";
@@ -324,7 +317,7 @@ module.exports = function (router) {
     ////////////////////////////////////////////////////////////////////////////////////
 
 
-    router.get('/' + section + '/grazing-field-how-separated-router', function (req, res)
+    router.get(section + 'grazing-field-how-separated-router', function (req, res)
     {
         // Always proceed to the next questions on shared tracks
 
@@ -350,7 +343,7 @@ module.exports = function (router) {
 
 
     // NOT COMPLEX PAGE
-    router.post('/' + section + '/roads-and-tracks-router', function (req, res)
+    router.post(section + 'roads-and-tracks-router', function (req, res)
     {
         // Turn errors off by default
         req.session.data['errorthispage'] = "false";
@@ -415,7 +408,7 @@ module.exports = function (router) {
     ////////////////////////////////////////////////////////////////////////////////////
 
 
-    router.get('/' + section + '/road-and-track-minimise-contamination-router', function (req, res)
+    router.get(section + 'road-and-track-minimise-contamination-router', function (req, res)
     {
         // Always proceed to the next questions on shared tracks
 
@@ -441,7 +434,7 @@ module.exports = function (router) {
 
 
     // NOT COMPLEX PAGE
-    router.post('/' + section + '/buildings-any-shared-router', function (req, res)
+    router.post(section + 'buildings-any-shared-router', function (req, res)
     {
         // Turn errors off by default
         req.session.data['errorthispage'] = "false";
@@ -506,7 +499,7 @@ module.exports = function (router) {
     ////////////////////////////////////////////////////////////////////////////////////
 
 
-    router.get('/' + section + '/buildings-how-minimise-contamination-router', function (req, res)
+    router.get(section + 'buildings-how-minimise-contamination-router', function (req, res)
     {
         // Always proceed to the next questions on shared tracks
 
@@ -529,7 +522,7 @@ module.exports = function (router) {
     ////////////////////////////////////////////////////////////////////////////////////
 
 
-    router.get('/' + section + '/people-disinfection-router', function (req, res)
+    router.get(section + 'people-disinfection-router', function (req, res)
     {
         // Always proceed to the next questions on shared tracks
 
@@ -553,7 +546,7 @@ module.exports = function (router) {
 
 
     // NOT COMPLEX PAGE
-    router.post('/' + section + '/disinfectant-router', function (req, res)
+    router.post(section + 'disinfectant-router', function (req, res)
     {
         req.session.data['errorthispage'] = "false";
         req.session.data['errortypeone'] = "false";
@@ -621,7 +614,7 @@ module.exports = function (router) {
     ////////////////////////////////////////////////////////////////////////////////////
 
 
-    router.post('/' + section + '/disinfectant-dilution-router', function (req, res)
+    router.post(section + 'disinfectant-dilution-router', function (req, res)
     {
         req.session.data['errorthispage'] = "false";
         req.session.data['errortypeone'] = "false";
@@ -727,7 +720,7 @@ module.exports = function (router) {
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////
 
-    router.get('/' + section + '/badgers-router', function (req, res)
+    router.get(section + 'badgers-router', function (req, res)
     {
         // Always proceed to the next questions on shared tracks
 

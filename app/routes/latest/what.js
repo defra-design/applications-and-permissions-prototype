@@ -6,7 +6,6 @@ module.exports = function (router) {
         This allows you to make new version of the prototype and have the old versions still work
         This is done by making a copy of the routes files and updating just this version variable for the new version
      */
-    let version = "";
 
 
     /*
@@ -15,7 +14,7 @@ module.exports = function (router) {
         e.g  registration.js   and   search.js
         This avoids having one huge hard to manage routes.js
      */
-    let section = "create-application/what";
+    let section = "/create-application/what/";
 
 
     /*
@@ -51,7 +50,7 @@ module.exports = function (router) {
 
 
     // NOT COMPLEX PAGE
-    router.post('/' + version + section + '/thing-being-moved-router', function (req, res)
+    router.post(section + 'thing-being-moved-router', function (req, res)
     {
         // Turn errors off by default
         req.session.data['errorthispage'] = "false";
@@ -164,7 +163,7 @@ module.exports = function (router) {
     ////////////////////////////////////////////////////////////////////////////////////
 
 
-    router.post('/' + version + section + '/how-many-router', function (req, res)
+    router.post(section + 'how-many-router', function (req, res)
     {
         req.session.data['errorthispage'] = "false";
         req.session.data['errortypeone'] = "false";
@@ -291,7 +290,7 @@ module.exports = function (router) {
 
 
     // NOT COMPLEX PAGE
-    router.post('/' + version + section + '/date-one-day-router', function (req, res)
+    router.post(section + 'date-one-day-router', function (req, res)
     {
         // Turn errors off by default
         req.session.data['errorthispage'] = "false";
@@ -368,7 +367,7 @@ module.exports = function (router) {
 
 
     // DATE ENTRY  - NOT COMPLEX PAGE TYPE
-    router.post('/' + version + section + '/move-date-one-day-router', function (req, res)
+    router.post(section + 'move-date-one-day-router', function (req, res)
     {
         ////////////////////////////////////////////////////////////////////////////////////
         ////////////////           Resetting all errors to off              ////////////////
@@ -695,7 +694,7 @@ module.exports = function (router) {
 
 
     // DATE ENTRY  - NOT COMPLEX PAGE TYPE
-    router.post('/' + version + section + '/move-date-window-start-router', function (req, res)
+    router.post(section + 'move-date-window-start-router', function (req, res)
     {
         ////////////////////////////////////////////////////////////////////////////////////
         ////////////////           Resetting all errors to off              ////////////////
@@ -1024,7 +1023,7 @@ module.exports = function (router) {
 
 
     // DATE ENTRY  - NOT COMPLEX PAGE TYPE
-    router.post('/' + version + section + '/move-date-window-end-router', function (req, res)
+    router.post(section + 'move-date-window-end-router', function (req, res)
     {
         ////////////////////////////////////////////////////////////////////////////////////
         ////////////////           Resetting all errors to off              ////////////////

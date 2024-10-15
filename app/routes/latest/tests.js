@@ -1,12 +1,7 @@
 const {log} = require("govuk-prototype-kit/migrator/logger");
 module.exports = function (router) {
 
-    /*
-        Setting a version in each routes.js file
-        This allows you to make new version of the prototype and have the old versions still work
-        This is done by making a copy of the routes files and updating just this version variable for the new version
-     */
-    let version = "";
+
 
 
     /*
@@ -15,7 +10,7 @@ module.exports = function (router) {
         e.g  registration.js   and   search.js
         This avoids having one huge hard to manage routes.js
      */
-    let section = "create-application/tests";
+    let section = "/create-application/tests/";
 
 
     /*
@@ -51,7 +46,7 @@ module.exports = function (router) {
     ////////////////////////////////////////////////////////////////////////////////////
 
     // NOT COMPLEX PAGE
-    router.get('/' + version + section + '/routing-tests', function (req, res)
+    router.get(section + 'routing-tests', function (req, res)
     {
         // If bluetongue
         if (req.session.data['bluetongue'] == "true")
@@ -92,7 +87,7 @@ module.exports = function (router) {
     ////////////////////////////////////////////////////////////////////////////////////
 
 
-    router.post('/' + section + '/bluetongue-vaccinations-router', function (req, res)
+    router.post(section + 'bluetongue-vaccinations-router', function (req, res)
     {
         // Turn errors off by default
         req.session.data['errorthispage'] = "false";
@@ -168,7 +163,7 @@ module.exports = function (router) {
     ////////////////////////////////////////////////////////////////////////////////////
 
 
-    router.post('/' + section + '/bluetongue-vaccination-age-router', function (req, res)
+    router.post(section + 'bluetongue-vaccination-age-router', function (req, res)
     {
         // Turn errors off by default
         req.session.data['errorthispage'] = "false";
@@ -176,9 +171,9 @@ module.exports = function (router) {
 
         // If Yes was selected, continue to next page
         if (req.session.data['tests-bluetongue-vaccination-age-radios'] == "Less than 1 month" ||
-            req.session.data['tests-bluetongue-vaccination-age-radios'] == "Less than 3 month" ||
-            req.session.data['tests-bluetongue-vaccination-age-radios'] == "Less than 9 month" ||
-            req.session.data['tests-bluetongue-vaccination-age-radios'] == "More than than 9 month"
+            req.session.data['tests-bluetongue-vaccination-age-radios'] == "Less than 3 months" ||
+            req.session.data['tests-bluetongue-vaccination-age-radios'] == "Less than 9 months" ||
+            req.session.data['tests-bluetongue-vaccination-age-radios'] == "More than 9 months"
         )
         {
             // Continue to the next page
@@ -236,7 +231,7 @@ module.exports = function (router) {
     ////////////////////////////////////////////////////////////////////////////////////
 
     // NOT COMPLEX PAGE
-    router.get('/' + section + '/origin-confirmation-router', function (req, res)
+    router.get(section + 'origin-confirmation-router', function (req, res)
     {
         // If Yes was selected, continue to next page
         if (req.session.data['destination-type-of-destination-radios'] == "A farm")
@@ -252,7 +247,6 @@ module.exports = function (router) {
         }
 
     })
-
 
 
 
