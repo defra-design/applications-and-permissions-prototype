@@ -37,17 +37,27 @@
         <h2 class="govuk-heading-m">Tests and vaccinations</h2>
         {% include "../includes/tests-cya.html" %}
 
+        {%  if     data['origin-to-or-from-own-premises-radios'] == "On the farm"
+                or data['destination-type-of-destination-radios'] == "A farm"  %}
 
-        <h2 class="govuk-heading-m">Biosecurity details</h2>
-        {% include "../includes/biosecurity-cya.html" %}
-
-
-        <h2 class="govuk-heading-m">Biosecurity map</h2>
-        {% include "../includes/biosecurity-map-cya.html" %}
+            <h2 class="govuk-heading-m">Biosecurity details</h2>
+            {% include "../includes/biosecurity-cya.html" %}
 
 
-        <h2 class="govuk-heading-m">Animal identification details</h2>
-        {% include "../includes/identification-cya.html" %}
+            <h2 class="govuk-heading-m">Biosecurity map</h2>
+            {% include "../includes/biosecurity-map-cya.html" %}
+
+        {%  endif  %}
+
+
+        {%  if  (data['origin-to-or-from-own-premises-radios'] == "On the farm"
+             and data['destination-type-of-destination-radios'] == "A farm")
+             or data['tests-whole-herd-test-radios-yes-no'] == "No" %}
+
+            <h2 class="govuk-heading-m">Animal identification details</h2>
+            {% include "../includes/identification-cya.html" %}
+
+        {%  endif  %}
 
 
         <h2 class="govuk-heading-m">Contact and updates</h2>
