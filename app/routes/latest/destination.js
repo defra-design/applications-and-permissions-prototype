@@ -146,19 +146,7 @@ module.exports = function (router) {
 
         else if (req.session.data['destination-type-of-destination-radios'] == "An approved TB unit")
         {
-            // Continue to the next page
-
-            // If the user needs to go back to 'check your answers' then take them directly there
-            if (req.session.data['camefromcheckanswers'] == 'true')
-            {
-                req.session.data['camefromcheckanswers'] = false;
-                res.redirect('check-answers');
-            }
-            else
-            {
-                // This page name needs to be the next page the user gets to after successfully continuing
-                res.redirect('destination-tb-finishing-unit-cph');
-            }
+            res.redirect('check-answers');
         }
 
         else if (req.session.data['destination-type-of-destination-radios'] == "Another destination")
@@ -281,28 +269,64 @@ module.exports = function (router) {
             }
             else
             {
-                // everything with the input is fine so move on to next page
+                res.redirect('destination-farm-address');
 
-                // If the user needs to go back to 'check your answers' then take them directly there
-                if (req.session.data['camefromcheckanswers'] == 'true')
-                {
-                    req.session.data['camefromcheckanswers'] = false;
-                    res.redirect('check-answers');
-                }
-                else
-                {
-                    // If the user needs to go back to 'check your answers' then take them directly there
-                    if (req.session.data['bluetongue'] == "true")
-                    {
-                        res.redirect('ruminants-any-60-days');
-                    }
-                    else
-                    {
-                        // This page name needs to be the next page the user gets to after successfully continuing
-                        res.redirect('reason-for-movement');
-                    }
-                }
             }
+        }
+    })
+
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////        Address of destination farm                  ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    // NOT COMPLEX PAGE
+    router.post( section + 'destination-farm-address-router', function (req, res)
+    {
+        if (req.session.data['bluetongue'] == "true")
+        {
+            res.redirect('ruminants-any-60-days');
+        }
+        else
+        {
+            // This page name needs to be the next page the user gets to after successfully continuing
+            res.redirect('reason-for-movement');
+        }
+    })
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////        Address of destination farm                 ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    // NOT COMPLEX PAGE
+    router.post( section + 'own-farm-new-address-router', function (req, res)
+    {
+        // If Yes was selected, continue to next page
+        if (req.session.data['bluetongue'] == "true")
+        {
+            res.redirect('ruminants-any-60-days');
+        }
+        else
+        {
+            // Continue to check answers
+            res.redirect('check-answers');
         }
     })
 
@@ -315,8 +339,8 @@ module.exports = function (router) {
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////                                                    ////////////////
     ////////////////        CPH of destination Finishing Unit           ////////////////
-    ////////////////                                                    ////////////////
-    ////////////////                                                    ////////////////
+    ////////////////               NOT NEEDED FOR TB                    ////////////////
+    ////////////////             PROBABLY DELETE IN FUTURE              ////////////////
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////
 

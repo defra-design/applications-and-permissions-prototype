@@ -49,6 +49,7 @@
 
         {%  elif  data['destination-type-of-destination-radios'] == "An approved TB unit"  %}
 
+        <!--
             <div class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key">
                     What is the County Parish Holding (CPH) number of the approved TB unit where the animals are going to?
@@ -60,6 +61,7 @@
                     <a class="govuk-link" href="destination-tb-finishing-unit-cph">Change<span class="govuk-visually-hidden"> </span></a>
                 </dd>
             </div>
+            -->
 
         {%  elif  data['destination-type-of-destination-radios'] == "A farm"  %}
 
@@ -69,6 +71,22 @@
                 </dt>
                 <dd class="govuk-summary-list__value">
                     {{ data['destination-destination-farm-cph-text-input'] }}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="destination-farm-cph">Change<span class="govuk-visually-hidden"> </span></a>
+                </dd>
+            </div>
+
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                    What is the address of the farm where the animals are going to?
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    {{ data['own-origin-addressLine1'] }}<br>
+                    {{ data['own-origin-addressLine2'] }}<br>
+                    {{ data['own-origin-addressTown'] }}<br>
+                    {{ data['own-origin-addressCounty'] }}<br>
+                    {{ data['own-origin-addressPostcode'] }}
                 </dd>
                 <dd class="govuk-summary-list__actions">
                     <a class="govuk-link" href="destination-farm-cph">Change<span class="govuk-visually-hidden"> </span></a>
