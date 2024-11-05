@@ -55,7 +55,18 @@
             {{ pageHeadingTextHTML }}
         </h1>
 
-        <p><a href="#">View a map of your farm</a> (opens in a new tab)</p>
+        <details class="govuk-details" data-module="govuk-details">
+            <summary class="govuk-details__summary">
+                <span class="govuk-details__summary-text">
+                    View a map of your farm
+                </span>
+            </summary>
+            <div class="govuk-details__text">
+
+                <img src="/public/images/mapoffarm.jpg" >
+
+            </div>
+        </details>
 
         {{
             govukButton
