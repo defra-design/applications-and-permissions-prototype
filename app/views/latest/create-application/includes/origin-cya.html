@@ -29,29 +29,29 @@
         {%  if  data['origin-selection-of-own-premises-radios'] == "Another location"  %}
             <div class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key">
-                    What is the CPH number of the farm where the animals are moving off?
+                    What is the County Parish Holding (CPH) number of your farm where the animals are moving off?
                 </dt>
                 <dd class="govuk-summary-list__value">
-                    {{ data['origin-origin-farm-cph-text-input'] }}
+                    {{ data['origin-own-farm-new-cph-text-input'] }}
                 </dd>
                 <dd class="govuk-summary-list__actions">
-                    <a class="govuk-link" href="../origin/origin-farm-cph">Change<span class="govuk-visually-hidden"> </span></a>
+                    <a class="govuk-link" href="../origin/own-farm-new-cph">Change<span class="govuk-visually-hidden"> </span></a>
                 </dd>
             </div>
 
             <div class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key">
-                    What is the address of the farm where the animals are moving off?
+                    What is the address of your farm where the animals are moving off?
                 </dt>
                 <dd class="govuk-summary-list__value">
-                    {{ data['origin-addressLine1'] }}<br>
-                    {{ data['origin-addressLine2'] }}<br>
-                    {{ data['origin-addressTown'] }}<br>
-                    {{ data['origin-addressCounty'] }}<br>
-                    {{ data['origin-addressPostcode'] }}
+                    {{ data['own-origin-addressLine1'] }}<br>
+                    {{ data['own-origin-addressLine2'] }}<br>
+                    {{ data['own-origin-addressTown'] }}<br>
+                    {{ data['own-origin-addressCounty'] }}<br>
+                    {{ data['own-origin-addressPostcode'] }}
                 </dd>
                 <dd class="govuk-summary-list__actions">
-                    <a class="govuk-link" href="../origin/origin-farm-address">Change<span class="govuk-visually-hidden"> </span></a>
+                    <a class="govuk-link" href="../origin/own-farm-new-address">Change<span class="govuk-visually-hidden"> </span></a>
                 </dd>
             </div>
         {%  endif  %}
@@ -80,7 +80,7 @@
                     {{ data['origin-origin-farm-cph-text-input'] }}
                 </dd>
                 <dd class="govuk-summary-list__actions">
-                    <a class="govuk-link" href="../origin/origin-farm-cph">Change<span class="govuk-visually-hidden"> </span></a>
+                    <a class="govuk-link" href="../origin/own">Change<span class="govuk-visually-hidden"> </span></a>
                 </dd>
             </div>
 

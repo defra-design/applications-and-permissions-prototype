@@ -158,7 +158,7 @@ module.exports = function (router) {
             else
             {
                 // This page name needs to be the next page the user gets to after successfully continuing
-                res.redirect('origin-farm-cph');
+                res.redirect('own-farm-new-cph');
             }
         }
         else
@@ -169,6 +169,56 @@ module.exports = function (router) {
 
             // This page name needs to match the page the user was just on
             res.redirect('selection-of-own-premises');
+        }
+    })
+
+
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////        CPH of own farm when it's origin            ////////////////
+    ////////////////        entering a new location's CPH               ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    // NOT COMPLEX PAGE
+    router.post( section + 'own-farm-new-cph-router', function (req, res)
+    {
+        // This page name needs to match the page the user was just on
+        res.redirect('own-farm-new-address');
+    })
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////        Address of own farm when it's origin        ////////////////
+    ////////////////        entering a new location's CPH               ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    // NOT COMPLEX PAGE
+    router.post( section + 'own-farm-new-address-router', function (req, res)
+    {
+        // If Yes was selected, continue to next page
+        if (req.session.data['bluetongue'] == "true")
+        {
+            res.redirect('ruminants-any-60-days');
+        }
+        else
+        {
+            // Continue to check answers
+            res.redirect('check-answers');
         }
     })
 
