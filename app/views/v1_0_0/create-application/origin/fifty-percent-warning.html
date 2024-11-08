@@ -1,0 +1,69 @@
+{% extends "layouts/v1_0_0.html" %}
+
+
+<!-- Setting the big main heading at the top of the page -->
+{% set pageHeadingTextHTML %}
+    Where are the animals coming from?
+{% endset %}
+
+
+<!-- Set the text for the error type -->
+{% set errorTextHTML %}
+    <!-- Nothing was selected -->
+    {% if data['errortypeone'] == "true" %}
+        Select where the animals are moving from
+    {% endif %}
+{% endset %}
+
+
+<!-- Text that show in the browser tab. Does NOT need changing -->
+{% block pageTitle %}
+    {% if  data['errorthispage'] == "true"  %}
+        Error:
+    {% endif %}
+
+    {{ pageHeadingTextHTML }}
+{% endblock %}
+
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+        <h1 class="govuk-heading-l">Why you might receive less compensation  </h1>
+
+        <p>You might receive 50% less compensation if the cattle moved into a TB breakdown herd and are removed as a
+            reactors or direct contacts before they gain OTF (officially Tuberculosis free) status.
+        </p>
+
+        <p>This does not apply if:</p>
+
+        <ul class="govuk-body govuk-list--bullet">
+            <li>the destination herd is registered to a bovine TB health scheme accredited before the breakdown began
+                under the Cattle Health Certification Standards (CHECS) </li>
+            <li>the cattle are being moved to Approved Finishing Units (AFU), Approved Finishing Units (Enhanced) with
+                Grazing (AFUE), Licensed Finishing Units (LFU) and TB Isolation Units (TB IUs) </li>
+        </ul>
+
+
+        <!-- go to routes.js for routing  -->
+        <form action="fifty-percent-warning-router" method="post" novalidate>
+
+            {{ govukButton({ text: "Continue" }) }}
+
+        </form>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+{% endblock %}
+
+

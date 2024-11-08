@@ -1,0 +1,124 @@
+{% extends "layouts/v1_0_0.html" %}
+
+
+
+<!-- Setting the big main heading at the top of the page -->
+{% set pageHeadingTextHTML %}
+    Your animal disease movement licence application
+{% endset %}
+
+
+
+<!-- Text that show in the browser tab. Does NOT need changing -->
+{% block pageTitle %}
+    {{ pageHeadingTextHTML }}
+{% endblock %}
+
+
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-l">Check your answers before sending your application</h1>
+
+        <h2 class="govuk-heading-m">What you plan to move and when</h2>
+        {% include "../includes/what-cya.html" %}
+
+
+        <h2 class="govuk-heading-m">Movement origin</h2>
+        {% include "../includes/origin-cya.html" %}
+
+
+        <h2 class="govuk-heading-m">Movement destination</h2>
+        {% include "../includes/destination-cya.html" %}
+
+
+        <h2 class="govuk-heading-m">Tests and vaccinations</h2>
+        {% include "../includes/tests-cya.html" %}
+
+        {%  if     data['origin-to-or-from-own-premises-radios'] == "On the farm"
+                or data['destination-type-of-destination-radios'] == "A farm"  %}
+
+            <h2 class="govuk-heading-m">Biosecurity details</h2>
+            {% include "../includes/biosecurity-cya.html" %}
+
+
+            <h2 class="govuk-heading-m">Biosecurity map</h2>
+            {% include "../includes/biosecurity-map-cya.html" %}
+
+        {%  endif  %}
+
+
+        {%  if  (data['origin-to-or-from-own-premises-radios'] == "On the farm"
+             and data['destination-type-of-destination-radios'] == "A farm")
+             or data['tests-whole-herd-test-radios-yes-no'] == "No" %}
+
+            <h2 class="govuk-heading-m">Animal identification details</h2>
+            {% include "../includes/identification-cya.html" %}
+
+        {%  endif  %}
+
+
+        <h2 class="govuk-heading-m">Contact and updates</h2>
+        {% include "../includes/contact-and-updates-cya.html" %}
+
+
+
+
+        <!-- form URL below turns off errors on the next page  -->
+        <form action="confirmation?application-submitted-by-user=true&" method="post" novalidate>
+
+            {{ govukCheckboxes
+                ({
+                    name: "application-confirmation-checkboxes",
+
+                    id: "application-confirmation-checkboxes",
+
+                    fieldset:
+                    {
+                        legend:
+                        {
+                            text: "Declaration",
+                            isPageHeading: false,
+                            classes: "govuk-fieldset__legend--m"
+                        }
+                    },
+
+                    hint:
+                    {
+                        text: ""
+                    },
+
+                    errorMessage: null if data['errorthispage'] != "true"
+                                       else { html: errorTextHTML },
+
+                    items:
+                    [
+                        {
+                            value: "I confirm these details are correct",
+                            text: "I confirm these details are correct",
+                            checked: (data['tests-destination-confirmation-checkboxes'] or []).indexOf('I confirm these details are correct') > -1
+                        }
+                    ]
+                })
+            }}
+
+
+
+            {{ govukButton({ text: "Continue" }) }}
+
+
+        </form>
+
+    </div>
+</div>
+
+
+{% endblock %}
+
+
+
+
+
+
