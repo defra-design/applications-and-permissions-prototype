@@ -4,7 +4,7 @@
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    Your animal disease movement licence application
+    Your Bovine Tuberculosis (TB) movement licence application
 {% endset %}
 
 
@@ -35,38 +35,6 @@
                 idPrefix: "company-details",
                 items:
                 [
-                    {
-                        title:
-                        {
-                            text: "What you plan to move and when"
-                        },
-                        href: "what/check-answers" if data['section-what-complete'] == "true" else "what/thing-being-moved",
-                        status:
-                        {
-                            text: "Completed",
-                            tag:
-                            {
-                                text: "Incomplete",
-                                classes: "govuk-tag--blue"
-                            } if data['section-what-complete'] != "true"
-                        }
-                    },
-
-
-
-                    {
-                        title:
-                        {
-                            text: "Movement origin"
-                        },
-                        href: "",
-                        status:
-                        {
-                            text:  "Cannot start yet",
-                            classes: "govuk-task-list__status--cannot-start-yet"
-                        }
-                    } if data['section-what-complete'] != "true",
-
 
                     {
                         title:
@@ -83,8 +51,7 @@
                                 classes: "govuk-tag--blue"
                             } if data['section-origin-complete'] != "true"
                         }
-                    } if data['section-what-complete'] == "true",
-
+                    } ,
 
 
 
@@ -125,7 +92,7 @@
                     {
                         title:
                         {
-                            text: "Tests and vaccinations"
+                            text: "Tests"
                         },
                         href: "",
                         status:
@@ -156,69 +123,11 @@
 
 
 
-                    {
-                        title:
-                        {
-                            text: "Biosecurity details"
-                        },
-                        href: "biosecurity/check-answers" if data['section-biosecurity-complete'] == "true" else "biosecurity/begin-biosecurity-details-section",
-                        status:
-                        {
-                            text: "Completed",
-                            tag:
-                            {
-                                text: "Incomplete",
-                                classes: "govuk-tag--blue"
-                            } if data['section-biosecurity-complete'] != "true"
-                        }
-                    } if      data['origin-to-or-from-own-premises-radios'] == "On the farm"
-                           or data['destination-type-of-destination-radios'] == "A farm",
-
 
                     {
                         title:
                         {
-                            text: "Biosecurity map"
-                        },
-                        href: "biosecurity-map/check-answers" if data['section-biosecurity-map-complete'] == "true" else "biosecurity-map/reuse-map",
-                        status:
-                        {
-                            text: "Completed",
-                            tag:
-                            {
-                                text: "Incomplete",
-                                classes: "govuk-tag--blue"
-                            } if data['section-biosecurity-map-complete'] != "true"
-                        }
-                    } if      data['origin-to-or-from-own-premises-radios'] == "On the farm"
-                           or data['destination-type-of-destination-radios'] == "A farm",
-
-
-
-                    {
-                        title:
-                        {
-                            text: "Animal identification details"
-                        },
-                        href: "identification/check-answers" if data['section-identification-complete'] == "true" else "identification/microchipped",
-                        status:
-                        {
-                            text: "Completed",
-                            tag:
-                            {
-                                text: "Incomplete",
-                                classes: "govuk-tag--blue"
-                            } if data['section-identification-complete'] != "true"
-                        }
-                    } if  (data['origin-to-or-from-own-premises-radios'] == "On the farm"
-                            and data['destination-type-of-destination-radios'] == "A farm")
-                           or data['tests-whole-herd-test-radios-yes-no'] == "No",
-
-
-                    {
-                        title:
-                        {
-                            text: "Contact and updates"
+                            text: "Receiving the licence"
                         },
                         href: "contact-and-updates/check-answers" if data['section-contact-and-updates-complete'] == "true" else "contact-and-updates/routing-contact-and-updates",
                         status:

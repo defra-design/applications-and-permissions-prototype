@@ -15,7 +15,7 @@ This will save you time.
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    What is the address of your farm where the animals are moving off?
+    Enter the address would you like the licence sent to
 {% endset %}
 
 
@@ -72,7 +72,7 @@ This will save you time.
                         [
                             {
                                 html: errorTextHTML,
-                                href: "#origin-own-address-line-1"
+                                href: "#contact-and-updates-licence-new-address-line-1"
                             }
                         ]
                     })
@@ -89,7 +89,7 @@ This will save you time.
                         [
                             {
                                 html: errorTextHTML,
-                                href: "#origin-own-address-town"
+                                href: "#contact-and-updates-licence-new-address-town"
                             }
                         ]
                     })
@@ -106,7 +106,7 @@ This will save you time.
                         [
                             {
                                 html: errorTextHTML,
-                                href: "#origin-own-address-postcode"
+                                href: "#contact-and-updates-licence-new-address-postcode"
                             }
                         ]
                     })
@@ -121,7 +121,7 @@ This will save you time.
 
 
         <!-- go to routes.js for routing  -->
-        <form action="own-farm-new-address-router" method="post" novalidate>
+        <form action="licence-new-address-router" method="post" novalidate>
 
             {% call govukFieldset
                 ({
@@ -140,13 +140,13 @@ This will save you time.
                     {
                         text: "Address line 1"
                     },
-                    id: "origin-own-address-line-1",
-                    name: "origin-own-address-line-1",
+                    id: "contact-and-updates-licence-new-address-line-1",
+                    name: "contact-and-updates-licence-new-address-line-1",
 
                     errorMessage: null if data['errortypeone'] != "true"
                                         else { html: errorTextHTML },
 
-                    value: data['origin-own-address-line-1'],
+                    value: data['contact-and-updates-licence-new-address-line-1'],
                     autocomplete: "address-line1"
                 })
             }}
@@ -157,9 +157,9 @@ This will save you time.
                     {
                         text: "Address line 2 (optional)"
                     },
-                    id: "origin-own-address-line-2",
-                    name: "origin-own-address-line-2",
-                    value: data['origin-own-address-line-2'],
+                    id: "contact-and-updates-licence-new-address-line-2",
+                    name: "contact-and-updates-licence-new-address-line-2",
+                    value: data['contact-and-updates-licence-new-address-line-2'],
                     autocomplete: "address-line2"
                 })
             }}
@@ -171,13 +171,13 @@ This will save you time.
                         text: "Town or city"
                     },
                     classes: "govuk-!-width-two-thirds",
-                    id: "origin-own-address-town",
-                    name: "origin-own-address-town",
+                    id: "contact-and-updates-licence-new-address-town",
+                    name: "contact-and-updates-licence-new-address-town",
 
                     errorMessage: null if data['errortypetwo'] != "true"
                                         else { html: errorTextHTML },
 
-                    value: data['origin-own-address-town'],
+                    value: data['contact-and-updates-licence-new-address-town'],
                     autocomplete: "address-level2"
                 })
             }}
@@ -189,9 +189,9 @@ This will save you time.
                         text: "County (optional)"
                     },
                     classes: "govuk-!-width-two-thirds",
-                    id: "origin-own-address-county",
-                    name: "origin-own-address-county",
-                    value: data['origin-own-address-county']
+                    id: "contact-and-updates-licence-new-address-county",
+                    name: "contact-and-updates-licence-new-address-county",
+                    value: data['contact-and-updates-licence-new-address-county']
                 })
             }}
 
@@ -202,9 +202,9 @@ This will save you time.
                         text: "Postcode"
                     },
                     classes: "govuk-input--width-10",
-                    id: "origin-own-address-postcode",
-                    name: "origin-own-address-postcode",
-                    value: data['origin-own-address-postcode'],
+                    id: "contact-and-updates-licence-new-address-postcode",
+                    name: "contact-and-updates-licence-new-address-postcode",
+                    value: data['contact-and-updates-licence-new-address-postcode'],
 
                     errorMessage: null if data['errortypethree'] != "true"
                                         else { html: errorTextHTML },

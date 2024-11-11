@@ -94,17 +94,9 @@ module.exports = function (router) {
         {
             // Continue to the next page
 
-            // If the user needs to go back to 'check your answers' then take them directly there
-            if (req.session.data['camefromcheckanswers'] == 'true')
-            {
-                req.session.data['camefromcheckanswers'] = false;
-                res.redirect('check-answers');
-            }
-            else
-            {
-                // This page name needs to be the next page the user gets to after successfully continuing
-                res.redirect('licence-select-email-address');
-            }
+            // This page name needs to be the next page the user gets to after successfully continuing
+            res.redirect('licence-enter-email-address');
+
         }
         else if (req.session.data['contact-and-updates-licence-email-or-post-radios'] == "Post")
         {
@@ -132,6 +124,155 @@ module.exports = function (router) {
             res.redirect('licence-email-or-post');
         }
     })
+
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////               entering licence email               ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////              TEXT ENTRY - MANDATORY                ////////////////
+    ////////////////                 NOT COMPLEX PAGE                   ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    router.post(section + 'licence-enter-email-address-router', function (req, res)
+    {
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+        req.session.data['errortypetwo'] = "false";
+        req.session.data['errortypethree'] = "false";
+        req.session.data['errortypefour'] = "false";
+
+        // Validation check if field is blank
+        if (req.session.data['contact-and-updates-licence-enter-email-address-text-input'] == undefined || req.session.data['contact-and-updates-licence-enter-email-address-text-input'] == "")
+        {
+            // Trigger validation and relaunch the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('licence-enter-email-address');
+        }
+
+        else
+        {
+            res.redirect('check-answers');
+        }
+    })
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////               PLACEHOLDER_SUMMARY                  ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////            RADIO BUTTONS - MANDATORY               ////////////////
+    ////////////////                 NOT COMPLEX PAGE                   ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    router.post(section + 'licence-select-post-address-router', function (req, res)
+    {
+        // Turn errors off by default
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+
+        // If Yes was selected, continue to next page
+        if (req.session.data['contact-and-updates-licence-select-post-address-radios'] == "Your farm, New road, EK32 9LR")
+        {
+            // Continue to the next page
+            res.redirect('check-answers');
+        }
+        else if (req.session.data['contact-and-updates-licence-select-post-address-radios'] == "Another address")
+        {
+            // Continue to the next page
+            // This page name needs to be the next page the user gets to after successfully continuing
+            res.redirect('licence-new-address');
+        }
+        else
+        {
+            // Trigger validation and reload the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('licence-select-post-address');
+        }
+    })
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////        Address of where paper for is sent          ////////////////
+    ////////////////        entering a new location's CPH               ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    // NOT COMPLEX PAGE
+    router.post( section + 'licence-new-address-router', function (req, res)
+    {
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+        req.session.data['errortypetwo'] = "false";
+        req.session.data['errortypethree'] = "false";
+
+
+        // Validation check if line 1 field is blank
+        if (req.session.data['contact-and-updates-licence-new-address-line-1'] == undefined || req.session.data['contact-and-updates-licence-new-address-line-1'] == "")
+        {
+            // Trigger validation and relaunch the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('licence-new-address');
+        }
+        // Validation check if town field is blank
+        else if (req.session.data['contact-and-updates-licence-new-address-town'] == undefined || req.session.data['contact-and-updates-licence-new-address-town'] == "")
+        {
+            // Trigger validation and relaunch the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypetwo'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('licence-new-address');
+        }
+
+        // Validation check if postcode field is blank
+        else if (req.session.data['contact-and-updates-licence-new-address-postcode'] == undefined || req.session.data['contact-and-updates-licence-new-address-postcode'] == "")
+        {
+            // Trigger validation and relaunch the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypethree'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('licence-new-address');
+        }
+        else
+        {
+            // Continue to check answers
+            res.redirect('check-answers');
+        }
+
+    })
+
+
+
 
 
 

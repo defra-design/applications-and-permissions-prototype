@@ -1,4 +1,4 @@
-{% extends "layouts/v1_0_0.html" %}
+{% extends "layouts/main.html" %}
 
 <!--
 NOTES ON USING THIS TEMPLATE Page
@@ -15,7 +15,7 @@ This will save you time.
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    What is the County Parish Holding (CPH) number of your farm where the animals are moving off?
+    What email address would you like the licence sent to?
 {% endset %}
 
 
@@ -27,7 +27,7 @@ This will save you time.
 
     <!-- Error 2 - If answer is too long -->
     {% elif data['errortypetwo'] == "true" %}
-        PLACEHOLDER must be a CPH NUMBER
+        Not a valid email address
 
 
     {% endif %}
@@ -59,7 +59,7 @@ This will save you time.
                     [
                         {
                             html: errorTextHTML,
-                            href: "#origin-own-farm-new-cph-text-input"
+                            href: "#contact-and-updates-licence-enter-email-address-text-input"
                         }
                     ]
                 })
@@ -69,7 +69,7 @@ This will save you time.
 
 
         <!-- go to routes.js for routing  -->
-        <form action="own-farm-new-cph-router" method="post" novalidate>
+        <form action="licence-enter-email-address-router" method="post" novalidate>
 
             {{ govukInput
                 ({
@@ -80,21 +80,21 @@ This will save you time.
                         isPageHeading: true
                     },
 
-                    id: "origin-own-farm-new-cph-text-input",
+                    id: "contact-and-updates-licence-enter-email-address-text-input",
 
-                    name: "origin-own-farm-new-cph-text-input",
+                    name: "contact-and-updates-licence-enter-email-address-text-input",
 
                     hint:
                     {
-                        text: "For example, 12/345/6789"
+                        text: ""
                     },
 
                     errorMessage: null if data['errorthispage'] != "true"
                                        else { html: errorTextHTML },
 
-                    value: data['origin-own-farm-new-cph-text-input'],
+                    value: data['contact-and-updates-licence-enter-email-address-text-input'],
 
-                    classes: "govuk-input--width-10"
+                    classes: "govuk-input--width-20"
                 })
             }}
 
@@ -123,13 +123,16 @@ This will save you time.
 
         <option value="errorthispage=true&errortypeone=false&errortypetwo=true&errortypethree=false&errortypefour=false&errortypefive=false&errortypesix=false&"
                 {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] == 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] != 'true'   and data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  %}selected{% endif %}
-        >Error 2 - Not a CPH number</option>
+        >Error 2 - Not a valid email address</option>
+
+
 
 
     </select>
 
 </form>
 <!--  END OF ERROR LOGIC -->
+
 
 
 

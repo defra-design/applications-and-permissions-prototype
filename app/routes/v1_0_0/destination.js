@@ -131,17 +131,9 @@ module.exports = function (router) {
         {
             // Continue to the next page
 
-            // If the user needs to go back to 'check your answers' then take them directly there
-            if (req.session.data['camefromcheckanswers'] == 'true')
-            {
-                req.session.data['camefromcheckanswers'] = false;
-                res.redirect('check-answers');
-            }
-            else
-            {
-                // This page name needs to be the next page the user gets to after successfully continuing
-                res.redirect('destination-farm-cph');
-            }
+            // This page name needs to be the next page the user gets to after successfully continuing
+            res.redirect('can-not-use-service');
+
         }
 
         else if (req.session.data['destination-type-of-destination-radios'] == "An approved TB unit")
@@ -152,17 +144,7 @@ module.exports = function (router) {
         else if (req.session.data['destination-type-of-destination-radios'] == "Another destination")
         {
             // Continue to the next page
-
-            // If the user needs to go back to 'check your answers' then take them directly there
-            if (req.session.data['bluetongue'] == "true")
-            {
-                res.redirect('ruminants-any-60-days');
-            }
-            else
-            {
-                // This page name needs to be the next page the user gets to after successfully continuing
-                res.redirect('reason-for-movement');
-            }
+            res.redirect('can-not-use-service');
         }
 
         else

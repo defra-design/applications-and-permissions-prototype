@@ -1,0 +1,55 @@
+{% extends "layouts/v1_0_0.html" %}
+
+
+<!-- Setting the big main heading at the top of the page -->
+{% set pageHeadingTextHTML %}
+    Where are the animals coming from?
+{% endset %}
+
+
+<!-- Set the text for the error type -->
+{% set errorTextHTML %}
+    <!-- Nothing was selected -->
+    {% if data['errortypeone'] == "true" %}
+        Select where the animals are moving from
+    {% endif %}
+{% endset %}
+
+
+<!-- Text that show in the browser tab. Does NOT need changing -->
+{% block pageTitle %}
+    {% if  data['errorthispage'] == "true"  %}
+        Error:
+    {% endif %}
+
+    {{ pageHeadingTextHTML }}
+{% endblock %}
+
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+        <h1 class="govuk-heading-l">You can't use this service</h1>
+
+        <p>This digital service is currently on available for movements off your premise. </p>
+
+        <p>You can start an application using the current process.</p>
+
+        <p>View the <a href="https://www.gov.uk/government/publications/tb-restricted-cattle-application-for-movement-licence-in-england">current application</a> form on GOV.UK</p>
+
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+{% endblock %}
+
+

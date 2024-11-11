@@ -2,5 +2,5 @@ module.exports = {
 
   // Insert values here
 
-    'bluetongue' : 'true'
+    'bluetongue' : 'false'
 }
