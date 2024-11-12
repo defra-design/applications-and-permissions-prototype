@@ -64,7 +64,14 @@
         {% include "../includes/contact-and-updates-cya.html" %}
 
 
+        <h2 class="govuk-heading-m">Your declaration</h2>
 
+        <p>Before you submit your application, you need to confirm:</p>
+
+        <ul class="govuk-list govuk-list--bullet">
+          <li>all relevant sections are complete</li>
+          <li>all the information given is correct and accurate to the best of your knowledge</li>
+        </ul>
 
         <!-- form URL below turns off errors on the next page  -->
         <form action="confirmation?application-submitted-by-user=true&" method="post" novalidate>
@@ -79,7 +86,7 @@
                     {
                         legend:
                         {
-                            text: "Declaration",
+                            text: "",
                             isPageHeading: false,
                             classes: "govuk-fieldset__legend--m"
                         }
@@ -96,9 +103,14 @@
                     items:
                     [
                         {
-                            value: "I confirm these details are correct",
-                            text: "I confirm these details are correct",
-                            checked: (data['tests-destination-confirmation-checkboxes'] or []).indexOf('I confirm these details are correct') > -1
+                            value: "I confirm the above statements",
+                            text: "I confirm the above statements",
+                            checked: (data['tests-destination-confirmation-checkboxes'] or []).indexOf('I confirm the above statements') > -1
+                        },
+                        {
+                            value: "I am submitting this form on behalf of someone else and confirm the above statements ",
+                            text: "I am submitting this form on behalf of someone else and confirm the above statements ",
+                            checked: (data['tests-destination-confirmation-checkboxes'] or []).indexOf('I am submitting this form on behalf of someone else and confirm the above statements') > -1
                         }
                     ]
                 })
