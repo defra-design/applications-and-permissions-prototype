@@ -9,8 +9,21 @@
 
 
 
+<!-- Set the text for the error type -->
+{% set errorTextHTML %}
+    <!-- Nothing was selected -->
+    {%  if  data['errortypeone'] == "true"  %}
+         You need to tick a declaration box
+    {% endif %}
+{% endset %}
+
+
 <!-- Text that show in the browser tab. Does NOT need changing -->
 {% block pageTitle %}
+    {% if  data['errorthispage'] == "true"  %}
+        Error:
+    {% endif %}
+
     {{ pageHeadingTextHTML }}
 {% endblock %}
 
@@ -19,6 +32,26 @@
 {% block content %}
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+
+
+        <!-- ERROR LOGIC 'error summary' -->
+        {% if data['errorthispage'] == "true" %}
+            {{ govukErrorSummary
+                ({
+                    titleText: "There is a problem",
+                    errorList:
+                    [
+                        {
+                            html: errorTextHTML,
+                            href: "#check-answers-confirmation-checkboxes"
+                        }
+                    ]
+                })
+            }}
+        {% endif %}
+        <!--  END OF 'error summary' -->
+
+
 
         <h1 class="govuk-heading-l">Check your answers before sending your application</h1>
 
@@ -37,7 +70,7 @@
         <h2 class="govuk-heading-m">Tests and vaccinations</h2>
         {% include "../includes/tests-cya.html" %}
 
-        {%  if     data['origin-to-or-from-own-premises-radios'] == "On the farm"
+        {%  if     data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises"
                 or data['destination-type-of-destination-radios'] == "A farm"  %}
 
             <h2 class="govuk-heading-m">Biosecurity details</h2>
@@ -50,7 +83,7 @@
         {%  endif  %}
 
 
-        {%  if  (data['origin-to-or-from-own-premises-radios'] == "On the farm"
+        {%  if  (data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises"
              and data['destination-type-of-destination-radios'] == "A farm")
              or data['tests-whole-herd-test-radios-yes-no'] == "No" %}
 
@@ -74,13 +107,13 @@
         </ul>
 
         <!-- form URL below turns off errors on the next page  -->
-        <form action="confirmation?application-submitted-by-user=true&" method="post" novalidate>
+        <form action="check-answers-router" method="post" novalidate>
 
             {{ govukCheckboxes
                 ({
-                    name: "application-confirmation-checkboxes",
+                    name: "check-answers-confirmation-checkboxes",
 
-                    id: "application-confirmation-checkboxes",
+                    id: "check-answers-confirmation-checkboxes",
 
                     fieldset:
                     {
@@ -117,7 +150,6 @@
             }}
 
 
-
             {{ govukButton({ text: "Continue" }) }}
 
 
@@ -125,6 +157,25 @@
 
     </div>
 </div>
+
+
+<!-- ERROR LOGIC  drop down to toggle states  -->
+<form method="post"  action="#" class="for4" style=" float: left; position: relative; bottom:-225px;  ">
+
+    <select style="height:30px;" onchange="window.location.href='?'+this.value">
+
+        <option value="errorthispage=false&errortypeone=false&errortypetwo=false&"
+                {% if (data['errorthispage'] != "true") %}selected{% endif %}
+        >Errors - Off</option>
+
+        <option value="errorthispage=true&errortypeone=true&errortypetwo=false&"
+                {% if (data['errortypeone'] == 'true' and data['errortypetwo'] != 'true')  %}selected{% endif %}
+        >Error 1 - Must select at least one</option>
+
+    </select>
+
+</form>
+<!--  END OF ERROR LOGIC -->
 
 
 {% endblock %}

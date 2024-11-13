@@ -1,7 +1,7 @@
 <dl class="govuk-summary-list">
 
 
-    {%  if  data['origin-to-or-from-own-premises-radios'] == "On the farm"  %}
+    {%  if  data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises"  %}
     <!-- Applicant is destination -->
 
         <div class="govuk-summary-list__row">
@@ -99,7 +99,7 @@
 
 
 
-    {%  if      data['origin-to-or-from-own-premises-radios'] == "On the farm"
+    {%  if      data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises"
             or  data['destination-type-of-destination-radios'] == "A farm"  %}
 
         {%  if data['bluetongue'] == "true"  %}
