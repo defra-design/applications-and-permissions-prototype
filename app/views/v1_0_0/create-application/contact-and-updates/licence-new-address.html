@@ -117,6 +117,22 @@ This will save you time.
                 }}
 
 
+             <!-- Error 4 - empty post code -->
+            {% elif data['errortypefour'] == "true"  %}
+                {{ govukErrorSummary
+                    ({
+                        titleText: "There is a problem",
+                        errorList:
+                        [
+                            {
+                                html: errorTextHTML,
+                                href: "#contact-and-updates-licence-new-address-postcode"
+                            }
+                        ]
+                    })
+                }}
+
+
 
             {%  endif  %}
 
