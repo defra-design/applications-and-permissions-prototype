@@ -148,7 +148,7 @@
 
 
 
-        <p>You can <a href="#">message the outbreak team</a> if you need help with your application.</p>
+        <!-- <p>You can <a href="#">message the outbreak team</a> if you need help with your application.</p> -->
 
 
         <!-- go to routes.js for routing  -->
@@ -176,105 +176,35 @@
     <select style="height:30px;" onchange="window.location.href='?'+this.value">
 
         <!--  NOTHING STARTED  -->
-        <option value="section-what-complete=false&section-origin-complete=false&section-destination-complete=false&section-tests-complete=false&section-biosecurity-complete=false&section-biosecurity-map-complete=false&section-identification-complete=false&section-contact-and-updates-complete=false&origin-to-or-from-own-premises-radios=null&destination-type-of-destination-radios=null&tests-whole-herd-test-radios-yes-no=null&"
-            {% if  data['section-what-complete'] != "true" and
-                   data['section-origin-complete'] != "true" and
+        <option value="section-origin-complete=false&section-destination-complete=false&section-tests-complete=false&section-contact-and-updates-complete=false&origin-to-or-from-own-premises-radios=null&"
+            {% if  data['section-origin-complete'] != "true" and
                    data['section-destination-complete'] != "true" and
                    data['section-tests-complete'] != "true" and
-                   data['section-biosecurity-complete'] != "true" and
-                   data['section-biosecurity-map-complete'] != "true" and
-                   data['section-identification-complete'] != "true" and
-                   data['section-contact-and-updates-complete'] != "true" and
-                   data['origin-to-or-from-own-premises-radios'] != "On the farm" and
-                   data['destination-type-of-destination-radios'] != "A farm"  and
-                   data['tests-whole-herd-test-radios-yes-no'] != "No"
+                   data['section-contact-and-updates-complete'] != "true"
             %}selected{% endif %}
         >Not Started</option>
 
 
         <!--  ONTO THE FARM FROM A MARKET -->
-        <option value="section-what-complete=true&section-origin-complete=true&section-destination-complete=true&section-tests-complete=false&section-biosecurity-complete=false&section-biosecurity-map-complete=false&section-identification-complete=false&section-contact-and-updates-complete=false&origin-to-or-from-own-premises-radios=On the farm&destination-type-of-destination-radios=null&tests-whole-herd-test-radios-yes-no=null&"
-            {% if  data['section-what-complete'] == "true" and
-                   data['section-origin-complete'] == "true" and
-                   data['section-destination-complete'] == "true" and
-                   data['section-tests-complete'] != "true" and
-                   data['section-biosecurity-complete'] != "true" and
-                   data['section-biosecurity-map-complete'] != "true" and
-                   data['section-identification-complete'] != "true" and
-                   data['section-contact-and-updates-complete'] != "true" and
-                   data['origin-to-or-from-own-premises-radios'] == "On the farm" and
-                   data['destination-type-of-destination-radios'] != "A farm"  and
-                   data['tests-whole-herd-test-radios-yes-no'] != "No"
-            %}selected{% endif %}
-        >Onto the farm - From a market or unrestricted farm</option>
+        <option value="section-origin-complete=true&section-destination-complete=false&section-tests-complete=false&section-contact-and-updates-complete=false&origin-to-or-from-own-premises-radios=Off the farm&"
+                {% if  data['section-origin-complete'] == "true" and
+                        data['section-destination-complete'] != "true" and
+                        data['section-tests-complete'] != "true" and
+                        data['section-contact-and-updates-complete'] != "true"
+                %}selected{% endif %}
+        >Origin complete - Only</option>
 
 
         <!--  ON TO THE FARM FROM A FARM -->
-        <option value="section-what-complete=true&section-origin-complete=true&section-destination-complete=true&section-tests-complete=false&section-biosecurity-complete=false&section-biosecurity-map-complete=false&section-identification-complete=false&section-contact-and-updates-complete=false&origin-to-or-from-own-premises-radios=On the farm&destination-type-of-destination-radios=A farm&tests-whole-herd-test-radios-yes-no=null&"
-            {% if  data['section-what-complete'] == "true" and
-                   data['section-origin-complete'] == "true" and
-                   data['section-destination-complete'] == "true" and
-                   data['section-tests-complete'] != "true" and
-                   data['section-biosecurity-complete'] != "true" and
-                   data['section-biosecurity-map-complete'] != "true" and
-                   data['section-identification-complete'] != "true" and
-                   data['section-contact-and-updates-complete'] != "true" and
-                   data['origin-to-or-from-own-premises-radios'] == "On the farm" and
-                   data['destination-type-of-destination-radios'] == "A farm"  and
-                   data['tests-whole-herd-test-radios-yes-no'] != "No"
-            %}selected{% endif %}
-        >Onto the farm - From a restricted farm</option>
+        <option value="section-origin-complete=true&section-destination-complete=true&section-tests-complete=true&section-contact-and-updates-complete=true&origin-to-or-from-own-premises-radios=Off the farm&"
+                {% if  data['section-origin-complete'] == "true" and
+                        data['section-destination-complete'] == "true" and
+                        data['section-tests-complete'] == "true" and
+                        data['section-contact-and-updates-complete'] == "true"
+                %}selected{% endif %}
+        >All sections complete</option>
 
 
-        <!--  OFF THE FARM TO A MARKET -->
-        <option value="section-what-complete=true&section-origin-complete=true&section-destination-complete=true&section-tests-complete=false&section-biosecurity-complete=false&section-biosecurity-map-complete=false&section-identification-complete=false&section-contact-and-updates-complete=false&origin-to-or-from-own-premises-radios=Off the farm&destination-type-of-destination-radios=A market&tests-whole-herd-test-radios-yes-no=null&"
-            {% if  data['section-what-complete'] == "true" and
-                   data['section-origin-complete'] == "true" and
-                   data['section-destination-complete'] == "true" and
-                   data['section-tests-complete'] != "true" and
-                   data['section-biosecurity-complete'] != "true" and
-                   data['section-biosecurity-map-complete'] != "true" and
-                   data['section-identification-complete'] != "true" and
-                   data['section-contact-and-updates-complete'] != "true" and
-                   data['origin-to-or-from-own-premises-radios'] == "Off the farm" and
-                   data['destination-type-of-destination-radios'] == "A market"  and
-                   data['tests-whole-herd-test-radios-yes-no'] != "No"
-            %}selected{% endif %}
-        >Off the farm - To a market</option>
-
-
-        <!--  OFF THE FARM - PART HERD TEST  -->
-        <option value="section-what-complete=true&section-origin-complete=true&section-destination-complete=true&section-tests-complete=false&section-biosecurity-complete=false&section-biosecurity-map-complete=false&section-identification-complete=false&section-contact-and-updates-complete=false&origin-to-or-from-own-premises-radios=Off the farm&destination-type-of-destination-radios=A market&tests-whole-herd-test-radios-yes-no=No&"
-            {% if  data['section-what-complete'] == "true" and
-                   data['section-origin-complete'] == "true" and
-                   data['section-destination-complete'] == "true" and
-                   data['section-tests-complete'] != "true" and
-                   data['section-biosecurity-complete'] != "true" and
-                   data['section-biosecurity-map-complete'] != "true" and
-                   data['section-identification-complete'] != "true" and
-                   data['section-contact-and-updates-complete'] != "true" and
-                   data['origin-to-or-from-own-premises-radios'] == "Off the farm" and
-                   data['destination-type-of-destination-radios'] == "A market"  and
-                   data['tests-whole-herd-test-radios-yes-no'] == "No"
-            %}selected{% endif %}
-        >Off the farm - To a market - Part test</option>
-
-
-        <!--  EVERYTHING SHOWING -->
-        <option value="section-what-complete=true&section-origin-complete=true&section-destination-complete=true&section-tests-complete=true&section-biosecurity-complete=true&section-biosecurity-map-complete=true&section-identification-complete=true&section-contact-and-updates-complete=true&origin-to-or-from-own-premises-radios=On the farm&destination-type-of-destination-radios=A farm&tests-whole-herd-test-radios-yes-no=No&"
-            {% if  data['section-what-complete'] == "true" and
-                   data['section-origin-complete'] == "true" and
-                   data['section-destination-complete'] == "true" and
-                   data['section-tests-complete'] == "true" and
-                   data['section-biosecurity-complete'] == "true" and
-                   data['section-biosecurity-map-complete'] == "true" and
-                   data['section-identification-complete'] == "true" and
-                   data['section-contact-and-updates-complete'] == "true" and
-                   data['origin-to-or-from-own-premises-radios'] == "On the farm" and
-                   data['destination-type-of-destination-radios'] == "A farm"  and
-                   data['tests-whole-herd-test-radios-yes-no'] == "No"
-            %}selected{% endif %}
-        >Show every section</option>
 
     </select>
 
@@ -308,7 +238,7 @@
         let remaniningcount = numItems - completecounter;
 
 
-        document.getElementById("section-progress-count").textContent = remaniningcount + "/" + numItems;
+        document.getElementById("section-progress-count").textContent = remaniningcount + " out of " + numItems;
 
 
         // make button primary green if all done

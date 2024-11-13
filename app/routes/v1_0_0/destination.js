@@ -54,7 +54,7 @@ module.exports = function (router) {
     router.get( section + 'routing-start', function (req, res)
     {
         // If Yes was selected, continue to next page
-        if (req.session.data['origin-to-or-from-own-premises-radios'] == "On the farm")
+        if (req.session.data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises")
         {
             // Continue to the next pages where farmer is the origin
             res.redirect('selection-of-own-premises');

@@ -107,7 +107,7 @@ module.exports = function (router) {
             else
             {
                 // Continue to next page
-                if (req.session.data['origin-to-or-from-own-premises-radios'] == "On the farm")
+                if (req.session.data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises")
                 {
                     // Continue to the next pages where farmer is the origin
                     res.redirect('destination-confirmation');
@@ -171,7 +171,7 @@ module.exports = function (router) {
             else
             {
                 // Continue to next page
-                if (req.session.data['origin-to-or-from-own-premises-radios'] == "On the farm")
+                if (req.session.data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises")
                 {
                     // Continue to the next pages where farmer is the origin
                     res.redirect('destination-confirmation');

@@ -54,14 +54,14 @@ module.exports = function (router) {
         req.session.data['errortypeone'] = "false";
 
         // If Yes was selected, continue to next page
-        if (req.session.data['origin-to-or-from-own-premises-radios'] == "On the farm")
+        if (req.session.data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises")
         {
             // Continue to the next page
             // scope means this is not viable for release 1
             res.redirect('can-not-use-service');
         }
 
-        else if (req.session.data['origin-to-or-from-own-premises-radios'] == "Off the farm")
+        else if (req.session.data['origin-to-or-from-own-premises-radios'] == "Off the farm or premises")
         {
             // Continue to the next page
 
@@ -379,12 +379,12 @@ module.exports = function (router) {
     router.post( section + 'origin-farm-address-router', function (req, res)
     {
         // If Yes was selected, continue to next page
-        if (req.session.data['origin-to-or-from-own-premises-radios'] == "On the farm")
+        if (req.session.data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises")
         {
             res.redirect('fifty-percent-warning');
         }
 
-        else if (req.session.data['origin-to-or-from-own-premises-radios'] == "Off the farm")
+        else if (req.session.data['origin-to-or-from-own-premises-radios'] == "Off the farm or premises")
         {
             // If Yes was selected, continue to next page
             if (req.session.data['bluetongue'] == "true")

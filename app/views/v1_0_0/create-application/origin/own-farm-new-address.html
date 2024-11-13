@@ -15,7 +15,7 @@ This will save you time.
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    What is the address of your farm where the animals are moving off?
+    What is the address of your farm or premises where the animals are moving off?
 {% endset %}
 
 
@@ -25,15 +25,19 @@ This will save you time.
 
     <!-- Error 1 - empty line 1-->
     {%  if  data['errortypeone'] == "true"  %}
-        PLACEHOLDER address line 1 must not be empty
+        Enter address line 1, typically the building and street
 
     <!-- Error 2 - empty city  -->
     {% elif data['errortypetwo'] == "true"  %}
-        PLACEHOLDER city or town  must not be empty
+        Enter town or city
 
     <!-- Error 3 - empty post code -->
     {% elif data['errortypethree'] == "true"  %}
-        PLACEHOLDER postcode  must not be empty
+        Enter postcode
+
+    <!-- Error 3 - empty post code -->
+    {% elif data['errortypefour'] == "true"  %}
+        Enter a full UK postcode
 
     {%  endif  %}
 
@@ -99,6 +103,21 @@ This will save you time.
 
             <!-- Error 3 - empty post code -->
             {% elif data['errortypethree'] == "true"  %}
+                {{ govukErrorSummary
+                    ({
+                        titleText: "There is a problem",
+                        errorList:
+                        [
+                            {
+                                html: errorTextHTML,
+                                href: "#origin-own-address-postcode"
+                            }
+                        ]
+                    })
+                }}
+
+
+            {% elif data['errortypefour'] == "true"  %}
                 {{ govukErrorSummary
                     ({
                         titleText: "There is a problem",
@@ -195,23 +214,49 @@ This will save you time.
                 })
             }}
 
-            {{ govukInput
-                ({
-                    label:
-                    {
-                        text: "Postcode"
-                    },
-                    classes: "govuk-input--width-10",
-                    id: "origin-own-address-postcode",
-                    name: "origin-own-address-postcode",
-                    value: data['origin-own-address-postcode'],
 
-                    errorMessage: null if data['errortypethree'] != "true"
-                                        else { html: errorTextHTML },
 
-                    autocomplete: "postal-code"
-                })
-            }}
+            {%  if data['errortypefour'] != "true"  %}
+
+                    {{ govukInput
+                        ({
+                            label:
+                            {
+                                text: "Postcode"
+                            },
+                            classes: "govuk-input--width-10",
+                            id: "origin-own-address-postcode",
+                            name: "origin-own-address-postcode",
+                            value: data['origin-own-address-postcode'],
+
+                            errorMessage: null if data['errortypethree'] != "true"
+                                                else { html: errorTextHTML },
+
+                            autocomplete: "postal-code"
+                        })
+                    }}
+
+            {%  else  %}
+
+                    {{ govukInput
+                        ({
+                            label:
+                            {
+                                text: "Postcode"
+                            },
+                            classes: "govuk-input--width-10",
+                            id: "origin-own-address-postcode",
+                            name: "origin-own-address-postcode",
+                            value: data['origin-own-address-postcode'],
+
+                            errorMessage: {html: errorTextHTML},
+
+                            autocomplete: "postal-code"
+                        })
+                    }}
+
+            {%  endif  %}
+
 
         {% endcall %}
 
@@ -245,6 +290,10 @@ This will save you time.
         <option value="errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=true&errortypefour=false&errortypefive=false&errortypesix=false&errortypeseven=false&"
                 {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] == 'true'  and  data['errortypefour'] != 'true'   and data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  and  data['errortypeseven'] != 'true'  %}selected{% endif %}
         >Error 3 - Postcode empty</option>
+
+        <option value="errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=false&errortypefour=true&errortypefive=false&errortypesix=false&errortypeseven=false&"
+                {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] == 'true'   and data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  and  data['errortypeseven'] != 'true'  %}selected{% endif %}
+        >Error 4 - Postcode - Wrong format</option>
 
     </select>
 
