@@ -23,11 +23,11 @@ This will save you time.
 {% set errorTextHTML %}
     <!-- Error 1 - No answer selected -->
     {% if data['errortypeone'] == "true" %}
-        Enter your PLACEHOLDER
+        Enter the email address you would like the licence sent to
 
     <!-- Error 2 - If answer is too long -->
     {% elif data['errortypetwo'] == "true" %}
-        Not a valid email address
+        Enter the email address in the correct format
 
 
     {% endif %}
