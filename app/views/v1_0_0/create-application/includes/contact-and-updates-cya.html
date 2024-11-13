@@ -41,21 +41,25 @@
             </dd>
         </div>
 
-        <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key  govuk-!-font-weight-regular">
-                Enter the address would you like the licence sent to
-            </dt>
-            <dd class="govuk-summary-list__value">
-                {{ data['contact-and-updates-licence-new-address-line-1'] }}<br>
-                {{ data['contact-and-updates-licence-new-address-line-2'] }}<br>
-                {{ data['contact-and-updates-licence-new-address-town'] }}<br>
-                {{ data['contact-and-updates-licence-new-address-county'] }}<br>
-                {{ data['contact-and-updates-licence-new-address-postcode'] }}
-            </dd>
-            <dd class="govuk-summary-list__actions">
-                <a class="govuk-link" href="../contact-and-updates/licence-select-post-address">Change<span class="govuk-visually-hidden"> </span></a>
-            </dd>
-        </div>
+        {%  if  data['contact-and-updates-licence-select-post-address-radios'] == "Another address"  %}
+
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key  govuk-!-font-weight-regular">
+                    Enter the address would you like the licence sent to
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    {{ data['contact-and-updates-licence-new-address-line-1'] }}<br>
+                    {{ data['contact-and-updates-licence-new-address-line-2'] }}<br>
+                    {{ data['contact-and-updates-licence-new-address-town'] }}<br>
+                    {{ data['contact-and-updates-licence-new-address-county'] }}<br>
+                    {{ data['contact-and-updates-licence-new-address-postcode'] }}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="../contact-and-updates/licence-select-post-address">Change<span class="govuk-visually-hidden"> </span></a>
+                </dd>
+            </div>
+
+        {%  endif  %}
 
     {%  endif  %}
 

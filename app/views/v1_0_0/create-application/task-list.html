@@ -152,17 +152,18 @@
 
 
         <!-- go to routes.js for routing  -->
-        <form action="submit/check-answers" method="post" novalidate>
 
-            {{
-                govukButton
-                ({
-                    text: "Review and submit",
-                    classes: "govuk-button--secondary"
-                })
-            }}
 
-        </form>
+        {{
+            govukButton
+            ({
+                text: "Review and submit",
+                classes: "govuk-button--secondary",
+                href: "task-list-validation-page"
+            })
+        }}
+
+
 
     </div>
 </div>
@@ -247,6 +248,7 @@
         {
             const elementbutton = document.querySelector('.govuk-button');
             elementbutton.classList.remove('govuk-button--secondary');
+            elementbutton.href="submit/check-answers";
 
             document.getElementById('whole-text-progress-count').style.display = 'none';
             document.getElementById('whole-text-all-complete').style.display = 'block';

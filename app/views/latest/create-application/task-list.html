@@ -408,6 +408,7 @@
         {
             const elementbutton = document.querySelector('.govuk-button');
             elementbutton.classList.remove('govuk-button--secondary');
+            elementbutton.removeAttribute("href");
 
             document.getElementById('whole-text-progress-count').style.display = 'none';
             document.getElementById('whole-text-all-complete').style.display = 'block';

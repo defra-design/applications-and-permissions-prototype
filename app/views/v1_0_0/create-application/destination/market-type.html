@@ -24,7 +24,7 @@ This will save you time.
 {% set errorTextHTML %}
     <!-- Nothing was selected -->
     {% if data['errortypeone'] == "true" %}
-        Select the type of market the animals are going to
+        Select what type of market the animals are going to
     {% endif %}
 {% endset %}
 
@@ -104,6 +104,10 @@ This will save you time.
                         {
                             value: "Another type of market",
                             text: "Another type of market",
+                            hint:
+                            {
+                                text: "For example, a one off TB sale"
+                            },
                             checked: data['destination-market-type-radios'] == "Another type of market"
                         }
                     ]

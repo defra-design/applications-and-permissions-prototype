@@ -32,7 +32,7 @@ This will save you time.
 {% set errorTextHTML %}
     <!-- Nothing was selected -->
     {%  if  data['errortypeone'] == "true"  %}
-         Select at least one PLACEHOLDER
+         You need to tick the confirmation box
     {% endif %}
 {% endset %}
 
@@ -76,12 +76,12 @@ This will save you time.
         </h1>
 
 
-        <p>You must confirm the following test conditions have been met:</p>
+        <p>You must check that:</p>
 
         <ul class="govuk-body govuk-list--bullet">
-            <li>APHA has received all skin and blood tests</li>
-            <li>inconclusive reactors have a negative test result.
-                The result must be at least 60 days after the inconclusive result</li>
+            <li>skin and blood tests were sent to APHA</li>
+            <li>inconclusive reactors have a negative test result -
+                the result must be at least 60 days after the inconclusive test result</li>
         </ul>
 
 
@@ -118,9 +118,9 @@ This will save you time.
                     items:
                     [
                         {
-                            value: "I confirm these test conditions have been met",
-                            text: "I confirm these test conditions have been met",
-                            checked: (data['tests-origin-confirmation-checkboxes'] or []).indexOf('I confirm these test conditions have been met') > -1
+                            value: "I confirm these conditions have been met",
+                            text: "I confirm these conditions have been met",
+                            checked: (data['tests-origin-confirmation-checkboxes'] or []).indexOf('I confirm these conditions have been met') > -1
                         }
                     ]
                 })
