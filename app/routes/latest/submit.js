@@ -114,8 +114,9 @@ module.exports = function (router) {
     // VIEW SUBMITTED APPLICATION
     router.get(section + 'copy-application-to-draft-router', function (req, res)
     {
-        req.session.data['application-submitted-and-locked'] = "true";
+        req.session.data['application-submitted-and-locked'] = "false";
 
+        req.session.data['what-thing-being-moved-radios'] = "Cattle";
         req.session.data['what-move-date-window-start-date-input-day'] = "";
         req.session.data['what-move-date-window-start-date-input-month'] = "";
         req.session.data['what-move-date-window-start-date-input-year'] = "";
