@@ -38,7 +38,7 @@
                     {
                         title:
                         {
-                            text: "What you plan to move and when"
+                            text: "What you plan to move "
                         },
                         href: "what/check-answers" if data['section-what-complete'] == "true" else "what/thing-being-moved",
                         status:
@@ -118,6 +118,38 @@
                             } if data['section-destination-complete'] != "true"
                         }
                     } if data['section-origin-complete'] == "true",
+
+
+                    {
+                        title:
+                        {
+                            text: "Movement dates"
+                        },
+                        href: "",
+                        status:
+                        {
+                            text:  "Cannot start yet",
+                            classes: "govuk-task-list__status--cannot-start-yet"
+                        }
+                    } if data['section-destination-complete'] != "true",
+
+
+                    {
+                        title:
+                        {
+                            text: "Movement dates"
+                        },
+                        href: "when/check-answers" if data['section-when-complete'] == "true" else "when/move-date-window-start",
+                        status:
+                        {
+                            text: "Completed",
+                            tag:
+                            {
+                                text: "Incomplete",
+                                classes: "govuk-tag--blue"
+                            } if data['section-when-complete'] != "true"
+                        }
+                    } if data['section-destination-complete'] == "true",
 
 
 

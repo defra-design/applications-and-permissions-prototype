@@ -8,6 +8,7 @@ const router = govukPrototypeKit.requests.setupRouter('/' + version);
 require('./what.js')(router);
 require('./origin.js')(router);
 require('./destination.js')(router);
+require('./when.js')(router);
 require('./tests.js')(router);
 require('./biosecurity.js')(router);
 require('./biosecurity-map.js')(router);

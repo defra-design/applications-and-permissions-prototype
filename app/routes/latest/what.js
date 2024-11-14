@@ -86,7 +86,7 @@ module.exports = function (router) {
             else
             {
                 // This page name needs to be the next page the user gets to after successfully continuing
-                res.redirect('move-date-window-start');
+                res.redirect('../task-list?section-what-complete=true&');
             }
         }
         else if (req.session.data['what-thing-being-moved-radios'] == "Pigs")

@@ -15,8 +15,15 @@ This will save you time.
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
+    Licence dates
+{% endset %}
+
+
+<!-- Setting the smaller secondary heading lower down the page -->
+{% set questionHeadingTextHTML %}
     What is the earliest date you will move some or all of the cattle?
 {% endset %}
+
 
 
 <!-- Set the text for each error type -->
@@ -93,6 +100,14 @@ This will save you time.
     <div class="govuk-grid-column-two-thirds">
 
 
+        <h1 class="govuk-heading-l">
+            {{ pageHeadingTextHTML }}
+        </h1>
+
+
+        <p>Your licence will expire 1 month after it is issued.</p>
+
+
         <!-- ERROR LOGIC 'error summary' -->
         {% if data['errorthispage'] == "true" %}
             {{ govukErrorSummary
@@ -123,9 +138,9 @@ This will save you time.
                     {
                         legend:
                         {
-                            html: pageHeadingTextHTML,
-                            isPageHeading: true,
-                            classes: "govuk-fieldset__legend--l"
+                            html: questionHeadingTextHTML,
+                            isPageHeading: false,
+                            classes: "govuk-fieldset__legend--m"
                         }
                     },
 
