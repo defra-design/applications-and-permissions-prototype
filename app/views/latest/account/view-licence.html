@@ -1,0 +1,69 @@
+{% extends "layouts/latest.html" %}
+
+<!-- Setting the big main heading at the top of the page -->
+{% set pageHeadingTextHTML %}
+    View licence
+{% endset %}
+
+<!-- Text that show in the browser tab. Does NOT need changing -->
+{% block pageTitle %}
+    {{ pageHeadingTextHTML }}
+{% endblock %}
+
+
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+
+    <div class="govuk-grid-column-full">
+
+
+        <h1 class="govuk-heading-l">
+          {{ pageHeadingTextHTML }}
+        </h1>
+
+        {{
+            govukButton
+            ({
+                text: "Print licence",
+                classes: "govuk-button--secondary"
+            })
+        }}
+
+        <p class="govuk-!-margin-bottom-9"><a href="#">Download licence</a></p>
+
+
+        <object data="/public/files/licence.pdf" type="application/pdf" width="100%" height="600px">
+            <p>Your browser does not support PDFs.</p>
+        </object>
+
+
+
+    </div>
+
+
+</div>
+
+
+
+<!--  drop down to toggle  PENDING  states  -->
+<form method="post"  action="#" class="for4" style=" float: left; position: relative; bottom:-225px;  ">
+
+    <select style="height:30px;" onchange="window.location.href='?'+this.value">
+
+        <option value="application-submitted-by-user=false&"
+                {% if  data['application-submitted-by-user'] != "true"  %}selected{% endif %}
+        >No draft and no spending submissions</option>
+
+        <option value="application-submitted-by-user=true&"
+                {% if  data['application-submitted-by-user'] == 'true'   %}selected{% endif %}
+        >Pending submission only</option>
+
+    </select>
+
+</form>
+<!--  END OF ERROR LOGIC -->
+
+{% endblock %}

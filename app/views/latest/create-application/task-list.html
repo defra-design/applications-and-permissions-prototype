@@ -198,26 +198,6 @@
                     {
                         title:
                         {
-                            text: "Animal identification details"
-                        },
-                        href: "identification/check-answers" if data['section-identification-complete'] == "true" else "identification/microchipped",
-                        status:
-                        {
-                            text: "Completed",
-                            tag:
-                            {
-                                text: "Incomplete",
-                                classes: "govuk-tag--blue"
-                            } if data['section-identification-complete'] != "true"
-                        }
-                    } if  (data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises"
-                            and data['destination-type-of-destination-radios'] == "A farm")
-                           or data['tests-whole-herd-test-radios-yes-no'] == "No",
-
-
-                    {
-                        title:
-                        {
                             text: "Contact and updates"
                         },
                         href: "contact-and-updates/check-answers" if data['section-contact-and-updates-complete'] == "true" else "contact-and-updates/routing-contact-and-updates",
@@ -241,14 +221,28 @@
 
 
 
-        {{
-            govukButton
-            ({
-                text: "Review and submit",
-                classes: "govuk-button--secondary",
-                href: "task-list-validation-page"
-            })
-        }}
+
+        <div class="govuk-button-group">
+
+            {{
+                govukButton
+                ({
+                    text: "Review and submit",
+                    classes: "govuk-button--secondary",
+                    href: "task-list-validation-page"
+                })
+            }}
+
+            {{
+                govukButton
+                ({
+                    text: "Save as draft",
+                    classes: "govuk-button--secondary",
+                    href: "../account/list-of-licence-applications?application-saved-draft=true&"
+                })
+            }}
+
+        </div>
 
 
     </div>

@@ -5,7 +5,7 @@
     <!-- Applicant is destination -->
 
         <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key govuk-!-width-one-half">
+            <dt class="govuk-summary-list__key govuk-!-font-weight-regular  govuk-!-width-one-half">
                 Where are the animals moving to?
             </dt>
             <dd class="govuk-summary-list__value">
@@ -21,7 +21,7 @@
         <!-- Applicant is origin -->
 
         <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key govuk-!-width-one-half">
+            <dt class="govuk-summary-list__key govuk-!-font-weight-regular  govuk-!-width-one-half">
                 Where are the animals going to?
             </dt>
             <dd class="govuk-summary-list__value">
@@ -35,8 +35,8 @@
         {%  if  data['destination-type-of-destination-radios'] == "A market"  %}
 
             <div class="govuk-summary-list__row">
-                <dt class="govuk-summary-list__key">
-                    What type of market are the animals going to?
+                <dt class="govuk-summary-list__key govuk-!-font-weight-regular ">
+                    Which type of market are the animals going to?
                 </dt>
                 <dd class="govuk-summary-list__value">
                     {{ data['destination-market-type-radios'] }}
@@ -51,7 +51,7 @@
 
         <!--
             <div class="govuk-summary-list__row">
-                <dt class="govuk-summary-list__key">
+                <dt class="govuk-summary-list__key govuk-!-font-weight-regular ">
                     What is the County Parish Holding (CPH) number of the approved TB unit where the animals are going to?
                 </dt>
                 <dd class="govuk-summary-list__value">
@@ -66,7 +66,7 @@
         {%  elif  data['destination-type-of-destination-radios'] == "A farm"  %}
 
             <div class="govuk-summary-list__row">
-                <dt class="govuk-summary-list__key">
+                <dt class="govuk-summary-list__key govuk-!-font-weight-regular ">
                     What is the CPH number of the farm where the animals are going to?
                 </dt>
                 <dd class="govuk-summary-list__value">
@@ -78,7 +78,7 @@
             </div>
 
             <div class="govuk-summary-list__row">
-                <dt class="govuk-summary-list__key">
+                <dt class="govuk-summary-list__key govuk-!-font-weight-regular ">
                     What is the address of the farm where the animals are going to?
                 </dt>
                 <dd class="govuk-summary-list__value">
@@ -104,7 +104,7 @@
 
         {%  if data['bluetongue'] == "true"  %}
             <div class="govuk-summary-list__row">
-                <dt class="govuk-summary-list__key">
+                <dt class="govuk-summary-list__key govuk-!-font-weight-regular ">
                     Did you have any ruminants come onto your farm in the past 60 days?
                 </dt>
                 <dd class="govuk-summary-list__value">
@@ -117,7 +117,7 @@
 
             {%  if data['destination-ruminants-any-60-days-radios-yes-no'] == "Yes"  %}
                 <div class="govuk-summary-list__row">
-                    <dt class="govuk-summary-list__key">
+                    <dt class="govuk-summary-list__key govuk-!-font-weight-regular ">
                         Do you know the County Parish Holding (CPH) number of where the ruminants came from?
                     </dt>
                     <dd class="govuk-summary-list__value">
@@ -130,7 +130,7 @@
 
                 {%  if data['destination-ruminants-know-cph-radios-yes-no'] == "Yes"  %}
                     <div class="govuk-summary-list__row">
-                        <dt class="govuk-summary-list__key">
+                        <dt class="govuk-summary-list__key govuk-!-font-weight-regular ">
                             What is the County Parish Holding (CPH) number of the farm where the ruminants came from?
                         </dt>
                         <dd class="govuk-summary-list__value">
@@ -148,7 +148,7 @@
 
 
         <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
+            <dt class="govuk-summary-list__key govuk-!-font-weight-regular ">
                 What is the reason for the movement?
             </dt>
             <dd class="govuk-summary-list__value">
@@ -163,7 +163,7 @@
         {%  if data['bluetongue'] == "true"  and   data['destination-reason-for-movement-radios'] != "Bull"  %}
 
             <div class="govuk-summary-list__row">
-                <dt class="govuk-summary-list__key">
+                <dt class="govuk-summary-list__key govuk-!-font-weight-regular ">
                     Are any of the cattle pregnant?
                 </dt>
                 <dd class="govuk-summary-list__value">
@@ -177,7 +177,7 @@
             {%  if data['destination-pregnant-any-radios-yes-no'] == "Yes"  %}
 
                 <div class="govuk-summary-list__row">
-                    <dt class="govuk-summary-list__key">
+                    <dt class="govuk-summary-list__key govuk-!-font-weight-regular ">
                         When is the earliest date of birth?
                     </dt>
                     <dd class="govuk-summary-list__value">
@@ -198,7 +198,7 @@
         {%  if  data['destination-reason-for-movement-radios'] == "Routine restocking"  %}
 
             <div class="govuk-summary-list__row">
-                <dt class="govuk-summary-list__key">
+                <dt class="govuk-summary-list__key govuk-!-font-weight-regular ">
                     Will you move more than 75 cattle?
                 </dt>
                 <dd class="govuk-summary-list__value">
@@ -211,7 +211,7 @@
 
             {%  if  data['destination-quantity-options-radios'] == "No"  %}
                 <div class="govuk-summary-list__row">
-                    <dt class="govuk-summary-list__key">
+                    <dt class="govuk-summary-list__key govuk-!-font-weight-regular ">
                         Will the number of cattle be larger than half of the destination herd size?
                     </dt>
                     <dd class="govuk-summary-list__value">
@@ -227,7 +227,7 @@
         {%  else  %}
 
             <div class="govuk-summary-list__row">
-                <dt class="govuk-summary-list__key">
+                <dt class="govuk-summary-list__key govuk-!-font-weight-regular ">
                     Enter any additional information (optional)
                 </dt>
                 <dd class="govuk-summary-list__value">

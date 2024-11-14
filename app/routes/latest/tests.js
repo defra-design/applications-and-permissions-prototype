@@ -54,7 +54,7 @@ module.exports = function (router) {
             res.redirect('bluetongue-vaccinations');
         }
         // If Yes was selected, continue to next page
-        if (req.session.data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises")
+        else if (req.session.data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises")
         {
             // Continue to the next pages where farmer is the origin
             res.redirect('destination-confirmation');
@@ -63,7 +63,7 @@ module.exports = function (router) {
         else
         {
             // Continue to the next pages where farmer is the destination
-            res.redirect('whole-herd-test');
+            res.redirect('origin-confirmation');
         }
 
     })
@@ -233,17 +233,35 @@ module.exports = function (router) {
     // NOT COMPLEX PAGE
     router.get(section + 'origin-confirmation-router', function (req, res)
     {
-        // If Yes was selected, continue to next page
-        if (req.session.data['destination-type-of-destination-radios'] == "A farm")
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+
+        // check if none of the checkboxes are selected
+        if(req.session.data['tests-origin-confirmation-checkboxes'] == undefined  ||
+            req.session.data['tests-origin-confirmation-checkboxes'].length == 0)
         {
-            // Continue to the next pages where farmer is the origin
-            res.redirect('destination-confirmation');
+            // Trigger validation and relaunch the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('origin-confirmation');
         }
 
         else
         {
-            // Continue to the next pages where farmer is the destination
-            res.redirect('../task-list?section-tests-complete=true&');
+            // If Yes was selected, continue to next page
+            if (req.session.data['destination-type-of-destination-radios'] == "A farm")
+            {
+                // Continue to the next pages where farmer is the origin
+                res.redirect('destination-confirmation');
+            }
+            else
+            {
+                // Continue to the next pages where farmer is the destination
+                res.redirect('../task-list?section-tests-complete=true&');
+            }
+
         }
 
     })
