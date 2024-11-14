@@ -72,7 +72,7 @@
                     <td class="govuk-table__cell">Onto premises</td>
                     <td class="govuk-table__cell govuk-!-text-align-right"><a href="view-licence">View licence</a>
                                                                        <br><a href="../create-application/submit/submitted-application-check-answers-router">View application</a>
-                                                                       <br><a href="#">Copy application for a new licence</a></td>
+                                                                       <br><a href="../create-application/submit/copy-application-to-draft-router">Copy application for a new licence</a></td>
                 </tr>
 
                 <tr class="govuk-table__row">
@@ -81,7 +81,7 @@
                     <td class="govuk-table__cell">Onto premises</td>
                     <td class="govuk-table__cell govuk-!-text-align-right"><a href="view-licence">View licence</a>
                                                                        <br><a href="../create-application/submit/submitted-application-check-answers-router">View application</a>
-                                                                       <br><a href="#">Copy application for a new licence</a></td>
+                                                                       <br><a href="../create-application/submit/copy-application-to-draft-router">Copy application for a new licence</a></td>
                 </tr>
 
                 <tr class="govuk-table__row">
@@ -90,7 +90,7 @@
                     <td class="govuk-table__cell">Off premises</td>
                     <td class="govuk-table__cell govuk-!-text-align-right"><a href="view-licence">View licence</a>
                                                                            <br><a href="../create-application/submit/submitted-application-check-answers-router">View application</a>
-                                                                           <br><a href="#">Copy application for a new licence</a></td>
+                                                                           <br><a href="../create-application/submit/copy-application-to-draft-router">Copy application for a new licence</a></td>
                 </tr>
 
                 <tr class="govuk-table__row">
@@ -99,7 +99,7 @@
                     <td class="govuk-table__cell">Off premises</td>
                     <td class="govuk-table__cell govuk-!-text-align-right"><a href="view-licence">View licence</a>
                                                                        <br><a href="../create-application/submit/submitted-application-check-answers-router">View application</a>
-                                                                       <br><a href="#">Copy application for a new licence</a></td>
+                                                                       <br><a href="../create-application/submit/copy-application-to-draft-router">Copy application for a new licence</a></td>
                 </tr>
 
                 <tr class="govuk-table__row">
@@ -107,7 +107,7 @@
                     <td class="govuk-table__cell"></td>
                     <td class="govuk-table__cell">Onto premises</td>
                     <td class="govuk-table__cell govuk-!-text-align-right"><a href="../create-application/submit/submitted-application-check-answers-router">View application</a>
-                                                                       <br><a href="#">Copy application for a new licence</a></td>
+                                                                       <br><a href="../create-application/submit/copy-application-to-draft-router">Copy application for a new licence</a></td>
                 </tr>
 
             </tbody>
@@ -126,13 +126,21 @@
 
     <select style="height:30px;" onchange="window.location.href='?'+this.value">
 
-        <option value="application-submitted-by-user=false&"
-                {% if  data['application-submitted-by-user'] != "true"  %}selected{% endif %}
+        <option value="application-submitted-by-user=false&application-saved-draft=false&"
+                {% if  data['application-submitted-by-user'] != "true"    and  data['application-saved-draft'] != 'true' %}selected{% endif %}
         >No draft and no spending submissions</option>
 
-        <option value="application-submitted-by-user=true&"
-                {% if  data['application-submitted-by-user'] == 'true'   %}selected{% endif %}
+        <option value="application-submitted-by-user=true&application-saved-draft=false&"
+                {% if  data['application-submitted-by-user'] == 'true'   and  data['application-saved-draft'] != 'true'  %}selected{% endif %}
         >Pending submission only</option>
+
+        <option value="application-submitted-by-user=false&application-saved-draft=true&"
+                {% if  data['application-submitted-by-user'] != 'true'  and  data['application-saved-draft'] == 'true'  %}selected{% endif %}
+        >Draft only</option>
+
+        <option value="application-submitted-by-user=true&application-saved-draft=true&"
+                {% if  data['application-submitted-by-user'] == 'true'  and  data['application-saved-draft'] == 'true'   %}selected{% endif %}
+        >Draft and Pending submisson</option>
 
     </select>
 

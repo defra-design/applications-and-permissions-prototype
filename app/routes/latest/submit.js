@@ -109,4 +109,40 @@ module.exports = function (router) {
         res.redirect('check-answers');
     })
 
+
+
+    // VIEW SUBMITTED APPLICATION
+    router.get(section + 'copy-application-to-draft-router', function (req, res)
+    {
+        req.session.data['application-submitted-and-locked'] = "true";
+
+        req.session.data['what-move-date-window-start-date-input-day'] = "";
+        req.session.data['what-move-date-window-start-date-input-month'] = "";
+        req.session.data['what-move-date-window-start-date-input-year'] = "";
+        req.session.data['what-move-date-window-start-date-input-month-number'] = 11;
+        req.session.data['what-move-date-window-start-date-input-month-text'] = "November";
+        req.session.data['section-what-complete'] = "true";
+        req.session.data['origin-to-or-from-own-premises-radios'] = "Off the farm or premises";
+        req.session.data['origin-selection-of-own-premises-radios'] = "Your farm, New road, EK32 9LR";
+        req.session.data['section-origin-complete'] = "true";
+        req.session.data['destination-type-of-destination-radios'] = "A market";
+        req.session.data['destination-market-type-radios'] = "Orange market";
+        req.session.data['section-destination-complete'] = "true";
+        req.session.data['tests-whole-herd-test-radios-yes-no'] = "No";
+        req.session.data['section-tests-complete'] = "true";
+        req.session.data['tests-origin-confirmation-checkboxes'] = ["I confirm these conditions have been met"];
+        req.session.data['identification-microchipped-radios-yes-no'] = "No";
+        req.session.data['contact-and-updates-licence-email-or-post-radios'] = "Email";
+        req.session.data['contact-and-updates-licence-select-post-address-radios'] = "Another address";
+        req.session.data['contact-and-updates-licence-select-email-address-radios'] = "your.name@email.com";
+        req.session.data['contact-and-updates-updates-receive-radios-yes-no'] = "Yes";
+        req.session.data['contact-and-updates-updates-method-checkboxes'] = ["Email"];
+        req.session.data['contact-and-updates-updates-select-email-address-radios'] = "your.name@email.com";
+        req.session.data['section-contact-and-updates-complete'] = "true";
+
+
+        res.redirect('../task-list');
+    })
+
+
 }
