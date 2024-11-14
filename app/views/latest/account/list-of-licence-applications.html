@@ -37,7 +37,7 @@
             <thead class="govuk-table__head">
                 <tr class="govuk-table__row">
                     <th scope="col" class="govuk-table__header">Status</th>
-                    <th scope="col" class="govuk-table__header">End date</th>
+                    <th scope="col" class="govuk-table__header">Expiry date</th>
                     <th scope="col" class="govuk-table__header">Movement type</th>
 
                     <th scope="col" class="govuk-table__header"></th>
@@ -51,8 +51,8 @@
                         <td class="govuk-table__cell">Received<br>Submitted today</td>
                         <td class="govuk-table__cell"></td>
                         <td class="govuk-table__cell">Onto premises</td>
-                        <td class="govuk-table__cell govuk-!-text-align-right"><a href="../tasklist">View licence</a>
-                            <br><a href="../tasklist">View application</a></td>
+                        <td class="govuk-table__cell govuk-!-text-align-right">
+                            <a href="../tasklist">View application</a></td>
                     </tr>
                 {%  endif  %}
 
@@ -61,7 +61,8 @@
                     <td class="govuk-table__cell">2 November 2024</td>
                     <td class="govuk-table__cell">Onto premises</td>
                     <td class="govuk-table__cell govuk-!-text-align-right"><a href="../tasklist">View licence</a>
-                        <br><a href="../tasklist">View application</a></td>
+                                                                       <br><a href="../tasklist">View application</a>
+                                                                       <br><a href="#">Copy a previous application</a></td>
                 </tr>
 
                 <tr class="govuk-table__row">
@@ -69,7 +70,8 @@
                     <td class="govuk-table__cell">2 June 2024</td>
                     <td class="govuk-table__cell">Onto premises</td>
                     <td class="govuk-table__cell govuk-!-text-align-right"><a href="../tasklist">View licence</a>
-                                                                            <br><a href="../tasklist">View application</a></td>
+                                                                       <br><a href="../tasklist">View application</a>
+                                                                       <br><a href="#">Copy a previous application</a></td>
                 </tr>
 
                 <tr class="govuk-table__row">
@@ -77,7 +79,8 @@
                     <td class="govuk-table__cell">15 May 2024</td>
                     <td class="govuk-table__cell">Off premises</td>
                     <td class="govuk-table__cell govuk-!-text-align-right"><a href="../tasklist">View licence</a>
-                                                                           <br><a href="../tasklist">View application</a></td>
+                                                                           <br><a href="../tasklist">View application</a>
+                                                                           <br><a href="#">Copy a previous application</a></td>
                 </tr>
 
                 <tr class="govuk-table__row">
@@ -85,14 +88,16 @@
                     <td class="govuk-table__cell">4 March 2024</td>
                     <td class="govuk-table__cell">Off premises</td>
                     <td class="govuk-table__cell govuk-!-text-align-right"><a href="../tasklist">View licence</a>
-                                                                            <br><a href="../tasklist">View application</a></td>
+                                                                       <br><a href="../tasklist">View application</a>
+                                                                       <br><a href="#">Copy a previous application</a></td>
                 </tr>
 
                 <tr class="govuk-table__row">
                     <td class="govuk-table__cell">Rejected</td>
                     <td class="govuk-table__cell"></td>
                     <td class="govuk-table__cell">Onto premises</td>
-                    <td class="govuk-table__cell govuk-!-text-align-right"><a href="../tasklist">View application</a></td>
+                    <td class="govuk-table__cell govuk-!-text-align-right"><a href="../tasklist">View application</a>
+                                                                       <br><a href="#">Copy a previous application</a></td>
                 </tr>
 
             </tbody>
@@ -104,5 +109,24 @@
 
 </div>
 
+
+
+<!--  drop down to toggle  PENDING  states  -->
+<form method="post"  action="#" class="for4" style=" float: left; position: relative; bottom:-225px;  ">
+
+    <select style="height:30px;" onchange="window.location.href='?'+this.value">
+
+        <option value="application-submitted-by-user=false&"
+                {% if  data['application-submitted-by-user'] != "true"  %}selected{% endif %}
+        >No draft and no spending submissions</option>
+
+        <option value="application-submitted-by-user=true&"
+                {% if  data['application-submitted-by-user'] == 'true'   %}selected{% endif %}
+        >Pending submission only</option>
+
+    </select>
+
+</form>
+<!--  END OF ERROR LOGIC -->
 
 {% endblock %}
