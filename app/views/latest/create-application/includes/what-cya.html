@@ -1,19 +1,33 @@
 <dl class="govuk-summary-list">
 
-            <div class="govuk-summary-list__row">
-                <dt class="govuk-summary-list__key govuk-!-font-weight-regular  govuk-!-width-one-half">
-                    What are you planning on moving?
-                </dt>
-                <dd class="govuk-summary-list__value">
-                    {{ data['what-thing-being-moved-radios'] }}
-                </dd>
-                <dd class="govuk-summary-list__actions">
-                    <a class="govuk-link" href="../what/thing-being-moved">Change<span class="govuk-visually-hidden"> </span></a>
-                </dd>
-            </div>
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-!-font-weight-regular  govuk-!-width-one-half">
+            What are you planning on moving?
+        </dt>
+        <dd class="govuk-summary-list__value">
+            {{ data['what-thing-being-moved-radios'] }}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="../what/thing-being-moved">Change<span class="govuk-visually-hidden"> </span></a>
+        </dd>
+    </div>
+
+    {% if data['what-thing-being-moved-radios'] == "Something else" %}
+
+        <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key govuk-!-font-weight-regular  govuk-!-width-one-half">
+                What are you planning on moving?
+            </dt>
+            <dd class="govuk-summary-list__value">
+                {{ data['what-thing-being-moved-page-2-radios'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="../what/thing-being-moved-page-2">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        </div>
+
+    {% endif %}
 
 
 
-
-
-        </dl>
+    </dl>

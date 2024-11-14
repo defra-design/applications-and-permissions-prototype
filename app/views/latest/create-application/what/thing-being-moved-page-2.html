@@ -53,7 +53,7 @@ This will save you time.
                     [
                         {
                             html: errorTextHTML,
-                            href: "#what-thing-being-moved-radios"
+                            href: "#what-thing-being-moved-page-2-radios"
                         }
                     ]
                 })
@@ -63,13 +63,13 @@ This will save you time.
 
 
         <!-- go to routes.js for routing  -->
-        <form action="thing-being-moved-router" method="post" novalidate>
+        <form action="thing-being-moved-page-2-router" method="post" novalidate>
 
             {{ govukRadios
                 ({
-                    name: "what-thing-being-moved-radios",
+                    name: "what-thing-being-moved-page-2-radios",
 
-                    id: "what-thing-being-moved-radios",
+                    id: "what-thing-being-moved-page-2-radios",
 
                     fieldset:
                     {
@@ -92,29 +92,38 @@ This will save you time.
                     items:
                     [
                         {
-                            value: "Birds",
-                            text: "Birds",
-                            checked: data['what-thing-being-moved-radios'] == "Birds"
+                            value: "Camels",
+                            text: "Camels",
+                            checked: data['what-thing-being-moved-page-2-radios'] == "Camels"
                         },
                         {
-                            value: "Cattle",
-                            text: "Cattle",
-                            checked: data['what-thing-being-moved-radios'] == "Cattle"
+                            value: "Alpacas",
+                            text: "Alpacas",
+                            checked: data['what-thing-being-moved-page-2-radios'] == "Alpacas"
                         },
                         {
-                            value: "Pigs",
-                            text: "Pigs",
-                            checked: data['what-thing-being-moved-radios'] == "Pigs"
+                            value: "Reindeer",
+                            text: "Reindeer",
+                            checked: data['what-thing-being-moved-page-2-radios'] == "Reindeer"
                         },
                         {
-                            value: "Sheep or goats",
-                            text: "Sheep or goats",
-                            checked: data['what-thing-being-moved-radios'] == "Sheep or goats"
+                            value: "Horses",
+                            text: "Horses",
+                            checked: data['what-thing-being-moved-page-2-radios'] == "Horses"
+                        },
+                        {
+                            value: "Another animal type",
+                            text: "Another animal type",
+                            checked: data['what-thing-being-moved-page-2-radios'] == "Another animal type"
                         },
                         {
                             value: "Something else",
                             text: "Something else",
-                            checked: data['what-thing-being-moved-radios'] == "Something else"
+                            hint:
+                            {
+                                text: "For example, samples, feed, waste materials or equipment "
+                            },
+                            checked: data['what-thing-being-moved-page-2-radios'] == "Something else"
                         }
                     ]
                 })
