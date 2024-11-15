@@ -188,7 +188,7 @@ module.exports = function (router) {
         req.session.data['errortypeone'] = "false";
 
         // If Yes was selected, continue to next page
-        if (req.session.data['contact-and-updates-licence-select-post-address-radios'] == "Your farm, New road, EK32 9LR")
+        if (req.session.data['contact-and-updates-licence-select-post-address-radios'] == "Your farm, New road, EK32 9LR [From origin]")
         {
             // Continue to the next page
             res.redirect('check-answers');
