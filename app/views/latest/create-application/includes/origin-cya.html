@@ -7,9 +7,11 @@
         <dd class="govuk-summary-list__value">
             {{ data['origin-to-or-from-own-premises-radios'] }}
         </dd>
-        <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="../origin/to-or-from-own-premises">Change<span class="govuk-visually-hidden"> </span></a>
-        </dd>
+        {%  if  data['application-submitted-and-locked'] != "true"  %}
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="../origin/to-or-from-own-premises">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        {% endif %}
     </div>
 
 
@@ -21,9 +23,11 @@
             <dd class="govuk-summary-list__value">
                 {{ data['origin-selection-of-own-premises-radios'] }}
             </dd>
-            <dd class="govuk-summary-list__actions">
-                <a class="govuk-link" href="../origin/selection-of-own-premises">Change<span class="govuk-visually-hidden"> </span></a>
-            </dd>
+            {%  if  data['application-submitted-and-locked'] != "true"  %}
+                <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="../origin/selection-of-own-premises">Change<span class="govuk-visually-hidden"> </span></a>
+                </dd>
+            {% endif %}
         </div>
 
         {%  if  data['origin-selection-of-own-premises-radios'] == "Another origin"  %}
@@ -34,9 +38,11 @@
                 <dd class="govuk-summary-list__value">
                     {{ data['origin-own-farm-new-cph-text-input'] }}
                 </dd>
-                <dd class="govuk-summary-list__actions">
-                    <a class="govuk-link" href="../origin/own-farm-new-cph">Change<span class="govuk-visually-hidden"> </span></a>
-                </dd>
+                {%  if  data['application-submitted-and-locked'] != "true"  %}
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="../origin/own-farm-new-cph">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                {% endif %}
             </div>
 
             <div class="govuk-summary-list__row">
@@ -50,9 +56,11 @@
                     {{ data['destination-destination-farm-addressCounty'] }}<br>
                     {{ data['destination-destination-farm-addressPostcode'] }}
                 </dd>
-                <dd class="govuk-summary-list__actions">
-                    <a class="govuk-link" href="../origin/own-farm-new-address">Change<span class="govuk-visually-hidden"> </span></a>
-                </dd>
+                {%  if  data['application-submitted-and-locked'] != "true"  %}
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="../origin/own-farm-new-address">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                {% endif %}
             </div>
         {%  endif  %}
 
@@ -66,9 +74,11 @@
             <dd class="govuk-summary-list__value">
                 {{ data['origin-type-of-origin-radios'] }}
             </dd>
-            <dd class="govuk-summary-list__actions">
-                <a class="govuk-link" href="../origin/type-of-origin">Change<span class="govuk-visually-hidden"> </span></a>
-            </dd>
+            {%  if  data['application-submitted-and-locked'] != "true"  %}
+                <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="../origin/type-of-origin">Change<span class="govuk-visually-hidden"> </span></a>
+                </dd>
+            {%  endif  %}
         </div>
 
         {%  if  data['origin-type-of-origin-radios'] == "A farm"  %}
@@ -79,9 +89,11 @@
                 <dd class="govuk-summary-list__value">
                     {{ data['origin-origin-farm-cph-text-input'] }}
                 </dd>
-                <dd class="govuk-summary-list__actions">
-                    <a class="govuk-link" href="../origin/own">Change<span class="govuk-visually-hidden"> </span></a>
-                </dd>
+                {%  if  data['application-submitted-and-locked'] != "true"  %}
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="../origin/own">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                {%  endif  %}
             </div>
 
 
@@ -96,9 +108,11 @@
                     {{ data['origin-addressCounty'] }}<br>
                     {{ data['origin-addressPostcode'] }}
                 </dd>
-                <dd class="govuk-summary-list__actions">
-                    <a class="govuk-link" href="../origin/origin-farm-address">Change<span class="govuk-visually-hidden"> </span></a>
-                </dd>
+                {%  if  data['application-submitted-and-locked'] != "true"  %}
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="../origin/origin-farm-address">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                {%  endif  %}
             </div>
         {%  endif  %}
 
@@ -115,9 +129,11 @@
             <dd class="govuk-summary-list__value">
                 {{ data['origin-ruminants-any-60-days-radios-yes-no'] }}
             </dd>
-            <dd class="govuk-summary-list__actions">
-                <a class="govuk-link" href="../origin/ruminants-any-60-days">Change<span class="govuk-visually-hidden"> </span></a>
-            </dd>
+            {%  if  data['application-submitted-and-locked'] != "true"  %}
+                <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="../origin/ruminants-any-60-days">Change<span class="govuk-visually-hidden"> </span></a>
+                </dd>
+            {%  endif  %}
         </div>
 
         {%  if data['origin-ruminants-any-60-days-radios-yes-no'] == "Yes"  %}
@@ -128,9 +144,11 @@
                 <dd class="govuk-summary-list__value">
                     {{ data['origin-ruminants-know-cph-radios-yes-no'] }}
                 </dd>
-                <dd class="govuk-summary-list__actions">
-                    <a class="govuk-link" href="../origin/ruminants-know-cph">Change<span class="govuk-visually-hidden"> </span></a>
-                </dd>
+                {%  if  data['application-submitted-and-locked'] != "true"  %}
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="../origin/ruminants-know-cph">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                {%  endif  %}
             </div>
 
             {%  if data['origin-ruminants-know-cph-radios-yes-no'] == "Yes"  %}
@@ -141,11 +159,13 @@
                     <dd class="govuk-summary-list__value">
                         {{ data['origin-ruminants-60-days-cph-text-input'] }}
                     </dd>
-                    <dd class="govuk-summary-list__actions">
-                        <a class="govuk-link" href="../origin/ruminants-60-days-cph">Change<span class="govuk-visually-hidden"> </span></a>
-                    </dd>
+                    {%  if  data['application-submitted-and-locked'] != "true"  %}
+                        <dd class="govuk-summary-list__actions">
+                            <a class="govuk-link" href="../origin/ruminants-60-days-cph">Change<span class="govuk-visually-hidden"> </span></a>
+                        </dd>
+                    {%  endif  %}
                 </div>
-            {%  endif %}
+            {%  endif  %}
 
         {%  endif  %}
 

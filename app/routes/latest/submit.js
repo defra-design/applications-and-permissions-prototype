@@ -36,6 +36,42 @@ module.exports = function (router) {
 
 
 
+    // VIEW SUBMITTED APPLICATION
+    router.get(section + 'start-new-application-router', function (req, res)
+    {
+        req.session.data['application-submitted-and-locked'] = "false";
+        req.session.data['application-submitted-by-user'] = "false";
+        req.session.data['application-saved-draft'] = "false";
+
+        req.session.data['what-thing-being-moved-radios'] = "";
+        req.session.data['what-move-date-window-start-date-input-day'] = "";
+        req.session.data['what-move-date-window-start-date-input-month'] = "";
+        req.session.data['what-move-date-window-start-date-input-year'] = "";
+        req.session.data['what-move-date-window-start-date-input-month-number'] = "";
+        req.session.data['what-move-date-window-start-date-input-month-text'] = "";
+        req.session.data['section-what-complete'] = "";
+        req.session.data['origin-to-or-from-own-premises-radios'] = "";
+        req.session.data['origin-selection-of-own-premises-radios'] = "";
+        req.session.data['section-origin-complete'] = "";
+        req.session.data['destination-type-of-destination-radios'] = "";
+        req.session.data['destination-market-type-radios'] = "";
+        req.session.data['section-destination-complete'] = "";
+        req.session.data['tests-whole-herd-test-radios-yes-no'] = "";
+        req.session.data['section-tests-complete'] = "";
+        req.session.data['tests-origin-confirmation-checkboxes'] = "";
+        req.session.data['identification-microchipped-radios-yes-no'] = "";
+        req.session.data['contact-and-updates-licence-email-or-post-radios'] = "";
+        req.session.data['contact-and-updates-licence-select-post-address-radios'] = "";
+        req.session.data['contact-and-updates-licence-select-email-address-radios'] = "";
+        req.session.data['contact-and-updates-updates-receive-radios-yes-no'] = "";
+        req.session.data['contact-and-updates-updates-method-checkboxes'] = [""];
+        req.session.data['contact-and-updates-updates-select-email-address-radios'] = "";
+        req.session.data['section-contact-and-updates-complete'] = "";
+
+
+        res.redirect('../task-list');
+    })
+
 
 
     ////////////////////////////////////////////////////////////////////////////////////

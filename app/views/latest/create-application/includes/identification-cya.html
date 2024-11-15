@@ -7,9 +7,11 @@
         <dd class="govuk-summary-list__value">
             {{ data['identification-microchipped-radios-yes-no'] }}
         </dd>
-        <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="../identification/microchipped">Change<span class="govuk-visually-hidden"> </span></a>
-        </dd>
+        {%  if  data['application-submitted-and-locked'] != "true"  %}
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="../identification/microchipped">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        {%  endif  %}
     </div>
 
     {%  if  data['identification-microchipped-radios-yes-no'] == "No"  %}
@@ -21,9 +23,11 @@
             <dd class="govuk-summary-list__value">
                 {{ data['identification-enter-ear-tags-text-input'] }}
             </dd>
-            <dd class="govuk-summary-list__actions">
-                <a class="govuk-link" href="../identification/enter-ear-tags">Change<span class="govuk-visually-hidden"> </span></a>
-            </dd>
+            {%  if  data['application-submitted-and-locked'] != "true"  %}
+                <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="../identification/enter-ear-tags">Change<span class="govuk-visually-hidden"> </span></a>
+                </dd>
+            {%  endif  %}
         </div>
 
     {%  endif  %}

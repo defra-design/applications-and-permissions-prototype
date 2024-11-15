@@ -7,9 +7,11 @@
         <dd class="govuk-summary-list__value">
             {{ data['biosecurity-reuse-map-radios'] }}
         </dd>
-        <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="../biosecurity-map/reuse-map">Change<span class="govuk-visually-hidden"> </span></a>
-        </dd>
+        {%  if  data['application-submitted-and-locked'] != "true"  %}
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="../biosecurity-map/reuse-map">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        {%  endif  %}
     </div>
 
     {%  if data['biosecurity-reuse-map-radios']  == "Upload a new map"  %}
@@ -23,9 +25,11 @@
             <br>
             IMAGE OF UPLOADED MAP
         </dd>
-        <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="../biosecurity-map/upload-plan">Change<span class="govuk-visually-hidden"> </span></a>
-        </dd>
+        {%  if  data['application-submitted-and-locked'] != "true"  %}
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="../biosecurity-map/upload-plan">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        {%  endif  %}
     </div>
     {%  endif  %}
 

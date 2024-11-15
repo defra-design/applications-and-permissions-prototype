@@ -11,9 +11,11 @@
             <dd class="govuk-summary-list__value">
                 {{ data['destination-selection-of-own-premises-radios'] }}
             </dd>
-            <dd class="govuk-summary-list__actions">
-                <a class="govuk-link" href="../destination/selection-of-own-premises">Change<span class="govuk-visually-hidden"> </span></a>
-            </dd>
+            {%  if  data['application-submitted-and-locked'] != "true"  %}
+                <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="../destination/selection-of-own-premises">Change<span class="govuk-visually-hidden"> </span></a>
+                </dd>
+            {%  endif  %}
         </div>
 
 
@@ -27,9 +29,11 @@
             <dd class="govuk-summary-list__value">
                 {{ data['destination-type-of-destination-radios'] }}
             </dd>
-            <dd class="govuk-summary-list__actions">
-                <a class="govuk-link" href="../destination/type-of-destination">Change<span class="govuk-visually-hidden"> </span></a>
-            </dd>
+            {%  if  data['application-submitted-and-locked'] != "true"  %}
+                <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="../destination/type-of-destination">Change<span class="govuk-visually-hidden"> </span></a>
+                </dd>
+            {%  endif  %}
         </div>
 
         {%  if  data['destination-type-of-destination-radios'] == "A market"  %}
@@ -41,13 +45,15 @@
                 <dd class="govuk-summary-list__value">
                     {{ data['destination-market-type-radios'] }}
                 </dd>
-                <dd class="govuk-summary-list__actions">
-                    <a class="govuk-link" href="../destination/market-type">Change<span class="govuk-visually-hidden"> </span></a>
-                </dd>
+                {%  if  data['application-submitted-and-locked'] != "true"  %}
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="../destination/market-type">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                {%  endif  %}
             </div>
 
 
-        {%  elif  data['destination-type-of-destination-radios'] == "An approved TB unit"  %}
+        {%  elif  data['destination-type-of-destination-radios'] == "Approved finishing unit (AFU)"  %}
 
         <!--
             <div class="govuk-summary-list__row">
@@ -72,9 +78,11 @@
                 <dd class="govuk-summary-list__value">
                     {{ data['destination-destination-farm-cph-text-input'] }}
                 </dd>
-                <dd class="govuk-summary-list__actions">
-                    <a class="govuk-link" href="../destination/destination-farm-cph">Change<span class="govuk-visually-hidden"> </span></a>
-                </dd>
+                {%  if  data['application-submitted-and-locked'] != "true"  %}
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="../destination/destination-farm-cph">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                {%  endif  %}
             </div>
 
             <div class="govuk-summary-list__row">
@@ -88,9 +96,11 @@
                     {{ data['own-origin-addressCounty'] }}<br>
                     {{ data['own-origin-addressPostcode'] }}
                 </dd>
-                <dd class="govuk-summary-list__actions">
-                    <a class="govuk-link" href="../destination/destination-farm-cph">Change<span class="govuk-visually-hidden"> </span></a>
-                </dd>
+                {%  if  data['application-submitted-and-locked'] != "true"  %}
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="../destination/destination-farm-cph">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                {%  endif  %}
             </div>
 
         {%  endif  %}
@@ -110,9 +120,11 @@
                 <dd class="govuk-summary-list__value">
                     {{ data['destination-ruminants-any-60-days-radios-yes-no'] }}
                 </dd>
-                <dd class="govuk-summary-list__actions">
-                    <a class="govuk-link" href="../destination/ruminants-any-60-days">Change<span class="govuk-visually-hidden"> </span></a>
-                </dd>
+                {%  if  data['application-submitted-and-locked'] != "true"  %}
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="../destination/ruminants-any-60-days">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                {%  endif  %}
             </div>
 
             {%  if data['destination-ruminants-any-60-days-radios-yes-no'] == "Yes"  %}
@@ -123,9 +135,11 @@
                     <dd class="govuk-summary-list__value">
                         {{ data['destination-ruminants-know-cph-radios-yes-no'] }}
                     </dd>
-                    <dd class="govuk-summary-list__actions">
-                        <a class="govuk-link" href="../destination/ruminants-know-cph">Change<span class="govuk-visually-hidden"> </span></a>
-                    </dd>
+                    {%  if  data['application-submitted-and-locked'] != "true"  %}
+                        <dd class="govuk-summary-list__actions">
+                            <a class="govuk-link" href="../destination/ruminants-know-cph">Change<span class="govuk-visually-hidden"> </span></a>
+                        </dd>
+                    {%  endif  %}
                 </div>
 
                 {%  if data['destination-ruminants-know-cph-radios-yes-no'] == "Yes"  %}
@@ -136,9 +150,11 @@
                         <dd class="govuk-summary-list__value">
                             {{ data['destination-ruminants-60-days-cph-text-input'] }}
                         </dd>
-                        <dd class="govuk-summary-list__actions">
-                            <a class="govuk-link" href="../destination/ruminants-60-days-cph">Change<span class="govuk-visually-hidden"> </span></a>
-                        </dd>
+                        {%  if  data['application-submitted-and-locked'] != "true"  %}
+                            <dd class="govuk-summary-list__actions">
+                                <a class="govuk-link" href="../destination/ruminants-60-days-cph">Change<span class="govuk-visually-hidden"> </span></a>
+                            </dd>
+                        {%  endif  %}
                     </div>
                 {%  endif %}
 
@@ -154,9 +170,11 @@
             <dd class="govuk-summary-list__value">
                 {{ data['destination-reason-for-movement-radios'] }}
             </dd>
-            <dd class="govuk-summary-list__actions">
-                <a class="govuk-link" href="../destination/reason-for-movement">Change<span class="govuk-visually-hidden"> </span></a>
-            </dd>
+            {%  if  data['application-submitted-and-locked'] != "true"  %}
+                <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="../destination/reason-for-movement">Change<span class="govuk-visually-hidden"> </span></a>
+                </dd>
+            {%  endif  %}
         </div>
 
 
@@ -169,9 +187,11 @@
                 <dd class="govuk-summary-list__value">
                     {{ data['destination-pregnant-any-radios-yes-no'] }}
                 </dd>
-                <dd class="govuk-summary-list__actions">
-                    <a class="govuk-link" href="../destination/pregnant-any">Change<span class="govuk-visually-hidden"> </span></a>
-                </dd>
+                {%  if  data['application-submitted-and-locked'] != "true"  %}
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="../destination/pregnant-any">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                {%  endif  %}
             </div>
 
             {%  if data['destination-pregnant-any-radios-yes-no'] == "Yes"  %}
@@ -185,9 +205,11 @@
                         {{ data['destination-pregnant-earliest-birth-date-date-input-month-text'] }}
                         {{ data['destination-pregnant-earliest-birth-date-date-input-year'] }}
                     </dd>
-                    <dd class="govuk-summary-list__actions">
-                        <a class="govuk-link" href="../destination/pregnant-earliest-birth-date">Change<span class="govuk-visually-hidden"> </span></a>
-                    </dd>
+                    {%  if  data['application-submitted-and-locked'] != "true"  %}
+                        <dd class="govuk-summary-list__actions">
+                            <a class="govuk-link" href="../destination/pregnant-earliest-birth-date">Change<span class="govuk-visually-hidden"> </span></a>
+                        </dd>
+                    {%  endif  %}
                 </div>
 
             {%  endif  %}
@@ -204,9 +226,11 @@
                 <dd class="govuk-summary-list__value">
                     {{ data['destination-quantity-options-radios'] }}
                 </dd>
-                <dd class="govuk-summary-list__actions">
-                    <a class="govuk-link" href="../destination/quantity-options">Change<span class="govuk-visually-hidden"> </span></a>
-                </dd>
+                {%  if  data['application-submitted-and-locked'] != "true"  %}
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="../destination/quantity-options">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                {%  endif  %}
             </div>
 
             {%  if  data['destination-quantity-options-radios'] == "No"  %}
@@ -217,9 +241,11 @@
                     <dd class="govuk-summary-list__value">
                         {{ data['destination-quantity-half-herd-radios'] }}
                     </dd>
-                    <dd class="govuk-summary-list__actions">
-                        <a class="govuk-link" href="../destination/quantity-half-herd">Change<span class="govuk-visually-hidden"> </span></a>
-                    </dd>
+                    {%  if  data['application-submitted-and-locked'] != "true"  %}
+                        <dd class="govuk-summary-list__actions">
+                            <a class="govuk-link" href="../destination/quantity-half-herd">Change<span class="govuk-visually-hidden"> </span></a>
+                        </dd>
+                    {%  endif  %}
                 </div>
 
             {%  endif  %}
@@ -233,9 +259,11 @@
                 <dd class="govuk-summary-list__value">
                     {{ data['destination-any-additional-info-text-input'] }}
                 </dd>
-                <dd class="govuk-summary-list__actions">
-                    <a class="govuk-link" href="../destination/any-additional-info">Change<span class="govuk-visually-hidden"> </span></a>
-                </dd>
+                {%  if  data['application-submitted-and-locked'] != "true"  %}
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="../destination/any-additional-info">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                {%  endif  %}
             </div>
 
         {%  endif  %}

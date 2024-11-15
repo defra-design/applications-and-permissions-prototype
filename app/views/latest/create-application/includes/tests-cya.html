@@ -8,9 +8,11 @@
             <dd class="govuk-summary-list__value">
                 {{ data['tests-bluetongue-vaccinations-radios-yes-no'] }}
             </dd>
-            <dd class="govuk-summary-list__actions">
-                <a class="govuk-link" href="../tests/bluetongue-vaccinations">Change<span class="govuk-visually-hidden"> </span></a>
-            </dd>
+            {%  if  data['application-submitted-and-locked'] != "true"  %}
+                <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="../tests/bluetongue-vaccinations">Change<span class="govuk-visually-hidden"> </span></a>
+                </dd>
+            {%  endif  %}
         </div>
 
         <div class="govuk-summary-list__row">
@@ -20,9 +22,11 @@
             <dd class="govuk-summary-list__value">
                 {{ data['tests-bluetongue-vaccination-age-radios'] }}
             </dd>
-            <dd class="govuk-summary-list__actions">
-                <a class="govuk-link" href="../tests/bluetongue-vaccination-age">Change<span class="govuk-visually-hidden"> </span></a>
-            </dd>
+            {%  if  data['application-submitted-and-locked'] != "true"  %}
+                <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="../tests/bluetongue-vaccination-age">Change<span class="govuk-visually-hidden"> </span></a>
+                </dd>
+            {%  endif  %}
         </div>
     {%  endif  %}
 
@@ -35,9 +39,11 @@
             <dd class="govuk-summary-list__value">
                 I confirm TB skin tests have been completed and sent to APHA
             </dd>
-            <dd class="govuk-summary-list__actions">
-                <a class="govuk-link" href="../tests/destination-confirmation">Change<span class="govuk-visually-hidden"> </span></a>
-            </dd>
+            {%  if  data['application-submitted-and-locked'] != "true"  %}
+                <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="../tests/destination-confirmation">Change<span class="govuk-visually-hidden"> </span></a>
+                </dd>
+            {%  endif  %}
         </div>
 
     {%  else  %}
@@ -49,9 +55,11 @@
             <dd class="govuk-summary-list__value">
                 I confirm these test conditions have been met
             </dd>
-            <dd class="govuk-summary-list__actions">
-                <a class="govuk-link" href="../tests/origin-confirmation">Change<span class="govuk-visually-hidden"> </span></a>
-            </dd>
+            {%  if  data['application-submitted-and-locked'] != "true"  %}
+                <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="../tests/origin-confirmation">Change<span class="govuk-visually-hidden"> </span></a>
+                </dd>
+            {%  endif  %}
         </div>
 
     {%  endif  %}

@@ -289,10 +289,11 @@
     <select style="height:30px;" onchange="window.location.href='?'+this.value">
 
         <!--  NOTHING STARTED  -->
-        <option value="section-what-complete=false&section-origin-complete=false&section-destination-complete=false&section-tests-complete=false&section-biosecurity-complete=false&section-biosecurity-map-complete=false&section-identification-complete=false&section-contact-and-updates-complete=false&origin-to-or-from-own-premises-radios=null&destination-type-of-destination-radios=null&tests-whole-herd-test-radios-yes-no=null&"
+        <option value="section-what-complete=false&section-origin-complete=false&section-destination-complete=false&section-when-complete=false&section-tests-complete=false&section-biosecurity-complete=false&section-biosecurity-map-complete=false&section-identification-complete=false&section-contact-and-updates-complete=false&origin-to-or-from-own-premises-radios=null&destination-type-of-destination-radios=null&tests-whole-herd-test-radios-yes-no=null&"
             {% if  data['section-what-complete'] != "true" and
                    data['section-origin-complete'] != "true" and
                    data['section-destination-complete'] != "true" and
+                   data['section-when-complete'] != "true" and
                    data['section-tests-complete'] != "true" and
                    data['section-biosecurity-complete'] != "true" and
                    data['section-biosecurity-map-complete'] != "true" and
@@ -323,10 +324,11 @@
 
 
         <!--  ON TO THE FARM FROM A FARM -->
-        <option value="section-what-complete=true&section-origin-complete=true&section-destination-complete=true&section-tests-complete=false&section-biosecurity-complete=false&section-biosecurity-map-complete=false&section-identification-complete=false&section-contact-and-updates-complete=false&origin-to-or-from-own-premises-radios=On to the farm or premises&destination-type-of-destination-radios=A farm&tests-whole-herd-test-radios-yes-no=null&"
+        <option value="section-what-complete=true&section-origin-complete=true&section-destination-complete=true&section-when-complete=true&section-tests-complete=false&section-biosecurity-complete=false&section-biosecurity-map-complete=false&section-identification-complete=false&section-contact-and-updates-complete=false&origin-to-or-from-own-premises-radios=On to the farm or premises&destination-type-of-destination-radios=A farm&tests-whole-herd-test-radios-yes-no=null&"
             {% if  data['section-what-complete'] == "true" and
                    data['section-origin-complete'] == "true" and
                    data['section-destination-complete'] == "true" and
+                   data['section-when-complete'] == "true" and
                    data['section-tests-complete'] != "true" and
                    data['section-biosecurity-complete'] != "true" and
                    data['section-biosecurity-map-complete'] != "true" and
@@ -374,11 +376,12 @@
 
 
         <!--  EVERYTHING SHOWING -->
-        <option value="section-what-complete=true&section-origin-complete=true&section-destination-complete=true&section-tests-complete=true&section-biosecurity-complete=true&section-biosecurity-map-complete=true&section-identification-complete=true&section-contact-and-updates-complete=true&origin-to-or-from-own-premises-radios=On to the farm or premises&destination-type-of-destination-radios=A farm&tests-whole-herd-test-radios-yes-no=No&"
+        <option value="section-what-complete=true&section-origin-complete=true&section-destination-complete=true&section-when-complete=true&section-tests-complete=true&section-biosecurity-complete=true&section-biosecurity-map-complete=true&section-identification-complete=true&section-contact-and-updates-complete=true&origin-to-or-from-own-premises-radios=On to the farm or premises&destination-type-of-destination-radios=A farm&tests-whole-herd-test-radios-yes-no=No&"
             {% if  data['section-what-complete'] == "true" and
                    data['section-origin-complete'] == "true" and
                    data['section-destination-complete'] == "true" and
                    data['section-tests-complete'] == "true" and
+                    data['section-when-complete'] == "true" and
                    data['section-biosecurity-complete'] == "true" and
                    data['section-biosecurity-map-complete'] == "true" and
                    data['section-identification-complete'] == "true" and

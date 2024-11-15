@@ -7,9 +7,11 @@
         <dd class="govuk-summary-list__value">
             {{ data['what-thing-being-moved-radios'] }}
         </dd>
-        <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="../what/thing-being-moved">Change<span class="govuk-visually-hidden"> </span></a>
-        </dd>
+        {%  if  data['application-submitted-and-locked'] != "true"  %}
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="../what/thing-being-moved">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        {% endif %}
     </div>
 
     {% if data['what-thing-being-moved-radios'] == "Something else" %}
@@ -21,9 +23,11 @@
             <dd class="govuk-summary-list__value">
                 {{ data['what-thing-being-moved-page-2-radios'] }}
             </dd>
-            <dd class="govuk-summary-list__actions">
-                <a class="govuk-link" href="../what/thing-being-moved-page-2">Change<span class="govuk-visually-hidden"> </span></a>
-            </dd>
+            {%  if  data['application-submitted-and-locked'] != "true"  %}
+                <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="../what/thing-being-moved-page-2">Change<span class="govuk-visually-hidden"> </span></a>
+                </dd>
+            {% endif %}
         </div>
 
     {% endif %}

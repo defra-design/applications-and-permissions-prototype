@@ -144,7 +144,7 @@ module.exports = function (router) {
             }
         }
 
-        else if (req.session.data['destination-type-of-destination-radios'] == "An approved TB unit")
+        else if (req.session.data['destination-type-of-destination-radios'] == "Approved finishing unit (AFU)")
         {
             res.redirect('check-answers');
         }

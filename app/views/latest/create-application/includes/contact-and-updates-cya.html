@@ -7,9 +7,11 @@
         <dd class="govuk-summary-list__value">
             {{ data['contact-and-updates-licence-email-or-post-radios'] }}
         </dd>
-        <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="../contact-and-updates/licence-email-or-post">Change<span class="govuk-visually-hidden"> </span></a>
-        </dd>
+        {%  if  data['application-submitted-and-locked'] != "true"  %}
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="../contact-and-updates/licence-email-or-post">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        {%  endif  %}
     </div>
 
 
@@ -22,9 +24,11 @@
         <dd class="govuk-summary-list__value">
             {{ data['contact-and-updates-licence-select-email-address-radios'] }}
         </dd>
-        <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="../contact-and-updates/licence-select-email-address">Change<span class="govuk-visually-hidden"> </span></a>
-        </dd>
+        {%  if  data['application-submitted-and-locked'] != "true"  %}
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="../contact-and-updates/licence-select-email-address">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        {%  endif  %}
     </div>
 
     {%  else  %}
@@ -36,9 +40,11 @@
         <dd class="govuk-summary-list__value">
             {{ data['contact-and-updates-licence-select-post-address-radios'] }}
         </dd>
-        <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="../contact-and-updates/licence-select-post-address">Change<span class="govuk-visually-hidden"> </span></a>
-        </dd>
+        {%  if  data['application-submitted-and-locked'] != "true"  %}
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="../contact-and-updates/licence-select-post-address">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        {%  endif  %}
     </div>
 
     {%  endif  %}
@@ -54,9 +60,11 @@
         <dd class="govuk-summary-list__value">
             {{ data['contact-and-updates-updates-receive-radios-yes-no'] }}
         </dd>
-        <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="../contact-and-updates/updates-receive">Change<span class="govuk-visually-hidden"> </span></a>
-        </dd>
+        {%  if  data['application-submitted-and-locked'] != "true"  %}
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="../contact-and-updates/updates-receive">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        {%  endif  %}
     </div>
 
 
@@ -69,9 +77,11 @@
         <dd class="govuk-summary-list__value">
             {{ data['contact-and-updates-updates-method-checkboxes'] }}
         </dd>
-        <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="../contact-and-updates/updates-method">Change<span class="govuk-visually-hidden"> </span></a>
-        </dd>
+        {%  if  data['application-submitted-and-locked'] != "true"  %}
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="../contact-and-updates/updates-method">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        {%  endif  %}
     </div>
 
 
@@ -83,9 +93,11 @@
         <dd class="govuk-summary-list__value">
             {{ data['contact-and-updates-updates-select-email-address-radios'] }}
         </dd>
-        <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="../contact-and-updates/updates-select-email-address">Change<span class="govuk-visually-hidden"> </span></a>
-        </dd>
+        {%  if  data['application-submitted-and-locked'] != "true"  %}
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="../contact-and-updates/updates-select-email-address">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        {%  endif  %}
     </div>
     {%  endif  %}
 
@@ -97,14 +109,16 @@
         <dd class="govuk-summary-list__value">
             {{ data['contact-and-updates-updates-select-text-number-radios'] }}
         </dd>
-        <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="../contact-and-updates/updates-select-text-number">Change<span class="govuk-visually-hidden"> </span></a>
-        </dd>
+        {%  if  data['application-submitted-and-locked'] != "true"  %}
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="../contact-and-updates/updates-select-text-number">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        {%  endif  %}
     </div>
 
     {%  endif  %}
 
-    {%  endif  %}
+{%  endif  %}
 
 
 
@@ -116,9 +130,11 @@
         <dd class="govuk-summary-list__value">
             {{ data['contact-and-updates-vet-name-text-input'] }}
         </dd>
-        <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="../contact-and-updates/vet-name">Change<span class="govuk-visually-hidden"> </span></a>
-        </dd>
+        {%  if  data['application-submitted-and-locked'] != "true"  %}
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="../contact-and-updates/vet-name">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        {%  endif  %}
     </div>
 
     <div class="govuk-summary-list__row">
@@ -128,9 +144,11 @@
         <dd class="govuk-summary-list__value">
             {{ data['contact-and-updates-vet-email-address-text-input'] }}
         </dd>
-        <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="../contact-and-updates/vet-email-address">Change<span class="govuk-visually-hidden"> </span></a>
-        </dd>
+        {%  if  data['application-submitted-and-locked'] != "true"  %}
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="../contact-and-updates/vet-email-address">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        {%  endif  %}
     </div>
     {%  endif  %}
 

@@ -7,9 +7,11 @@
         <dd class="govuk-summary-list__value">
             {{ data['biosecurity-kept-separately-radios-yes-no'] }}
         </dd>
-        <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="../biosecurity/kept-separately">Change<span class="govuk-visually-hidden"> </span></a>
-        </dd>
+        {%  if  data['application-submitted-and-locked'] != "true"  %}
+            <dd class="govuk-summary-list__actions">
+                 <a class="govuk-link" href="../biosecurity/kept-separately">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        {%  endif  %}
     </div>
 
 
@@ -22,9 +24,11 @@
         <dd class="govuk-summary-list__value">
             {{ data['biosecurity-grazing-radios-yes-no'] }}
         </dd>
-        <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="../biosecurity/grazing">Change<span class="govuk-visually-hidden"> </span></a>
-        </dd>
+        {%  if  data['application-submitted-and-locked'] != "true"  %}
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="../biosecurity/grazing">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        {%  endif  %}
     </div>
 
     {%  if data['biosecurity-grazing-radios-yes-no']  == "Yes"  %}
@@ -36,9 +40,11 @@
         <dd class="govuk-summary-list__value">
             {{ data['biosecurity-last-grazed-text-input'] }}
         </dd>
-        <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="../biosecurity/last-grazed">Change<span class="govuk-visually-hidden"> </span></a>
-        </dd>
+        {%  if  data['application-submitted-and-locked'] != "true"  %}
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="../biosecurity/last-grazed">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        {%  endif  %}
     </div>
 
     <div class="govuk-summary-list__row">
@@ -48,9 +54,11 @@
         <dd class="govuk-summary-list__value">
             {{ data['biosecurity-manure-and-slurry-radios-yes-no'] }}
         </dd>
-        <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="../biosecurity/manure-and-slurry">Change<span class="govuk-visually-hidden"> </span></a>
-        </dd>
+        {%  if  data['application-submitted-and-locked'] != "true"  %}
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="../biosecurity/manure-and-slurry">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        {%  endif  %}
     </div>
 
     <div class="govuk-summary-list__row">
@@ -60,9 +68,11 @@
         <dd class="govuk-summary-list__value">
             {{ data['biosecurity-grazing-field-how-separated-text-input'] }}
         </dd>
-        <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="../biosecurity/grazing-field-how-separated">Change<span class="govuk-visually-hidden"> </span></a>
-        </dd>
+        {%  if  data['application-submitted-and-locked'] != "true"  %}
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="../biosecurity/grazing-field-how-separated">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        {%  endif  %}
     </div>
 
     {%  endif  %}
@@ -75,9 +85,11 @@
         <dd class="govuk-summary-list__value">
             {{ data['biosecurity-roads-and-tracks-radios-yes-no'] }}
         </dd>
-        <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="../biosecurity/roads-and-tracks">Change<span class="govuk-visually-hidden"> </span></a>
-        </dd>
+        {%  if  data['application-submitted-and-locked'] != "true"  %}
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="../biosecurity/roads-and-tracks">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        {%  endif  %}
     </div>
 
     {%  if data['biosecurity-roads-and-tracks-radios-yes-no']  == "Yes"  %}
@@ -88,9 +100,11 @@
         <dd class="govuk-summary-list__value">
             {{ data['biosecurity-road-and-track-minimise-contamination-text-input'] }}
         </dd>
-        <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="../biosecurity/road-and-track-minimise-contamination">Change<span class="govuk-visually-hidden"> </span></a>
-        </dd>
+        {%  if  data['application-submitted-and-locked'] != "true"  %}
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="../biosecurity/road-and-track-minimise-contamination">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        {%  endif  %}
     </div>
     {%  endif  %}
 
@@ -103,9 +117,11 @@
         <dd class="govuk-summary-list__value">
             {{ data['biosecurity-buildings-any-shared-radios-yes-no'] }}
         </dd>
-        <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="../biosecurity/buildings-any-shared">Change<span class="govuk-visually-hidden"> </span></a>
-        </dd>
+        {%  if  data['application-submitted-and-locked'] != "true"  %}
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="../biosecurity/buildings-any-shared">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        {%  endif  %}
     </div>
 
     {%  if data['biosecurity-buildings-any-shared-radios-yes-no']  == "Yes"  %}
@@ -116,9 +132,11 @@
         <dd class="govuk-summary-list__value">
             {{ data['biosecurity-road-and-track-minimise-contamination-text-input'] }}
         </dd>
-        <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="../biosecurity/buildings-how-minimise-contamination">Change<span class="govuk-visually-hidden"> </span></a>
-        </dd>
+        {%  if  data['application-submitted-and-locked'] != "true"  %}
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="../biosecurity/buildings-how-minimise-contamination">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        {%  endif  %}
     </div>
     {%  endif  %}
 
@@ -133,9 +151,11 @@
         <dd class="govuk-summary-list__value">
             {{ data['biosecurity-people-disinfection-text-input'] }}
         </dd>
-        <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="../biosecurity/people-disinfection">Change<span class="govuk-visually-hidden"> </span></a>
-        </dd>
+        {%  if  data['application-submitted-and-locked'] != "true"  %}
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="../biosecurity/people-disinfection">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        {%  endif  %}
     </div>
 
 
@@ -146,9 +166,11 @@
         <dd class="govuk-summary-list__value">
             {{ data['biosecurity-disinfectant-text-input'] }}
         </dd>
-        <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="../biosecurity/disinfectant">Change<span class="govuk-visually-hidden"> </span></a>
-        </dd>
+        {%  if  data['application-submitted-and-locked'] != "true"  %}
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="../biosecurity/disinfectant">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        {%  endif  %}
     </div>
 
     <div class="govuk-summary-list__row">
@@ -158,9 +180,11 @@
         <dd class="govuk-summary-list__value">
             {{ data['biosecurity-disinfectant-dilution-number-input'] }}
         </dd>
-        <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="../biosecurity/disinfectant-dilution">Change<span class="govuk-visually-hidden"> </span></a>
-        </dd>
+        {%  if  data['application-submitted-and-locked'] != "true"  %}
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="../biosecurity/disinfectant-dilution">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        {%  endif  %}
     </div>
 
 
@@ -171,9 +195,11 @@
         <dd class="govuk-summary-list__value">
             I confirm I have taken measures to prevent the risk of contamination from badgers
         </dd>
-        <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="../biosecurity/badgers">Change<span class="govuk-visually-hidden"> </span></a>
-        </dd>
+        {%  if  data['application-submitted-and-locked'] != "true"  %}
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="../biosecurity/badgers">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        {%  endif  %}
     </div>
 
 
