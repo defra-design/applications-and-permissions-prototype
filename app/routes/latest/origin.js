@@ -277,7 +277,7 @@ module.exports = function (router) {
                 res.redirect('origin-farm-cph');
             }
         }
-        else if (req.session.data['origin-type-of-origin-radios'] == "A Finishing Unit")
+        else if (req.session.data['origin-type-of-origin-radios'] == "Approved finishing unit (AFU)")
         {
             // Continue to the next page
 
@@ -293,7 +293,7 @@ module.exports = function (router) {
                 res.redirect('fifty-percent-warning');
             }
         }
-        else if (req.session.data['origin-type-of-origin-radios'] == "Import")
+        else if (req.session.data['origin-type-of-origin-radios'] == "Movement after import")
         {
             // Continue to the next page
 
@@ -309,7 +309,7 @@ module.exports = function (router) {
                 res.redirect('fifty-percent-warning');
             }
         }
-        else if (req.session.data['origin-type-of-origin-radios'] == "Other")
+        else if (req.session.data['origin-type-of-origin-radios'] == "Another origin")
         {
             // Continue to the next page
 

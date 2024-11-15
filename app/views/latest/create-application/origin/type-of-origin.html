@@ -102,19 +102,23 @@ This will save you time.
                             checked: data['origin-type-of-origin-radios'] == "A farm"
                         },
                         {
-                            value: "A Finishing Unit",
-                            text: "A Finishing Unit",
-                            checked: data['origin-type-of-origin-radios'] == "A Finishing Unit"
+                            value: "Approved finishing unit (AFU)",
+                            text: "Approved finishing unit (AFU)",
+                            checked: data['origin-type-of-origin-radios'] == "Approved finishing unit (AFU)"
                         },
                         {
-                            value: "Import",
-                            text: "Import",
-                            checked: data['origin-type-of-origin-radios'] == "Import"
+                            value: "Movement after import",
+                            text: "Movement after import",
+                            checked: data['origin-type-of-origin-radios'] == "Movement after import"
                         },
                         {
-                            value: "Other",
-                            text: "Other",
-                            checked: data['origin-type-of-origin-radios'] == "Other"
+                            value: "Another origin",
+                            text: "Another origin",
+                            hint:
+                            {
+                                text: "For example a zoo or laboratory"
+                            },
+                            checked: data['origin-type-of-origin-radios'] == "Another origin"
                         }
                     ]
                 })
