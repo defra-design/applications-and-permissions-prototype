@@ -46,25 +46,72 @@ module.exports = function (router) {
     // NOT COMPLEX PAGE
     router.get(section + 'routing-contact-and-updates', function (req, res)
     {
-        // If the origin is unrestricted then communication details go to the restricted destination
-        // Simulate this ROUGHLY FOR NOW by checking that destination is a farm
-        if (req.session.data['origin-to-or-from-own-premises-radios'] == "Off the farm or premises"
-            && req.session.data['destination-type-of-destination-radios'] == "A farm")
-        {
-            // Continue to the next pages where the destination is TB restricted and assume origin is unrestricted
-            res.redirect('licence-send-to-destination');
-        }
-
-        else
-        {
-            // Continue to the next pages where farmer is the destination
-            res.redirect('licence-email-or-post');
-        }
+        // For release one we need the user to enter their name for every licence.
+        res.redirect('licence-name');
 
     })
 
 
 
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////                 Enter your name                    ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////              TEXT ENTRY - MANDATORY                ////////////////
+    ////////////////                 NOT COMPLEX PAGE                   ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    router.post(section + 'licence-name-router', function (req, res)
+    {
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+        req.session.data['errortypetwo'] = "false";
+        req.session.data['errortypethree'] = "false";
+        req.session.data['errortypefour'] = "false";
+
+        // Validation check if field is blank
+        if (req.session.data['contact-and-updates-licence-name-text-input'] == undefined || req.session.data['contact-and-updates-licence-name-text-input'] == "")
+        {
+            // Trigger validation and relaunch the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('licence-name');
+        }
+
+        else if (req.session.data['contact-and-updates-licence-name-text-input'].length > 255)
+        {
+            // Trigger validation and relaunch the page for over 15 characters
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypetwo'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('licence-name');
+        }
+
+        else
+        {
+            // everything with the input is fine so move on to next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('check-answers');
+            }
+            else
+            {
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('licence-email-or-post');
+            }
+        }
+
+    })
 
 
 
@@ -111,7 +158,7 @@ module.exports = function (router) {
             else
             {
                 // This page name needs to be the next page the user gets to after successfully continuing
-                res.redirect('licence-select-post-address');
+                res.redirect('licence-select-post-can-not-use-this-service');
             }
         }
         else

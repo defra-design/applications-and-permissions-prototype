@@ -4,11 +4,13 @@
 <!-- Setting the big main heading at the top of the page -->
 
 
-
+{% set pageHeadingTextHTML %}
+    You need to complete all of the sections before you review and submit
+{% endset %}
 
 <!-- Text that show in the browser tab. Does NOT need changing -->
 {% block pageTitle %}
-    You need to complete all sections before you review and submit
+    {{ pageHeadingTextHTML }}
 {% endblock %}
 
 
@@ -17,7 +19,7 @@
     <div class="govuk-grid-column-two-thirds">
 
 
-        <h1 class="govuk-heading-l">You need to complete all of the sections before you review and submit</h1>
+        <h1 class="govuk-heading-l">{{ pageHeadingTextHTML }}</h1>
 
         {{
             govukButton
