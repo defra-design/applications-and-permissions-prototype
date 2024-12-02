@@ -1,0 +1,67 @@
+{% extends "layouts/v1_1_0.html" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+
+    <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-xl">
+          {{ serviceName }}
+        </h1>
+
+        <h2 class="govuk-heading-s govuk-!-margin-bottom-6">
+            Version: {{ version }}
+        </h2>
+
+        <p>Account
+            <br>&nbsp&nbsp&nbsp<a href="account/start">Start page</a>
+        </p>
+
+        <p>Create application
+            <br><br>&nbsp&nbsp&nbsp<a href="create-application/task-list">Task list</a>
+            <br>&nbsp&nbsp&nbsp<a href="create-application/task-list-validation-page">Task list - validation page</a>
+        </p>
+
+        <p>
+                &nbsp&nbsp&nbspOrigin</a>
+            <br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href="create-application/origin/to-or-from-own-premises">To or from farm</a>
+            <br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspOn to - Own farm - <a href="create-application/origin/can-not-use-service">Can't use the service</a>
+            <br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspOff of - Own farm - New - <a href="create-application/origin/own-farm-new-cph">Enter CPH</a>
+            <br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspOff of - Own farm - New - <a href="create-application/origin/own-farm-new-address">Enter address</a>
+            <br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href="create-application/origin/check-answers">Check answers</a>
+        </p>
+
+        <p>
+                &nbsp&nbsp&nbspDestination</a>
+            <br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspWhere to - <a href="create-application/destination/type-of-destination">Premises type</a>
+            <br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspWhere to - <a href="create-application/destination/market-type">Type of market</a>
+            <br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspOn to - Own farm - <a href="create-application/origin/can-not-use-service">Can't use the service</a>
+            <br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href="create-application/destination/check-answers">Check answers</a>
+        </p>
+
+        <p>
+                &nbsp&nbsp&nbspTests</a>
+            <br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspIf origin farm is restricted - <a href="create-application/tests/origin-confirmation">Origin Confirmation</a>
+        </p>
+
+        <p>
+                &nbsp&nbsp&nbspContact and updates</a>
+            <br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspRestricted origin - <a href="create-application/contact-and-updates/licence-email-or-post">Email or post</a>
+            <br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspRestricted origin - <a href="create-application/contact-and-updates/licence-enter-email-address">Enter email</a>
+            <br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspRestricted origin - <a href="create-application/contact-and-updates/licence-select-post-address">Select post</a>
+            <br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspRestricted origin - <a href="create-application/contact-and-updates/licence-new-address.html">Enter address</a>
+            <br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href="create-application/contact-and-updates/check-answers">Check answers</a>
+        </p>
+
+        <p>
+                &nbsp&nbsp&nbsp<a href="create-application/submit/check-answers">Check answers and declaration</a>
+            <br>&nbsp&nbsp&nbsp<a href="create-application/submit/confirmation">Confirmation page</a>
+        </p>
+
+    </div>
+
+
+
+</div>
+{% endblock %}

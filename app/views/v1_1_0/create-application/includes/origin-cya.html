@@ -1,0 +1,51 @@
+<dl class="govuk-summary-list">
+
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+            Are you moving the cattle on or off your farm or premises?
+        </dt>
+        <dd class="govuk-summary-list__value">
+            {{ data['origin-to-or-from-own-premises-radios'] }}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="../origin/to-or-from-own-premises">Change<span class="govuk-visually-hidden"> </span></a>
+        </dd>
+    </div>
+
+
+    {%  if  data['origin-to-or-from-own-premises-radios'] == "Off the farm or premises"  %}
+
+        <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key govuk-!-font-weight-regular">
+                What is the County Parish Holding (CPH) number of your farm where the animals are moving off?
+            </dt>
+            <dd class="govuk-summary-list__value">
+                {{ data['origin-own-farm-new-cph-text-input'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="../origin/own-farm-new-cph?camefromcheckanswers=true&">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key  govuk-!-font-weight-regular">
+                What is the address of your farm or premises where the animals are moving off?
+            </dt>
+            <dd class="govuk-summary-list__value">
+                {{ data['origin-own-address-line-1'] }}<br>
+                {{ data['origin-own-address-line-2'] }}<br>
+                {{ data['origin-own-address-town'] }}<br>
+                {{ data['origin-own-address-county'] }}<br>
+                {{ data['origin-own-address-postcode'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="../origin/own-farm-new-address">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        </div>
+
+
+    {%  endif  %}
+
+
+
+</dl>
