@@ -73,8 +73,8 @@ module.exports = function (router) {
         req.session.data['errortypethree'] = "false";
         req.session.data['errortypefour'] = "false";
 
-        // Validation check if field is blank
-        if (req.session.data['contact-and-updates-licence-name-text-input'] == undefined || req.session.data['contact-and-updates-licence-name-text-input'] == "")
+        // Validation check if first name field is blank
+        if (req.session.data['contact-and-updates-licence-first-name-text-input'] == undefined || req.session.data['contact-and-updates-licence-first-name-text-input'] == "")
         {
             // Trigger validation and relaunch the page
             req.session.data['errorthispage'] = "true";
@@ -84,11 +84,33 @@ module.exports = function (router) {
             res.redirect('licence-name');
         }
 
-        else if (req.session.data['contact-and-updates-licence-name-text-input'].length > 255)
+        // Validation check if first name field is blank
+        else if (req.session.data['contact-and-updates-licence-last-name-text-input'] == undefined || req.session.data['contact-and-updates-licence-last-name-text-input'] == "")
+        {
+            // Trigger validation and relaunch the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypetwo'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('licence-name');
+        }
+
+        else if (255 < req.session.data['contact-and-updates-licence-first-name-text-input'].length)
         {
             // Trigger validation and relaunch the page for over 15 characters
             req.session.data['errorthispage'] = "true";
-            req.session.data['errortypetwo'] = "true";
+            req.session.data['errortypethree'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('licence-name');
+        }
+
+
+        else if (255 < req.session.data['contact-and-updates-licence-last-name-text-input'].length)
+        {
+            // Trigger validation and relaunch the page for over 15 characters
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypefour'] = "true";
 
             // This page name needs to match the page the user was just on
             res.redirect('licence-name');

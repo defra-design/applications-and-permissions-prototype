@@ -4,7 +4,7 @@
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    What is your full name?
+    What is the name of the County Parish Holding (CPH) owner?
 {% endset %}
 
 
@@ -12,11 +12,19 @@
 {% set errorTextHTML %}
     <!-- Error 1 - No answer selected -->
     {% if data['errortypeone'] == "true" %}
-        Enter your your full name
+        Enter the first name of the County Parish Holding (CPH) owner
 
     <!-- Error 2 - If answer is too long -->
     {% elif data['errortypetwo'] == "true" %}
-        Your full name must be 255 characters or fewer
+        Enter the last name of the County Parish Holding (CPH) owner
+
+    <!-- Error 3 - too long first name -->
+    {% elif data['errortypethree'] == "true" %}
+        First name must be no longer than 255 characters
+
+    <!-- Error 4 - too long last name -->
+    {% elif data['errortypefour'] == "true" %}
+        Last name must be no longer than 255 characters
 
     {% endif %}
 {% endset %}
@@ -39,7 +47,7 @@
 
 
         <!-- ERROR LOGIC 'error summary' -->
-        {% if data['errorthispage'] == "true" %}
+        {% if data['errortypeone'] == "true" %}
             {{ govukErrorSummary
                 ({
                     titleText: "There is a problem",
@@ -47,7 +55,53 @@
                     [
                         {
                             html: errorTextHTML,
-                            href: "#contact-and-updates-licence-name-text-input"
+                            href: "#contact-and-updates-licence-first-name-text-input"
+                        }
+                    ]
+                })
+            }}
+        {% endif %}
+
+        {% if data['errortypetwo'] == "true" %}
+            {{ govukErrorSummary
+                ({
+                    titleText: "There is a problem",
+                    errorList:
+                    [
+                        {
+                            html: errorTextHTML,
+                            href: "#contact-and-updates-licence-last-name-text-input"
+                        }
+                    ]
+                })
+            }}
+        {% endif %}
+
+        <!-- ERROR LOGIC 'error summary' -->
+        {% if data['errortypethree'] == "true" %}
+            {{ govukErrorSummary
+                ({
+                    titleText: "There is a problem",
+                    errorList:
+                    [
+                        {
+                            html: errorTextHTML,
+                            href: "#contact-and-updates-licence-first-name-text-input"
+                        }
+                    ]
+                })
+            }}
+        {% endif %}
+
+        {% if data['errortypefour'] == "true" %}
+            {{ govukErrorSummary
+                ({
+                    titleText: "There is a problem",
+                    errorList:
+                    [
+                        {
+                            html: errorTextHTML,
+                            href: "#contact-and-updates-licence-last-name-text-input"
                         }
                     ]
                 })
@@ -56,35 +110,80 @@
         <!--  END OF 'error summary' -->
 
 
+
+
         <!-- go to routes.js for routing  -->
         <form action="licence-name-router" method="post" novalidate>
 
-            {{ govukInput
+
+            {% call govukFieldset
                 ({
-                    label:
+                    legend:
                     {
                         html: pageHeadingTextHTML,
-                        classes: "govuk-label--l",
+                        classes: "govuk-fieldset__legend--l",
                         isPageHeading: true
-                    },
-
-                    id: "contact-and-updates-licence-name-text-input",
-
-                    name: "contact-and-updates-licence-name-text-input",
-
-                    hint:
-                    {
-                        text: "Your name will be added to the licence"
-                    },
-
-                    errorMessage: null if data['errorthispage'] != "true"
-                                       else { html: errorTextHTML },
-
-                    value: data['contact-and-updates-licence-name-text-input'],
-
-                    classes: "govuk-input--width-20"
+                    }
                 })
-            }}
+            %}
+
+                {{ govukInput
+                    ({
+                        label:
+                        {
+                            text: "First name",
+                            classes: "",
+                            isPageHeading: false
+                        },
+
+                        id: "contact-and-updates-licence-first-name-text-input",
+
+                        name: "contact-and-updates-licence-first-name-text-input",
+
+                        hint:
+                        {
+                            text: ""
+                        },
+
+                        errorMessage: null if data['errortypeone'] != "true" and data['errortypethree'] != "true"
+                                            else { html: errorTextHTML },
+
+                        value: data['contact-and-updates-licence-first-name-text-input'],
+
+                        classes: "govuk-input--width-20"
+                    })
+                }}
+
+
+                {{ govukInput
+                    ({
+                        label:
+                        {
+                            text: "Last name",
+                            classes: "",
+                            isPageHeading: false
+                        },
+
+                        id: "contact-and-updates-licence-last-name-text-input",
+
+                        name: "contact-and-updates-licence-last-name-text-input",
+
+                        hint:
+                        {
+                            text: ""
+                        },
+
+                        errorMessage: null if data['errortypetwo'] != "true" and data['errortypefour'] != "true"
+                                           else { html: errorTextHTML },
+
+                        value: data['contact-and-updates-licence-last-name-text-input'],
+
+                        classes: "govuk-input--width-20"
+                    })
+                }}
+
+            {% endcall %}
+
 
 
             {{ govukButton({ text: "Continue" }) }}
@@ -107,11 +206,19 @@
 
         <option value="errorthispage=true&errortypeone=true&errortypetwo=false&errortypethree=false&errortypefour=false&errortypefive=false&errortypesix=false&"
                 {% if  data['errortypeone'] == 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] != 'true'  and data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  %}selected{% endif %}
-        >Error 1 - No answer entered</option>
+        >Error 1 - Empty - First name </option>
 
         <option value="errorthispage=true&errortypeone=false&errortypetwo=true&errortypethree=false&errortypefour=false&errortypefive=false&errortypesix=false&"
                 {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] == 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] != 'true'   and data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  %}selected{% endif %}
-        >Error 2 - If answer is too long</option>
+        >Error 2 - Empty - Last name</option>
+
+        <option value="errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=true&errortypefour=false&errortypefive=false&errortypesix=false&"
+                {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] == 'true'  and  data['errortypefour'] != 'true'   and data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  %}selected{% endif %}
+        >Error 3 - Too long - First name</option>
+
+        <option value="errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=false&errortypefour=true&errortypefive=false&errortypesix=false&"
+                {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] == 'true'   and data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  %}selected{% endif %}
+        >Error 4 - Too long - Last name</option>
 
     </select>
 

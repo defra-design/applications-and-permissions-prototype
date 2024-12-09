@@ -74,7 +74,7 @@ module.exports = function (router) {
             else
             {
                 // This page name needs to be the next page the user gets to after successfully continuing
-                res.redirect('own-farm-new-cph');
+                res.redirect('type-of-origin');
             }
         }
 
@@ -89,6 +89,88 @@ module.exports = function (router) {
         }
     })
 
+
+
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////        Type of origin premises                     ////////////////
+    ////////////////                 for inbound animals                ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    // NOT COMPLEX PAGE
+    router.post( section + 'type-of-origin-router', function (req, res)
+    {
+        // Turn errors off by default
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+
+        // If Yes was selected, continue to next page
+        if (req.session.data['origin-type-of-origin-radios'] == "TB restricted farm")
+        {
+            // Continue to the next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('check-answers');
+            }
+            else
+            {
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('own-farm-new-cph');
+            }
+        }
+        else if (req.session.data['origin-type-of-origin-radios'] == "Approved finishing unit (AFU)")
+        {
+            // Continue to the next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('check-answers');
+            }
+            else
+            {
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('own-farm-new-cph');
+            }
+        }
+        else if (req.session.data['origin-type-of-origin-radios'] == "Another type of premises")
+        {
+            // Continue to the next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('check-answers');
+            }
+            else
+            {
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('can-not-use-service-premises-type');
+            }
+        }
+        else
+        {
+            // Trigger validation and reload the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('type-of-origin');
+        }
+    })
 
 
 
@@ -275,69 +357,6 @@ module.exports = function (router) {
 
 
 
-
-
-
-    ////////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////////
-    ////////////////                                                    ////////////////
-    ////////////////        Type of origin premises                     ////////////////
-    ////////////////                 for inbound animals                ////////////////
-    ////////////////                                                    ////////////////
-    ////////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////////
-
-
-    // NOT COMPLEX PAGE
-    router.post( section + 'type-of-origin-router', function (req, res)
-    {
-        // Turn errors off by default
-        req.session.data['errorthispage'] = "false";
-        req.session.data['errortypeone'] = "false";
-
-        // If Yes was selected, continue to next page
-        if (req.session.data['origin-type-of-origin-radios'] == "A market")
-        {
-            // Continue to the next page
-
-            // If the user needs to go back to 'check your answers' then take them directly there
-            if (req.session.data['camefromcheckanswers'] == 'true')
-            {
-                req.session.data['camefromcheckanswers'] = false;
-                res.redirect('check-answers');
-            }
-            else
-            {
-                // This page name needs to be the next page the user gets to after successfully continuing
-                res.redirect('fifty-percent-warning');
-            }
-        }
-        else if (req.session.data['origin-type-of-origin-radios'] == "A farm")
-        {
-            // Continue to the next page
-
-            // If the user needs to go back to 'check your answers' then take them directly there
-            if (req.session.data['camefromcheckanswers'] == 'true')
-            {
-                req.session.data['camefromcheckanswers'] = false;
-                res.redirect('check-answers');
-            }
-            else
-            {
-                // This page name needs to be the next page the user gets to after successfully continuing
-                res.redirect('origin-farm-cph');
-            }
-        }
-        else
-        {
-            // Trigger validation and reload the page
-            req.session.data['errorthispage'] = "true";
-            req.session.data['errortypeone'] = "true";
-
-            // This page name needs to match the page the user was just on
-            res.redirect('type-of-origin');
-        }
-    })
 
 
 

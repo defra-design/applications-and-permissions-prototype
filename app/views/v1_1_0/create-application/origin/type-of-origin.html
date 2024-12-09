@@ -16,7 +16,7 @@ This will save you time.
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    Where are the animals coming from?
+    What type of premises are the animals moving off?
 {% endset %}
 
 
@@ -92,19 +92,23 @@ This will save you time.
                     items:
                     [
                         {
-                            value: "A market",
-                            text: "A market",
-                            checked: data['origin-type-of-origin-radios'] == "A market"
+                            value: "TB restricted farm",
+                            text: "TB restricted farm",
+                            checked: data['origin-type-of-origin-radios'] == "TB restricted farm"
                         },
                         {
-                            value: "A farm",
-                            text: "A farm",
-                            checked: data['origin-type-of-origin-radios'] == "A farm"
+                            value: "Approved finishing unit (AFU)",
+                            text: "Approved finishing unit (AFU)",
+                            hint:
+                            {
+                                text: "Including enhanced with grazing (AFUE)"
+                            },
+                            checked: data['origin-type-of-origin-radios'] == "Approved finishing unit (AFU)"
                         },
                         {
-                            value: "Import",
-                            text: "Import",
-                            checked: data['origin-type-of-origin-radios'] == "Import"
+                            value: "Another type of premises",
+                            text: "Another type of premises",
+                            checked: data['origin-type-of-origin-radios'] == "Another type of premises"
                         }
                     ]
                 })

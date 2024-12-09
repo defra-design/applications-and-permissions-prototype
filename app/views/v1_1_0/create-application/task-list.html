@@ -92,41 +92,6 @@
                     {
                         title:
                         {
-                            text: "Tests"
-                        },
-                        href: "",
-                        status:
-                        {
-                            text:  "Cannot start yet",
-                            classes: "govuk-task-list__status--cannot-start-yet"
-                        }
-                    } if data['section-origin-complete'] != "true",
-
-
-                    {
-                        title:
-                        {
-                            text: "Tests"
-                        },
-                        href: "tests/check-answers" if data['section-tests-complete'] == "true" else "tests/routing-tests",
-                        status:
-                        {
-                            text: "Completed",
-                            tag:
-                            {
-                                text: "Incomplete",
-                                classes: "govuk-tag--blue"
-                            } if data['section-tests-complete'] != "true"
-                        }
-                    } if data['section-origin-complete'] == "true",
-
-
-
-
-
-                    {
-                        title:
-                        {
                             text: "Receiving the licence"
                         },
                         href: "contact-and-updates/check-answers" if data['section-contact-and-updates-complete'] == "true" else "contact-and-updates/routing-contact-and-updates",
