@@ -210,8 +210,7 @@ module.exports = function (router) {
     ////////////////////////////////////////////////////////////////////////////////////
 
 
-    router.post(section + 'licence-enter-email-address-router', function (req, res)
-    {
+    router.post(section + 'licence-enter-email-address-router', function (req, res) {
         req.session.data['errorthispage'] = "false";
         req.session.data['errortypeone'] = "false";
         req.session.data['errortypetwo'] = "false";
@@ -219,8 +218,7 @@ module.exports = function (router) {
         req.session.data['errortypefour'] = "false";
 
         // Validation check if field is blank
-        if (req.session.data['contact-and-updates-licence-enter-email-address-text-input'] == undefined || req.session.data['contact-and-updates-licence-enter-email-address-text-input'] == "")
-        {
+        if (req.session.data['contact-and-updates-licence-enter-email-address-text-input'] == undefined || req.session.data['contact-and-updates-licence-enter-email-address-text-input'] == "") {
             // Trigger validation and relaunch the page
             req.session.data['errorthispage'] = "true";
             req.session.data['errortypeone'] = "true";
@@ -228,10 +226,24 @@ module.exports = function (router) {
             // This page name needs to match the page the user was just on
             res.redirect('licence-enter-email-address');
         }
-
         else
         {
-            res.redirect('check-answers');
+            let regexpattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+            let emailentered = req.session.data['contact-and-updates-licence-enter-email-address-text-input'];
+            let result = regexpattern.test(emailentered);
+            if (result == false)
+            {
+                // Trigger validation and relaunch the page
+                req.session.data['errorthispage'] = "true";
+                req.session.data['errortypetwo'] = "true";
+
+                // This page name needs to match the page the user was just on
+                res.redirect('licence-enter-email-address');
+                }
+            else
+            {
+                res.redirect('check-answers');
+            }
         }
     })
 
