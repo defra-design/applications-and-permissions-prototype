@@ -53,3 +53,19 @@ router.get('*/prototype-admin/update-session-data', function(req, res){
 
     res.redirect('../prototypetools/copy-url-to-clipboard');
 })
+
+
+// accepting or rejecting cookies
+router.get('/cookies-form-handler', function(req, res){
+
+    if(req.session.data['cookies']['analytics'] == "yes")
+    {
+        res.redirect('cookies?cookiesaccepted=true&cookiesrejected=false&');
+    }
+    else
+    {
+        res.redirect('/cookies?cookiesaccepted=false&cookiesrejected=true&');
+    }
+
+
+})

@@ -5,6 +5,32 @@ https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
 
 {% extends "govuk-prototype-kit/layouts/govuk-branded.njk" %}
 
+
+{% block bodyStart %}
+
+    {% set acceptHtml %}
+      <p class="govuk-body">You’ve rejected additional cookies. You can <a class="govuk-link" href="/cookies?cookiesaccepted=false&cookiesrejected=false&">change your cookie settings</a> at any time.</p>
+    {% endset %}
+
+    {{ govukCookieBanner({
+      ariaLabel: "Cookies on [name of service]",
+      messages: [
+        {
+          html: acceptHtml,
+          actions: [
+            {
+              text: "Hide cookie message",
+              type: "submit",
+              name: "cookies[hide]",
+              value: "yes"
+            }
+          ]
+        }
+      ]
+    }) }}
+{% endblock %}
+
+
 {% block beforeContent %}
     {{ govukPhaseBanner
         ({
@@ -26,7 +52,7 @@ https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
    meta: {
      items: [
        {
-            href: "/cookies?cookiesaccepted=false&cookiesrejected=false&",
+            href: "/cookies",
             text: "Cookies"
        },
        {
