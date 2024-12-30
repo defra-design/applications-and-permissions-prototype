@@ -1,0 +1,136 @@
+{% extends "layouts/v0_4_0.html" %}
+
+<!--
+NOTES ON USING THIS TEMPLATE Page
+This will save you time.
+
+1. Type your heading for the page after '% set pageHeadingTextHTML %'
+2. Type/customise the error message after '% set errorTextHTML %'
+3. Use 'Find and replace' to replace "SECTION" with the name of the section of the service you're working on.
+4. Use 'Find and replace' to replace "PAGENAME_YES_NO" with whatever you named this page/file.
+5. Go to the javascript file 'templates.js' and copy the section 'YES AND NO - RADIO BUTTONS - MANDATORY' into your routes.js file.
+6. Follow instructions at the top of the 'templates.js'
+-->
+
+
+<!-- Setting the big main heading at the top of the page -->
+{% set pageHeadingTextHTML %}
+    Preventing contamination from badgers
+{% endset %}
+
+
+<!-- Set the text for the error type -->
+{% set errorTextHTML %}
+    <!-- Nothing was selected -->
+    {% if data['errortypeone'] == "true" %}
+        Select yes if you PLACEHOLDER between PLACEHOLDER and PLACEHOLDER
+    {% endif %}
+{% endset %}
+
+
+<!-- Text that show in the browser tab. Does NOT need changing -->
+{% block pageTitle %}
+    {% if  data['errorthispage'] == "true"  %}
+        Error:
+    {% endif %}
+
+    {{ pageHeadingTextHTML }}
+{% endblock %}
+
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds ">
+
+        <h1 class="govuk-heading-l">
+            {{ pageHeadingTextHTML }}
+        </h1>
+
+
+        <p>You can reduce the risk of contamination from badgers with these measures: </p>
+
+
+        <ul class="govuk-body govuk-list--bullet">
+            <li>introduce badger proof fencing, such as solid aluminium sheeted gates, aluminium sheeting on rail fences,
+                retractable electric fences and aluminium feed bins</li>
+            <li>limit access to badger latrines and setts</li>
+            <li>manage cattle feed and water, including feed troughs raised to 3 feet and water troughs above 90cm</li>
+            <li>keep mineral licks out of reach </li>
+        </ul>
+
+        <p>For more information and examples on how to protect your herd, <a href="https://tbhub.co.uk/preventing-tb-breakdowns/protect-your-herd-from-bovine-tb/protect-your-herd-from-tb-a-review-of-the-science/" target="_blank">read the guidance on the TB Hub</a> (opens in a new tab)</p>
+
+
+
+        <!-- go to routes.js for routing  -->
+        <form action="badgers-router" method="post" novalidate>
+
+            {{ govukCheckboxes
+                ({
+                    name: "tests-destination-confirmation-checkboxes",
+
+                    id: "tests-destination-confirmation-checkboxes",
+
+                    fieldset:
+                    {
+                        legend:
+                        {
+                            text: questionHeadingTextHTML,
+                            isPageHeading: false,
+                            classes: "govuk-fieldset__legend--m"
+                        }
+                    },
+
+                    hint:
+                    {
+                        text: ""
+                    },
+
+                    errorMessage: null if data['errorthispage'] != "true"
+                                       else { html: errorTextHTML },
+
+                    items:
+                    [
+                        {
+                            value: "I confirm I have taken measures to prevent the risk of contamination from badgers",
+                            text: "I confirm I have taken measures to prevent the risk of contamination from badgers",
+                            checked: (data['biosecurity-badgers-confirmation-checkboxes'] or []).indexOf('I confirm I have taken measures to prevent the risk of contamination from badgers') > -1
+                        }
+                    ]
+                })
+            }}
+
+            {{ govukButton({ text: "Continue" }) }}
+
+        </form>
+
+    </div>
+</div>
+
+
+
+<!-- ERROR LOGIC  drop down to toggle states  -->
+<form method="post"  action="#" class="for4" style=" float: left; position: relative; bottom:-225px;  ">
+
+    <select style="height:30px;" onchange="window.location.href='?'+this.value">
+
+        <option value="errorthispage=false&errortypeone=false"
+                {% if  data['errorthispage'] != "true"  %}selected{% endif %}
+        >Errors - Off</option>
+
+        <option value="errorthispage=true&errortypeone=true"
+                {% if  data['errortypeone'] == 'true'  %}selected{% endif %}
+        >Error 1 - Not selected</option>
+
+    </select>
+
+</form>
+<!--  END OF ERROR LOGIC -->
+
+
+
+
+
+{% endblock %}
+
+

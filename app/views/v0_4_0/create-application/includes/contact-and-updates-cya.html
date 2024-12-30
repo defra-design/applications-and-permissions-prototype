@@ -1,0 +1,156 @@
+<dl class="govuk-summary-list">
+
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-!-font-weight-regular  govuk-!-width-one-half">
+            How would you like this licence sent to you?
+        </dt>
+        <dd class="govuk-summary-list__value">
+            {{ data['contact-and-updates-licence-email-or-post-radios'] }}
+        </dd>
+        {%  if  data['application-submitted-and-locked'] != "true"  %}
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="../contact-and-updates/licence-email-or-post">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        {%  endif  %}
+    </div>
+
+
+    {%  if  data['contact-and-updates-licence-email-or-post-radios'] == "Email"  %}
+
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-!-font-weight-regular ">
+            What email address would you like the licence sent to?
+        </dt>
+        <dd class="govuk-summary-list__value">
+            {{ data['contact-and-updates-licence-select-email-address-radios'] }}
+        </dd>
+        {%  if  data['application-submitted-and-locked'] != "true"  %}
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="../contact-and-updates/licence-select-email-address">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        {%  endif  %}
+    </div>
+
+    {%  else  %}
+
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-!-font-weight-regular ">
+            What address would you like the licence sent to?
+        </dt>
+        <dd class="govuk-summary-list__value">
+            {{ data['contact-and-updates-licence-select-post-address-radios'] }}
+        </dd>
+        {%  if  data['application-submitted-and-locked'] != "true"  %}
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="../contact-and-updates/licence-select-post-address">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        {%  endif  %}
+    </div>
+
+    {%  endif  %}
+
+
+
+
+
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-!-font-weight-regular ">
+            Do you want to receive updates about the application?
+        </dt>
+        <dd class="govuk-summary-list__value">
+            {{ data['contact-and-updates-updates-receive-radios-yes-no'] }}
+        </dd>
+        {%  if  data['application-submitted-and-locked'] != "true"  %}
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="../contact-and-updates/updates-receive">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        {%  endif  %}
+    </div>
+
+
+    {%  if  data['contact-and-updates-updates-receive-radios-yes-no'] == "Yes"  %}
+
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-!-font-weight-regular ">
+            How do you want to receive updates?
+        </dt>
+        <dd class="govuk-summary-list__value">
+            {{ data['contact-and-updates-updates-method-checkboxes'] }}
+        </dd>
+        {%  if  data['application-submitted-and-locked'] != "true"  %}
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="../contact-and-updates/updates-method">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        {%  endif  %}
+    </div>
+
+
+    {%  if  (data['contact-and-updates-updates-method-checkboxes'] or []).indexOf('Email') > -1 %}
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-!-font-weight-regular ">
+            What email address would you like the updates sent to?
+        </dt>
+        <dd class="govuk-summary-list__value">
+            {{ data['contact-and-updates-updates-select-email-address-radios'] }}
+        </dd>
+        {%  if  data['application-submitted-and-locked'] != "true"  %}
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="../contact-and-updates/updates-select-email-address">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        {%  endif  %}
+    </div>
+    {%  endif  %}
+
+    {%  if (data['contact-and-updates-updates-method-checkboxes'] or []).indexOf('Text message') > -1  %}
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-!-font-weight-regular ">
+            What mobile phone number would you like updates sent to?
+        </dt>
+        <dd class="govuk-summary-list__value">
+            {{ data['contact-and-updates-updates-select-text-number-radios'] }}
+        </dd>
+        {%  if  data['application-submitted-and-locked'] != "true"  %}
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="../contact-and-updates/updates-select-text-number">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        {%  endif  %}
+    </div>
+
+    {%  endif  %}
+
+{%  endif  %}
+
+
+
+    {%  if data['bluetongue'] == "true"  %}
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-!-font-weight-regular ">
+            What is your vet's name?
+        </dt>
+        <dd class="govuk-summary-list__value">
+            {{ data['contact-and-updates-vet-name-text-input'] }}
+        </dd>
+        {%  if  data['application-submitted-and-locked'] != "true"  %}
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="../contact-and-updates/vet-name">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        {%  endif  %}
+    </div>
+
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-!-font-weight-regular ">
+            What is your vet's email address?
+        </dt>
+        <dd class="govuk-summary-list__value">
+            {{ data['contact-and-updates-vet-email-address-text-input'] }}
+        </dd>
+        {%  if  data['application-submitted-and-locked'] != "true"  %}
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="../contact-and-updates/vet-email-address">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        {%  endif  %}
+    </div>
+    {%  endif  %}
+
+
+</dl>

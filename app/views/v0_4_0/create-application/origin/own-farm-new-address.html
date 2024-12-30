@@ -1,0 +1,158 @@
+{% extends "layouts/v0_4_0.html" %}
+
+<!--
+NOTES ON USING THIS TEMPLATE Page
+This will save you time.
+
+1. Type your heading for the page after '% set pageHeadingTextHTML %'
+2. Type/customise the error messages after '% set errorTextHTML %'
+3. Use 'Find and replace' to replace "SECTION" with the name of the section of the service you're working on.
+4. Use 'Find and replace' to replace "PAGENAME_TEXT" with whatever you named this page/file.
+5. Go to the javascript file 'templates.js' and copy the section 'TEXT ENTRY - MANDATORY' into your routes.js file.
+6. Follow instructions at the top of the 'templates.js'.
+-->
+
+
+<!-- Setting the big main heading at the top of the page -->
+{% set pageHeadingTextHTML %}
+    What is the address of your farm where the animals are moving off?
+{% endset %}
+
+
+
+<!-- Text that show in the browser tab. Does NOT need changing -->
+{% block pageTitle %}
+    {% if  data['errorthispage'] == "true"  %}
+        Error:
+    {% endif %}
+
+    {{ pageHeadingTextHTML }}
+{% endblock %}
+
+
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+        <!-- ERROR LOGIC 'error summary' -->
+        {% if data['errorthispage'] == "true" %}
+            {{ govukErrorSummary
+                ({
+                    titleText: "There is a problem",
+                    errorList:
+                    [
+                        {
+                            html: errorTextHTML,
+                            href: "#origin-own-farm-new-address-text-input"
+                        }
+                    ]
+                })
+            }}
+        {% endif %}
+        <!--  END OF 'error summary' -->
+
+
+        <!-- go to routes.js for routing  -->
+        <form action="own-farm-new-address-router" method="post" novalidate>
+
+            {% call govukFieldset
+                ({
+                    legend:
+                    {
+                        html: pageHeadingTextHTML,
+                        classes: "govuk-fieldset__legend--l",
+                        isPageHeading: true
+                    }
+                })
+            %}
+
+            {{ govukInput
+                ({
+                    label:
+                    {
+                        text: "Address line 1"
+                    },
+                    id: "own-origin-address-line-1",
+                    name: "own-origin-addressLine1",
+                    value: data['own-origin-addressLine1'],
+                    autocomplete: "address-line1"
+                })
+            }}
+
+            {{ govukInput
+                ({
+                    label:
+                    {
+                        text: "Address line 2 (optional)"
+                    },
+                    id: "own-origin-address-line-2",
+                    name: "own-origin-addressLine2",
+                    value: data['own-origin-addressLine2'],
+                    autocomplete: "address-line2"
+                })
+            }}
+
+            {{ govukInput
+                ({
+                    label:
+                    {
+                        text: "Town or city"
+                    },
+                    classes: "govuk-!-width-two-thirds",
+                    id: "own-origin-address-town",
+                    name: "own-origin-addressTown",
+                    value: data['own-origin-addressTown'],
+                    autocomplete: "address-level2"
+                })
+            }}
+
+            {{  govukInput
+                ({
+                    label:
+                    {
+                        text: "County (optional)"
+                    },
+                    classes: "govuk-!-width-two-thirds",
+                    id: "own-origin-address-county",
+                    name: "own-origin-addressCounty",
+                    value: data['own-origin-addressCounty']
+                })
+            }}
+
+            {{ govukInput
+                ({
+                    label:
+                    {
+                        text: "Postcode"
+                    },
+                    classes: "govuk-input--width-10",
+                    id: "own-origin-address-postcode",
+                    name: "own-origin-addressPostcode",
+                    value: data['own-origin-addressPostcode'],
+                    autocomplete: "postal-code"
+                })
+            }}
+
+        {% endcall %}
+
+
+            {{ govukButton({ text: "Continue" }) }}
+
+        </form>
+
+    </div>
+</div>
+
+
+
+
+
+
+{% endblock %}
+
+
+
+
+
