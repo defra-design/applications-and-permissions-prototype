@@ -1,0 +1,108 @@
+{% extends "layouts/v2_0_0.html" %}
+
+<!--
+NOTES ON USING THIS TEMPLATE Page
+This will save you time.
+
+1. Type your heading for the page after '% set pageHeadingTextHTML %'
+2. Type/customise the error messages after '% set errorTextHTML %'
+3. Use 'Find and replace' to replace "SECTION" with the name of the section of the service you're working on.
+4. Use 'Find and replace' to replace "PAGENAME_TEXT" with whatever you named this page/file.
+5. Go to the javascript file 'templates.js' and copy the section 'TEXT ENTRY - MANDATORY' into your routes.js file.
+6. Follow instructions at the top of the 'templates.js'.
+-->
+
+
+<!-- Setting the big main heading at the top of the page -->
+{% set pageHeadingTextHTML %}
+    Sign in using Government Gateway
+{% endset %}
+
+
+
+<!-- Text that show in the browser tab. Does NOT need changing -->
+{% block pageTitle %}
+    {{ pageHeadingTextHTML }}
+{% endblock %}
+
+
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-l">{{ pageHeadingTextHTML }}</h1>
+
+
+        <!-- go to routes.js for routing  -->
+        <form action="list-of-licence-applications" method="post" novalidate>
+
+            {{ govukInput
+                ({
+                    label:
+                    {
+                        text: "Government Gateway user ID",
+                        classes: "govuk-label--s govuk-!-font-weight-regular",
+                        isPageHeading: false
+                    },
+
+                    id: "account-sign-in-email-address-text-input",
+
+                    name: "account-sign-in-email-address-text-input",
+
+                    hint:
+                    {
+                        text: "This could be up to 12 characters."
+                    },
+
+                    errorMessage: "",
+
+                    value: "",
+
+                    classes: "govuk-!-width-one-half "
+                })
+            }}
+
+
+            {{
+            govukPasswordInput
+                ({
+                    label:
+                    {
+                        text: "Password"
+                    },
+                    id: "account-sign-in-password-text-input",
+                    name: "password"
+                })
+            }}
+
+
+
+            {{ govukButton({ text: "Sign in" }) }}
+
+
+            <h2 class="govuk-heading-m">New users of Government Gateway</h2>
+            <div class="govuk-body">
+                <a class="govuk-link" id="no-account" href="#">Create sign in details</a>
+            </div>
+
+            <h2 class="govuk-heading-m">Problems signing in</h2>
+            <ul class="govuk-list">
+                <li><a class="govuk-link" href="#" id="forgotten-password">I have forgotten my password</a></li>
+                <li><a class="govuk-link" href="#" id="forgotten-user-id">I have forgotten my Government Gateway user ID</a></li>
+                <li><a class="govuk-link" href="#" id="forgotten-user-id-password">I have forgotten my Government Gateway user ID and password</a></li>
+            </ul>
+
+
+        </form>
+
+    </div>
+</div>
+
+
+{% endblock %}
+
+
+
+
+
