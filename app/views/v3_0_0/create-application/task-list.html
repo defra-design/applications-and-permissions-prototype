@@ -124,7 +124,8 @@
                             } if data['section-biosecurity-complete'] != "true"
                         }
                     } if      data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises"
-                           or data['destination-type-of-destination-radios'] == "A farm",
+                           or (data['origin-to-or-from-own-premises-radios'] == "Off the farm or premises"
+                              and data['destination-type-of-destination-radios'] == "TB restricted farm"),
 
 
                     {

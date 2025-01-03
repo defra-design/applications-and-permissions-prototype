@@ -1,15 +1,260 @@
 <dl class="govuk-summary-list">
 
+
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
+            Where are the animals going to?
+        </dt>
+        <dd class="govuk-summary-list__value">
+            {{ data['destination-type-of-destination-radios'] }}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="../destination/type-of-destination">Change<span class="govuk-visually-hidden"> </span></a>
+        </dd>
+    </div>
+
+
+    {%  if  data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises"  %}
+    <!-- Applicant is destination -->
+
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key govuk-!-font-weight-regular ">
+                    What is the CPH number of the farm where the animals are going to?
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    {{ data['destination-own-farm-new-cph-text-input'] }}
+                </dd>
+                {%  if  data['application-submitted-and-locked'] != "true"  %}
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="../destination/destination-farm-cph?camefromcheckanswers=true&">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                {%  endif  %}
+            </div>
+
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key govuk-!-font-weight-regular ">
+                    What is the address of the farm where the animals are going to?
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    {{ data['destination-own-address-line-1'] }}<br>
+                    {{ data['destination-own-address-line-2'] }}<br>
+                    {{ data['destination-own-address-town'] }}<br>
+                    {{ data['destination-own-address-county'] }}<br>
+                    {{ data['destination-own-address-postcode'] }}
+                </dd>
+                {%  if  data['application-submitted-and-locked'] != "true"  %}
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="../destination/destination-farm-address">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                {%  endif  %}
+            </div>
+
+
+    {%  else  %}
+        <!-- Applicant is origin -->
+
+
+        {%  if  data['destination-type-of-destination-radios'] == "TB restricted farm"
+            or  data['destination-type-of-destination-radios'] == "Another destination"  %}
+
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key govuk-!-font-weight-regular ">
+                    What is the CPH number of the farm where the animals are going to?
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    {{ data['destination-destination-farm-cph-text-input'] }}
+                </dd>
+                {%  if  data['application-submitted-and-locked'] != "true"  %}
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="../destination/destination-farm-cph?camefromcheckanswers=true&">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                {%  endif  %}
+            </div>
+
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key govuk-!-font-weight-regular ">
+                    What is the address of the farm where the animals are going to?
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    {{ data['destination-destination-farm-address-line-1'] }}<br>
+                    {{ data['destination-destination-farm-address-line-2'] }}<br>
+                    {{ data['destination-destination-farm-address-town'] }}<br>
+                    {{ data['destination-destination-farm-address-county'] }}<br>
+                    {{ data['destination-destination-farm-address-postcode'] }}
+                </dd>
+                {%  if  data['application-submitted-and-locked'] != "true"  %}
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="../destination/destination-farm-address">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                {%  endif  %}
+            </div>
+
+        {%  endif  %}
+
+    {%  endif  %}
+
+
+
+    {%  if      data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises"
+            or  data['destination-type-of-destination-radios'] == "A farm"  %}
+
+        {%  if data['bluetongue'] == "true"  %}
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key govuk-!-font-weight-regular ">
+                    Did you have any ruminants come onto your farm in the past 60 days?
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    {{ data['destination-ruminants-any-60-days-radios-yes-no'] }}
+                </dd>
+                {%  if  data['application-submitted-and-locked'] != "true"  %}
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="../destination/ruminants-any-60-days">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                {%  endif  %}
+            </div>
+
+            {%  if data['destination-ruminants-any-60-days-radios-yes-no'] == "Yes"  %}
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key govuk-!-font-weight-regular ">
+                        Do you know the County Parish Holding (CPH) number of where the ruminants came from?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{ data['destination-ruminants-know-cph-radios-yes-no'] }}
+                    </dd>
+                    {%  if  data['application-submitted-and-locked'] != "true"  %}
+                        <dd class="govuk-summary-list__actions">
+                            <a class="govuk-link" href="../destination/ruminants-know-cph">Change<span class="govuk-visually-hidden"> </span></a>
+                        </dd>
+                    {%  endif  %}
+                </div>
+
+                {%  if data['destination-ruminants-know-cph-radios-yes-no'] == "Yes"  %}
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key govuk-!-font-weight-regular ">
+                            What is the County Parish Holding (CPH) number of the farm where the ruminants came from?
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                            {{ data['destination-ruminants-60-days-cph-text-input'] }}
+                        </dd>
+                        {%  if  data['application-submitted-and-locked'] != "true"  %}
+                            <dd class="govuk-summary-list__actions">
+                                <a class="govuk-link" href="../destination/ruminants-60-days-cph">Change<span class="govuk-visually-hidden"> </span></a>
+                            </dd>
+                        {%  endif  %}
+                    </div>
+                {%  endif %}
+
+            {%  endif  %}
+
+        {%  endif  %}
+
+
         <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
-                Where are the animals going to?
+            <dt class="govuk-summary-list__key govuk-!-font-weight-regular ">
+                What is the reason for the movement?
             </dt>
             <dd class="govuk-summary-list__value">
-                {{ data['destination-type-of-destination-radios'] }}
+                {{ data['destination-reason-for-movement-radios'] }}
             </dd>
-            <dd class="govuk-summary-list__actions">
-                <a class="govuk-link" href="../destination/type-of-destination">Change<span class="govuk-visually-hidden"> </span></a>
-            </dd>
+            {%  if  data['application-submitted-and-locked'] != "true"  %}
+                <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="../destination/reason-for-movement">Change<span class="govuk-visually-hidden"> </span></a>
+                </dd>
+            {%  endif  %}
         </div>
+
+
+        {%  if data['bluetongue'] == "true"  and   data['destination-reason-for-movement-radios'] != "Bull"  %}
+
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key govuk-!-font-weight-regular ">
+                    Are any of the cattle pregnant?
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    {{ data['destination-pregnant-any-radios-yes-no'] }}
+                </dd>
+                {%  if  data['application-submitted-and-locked'] != "true"  %}
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="../destination/pregnant-any">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                {%  endif  %}
+            </div>
+
+            {%  if data['destination-pregnant-any-radios-yes-no'] == "Yes"  %}
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key govuk-!-font-weight-regular ">
+                        When is the earliest date of birth?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{ data['destination-pregnant-earliest-birth-date-date-input-day'] }}
+                        {{ data['destination-pregnant-earliest-birth-date-date-input-month-text'] }}
+                        {{ data['destination-pregnant-earliest-birth-date-date-input-year'] }}
+                    </dd>
+                    {%  if  data['application-submitted-and-locked'] != "true"  %}
+                        <dd class="govuk-summary-list__actions">
+                            <a class="govuk-link" href="../destination/pregnant-earliest-birth-date">Change<span class="govuk-visually-hidden"> </span></a>
+                        </dd>
+                    {%  endif  %}
+                </div>
+
+            {%  endif  %}
+
+        {%  endif  %}
+
+
+        {%  if  data['destination-reason-for-movement-radios'] == "Routine restocking"  %}
+
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key govuk-!-font-weight-regular ">
+                    Will you move more than 75 cattle?
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    {{ data['destination-quantity-options-radios'] }}
+                </dd>
+                {%  if  data['application-submitted-and-locked'] != "true"  %}
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="../destination/quantity-options">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                {%  endif  %}
+            </div>
+
+            {%  if  data['destination-quantity-options-radios'] == "No"  %}
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key govuk-!-font-weight-regular ">
+                        Will the number of cattle be larger than half of the destination herd size?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{ data['destination-quantity-half-herd-radios'] }}
+                    </dd>
+                    {%  if  data['application-submitted-and-locked'] != "true"  %}
+                        <dd class="govuk-summary-list__actions">
+                            <a class="govuk-link" href="../destination/quantity-half-herd">Change<span class="govuk-visually-hidden"> </span></a>
+                        </dd>
+                    {%  endif  %}
+                </div>
+
+            {%  endif  %}
+
+        {%  else  %}
+
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key govuk-!-font-weight-regular ">
+                    Enter any additional information (optional)
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    {{ data['destination-any-additional-info-text-input'] }}
+                </dd>
+                {%  if  data['application-submitted-and-locked'] != "true"  %}
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="../destination/any-additional-info">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                {%  endif  %}
+            </div>
+
+        {%  endif  %}
+
+    {%  endif  %}
+
 
 </dl>

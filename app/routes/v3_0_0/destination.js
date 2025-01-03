@@ -98,27 +98,49 @@ module.exports = function (router) {
         if (req.session.data['destination-type-of-destination-radios'] == "Slaughter")
         {
             // Continue to the next page
-
             res.redirect('use-general-licence');
-
         }
 
         else if (req.session.data['destination-type-of-destination-radios'] == "Dedicated sale for TB (orange market)")
         {
             // Continue to the next page
             res.redirect('check-answers');
-
         }
 
         else if (req.session.data['destination-type-of-destination-radios'] == "Approved finishing unit (AFU)")
         {
-            res.redirect('check-answers');
+            if (req.session.data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises")
+            {
+                res.redirect('own-farm-new-cph');
+            }
+            else
+            {
+                res.redirect('check-answers');
+            }
+        }
+
+        else if (req.session.data['destination-type-of-destination-radios'] == "TB restricted farm")
+        {
+            if (req.session.data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises")
+            {
+                res.redirect('own-farm-new-cph');
+            }
+            else
+            {
+                res.redirect('destination-farm-cph');
+            }
         }
 
         else if (req.session.data['destination-type-of-destination-radios'] == "Another destination")
         {
-            // Continue to the next page
-            res.redirect('can-not-use-service');
+            if (req.session.data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises")
+            {
+                res.redirect('own-farm-new-cph');
+            }
+            else
+            {
+                res.redirect('destination-farm-cph');
+            }
         }
 
         else
@@ -225,13 +247,121 @@ module.exports = function (router) {
             }
             else
             {
-                res.redirect('destination-farm-address');
+                if (req.session.data['camefromcheckanswers'] == 'true')
+                {
+                    req.session.data['camefromcheckanswers'] = false;
+                    res.redirect('check-answers');
+                }
+                else
+                {
+                    // This page name needs to be the next page the user gets to after successfully continuing
+                    res.redirect('destination-farm-address');
+                }
+
 
             }
         }
     })
 
 
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////        CPH of own destination premises/farm        ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    // NOT COMPLEX PAGE
+    router.post( section + 'own-farm-new-cph-router', function (req, res)
+    {
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+        req.session.data['errortypetwo'] = "false";
+        req.session.data['errortypethree'] = "false";
+        req.session.data['errortypefour'] = "false";
+
+        // Validation check if field is blank
+        if (req.session.data['destination-own-farm-new-cph-text-input'] == undefined || req.session.data['destination-own-farm-new-cph-text-input'] == "")
+        {
+            // Trigger validation and relaunch the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('own-farm-new-cph');
+        }
+
+        else if (req.session.data['destination-own-farm-new-cph-text-input'].length > 13)
+        {
+            // Trigger validation and relaunch the page for over 15 characters
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypetwo'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('own-farm-new-cph');
+        }
+
+        else if (req.session.data['destination-own-farm-new-cph-text-input'].length < 9)
+        {
+            // Trigger validation and relaunch the page for under 5 characters
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypethree'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('own-farm-new-cph');
+        }
+
+        else
+        {
+            // check no illegal charcters have been used
+            const acceptableCharacters =  " 0123456789/-";
+            let inputtext = req.session.data['destination-own-farm-new-cph-text-input'];
+
+            let dissallowedCharacters = "";
+
+            // go through every character in the input and save  illegals ones
+            for (var i = 0; i < inputtext.length; i++)
+            {
+                let  singlecharacter = inputtext.charAt(i);
+
+                if( acceptableCharacters.includes( singlecharacter ) )
+                {
+                    // character is fine skip it
+                }
+                else
+                {
+                    // save this invalid character
+                    // if character is alread in tsring then don't add it
+                    if( dissallowedCharacters.includes( singlecharacter ) == false )
+                    {
+                        dissallowedCharacters = dissallowedCharacters.concat(singlecharacter);
+                    }
+                }
+            }
+
+            if(0 < dissallowedCharacters.length)
+            {
+                req.session.data['dissallowedcharacters'] = dissallowedCharacters;
+
+                // Trigger validation and relaunch the page for invalid characters
+                req.session.data['errorthispage'] = "true";
+                req.session.data['errortypefour'] = "true";
+
+                // This page name needs to match the page the user was just on
+                res.redirect('own-farm-new-cph');
+            }
+            else
+            {
+                res.redirect('own-farm-new-address');
+
+            }
+        }
+    })
 
 
 
@@ -247,16 +377,53 @@ module.exports = function (router) {
     // NOT COMPLEX PAGE
     router.post( section + 'destination-farm-address-router', function (req, res)
     {
-        if (req.session.data['bluetongue'] == "true")
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+        req.session.data['errortypetwo'] = "false";
+        req.session.data['errortypethree'] = "false";
+
+
+        // Validation check if line 1 field is blank
+        if (req.session.data['destination-destination-farm-address-line-1'] == undefined || req.session.data['destination-destination-farm-address-line-1'] == "")
         {
-            res.redirect('ruminants-any-60-days');
+            // Trigger validation and relaunch the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('destination-farm-address');
+        }
+        // Validation check if town field is blank
+        else if (req.session.data['destination-destination-farm-address-town'] == undefined || req.session.data['destination-destination-farm-address-town'] == "")
+        {
+            // Trigger validation and relaunch the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypetwo'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('destination-farm-address');
+        }
+
+        // Validation check if postcode field is blank
+        else if (req.session.data['destination-destination-farm-address-postcode'] == undefined || req.session.data['destination-destination-farm-address-postcode'] == "")
+        {
+            // Trigger validation and relaunch the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypethree'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('destination-farm-address');
         }
         else
         {
-            // This page name needs to be the next page the user gets to after successfully continuing
-            res.redirect('reason-for-movement');
+            // Continue to check answers
+            res.redirect('check-answers');
         }
+
     })
+
+
+
 
 
 
@@ -264,7 +431,7 @@ module.exports = function (router) {
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////                                                    ////////////////
-    ////////////////        Address of destination farm                 ////////////////
+    ////////////////        Address of OWN destination farm             ////////////////
     ////////////////                                                    ////////////////
     ////////////////                                                    ////////////////
     ////////////////////////////////////////////////////////////////////////////////////
@@ -274,15 +441,47 @@ module.exports = function (router) {
     // NOT COMPLEX PAGE
     router.post( section + 'own-farm-new-address-router', function (req, res)
     {
-        // If Yes was selected, continue to next page
-        if (req.session.data['bluetongue'] == "true")
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+        req.session.data['errortypetwo'] = "false";
+        req.session.data['errortypethree'] = "false";
+
+
+        // Validation check if line 1 field is blank
+        if (req.session.data['destination-own-address-line-1'] == undefined || req.session.data['destination-own-address-line-1'] == "")
         {
-            res.redirect('ruminants-any-60-days');
+            // Trigger validation and relaunch the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('own-farm-new-address');
+        }
+        // Validation check if town field is blank
+        else if (req.session.data['destination-own-address-town'] == undefined || req.session.data['destination-own-address-town'] == "")
+        {
+            // Trigger validation and relaunch the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypetwo'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('own-farm-new-address');
+        }
+
+        // Validation check if postcode field is blank
+        else if (req.session.data['destination-own-address-postcode'] == undefined || req.session.data['destination-own-address-postcode'] == "")
+        {
+            // Trigger validation and relaunch the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypethree'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('own-farm-new-address');
         }
         else
         {
             // Continue to check answers
-            res.redirect('check-answers');
+            res.redirect('reason-for-movement');
         }
     })
 

@@ -15,19 +15,9 @@ This will save you time.
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    What is the address of the farm where the animals are going to?
+    What is the address of your farm or premises where the animals are going to?
 {% endset %}
 
-
-
-<!-- Text that show in the browser tab. Does NOT need changing -->
-{% block pageTitle %}
-    {% if  data['errorthispage'] == "true"  %}
-        Error:
-    {% endif %}
-
-    {{ pageHeadingTextHTML }}
-{% endblock %}
 
 
 <!-- Set the text for each error type -->
@@ -56,9 +46,26 @@ This will save you time.
 
 
 
+<!-- Text that show in the browser tab. Does NOT need changing -->
+{% block pageTitle %}
+    {% if  data['errorthispage'] == "true"  %}
+        Error:
+    {% endif %}
+
+    {{ pageHeadingTextHTML }}
+{% endblock %}
+
+
+
+
 {% block content %}
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+
+
+        <!-- ERROR LOGIC 'error summary' -->
+        {% if data['errorthispage'] == "true" %}
+
 
             <!-- Error 1 - empty line 1-->
             {%  if  data['errortypeone'] == "true"  %}
@@ -69,7 +76,7 @@ This will save you time.
                         [
                             {
                                 html: errorTextHTML,
-                                href: "#destination-destination-farm-address-line-1"
+                                href: "#destination-own-address-line-1"
                             }
                         ]
                     })
@@ -86,7 +93,7 @@ This will save you time.
                         [
                             {
                                 html: errorTextHTML,
-                                href: "#destination-destination-farm-address-town"
+                                href: "#destination-own-address-town"
                             }
                         ]
                     })
@@ -103,7 +110,7 @@ This will save you time.
                         [
                             {
                                 html: errorTextHTML,
-                                href: "#destination-destination-farm-address-postcode"
+                                href: "#destination-own-address-postcode"
                             }
                         ]
                     })
@@ -118,7 +125,7 @@ This will save you time.
                         [
                             {
                                 html: errorTextHTML,
-                                href: "#destination-destination-farm-address-postcode"
+                                href: "#destination-own-address-postcode"
                             }
                         ]
                     })
@@ -128,8 +135,12 @@ This will save you time.
 
             {%  endif  %}
 
+        {% endif %}
+        <!--  END OF 'error summary' -->
+
+
         <!-- go to routes.js for routing  -->
-        <form action="destination-farm-address-router" method="post" novalidate>
+        <form action="own-farm-new-address-router" method="post" novalidate>
 
             {% call govukFieldset
                 ({
@@ -148,13 +159,13 @@ This will save you time.
                     {
                         text: "Address line 1"
                     },
-                    id: "destination-destination-farm-address-line-1",
-                    name: "destination-destination-farm-address-line-1",
-                    value: data['destination-destination-farm-address-line-1'],
+                    id: "destination-own-address-line-1",
+                    name: "destination-own-address-line-1",
 
                     errorMessage: null if data['errortypeone'] != "true"
-                                    else { html: errorTextHTML },
+                                        else { html: errorTextHTML },
 
+                    value: data['destination-own-address-line-1'],
                     autocomplete: "address-line1"
                 })
             }}
@@ -165,9 +176,9 @@ This will save you time.
                     {
                         text: "Address line 2 (optional)"
                     },
-                    id: "destination-destination-farm-address-line-2",
-                    name: "destination-destination-farm-address-line-2",
-                    value: data['destination-destination-farm-address-line-2'],
+                    id: "destination-own-address-line-2",
+                    name: "destination-own-address-line-2",
+                    value: data['destination-own-address-line-2'],
                     autocomplete: "address-line2"
                 })
             }}
@@ -179,13 +190,13 @@ This will save you time.
                         text: "Town or city"
                     },
                     classes: "govuk-!-width-two-thirds",
-                    id: "destination-destination-farm-address-town",
-                    name: "destination-destination-farm-address-town",
+                    id: "destination-own-address-town",
+                    name: "destination-own-address-town",
 
                     errorMessage: null if data['errortypetwo'] != "true"
-                    else { html: errorTextHTML },
+                                        else { html: errorTextHTML },
 
-                    value: data['destination-destination-farm-address-town'],
+                    value: data['destination-own-address-town'],
                     autocomplete: "address-level2"
                 })
             }}
@@ -197,11 +208,12 @@ This will save you time.
                         text: "County (optional)"
                     },
                     classes: "govuk-!-width-two-thirds",
-                    id: "destination-destination-farm-address-county",
-                    name: "destination-destination-farm-address-county",
-                    value: data['destination-destination-farm-address-county']
+                    id: "destination-own-address-county",
+                    name: "destination-own-address-county",
+                    value: data['destination-own-address-county']
                 })
             }}
+
 
 
             {%  if data['errortypefour'] != "true"  %}
@@ -213,9 +225,9 @@ This will save you time.
                                 text: "Postcode"
                             },
                             classes: "govuk-input--width-10",
-                            id: "destination-destination-farm-address-postcode",
-                            name: "destination-destination-farm-address-postcode",
-                            value: data['destination-destination-farm-address-postcode'],
+                            id: "destination-own-address-postcode",
+                            name: "destination-own-address-postcode",
+                            value: data['destination-own-address-postcode'],
 
                             errorMessage: null if data['errortypethree'] != "true"
                                                 else { html: errorTextHTML },
@@ -233,9 +245,9 @@ This will save you time.
                                 text: "Postcode"
                             },
                             classes: "govuk-input--width-10",
-                            id: "destination-destination-farm-address-postcode",
-                            name: "destination-destination-farm-address-postcode",
-                            value: data['destination-destination-farm-address-postcode'],
+                            id: "destination-own-address-postcode",
+                            name: "destination-own-address-postcode",
+                            value: data['destination-own-address-postcode'],
 
                             errorMessage: {html: errorTextHTML},
 
@@ -244,6 +256,7 @@ This will save you time.
                     }}
 
             {%  endif  %}
+
 
         {% endcall %}
 
@@ -254,7 +267,6 @@ This will save you time.
 
     </div>
 </div>
-
 
 
 <!-- ERROR LOGIC  drop down to toggle states  -->

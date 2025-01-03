@@ -92,15 +92,20 @@ This will save you time.
                     items:
                     [
                         {
+                            value: "TB restricted farm",
+                            text: "TB restricted farm",
+                            checked: data['origin-type-of-origin-radios'] == "TB restricted farm"
+                        } if   data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises",
+                        {
                             value: "Slaughter",
                             text: "Slaughter",
                             checked: data['destination-type-of-destination-radios'] == "Slaughter"
-                        },
+                        } if   data['origin-to-or-from-own-premises-radios'] == "Off the farm or premises",
                         {
                             value: "Dedicated sale for TB (orange market)",
                             text: "Dedicated sale for TB (orange market)",
                             checked: data['destination-type-of-destination-radios'] == "Dedicated sale for TB (orange market)"
-                        },
+                        } if   data['origin-to-or-from-own-premises-radios'] == "Off the farm or premises",
                         {
                             value: "Approved finishing unit (AFU)",
                             text: "Approved finishing unit (AFU)",
@@ -110,6 +115,11 @@ This will save you time.
                             },
                             checked: data['destination-type-of-destination-radios'] == "Approved finishing unit (AFU)"
                         },
+                        {
+                            value: "TB restricted farm",
+                            text: "TB restricted farm",
+                            checked: data['origin-type-of-origin-radios'] == "TB restricted farm"
+                        } if   data['origin-to-or-from-own-premises-radios'] == "Off the farm or premises",
                         {
                             value: "Another destination",
                             text: "Another destination",
@@ -151,6 +161,26 @@ This will save you time.
 
 </form>
 <!--  END OF ERROR LOGIC -->
+
+
+
+<!-- ON OR OFF FARM  drop down to toggle states  -->
+<form method="post"  action="#" class="for4" style=" float: left; position: relative; bottom:-225px;  ">
+
+    <select style="height:30px;" onchange="window.location.href='?'+this.value">
+
+        <option value="origin-to-or-from-own-premises-radios=Off the farm or premises&"
+                {% if  data['origin-to-or-from-own-premises-radios'] != "Off the farm or premises" %}selected{% endif %}
+        >Movement - OFF premises</option>
+
+        <option value="origin-to-or-from-own-premises-radios=On to the farm or premises&"
+                {% if  data['origin-to-or-from-own-premises-radios'] == 'On to the farm or premises'  %}selected{% endif %}
+        >Movement - ON premises</option>
+
+    </select>
+
+</form>
+<!--  END OF ON OR OFF FARM  LOGIC -->
 
 
 {% endblock %}

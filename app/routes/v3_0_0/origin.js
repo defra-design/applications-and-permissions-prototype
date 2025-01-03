@@ -108,7 +108,7 @@ module.exports = function (router) {
         {
             // Continue to the next page
 
-            // If the user needs to go back to 'check your answers' then take them directly there
+
             if (req.session.data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises")
             {
                 res.redirect('check-answers');
@@ -123,7 +123,7 @@ module.exports = function (router) {
         {
             // Continue to the next page
 
-            // If the user needs to go back to 'check your answers' then take them directly there
+
             if (req.session.data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises")
             {
                 res.redirect('origin-farm-cph');
@@ -138,7 +138,7 @@ module.exports = function (router) {
         {
             // Continue to the next page
 
-            // If the user needs to go back to 'check your answers' then take them directly there
+
             if (req.session.data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises")
             {
                 res.redirect('check-answers');
