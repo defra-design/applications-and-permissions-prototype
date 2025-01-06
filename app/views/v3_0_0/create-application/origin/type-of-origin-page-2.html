@@ -53,7 +53,7 @@ This will save you time.
                     [
                         {
                             html: errorTextHTML,
-                            href: "#origin-type-of-origin-radios"
+                            href: "#origin-type-of-origin-page-2-radios"
                         }
                     ]
                 })
@@ -63,13 +63,13 @@ This will save you time.
 
 
         <!-- go to routes.js for routing  -->
-        <form action="type-of-origin-router" method="post" novalidate>
+        <form action="type-of-origin-page-2-router" method="post" novalidate>
 
             {{ govukRadios
                 ({
-                    name: "origin-type-of-origin-radios",
+                    name: "origin-type-of-origin-page-2-radios",
 
-                    id: "origin-type-of-origin-radios",
+                    id: "origin-type-of-origin-page-2-radios",
 
                     fieldset:
                     {
@@ -92,33 +92,24 @@ This will save you time.
                     items:
                     [
                         {
-                            value: "A market",
-                            text: "A market",
-                            checked: data['origin-type-of-origin-radios'] == "A market"
+                            value: "Zoo",
+                            text: "Zoo",
+                            checked: data['origin-type-of-origin-page-2-radios'] == "Zoo"
                         },
                         {
-                            value: "TB restricted farm",
-                            text: "TB restricted farm",
-                            checked: data['origin-type-of-origin-radios'] == "TB restricted farm"
+                            value: "Laboratory",
+                            text: "Laboratory",
+                            checked: data['origin-type-of-origin-page-2-radios'] == "Laboratory"
                         },
                         {
-                            value: "An unrestricted farm or premises",
-                            text: "An unrestricted farm or premises",
-                            checked: data['origin-type-of-origin-radios'] == "An unrestricted farm"
+                            value: "Movement after import",
+                            text: "Movement after import",
+                            checked: data['origin-type-of-origin-page-2-radios'] == "Movement after import"
                         } if data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises",
-                        {
-                            value: "Approved finishing unit (AFU)",
-                            text: "Approved finishing unit (AFU)",
-                            hint:
-                            {
-                                text: "Including enhanced with grazing (AFUE)"
-                            },
-                            checked: data['origin-type-of-origin-radios'] == "Approved finishing unit (AFU)"
-                        },
                         {
                             value: "Another origin",
                             text: "Another origin",
-                            checked: data['origin-type-of-origin-radios'] == "Another origin"
+                            checked: data['origin-type-of-origin-page-2-radios'] == "Another origin"
                         }
                     ]
                 })
