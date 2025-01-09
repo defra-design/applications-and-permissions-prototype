@@ -56,6 +56,16 @@ module.exports = function (router) {
         // If Yes was selected, continue to next page
         if (req.session.data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises")
         {
+            // Check if user has changed their selection
+            // If they have then the user need to redo the destination section
+            if (req.session.data['on-or-off-history'] == "Off the farm or premises")
+            {
+                req.session.data['section-destination-complete'] = "false";
+            }
+            // Save what was previous selected for comparison if changed later
+            req.session.data['on-or-off-history'] = "On to the farm or premises";
+
+
             // Continue to the next page
             // scope means this is not viable for release 1
             res.redirect('type-of-origin');
@@ -63,7 +73,15 @@ module.exports = function (router) {
 
         else if (req.session.data['origin-to-or-from-own-premises-radios'] == "Off the farm or premises")
         {
-            // Continue to the next page
+            // Check if user has changed their selection
+            // If they have then the user need to redo the destination section
+            if (req.session.data['on-or-off-history'] == "On to the farm or premises")
+            {
+                req.session.data['section-destination-complete'] = "false";
+            }
+            // Save what was previous selected for comparison if changed later
+            req.session.data['on-or-off-history'] = "Off the farm or premises";
+
 
             // This page name needs to be the next page the user gets to after successfully continuing
             res.redirect('type-of-origin');
@@ -185,7 +203,7 @@ module.exports = function (router) {
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////                                                    ////////////////
     ////////////////        Type of origin premises                     ////////////////
-    ////////////////                 for inbound animals                ////////////////
+    ////////////////          for in and outbound animals               ////////////////
     ////////////////                                                    ////////////////
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////

@@ -57,7 +57,7 @@ module.exports = function (router) {
         if (req.session.data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises")
         {
             // Continue to the next pages where farmer is the origin
-            res.redirect('selection-of-own-premises');
+            res.redirect('type-of-destination');
         }
 
         else
@@ -135,11 +135,11 @@ module.exports = function (router) {
         {
             if (req.session.data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises")
             {
-                res.redirect('own-farm-new-cph');
+                res.redirect('type-of-destination-page-2');
             }
             else
             {
-                res.redirect('destination-farm-cph');
+                res.redirect('type-of-destination-page-2');
             }
         }
 
@@ -262,6 +262,121 @@ module.exports = function (router) {
             }
         }
     })
+
+
+
+
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////        Type of destination premises                ////////////////
+    ////////////////          for in and outbound animals               ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    // NOT COMPLEX PAGE
+    router.post( section + 'type-of-destination-page-2-router', function (req, res)
+    {
+        // Turn errors off by default
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+
+        // If Yes was selected, continue to next page
+        if (req.session.data['destination-type-of-destination-page-2-radios'] == "Zoo")
+        {
+            // Continue to the next page
+            if (req.session.data['destination-to-or-from-own-premises-radios'] == "On to the farm or premises")
+            {
+                res.redirect('own-farm-new-cph');
+            }
+            else
+            {
+                res.redirect('destination-farm-cph');
+            }
+        }
+        else if (req.session.data['destination-type-of-destination-page-2-radios'] == "Laboratory")
+        {
+            // Continue to the next page
+            if (req.session.data['destination-to-or-from-own-premises-radios'] == "On to the farm or premises")
+            {
+                res.redirect('own-farm-new-cph');
+            }
+            else
+            {
+                res.redirect('destination-farm-cph');
+            }
+        }
+        else if (req.session.data['destination-type-of-destination-page-2-radios'] == "Another destination")
+        {
+            // end page next
+            res.redirect('type-of-destination-other');
+        }
+        else
+        {
+            // Trigger validation and reload the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('type-of-destination-page-2');
+        }
+    })
+
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////         Manual entry of destination type                ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////              TEXT ENTRY - MANDATORY                ////////////////
+    ////////////////                 NOT COMPLEX PAGE                   ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    router.post(section + 'type-of-destination-other-router', function (req, res)
+    {
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+        req.session.data['errortypetwo'] = "false";
+        req.session.data['errortypethree'] = "false";
+        req.session.data['errortypefour'] = "false";
+
+        // Validation check if field is blank
+        if (req.session.data['destination-type-of-destination-other-text-input'] == undefined || req.session.data['destination-type-of-destination-other-text-input'] == "")
+        {
+            // Trigger validation and relaunch the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('type-of-destination-other');
+        }
+
+        else
+        {
+            if (req.session.data['destination-to-or-from-own-premises-radios'] == "On to the farm or premises")
+            {
+                res.redirect('own-farm-new-cph');
+            }
+            else
+            {
+                res.redirect('destination-farm-cph');
+            }
+        }
+    })
+
+
 
 
 
