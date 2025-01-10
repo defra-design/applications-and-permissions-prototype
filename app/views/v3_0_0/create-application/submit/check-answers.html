@@ -67,25 +67,31 @@
         {% include "../includes/destination-cya.html" %}
 
 
-        <!--
-        <h2 class="govuk-heading-m">Tests</h2>
-        {% include "../includes/tests-cya.html" %}
-        -->
-
 
         <h2 class="govuk-heading-m">Receiving the licence</h2>
         {% include "../includes/contact-and-updates-cya.html" %}
 
 
+        {%  if  data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises" %}
+
+            <h2 class="govuk-heading-m">Biosecurity details</h2>
+            {% include "../includes/biosecurity-cya.html" %}
+
+
+            <h2 class="govuk-heading-m">Biosecurity map</h2>
+            {% include "../includes/biosecurity-map-cya.html" %}
+
+        {%  endif  %}
+
+
+
+
+
+
 
         <h2 class="govuk-heading-m">Your declaration</h2>
 
-        <p>Before you submit your application, you need to confirm:</p>
-
-        <ul class="govuk-list govuk-list--bullet">
-          <li>all relevant sections are complete</li>
-          <li>all the information given is correct and accurate to the best of your knowledge</li>
-        </ul>
+        <p>Before you submit your application, you must select one of the declaration check boxes.</p>
 
         <!-- form URL below turns off errors on the next page  -->
         <form action="check-answers-router" method="post" novalidate>
@@ -117,14 +123,14 @@
                     items:
                     [
                         {
-                            value: "I confirm the above statements",
-                            text: "I confirm the above statements",
-                            checked: (data['check-answers-confirmation-checkboxes'] or []).indexOf('I confirm the above statements') > -1
+                            value: " I am submitting this form for my farm or premises and confirm all the information given is correct to the best of my knowledge",
+                            text: " I am submitting this form for my farm or premises and confirm all the information given is correct to the best of my knowledge",
+                            checked: (data['check-answers-confirmation-checkboxes'] or []).indexOf(' I am submitting this form for my farm or premises and confirm all the information given is correct to the best of my knowledge') > -1
                         },
                         {
-                            value: "I am submitting this form on behalf of someone else and confirm the above statements ",
-                            text: "I am submitting this form on behalf of someone else and confirm the above statements ",
-                            checked: (data['check-answers-confirmation-checkboxes'] or []).indexOf('I am submitting this form on behalf of someone else and confirm the above statements') > -1
+                            value: "I am submitting this form on behalf of someone else and confirm all the information given is correct to the best of my knowledge",
+                            text: "I am submitting this form on behalf of someone else and confirm all the information given is correct to the best of my knowledge",
+                            checked: (data['check-answers-confirmation-checkboxes'] or []).indexOf('I am submitting this form on behalf of someone else and confirm all the information given is correct to the best of my knowledge') > -1
                         }
                     ]
                 })

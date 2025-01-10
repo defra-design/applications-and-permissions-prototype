@@ -4,7 +4,7 @@
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    Upload a biosecurity plan map
+    Upload a biosecurity map
 {% endset %}
 
 
@@ -12,7 +12,7 @@
 {% set errorTextHTML %}
     <!-- Nothing was selected -->
     {% if data['errortypeone'] == "true" %}
-        Select a [PLACEHOLDER] file
+        You need to upload your biosecurity map
     {% endif %}
 {% endset %}
 
@@ -55,6 +55,7 @@
             {{ pageHeadingTextHTML }}
         </h1>
 
+        <!--
         <details class="govuk-details" data-module="govuk-details">
             <summary class="govuk-details__summary">
                 <span class="govuk-details__summary-text">
@@ -76,6 +77,8 @@
             })
         }}
 
+        -->
+
         <p>You need to upload a map of the farm.  It needs to include:</p>
 
         <ul class="govuk-body govuk-list--bullet">
@@ -85,6 +88,7 @@
             <li>location of handling facility</li>
             <li>location of manure or slurry storage</li>
             <li>location of biosecurity points</li>
+            <li>location of footpaths</li>
         </ul>
 
 

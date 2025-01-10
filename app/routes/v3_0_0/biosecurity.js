@@ -319,10 +319,23 @@ module.exports = function (router) {
 
     router.get(section + 'grazing-field-how-separated-router', function (req, res)
     {
-        // Always proceed to the next questions on shared tracks
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
 
-        res.redirect('roads-and-tracks');
-        // Possibly add empty field error in future
+        if (req.session.data['biosecurity-grazing-field-how-separated-text-input'] == undefined || req.session.data['biosecurity-grazing-field-how-separated-text-input'] == "")
+        {
+            // Trigger validation and relaunch the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('grazing-field-how-separated');
+        }
+        else
+        {
+            // Always proceed to the next questions on shared tracks
+            res.redirect('roads-and-tracks');
+        }
     })
 
 
@@ -363,7 +376,7 @@ module.exports = function (router) {
             else
             {
                 // This page name needs to be the next page the user gets to after successfully continuing
-                res.redirect('road-and-track-minimise-contamination');
+                res.redirect('buildings-any-shared');
             }
         }
         else if (req.session.data['biosecurity-roads-and-tracks-radios-yes-no'] == "No")
@@ -393,28 +406,6 @@ module.exports = function (router) {
         }
     })
 
-
-
-
-
-    ////////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////////
-    ////////////////                                                    ////////////////
-    ////////////////              How will tracks be kept clean         ////////////////
-    ////////////////                                                    ////////////////
-    ////////////////                        TEXT AREA                   ////////////////
-    ////////////////                                                    ////////////////
-    ////////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////////
-
-
-    router.get(section + 'road-and-track-minimise-contamination-router', function (req, res)
-    {
-        // Always proceed to the next questions on shared tracks
-
-        res.redirect('buildings-any-shared');
-        // Possibly add empty field error in future
-    })
 
 
 
@@ -501,10 +492,23 @@ module.exports = function (router) {
 
     router.get(section + 'buildings-how-minimise-contamination-router', function (req, res)
     {
-        // Always proceed to the next questions on shared tracks
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
 
-        res.redirect('people-disinfection');
-        // Possibly add empty field error in future
+        if (req.session.data['biosecurity-buildings-how-minimise-contamination-text-input'] == undefined || req.session.data['biosecurity-buildings-how-minimise-contamination-text-input'] == "")
+        {
+            // Trigger validation and relaunch the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('buildings-how-minimise-contamination');
+        }
+        else
+        {
+            // Always proceed to the next questions on shared tracks
+            res.redirect('people-disinfection');
+        }
     })
 
 
@@ -524,10 +528,23 @@ module.exports = function (router) {
 
     router.get(section + 'people-disinfection-router', function (req, res)
     {
-        // Always proceed to the next questions on shared tracks
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
 
-        res.redirect('disinfectant');
-        // Possibly add empty field error in future
+        if (req.session.data['biosecurity-people-disinfection-text-input'] == undefined || req.session.data['biosecurity-people-disinfection-text-input'] == "")
+        {
+            // Trigger validation and relaunch the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('people-disinfection');
+        }
+        else
+        {
+            // Always proceed to the next questions on shared tracks
+            res.redirect('disinfectant');
+        }
     })
 
 
@@ -568,25 +585,6 @@ module.exports = function (router) {
         }
 
 
-        else if (req.session.data['biosecurity-disinfectant-text-input'].length < 4)
-        {
-            // Trigger validation and relaunch the page for under 5 characters
-            req.session.data['errorthispage'] = "true";
-            req.session.data['errortypethree'] = "true";
-
-            // This page name needs to match the page the user was just on
-            res.redirect('disinfectant');
-        }
-
-
-        // everything with the input is fine so move on to next page
-
-        // If the user needs to go back to 'check your answers' then take them directly there
-        else if (req.session.data['camefromcheckanswers'] == 'true')
-        {
-            req.session.data['camefromcheckanswers'] = false;
-            res.redirect('check-answers');
-        }
         else
         {
             // This page name needs to be the next page the user gets to after successfully continuing
@@ -619,11 +617,6 @@ module.exports = function (router) {
         req.session.data['errorthispage'] = "false";
         req.session.data['errortypeone'] = "false";
         req.session.data['errortypetwo'] = "false";
-        req.session.data['errortypethree'] = "false";
-        req.session.data['errortypefour'] = "false";
-        req.session.data['errortypefive'] = "false";
-        req.session.data['errortypesix'] = "false";
-        req.session.data['errortypeseven'] = "false";
 
 
         // Validation check if field is blank
@@ -646,62 +639,31 @@ module.exports = function (router) {
             {
                 // Trigger validation and relaunch the page
                 req.session.data['errorthispage'] = "true";
-                req.session.data['errortypeone'] = "true";
+                req.session.data['errortypetwo'] = "true";
 
                 // This page name needs to match the page the user was just on
                 res.redirect('disinfectant-dilution');
             }
             else
             {
-                // convert String input to a number
-                let numberinputfloat =  parseFloat( nocommasinput );
-
-
-
-                if ( numberinputfloat == 0 )
-                {
-                    // Trigger validation and relaunch the page for number lower than 4
-                    req.session.data['errorthispage'] = "true";
-                    req.session.data['errortypethree'] = "true";
-
-                    // This page name needs to match the page the user was just on
-                    res.redirect('disinfectant-dilution');
-                }
-
-
-                else if ( 100 < numberinputfloat )
-                {
-                    // Trigger validation and relaunch the page for number hgiher than 100
-                    req.session.data['errorthispage'] = "true";
-                    req.session.data['errortypesix'] = "true";
-
-                    // Format the number with commas
-                    req.session.data['biosecurity-disinfectant-dilution-number-input'] = numberinputfloat.toLocaleString();
-
-                    // This page name needs to match the page the user was just on
-                    res.redirect('disinfectant-dilution');
-                }
-
-
                 // everything with the input is fine so move on to next page
+
+                // Format the number with commas
+                req.session.data['biosecurity-disinfectant-dilution-number-input'] = numberinputfloat.toLocaleString();
+
+
+                // If the user needs to go back to 'check your answers' then take them directly there
+                if (req.session.data['camefromcheckanswers'] == 'true')
+                {
+                    req.session.data['camefromcheckanswers'] = false;
+                    res.redirect('check-answers');
+                }
                 else
                 {
-                    // Format the number with commas
-                    req.session.data['biosecurity-disinfectant-dilution-number-input'] = numberinputfloat.toLocaleString();
-
-
-                    // If the user needs to go back to 'check your answers' then take them directly there
-                    if (req.session.data['camefromcheckanswers'] == 'true')
-                    {
-                        req.session.data['camefromcheckanswers'] = false;
-                        res.redirect('check-answers');
-                    }
-                    else
-                    {
-                        // This page name needs to be the next page the user gets to after successfully continuing
-                        res.redirect('badgers');
-                    }
+                    // This page name needs to be the next page the user gets to after successfully continuing
+                    res.redirect('badgers');
                 }
+
             }
 
         }

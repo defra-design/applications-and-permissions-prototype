@@ -16,7 +16,7 @@ This will save you time.
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    What type of premises are the animals moving off?
+    Which type of premises are the animals moving off?
 {% endset %}
 
 
@@ -102,9 +102,9 @@ This will save you time.
                             checked: data['origin-type-of-origin-page-2-radios'] == "Laboratory"
                         },
                         {
-                            value: "Movement after import",
-                            text: "Movement after import",
-                            checked: data['origin-type-of-origin-page-2-radios'] == "Movement after import"
+                            value: "Location after animals have been imported",
+                            text: "Location after animals have been imported",
+                            checked: data['origin-type-of-origin-page-2-radios'] == "Location after animals have been imported"
                         } if data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises",
                         {
                             value: "Another origin",

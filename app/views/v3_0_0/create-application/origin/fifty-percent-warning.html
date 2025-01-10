@@ -3,25 +3,14 @@
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    Where are the animals coming from?
+    Reduction in TB compensation
 {% endset %}
 
 
-<!-- Set the text for the error type -->
-{% set errorTextHTML %}
-    <!-- Nothing was selected -->
-    {% if data['errortypeone'] == "true" %}
-        Select where the animals are moving from
-    {% endif %}
-{% endset %}
 
 
 <!-- Text that show in the browser tab. Does NOT need changing -->
 {% block pageTitle %}
-    {% if  data['errorthispage'] == "true"  %}
-        Error:
-    {% endif %}
-
     {{ pageHeadingTextHTML }}
 {% endblock %}
 
@@ -31,20 +20,22 @@
     <div class="govuk-grid-column-two-thirds">
 
 
-        <h1 class="govuk-heading-l">Why you might receive less compensation  </h1>
+        <h1 class="govuk-heading-l">{{ pageHeadingTextHTML }}</h1>
 
-        <p>You might receive 50% less compensation if the cattle moved into a TB breakdown herd and are removed as a
-            reactors or direct contacts before they gain OTF (officially Tuberculosis free) status.
+        <p>If cattle are removed as reactors from a TB breakdown herd before they gain OTF
+            (officially Tuberculosis free) status, you might receive 50% less compensation.
         </p>
 
         <p>This does not apply if:</p>
 
         <ul class="govuk-body govuk-list--bullet">
-            <li>the destination herd is registered to a bovine TB health scheme accredited before the breakdown began
-                under the Cattle Health Certification Standards (CHECS) </li>
-            <li>the cattle are being moved to Approved Finishing Units (AFU), Approved Finishing Units (Enhanced) with
-                Grazing (AFUE), Licensed Finishing Units (LFU) and TB Isolation Units (TB IUs) </li>
+            <li>the destination herd is registered to a bovine TB health scheme (before the breakdown began)</li>
+            <li>the cattle are moving to any type of approved or licenced finishing unit, or to a TB isolation unit</li>
         </ul>
+
+        <p>For more information, read the slaughter and compensation section on the
+            <a href="https://www.gov.uk/guidance/bovine-tb-getting-your-cattle-tested-in-england#slaughter-and-compensation">GOV.UK Bovine TB guidance page</a>.
+        </p>
 
 
         <!-- go to routes.js for routing  -->

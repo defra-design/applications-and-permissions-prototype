@@ -49,7 +49,7 @@ module.exports = function (router)
             {
                 // Trigger validation and relaunch the page
                 req.session.data['errorthispage'] = "true";
-                req.session.data['errortypeone'] = "true";
+                req.session.data['errortypeotwo'] = "true";
 
                 // This page name needs to match the page the user was just on
                 res.redirect('PAGENAME_NUMBER');

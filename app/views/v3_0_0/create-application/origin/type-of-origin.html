@@ -16,7 +16,7 @@ This will save you time.
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    What type of premises are the animals moving off?
+    Which type of premises are the animals moving off?
 {% endset %}
 
 
@@ -92,9 +92,9 @@ This will save you time.
                     items:
                     [
                         {
-                            value: "A market",
-                            text: "A market",
-                            checked: data['origin-type-of-origin-radios'] == "A market"
+                            value: "Market",
+                            text: "Market",
+                            checked: data['origin-type-of-origin-radios'] == "Market"
                         } if data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises",
                         {
                             value: "TB restricted farm",
@@ -102,9 +102,9 @@ This will save you time.
                             checked: data['origin-type-of-origin-radios'] == "TB restricted farm"
                         } if data['origin-to-or-from-own-premises-radios'] == "Off the farm or premises",
                         {
-                            value: "An unrestricted farm or premises",
-                            text: "An unrestricted farm or premises",
-                            checked: data['origin-type-of-origin-radios'] == "An unrestricted farm"
+                            value: "Unrestricted farm or premises",
+                            text: "Unrestricted farm or premises",
+                            checked: data['origin-type-of-origin-radios'] == "Unrestricted farm or premises"
                         } if data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises",
                         {
                             value: "Approved finishing unit (AFU)",
@@ -116,9 +116,9 @@ This will save you time.
                             checked: data['origin-type-of-origin-radios'] == "Approved finishing unit (AFU)"
                         },
                         {
-                            value: "An unrestricted farm or premises",
-                            text: "An unrestricted farm or premises",
-                            checked: data['origin-type-of-origin-radios'] == "An unrestricted farm"
+                            value: "Unrestricted farm or premises",
+                            text: "Unrestricted farm or premises",
+                            checked: data['origin-type-of-origin-radios'] == "Unrestricted farm or premises"
                         } if data['origin-to-or-from-own-premises-radios'] == "Off the farm or premises",
                         {
                             value: "Another origin",

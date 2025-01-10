@@ -122,11 +122,9 @@ module.exports = function (router) {
         req.session.data['errortypeone'] = "false";
 
         // If Yes was selected, continue to next page
-        if (req.session.data['origin-type-of-origin-radios'] == "A market")
+        if (req.session.data['origin-type-of-origin-radios'] == "Market")
         {
             // Continue to the next page
-
-
             if (req.session.data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises")
             {
                 res.redirect('fifty-percent-warning');
@@ -150,7 +148,7 @@ module.exports = function (router) {
                 res.redirect('own-farm-new-cph');
             }
         }
-        else if (req.session.data['origin-type-of-origin-radios'] == "An unrestricted farm or premises")
+        else if (req.session.data['origin-type-of-origin-radios'] == "Unrestricted farm or premises")
         {
             // Continue to the next page
             if (req.session.data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises")
@@ -243,7 +241,7 @@ module.exports = function (router) {
                 res.redirect('own-farm-new-cph');
             }
         }
-        else if (req.session.data['origin-type-of-origin-page-2-radios'] == "Movement after import")
+        else if (req.session.data['origin-type-of-origin-page-2-radios'] == "Location after animals have been imported")
         {
             // Continue to the next page
             if (req.session.data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises")
