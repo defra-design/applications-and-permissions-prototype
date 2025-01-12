@@ -158,7 +158,7 @@ module.exports = function (router) {
             else
             {
                 // This page name needs to be the next page the user gets to after successfully continuing
-                res.redirect('own-farm-new-cph');
+                res.redirect('contact-the-tb-restricted-farm');
             }
         }
         else if (req.session.data['origin-type-of-origin-radios'] == "Approved finishing unit (AFU)")

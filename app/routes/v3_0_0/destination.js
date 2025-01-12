@@ -1066,89 +1066,30 @@ module.exports = function (router) {
         req.session.data['errortypeone'] = "false";
 
         // If Yes was selected, continue to next page
-        if (req.session.data['destination-reason-for-movement-radios'] == "Routine restocking")
+        if (req.session.data['destination-reason-for-movement-radios'] == "Restocking")
         {
             // Continue to the next page
-
-            // If the user needs to go back to 'check your answers' then take them directly there
-            if (req.session.data['camefromcheckanswers'] == 'true')
-            {
-                req.session.data['camefromcheckanswers'] = false;
-                res.redirect('check-answers');
-            }
-            else
-            {
-                // If bluetongue
-                if (req.session.data['bluetongue'] == "true")
-                {
-                    res.redirect('pregnant-any');
-                }
-                else
-                {
-                    res.redirect('quantity-options');
-                }
-            }
+            res.redirect('quantity-options');
         }
-        else if (req.session.data['destination-reason-for-movement-radios'] == "Bull")
+        else if (req.session.data['destination-reason-for-movement-radios'] == "Breeding male")
         {
             // Continue to the next page
-
-            // If the user needs to go back to 'check your answers' then take them directly there
-            if (req.session.data['camefromcheckanswers'] == 'true')
-            {
-                req.session.data['camefromcheckanswers'] = false;
-                res.redirect('check-answers');
-            }
-            else
-            {
-                res.redirect('any-additional-info');
-            }
+            res.redirect('any-additional-info');
         }
         else if (req.session.data['destination-reason-for-movement-radios'] == "Welfare")
         {
             // Continue to the next page
-
-            // If the user needs to go back to 'check your answers' then take them directly there
-            if (req.session.data['camefromcheckanswers'] == 'true')
-            {
-                req.session.data['camefromcheckanswers'] = false;
-                res.redirect('check-answers');
-            }
-            else
-            {
-                // If bluetongue
-                if (req.session.data['bluetongue'] == "true")
-                {
-                    res.redirect('pregnant-any');
-                }
-                else
-                {
-                    res.redirect('any-additional-info');
-                }
-            }
+            res.redirect('any-additional-info');
+        }
+        else if (req.session.data['destination-reason-for-movement-radios'] == "Research")
+        {
+            // Continue to the next page
+            res.redirect('any-additional-info');
         }
         else if (req.session.data['destination-reason-for-movement-radios'] == "Something else")
         {
             // Continue to the next page
-
-            // If the user needs to go back to 'check your answers' then take them directly there
-            if (req.session.data['camefromcheckanswers'] == 'true')
-            {
-                req.session.data['camefromcheckanswers'] = false;
-                res.redirect('check-answers');
-            }
-            else
-            {
-                // If bluetongue
-                if (req.session.data['bluetongue'] == "true")
-                {
-                    res.redirect('pregnant-any');
-                }
-                else
-                {
-                    res.redirect('any-additional-info');
-                }
-            }
+            res.redirect('any-additional-info');
         }
         else
         {
@@ -1214,7 +1155,7 @@ module.exports = function (router) {
             }
             else
             {
-                if (req.session.data['destination-reason-for-movement-radios'] == "Routine restocking")
+                if (req.session.data['destination-reason-for-movement-radios'] == "Restocking")
                 {
                     res.redirect('quantity-options');
                 }
@@ -1508,7 +1449,7 @@ module.exports = function (router) {
             // redirect to the next page
 
             // For PLACEHOLDER template only. This should go to the next page.
-            if (req.session.data['destination-reason-for-movement-radios'] == "Routine restocking")
+            if (req.session.data['destination-reason-for-movement-radios'] == "Restocking")
             {
                 res.redirect('quantity-options');
             }

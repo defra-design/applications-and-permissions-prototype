@@ -16,7 +16,7 @@ This will save you time.
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    What is the reason for the movement?
+    WWhat is the reason for the movement?
 {% endset %}
 
 
@@ -92,14 +92,14 @@ This will save you time.
                     items:
                     [
                         {
-                            value: "Routine restocking",
-                            text: "Routine restocking",
-                            checked: data['destination-reason-for-movement-radios'] == "Routine restocking"
+                            value: "Restocking",
+                            text: "Restocking",
+                            checked: data['destination-reason-for-movement-radios'] == "Restocking"
                         },
                         {
-                            value: "Bull",
-                            text: "Bull",
-                            checked: data['destination-reason-for-movement-radios'] == "Bull"
+                            value: "Breeding male",
+                            text: "Breeding male",
+                            checked: data['destination-reason-for-movement-radios'] == "Breeding male"
                         },
                         {
                             value: "Welfare",
@@ -109,6 +109,11 @@ This will save you time.
                             {
                                 text: "Including moving pregnant females"
                             }
+                        },
+                        {
+                            value: "Research",
+                            text: "Research",
+                            checked: data['destination-reason-for-movement-radios'] == "Research"
                         },
                         {
                             value: "Something else",
