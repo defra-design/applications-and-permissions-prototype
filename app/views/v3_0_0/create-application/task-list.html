@@ -133,7 +133,7 @@
                         {
                             text: "Biosecurity map"
                         },
-                        href: "biosecurity-map/check-answers" if data['section-biosecurity-map-complete'] == "true" else "biosecurity-map/reuse-map",
+                        href: "biosecurity-map/check-answers" if data['section-biosecurity-map-complete'] == "true" else "biosecurity-map/upload-plan",
                         status:
                         {
                             text: "Completed",
@@ -192,7 +192,7 @@
 
 
         <!--  ONTO THE FARM FROM A MARKET -->
-        <option value="section-origin-complete=true&section-destination-complete=false&section-tests-complete=false&section-contact-and-updates-complete=false&origin-to-or-from-own-premises-radios=Off the farm&"
+        <option value="section-origin-complete=true&section-destination-complete=false&section-tests-complete=false&section-contact-and-updates-complete=false&origin-to-or-from-own-premises-radios=n to the farm or premises&"
                 {% if  data['section-origin-complete'] == "true" and
                         data['section-destination-complete'] != "true" and
                         data['section-tests-complete'] != "true" and
@@ -202,11 +202,13 @@
 
 
         <!--  ON TO THE FARM FROM A FARM -->
-        <option value="section-origin-complete=true&section-destination-complete=true&section-tests-complete=true&section-contact-and-updates-complete=true&origin-to-or-from-own-premises-radios=Off the farm&"
+        <option value="section-origin-complete=true&section-destination-complete=true&section-tests-complete=true&section-contact-and-updates-complete=true&section-biosecurity-complete=true&section-biosecurity-map-complete=true&origin-to-or-from-own-premises-radios=On to the farm or premises&"
                 {% if  data['section-origin-complete'] == "true" and
                         data['section-destination-complete'] == "true" and
                         data['section-tests-complete'] == "true" and
-                        data['section-contact-and-updates-complete'] == "true"
+                        data['section-contact-and-updates-complete'] == "true" and
+                        data['section-biosecurity-complete'] == "true" and
+                        data['section-biosecurity-map-complete'] == "true"
                 %}selected{% endif %}
         >All sections complete</option>
 

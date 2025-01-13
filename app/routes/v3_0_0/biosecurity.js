@@ -635,7 +635,7 @@ module.exports = function (router) {
             let nocommasinput = req.session.data['biosecurity-disinfectant-dilution-number-input'].replace(/,/g, '');
 
             // if not a number throw first error
-            if( isNaN(req.session.data['biosecurity-disinfectant-dilution-number-input']) )
+            if( isNaN(nocommasinput) )
             {
                 // Trigger validation and relaunch the page
                 req.session.data['errorthispage'] = "true";
@@ -647,6 +647,8 @@ module.exports = function (router) {
             else
             {
                 // everything with the input is fine so move on to next page
+                // convert String input to a number
+                let numberinputfloat =  parseFloat( nocommasinput );
 
                 // Format the number with commas
                 req.session.data['biosecurity-disinfectant-dilution-number-input'] = numberinputfloat.toLocaleString();

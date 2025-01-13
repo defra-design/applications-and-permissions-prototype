@@ -1,18 +1,6 @@
 <dl class="govuk-summary-list">
 
-    <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
-            Which map would you like to use?
-        </dt>
-        <dd class="govuk-summary-list__value">
-            {{ data['biosecurity-reuse-map-radios'] }}
-        </dd>
-        <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="../biosecurity-map/reuse-map">Change<span class="govuk-visually-hidden"> </span></a>
-        </dd>
-    </div>
 
-    {%  if data['biosecurity-reuse-map-radios']  == "Upload a new map"  %}
     <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
             Biosecurity plan diagram
@@ -27,7 +15,6 @@
             <a class="govuk-link" href="../biosecurity-map/upload-plan">Change<span class="govuk-visually-hidden"> </span></a>
         </dd>
     </div>
-    {%  endif  %}
 
 
 </dl>
