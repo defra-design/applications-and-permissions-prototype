@@ -123,9 +123,11 @@
                                 classes: "govuk-tag--blue"
                             } if data['section-biosecurity-complete'] != "true"
                         }
-                    } if      data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises"
-                           or (data['origin-to-or-from-own-premises-radios'] == "Off the farm or premises"
-                              and data['destination-type-of-destination-radios'] == "TB restricted farm"),
+                    } if      (data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises"
+                                and  data['section-destination-complete'] == "true"
+                                and  data['destination-type-of-destination-radios'] != "Approved finishing unit (AFU)"
+                                and  data['destination-type-of-destination-page-2-radios'] != "Zoo"
+                                ),
 
 
                     {
@@ -143,8 +145,11 @@
                                 classes: "govuk-tag--blue"
                             } if data['section-biosecurity-map-complete'] != "true"
                         }
-                    } if      data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises"
-                           or data['destination-type-of-destination-radios'] == "A farm"
+                    } if      (data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises"
+                                and  data['section-destination-complete'] == "true"
+                                and  data['destination-type-of-destination-radios'] != "Approved finishing unit (AFU)"
+                                and  data['destination-type-of-destination-page-2-radios'] != "Zoo"
+                                )
 
 
                 ]

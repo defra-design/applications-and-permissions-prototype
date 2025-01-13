@@ -62,8 +62,8 @@
     {%  if  data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises"   %}
 
 
-            {%  if    data['origin-type-of-origin-radios'] == "A market"
-                   or data['origin-type-of-origin-radios'] == "An unrestricted farm or premises"
+            {%  if    data['origin-type-of-origin-radios'] == "Market"
+                   or data['origin-type-of-origin-radios'] == "Unrestricted farm or premises"
             %}
 
             <!-- No data needed form the user -->
@@ -90,11 +90,11 @@
                         What is the address of the farm or premises where the animals are moving off?
                     </dt>
                     <dd class="govuk-summary-list__value">
-                        {{ data['origin-address-line-1'] }}<br>
-                        {{ data['origin-address-line-2'] }}<br>
-                        {{ data['origin-address-town'] }}<br>
-                        {{ data['origin-address-county'] }}<br>
-                        {{ data['origin-address-postcode'] }}
+                        {{ data['origin-origin-farm-address-line-1'] }}<br>
+                        {{ data['origin-origin-farm-address-line-2'] }}<br>
+                        {{ data['origin-origin-farm-address-town'] }}<br>
+                        {{ data['origin-origin-farm-address-county'] }}<br>
+                        {{ data['origin-origin-farm-address-postcode'] }}
                     </dd>
                     <dd class="govuk-summary-list__actions">
                         <a class="govuk-link" href="../origin/origin-farm-address">Change<span class="govuk-visually-hidden"> </span></a>

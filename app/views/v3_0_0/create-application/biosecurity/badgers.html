@@ -50,15 +50,15 @@ This will save you time.
 
                 hint:
                 {
-                    text: "Select all that apply"
+                    text: "Only select the measures you are taking"
                 },
 
                 items:
                 [
                     {
                         value: "Badger proof fencing, such as solid aluminium sheeted gates, aluminium sheeting on rail fences, retractable electric fences",
-                        text: "badger proof fencing, such as solid aluminium sheeted gates, aluminium sheeting on rail fences, retractable electric fences",
-                        checked: (data['biosecurity-badgers-checkboxes'] or []).indexOf('badger proof fencing, such as solid aluminium sheeted gates, aluminium sheeting on rail fences, retractable electric fences') > -1
+                        text: "Badger proof fencing, such as solid aluminium sheeted gates, aluminium sheeting on rail fences, retractable electric fences",
+                        checked: (data['biosecurity-badgers-checkboxes'] or []).indexOf('Badger proof fencing, such as solid aluminium sheeted gates, aluminium sheeting on rail fences, retractable electric fences') > -1
                     },
                     {
                         value: "Aluminium feed bins",
@@ -86,9 +86,9 @@ This will save you time.
                         checked: (data['biosecurity-badgers-checkboxes'] or []).indexOf('Mineral licks kept out of reach') > -1
                     },
                     {
-                        value: "Other deconamination methods",
-                        text: "Other deconamination methods",
-                        checked: (data['biosecurity-badgers-checkboxes'] or []).indexOf('Other deconamination methods') > -1
+                        value: "Other decontamination methods",
+                        text: "Other decontamination methods",
+                        checked: (data['biosecurity-badgers-checkboxes'] or []).indexOf('Other decontamination methods') > -1
                     }
                 ]
             })
@@ -97,8 +97,8 @@ This will save you time.
 
         <p>If there are measures you are not taking but want to find out more,
             <a href="https://tbhub.co.uk/preventing-tb-breakdowns/protect-your-herd-from-bovine-tb/protect-your-herd-from-tb-a-review-of-the-science/" target="_blank">
-                read the guidance on the TB Hub</a> (opens in a new tab)</p>
-
+                read the guidance on the TB Hub</a> (opens in a new tab).
+        </p>
 
 
             {{ govukButton({ text: "Continue" }) }}

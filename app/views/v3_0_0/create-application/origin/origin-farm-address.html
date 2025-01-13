@@ -74,7 +74,7 @@ This will save you time.
                         [
                             {
                                 html: errorTextHTML,
-                                href: "#origin-own-address-line-1"
+                                href: "#origin-origin-farm-address-line-1"
                             }
                         ]
                     })
@@ -91,7 +91,7 @@ This will save you time.
                         [
                             {
                                 html: errorTextHTML,
-                                href: "#origin-own-address-town"
+                                href: "#origin-origin-farm-address-town"
                             }
                         ]
                     })
@@ -108,7 +108,7 @@ This will save you time.
                         [
                             {
                                 html: errorTextHTML,
-                                href: "#origin-own-address-postcode"
+                                href: "#origin-origin-farm-address-postcode"
                             }
                         ]
                     })
@@ -123,7 +123,7 @@ This will save you time.
                         [
                             {
                                 html: errorTextHTML,
-                                href: "#origin-own-address-postcode"
+                                href: "#origin-origin-farm-address-postcode"
                             }
                         ]
                     })
@@ -158,13 +158,13 @@ This will save you time.
                     {
                         text: "Address line 1"
                     },
-                    id: "origin-own-address-line-1",
-                    name: "origin-own-address-line-1",
+                    id: "origin-origin-farm-address-line-1",
+                    name: "origin-origin-farm-address-line-1",
 
                     errorMessage: null if data['errortypeone'] != "true"
                                         else { html: errorTextHTML },
 
-                    value: data['origin-own-address-line-1'],
+                    value: data['origin-origin-farm-address-line-1'],
                     autocomplete: "address-line1"
                 })
             }}
@@ -175,9 +175,9 @@ This will save you time.
                     {
                         text: "Address line 2 (optional)"
                     },
-                    id: "origin-own-address-line-2",
-                    name: "origin-own-address-line-2",
-                    value: data['origin-own-address-line-2'],
+                    id: "origin-origin-farm-address-line-2",
+                    name: "origin-origin-farm-address-line-2",
+                    value: data['origin-origin-farm-address-line-2'],
                     autocomplete: "address-line2"
                 })
             }}
@@ -189,13 +189,13 @@ This will save you time.
                         text: "Town or city"
                     },
                     classes: "govuk-!-width-two-thirds",
-                    id: "origin-own-address-town",
-                    name: "origin-own-address-town",
+                    id: "origin-origin-farm-address-town",
+                    name: "origin-origin-farm-address-town",
 
                     errorMessage: null if data['errortypetwo'] != "true"
                                         else { html: errorTextHTML },
 
-                    value: data['origin-own-address-town'],
+                    value: data['origin-origin-farm-address-town'],
                     autocomplete: "address-level2"
                 })
             }}
@@ -207,9 +207,9 @@ This will save you time.
                         text: "County (optional)"
                     },
                     classes: "govuk-!-width-two-thirds",
-                    id: "origin-own-address-county",
-                    name: "origin-own-address-county",
-                    value: data['origin-own-address-county']
+                    id: "origin-origin-farm-address-county",
+                    name: "origin-origin-farm-address-county",
+                    value: data['origin-origin-farm-address-county']
                 })
             }}
 
@@ -224,9 +224,9 @@ This will save you time.
                                 text: "Postcode"
                             },
                             classes: "govuk-input--width-10",
-                            id: "origin-own-address-postcode",
-                            name: "origin-own-address-postcode",
-                            value: data['origin-own-address-postcode'],
+                            id: "origin-origin-farm-address-postcode",
+                            name: "origin-origin-farm-address-postcode",
+                            value: data['origin-origin-farm-address-postcode'],
 
                             errorMessage: null if data['errortypethree'] != "true"
                                                 else { html: errorTextHTML },
@@ -244,9 +244,9 @@ This will save you time.
                                 text: "Postcode"
                             },
                             classes: "govuk-input--width-10",
-                            id: "origin-own-address-postcode",
-                            name: "origin-own-address-postcode",
-                            value: data['origin-own-address-postcode'],
+                            id: "origin-origin-farm-address-postcode",
+                            name: "origin-origin-farm-address-postcode",
+                            value: data['origin-origin-farm-address-postcode'],
 
                             errorMessage: {html: errorTextHTML},
 
