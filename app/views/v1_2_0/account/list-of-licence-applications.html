@@ -1,0 +1,108 @@
+{% extends "layouts/v1_2_0.html" %}
+
+<!-- Setting the big main heading at the top of the page -->
+{% set pageHeadingTextHTML %}
+    Your applications
+{% endset %}
+
+<!-- Text that show in the browser tab. Does NOT need changing -->
+{% block pageTitle %}
+    {{ pageHeadingTextHTML }}
+{% endblock %}
+
+
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+
+    <div class="govuk-grid-column-full">
+
+
+        <h1 class="govuk-heading-l">
+          {{ pageHeadingTextHTML }}
+        </h1>
+
+        {{
+            govukButton
+            ({
+                text: "Create new application",
+                classes: "govuk-button--secondary",
+                href: "../create-application/task-list"
+            })
+        }}
+
+        <table class="govuk-table">
+            <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                    <th scope="col" class="govuk-table__header">Status</th>
+                    <th scope="col" class="govuk-table__header">End date</th>
+                    <th scope="col" class="govuk-table__header">Movement type</th>
+
+                    <th scope="col" class="govuk-table__header"></th>
+                </tr>
+            </thead>
+
+            <tbody class="govuk-table__body">
+
+                {%  if  data['application-submitted-by-user'] == "true"  %}
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">Received<br>Submitted today</td>
+                        <td class="govuk-table__cell"></td>
+                        <td class="govuk-table__cell">Onto premises</td>
+                        <td class="govuk-table__cell govuk-!-text-align-right"><a href="../tasklist">View licence</a>
+                            <br><a href="../tasklist">View application</a></td>
+                    </tr>
+                {%  endif  %}
+
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Issued</td>
+                    <td class="govuk-table__cell">2 November 2024</td>
+                    <td class="govuk-table__cell">Onto premises</td>
+                    <td class="govuk-table__cell govuk-!-text-align-right"><a href="../tasklist">View licence</a>
+                        <br><a href="../tasklist">View application</a></td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Issued and expired</td>
+                    <td class="govuk-table__cell">2 June 2024</td>
+                    <td class="govuk-table__cell">Onto premises</td>
+                    <td class="govuk-table__cell govuk-!-text-align-right"><a href="../tasklist">View licence</a>
+                                                                            <br><a href="../tasklist">View application</a></td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Issued and expired</td>
+                    <td class="govuk-table__cell">15 May 2024</td>
+                    <td class="govuk-table__cell">Off premises</td>
+                    <td class="govuk-table__cell govuk-!-text-align-right"><a href="../tasklist">View licence</a>
+                                                                           <br><a href="../tasklist">View application</a></td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Issued and expired</td>
+                    <td class="govuk-table__cell">4 March 2024</td>
+                    <td class="govuk-table__cell">Off premises</td>
+                    <td class="govuk-table__cell govuk-!-text-align-right"><a href="../tasklist">View licence</a>
+                                                                            <br><a href="../tasklist">View application</a></td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Rejected</td>
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">Onto premises</td>
+                    <td class="govuk-table__cell govuk-!-text-align-right"><a href="../tasklist">View application</a></td>
+                </tr>
+
+            </tbody>
+        </table>
+
+
+    </div>
+
+
+</div>
+
+
+{% endblock %}

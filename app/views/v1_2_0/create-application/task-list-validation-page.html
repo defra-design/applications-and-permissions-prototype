@@ -1,0 +1,45 @@
+{% extends "layouts/v1_2_0.html" %}
+
+
+<!-- Setting the big main heading at the top of the page -->
+
+
+{% set pageHeadingTextHTML %}
+    You need to complete all of the sections before you review and submit
+{% endset %}
+
+<!-- Text that show in the browser tab. Does NOT need changing -->
+{% block pageTitle %}
+    {{ pageHeadingTextHTML }}
+{% endblock %}
+
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+        <h1 class="govuk-heading-l">{{ pageHeadingTextHTML }}</h1>
+
+        {{
+            govukButton
+            ({
+                text: "Go to your application",
+                href: "task-list"
+            })
+        }}
+
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+{% endblock %}
+
+
