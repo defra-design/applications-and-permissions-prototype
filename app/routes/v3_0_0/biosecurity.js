@@ -688,6 +688,11 @@ module.exports = function (router) {
     {
         // Always proceed to the next questions on shared tracks
 
+        let originalString = String(req.session.data['biosecurity-badgers-checkboxes']);
+        let newString = originalString.replace(/,(?!\s)/g, "\n\n");
+
+        req.session.data['biosecurity-badgers-checkboxes-formatted'] = newString;
+
         res.redirect('check-answers');
         // Possibly add empty field error in future
     })
