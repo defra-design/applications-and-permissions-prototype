@@ -244,15 +244,7 @@ module.exports = function (router) {
         else if (req.session.data['origin-type-of-origin-page-2-radios'] == "Location after animals have been imported")
         {
             // Continue to the next page
-            if (req.session.data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises")
-            {
-                res.redirect('origin-farm-cph');
-            }
-            else
-            {
-                // This page name needs to be the next page the user gets to after successfully continuing
-                res.redirect('own-farm-new-cph');
-            }
+            res.redirect('country');
         }
         else if (req.session.data['origin-type-of-origin-page-2-radios'] == "Another origin")
         {
@@ -267,6 +259,66 @@ module.exports = function (router) {
 
             // This page name needs to match the page the user was just on
             res.redirect('type-of-origin-page-2');
+        }
+    })
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////             COUNTRY ENTRY - MANDATORY              ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    // COUNTRY ENTRY - NOT COMPLEX PAGE
+    router.post( section + 'country-router', function (req, res)
+    {
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+        req.session.data['errortypetwo'] = "false";
+        req.session.data['errortypethree'] = "false";
+        req.session.data['errortypefour'] = "false";
+
+        // Validation check if field is blank
+        if (req.session.data['origin-country-country-type-ahead'] == undefined || req.session.data['origin-country-country-type-ahead'] == "")
+        {
+            // Trigger validation and relaunch the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('country');
+        }
+
+        else if (req.session.data['origin-country-country-type-ahead'].length < 4)
+        {
+            // Trigger validation and relaunch the page for under 5 characters
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('country');
+        }
+
+        else
+        {
+            // everything with the input is fine so move on to next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('check-answers');
+            }
+            else
+            {
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('origin-farm-cph');
+            }
         }
     })
 
