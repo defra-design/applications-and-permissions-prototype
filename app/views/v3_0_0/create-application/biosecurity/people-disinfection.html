@@ -15,7 +15,8 @@ This will save you time.
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    How will you minimise the risk from staff working with the incoming cattle and any resident or other cattle?
+    What measures are you taking to minimise the risk of staff working with the incoming
+    cattle spreading contamination onto resident or other cattle?
 {% endset %}
 
 
@@ -23,7 +24,8 @@ This will save you time.
 {% set errorTextHTML %}
     <!-- Nothing was selected -->
     {% if data['errortypeone'] == "true" %}
-        Enter information about how you will minimise contamination between staff and cattle
+        Enter what measures are you taking to minimise the risk of staff working with the incoming
+    cattle spreading contamination onto resident or other cattle
     {% endif %}
 {% endset %}
 
@@ -61,7 +63,7 @@ This will save you time.
 
                     hint:
                     {
-                        text: "For example, personal protective equipment (PPE) and how to avoid contact"
+                        text: "For example, using personal protective equipment (PPE) and foot dips"
                     },
 
                     errorMessage: null if data['errorthispage'] != "true"
