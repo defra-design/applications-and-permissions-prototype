@@ -15,7 +15,7 @@ This will save you time.
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    Which measures are you taking on your farm or premises to reduce contamination from badgers?
+    Which measures are you taking to reduce contamination from wildlife?
 {% endset %}
 
 
@@ -71,14 +71,9 @@ This will save you time.
                         checked: (data['biosecurity-badgers-checkboxes'] or []).indexOf('Limiting access to badger latrines and setts') > -1
                     },
                     {
-                        value: "Feed troughs raised to 3 feet",
-                        text: "Feed troughs raised to 3 feet",
-                        checked: (data['biosecurity-badgers-checkboxes'] or []).indexOf('Feed troughs raised to 3 feet') > -1
-                    },
-                    {
-                        value: "Water troughs above 90cm",
-                        text: "Water troughs above 90cm",
-                        checked: (data['biosecurity-badgers-checkboxes'] or []).indexOf('Water troughs above 90cm') > -1
+                        value: "Feed and water troughs above 90cm",
+                        text: "Feed and water troughs above 90cm",
+                        checked: (data['biosecurity-badgers-checkboxes'] or []).indexOf('Feed and water troughs above 90cm') > -1
                     },
                     {
                         value: "Mineral licks kept out of reach",
