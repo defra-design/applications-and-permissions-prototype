@@ -111,6 +111,28 @@
                     {
                         title:
                         {
+                            text: "Animal identification"
+                        },
+                        href: "identification/check-answers" if data['section-identification-complete'] == "true" else "identification/enter-ear-tags",
+                        status:
+                        {
+                            text: "Completed",
+                            tag:
+                            {
+                                text: "Incomplete",
+                                classes: "govuk-tag--blue"
+                            } if data['section-identification-complete'] != "true"
+                        }
+                    } if    (data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises"
+                            and  data['origin-type-of-origin-radios'] == "TB restricted farm"
+                            and  data['destination-type-of-destination-radios'] == "TB restricted farm"
+                            ),
+
+
+
+                    {
+                        title:
+                        {
                             text: "Biosecurity details"
                         },
                         href: "biosecurity/check-answers" if data['section-biosecurity-complete'] == "true" else "biosecurity/begin-biosecurity-details-section",
