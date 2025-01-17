@@ -1066,7 +1066,7 @@ module.exports = function (router) {
         req.session.data['errortypeone'] = "false";
 
         // If Yes was selected, continue to next page
-        if (req.session.data['destination-reason-for-movement-radios'] == "Restocking")
+        if (req.session.data['destination-reason-for-movement-radios'] == "Routine restocking")
         {
             // Continue to the next page
             res.redirect('quantity-options');
@@ -1077,11 +1077,6 @@ module.exports = function (router) {
             res.redirect('any-additional-info');
         }
         else if (req.session.data['destination-reason-for-movement-radios'] == "Welfare")
-        {
-            // Continue to the next page
-            res.redirect('any-additional-info');
-        }
-        else if (req.session.data['destination-reason-for-movement-radios'] == "Research")
         {
             // Continue to the next page
             res.redirect('any-additional-info');
