@@ -127,7 +127,7 @@ module.exports = function (router) {
             }
             else
             {
-                res.redirect('destination-farm-cph');
+                res.redirect('contact-the-tb-restricted-farm');
             }
         }
 
