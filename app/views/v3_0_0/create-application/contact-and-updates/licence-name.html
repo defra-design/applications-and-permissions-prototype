@@ -20,11 +20,11 @@
 
     <!-- Error 3 - too long first name -->
     {% elif data['errortypethree'] == "true" %}
-        First name must be no longer than 255 characters
+        First name must be no longer than 50 characters
 
     <!-- Error 4 - too long last name -->
     {% elif data['errortypefour'] == "true" %}
-        Last name must be no longer than 255 characters
+        Last name must be no longer than 50 characters
 
     {% endif %}
 {% endset %}

@@ -365,7 +365,7 @@ module.exports = function (router) {
             // Continue to the next page
             if (req.session.data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises")
             {
-                res.redirect('fifty-percent-warning');
+                res.redirect('origin-farm-cph');
             }
             else
             {

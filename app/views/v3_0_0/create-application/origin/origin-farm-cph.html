@@ -15,7 +15,11 @@ This will save you time.
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    What is the County Parish Holding (CPH) number of the farm or premises where the animals are moving off?
+    {% if data['origin-type-of-origin-page-2-radios'] == "Location after animals have been imported" %}
+        What is the County Parish Holding (CPH) number of the UK point of entry?
+    {% else %}
+        What is the County Parish Holding (CPH) number of the farm or premises where the animals are moving off?
+    {% endif %}
 {% endset %}
 
 
@@ -133,6 +137,24 @@ This will save you time.
 <!--  END OF ERROR LOGIC -->
 
 
+<!--  UK IMPORT LOGIC -->
+<form method="post"  action="#" class="for4" style=" float: left; position: relative; bottom:-270px;  ">
+
+    <select style="height:30px;" onchange="window.location.href='?'+this.value">
+
+        <option value="origin-type-of-origin-page-2-radios=Location after animals have been imported&"
+                {% if data['origin-type-of-origin-page-2-radios'] == "Location after animals have been imported" %}selected{% endif %}
+        >UK import</option>
+
+        <option value="origin-type-of-origin-page-2-radios=null&"
+                {% if data['origin-type-of-origin-page-2-radios'] != "Location after animals have been imported" %}selected{% endif %}
+        >NOT a UK import</option>
+
+
+    </select>
+
+</form>
+<!--  END OF UK IMPORT LOGIC -->
 
 
 

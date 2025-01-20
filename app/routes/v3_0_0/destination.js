@@ -139,7 +139,7 @@ module.exports = function (router) {
             }
             else
             {
-                res.redirect('type-of-destination-page-2');
+                res.redirect('contact-the-tb-restricted-farm');
             }
         }
 
@@ -365,7 +365,7 @@ module.exports = function (router) {
 
         else
         {
-            if (req.session.data['destination-to-or-from-own-premises-radios'] == "On to the farm or premises")
+            if (req.session.data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises")
             {
                 res.redirect('own-farm-new-cph');
             }
