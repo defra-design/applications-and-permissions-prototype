@@ -72,6 +72,15 @@
         {% include "../includes/contact-and-updates-cya.html" %}
 
 
+        {%  if   data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises"
+            and  data['origin-type-of-origin-radios'] == "TB restricted farm"
+            and  data['destination-type-of-destination-radios'] == "TB restricted farm"
+        %}
+            <h2 class="govuk-heading-m">Animal identification</h2>
+            {% include "../includes/identification-cya.html" %}
+        {%  endif  %}
+
+
         {%  if  data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises" %}
 
             <h2 class="govuk-heading-m">Biosecurity details</h2>
