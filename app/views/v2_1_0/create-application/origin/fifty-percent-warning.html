@@ -1,0 +1,60 @@
+{% extends "layouts/v2_1_0.html" %}
+
+
+<!-- Setting the big main heading at the top of the page -->
+{% set pageHeadingTextHTML %}
+    Reduction in TB compensation
+{% endset %}
+
+
+
+
+<!-- Text that show in the browser tab. Does NOT need changing -->
+{% block pageTitle %}
+    {{ pageHeadingTextHTML }}
+{% endblock %}
+
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+        <h1 class="govuk-heading-l">{{ pageHeadingTextHTML }}</h1>
+
+        <p>Animals that enter a TB breakdown herd and are later removed as TB reactors or direct contacts before the
+            herd is officially TB-free will receive a 50% reduction in compensation.
+        </p>
+
+        <p>This does not apply if:</p>
+
+        <ul class="govuk-body govuk-list--bullet">
+            <li>the destination herd is registered to a bovine Tb health scheme. Accreditation from the Cattle Health Certification Standards (CHECS) must be in place before the breakdown began</li>
+            <li>the cattle are moving to any type of approved or licenced finishing unit, or to a TB isolation unit</li>
+        </ul>
+
+        <p>For more information, read the slaughter and compensation section on the
+            <a target="_blank" href="https://www.gov.uk/guidance/bovine-tb-getting-your-cattle-tested-in-england#slaughter-and-compensation">GOV.UK Bovine TB guidance page</a> (opens in new tab).
+        </p>
+
+
+        <!-- go to routes.js for routing  -->
+        <form action="fifty-percent-warning-router" method="post" novalidate>
+
+            {{ govukButton({ text: "Continue" }) }}
+
+        </form>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+{% endblock %}
+
+

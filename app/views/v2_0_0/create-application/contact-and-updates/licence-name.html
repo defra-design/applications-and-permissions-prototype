@@ -1,4 +1,4 @@
-{% extends "layouts/main.html" %}
+{% extends "layouts/v2_0_0.html" %}
 
 
 
@@ -20,11 +20,11 @@
 
     <!-- Error 3 - too long first name -->
     {% elif data['errortypethree'] == "true" %}
-        First name must be no longer than 255 characters
+        First name must be no longer than 50 characters
 
     <!-- Error 4 - too long last name -->
     {% elif data['errortypefour'] == "true" %}
-        Last name must be no longer than 255 characters
+        Last name must be no longer than 50 characters
 
     {% endif %}
 {% endset %}
@@ -196,7 +196,7 @@
 
 <!-- ERROR LOGIC  drop down to toggle states  -->
 <!-- Best thing to do would be to replace 'errorthispage', 'errortypeone' and 'errortypetwo' with novel name for this page  -->
-<form method="post"  action="#" class="for4" style=" float: left; position: relative; bottom:-225px;  ">
+<form method="post"  action="#" class="for4" style=" float: left; position: relative; bottom:-270px;  ">
 
     <select style="height:30px;" onchange="window.location.href='?'+this.value">
 
@@ -229,7 +229,7 @@
 
 <!-- USER TYPE TOGGLE  -->
 <!--
-<form method="post"  action="#" class="for4" style=" float: left; position: relative; bottom:-225px;  ">
+<form method="post"  action="#" class="for4" style=" float: left; position: relative; bottom:-270px;  ">
 
   <select style="height:30px;" onchange="window.location.href='?'+this.value">
 

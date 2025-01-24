@@ -15,7 +15,7 @@ This will save you time.
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    How will you reduce building contamination?
+    How will you reduce building and equipment contamination?
 {% endset %}
 
 
@@ -23,7 +23,7 @@ This will save you time.
 {% set errorTextHTML %}
     <!-- Nothing was selected -->
     {% if data['errortypeone'] == "true" %}
-        Select yes if you PLACEHOLDER between PLACEHOLDER and PLACEHOLDER
+        Enter information about how you will reduce building contamination
     {% endif %}
 {% endset %}
 
@@ -61,7 +61,7 @@ This will save you time.
 
                     hint:
                     {
-                        text: "For example, cleaning methods and disinfection points"
+                        text: "For example, disinfection points and measures taken when milking dairy cattle"
                     },
 
                     errorMessage: null if data['errorthispage'] != "true"
@@ -84,7 +84,7 @@ This will save you time.
 
 
 <!-- ERROR LOGIC  drop down to toggle states  -->
-<form method="post"  action="#" class="for4" style=" float: left; position: relative; bottom:-225px;  ">
+<form method="post"  action="#" class="for4" style=" float: left; position: relative; bottom:-270px;  ">
 
     <select style="height:30px;" onchange="window.location.href='?'+this.value">
 

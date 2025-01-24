@@ -4,7 +4,7 @@
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    Upload a biosecurity plan map
+    Upload a biosecurity map
 {% endset %}
 
 
@@ -12,7 +12,7 @@
 {% set errorTextHTML %}
     <!-- Nothing was selected -->
     {% if data['errortypeone'] == "true" %}
-        Select a [PLACEHOLDER] file
+        You need to upload your biosecurity map
     {% endif %}
 {% endset %}
 
@@ -55,6 +55,7 @@
             {{ pageHeadingTextHTML }}
         </h1>
 
+        <!--
         <details class="govuk-details" data-module="govuk-details">
             <summary class="govuk-details__summary">
                 <span class="govuk-details__summary-text">
@@ -76,7 +77,14 @@
             })
         }}
 
-        <p>You need to upload a map of the farm.  It needs to include:</p>
+        -->
+
+        <p>You need to upload a map of the farm or premises.
+            The map should not be hand drawn, but you can make annotations to the map of specific locations by hand.
+        </p>
+
+        <p>It needs to include: </p>
+
 
         <ul class="govuk-body govuk-list--bullet">
             <li>where the incoming cattle will be isolated</li>
@@ -120,7 +128,7 @@
 
 
 <!-- ERROR LOGIC  drop down to toggle states  -->
-<form method="post"  action="#" class="for4" style=" float: left; position: relative; bottom:-225px;  ">
+<form method="post"  action="#" class="for4" style=" float: left; position: relative; bottom:-270px;  ">
 
     <select style="height:30px;" onchange="window.location.href='?'+this.value">
 

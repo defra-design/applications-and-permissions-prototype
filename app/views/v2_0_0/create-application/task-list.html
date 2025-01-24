@@ -104,7 +104,72 @@
                                 classes: "govuk-tag--blue"
                             } if data['section-contact-and-updates-complete'] != "true"
                         }
-                    }
+                    },
+
+
+
+                    {
+                        title:
+                        {
+                            text: "Animal identification"
+                        },
+                        href: "identification/check-answers" if data['section-identification-complete'] == "true" else "identification/enter-ear-tags",
+                        status:
+                        {
+                            text: "Completed",
+                            tag:
+                            {
+                                text: "Incomplete",
+                                classes: "govuk-tag--blue"
+                            } if data['section-identification-complete'] != "true"
+                        }
+                    } if    (data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises"
+                            and  data['origin-type-of-origin-radios'] == "TB restricted farm"
+                            and  data['destination-type-of-destination-radios'] == "TB restricted farm"
+                            ),
+
+
+
+                    {
+                        title:
+                        {
+                            text: "Biosecurity details"
+                        },
+                        href: "biosecurity/check-answers" if data['section-biosecurity-complete'] == "true" else "biosecurity/begin-biosecurity-details-section",
+                        status:
+                        {
+                            text: "Completed",
+                            tag:
+                            {
+                                text: "Incomplete",
+                                classes: "govuk-tag--blue"
+                            } if data['section-biosecurity-complete'] != "true"
+                        }
+                    } if      (data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises"
+                                and  data['section-destination-complete'] == "true"
+                                and  data['destination-type-of-destination-radios'] != "Approved finishing unit (AFU)"
+                                ),
+
+
+                    {
+                        title:
+                        {
+                            text: "Biosecurity map"
+                        },
+                        href: "biosecurity-map/check-answers" if data['section-biosecurity-map-complete'] == "true" else "biosecurity-map/upload-plan",
+                        status:
+                        {
+                            text: "Completed",
+                            tag:
+                            {
+                                text: "Incomplete",
+                                classes: "govuk-tag--blue"
+                            } if data['section-biosecurity-map-complete'] != "true"
+                        }
+                    } if      (data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises"
+                                and  data['section-destination-complete'] == "true"
+                                and  data['destination-type-of-destination-radios'] != "Approved finishing unit (AFU)"
+                                )
 
 
                 ]
@@ -137,7 +202,7 @@
 
 
 <!-- TASKLIST STATES  drop down to toggle states  -->
-<form method="post"  action="#" class="for4" style=" float: left; position: relative; bottom:-225px;  ">
+<form method="post"  action="#" class="for4" style=" float: left; position: relative; bottom:-270px;  ">
 
     <select style="height:30px;" onchange="window.location.href='?'+this.value">
 
@@ -152,7 +217,7 @@
 
 
         <!--  ONTO THE FARM FROM A MARKET -->
-        <option value="section-origin-complete=true&section-destination-complete=false&section-tests-complete=false&section-contact-and-updates-complete=false&origin-to-or-from-own-premises-radios=Off the farm&"
+        <option value="section-origin-complete=true&section-destination-complete=false&section-tests-complete=false&section-contact-and-updates-complete=false&origin-to-or-from-own-premises-radios=n to the farm or premises&"
                 {% if  data['section-origin-complete'] == "true" and
                         data['section-destination-complete'] != "true" and
                         data['section-tests-complete'] != "true" and
@@ -162,11 +227,13 @@
 
 
         <!--  ON TO THE FARM FROM A FARM -->
-        <option value="section-origin-complete=true&section-destination-complete=true&section-tests-complete=true&section-contact-and-updates-complete=true&origin-to-or-from-own-premises-radios=Off the farm&"
+        <option value="section-origin-complete=true&section-destination-complete=true&section-tests-complete=true&section-contact-and-updates-complete=true&section-biosecurity-complete=true&section-biosecurity-map-complete=true&origin-to-or-from-own-premises-radios=On to the farm or premises&"
                 {% if  data['section-origin-complete'] == "true" and
                         data['section-destination-complete'] == "true" and
                         data['section-tests-complete'] == "true" and
-                        data['section-contact-and-updates-complete'] == "true"
+                        data['section-contact-and-updates-complete'] == "true" and
+                        data['section-biosecurity-complete'] == "true" and
+                        data['section-biosecurity-map-complete'] == "true"
                 %}selected{% endif %}
         >All sections complete</option>
 

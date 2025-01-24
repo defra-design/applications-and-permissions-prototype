@@ -16,7 +16,7 @@ This will save you time.
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    What type of premises are the animals moving off?
+    Which type of premises are the animals moving off?
 {% endset %}
 
 
@@ -92,10 +92,25 @@ This will save you time.
                     items:
                     [
                         {
+                            value: "Market",
+                            text: "Market",
+                            checked: data['origin-type-of-origin-radios'] == "Market"
+                        } if data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises",
+                        {
                             value: "TB restricted farm",
                             text: "TB restricted farm",
                             checked: data['origin-type-of-origin-radios'] == "TB restricted farm"
-                        },
+                        } if data['origin-to-or-from-own-premises-radios'] == "Off the farm or premises",
+                        {
+                            value: "Unrestricted farm or premises",
+                            text: "Unrestricted farm or premises",
+                            checked: data['origin-type-of-origin-radios'] == "Unrestricted farm or premises"
+                        } if data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises",
+                        {
+                            value: "TB restricted farm",
+                            text: "TB restricted farm",
+                            checked: data['origin-type-of-origin-radios'] == "TB restricted farm"
+                        } if data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises",
                         {
                             value: "Approved finishing unit (AFU)",
                             text: "Approved finishing unit (AFU)",
@@ -106,9 +121,14 @@ This will save you time.
                             checked: data['origin-type-of-origin-radios'] == "Approved finishing unit (AFU)"
                         },
                         {
-                            value: "Another type of premises",
-                            text: "Another type of premises",
-                            checked: data['origin-type-of-origin-radios'] == "Another type of premises"
+                            value: "Unrestricted farm or premises",
+                            text: "Unrestricted farm or premises",
+                            checked: data['origin-type-of-origin-radios'] == "Unrestricted farm or premises"
+                        } if data['origin-to-or-from-own-premises-radios'] == "Off the farm or premises",
+                        {
+                            value: "Another origin",
+                            text: "Another origin",
+                            checked: data['origin-type-of-origin-radios'] == "Another origin"
                         }
                     ]
                 })
@@ -124,7 +144,7 @@ This will save you time.
 
 
 <!-- ERROR LOGIC  drop down to toggle states  -->
-<form method="post"  action="#" class="for4" style=" float: left; position: relative; bottom:-225px;  ">
+<form method="post"  action="#" class="for4" style=" float: left; position: relative; bottom:-270px;  ">
 
     <select style="height:30px;" onchange="window.location.href='?'+this.value">
 
@@ -140,6 +160,27 @@ This will save you time.
 
 </form>
 <!--  END OF ERROR LOGIC -->
+
+
+
+<!-- ON OR OFF FARM  drop down to toggle states  -->
+<form method="post"  action="#" class="for4" style=" float: left; position: relative; bottom:-270px;  ">
+
+    <select style="height:30px;" onchange="window.location.href='?'+this.value">
+
+        <option value="origin-to-or-from-own-premises-radios=Off the farm or premises&"
+                {% if  data['origin-to-or-from-own-premises-radios'] != "Off the farm or premises" %}selected{% endif %}
+        >Movement - OFF premises</option>
+
+        <option value="origin-to-or-from-own-premises-radios=On to the farm or premises&"
+                {% if  data['origin-to-or-from-own-premises-radios'] == 'On to the farm or premises'  %}selected{% endif %}
+        >Movement - ON premises</option>
+
+    </select>
+
+</form>
+<!--  END OF ON OR OFF FARM  LOGIC -->
+
 
 
 
