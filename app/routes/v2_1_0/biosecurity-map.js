@@ -142,7 +142,7 @@ module.exports = function (router) {
         req.session.data['errorthispage'] = "false";
         req.session.data['errortypeone'] = "false";
 
-        res.redirect('check-answers');
+        res.redirect('uploading');
 
         /*
         // If file was not selected, reload page with error
