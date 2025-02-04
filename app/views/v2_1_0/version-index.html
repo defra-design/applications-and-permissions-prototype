@@ -133,5 +133,33 @@
     </div>
 
 
+    <div class="govuk-grid-column-one-third govuk-!-margin-top-9 govuk-!-padding-left-8">
+        <p class="govuk-!-margin-top-6" style="border-top: 2px solid #1d70b8; margin-bottom: 30px;">
+
+
+            <h2 class="govuk-heading-s govuk-!-margin-top-3">Customer identity</h2>
+            {% if data['customer-identity'] == "true" %}
+                <p>ON<br>
+                    <a href="version-index?customer-identity=false&">Turn OFF</a>
+                </p>
+            {% else %}
+                <p>OFF</br>
+                    <a href="version-index?customer-identity=true&">Turn ON</a>
+                </p>
+            {% endif %}
+
+
+            <h2 class="govuk-heading-s govuk-!-margin-top-3 govuk-!-margin-bottom-3">Defra account registration</h2>
+            {% if data['defra-account-registration'] == "true" %}
+                <p>ON<br>
+                    <a href="version-index?defra-account-registration=false&">Turn OFF</a>
+                </p>
+            {% else %}
+                <p>OFF</br>
+                    <a href="version-index?defra-account-registration=true&">Turn ON</a>
+                </p>
+            {% endif %}
+    </div>
+
 </div>
 {% endblock %}
