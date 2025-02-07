@@ -43,6 +43,23 @@ This will save you time.
     <div class="govuk-grid-column-two-thirds ">
 
 
+        <!-- ERROR LOGIC 'error summary' -->
+        {% if data['errorthispage'] == "true" %}
+            {{ govukErrorSummary
+                ({
+                    titleText: "There is a problem",
+                    errorList:
+                    [
+                        {
+                            html: errorTextHTML,
+                            href: "#biosecurity-disinfectant-text-input"
+                        }
+                    ]
+                })
+            }}
+        {% endif %}
+        <!--  END OF 'error summary' -->
+
         <!-- go to routes.js for routing  -->
         <form action="grazing-field-how-separated-router" method="post" novalidate>
 

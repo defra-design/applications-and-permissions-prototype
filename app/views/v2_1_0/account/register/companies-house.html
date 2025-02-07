@@ -1,0 +1,50 @@
+{% extends "layouts/v2_1_0.html" %}
+
+{% set serviceName = "Get permission to move animals under disease controls" %}
+
+
+{% set pageHeading = "Do you have a company registration number?" %}
+
+{% set pageSection = "Register Defra account" %}
+
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+        <span class="govuk-caption-xl">{{ pageSection }}</span>
+
+        <div class="gem-c-title govuk-!-margin-top-0 govuk-!-margin-bottom-8">
+            <h1 class="gem-c-title__text govuk-heading-xl">
+                {{ pageHeading }}
+            </h1>
+        </div>
+
+        <p>Companies House may have sent this to you when you registered with them.</p>
+
+    	<form method="post" action="companies-house-number">
+			
+			{{ govukRadios({
+                fieldset: {
+                    legend: { text: pageHeading, isPageHeading: false, classes: "govuk-visually-hidden"  }
+                },
+                classes: "govuk-radios--inline",
+                items: [
+                    { value: "Yes", text: 'Yes', checked: checked( 'registrationCompanyRegistrationNumber','Yes' )   },
+					{ value: "No~/register/sole-trader-or-charity", text: 'No', checked: checked( 'registrationCompanyRegistrationNumber','No' )   }                    
+                ],
+                name: "registrationCompanyRegistrationNumber"
+            }) }}       
+            
+            {{govukButton({
+                text: "Continue"
+            })}}
+        
+      	</form>
+
+    </div>    
+</div>
+
+{% endblock %}

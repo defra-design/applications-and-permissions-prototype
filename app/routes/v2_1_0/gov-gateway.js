@@ -35,6 +35,10 @@ module.exports = function (router) {
 
 
 
+
+
+
+
     // From start page
     router.get(section + 'start-router', function (req, res)
     {
@@ -80,6 +84,28 @@ module.exports = function (router) {
 
 
 
+
+    // NOT COMPLEX PAGE
+    router.post(section + 'gov-gateway/sign-in-router', function (req, res)
+    {
+        // Turn errors off by default
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+
+        // If Yes was selected, continue to next page
+        if (req.session.data['defra-account-registration'] == "true")
+        {
+            res.redirect('../register/index');
+        }
+        else
+        {
+            res.redirect('../authentication/verify-single-number');
+        }
+    })
+
+
+
+
     // email or txt for MFA code
     router.post(section + 'authentication/verify-single-number-router', function (req, res)
     {
@@ -104,6 +130,58 @@ module.exports = function (router) {
     })
 
 
+
+
+
+    // NOT COMPLEX PAGE
+    router.post(section + 'register/account-type-router', function (req, res)
+    {
+        // Turn errors off by default
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+
+        // If Yes was selected, continue to next page
+        if (req.session.data['registrationAccountType'] == "Business")
+        {
+            res.redirect('uk-organisation');
+        }
+        else if (req.session.data['registrationAccountType'] == "Individual")
+        {
+            res.redirect('address/postcode');
+        }
+        else
+        {
+            // This page name needs to match the page the user was just on
+            res.redirect('account-type');
+        }
+    })
+
+
+
+
+
+    // NOT COMPLEX PAGE
+    router.post(section + 'register/uk-organisation-router', function (req, res)
+    {
+        // Turn errors off by default
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+
+        // If Yes was selected, continue to next page
+        if (req.session.data['registrationTradeUK'] == "Yes")
+        {
+            res.redirect('companies-house');
+        }
+        else if (req.session.data['registrationTradeUK'] == "No")
+        {
+            res.redirect('business-name');
+        }
+        else
+        {
+            // This page name needs to match the page the user was just on
+            res.redirect('uk-organisation');
+        }
+    })
 
 
 

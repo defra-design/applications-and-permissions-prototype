@@ -44,53 +44,51 @@
 
         {% else %}
 
-        <p class="govuk-body">We have sent a 6-digit verification code to <span class="govuk-!-font-weight-bold">{% if data['whichPhoneNumber'] %} {{ data.whichPhoneNumber }} {% else %}********123{% endif %}</span></p>
-        <p class="govuk-body">It may take a few minutes to arrive and will expire in 10 minutes.</p>
-        <!-- <p class="govuk-body">The code will expire in 10 minutes.</p> -->
+            <p class="govuk-body">We have sent a 6-digit verification code to <span class="govuk-!-font-weight-bold">{% if data['whichPhoneNumber'] %} {{ data.whichPhoneNumber }} {% else %}********123{% endif %}</span></p>
+            <p class="govuk-body">It may take a few minutes to arrive and will expire in 10 minutes.</p>
+            <!-- <p class="govuk-body">The code will expire in 10 minutes.</p> -->
 
-        <details class="govuk-details" data-module="govuk-details">
-            <summary class="govuk-details__summary">
-                <span class="govuk-details__summary-text">
-                If the verification code has not arrived
-                </span>
-            </summary>
-            <div class="govuk-details__text">
-                <p>Please make sure that your device:</p>
-                <ul class="govuk-list govuk-list--bullet">
-                    <li>is turned on, not in flight mode and has a strong signal</li>
-                    <li>can receive text messages from other senders</li>
-                </ul>
-                <p>If you have still not received the text message you can <a href="#">resend the verification code</a>.</p>
-            </div>
+            <details class="govuk-details" data-module="govuk-details">
+                <summary class="govuk-details__summary">
+                    <span class="govuk-details__summary-text">
+                    If the verification code has not arrived
+                    </span>
+                </summary>
+                <div class="govuk-details__text">
+                    <p>Please make sure that your device:</p>
+                    <ul class="govuk-list govuk-list--bullet">
+                        <li>is turned on, not in flight mode and has a strong signal</li>
+                        <li>can receive text messages from other senders</li>
+                    </ul>
+                    <p>If you have still not received the text message you can <a href="#">resend the verification code</a>.</p>
+                </div>
             </details>
 
-            {% endif %}
+        {% endif %}
 
         
 
-        {% if data['companySize'] == "Single" %}
-            <form action="/authentication/new-enrolment" method="post">
-        {% else %}
-            <form action="/authentication/select-your-business" method="post">
-        {% endif %}
+        <form action="../../create-application/task-list" method="post">
 
-                <input type="hidden" id="status" name="status" value="" />    		                
+            <input type="hidden" id="status" name="status" value="" />
 
-                {{ govukInput({
-                    label: {
-                        text: pageHeading,
-                        classes: "govuk-visually-hidden",
-                        isPageHeading: false
-                    },
-                    classes: "govuk-input--width-10"
-                }) }}
-                
-                
-                {{ govukButton({
-                    text: "Continue"
-                }) }}                                
+            {{ govukInput({
+                label: {
+                    text: pageHeading,
+                    classes: "govuk-visually-hidden",
+                    isPageHeading: false
+                },
+                classes: "govuk-input--width-10"
+            }) }}
 
-            </form>                                   
+
+            {{ govukButton({
+                text: "Continue"
+            }) }}
+
+        </form>
+
+
 
             <details class="govuk-details" data-module="govuk-details">
 
