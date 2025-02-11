@@ -215,31 +215,16 @@ module.exports = function (router) {
         req.session.data['errortypeone'] = "false";
 
         // If Yes was selected, continue to next page
-        if (req.session.data['origin-type-of-origin-page-2-radios'] == "Zoo")
+        if (req.session.data['origin-type-of-origin-page-2-radios'] == "Zoo with TB restrictions")
         {
-            // Continue to the next page
-            if (req.session.data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises")
-            {
-                res.redirect('origin-farm-cph');
-            }
-            else
-            {
-                // This page name needs to be the next page the user gets to after successfully continuing
-                res.redirect('own-farm-new-cph');
-            }
+            // This page name needs to be the next page the user gets to after successfully continuing
+            res.redirect('own-farm-new-cph');
+
         }
         else if (req.session.data['origin-type-of-origin-page-2-radios'] == "Laboratory")
         {
-            // Continue to the next page
-            if (req.session.data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises")
-            {
-                res.redirect('origin-farm-cph');
-            }
-            else
-            {
-                // This page name needs to be the next page the user gets to after successfully continuing
-                res.redirect('own-farm-new-cph');
-            }
+            // This page name needs to be the next page the user gets to after successfully continuing
+            res.redirect('own-farm-new-cph');
         }
         else if (req.session.data['origin-type-of-origin-page-2-radios'] == "Location after animals have been imported")
         {

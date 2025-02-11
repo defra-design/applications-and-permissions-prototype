@@ -139,7 +139,7 @@ module.exports = function (router) {
             }
             else
             {
-                res.redirect('contact-the-tb-restricted-farm');
+                res.redirect('type-of-destination-page-2');
             }
         }
 
@@ -288,7 +288,7 @@ module.exports = function (router) {
         req.session.data['errortypeone'] = "false";
 
         // If Yes was selected, continue to next page
-        if (req.session.data['destination-type-of-destination-page-2-radios'] == "Zoo")
+        if (req.session.data['destination-type-of-destination-page-2-radios'] == "Zoo with TB restrictions")
         {
             // Continue to the next page
             if (req.session.data['destination-to-or-from-own-premises-radios'] == "On to the farm or premises")
