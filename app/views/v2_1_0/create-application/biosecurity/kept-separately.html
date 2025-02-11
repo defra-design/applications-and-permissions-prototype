@@ -66,7 +66,7 @@ This will save you time.
 
             {{ govukRadios
                 ({
-                    classes: "govuk-radios--inline",
+                    classes: "govuk-radios",
 
                     name: "biosecurity-kept-separately-radios-yes-no",
 
@@ -98,6 +98,11 @@ This will save you time.
                             value: "No",
                             text: "No",
                             checked: data['biosecurity-kept-separately-radios-yes-no'] == "No"
+                        },
+                        {
+                            value: "I don't know",
+                            text: "I don't know",
+                            checked: data['biosecurity-kept-separately-radios-yes-no'] == "I don't know"
                         }
                     ],
 

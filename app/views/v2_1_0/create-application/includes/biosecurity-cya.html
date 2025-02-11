@@ -15,102 +15,104 @@
 
     {%  if  data['biosecurity-kept-separately-radios-yes-no'] == "Yes"  %}
 
-    <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
-            Will the incoming cattle be grazed?
-        </dt>
-        <dd class="govuk-summary-list__value">
-            {{ data['biosecurity-grazing-radios-yes-no'] }}
-        </dd>
-        <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="../biosecurity/grazing">Change<span class="govuk-visually-hidden"> </span></a>
-        </dd>
-    </div>
-
-    {%  if data['biosecurity-grazing-radios-yes-no']  == "Yes"  %}
-
-    <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
-            When was the land last grazed by cattle?
-        </dt>
-        <dd class="govuk-summary-list__value">
-            {{ data['biosecurity-last-grazed-text-input'] }}
-        </dd>
-        <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="../biosecurity/last-grazed">Change<span class="govuk-visually-hidden"> </span></a>
-        </dd>
-    </div>
-
-    <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
-            Has any manure or slurry been put on the grazing field in the past 60 days?
-        </dt>
-        <dd class="govuk-summary-list__value">
-            {{ data['biosecurity-manure-and-slurry-radios-yes-no'] }}
-        </dd>
-        <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="../biosecurity/manure-and-slurry">Change<span class="govuk-visually-hidden"> </span></a>
-        </dd>
-    </div>
-
-    <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
-            How is this grazing field separated from the resident herd?
-        </dt>
-        <dd class="govuk-summary-list__value">
-            {{ data['biosecurity-grazing-field-how-separated-text-input'] }}
-        </dd>
-        <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="../biosecurity/grazing-field-how-separated">Change<span class="govuk-visually-hidden"> </span></a>
-        </dd>
-    </div>
-
-    {%  endif  %}
+        <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
+                Will the incoming cattle be grazed?
+            </dt>
+            <dd class="govuk-summary-list__value">
+                {{ data['biosecurity-grazing-radios-yes-no'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="../biosecurity/grazing">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        </div>
 
 
-    <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
-            Will the cattle use any roads or tracks that are used by the existing herd?
-        </dt>
-        <dd class="govuk-summary-list__value">
-            {{ data['biosecurity-roads-and-tracks-radios-yes-no'] }}
-        </dd>
-        <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="../biosecurity/roads-and-tracks">Change<span class="govuk-visually-hidden"> </span></a>
-        </dd>
-    </div>
+        {%  if data['biosecurity-grazing-radios-yes-no']  == "Yes"  %}
+
+            <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
+                    When was the land last grazed by cattle?
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    {{ data['biosecurity-last-grazed-text-input'] }}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="../biosecurity/last-grazed">Change<span class="govuk-visually-hidden"> </span></a>
+                </dd>
+            </div>
+
+            <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
+                    Has any manure or slurry been put on the grazing field in the past 60 days?
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    {{ data['biosecurity-manure-and-slurry-radios-yes-no'] }}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="../biosecurity/manure-and-slurry">Change<span class="govuk-visually-hidden"> </span></a>
+                </dd>
+            </div>
+
+            <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
+                    How is this grazing field separated from the resident herd?
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    {{ data['biosecurity-grazing-field-how-separated-text-input'] }}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="../biosecurity/grazing-field-how-separated">Change<span class="govuk-visually-hidden"> </span></a>
+                </dd>
+            </div>
+
+        {%  endif  %}
 
 
+    <!-- remove from stakeholder feedback
+        <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
+                Will the cattle use any roads or tracks that are used by the existing herd?
+            </dt>
+            <dd class="govuk-summary-list__value">
+                {{ data['biosecurity-roads-and-tracks-radios-yes-no'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="../biosecurity/roads-and-tracks">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        </div>
+    -->
+
+        <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
+                Will the cattle share any buildings with the resident herd?
+            </dt>
+            <dd class="govuk-summary-list__value">
+                {{ data['biosecurity-buildings-any-shared-radios-yes-no'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="../biosecurity/buildings-any-shared">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        </div>
 
 
+        {%  if data['biosecurity-buildings-any-shared-radios-yes-no']  == "Yes"  %}
 
-    <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
-            Will the cattle share any buildings with the resident herd?
-        </dt>
-        <dd class="govuk-summary-list__value">
-            {{ data['biosecurity-buildings-any-shared-radios-yes-no'] }}
-        </dd>
-        <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="../biosecurity/buildings-any-shared">Change<span class="govuk-visually-hidden"> </span></a>
-        </dd>
-    </div>
+            <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
+                    How will contamination in a building be reduced?
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    {{ data['biosecurity-buildings-how-minimise-contamination-text-input'] }}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="../biosecurity/buildings-how-minimise-contamination">Change<span class="govuk-visually-hidden"> </span></a>
+                </dd>
+            </div>
 
-    {%  if data['biosecurity-buildings-any-shared-radios-yes-no']  == "Yes"  %}
-    <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
-            How will contamination in a building be reduced?
-        </dt>
-        <dd class="govuk-summary-list__value">
-            {{ data['biosecurity-buildings-how-minimise-contamination-text-input'] }}
-        </dd>
-        <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="../biosecurity/buildings-how-minimise-contamination">Change<span class="govuk-visually-hidden"> </span></a>
-        </dd>
-    </div>
-    {%  endif  %}
+        {%  endif  %}
 
-
+    <!-- End of how separation will be used -->
     {%  endif  %}
 
 
@@ -138,6 +140,7 @@
             <a class="govuk-link" href="../biosecurity/disinfectant">Change<span class="govuk-visually-hidden"> </span></a>
         </dd>
     </div>
+
 
     <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
