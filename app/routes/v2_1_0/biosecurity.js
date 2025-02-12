@@ -318,7 +318,7 @@ module.exports = function (router) {
         else
         {
             // Always proceed to the next questions on shared tracks
-            res.redirect('roads-and-tracks');
+            res.redirect('buildings-any-shared');
         }
     })
 
