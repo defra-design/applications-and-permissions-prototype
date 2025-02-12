@@ -1068,8 +1068,18 @@ module.exports = function (router) {
         // If Yes was selected, continue to next page
         if (req.session.data['destination-reason-for-movement-radios'] == "Routine restocking")
         {
-            // Continue to the next page
-            res.redirect('quantity-options');
+            if(req.session.data['destination-type-of-destination-radios'] == "TB restricted farm"
+                &&
+                req.session.data['origin-type-of-origin-radios'] == "TB restricted farm" )
+            {
+                res.redirect('check-answers');
+            }
+            else
+            {
+                // Continue to the next page
+                res.redirect('quantity-options');
+            }
+
         }
         else if (req.session.data['destination-reason-for-movement-radios'] == "Breeding male")
         {

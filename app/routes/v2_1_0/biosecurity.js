@@ -46,7 +46,7 @@ module.exports = function (router) {
     router.get(section + 'begin-biosecurity-details-section', function (req, res)
     {
         // If the movement is a bull or welfare then don't ask biosecurity questions
-        if (req.session.data['destination-reason-for-movement-radios'] == 'Bull' ||
+        if (req.session.data['destination-reason-for-movement-radios'] == 'Breeding male' ||
             req.session.data['destination-reason-for-movement-radios'] == 'Welfare')
         {
             res.redirect('people-disinfection');
