@@ -99,7 +99,7 @@ module.exports = function (router) {
         }
         else
         {
-            res.redirect('../authentication/verify-single-number');
+            res.redirect('../../create-application/task-list');
         }
     })
 
