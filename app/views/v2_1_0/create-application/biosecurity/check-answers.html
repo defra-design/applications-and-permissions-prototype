@@ -23,6 +23,32 @@
 
 
 
+<!-- Toggle states  -->
+<form method="post"  action="#" class="for4" style=" float: left; position: relative; bottom:-270px;  ">
+
+    <select style="height:30px;" onchange="window.location.href='?'+this.value">
+
+        <option value="destination-reason-for-movement-radios=Breeding male"
+                {% if  data['destination-reason-for-movement-radios'] == "Breeding male"
+                        or
+                        data['destination-reason-for-movement-radios'] == "Welfare"  %}
+                    selected
+                {% endif %}
+        >State - Bull or welfare</option>
+
+        <option value="destination-reason-for-movement-radios=Routine restocking"
+                {% if  data['destination-reason-for-movement-radios'] == "Routine restocking"
+                        or
+                        data['destination-reason-for-movement-radios'] == "Something else"  %}
+                    selected
+                {% endif %}
+        >State - Routine restocking or Something else</option>
+
+    </select>
+
+</form>
+<!--  END OF ERROR LOGIC -->
+
 
 
 {% endblock %}
