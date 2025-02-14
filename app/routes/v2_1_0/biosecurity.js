@@ -675,7 +675,14 @@ module.exports = function (router) {
         let originalString = String(req.session.data['biosecurity-badgers-checkboxes']);
         let newString = originalString.replace(/,(?!\s)/g, "\n\n");
 
-        req.session.data['biosecurity-badgers-checkboxes-formatted'] = newString;
+        if(newString == "undefined")
+        {
+            req.session.data['biosecurity-badgers-checkboxes-formatted'] = "";
+        }
+        else
+        {
+            req.session.data['biosecurity-badgers-checkboxes-formatted'] = newString;
+        }
 
         res.redirect('check-answers');
         // Possibly add empty field error in future

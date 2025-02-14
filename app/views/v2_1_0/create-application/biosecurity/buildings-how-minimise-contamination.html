@@ -23,7 +23,7 @@ This will save you time.
 {% set errorTextHTML %}
     <!-- Nothing was selected -->
     {% if data['errortypeone'] == "true" %}
-        Enter information about how you will reduce building contamination
+        Enter information about how you will reduce building and equipment contamination
     {% endif %}
 {% endset %}
 
@@ -41,6 +41,24 @@ This will save you time.
 {% block content %}
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds ">
+
+
+        <!-- ERROR LOGIC 'error summary' -->
+        {% if data['errorthispage'] == "true" %}
+            {{ govukErrorSummary
+                ({
+                    titleText: "There is a problem",
+                    errorList:
+                    [
+                        {
+                            html: errorTextHTML,
+                            href: "#biosecurity-disinfectant-text-input"
+                        }
+                    ]
+                })
+            }}
+        {% endif %}
+        <!--  END OF 'error summary' -->
 
 
         <!-- go to routes.js for routing  -->

@@ -25,18 +25,6 @@ This will save you time.
     {% if data['errortypeone'] == "true" %}
         Enter the ear tag numbers of the animals you are planning to move
 
-    <!-- Error 2 - If answer is too long -->
-    {% elif data['errortypetwo'] == "true" %}
-        PLACEHOLDER must be MAXIMUM_NUMBER characters or fewer
-
-    <!-- Error 3 - If answer is too short -->
-    {% elif data['errortypethree'] == "true" %}
-        PLACEHOLDER must be MINIMUM_NUMBER characters or more
-
-    <!-- Error 4 - If answer has characters that aren't allowed and you know what the characters are -->
-    {% elif data['errortypefour'] == "true" %}
-        PLACEHOLDER must not include  {{ data['dissallowedcharacters'] }} [LIST_THE_CHARACTERS_USED]
-
     {% endif %}
 {% endset %}
 
@@ -44,7 +32,7 @@ This will save you time.
 <!-- Text that show in the browser tab. Does NOT need changing -->
 {% block pageTitle %}
     {% if  data['errorthispage'] == "true"  %}
-        Error:
+        Error: Enter the ear tag numbers of the animals you are planning to move
     {% endif %}
 
     {{ pageHeadingTextHTML }}
@@ -93,7 +81,7 @@ This will save you time.
 
                     hint:
                     {
-                        text: ""
+                        text: "Enter Full IDs with the country and herd number. Use a comma to separate multiple ID numbers."
                     },
 
                     errorMessage: null if data['errorthispage'] != "true"
@@ -128,42 +116,12 @@ This will save you time.
                 {% if  data['errortypeone'] == 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] != 'true'  and data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  %}selected{% endif %}
         >Error 1 - No answer entered</option>
 
-        <option value="errorthispage=true&errortypeone=false&errortypetwo=true&errortypethree=false&errortypefour=false&errortypefive=false&errortypesix=false&"
-                {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] == 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] != 'true'   and data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  %}selected{% endif %}
-        >Error 2 - If answer is too long</option>
-
-        <option value="errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=true&errortypefour=false&errortypefive=false&errortypesix=false&"
-                {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] == 'true'  and  data['errortypefour'] != 'true'   and data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  %}selected{% endif %}
-        >Error 3 - If answer is too short</option>
-
-        <option value="errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=false&errortypefour=true&errortypefive=false&errortypesix=false&"
-                {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] == 'true'  and  data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  %}selected{% endif %}
-        >Error 4 - If answer has characters that aren't allowed and you know what the characters are</option>
-
     </select>
 
 </form>
 <!--  END OF ERROR LOGIC -->
 
 
-
-<!-- USER TYPE TOGGLE  -->
-<form method="post"  action="#" class="for4" style=" float: left; position: relative; bottom:-270px;  ">
-
-  <select style="height:30px;" onchange="window.location.href='?'+this.value">
-
-    <option value="user=citizen&"
-            {% if  data['user'] != "agent"  %} selected {% endif %}
-    >User type - Individual</option>
-
-    <option value="user=agent&"
-            {% if  data['user'] == "agent"  %} selected {% endif %}
-    >User type - Agent</option>
-
-  </select>
-
-</form>
-<!--  END USER TYPE TOGGLE -->
 
 
 
