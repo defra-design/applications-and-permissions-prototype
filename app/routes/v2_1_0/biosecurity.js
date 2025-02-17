@@ -677,7 +677,7 @@ module.exports = function (router) {
 
         if(newString == "undefined")
         {
-            req.session.data['biosecurity-badgers-checkboxes-formatted'] = "";
+            req.session.data['biosecurity-badgers-checkboxes-formatted'] = "None";
         }
         else
         {
