@@ -186,81 +186,27 @@ module.exports = function (router) {
             res.redirect('destination-farm-cph');
         }
 
-        else if (req.session.data['destination-destination-farm-cph-text-input'].length > 13)
-        {
-            // Trigger validation and relaunch the page for over 15 characters
-            req.session.data['errorthispage'] = "true";
-            req.session.data['errortypetwo'] = "true";
-
-            // This page name needs to match the page the user was just on
-            res.redirect('destination-farm-cph');
-        }
-
-        else if (req.session.data['destination-destination-farm-cph-text-input'].length < 9)
-        {
-            // Trigger validation and relaunch the page for under 5 characters
-            req.session.data['errorthispage'] = "true";
-            req.session.data['errortypethree'] = "true";
-
-            // This page name needs to match the page the user was just on
-            res.redirect('destination-farm-cph');
-        }
-
         else
         {
-            // check no illegal charcters have been used
-            const acceptableCharacters =  " 0123456789/-";
-            let inputtext = req.session.data['destination-destination-farm-cph-text-input'];
-
-            let dissallowedCharacters = "";
-
-            // go through every character in the input and save  illegals ones
-            for (var i = 0; i < inputtext.length; i++)
+            let regexpattern = /^(\d{2})\/(\d{3})\/(\d{4})$/;
+            let cphentered = req.session.data['destination-destination-farm-cph-text-input'];
+            let cphnospaces = cphentered.trim();
+            let result = regexpattern.test(cphnospaces);
+            if (result == false)
             {
-                let  singlecharacter = inputtext.charAt(i);
-
-                if( acceptableCharacters.includes( singlecharacter ) )
-                {
-                    // character is fine skip it
-                }
-                else
-                {
-                    // save this invalid character
-                    // if character is alread in tsring then don't add it
-                    if( dissallowedCharacters.includes( singlecharacter ) == false )
-                    {
-                        dissallowedCharacters = dissallowedCharacters.concat(singlecharacter);
-                    }
-                }
-            }
-
-            if(0 < dissallowedCharacters.length)
-            {
-                req.session.data['dissallowedcharacters'] = dissallowedCharacters;
-
-                // Trigger validation and relaunch the page for invalid characters
+                // Trigger validation and relaunch the page
                 req.session.data['errorthispage'] = "true";
-                req.session.data['errortypefour'] = "true";
+                req.session.data['errortypetwo'] = "true";
 
                 // This page name needs to match the page the user was just on
                 res.redirect('destination-farm-cph');
             }
             else
             {
-                if (req.session.data['camefromcheckanswers'] == 'true')
-                {
-                    req.session.data['camefromcheckanswers'] = false;
-                    res.redirect('check-answers');
-                }
-                else
-                {
-                    // This page name needs to be the next page the user gets to after successfully continuing
-                    res.redirect('destination-farm-address');
-                }
-
-
+                res.redirect('destination-farm-address');
             }
         }
+
     })
 
 
@@ -291,7 +237,7 @@ module.exports = function (router) {
         if (req.session.data['destination-type-of-destination-page-2-radios'] == "Zoo with TB restrictions")
         {
             // Continue to the next page
-            if (req.session.data['destination-to-or-from-own-premises-radios'] == "On to the farm or premises")
+            if (req.session.data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises")
             {
                 res.redirect('own-farm-new-cph');
             }
@@ -303,7 +249,7 @@ module.exports = function (router) {
         else if (req.session.data['destination-type-of-destination-page-2-radios'] == "Laboratory")
         {
             // Continue to the next page
-            if (req.session.data['destination-to-or-from-own-premises-radios'] == "On to the farm or premises")
+            if (req.session.data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises")
             {
                 res.redirect('own-farm-new-cph');
             }
@@ -411,71 +357,27 @@ module.exports = function (router) {
             res.redirect('own-farm-new-cph');
         }
 
-        else if (req.session.data['destination-own-farm-new-cph-text-input'].length > 13)
-        {
-            // Trigger validation and relaunch the page for over 15 characters
-            req.session.data['errorthispage'] = "true";
-            req.session.data['errortypetwo'] = "true";
-
-            // This page name needs to match the page the user was just on
-            res.redirect('own-farm-new-cph');
-        }
-
-        else if (req.session.data['destination-own-farm-new-cph-text-input'].length < 9)
-        {
-            // Trigger validation and relaunch the page for under 5 characters
-            req.session.data['errorthispage'] = "true";
-            req.session.data['errortypethree'] = "true";
-
-            // This page name needs to match the page the user was just on
-            res.redirect('own-farm-new-cph');
-        }
-
         else
         {
-            // check no illegal charcters have been used
-            const acceptableCharacters =  " 0123456789/-";
-            let inputtext = req.session.data['destination-own-farm-new-cph-text-input'];
-
-            let dissallowedCharacters = "";
-
-            // go through every character in the input and save  illegals ones
-            for (var i = 0; i < inputtext.length; i++)
+            let regexpattern = /^(\d{2})\/(\d{3})\/(\d{4})$/;
+            let cphentered = req.session.data['destination-own-farm-new-cph-text-input'];
+            let cphnospaces = cphentered.trim();
+            let result = regexpattern.test(cphnospaces);
+            if (result == false)
             {
-                let  singlecharacter = inputtext.charAt(i);
-
-                if( acceptableCharacters.includes( singlecharacter ) )
-                {
-                    // character is fine skip it
-                }
-                else
-                {
-                    // save this invalid character
-                    // if character is alread in tsring then don't add it
-                    if( dissallowedCharacters.includes( singlecharacter ) == false )
-                    {
-                        dissallowedCharacters = dissallowedCharacters.concat(singlecharacter);
-                    }
-                }
-            }
-
-            if(0 < dissallowedCharacters.length)
-            {
-                req.session.data['dissallowedcharacters'] = dissallowedCharacters;
-
-                // Trigger validation and relaunch the page for invalid characters
+                // Trigger validation and relaunch the page
                 req.session.data['errorthispage'] = "true";
-                req.session.data['errortypefour'] = "true";
+                req.session.data['errortypetwo'] = "true";
 
                 // This page name needs to match the page the user was just on
                 res.redirect('own-farm-new-cph');
-            }
+                }
             else
             {
                 res.redirect('own-farm-new-address');
-
             }
         }
+
     })
 
 
@@ -531,8 +433,23 @@ module.exports = function (router) {
         }
         else
         {
-            // Continue to check answers
-            res.redirect('check-answers');
+            let regexpattern = /^[A-Z]{1,2}[0-9][A-Z0-9]?\s?[0-9][A-Z]{2}$/;
+            let addressentered = req.session.data['destination-destination-farm-address-postcode'];
+            let cphnospaces = addressentered.trim();
+            let result = regexpattern.test(cphnospaces);
+            if (result == false)
+            {
+                // Trigger validation and relaunch the page
+                req.session.data['errorthispage'] = "true";
+                req.session.data['errortypefour'] = "true";
+
+                // This page name needs to match the page the user was just on
+                res.redirect('destination-farm-address');
+            }
+            else
+            {
+                res.redirect('check-answers');
+            }
         }
 
     })
@@ -595,9 +512,26 @@ module.exports = function (router) {
         }
         else
         {
-            // Continue to check answers
-            res.redirect('reason-for-movement');
+            let regexpattern = /^[A-Z]{1,2}[0-9][A-Z0-9]?\s?[0-9][A-Z]{2}$/;
+            let addressentered = req.session.data['destination-own-address-postcode'];
+            let cphnospaces = addressentered.trim();
+            let result = regexpattern.test(cphnospaces);
+            if (result == false)
+            {
+                // Trigger validation and relaunch the page
+                req.session.data['errorthispage'] = "true";
+                req.session.data['errortypefour'] = "true";
+
+                // This page name needs to match the page the user was just on
+                res.redirect('own-farm-new-address');
+            }
+            else
+            {
+                // Continue to check answers
+                res.redirect('reason-for-movement');
+            }
         }
+
     })
 
 
@@ -1068,11 +1002,13 @@ module.exports = function (router) {
         // If Yes was selected, continue to next page
         if (req.session.data['destination-reason-for-movement-radios'] == "Routine restocking")
         {
-            if(req.session.data['destination-type-of-destination-radios'] == "TB restricted farm"
+            if((req.session.data['destination-type-of-destination-radios'] == "TB restricted farm"
+                || req.session.data['destination-type-of-destination-page-2-radios'] == "Zoo with TB restrictions")
                 &&
-                req.session.data['origin-type-of-origin-radios'] == "TB restricted farm" )
+                (req.session.data['origin-type-of-origin-radios'] == "TB restricted farm"
+                || req.session.data['origin-type-of-origin-page-2-radios'] == "Zoo with TB restrictions"))
             {
-                res.redirect('check-answers');
+                res.redirect('how-many-animals');
             }
             else
             {
@@ -1105,6 +1041,104 @@ module.exports = function (router) {
             // This page name needs to match the page the user was just on
             res.redirect('reason-for-movement');
         }
+    })
+
+
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////               PLACEHOLDER_SUMMARY                  ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////                 NUMBER ENTRY                       ////////////////
+    ////////////////                NOT COMPLEX PAGE                    ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    router.post(section + 'how-many-animals-router', function (req, res)
+    {
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+        req.session.data['errortypetwo'] = "false";
+        req.session.data['errortypethree'] = "false";
+        req.session.data['errortypefour'] = "false";
+        req.session.data['errortypefive'] = "false";
+        req.session.data['errortypesix'] = "false";
+        req.session.data['errortypeseven'] = "false";
+
+
+        // Validation check if field is blank
+        if (req.session.data['destination-how-many-animals-number-input'] == undefined || req.session.data['destination-how-many-animals-number-input'] == "")
+        {
+            // Trigger validation and relaunch the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('how-many-animals');
+        }
+        else
+        {
+            // Remove any commas which the user or this routing added
+            let nocommasinput = req.session.data['destination-how-many-animals-number-input'].replace(/,/g, '');
+
+            // if not a number throw first error
+            if( isNaN(req.session.data['destination-how-many-animals-number-input']) )
+            {
+                // Trigger validation and relaunch the page
+                req.session.data['errorthispage'] = "true";
+                req.session.data['errortypeotwo'] = "true";
+
+                // This page name needs to match the page the user was just on
+                res.redirect('how-many-animals');
+            }
+            else
+            {
+                // convert String input to a number
+                let numberinputfloat =  parseFloat( nocommasinput );
+
+
+                // Check input is a whole number
+                if( numberinputfloat % 1 != 0 )
+                {
+                    // Trigger validation and relaunch the page
+                    req.session.data['errorthispage'] = "true";
+                    req.session.data['errortypetwo'] = "true";
+
+                    // This page name needs to match the page the user was just on
+                    res.redirect('how-many-animals');
+                }
+
+                else if ( numberinputfloat == 0 )
+                {
+                    // Trigger validation and relaunch the page for number lower than 4
+                    req.session.data['errorthispage'] = "true";
+                    req.session.data['errortypethree'] = "true";
+
+                    // This page name needs to match the page the user was just on
+                    res.redirect('how-many-animals');
+                }
+
+
+                // everything with the input is fine so move on to next page
+                else
+                {
+                    // Format the number with commas
+                    req.session.data['destination-how-many-animals-number-input'] = numberinputfloat.toLocaleString();
+
+                    // This page name needs to be the next page the user gets to after successfully continuing
+                    res.redirect('check-answers');
+
+                }
+            }
+
+        }
+
     })
 
 

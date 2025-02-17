@@ -469,15 +469,21 @@ module.exports = function (router) {
         }
         else
         {
-            // If the user needs to go back to 'check your answers' then take them directly there
-            if (req.session.data['camefromcheckanswers'] == 'true')
+            let regexpattern = /^(\d{2})\/(\d{3})\/(\d{4})$/;
+            let cphentered = req.session.data['origin-own-farm-new-cph-text-input'];
+            let cphnospaces = cphentered.trim();
+            let result = regexpattern.test(cphnospaces);
+            if (result == false)
             {
-                req.session.data['camefromcheckanswers'] = false;
-                res.redirect('check-answers');
+                // Trigger validation and relaunch the page
+                req.session.data['errorthispage'] = "true";
+                req.session.data['errortypetwo'] = "true";
+
+                // This page name needs to match the page the user was just on
+                res.redirect('own-farm-new-cph');
             }
             else
             {
-                // This page name needs to match the page the user was just on
                 res.redirect('own-farm-new-address');
             }
         }
@@ -539,8 +545,23 @@ module.exports = function (router) {
         }
         else
         {
-            // Continue to check answers
-            res.redirect('check-answers');
+            let regexpattern = /^[A-Z]{1,2}[0-9][A-Z0-9]?\s?[0-9][A-Z]{2}$/;
+            let addressentered = req.session.data['origin-own-address-postcode'];
+            let cphnospaces = addressentered.trim();
+            let result = regexpattern.test(cphnospaces);
+            if (result == false)
+            {
+                // Trigger validation and relaunch the page
+                req.session.data['errorthispage'] = "true";
+                req.session.data['errortypefour'] = "true";
+
+                // This page name needs to match the page the user was just on
+                res.redirect('own-farm-new-address');
+            }
+            else
+            {
+                res.redirect('check-answers');
+            }
         }
 
     })

@@ -59,7 +59,7 @@
             </dd>
             {%  if  data['application-submitted-and-locked'] != "true"  %}
                 <dd class="govuk-summary-list__actions">
-                    <a class="govuk-link" href="../destination/destination-farm-cph?camefromcheckanswers=true&">Change<span class="govuk-visually-hidden"> </span></a>
+                    <a class="govuk-link" href="../destination/own-farm-new-cph">Change<span class="govuk-visually-hidden"> </span></a>
                 </dd>
             {%  endif  %}
         </div>
@@ -77,7 +77,7 @@
             </dd>
             {%  if  data['application-submitted-and-locked'] != "true"  %}
                 <dd class="govuk-summary-list__actions">
-                    <a class="govuk-link" href="../destination/destination-farm-address">Change<span class="govuk-visually-hidden"> </span></a>
+                    <a class="govuk-link" href="../destination/own-farm-new-address">Change<span class="govuk-visually-hidden"> </span></a>
                 </dd>
             {%  endif  %}
         </div>
@@ -101,12 +101,24 @@
 
         {%  if  data['destination-reason-for-movement-radios'] == "Routine restocking"  %}
 
-            {%  if  data['origin-type-of-origin-radios'] == "TB restricted farm"
+            {%  if  (data['origin-type-of-origin-radios'] == "TB restricted farm"
+                        or data['origin-type-of-origin-page-2-radios'] == "Zoo with TB restrictions")
                     and
-                    data['destination-type-of-destination-radios'] == "TB restricted farm"
+                    (data['destination-type-of-destination-radios'] == "TB restricted farm"
+                        or data['destination-type-of-destination-page-2-radios'] == "Zoo with TB restrictions")
             %}
 
-                    <!-- show nothing -->
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
+                        How many animals are being moved?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{ data['destination-how-many-animals-number-input'] }}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="../destination/how-many-animals">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                </div>
 
             {% else %}
 
