@@ -15,7 +15,7 @@ This will save you time.
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    How many animals are being moved?
+    How many animals are you planning to move?
 {% endset %}
 
 
@@ -23,7 +23,7 @@ This will save you time.
 {% set errorTextHTML %}
     <!-- Error 1 - If answer is not a number when it should be -->
     {%  if  data['errortypeone'] == "true"  %}
-        The amount of animal must be a number
+        Enter how many animals you are planning to move
 
     <!-- Error 2 - If answer is not a whole number -->
     {% elif data['errortypetwo'] == "true"  %}
