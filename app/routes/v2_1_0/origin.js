@@ -545,7 +545,7 @@ module.exports = function (router) {
         }
         else
         {
-            let regexpattern = /^[A-Z]{1,2}[0-9][A-Z0-9]?\s?[0-9][A-Z]{2}$/;
+            let regexpattern = /^[a-zA-Z]{1,2}[0-9][a-zA-Z0-9]?\s?[0-9][a-zA-Z]{2}$/;
             let addressentered = req.session.data['origin-own-address-postcode'];
             let cphnospaces = addressentered.trim();
             let result = regexpattern.test(cphnospaces);
