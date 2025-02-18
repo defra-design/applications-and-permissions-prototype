@@ -510,6 +510,7 @@ module.exports = function (router) {
         req.session.data['errortypeone'] = "false";
         req.session.data['errortypetwo'] = "false";
         req.session.data['errortypethree'] = "false";
+        req.session.data['errortypefour'] = "false";
 
 
         // Validation check if line 1 field is blank
@@ -586,8 +587,43 @@ module.exports = function (router) {
     // NOT COMPLEX PAGE
     router.post( section + 'origin-farm-cph-router', function (req, res)
     {
-        // This page name needs to match the page the user was just on
-        res.redirect('origin-farm-address');
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+        req.session.data['errortypetwo'] = "false";
+        req.session.data['errortypethree'] = "false";
+
+        // Validation check if field is blank
+        if (req.session.data['origin-origin-farm-cph-text-input'] == undefined || req.session.data['origin-origin-farm-cph-text-input'] == "")
+        {
+            // Trigger validation and relaunch the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('origin-farm-cph');
+        }
+        else
+        {
+            let regexpattern = /^(\d{2})\/(\d{3})\/(\d{4})$/;
+            let cphentered = req.session.data['origin-origin-farm-cph-text-input'];
+            let cphnospaces = cphentered.trim();
+            let result = regexpattern.test(cphnospaces);
+            if (result == false)
+            {
+                // Trigger validation and relaunch the page
+                req.session.data['errorthispage'] = "true";
+                req.session.data['errortypetwo'] = "true";
+
+                // This page name needs to match the page the user was just on
+                res.redirect('origin-farm-cph');
+            }
+            else
+            {
+                // This page name needs to match the page the user was just on
+                res.redirect('origin-farm-address');
+            }
+        }
+
     })
 
 
@@ -608,25 +644,68 @@ module.exports = function (router) {
     // NOT COMPLEX PAGE
     router.post( section + 'origin-farm-address-router', function (req, res)
     {
-        // If Yes was selected, continue to next page
-        if (req.session.data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises")
+
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+        req.session.data['errortypetwo'] = "false";
+        req.session.data['errortypethree'] = "false";
+        req.session.data['errortypefour'] = "false";
+
+
+        // Validation check if line 1 field is blank
+        if (req.session.data['origin-origin-farm-address-line-1'] == undefined || req.session.data['origin-origin-farm-address-line-1'] == "")
         {
-            res.redirect('fifty-percent-warning');
+            // Trigger validation and relaunch the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('origin-farm-address');
+        }
+        // Validation check if town field is blank
+        else if (req.session.data['origin-origin-farm-address-town'] == undefined || req.session.data['origin-origin-farm-address-town'] == "")
+        {
+            // Trigger validation and relaunch the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypetwo'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('origin-farm-address');
         }
 
-        else if (req.session.data['origin-to-or-from-own-premises-radios'] == "Off the farm or premises")
+        // Validation check if postcode field is blank
+        else if (req.session.data['origin-origin-farm-address-postcode'] == undefined || req.session.data['origin-origin-farm-address-postcode'] == "")
         {
-            // If Yes was selected, continue to next page
-            if (req.session.data['bluetongue'] == "true")
+            // Trigger validation and relaunch the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypethree'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('origin-farm-address');
+        }
+        else
+        {
+            let regexpattern = /^[a-zA-Z]{1,2}[0-9][a-zA-Z0-9]?\s?[0-9][a-zA-Z]{2}$/;
+            let addressentered = req.session.data['origin-origin-farm-address-postcode'];
+            let cphnospaces = addressentered.trim();
+            let result = regexpattern.test(cphnospaces);
+            if (result == false)
             {
-                res.redirect('ruminants-any-60-days');
+                // Trigger validation and relaunch the page
+                req.session.data['errorthispage'] = "true";
+                req.session.data['errortypefour'] = "true";
+
+                // This page name needs to match the page the user was just on
+                res.redirect('origin-farm-address');
             }
             else
             {
-                // Continue to check answers
-                res.redirect('check-answers');
+                res.redirect('fifty-percent-warning');
             }
         }
+
+
+
     })
 
 

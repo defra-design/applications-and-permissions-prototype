@@ -398,6 +398,7 @@ module.exports = function (router) {
         req.session.data['errortypeone'] = "false";
         req.session.data['errortypetwo'] = "false";
         req.session.data['errortypethree'] = "false";
+        req.session.data['errortypefour'] = "false";
 
 
         // Validation check if line 1 field is blank
@@ -477,6 +478,7 @@ module.exports = function (router) {
         req.session.data['errortypeone'] = "false";
         req.session.data['errortypetwo'] = "false";
         req.session.data['errortypethree'] = "false";
+        req.session.data['errortypefour'] = "false";
 
 
         // Validation check if line 1 field is blank
