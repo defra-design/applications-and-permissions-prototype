@@ -1,19 +1,27 @@
-{% extends "/layouts/main.html" %}
-{% set showBackLink = true %}
-{% set serviceName = "{Service Name}" %}
+{% extends "layouts/v2_1_0.html" %}
+
+{% set serviceName = "Get permission to move animals under disease controls" %}
+
 
 {% set pageHeading = "What kind of business or organisation are you?" %}
+
 {% set pageSection = "Register Defra account" %}
-{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
 
 {% block content %}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-        {{ macroPageHeader.pageHeader(pageHeading,pageSection) }}   
+        <span class="govuk-caption-xl">{{ pageSection }}</span>
 
-    	<form method="post" action="/register/charity-location">
+        <div class="gem-c-title govuk-!-margin-top-0 govuk-!-margin-bottom-8">
+            <h1 class="gem-c-title__text govuk-heading-xl">
+                {{ pageHeading }}
+            </h1>
+        </div>
+
+    	<form method="post" action="personal-name">
 
 			{{ govukRadios({
                 fieldset: {
@@ -21,7 +29,7 @@
                 },
                 items: [
                     { value: "Charity", text: 'Charity', checked: checked ('registrationOrganisationType','Charity') },
-                    { value: "Sole trader~/register/personal-name", text: 'Sole trader', checked: checked ('registrationOrganisationType','Sole trader')   }					
+                    { value: "Sole trader", text: 'Sole trader', checked: checked ('registrationOrganisationType','Sole trader')   }
                 ],
                 name: "registrationOrganisationType",
                 id: "registrationOrganisationType"

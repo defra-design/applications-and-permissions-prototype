@@ -24,7 +24,7 @@
 
         <p>Companies House may have sent this to you when you registered with them.</p>
 
-    	<form method="post" action="companies-house-number">
+    	<form method="post" action="companies-house-router">
 			
 			{{ govukRadios({
                 fieldset: {
@@ -33,7 +33,7 @@
                 classes: "govuk-radios--inline",
                 items: [
                     { value: "Yes", text: 'Yes', checked: checked( 'registrationCompanyRegistrationNumber','Yes' )   },
-					{ value: "No~/register/sole-trader-or-charity", text: 'No', checked: checked( 'registrationCompanyRegistrationNumber','No' )   }                    
+					{ value: "No", text: 'No', checked: checked( 'registrationCompanyRegistrationNumber','No' )   }
                 ],
                 name: "registrationCompanyRegistrationNumber"
             }) }}       

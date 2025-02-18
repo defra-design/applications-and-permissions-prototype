@@ -185,4 +185,31 @@ module.exports = function (router) {
 
 
 
+
+
+
+    // a ltd company or not a company
+    router.post(section + 'register/companies-house-router', function (req, res)
+    {
+        // Turn errors off by default
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+
+        // If Yes was selected, continue to next page
+        if (req.session.data['registrationCompanyRegistrationNumber'] == "Yes")
+        {
+            res.redirect('companies-house-number');
+        }
+        else if (req.session.data['registrationCompanyRegistrationNumber'] == "No")
+        {
+            res.redirect('sole-trader-or-charity');
+        }
+        else
+        {
+            // This page name needs to match the page the user was just on
+            res.redirect('companies-house');
+        }
+    })
+
+
 }
