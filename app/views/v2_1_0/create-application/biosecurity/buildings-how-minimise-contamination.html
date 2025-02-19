@@ -15,15 +15,21 @@ This will save you time.
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    How will you reduce building and equipment contamination?
+    Shared buildings and equipment
 {% endset %}
 
+
+
+<!-- Setting the smaller secondary heading lower down the page -->
+{% set questionHeadingTextHTML %}
+    How will you minimise the risk from shared buildings and any equipment used for the incoming cattle and any other cattle?
+{% endset %}
 
 <!-- Set the text for the error type -->
 {% set errorTextHTML %}
     <!-- Nothing was selected -->
     {% if data['errortypeone'] == "true" %}
-        Enter information about how you will reduce building and equipment contamination
+        Enter how you will minimise the risk from shared buildings and any equipment used for the incoming cattle and any other cattle
     {% endif %}
 {% endset %}
 
@@ -61,6 +67,24 @@ This will save you time.
         <!--  END OF 'error summary' -->
 
 
+        <h1 class="govuk-heading-l">
+            {{ pageHeadingTextHTML }}
+        </h1>
+
+
+        <p>To prevent the spread of TB, cleaning and disinfection measures for shared buildings and
+            equipment should be in place.</p>
+
+        <p>This can include:</p>
+
+        <ul class="govuk-list govuk-list--bullet">
+            <li>designated disinfection points</li>
+            <li>cleaning and disinfecting shared machinery</li>
+            <li>not sharing equipment or machinery between the groups of incoming and resident cattle</li>
+            <li>cleaning and disinfection measures for shared milking and testing facilities</li>
+        </ul>
+
+
         <!-- go to routes.js for routing  -->
         <form action="buildings-how-minimise-contamination-router" method="post" novalidate>
 
@@ -68,9 +92,9 @@ This will save you time.
                 ({
                     label:
                     {
-                        html: pageHeadingTextHTML,
-                        classes: "govuk-label--l",
-                        isPageHeading: true
+                        html: questionHeadingTextHTML,
+                        classes: "govuk-label--m",
+                        isPageHeading: false
                     },
 
                     id: "biosecurity-buildings-how-minimise-contamination-text-input",
@@ -79,7 +103,7 @@ This will save you time.
 
                     hint:
                     {
-                        text: "For example, disinfection points and measures taken when milking dairy cattle"
+                        text: ""
                     },
 
                     errorMessage: null if data['errorthispage'] != "true"
