@@ -684,12 +684,61 @@ module.exports = function (router) {
             req.session.data['biosecurity-badgers-checkboxes-formatted'] = newString;
         }
 
-        res.redirect('check-answers');
-        // Possibly add empty field error in future
+        if(newString.includes("Other measures to reduce the risk of infection"))
+        {
+            res.redirect('other-wildlife-measures');
+        }
+        else
+        {
+            res.redirect('check-answers');
+            // Possibly add empty field error in future
+        }
+
+
+
     })
 
 
 
+
+
+
+
+
+
+
+
+
+
+    // NOT COMPLEX PAGE
+    router.post(section + 'other-wildlife-measures-router', function (req, res)
+    {
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+        req.session.data['errortypetwo'] = "false";
+        req.session.data['errortypethree'] = "false";
+        req.session.data['errortypefour'] = "false";
+        req.session.data['errortypefive'] = "false";
+        req.session.data['errortypefour'] = "false";
+
+        // Validation check if field is blank
+        if (req.session.data['biosecurity-other-wildlife-measures-text-input'] == undefined || req.session.data['biosecurity-other-wildlife-measures-text-input'] == "")
+        {
+            // Trigger validation and relaunch the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('other-wildlife-measures');
+        }
+
+        else
+        {
+            // This page name needs to be the next page the user gets to after successfully continuing
+            res.redirect('check-answers');
+        }
+
+    })
 
 
 

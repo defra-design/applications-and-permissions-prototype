@@ -178,4 +178,22 @@
     </div>
 
 
+    {%  if  (data['biosecurity-badgers-checkboxes'] or []).indexOf('Other measures to reduce the risk of infection') > -1  %}
+
+        <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
+                What other measures are you taking to reduce the risk of spreading TB?
+            </dt>
+            <dd class="govuk-summary-list__value">
+                {{ data['biosecurity-other-wildlife-measures-text-input'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="../biosecurity/other-wildlife-measures">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        </div>
+
+    {%  endif  %}
+
+
+
 </dl>

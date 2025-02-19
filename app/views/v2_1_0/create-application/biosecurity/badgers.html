@@ -15,7 +15,7 @@ This will save you time.
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    Which measures are you taking to reduce contamination from wildlife?
+    Which measures are you taking to reduce the risk of infection from wildlife?
 {% endset %}
 
 
@@ -66,9 +66,9 @@ This will save you time.
                         checked: (data['biosecurity-badgers-checkboxes'] or []).indexOf('Aluminium feed bins') > -1
                     },
                     {
-                        value: "Limiting access to badger latrines and setts",
-                        text: "Limiting access to badger latrines and setts",
-                        checked: (data['biosecurity-badgers-checkboxes'] or []).indexOf('Limiting access to badger latrines and setts') > -1
+                        value: "Limiting cattle access to badger latrines and setts",
+                        text: "Limiting cattle access to badger latrines and setts",
+                        checked: (data['biosecurity-badgers-checkboxes'] or []).indexOf('Limiting cattle access to badger latrines and setts') > -1
                     },
                     {
                         value: "Feed and water troughs above 90cm",
@@ -76,14 +76,14 @@ This will save you time.
                         checked: (data['biosecurity-badgers-checkboxes'] or []).indexOf('Feed and water troughs above 90cm') > -1
                     },
                     {
-                        value: "Mineral licks kept out of reach",
-                        text: "Mineral licks kept out of reach",
-                        checked: (data['biosecurity-badgers-checkboxes'] or []).indexOf('Mineral licks kept out of reach') > -1
+                        value: "Mineral licks kept out of reach of wildlife",
+                        text: "Mineral licks kept out of reach of wildlife",
+                        checked: (data['biosecurity-badgers-checkboxes'] or []).indexOf('Mineral licks kept out of reach of wildlife') > -1
                     },
                     {
-                        value: "Other decontamination methods",
-                        text: "Other decontamination methods",
-                        checked: (data['biosecurity-badgers-checkboxes'] or []).indexOf('Other decontamination methods') > -1
+                        value: "Other measures to reduce the risk of infection",
+                        text: "Other measures to reduce the risk of infection",
+                        checked: (data['biosecurity-badgers-checkboxes'] or []).indexOf('Other measures to reduce the risk of infection') > -1
                     }
                 ]
             })

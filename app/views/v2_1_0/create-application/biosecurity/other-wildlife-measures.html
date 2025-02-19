@@ -1,10 +1,21 @@
 {% extends "layouts/v2_1_0.html" %}
 
+<!--
+NOTES ON USING THIS TEMPLATE Page
+This will save you time.
+
+1. Type your heading for the page after '% set pageHeadingTextHTML %'
+2. Type/customise the error message after '% set errorTextHTML %'
+3. Use 'Find and replace' to replace "SECTION" with the name of the section of the service you're working on.
+4. Use 'Find and replace' to replace "PAGENAME_YES_NO" with whatever you named this page/file.
+5. Go to the javascript file 'templates.js' and copy the section 'YES AND NO - RADIO BUTTONS - MANDATORY' into your routes.js file.
+6. Follow instructions at the top of the 'templates.js'
+-->
 
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    Upload a biosecurity map
+    What other measures are you taking to reduce the risk of spreading TB?
 {% endset %}
 
 
@@ -12,7 +23,7 @@
 {% set errorTextHTML %}
     <!-- Nothing was selected -->
     {% if data['errortypeone'] == "true" %}
-        You need to upload your biosecurity map
+        Enter information what other measures are you taking to reduce the risk of spreading TB
     {% endif %}
 {% endset %}
 
@@ -28,7 +39,6 @@
 
 
 {% block content %}
-
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds ">
 
@@ -42,7 +52,7 @@
                     [
                         {
                             html: errorTextHTML,
-                            href: "#biosecurity-upload-plan-file-upload"
+                            href: "#biosecurity-other-wildlife-measures-text-input"
                         }
                     ]
                 })
@@ -51,74 +61,36 @@
         <!--  END OF 'error summary' -->
 
 
-        <h1 class="govuk-heading-l">
-            {{ pageHeadingTextHTML }}
-        </h1>
-
-        <!--
-        <details class="govuk-details" data-module="govuk-details">
-            <summary class="govuk-details__summary">
-                <span class="govuk-details__summary-text">
-                    View a map of your farm
-                </span>
-            </summary>
-            <div class="govuk-details__text">
-
-                <img src="/public/images/mapoffarm.jpg" >
-
-            </div>
-        </details>
-
-        {{
-            govukButton
-            ({
-                text: "Print a map of your farm",
-                classes: "govuk-button--secondary"
-            })
-        }}
-
-        -->
-
-        <p>You need to upload a map of the farm or premises.</p>
-
-        <p>We prefer a clear and detailed map, such as a Google map with annotations
-            or a pre-prepared map from an agent or surveyor.
-        </p>
-
-        <p>It needs to include: </p>
-
-
-        <ul class="govuk-body govuk-list--bullet">
-            <li>where the incoming cattle will be isolated</li>
-            <li>location of the resident cattle</li>
-            <li>movements of the cattle, including where they will graze, be milked, and be loaded</li>
-            <li>location of handling facility</li>
-            <li>location of manure or slurry storage</li>
-            <li>location of biosecurity points, including badger proof fencing</li>
-        </ul>
-
-
-
-
         <!-- go to routes.js for routing  -->
-        <form action="upload-plan-router" method="post" novalidate>
+        <form action="other-wildlife-measures-router" method="post" novalidate>
 
-            {{
-                govukFileUpload
+            {{ govukTextarea
                 ({
-                    id: "biosecurity-upload-plan-file-upload",
-
-                    name: "biosecurity-upload-plan-file-upload",
-
                     label:
                     {
-                        text: "Upload a file"
+                        html: pageHeadingTextHTML,
+                        classes: "govuk-label--l",
+                        isPageHeading: true
+                    },
+
+                    id: "biosecurity-other-wildlife-measures-text-input",
+
+                    name: "biosecurity-other-wildlife-measures-text-input",
+
+                    hint:
+                    {
+                        text: ""
                     },
 
                     errorMessage: null if data['errorthispage'] != "true"
-                                       else { html: errorTextHTML }
+                                       else { html: errorTextHTML },
+
+                    value: data['biosecurity-other-wildlife-measures-text-input'],
+
+                    rows: "8"
                 })
             }}
+
 
             {{ govukButton({ text: "Continue" }) }}
 
@@ -140,7 +112,7 @@
 
         <option value="errorthispage=true&errortypeone=true"
                 {% if  data['errortypeone'] == 'true'  %}selected{% endif %}
-        >Error 1 - Not selected</option>
+        >Error 1 - Nothing entered</option>
 
     </select>
 
