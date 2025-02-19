@@ -72,9 +72,10 @@
         {% include "../includes/contact-and-updates-cya.html" %}
 
 
-        {%  if   data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises"
-            and  data['origin-type-of-origin-radios'] == "TB restricted farm"
-            and  data['destination-type-of-destination-radios'] == "TB restricted farm"
+        {%  if   (data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises"
+                    and  (data['origin-type-of-origin-radios'] == "TB restricted farm"  or  data['origin-type-of-origin-page-2-radios'] == "Zoo with TB restrictions")
+                    and  (data['destination-type-of-destination-radios'] == "TB restricted farm"  or  data['destination-type-of-destination-page-2-radios'] == "Zoo with TB restrictions")
+                )
         %}
             <h2 class="govuk-heading-m">Animal identification</h2>
             {% include "../includes/identification-cya.html" %}
