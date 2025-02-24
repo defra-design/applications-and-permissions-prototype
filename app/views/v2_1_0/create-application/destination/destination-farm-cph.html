@@ -21,21 +21,14 @@ This will save you time.
 
 <!-- Set the text for each error type -->
 {% set errorTextHTML %}
+
     <!-- Error 1 - No answer selected -->
     {% if data['errortypeone'] == "true" %}
-        Enter your PLACEHOLDER
+        Enter the farm or premises CPH number
 
     <!-- Error 2 - If answer is too long -->
     {% elif data['errortypetwo'] == "true" %}
-        PLACEHOLDER must be MAXIMUM_NUMBER characters or fewer
-
-    <!-- Error 3 - If answer is too short -->
-    {% elif data['errortypethree'] == "true" %}
-        PLACEHOLDER must be MINIMUM_NUMBER characters or more
-
-    <!-- Error 4 - If answer has characters that aren't allowed and you know what the characters are -->
-    {% elif data['errortypefour'] == "true" %}
-        PLACEHOLDER must not include  {{ data['dissallowedcharacters'] }}
+        Enter the CPH number in the correct format, for example, 12/345/6789
 
     {% endif %}
 {% endset %}
@@ -130,15 +123,7 @@ This will save you time.
 
         <option value="errorthispage=true&errortypeone=false&errortypetwo=true&errortypethree=false&errortypefour=false&errortypefive=false&errortypesix=false&"
                 {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] == 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] != 'true'   and data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  %}selected{% endif %}
-        >Error 2 - If answer is too long</option>
-
-        <option value="errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=true&errortypefour=false&errortypefive=false&errortypesix=false&"
-                {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] == 'true'  and  data['errortypefour'] != 'true'   and data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  %}selected{% endif %}
-        >Error 3 - If answer is too short</option>
-
-        <option value="errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=false&errortypefour=true&errortypefive=false&errortypesix=false&"
-                {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] == 'true'  and  data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  %}selected{% endif %}
-        >Error 4 - If answer has characters that aren't allowed and you know what the characters are</option>
+        >Error 2 - Not a valid CPH number</option>
 
     </select>
 
