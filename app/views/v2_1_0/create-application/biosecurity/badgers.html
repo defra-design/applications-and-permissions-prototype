@@ -1,27 +1,26 @@
 {% extends "layouts/v2_1_0.html" %}
 
-<!--
-NOTES ON USING THIS TEMPLATE Page
-This will save you time.
-
-1. Type your heading for the page after '% set pageHeadingTextHTML %'
-2. Type/customise the error message after '% set errorTextHTML %'
-3. Use 'Find and replace' to replace "SECTION" with the name of the section of the service you're working on.
-4. Use 'Find and replace' to replace "PAGENAME_YES_NO" with whatever you named this page/file.
-5. Go to the javascript file 'templates.js' and copy the section 'YES AND NO - RADIO BUTTONS - MANDATORY' into your routes.js file.
-6. Follow instructions at the top of the 'templates.js'
--->
-
-
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    Which measures are you taking to reduce the risk of infection from wildlife?
+    Infection from wildlife
+{% endset %}
+
+
+<!-- Setting the smaller secondary heading lower down the page -->
+{% set questionHeadingTextHTML %}
+    What measures are you taking to reduce the risk of infection from badgers and wildlife?
+{% endset %}
+
+
+{% set errorTextHTML %}
+    {% if data['errortypeone'] == "true" %}
+        Enter information on what measures you are taking to reduce the risk of infection from badgers and wildlife
+    {% endif %}
 {% endset %}
 
 
 <!-- Text that show in the browser tab. Does NOT need changing -->
 {% block pageTitle %}
-
     {{ pageHeadingTextHTML }}
 {% endblock %}
 
@@ -30,71 +29,78 @@ This will save you time.
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds ">
 
+
+        <!-- ERROR LOGIC 'error summary' -->
+        {% if data['errorthispage'] == "true" %}
+            {{ govukErrorSummary
+                ({
+                    titleText: "There is a problem",
+                    errorList:
+                    [
+                        {
+                            html: errorTextHTML,
+                            href: "#biosecurity-badgers-text-input"
+                        }
+                    ]
+                })
+            }}
+        {% endif %}
+        <!--  END OF 'error summary' -->
+
+
+        <h1 class="govuk-heading-l">
+            {{ pageHeadingTextHTML }}
+        </h1>
+
+
+        <p>We need to know what measures are being taken to reduce the risk of infection from badgers and wildlife.</p>
+
+        <p>You need to include information on how you are minimising access to:</p>
+
+        <ul class="govuk-list govuk-list--bullet">
+            <li>feed stores</li>
+            <li>feed troughs</li>
+            <li>mineral licks and water troughs</li>
+            <li>latrines and setts</li>
+        </ul>
+
+
         <form action="badgers-router" method="post" novalidate>
 
-        {{ govukCheckboxes
-            ({
-                name: "biosecurity-badgers-checkboxes",
-
-                id: "biosecurity-badgers-checkboxes",
-
-                fieldset:
-                {
-                    legend:
+            {{ govukTextarea
+                ({
+                    label:
                     {
-                        text: pageHeadingTextHTML,
-                        isPageHeading: true,
-                        classes: "govuk-fieldset__legend--l"
-                    }
-                },
-
-                hint:
-                {
-                    text: "Only select the measures you are taking. You do not need to select them all to receive your licence."
-                },
-
-                items:
-                [
-                    {
-                        value: "Badger proof fencing, such as solid aluminium sheeted gates, aluminium sheeting on rail fences, retractable electric fences",
-                        text: "Badger proof fencing, such as solid aluminium sheeted gates, aluminium sheeting on rail fences, retractable electric fences",
-                        checked: (data['biosecurity-badgers-checkboxes'] or []).indexOf('Badger proof fencing, such as solid aluminium sheeted gates, aluminium sheeting on rail fences, retractable electric fences') > -1
+                        html: questionHeadingTextHTML,
+                        classes: "govuk-label--m",
+                        isPageHeading: false
                     },
+
+                    id: "biosecurity-badgers-text-input",
+
+                    name: "biosecurity-badgers-text-input",
+
+                    hint:
                     {
-                        value: "Aluminium feed bins",
-                        text: "Aluminium feed bins",
-                        checked: (data['biosecurity-badgers-checkboxes'] or []).indexOf('Aluminium feed bins') > -1
+                        text: ""
                     },
-                    {
-                        value: "Limiting cattle access to badger latrines and setts",
-                        text: "Limiting cattle access to badger latrines and setts",
-                        checked: (data['biosecurity-badgers-checkboxes'] or []).indexOf('Limiting cattle access to badger latrines and setts') > -1
-                    },
-                    {
-                        value: "Feed and water troughs above 90cm",
-                        text: "Feed and water troughs above 90cm",
-                        checked: (data['biosecurity-badgers-checkboxes'] or []).indexOf('Feed and water troughs above 90cm') > -1
-                    },
-                    {
-                        value: "Mineral licks kept out of reach of wildlife",
-                        text: "Mineral licks kept out of reach of wildlife",
-                        checked: (data['biosecurity-badgers-checkboxes'] or []).indexOf('Mineral licks kept out of reach of wildlife') > -1
-                    },
-                    {
-                        value: "Other measures to reduce the risk of infection",
-                        text: "Other measures to reduce the risk of infection",
-                        checked: (data['biosecurity-badgers-checkboxes'] or []).indexOf('Other measures to reduce the risk of infection') > -1
-                    }
-                ]
-            })
-        }}
+
+                    errorMessage: null if data['errorthispage'] != "true"
+                                       else { html: errorTextHTML },
+
+                    value: data['biosecurity-badgers-text-input'],
+
+                    rows: "8"
+                })
+            }}
 
 
-        <p>If there are measures you are not taking but want to find out more,
-            <a href="https://tbhub.co.uk/preventing-tb-breakdowns/protect-your-herd-from-bovine-tb/protect-your-herd-from-tb-a-review-of-the-science/" target="_blank">
-                read the guidance on the TB Hub</a> (opens in a new tab).
-        </p>
-
+                    <!--
+            <p>If there are measures you are not taking but want to find out more,
+                <a href="https://tbhub.co.uk/preventing-tb-breakdowns/protect-your-herd-from-bovine-tb/protect-your-herd-from-tb-a-review-of-the-science/" target="_blank">
+                    read the guidance on the TB Hub</a> (opens in a new tab).
+            </p>
+                -->
 
             {{ govukButton({ text: "Continue" }) }}
 
