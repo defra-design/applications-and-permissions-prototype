@@ -243,7 +243,7 @@ module.exports = function (router) {
             }
             else
             {
-                res.redirect('destination-farm-cph');
+                res.redirect('contact-the-tb-restricted-zoo');
             }
         }
         else if (req.session.data['destination-type-of-destination-page-2-radios'] == "Laboratory")
