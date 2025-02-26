@@ -128,7 +128,7 @@ module.exports = function (router) {
 
         else
         {
-            res.redirect('check-answers');
+            res.redirect('enter-ear-tags-testing-dates');
         }
 
     })
