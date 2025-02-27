@@ -1,17 +1,22 @@
 {% extends "layouts/v2_1_0.html" %}
 
+<!--
+NOTES ON USING THIS TEMPLATE Page
+This will save you time.
+
+1. Type your heading for the page after '% set pageHeadingTextHTML %'
+2. Type/customise the error messages after '% set errorTextHTML %'
+3. Use 'Find and replace' to replace "SECTION" with the name of the section of the service you're working on.
+4. Use 'Find and replace' to replace "PAGENAME_TEXT" with whatever you named this page/file.
+5. Go to the javascript file 'templates.js' and copy the section 'TEXT ENTRY - MANDATORY' into your routes.js file.
+6. Follow instructions at the top of the 'templates.js'.
+-->
+
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    Animal identification numbers
-{% endset %}
-
-
-<!-- Setting the smaller secondary heading lower down the page -->
-{% set questionHeadingTextHTML %}
     Enter the ear tag numbers of the animals you are planning to move
 {% endset %}
-
 
 
 <!-- Set the text for each error type -->
@@ -61,20 +66,6 @@
         <!--  END OF 'error summary' -->
 
 
-        <h1 class="govuk-heading-l">
-            {{ pageHeadingTextHTML }}
-        </h1>
-
-
-        <p>For ear tag numbers you need to enter:</p>
-
-        <ul class="govuk-list govuk-list--bullet">
-            <li>full IDs with the country and herd number</li>
-            <li>each ID on a separate line</li>
-        </ul>
-
-        <p>You need to note if any of the ear tags are for calves under 42 days old.</p>
-
         <!-- go to routes.js for routing  -->
         <form action="enter-ear-tags-router" method="post" novalidate>
 
@@ -82,9 +73,9 @@
                 ({
                     label:
                     {
-                        html: questionHeadingTextHTML,
-                        classes: "govuk-label--m",
-                        isPageHeading: false
+                        html: pageHeadingTextHTML,
+                        classes: "govuk-label--l",
+                        isPageHeading: true
                     },
 
                     id: "identification-enter-ear-tags-text-input",
@@ -93,7 +84,7 @@
 
                     hint:
                     {
-                        text: ""
+                        text: "Enter Full IDs with the country and herd number. Use a comma to separate multiple ID numbers."
                     },
 
                     errorMessage: null if data['errorthispage'] != "true"
@@ -143,7 +134,6 @@
 
 
 {% endblock %}
-
 
 
 

@@ -151,7 +151,7 @@ module.exports = function (router) {
         }
         else if (req.session.data['biosecurity-grazing-radios-yes-no'] == "No")
         {
-                res.redirect('buildings-any-shared');
+            res.redirect('buildings-any-shared');
         }
         else if (req.session.data['biosecurity-grazing-radios-yes-no'] == "I don't know")
         {
@@ -670,24 +670,31 @@ module.exports = function (router) {
 
     router.get(section + 'badgers-router', function (req, res)
     {
-        req.session.data['errorthispage'] = "false";
-        req.session.data['errortypeone'] = "false";
+        // Always proceed to the next questions on shared tracks
 
-        // Validation check if field is blank
-        if (req.session.data['biosecurity-badgers-text-input'] == undefined || req.session.data['biosecurity-badgers-text-input'] == "")
+        let originalString = String(req.session.data['biosecurity-badgers-checkboxes']);
+        let newString = originalString.replace(/,(?!\s)/g, "\n\n");
+
+        if(newString == "undefined")
         {
-            // Trigger validation and relaunch the page
-            req.session.data['errorthispage'] = "true";
-            req.session.data['errortypeone'] = "true";
-
-            // This page name needs to match the page the user was just on
-            res.redirect('badgers');
+            req.session.data['biosecurity-badgers-checkboxes-formatted'] = "None";
         }
         else
         {
-            // This page name needs to be the next page the user gets to after successfully continuing
-            res.redirect('check-answers');
+            req.session.data['biosecurity-badgers-checkboxes-formatted'] = newString;
         }
+
+        if(newString.includes("Other measures to reduce the risk of infection"))
+        {
+            res.redirect('other-wildlife-measures');
+        }
+        else
+        {
+            res.redirect('check-answers');
+            // Possibly add empty field error in future
+        }
+
+
 
     })
 
