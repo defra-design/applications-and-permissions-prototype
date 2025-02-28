@@ -135,7 +135,14 @@ module.exports = function (router) {
         {
             if (req.session.data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises")
             {
-                res.redirect('type-of-destination-page-2');
+                if (req.session.data['origin-type-of-origin-radios'] == "Approved finishing unit (AFU)")
+                {
+                    res.redirect('can-not-use-service-afu-only');
+                }
+                else
+                {
+                    res.redirect('type-of-destination-page-2');
+                }
             }
             else
             {
