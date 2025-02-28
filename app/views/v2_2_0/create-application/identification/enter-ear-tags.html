@@ -66,14 +66,9 @@
         </h1>
 
 
-        <p>For ear tag numbers you need to enter:</p>
+        <p>You need to enter each ear tag number on a separate line and include the country and herd number. For example, UK12345678910.</p>
 
-        <ul class="govuk-list govuk-list--bullet">
-            <li>full IDs with the country and herd number</li>
-            <li>each ID on a separate line</li>
-        </ul>
-
-        <p>You need to note if any of the ear tags are for calves under 42 days old.</p>
+        <p>If you are planning to move any calves, you also need to include their date of birth. For example, UK12345678910 - 28 2 2025.</p>
 
         <!-- go to routes.js for routing  -->
         <form action="enter-ear-tags-router" method="post" novalidate>
@@ -101,7 +96,7 @@
 
                     value: data['identification-enter-ear-tags-text-input'],
 
-                    rows: "10"
+                    rows: "15"
                 })
             }}
 
