@@ -15,7 +15,13 @@ This will save you time.
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    How many animals are you planning to move?
+
+    {% if  data['origin-type-of-origin-radios'] == "Market" or  data['origin-type-of-origin-radios'] == "Unrestricted farm or premises"  %}
+        Enter the maximum number of animals you are planning to move
+    {% else %}
+        How many animals are you planning to move?
+    {% endif %}
+
 {% endset %}
 
 
@@ -112,7 +118,7 @@ This will save you time.
 
 <!-- ERROR LOGIC  drop down to toggle states  -->
 <!-- Best thing to do would be to replace 'errorthispage', 'errortypeone' and 'errortypetwo' with novel name for this page  -->
-<form method="post"  action="#" class="for4" style=" float: left; position: relative; bottom:-225px;  ">
+<form method="post"  action="#" class="for4" style=" float: left; position: relative; bottom:-270px;  ">
 
     <select style="height:30px;" onchange="window.location.href='?'+this.value">
 
@@ -140,25 +146,24 @@ This will save you time.
 
 
 
-<!-- USER TYPE TOGGLE  -->
-<!--
-<form method="post"  action="#" class="for4" style=" float: left; position: relative; bottom:-225px;  ">
+
+<!-- ON OR OFF FARM  drop down to toggle states  -->
+<form method="post"  action="#" class="for4" style=" float: left; position: relative; bottom:-270px;  ">
 
     <select style="height:30px;" onchange="window.location.href='?'+this.value">
 
-        <option value="user=citizen&"
-                {% if  data['user'] != "agent"  %} selected {% endif %}
-        >User type - Individual</option>
+        <option value="origin-type-of-origin-radios=Market&"
+                {% if  data['origin-type-of-origin-radios'] == "Market" or  data['origin-type-of-origin-radios'] == "Unrestricted farm or premises"  %}selected{% endif %}
+        >ON Premises - Origin is Market or Unrestricted</option>
 
-        <option value="user=agent&"
-                {% if  data['user'] == "agent"  %} selected {% endif %}
-        >User type - Agent</option>
+        <option value="origin-type-of-origin-radios=TB restricted farm&"
+                {% if  data['origin-type-of-origin-radios'] == 'On to the farm or premises'  %}selected{% endif %}
+        >ON Premises - Origin is TB restricted</option>
 
     </select>
 
 </form>
--->
-<!--  END USER TYPE TOGGLE -->
+<!--  END OF ON OR OFF FARM  LOGIC -->
 
 
 {% endblock %}
