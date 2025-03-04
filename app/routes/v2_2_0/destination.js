@@ -537,7 +537,8 @@ module.exports = function (router) {
             else
             {
                 // Continue to check answers
-                res.redirect('reason-for-movement');
+                res.redirect('how-many-animals');
+
             }
         }
 
@@ -1017,7 +1018,7 @@ module.exports = function (router) {
                 (req.session.data['origin-type-of-origin-radios'] == "TB restricted farm"
                 || req.session.data['origin-type-of-origin-page-2-radios'] == "Zoo with TB restrictions"))
             {
-                res.redirect('how-many-animals');
+                res.redirect('check-answers');
             }
             else
             {
@@ -1141,7 +1142,7 @@ module.exports = function (router) {
                     req.session.data['destination-how-many-animals-number-input'] = numberinputfloat.toLocaleString();
 
                     // This page name needs to be the next page the user gets to after successfully continuing
-                    res.redirect('check-answers');
+                    res.redirect('reason-for-movement');
 
                 }
             }
