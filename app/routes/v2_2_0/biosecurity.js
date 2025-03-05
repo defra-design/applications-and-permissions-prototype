@@ -46,10 +46,10 @@ module.exports = function (router) {
     router.get(section + 'begin-biosecurity-details-section', function (req, res)
     {
         // If the movement is a bull or welfare then don't ask biosecurity questions
-        if (req.session.data['destination-reason-for-movement-radios'] == 'Breeding male' ||
-            req.session.data['destination-reason-for-movement-radios'] == 'Welfare')
+        if (req.session.data['destination-reason-for-movement-radios'] == 'Breeding male' )
+
         {
-            res.redirect('people-disinfection');
+            res.redirect('buildings-any-shared');
         }
         else
         {
@@ -630,9 +630,30 @@ module.exports = function (router) {
             }
             else
             {
-                // everything with the input is fine so move on to next page
                 // convert String input to a number
                 let numberinputfloat =  parseFloat( nocommasinput );
+
+
+                // Check input is a whole number
+                if( numberinputfloat % 1 != 0 )
+                {
+                    // Trigger validation and relaunch the page
+                    req.session.data['errorthispage'] = "true";
+                    req.session.data['errortypetwo'] = "true";
+
+                    // This page name needs to match the page the user was just on
+                    res.redirect('disinfectant-dilution');
+                }
+
+                else if ( numberinputfloat == 0 )
+                {
+                    // Trigger validation and relaunch the page for number lower than 4
+                    req.session.data['errorthispage'] = "true";
+                    req.session.data['errortypethree'] = "true";
+
+                    // This page name needs to match the page the user was just on
+                    res.redirect('disinfectant-dilution');
+                }
 
                 // Format the number with commas
                 req.session.data['biosecurity-disinfectant-dilution-number-input'] = numberinputfloat.toLocaleString();
