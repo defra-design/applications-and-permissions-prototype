@@ -15,7 +15,7 @@ This will save you time.
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    Will the incoming cattle be housed?
+    Will the incoming cattle share any equipment with the resident herd?
 {% endset %}
 
 
@@ -23,7 +23,7 @@ This will save you time.
 {% set errorTextHTML %}
     <!-- Nothing was selected -->
     {% if data['errortypeone'] == "true" %}
-        Select if the cattle will be housed
+        Select if the cattle will share any equipment with the resident herd
     {% endif %}
 {% endset %}
 
@@ -52,7 +52,7 @@ This will save you time.
                     [
                         {
                             html: errorTextHTML,
-                            href: "#biosecurity-buildings-any-shared-radios-yes-no"
+                            href: "#biosecurity-equipment-any-shared-radios-yes-no"
                         }
                     ]
                 })
@@ -62,15 +62,15 @@ This will save you time.
 
 
         <!-- go to routes.js for routing  -->
-        <form action="buildings-any-shared-router" method="post" novalidate>
+        <form action="equipment-any-shared-router" method="post" novalidate>
 
             {{ govukRadios
                 ({
                     classes: "govuk-radios--inline",
 
-                    name: "biosecurity-buildings-any-shared-radios-yes-no",
+                    name: "biosecurity-equipment-any-shared-radios-yes-no",
 
-                    id: "biosecurity-buildings-any-shared-radios-yes-no",
+                    id: "biosecurity-equipment-any-shared-radios-yes-no",
 
                     fieldset:
                     {
@@ -84,7 +84,7 @@ This will save you time.
 
                     hint:
                     {
-                        text: "This includes shared spaces such as pens"
+                        text: ""
                     },
 
                     items:
@@ -92,12 +92,12 @@ This will save you time.
                         {
                             value: "Yes",
                             text: "Yes",
-                            checked: data['biosecurity-buildings-any-shared-radios-yes-no'] == "Yes"
+                            checked: data['biosecurity-equipment-any-shared-radios-yes-no'] == "Yes"
                         },
                         {
                             value: "No",
                             text: "No",
-                            checked: data['biosecurity-buildings-any-shared-radios-yes-no'] == "No"
+                            checked: data['biosecurity-equipment-any-shared-radios-yes-no'] == "No"
                         }
                     ],
 

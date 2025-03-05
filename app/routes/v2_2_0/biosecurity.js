@@ -328,70 +328,6 @@ module.exports = function (router) {
 
 
 
-    ////////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////////
-    ////////////////                                                    ////////////////
-    ////////////////            Any shared roads and tracks             ////////////////
-    ////////////////                                                    ////////////////
-    ////////////////       YES AND NO - RADIO BUTTONS - MANDATORY       ////////////////
-    ////////////////                                                    ////////////////
-    ////////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////////
-
-
-    // NOT COMPLEX PAGE
-    router.post(section + 'roads-and-tracks-router', function (req, res)
-    {
-        // Turn errors off by default
-        req.session.data['errorthispage'] = "false";
-        req.session.data['errortypeone'] = "false";
-
-        // If Yes was selected, continue to next page
-        if (req.session.data['biosecurity-roads-and-tracks-radios-yes-no'] == "Yes")
-        {
-            // Continue to the next page
-
-            // If the user needs to go back to 'check your answers' then take them directly there
-            if (req.session.data['camefromcheckanswers'] == 'true')
-            {
-                req.session.data['camefromcheckanswers'] = false;
-                res.redirect('check-answers');
-            }
-            else
-            {
-                // This page name needs to be the next page the user gets to after successfully continuing
-                res.redirect('buildings-any-shared');
-            }
-        }
-        else if (req.session.data['biosecurity-roads-and-tracks-radios-yes-no'] == "No")
-        {
-            // Continue to the next page
-
-            // If the user needs to go back to 'check your answers' then take them directly there
-            if (req.session.data['camefromcheckanswers'] == 'true')
-            {
-                req.session.data['camefromcheckanswers'] = false;
-                res.redirect('check-answers');
-            }
-            else
-            {
-                // This page name needs to be the next page the user gets to after successfully continuing
-                res.redirect('buildings-any-shared');
-            }
-        }
-        else
-        {
-            // Trigger validation and reload the page
-            req.session.data['errorthispage'] = "true";
-            req.session.data['errortypeone'] = "true";
-
-            // This page name needs to match the page the user was just on
-            res.redirect('roads-and-tracks');
-        }
-    })
-
-
-
 
 
 
@@ -400,7 +336,7 @@ module.exports = function (router) {
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////                                                    ////////////////
-    ////////////////          Any shared buildings with the herd        ////////////////
+    ////////////////          Housing the cattle                        ////////////////
     ////////////////                                                    ////////////////
     ////////////////       YES AND NO - RADIO BUTTONS - MANDATORY       ////////////////
     ////////////////                                                    ////////////////
@@ -445,7 +381,7 @@ module.exports = function (router) {
             else
             {
                 // This page name needs to be the next page the user gets to after successfully continuing
-                res.redirect('people-disinfection');
+                res.redirect('equipment-any-shared');
             }
         }
         else
@@ -491,10 +427,112 @@ module.exports = function (router) {
         else
         {
             // Always proceed to the next questions on shared tracks
-            res.redirect('people-disinfection');
+            res.redirect('equipment-any-shared');
         }
     })
 
+
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////         SHARED EQUIPMENT                           ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////       YES AND NO - RADIO BUTTONS - MANDATORY       ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    // NOT COMPLEX PAGE
+    router.post(section + 'equipment-any-shared-router', function (req, res)
+    {
+        // Turn errors off by default
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+
+        // If Yes was selected, continue to next page
+        if (req.session.data['biosecurity-equipment-any-shared-radios-yes-no'] == "Yes")
+        {
+            // Continue to the next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('check-answers');
+            }
+            else
+            {
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('equipment-how-minimise-contamination');
+            }
+        }
+        else if (req.session.data['biosecurity-equipment-any-shared-radios-yes-no'] == "No")
+        {
+            // Continue to the next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('check-answers');
+            }
+            else
+            {
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('people-disinfection');
+            }
+        }
+        else
+        {
+            // Trigger validation and reload the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('equipment-any-shared');
+        }
+    })
+
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////       SHARED EQUIPMENT                             ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////                        TEXT AREA                   ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    router.get(section + 'equipment-how-minimise-contamination-router', function (req, res)
+    {
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+
+        if (req.session.data['biosecurity-equipment-how-minimise-contamination-text-input'] == undefined || req.session.data['biosecurity-equipment-how-minimise-contamination-text-input'] == "")
+        {
+            // Trigger validation and relaunch the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('equipment-how-minimise-contamination');
+        }
+        else
+        {
+            // Always proceed to the next questions on shared tracks
+            res.redirect('people-disinfection');
+        }
+    })
 
 
 

@@ -15,7 +15,14 @@ This will save you time.
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    Will the incoming cattle be housed?
+    Shared equipment
+{% endset %}
+
+
+
+<!-- Setting the smaller secondary heading lower down the page -->
+{% set questionHeadingTextHTML %}
+    How will you minimise the risk from equipment used for the incoming cattle and any other cattle?
 {% endset %}
 
 
@@ -23,7 +30,7 @@ This will save you time.
 {% set errorTextHTML %}
     <!-- Nothing was selected -->
     {% if data['errortypeone'] == "true" %}
-        Select if the cattle will be housed
+        Enter how you will minimise the risk from shared equipment used for the incoming cattle and any other cattle
     {% endif %}
 {% endset %}
 
@@ -52,7 +59,7 @@ This will save you time.
                     [
                         {
                             html: errorTextHTML,
-                            href: "#biosecurity-buildings-any-shared-radios-yes-no"
+                            href: "#biosecurity-equipment-how-minimise-contamination-text-input"
                         }
                     ]
                 })
@@ -61,48 +68,51 @@ This will save you time.
         <!--  END OF 'error summary' -->
 
 
+        <h1 class="govuk-heading-l">
+            {{ pageHeadingTextHTML }}
+        </h1>
+
+
+        <p>To prevent the spread of TB, cleaning and disinfection measures for shared
+            equipment should be in place.</p>
+
+        <p>This can include:</p>
+
+        <ul class="govuk-list govuk-list--bullet">
+            <li>designated disinfection points</li>
+            <li>cleaning and disinfecting shared machinery</li>
+            <li>not sharing equipment or machinery between the groups of incoming and resident cattle</li>
+            <li>cleaning and disinfection measures for shared milking and testing facilities</li>
+        </ul>
+
+
         <!-- go to routes.js for routing  -->
-        <form action="buildings-any-shared-router" method="post" novalidate>
+        <form action="equipment-how-minimise-contamination-router" method="post" novalidate>
 
-            {{ govukRadios
+            {{ govukTextarea
                 ({
-                    classes: "govuk-radios--inline",
-
-                    name: "biosecurity-buildings-any-shared-radios-yes-no",
-
-                    id: "biosecurity-buildings-any-shared-radios-yes-no",
-
-                    fieldset:
+                    label:
                     {
-                        legend:
-                        {
-                            html: pageHeadingTextHTML,
-                            isPageHeading: true,
-                            classes: "govuk-fieldset__legend--l"
-                        }
+                        html: questionHeadingTextHTML,
+                        classes: "govuk-label--m",
+                        isPageHeading: false
                     },
+
+                    id: "biosecurity-equipment-how-minimise-contamination-text-input",
+
+                    name: "biosecurity-equipment-how-minimise-contamination-text-input",
 
                     hint:
                     {
-                        text: "This includes shared spaces such as pens"
+                        text: ""
                     },
 
-                    items:
-                    [
-                        {
-                            value: "Yes",
-                            text: "Yes",
-                            checked: data['biosecurity-buildings-any-shared-radios-yes-no'] == "Yes"
-                        },
-                        {
-                            value: "No",
-                            text: "No",
-                            checked: data['biosecurity-buildings-any-shared-radios-yes-no'] == "No"
-                        }
-                    ],
-
                     errorMessage: null if data['errorthispage'] != "true"
-                                       else { html: errorTextHTML }
+                                       else { html: errorTextHTML },
+
+                    value: data['biosecurity-equipment-how-minimise-contamination-text-input'],
+
+                    rows: "8"
                 })
             }}
 
@@ -133,6 +143,8 @@ This will save you time.
 
 </form>
 <!--  END OF ERROR LOGIC -->
+
+
 
 
 
