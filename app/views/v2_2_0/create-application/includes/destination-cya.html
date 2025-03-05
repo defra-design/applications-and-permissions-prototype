@@ -111,42 +111,13 @@
         </div>
 
 
-            {%  if  data['destination-reason-for-movement-radios'] == "Routine restocking"  %}
+        {%  if  data['destination-reason-for-movement-radios'] == "Routine restocking"  %}
 
 
-                <div class="govuk-summary-list__row">
-                    <dt class="govuk-summary-list__key govuk-!-font-weight-regular ">
-                        Will you move more than 75 animals?
-                    </dt>
-                    <dd class="govuk-summary-list__value">
-                        {{ data['destination-quantity-options-radios'] }}
-                    </dd>
-                    {%  if  data['application-submitted-and-locked'] != "true"  %}
-                        <dd class="govuk-summary-list__actions">
-                            <a class="govuk-link" href="../destination/quantity-options">Change<span class="govuk-visually-hidden"> </span></a>
-                        </dd>
-                    {%  endif  %}
-                </div>
-
-                {%  if  data['destination-quantity-options-radios'] == "No"  %}
-                    <div class="govuk-summary-list__row">
-                        <dt class="govuk-summary-list__key govuk-!-font-weight-regular ">
-                            Will the number of cattle be larger than half of the destination herd size?
-                        </dt>
-                        <dd class="govuk-summary-list__value">
-                            {{ data['destination-quantity-half-herd-radios'] }}
-                        </dd>
-                        {%  if  data['application-submitted-and-locked'] != "true"  %}
-                            <dd class="govuk-summary-list__actions">
-                                <a class="govuk-link" href="../destination/quantity-half-herd">Change<span class="govuk-visually-hidden"> </span></a>
-                            </dd>
-                        {%  endif  %}
-                    </div>
-
-            {% endif %}
 
 
         {%  else  %}
+
 
             <div class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key govuk-!-font-weight-regular ">
