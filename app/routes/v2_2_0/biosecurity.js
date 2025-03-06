@@ -95,7 +95,7 @@ module.exports = function (router) {
         }
         else if (req.session.data['biosecurity-kept-separately-radios-yes-no'] == "No")
         {
-            res.redirect('people-disinfection');
+            res.redirect('manure-and-slurry-details');
         }
         else if (req.session.data['biosecurity-kept-separately-radios-yes-no'] == "I don't know")
         {
@@ -151,7 +151,7 @@ module.exports = function (router) {
         }
         else if (req.session.data['biosecurity-grazing-radios-yes-no'] == "No")
         {
-                res.redirect('buildings-any-shared');
+            res.redirect('manure-and-slurry-details');
         }
         else if (req.session.data['biosecurity-grazing-radios-yes-no'] == "I don't know")
         {
@@ -288,6 +288,37 @@ module.exports = function (router) {
 
 
 
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////       Details about manure and slurry              ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    router.get(section + 'manure-and-slurry-details-router', function (req, res)
+    {
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+
+        if (req.session.data['biosecurity-manure-and-slurry-details-text-input'] == undefined || req.session.data['biosecurity-manure-and-slurry-details-text-input'] == "")
+        {
+            // Trigger validation and relaunch the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('manure-and-slurry-details');
+        }
+        else
+        {
+            // Always proceed to the next questions on shared tracks
+            res.redirect('buildings-any-shared');
+        }
+    })
+
+
 
 
 
@@ -318,7 +349,7 @@ module.exports = function (router) {
         else
         {
             // Always proceed to the next questions on shared tracks
-            res.redirect('buildings-any-shared');
+            res.redirect('manure-and-slurry-details');
         }
     })
 
