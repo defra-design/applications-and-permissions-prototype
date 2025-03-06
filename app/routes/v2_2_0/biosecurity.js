@@ -45,17 +45,8 @@ module.exports = function (router) {
 
     router.get(section + 'begin-biosecurity-details-section', function (req, res)
     {
-        // If the movement is a bull or welfare then don't ask biosecurity questions
-        if (req.session.data['destination-reason-for-movement-radios'] == 'Breeding male' )
-
-        {
-            res.redirect('buildings-any-shared');
-        }
-        else
-        {
-            // This page name needs to be the next page the user gets to after successfully continuing
-            res.redirect('kept-separately');
-        }
+        // This page name needs to be the next page the user gets to after successfully continuing
+        res.redirect('kept-separately');
     })
 
 
@@ -146,7 +137,7 @@ module.exports = function (router) {
             else
             {
                 // This page name needs to be the next page the user gets to after successfully continuing
-                res.redirect('last-grazed');
+                res.redirect('grazing-field-how-separated');
             }
         }
         else if (req.session.data['biosecurity-grazing-radios-yes-no'] == "No")
@@ -155,7 +146,7 @@ module.exports = function (router) {
         }
         else if (req.session.data['biosecurity-grazing-radios-yes-no'] == "I don't know")
         {
-            res.redirect('buildings-any-shared');
+            res.redirect('manure-and-slurry-details');
         }
         else
         {
@@ -165,6 +156,39 @@ module.exports = function (router) {
 
             // This page name needs to match the page the user was just on
             res.redirect('grazing');
+        }
+    })
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////       Initial routing based on cattle type         ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    router.get(section + 'grazing-field-how-separated-router', function (req, res)
+    {
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+
+        if (req.session.data['biosecurity-grazing-field-how-separated-text-input'] == undefined || req.session.data['biosecurity-grazing-field-how-separated-text-input'] == "")
+        {
+            // Trigger validation and relaunch the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('grazing-field-how-separated');
+        }
+        else
+        {
+            // Always proceed to the next questions on shared tracks
+            res.redirect('last-grazed');
+
         }
     })
 
@@ -256,7 +280,7 @@ module.exports = function (router) {
             else
             {
                 // This page name needs to be the next page the user gets to after successfully continuing
-                res.redirect('grazing-field-how-separated');
+                res.redirect('manure-and-slurry-details');
             }
         }
         else if (req.session.data['biosecurity-manure-and-slurry-radios-yes-no'] == "No")
@@ -272,7 +296,7 @@ module.exports = function (router) {
             else
             {
                 // This page name needs to be the next page the user gets to after successfully continuing
-                res.redirect('grazing-field-how-separated');
+                res.redirect('manure-and-slurry-details');
             }
         }
         else
@@ -323,35 +347,6 @@ module.exports = function (router) {
 
 
 
-    ////////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////////
-    ////////////////                                                    ////////////////
-    ////////////////       Initial routing based on cattle type         ////////////////
-    ////////////////                                                    ////////////////
-    ////////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////////
-
-
-    router.get(section + 'grazing-field-how-separated-router', function (req, res)
-    {
-        req.session.data['errorthispage'] = "false";
-        req.session.data['errortypeone'] = "false";
-
-        if (req.session.data['biosecurity-grazing-field-how-separated-text-input'] == undefined || req.session.data['biosecurity-grazing-field-how-separated-text-input'] == "")
-        {
-            // Trigger validation and relaunch the page
-            req.session.data['errorthispage'] = "true";
-            req.session.data['errortypeone'] = "true";
-
-            // This page name needs to match the page the user was just on
-            res.redirect('grazing-field-how-separated');
-        }
-        else
-        {
-            // Always proceed to the next questions on shared tracks
-            res.redirect('manure-and-slurry-details');
-        }
-    })
 
 
 
