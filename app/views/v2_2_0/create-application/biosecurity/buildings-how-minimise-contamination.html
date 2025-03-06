@@ -22,14 +22,14 @@ This will save you time.
 
 <!-- Setting the smaller secondary heading lower down the page -->
 {% set questionHeadingTextHTML %}
-    How will you minimise the risk from buildings used for the incoming cattle?
+    How will you minimise the risk from housing and shared buildings used for the incoming cattle?
 {% endset %}
 
 <!-- Set the text for the error type -->
 {% set errorTextHTML %}
     <!-- Nothing was selected -->
     {% if data['errortypeone'] == "true" %}
-        Enter how you will you minimise the risk from buildings used for the incoming cattle
+        Enter how you will minimise the risk from housing and shared buildings used for the incoming cattle
     {% endif %}
 {% endset %}
 
@@ -72,13 +72,14 @@ This will save you time.
         </h1>
 
 
-        <p>Measures should be in place to prevent the spread of TB.</p>
+        <p>Measures should be in place to prevent the spread of TB when the incoming cattle are housed
+            or have access to shared buildings, such as testing and milking facilities.</p>
 
         <p>This can include:</p>
 
         <ul class="govuk-list govuk-list--bullet">
-            <li>How the housing is separated from any resident cattle.</li>
-            <li>How the housing will be cleaned and disinfected</li>
+            <li>how housing and shared buildings are separate from any resident cattle</li>
+            <li>cleaning and disinfection measures for housing and shared buildings</li>
         </ul>
 
 
