@@ -66,7 +66,7 @@ This will save you time.
 
             {{ govukRadios
                 ({
-                    classes: "govuk-radios",
+                    classes: "govuk-radios--inline",
 
                     name: "biosecurity-grazing-radios-yes-no",
 
@@ -78,7 +78,7 @@ This will save you time.
                         {
                             html: pageHeadingTextHTML,
                             isPageHeading: true,
-                            classes: "govuk-fieldset__legend--l"
+                            classes: "govuk-fieldset__legend--l inl"
                         }
                     },
 
@@ -98,11 +98,6 @@ This will save you time.
                             value: "No",
                             text: "No",
                             checked: data['biosecurity-grazing-radios-yes-no'] == "No"
-                        },
-                        {
-                            value: "I don't know",
-                            text: "I don't know",
-                            checked: data['biosecurity-grazing-radios-yes-no'] == "I don't know"
                         }
                     ],
 
