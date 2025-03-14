@@ -1,28 +1,90 @@
 <dl class="govuk-summary-list">
 
-    <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
-            Enter the ear tag numbers of the animals you are planning to move
-        </dt>
-        <dd class="govuk-summary-list__value">
-            {{ data['identification-enter-ear-tags-text-input'] }}
-        </dd>
-        <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="../identification/enter-ear-tags">Change<span class="govuk-visually-hidden"> </span></a>
-        </dd>
-    </div>
 
     <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
-            When were the animals you are planning to move last tested for TB?
+            Will you move any calves under 42 days old?
         </dt>
         <dd class="govuk-summary-list__value">
-            {{ data['identification-enter-ear-tags-testing-dates-text-input'] }}
+            {{ data['identification-any-calves-radios-yes-no'] }}
         </dd>
         <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="../identification/enter-ear-tags-testing-dates">Change<span class="govuk-visually-hidden"> </span></a>
+            <a class="govuk-link" href="../identification/any-calves">Change<span class="govuk-visually-hidden"> </span></a>
         </dd>
     </div>
+
+
+
+    {%  if  data['identification-any-calves-radios-yes-no'] == "Yes"   %}
+
+        <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                What is the date of birth of the oldest calf under 42 days old?
+            </dt>
+            <dd class="govuk-summary-list__value">
+                {{ data['identification-oldest-calf-dob-date-input-day'] }} {{ data['identification-oldest-calf-dob-date-input-month'] }} {{ data['identification-oldest-calf-dob-date-input-year'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="../identification/oldest-calf-dob">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                Enter the ear tag numbers of the calves under 42 days old you are planning to move
+            </dt>
+            <dd class="govuk-summary-list__value">
+                {{ data['identification-enter-ear-tags-calves-text-input'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="../identification/enter-ear-tags-calves">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                Are you also moving any cattle over 42 days old?
+            </dt>
+            <dd class="govuk-summary-list__value">
+                {{ data['identification-any-cattle-over-42-days-radios-yes-no'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="../identification/any-cattle-over-42-days">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        </div>
+
+    {%  endif   %}
+
+
+    {%  if  data['identification-any-calves-radios-yes-no'] == "No"  or   data['identification-any-cattle-over-42-days-radios-yes-no'] == "Yes"   %}
+
+        <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                When were the cattle over 42 days old last tested for TB?
+            </dt>
+            <dd class="govuk-summary-list__value">
+                {{ data['identification-enter-ear-tags-testing-dates-text-input'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="../identification/enter-ear-tags-testing-dates">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                Enter the ear tag numbers of the animals over 42 days old you are planning to move
+            </dt>
+            <dd class="govuk-summary-list__value">
+                {{ data['identification-enter-ear-tags-text-input'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="../identification/enter-ear-tags">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        </div>
+
+    {%  endif   %}
+
+
 
 
 </dl>
