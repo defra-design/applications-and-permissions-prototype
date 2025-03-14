@@ -3,7 +3,13 @@
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    When were the cattle over 42 day old last tested for TB?
+    Calf identification numbers
+{% endset %}
+
+
+<!-- Setting the smaller secondary heading lower down the page -->
+{% set questionHeadingTextHTML %}
+    Enter the ear tag numbers of the calves under 42 days old you are planning to move
 {% endset %}
 
 
@@ -12,7 +18,7 @@
 {% set errorTextHTML %}
     <!-- Error 1 - No answer selected -->
     {% if data['errortypeone'] == "true" %}
-        PLACEHOLDER
+        Enter the ear tag numbers of the calves under 42 days old you are planning to move
 
     {% elif data['errortypetwo'] == "true" %}
         Your answer must be no longer than 5000 characters
@@ -46,7 +52,7 @@
                     [
                         {
                             html: errorTextHTML,
-                            href: "#identification-enter-ear-tags-testing-dates-text-input"
+                            href: "#identification-enter-ear-tags-calves-text-input"
                         }
                     ]
                 })
@@ -55,22 +61,28 @@
         <!--  END OF 'error summary' -->
 
 
+        <h1 class="govuk-heading-l">
+            {{ pageHeadingTextHTML }}
+        </h1>
 
-        <!-- go to routes.js for routing  -->
-        <form action="enter-ear-tags-testing-dates-router" method="post" novalidate>
+
+        <p>You need to enter each ear tag number on a separate line and include the country and herd number. For example, UK12345678910.</p>
+
+           <!-- go to routes.js for routing  -->
+        <form action="enter-ear-tags-calves-router" method="post" novalidate>
 
             {{ govukTextarea
                 ({
                     label:
                     {
-                        html: pageHeadingTextHTML,
-                        classes: "govuk-label--l",
-                        isPageHeading: true
+                        html: questionHeadingTextHTML,
+                        classes: "govuk-label--m",
+                        isPageHeading: false
                     },
 
-                    id: "identification-enter-ear-tags-testing-dates-text-input",
+                    id: "identification-enter-ear-tags-calves-text-input",
 
-                    name: "identification-enter-ear-tags-testing-dates-text-input",
+                    name: "identification-enter-ear-tags-calves-text-input",
 
                     hint:
                     {
@@ -80,9 +92,9 @@
                     errorMessage: null if data['errorthispage'] != "true"
                                        else { html: errorTextHTML },
 
-                    value: data['identification-enter-ear-tags-testing-dates-text-input'],
+                    value: data['identification-enter-ear-tags-calves-text-input'],
 
-                    rows: "5"
+                    rows: "10"
                 })
             }}
 
