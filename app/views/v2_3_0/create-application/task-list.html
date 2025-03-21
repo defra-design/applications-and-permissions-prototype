@@ -1,0 +1,322 @@
+{% extends "layouts/v2_3_0.html" %}
+
+
+
+<!-- Setting the big main heading at the top of the page -->
+{% set pageHeadingTextHTML %}
+    Your Bovine Tuberculosis (TB) movement licence application
+{% endset %}
+
+
+
+<!-- Text that show in the browser tab. Does NOT need changing -->
+{% block pageTitle %}
+    {{ pageHeadingTextHTML }}
+{% endblock %}
+
+
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-l">{{ pageHeadingTextHTML }}</h1>
+
+        <p id="whole-text-progress-count" class="govuk-body">You have
+            <span id="section-progress-count"></span> sections left to complete.
+        </p>
+
+        <p id="whole-text-all-complete" style="display: none;">All sections are complete.</p>
+
+
+        {{
+            govukTaskList
+            ({
+                idPrefix: "company-details",
+                items:
+                [
+
+                    {
+                        title:
+                        {
+                            text: "Movement origin"
+                        },
+                        href: "origin/check-answers" if data['section-origin-complete'] == "true"  else "origin/to-or-from-own-premises",
+                        status:
+                        {
+                            text: "Completed",
+                            tag:
+                            {
+                                text: "Incomplete",
+                                classes: "govuk-tag--blue"
+                            } if data['section-origin-complete'] != "true"
+                        }
+                    } ,
+
+
+
+                    {
+                        title:
+                        {
+                            text: "Movement destination"
+                        },
+                        href: "",
+                        status:
+                        {
+                            text:  "Cannot start yet",
+                            classes: "govuk-task-list__status--cannot-start-yet"
+                        }
+                    } if data['section-origin-complete'] != "true",
+
+
+                    {
+                        title:
+                        {
+                            text: "Movement destination"
+                        },
+                        href: "destination/check-answers" if data['section-destination-complete'] == "true"  else "destination/routing-start",
+                        status:
+                        {
+                            text: "Completed",
+                            tag:
+                            {
+                                text: "Incomplete",
+                                classes: "govuk-tag--blue"
+                            } if data['section-destination-complete'] != "true"
+                        }
+                    } if data['section-origin-complete'] == "true",
+
+
+
+
+                    {
+                        title:
+                        {
+                            text: "Receiving the licence"
+                        },
+                        href: "contact-and-updates/check-answers" if data['section-contact-and-updates-complete'] == "true" else "contact-and-updates/routing-contact-and-updates",
+                        status:
+                        {
+                            text: "Completed",
+                            tag:
+                            {
+                                text: "Incomplete",
+                                classes: "govuk-tag--blue"
+                            } if data['section-contact-and-updates-complete'] != "true"
+                        }
+                    },
+
+
+
+                    {
+                        title:
+                        {
+                            text: "Reactors"
+                        },
+                        href: "reactors/check-answers" if data['section-biosecurity-complete'] == "true" else "reactors/begin-reactors-section",
+                        status:
+                        {
+                            text: "Completed",
+                            tag:
+                            {
+                                text: "Incomplete",
+                                classes: "govuk-tag--blue"
+                            } if data['section-reactors-complete'] != "true"
+                        }
+                    } if      (data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises"
+                                and  data['section-destination-complete'] == "true"
+                                and  data['destination-type-of-destination-radios'] != "Approved finishing unit (AFU)"
+                                ),
+
+
+
+                    {
+                        title:
+                        {
+                            text: "Animal identification"
+                        },
+                        href: "identification/check-answers" if data['section-identification-complete'] == "true" else "identification/start-identification-router",
+                        status:
+                        {
+                            text: "Completed",
+                            tag:
+                            {
+                                text: "Incomplete",
+                                classes: "govuk-tag--blue"
+                            } if data['section-identification-complete'] != "true"
+                        }
+                    } if    (data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises"
+                            and  (data['origin-type-of-origin-radios'] == "TB restricted farm"  or  data['origin-type-of-origin-page-2-radios'] == "Zoo with TB restrictions")
+                            and  (data['destination-type-of-destination-radios'] == "TB restricted farm"  or  data['destination-type-of-destination-page-2-radios'] == "Zoo with TB restrictions")
+                            ),
+
+
+
+                    {
+                        title:
+                        {
+                            text: "Biosecurity details"
+                        },
+                        href: "biosecurity/check-answers" if data['section-biosecurity-complete'] == "true" else "biosecurity/begin-biosecurity-details-section",
+                        status:
+                        {
+                            text: "Completed",
+                            tag:
+                            {
+                                text: "Incomplete",
+                                classes: "govuk-tag--blue"
+                            } if data['section-biosecurity-complete'] != "true"
+                        }
+                    } if      (data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises"
+                                and  data['section-destination-complete'] == "true"
+                                and  data['destination-type-of-destination-radios'] != "Approved finishing unit (AFU)"
+                                ),
+
+
+                    {
+                        title:
+                        {
+                            text: "Biosecurity map"
+                        },
+                        href: "biosecurity-map/check-answers" if data['section-biosecurity-map-complete'] == "true" else "biosecurity-map/upload-plan",
+                        status:
+                        {
+                            text: "Completed",
+                            tag:
+                            {
+                                text: "Incomplete",
+                                classes: "govuk-tag--blue"
+                            } if data['section-biosecurity-map-complete'] != "true"
+                        }
+                    } if      (data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises"
+                                and  data['section-destination-complete'] == "true"
+                                and  data['destination-type-of-destination-radios'] != "Approved finishing unit (AFU)"
+                                )
+
+
+                ]
+            })
+        }}
+
+
+
+        <!-- <p>You can <a href="#">message the outbreak team</a> if you need help with your application.</p> -->
+
+
+        <!-- go to routes.js for routing  -->
+
+
+        {{
+            govukButton
+            ({
+                text: "Review and submit",
+                classes: "govuk-button--secondary",
+                href: "task-list-validation-page"
+            })
+        }}
+
+
+
+    </div>
+</div>
+
+
+
+
+<!-- TASKLIST STATES  drop down to toggle states  -->
+<form method="post"  action="#" class="for4" style=" float: left; position: relative; bottom:-270px;  ">
+
+    <select style="height:30px;" onchange="window.location.href='?'+this.value">
+
+        <!--  NOTHING STARTED  -->
+        <option value="section-origin-complete=false&section-destination-complete=false&section-tests-complete=false&section-contact-and-updates-complete=false&origin-to-or-from-own-premises-radios=null&"
+            {% if  data['section-origin-complete'] != "true" and
+                   data['section-destination-complete'] != "true" and
+                   data['section-tests-complete'] != "true" and
+                   data['section-contact-and-updates-complete'] != "true"
+            %}selected{% endif %}
+        >Not Started</option>
+
+
+        <!--  ONTO THE FARM FROM A MARKET -->
+        <option value="section-origin-complete=true&section-destination-complete=false&section-tests-complete=false&section-contact-and-updates-complete=false&origin-to-or-from-own-premises-radios=n to the farm or premises&"
+                {% if  data['section-origin-complete'] == "true" and
+                        data['section-destination-complete'] != "true" and
+                        data['section-tests-complete'] != "true" and
+                        data['section-contact-and-updates-complete'] != "true"
+                %}selected{% endif %}
+        >Origin complete - Only</option>
+
+
+        <!--  ON TO THE FARM FROM A FARM -->
+        <option value="section-origin-complete=true&section-destination-complete=true&section-tests-complete=true&section-contact-and-updates-complete=true&section-biosecurity-complete=true&section-biosecurity-map-complete=true&origin-to-or-from-own-premises-radios=On to the farm or premises&"
+                {% if  data['section-origin-complete'] == "true" and
+                        data['section-destination-complete'] == "true" and
+                        data['section-tests-complete'] == "true" and
+                        data['section-contact-and-updates-complete'] == "true" and
+                        data['section-biosecurity-complete'] == "true" and
+                        data['section-biosecurity-map-complete'] == "true"
+                %}selected{% endif %}
+        >All sections complete</option>
+
+
+
+    </select>
+
+</form>
+<!--  END OF TASKLIST STATES  -->
+
+
+
+
+<script>
+
+    // Update the progress count
+    window.onload = function ()
+    {
+        const elements = document.querySelectorAll('div.govuk-task-list__status');
+
+        let numItems = elements.length;
+
+        let completecounter = 0;
+
+        elements.forEach((element) =>
+        {
+            var tagtext = element.textContent;
+
+            if(tagtext.includes('Completed') )
+            {
+                completecounter++;
+            }
+        });
+
+        let remaniningcount = numItems - completecounter;
+
+
+        document.getElementById("section-progress-count").textContent = remaniningcount + " out of " + numItems;
+
+
+        // make button primary green if all done
+        // also change text at the top
+        if (completecounter == numItems)
+        {
+            const elementbutton = document.querySelector('.govuk-button');
+            elementbutton.classList.remove('govuk-button--secondary');
+            elementbutton.href="submit/check-answers";
+
+            document.getElementById('whole-text-progress-count').style.display = 'none';
+            document.getElementById('whole-text-all-complete').style.display = 'block';
+        }
+
+
+    }
+
+</script>
+
+{% endblock %}
+
+
+
+
+
+

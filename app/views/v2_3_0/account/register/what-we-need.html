@@ -1,0 +1,45 @@
+{% extends "layouts/v2_3_0.html" %}
+
+{% set serviceName = "Get permission to move animals under disease controls" %}
+
+{% set pageHeading = "What we need from you" %}
+{% set pageSection = "Register Defra account" %}
+
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <div class="gem-c-title govuk-!-margin-top-0 govuk-!-margin-bottom-8">
+            <h1 class="gem-c-title__text govuk-heading-xl">
+                {{ pageHeading }}
+            </h1>
+        </div>
+
+        <p class="govuk-body">You must tell us your:</p>
+        <ul class="govuk-list govuk-list--bullet">            
+            <li>full name</li>            
+            <li>telephone number</li>
+            <li>email address</li>
+        </ul>
+
+        <p class="govuk-body">If you are registering as a business you may also need to tell us your:</p>
+        <ul class="govuk-list govuk-list--bullet">            
+            <li>company registration number</li>
+            <li>registered business address</li> 
+            <li>business contact details</li>                       
+        </ul>        
+        
+        <form method="post" action="account-type" class="govuk-!-margin-top-7">
+
+            {{ govukButton({
+                text: "Continue"
+            })}}
+
+        </form>
+
+    </div>    
+</div>
+
+{% endblock %}
