@@ -106,7 +106,7 @@ module.exports = function (router) {
         }
         else if (req.session.data['reactors-any-date-to-remove-reactors-radios-yes-no'] == "No")
         {
-            res.redirect('check-answers');
+            res.redirect('you-must-remove-reactors');
         }
         else
         {

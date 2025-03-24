@@ -3,16 +3,22 @@
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    When were the cattle over 42 days old last tested for TB?
+    Testing dates
 {% endset %}
 
+
+
+<!-- Setting the smaller secondary heading lower down the page -->
+{% set questionHeadingTextHTML %}
+    When were the cattle over 42 days old last tested for TB?
+{% endset %}
 
 
 <!-- Set the text for each error type -->
 {% set errorTextHTML %}
     <!-- Error 1 - No answer selected -->
     {% if data['errortypeone'] == "true" %}
-        PLACEHOLDER
+        Enter the dates when cattle over 42 days old were last tested for TB
 
     {% elif data['errortypetwo'] == "true" %}
         Your answer must be no longer than 5000 characters
@@ -56,6 +62,16 @@
 
 
 
+        <h1 class="govuk-heading-l">
+            {{ pageHeadingTextHTML }}
+        </h1>
+
+
+        <p>The cattle must have tested negative to a TB skin test within 30 days of the planned movement date.</p>
+
+        <p>You need to enter the date they were injected on their most recent TB skin test.</p>
+
+
         <!-- go to routes.js for routing  -->
         <form action="enter-ear-tags-testing-dates-router" method="post" novalidate>
 
@@ -63,9 +79,9 @@
                 ({
                     label:
                     {
-                        html: pageHeadingTextHTML,
-                        classes: "govuk-label--l",
-                        isPageHeading: true
+                        html: questionHeadingTextHTML,
+                        classes: "govuk-label--m",
+                        isPageHeading: false
                     },
 
                     id: "identification-enter-ear-tags-testing-dates-text-input",
@@ -74,7 +90,7 @@
 
                     hint:
                     {
-                        text: "The cattle must have tested negative to a TB skin test within 30 days of the planned movement date"
+                        text: ""
                     },
 
                     errorMessage: null if data['errorthispage'] != "true"
