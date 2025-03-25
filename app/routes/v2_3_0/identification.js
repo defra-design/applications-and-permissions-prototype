@@ -134,7 +134,267 @@ module.exports = function (router) {
         req.session.data['errortypeseventeen'] = "false";
 
 
-        res.redirect('enter-ear-tags-calves')
+
+        // set javascript field check error to off
+        let dayEmpty = false;
+        let monthEmpty = false;
+        let yearEmpty = false;
+
+
+        // work out what the most recent closed tax year was
+        let today = new Date();
+
+
+
+        // Validation check if day field is blank
+        if ( req.session.data['identification-oldest-calf-dob-date-input-day'] == undefined
+            || req.session.data['identification-oldest-calf-dob-date-input-day'] == "" )
+        {
+            dayEmpty = true;
+        }
+        // Validation check if month field is blank
+        if ( req.session.data['identification-oldest-calf-dob-date-input-month'] == undefined
+            || req.session.data['identification-oldest-calf-dob-date-input-month'] == "" )
+        {
+            monthEmpty = true;
+        }
+        // Validation check if year field is blank
+        if ( req.session.data['identification-oldest-calf-dob-date-input-year'] == undefined
+            || req.session.data['identification-oldest-calf-dob-date-input-year'] == "" )
+        {
+            yearEmpty = true;
+        }
+
+
+        // Redirect to same page if errors
+        if (dayEmpty)
+        {
+            req.session.data['errorthispage'] = "true";
+            if (monthEmpty && yearEmpty )
+            {
+                // all fields are empty
+                req.session.data['errortypeone'] = "true";
+            }
+            else if(monthEmpty)
+            {
+                // day and month are empty only
+                req.session.data['errortypefive'] = "true";
+            }
+            else if (yearEmpty)
+            {
+                // day and year are empty only
+                req.session.data['errortypesix'] = "true";
+            }
+            else
+            {
+                // just day is empty
+                req.session.data['errortypetwo'] = "true";
+            }
+        }
+        else if (monthEmpty)
+        {
+            req.session.data['errorthispage'] = "true";
+            if (yearEmpty)
+            {
+                // month and year are empty only
+                req.session.data['errortypeseven'] = "true";
+            }
+            else
+            {
+                // just month is empty
+                req.session.data['errortypethree'] = "true";
+            }
+        }
+        else if (yearEmpty)
+        {
+            req.session.data['errorthispage'] = "true";
+            // Only year is empty
+            req.session.data['errortypefour'] = "true";
+        }
+
+
+
+        ////////////////////////////////////////////////////////////////////////////////////
+        ///////     Error 8 - Incorrect/invalid characters entered for Year        ////////
+        ////////////////////////////////////////////////////////////////////////////////////
+
+        // Check for non numbers being entered
+        if (req.session.data['errorthispage'] != "true")
+        {
+            // if no error have been found so far then check for non numbers
+            if (  isNaN(req.session.data['identification-oldest-calf-dob-date-input-year']) )
+            {
+                // one or more fields isn't a number and isn't empty
+                req.session.data['errorthispage'] = "true";
+                req.session.data['errortypeeight'] = "true";
+            }
+        }
+
+
+
+        ////////////////////////////////////////////////////////////////////////////////////
+        //////////////         Error 9 - Year must be a 4 digit number         /////////////
+        ////////////////////////////////////////////////////////////////////////////////////
+
+        if (req.session.data['errorthispage'] != "true")
+        {
+            if (  req.session.data['identification-oldest-calf-dob-date-input-year'] < 1000  ||  9999 < req.session.data['identification-oldest-calf-dob-date-input-year']  )
+            {
+                req.session.data['errorthispage'] = "true";
+                req.session.data['errortypenine'] = "true";
+            }
+        }
+
+
+
+        ////////////////////////////////////////////////////////////////////////////////////
+        ////////     Error 10 - Incorrect/invalid characters entered for MONTH       ////////
+        ////////////////////////////////////////////////////////////////////////////////////
+
+        // Check for non numbers being entered
+        if (req.session.data['errorthispage'] != "true")
+        {
+            // if no error have been found so far then check for non numbers
+            if ( isNaN(req.session.data['identification-oldest-calf-dob-date-input-month']) )
+            {
+                // one or more fields isn't a number and isn't empty
+                req.session.data['errorthispage'] = "true";
+                req.session.data['errortypeten'] = "true";
+            }
+                // Check if date numbers are 0 or impossibly high. e.g. 14th month
+            // Check for non numbers being entered
+            else if ( req.session.data['identification-oldest-calf-dob-date-input-month'] < 1  ||  12 < req.session.data['identification-oldest-calf-dob-date-input-month'] )
+            {
+                // one or more fields isn't a number and isn't empty
+                req.session.data['errorthispage'] = "true";
+                req.session.data['errortypeten'] = "true";
+            }
+        }
+
+
+
+        ////////////////////////////////////////////////////////////////////////////////////
+        /////////     Error 11 - Incorrect/invalid characters entered for DAY       /////////
+        ////////////////////////////////////////////////////////////////////////////////////
+
+        // Check for non numbers being entered
+        if (req.session.data['errorthispage'] != "true")
+        {
+            var quanityofdaysinmonth =  new Date(req.session.data['identification-oldest-calf-dob-date-input-year'], req.session.data['identification-oldest-calf-dob-date-input-month'], 0).getDate();
+
+            // if no error have been found so far then check for non numbers
+            if ( isNaN(req.session.data['identification-oldest-calf-dob-date-input-day'])  )
+            {
+                // one or more fields isn't a number and isn't empty
+                req.session.data['errorthispage'] = "true";
+                req.session.data['errortypeeleven'] = "true";
+            }
+                // Check if date numbers are 0 or impossibly high. e.g. 14th month
+            // Check for non numbers being entered
+            else if (  req.session.data['identification-oldest-calf-dob-date-input-day'] < 1  ||  quanityofdaysinmonth < req.session.data['identification-oldest-calf-dob-date-input-day'] )
+            {
+                // one or more fields isn't a number and isn't empty
+                req.session.data['errorthispage'] = "true";
+                req.session.data['errortypeeleven'] = "true";
+            }
+        }
+
+
+
+        ////////////////////////////////////////////////////////////////////////////////////
+        /////////      Generate date object and update user's inputted date        /////////
+        ////////////////////////////////////////////////////////////////////////////////////
+
+        let inputdate = new Date();
+
+        if (req.session.data['errorthispage'] != "true")
+        {
+            inputdate = new Date(
+                req.session.data['identification-oldest-calf-dob-date-input-year'],
+                req.session.data['identification-oldest-calf-dob-date-input-month'] - 1,
+                req.session.data['identification-oldest-calf-dob-date-input-day']
+            );
+
+            // Save user input date without zeros and month has taxt, e.g. March
+            req.session.data['identification-oldest-calf-dob-date-input-day'] = inputdate.getDate();
+            req.session.data['identification-oldest-calf-dob-date-input-month-number'] = inputdate.getMonth() + 1;
+            req.session.data['identification-oldest-calf-dob-date-input-month-text'] = inputdate.toLocaleString('default', {month: 'long'});
+            req.session.data['identification-oldest-calf-dob-date-input-year'] = inputdate.getFullYear();
+        }
+
+
+
+        ////////////////////////////////////////////////////////////////////////////////////
+        //////////////         Error 12 - Date can't be in the future          /////////////
+        //////////////         Very unlikely that this will be needed          /////////////
+        ////////////////////////////////////////////////////////////////////////////////////
+
+        if (req.session.data['errorthispage'] != "true")
+        {
+            // if date entered if after the previous tax year
+            if (today < inputdate)
+            {
+                req.session.data['errorthispage'] = "true";
+                req.session.data['errortypetwelve'] = "true";
+                console.log("date in future : " );
+            }
+            else
+            {
+                console.log("date NOT in future : " );
+            }
+        }
+
+
+
+
+        ////////////////////////////////////////////////////////////////////////////////////
+        //////////////        Check if oldest calf is over 34 days old     /////////////
+        ////////////////////////////////////////////////////////////////////////////////////
+
+        let dateclosetolimit = '';
+
+        if (req.session.data['errorthispage'] != "true")
+        {
+            let datethreshold = new Date(today);
+            datethreshold.setDate(today.getDate() - 35);
+
+            // if date entered if after the previous tax year
+            if (inputdate < datethreshold)
+            {
+                dateclosetolimit = 'true';
+            }
+        }
+
+
+
+
+
+        ////////////////////////////////////////////////////////////////////////////////////
+        //////    Routing for error, no error and returning to check your answers    ///////
+        ////////////////////////////////////////////////////////////////////////////////////
+
+        if ( req.session.data['errorthispage'] == 'true' )
+        {
+            // Redirect to same page with errors
+            res.redirect('oldest-calf-dob')
+        }
+        else if ( dateclosetolimit == 'true' )
+        {
+            res.redirect( 'warning' );
+        }
+        else if ( req.session.data['camefromcheckanswers'] == 'true' )
+        {
+            req.session.data['camefromcheckanswers'] = false;
+            res.redirect( 'check-answers' );
+        }
+        else
+        {
+            // No errors
+            // redirect to the next page
+            res.redirect('enter-ear-tags-calves')
+        }
+
+
 
     })
 

@@ -293,7 +293,7 @@ module.exports = function (router)
             //////////////         Very unlikely that this will be needed          /////////////
         ////////////////////////////////////////////////////////////////////////////////////
 
-        else if (req.session.data['errorthispage'] != "true") {
+        if (req.session.data['errorthispage'] != "true") {
             // if date entered if after the previous tax year
             if (today < inputdate) {
                 req.session.data['errorthispage'] = "true";
@@ -307,7 +307,7 @@ module.exports = function (router)
             /////////        Error 13 - date is BEFORE previous/closed tax year        /////////
         ////////////////////////////////////////////////////////////////////////////////////
 
-        else if (req.session.data['errorthispage'] != "true") {
+        if (req.session.data['errorthispage'] != "true") {
             // if date entered is before the previous tax year
             if (inputdate < taxyearstartdate) {
                 req.session.data['errorthispage'] = "true";
@@ -321,7 +321,7 @@ module.exports = function (router)
             /////////        Error 14 - date is AFTER previous/closed tax year         /////////
         ////////////////////////////////////////////////////////////////////////////////////
 
-        else if (req.session.data['errorthispage'] != "true") {
+        if (req.session.data['errorthispage'] != "true") {
             // if date entered is before the previous tax year
             if (taxyearenddate < inputdate) {
                 req.session.data['errorthispage'] = "true";
@@ -335,7 +335,7 @@ module.exports = function (router)
             /////////        Error 15 -  date is BEFORE other user entered date        /////////
         ////////////////////////////////////////////////////////////////////////////////////
 
-        else if (req.session.data['errorthispage'] != "true") {
+        if (req.session.data['errorthispage'] != "true") {
             // If user entered date that is after the PLACEHOLDER date
             // If a user hasn't needed to enter the other date then skip this check
             if (req.session.data['PLACEHOLDER-OTHER-DATE-IN-USE'] == "Yes") {

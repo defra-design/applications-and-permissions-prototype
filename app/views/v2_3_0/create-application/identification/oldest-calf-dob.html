@@ -205,26 +205,79 @@ This will save you time.
 
 
 
-
-<!-- USER TYPE TOGGLE  -->
-<!--
-<form method="post"  action="#" class="for4" style=" float: left; position: relative; bottom:-225px;  ">
+<!-- ERROR LOGIC  drop down to toggle states  -->
+<!-- Best thing to do would be to replace 'errorthispage', 'errortypeone' and 'errortypetwo' with novel name for this page  -->
+<form method="post"  action="#" class="for4" style=" float: left; position: relative; bottom:-275px;  ">
 
     <select style="height:30px;" onchange="window.location.href='?'+this.value">
 
-        <option value="user=citizen&"
-                {% if  data['user'] != "agent"  %} selected {% endif %}
-        >User type - Individual</option>
 
-        <option value="user=agent&"
-                {% if  data['user'] == "agent"  %} selected {% endif %}
-        >User type - Agent</option>
+        <option value="errorthispage=false&errortypeone=false&errortypetwo=false&errortypethree=false&errortypefour=false&errortypefive=false&errortypesix=false&errortypeseven=false&errortypeeight=false&errortypenine=false&errortypeten=false&errortypeeleven=false&errortypetwelve=false&errortypethirteen=false&errortypefourteen=false&errortypefifteen=false&errortypesixteen=false&errortypeseventeen=false&"
+                {% if (data['errorthispage'] != "true") %}selected{% endif %}
+        >Default</option>
+
+        <!-- DATE EMPTY FIELDS   -->
+        <option value="errorthispage=true&errortypeone=true&errortypetwo=false&errortypethree=false&errortypefour=false&errortypefive=false&errortypesix=false&errortypeseven=false&errortypeeight=false&errortypenine=false&errortypeten=false&errortypeeleven=false&errortypetwelve=false&errortypethirteen=false&errortypefourteen=false&errortypefifteen=false&errortypesixteen=false&errortypeseventeen=false&"
+                {% if data['errortypeone'] == 'true' and data['errortypetwo'] != 'true' and data['errortypethree'] != 'true'  and  data['errortypefour'] != 'true'  and  data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  and  data['errortypeseven'] != 'true'  and  data['errortypeeight'] != 'true'  and  data['errortypenine'] != 'true'  and  data['errortypeten'] != 'true'  and  data['errortypeeleven'] != 'true'  and  data['errortypetwelve'] != 'true'  and  data['errortypethirteen'] != 'true'  and  data['errortypefourteen'] != 'true'  and  data['errortypefifteen'] != 'true'  and  data['errortypesixteen'] != 'true'  and  data['errortypeseventeen'] != 'true'  %}selected{% endif %}
+        >Error 1 &nbsp;&nbsp;- No date entered</option>
+
+
+        <option value="errorthispage=true&errortypeone=false&errortypetwo=true&errortypethree=false&errortypefour=false&errortypefive=false&errortypesix=false&errortypeseven=false&errortypeeight=false&errortypenine=false&errortypeten=false&errortypeeleven=false&errortypetwelve=false&errortypethirteen=false&errortypefourteen=false&errortypefifteen=false&errortypesixteen=false&errortypeseventeen=false&"
+                {% if data['errortypeone'] != 'true' and data['errortypetwo'] == 'true' and data['errortypethree'] != 'true'  and  data['errortypefour'] != 'true'  and  data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  and  data['errortypeseven'] != 'true'  and  data['errortypeeight'] != 'true'  and  data['errortypenine'] != 'true'  and  data['errortypeten'] != 'true'  and  data['errortypeeleven'] != 'true'  and  data['errortypetwelve'] != 'true'  and  data['errortypethirteen'] != 'true'  and  data['errortypefourteen'] != 'true'  and  data['errortypefifteen'] != 'true'  and  data['errortypesixteen'] != 'true'  and  data['errortypeseventeen'] != 'true'  %}selected{% endif %}
+        >Error 2 &nbsp;&nbsp;- Missing day only</option>
+
+        <option value="errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=true&errortypefour=false&errortypefive=false&errortypesix=false&errortypeseven=false&errortypeeight=false&errortypenine=false&errortypeten=false&errortypeeleven=false&errortypetwelve=false&errortypethirteen=false&errortypefourteen=false&errortypefifteen=false&errortypesixteen=false&errortypeseventeen=false&"
+                {% if data['errortypeone'] != 'true' and data['errortypetwo'] != 'true' and data['errortypethree'] == 'true'  and  data['errortypefour'] != 'true'  and  data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  and  data['errortypeseven'] != 'true'  and  data['errortypeeight'] != 'true'  and  data['errortypenine'] != 'true'  and  data['errortypeten'] != 'true'  and  data['errortypeeleven'] != 'true'  and  data['errortypetwelve'] != 'true'  and  data['errortypethirteen'] != 'true'  and  data['errortypefourteen'] != 'true'  and  data['errortypefifteen'] != 'true'  and  data['errortypesixteen'] != 'true'  and  data['errortypeseventeen'] != 'true'  %}selected{% endif %}
+        >Error 3 &nbsp;&nbsp;- Missing month only </option>
+
+        <option value="errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=false&errortypefour=true&errortypefive=false&errortypesix=false&errortypeseven=false&errortypeeight=false&errortypenine=false&errortypeten=false&errortypeeleven=false&errortypetwelve=false&errortypethirteen=false&errortypefourteen=false&errortypefifteen=false&errortypesixteen=false&errortypeseventeen=false&"
+                {% if  data['errortypeone'] != 'true' and data['errortypetwo'] != 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] == 'true'  and  data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  and  data['errortypeseven'] != 'true'  and  data['errortypeeight'] != 'true'  and  data['errortypenine'] != 'true'  and  data['errortypeten'] != 'true'  and  data['errortypeeleven'] != 'true'  and  data['errortypetwelve'] != 'true'  and  data['errortypethirteen'] != 'true'  and  data['errortypefourteen'] != 'true'  and  data['errortypefifteen'] != 'true'  and  data['errortypesixteen'] != 'true'  and  data['errortypeseventeen'] != 'true'  %}selected{% endif %}
+        >Error 4 &nbsp;&nbsp;- Missing year only</option>
+
+
+        <option value="errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=false&errortypefour=false&errortypefive=true&errortypesix=false&errortypeseven=false&errortypeeight=false&errortypenine=false&errortypeten=false&errortypeeleven=false&errortypetwelve=false&errortypethirteen=false&errortypefourteen=false&errortypefifteen=false&errortypesixteen=false&errortypeseventeen=false&"
+                {% if data['errortypeone'] != 'true'  and  data['errortypetwo'] != 'true' and data['errortypethree'] != 'true'  and  data['errortypefour'] != 'true'  and  data['errortypefive'] == 'true'  and  data['errortypesix'] != 'true'  and  data['errortypeseven'] != 'true'  and  data['errortypeeight'] != 'true'  and  data['errortypenine'] != 'true'  and  data['errortypeten'] != 'true'  and  data['errortypeeleven'] != 'true'  and  data['errortypetwelve'] != 'true'  and  data['errortypethirteen'] != 'true'  and  data['errortypefourteen'] != 'true'  and  data['errortypefifteen'] != 'true'  and  data['errortypesixteen'] != 'true'  and  data['errortypeseventeen'] != 'true'  %}selected{% endif %}
+        >Error 5 &nbsp;&nbsp;- Missing day and month only</option>
+
+        <option value="errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=false&errortypefour=false&errortypefive=false&errortypesix=true&errortypeseven=false&errortypeeight=false&errortypenine=false&errortypeten=false&errortypeeleven=false&errortypetwelve=false&errortypethirteen=false&errortypefourteen=false&errortypefifteen=false&errortypesixteen=false&errortypeseventeen=false&"
+                {% if data['errortypeone'] != 'true'  and  data['errortypetwo'] != 'true' and data['errortypethree'] != 'true'  and  data['errortypefour'] != 'true'  and  data['errortypefive'] != 'true'  and  data['errortypesix'] == 'true'  and  data['errortypeseven'] != 'true'  and  data['errortypeeight'] != 'true'  and  data['errortypenine'] != 'true'  and  data['errortypeten'] != 'true'  and  data['errortypeeleven'] != 'true'  and  data['errortypetwelve'] != 'true'  and  data['errortypethirteen'] != 'true'  and  data['errortypefourteen'] != 'true'  and  data['errortypefifteen'] != 'true'  and  data['errortypesixteen'] != 'true'  and  data['errortypeseventeen'] != 'true'  %}selected{% endif %}
+        >Error 6 &nbsp;&nbsp;- Missing day and year only</option>
+
+        <option value="errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=false&errortypefour=false&errortypefive=false&errortypesix=false&errortypeseven=true&errortypeeight=false&errortypenine=false&errortypeten=false&errortypeeleven=false&errortypetwelve=false&errortypethirteen=false&errortypefourteen=false&errortypefifteen=false&errortypesixteen=false&errortypeseventeen=false&"
+                {% if data['errortypeone'] != 'true'  and  data['errortypetwo'] != 'true' and data['errortypethree'] != 'true'  and  data['errortypefour'] != 'true'  and  data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  and  data['errortypeseven'] == 'true'  and  data['errortypeeight'] != 'true'  and  data['errortypenine'] != 'true'  and  data['errortypeten'] != 'true'  and  data['errortypeeleven'] != 'true'  and  data['errortypetwelve'] != 'true'  and  data['errortypethirteen'] != 'true'  and  data['errortypefourteen'] != 'true'  and  data['errortypefifteen'] != 'true'  and  data['errortypesixteen'] != 'true'  and  data['errortypeseventeen'] != 'true'  %}selected{% endif %}
+        >Error 7 &nbsp;&nbsp;- Missing month and year only</option>
+
+
+
+        <!--  DATE INVALID INPUT    -->
+        <option value="errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=false&errortypefour=false&errortypefive=false&errortypesix=false&errortypeseven=false&errortypeeight=true&errortypenine=false&errortypeten=false&errortypeeleven=false&errortypetwelve=false&errortypethirteen=false&errortypefourteen=false&errortypefifteen=false&errortypesixteen=false&errortypeseventeen=false&"
+                {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] != 'true'  and  data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  and  data['errortypeseven'] != 'true'  and  data['errortypeeight'] == 'true'  and  data['errortypenine'] != 'true'  and  data['errortypeten'] != 'true'  and  data['errortypeeleven'] != 'true'  and  data['errortypetwelve'] != 'true'  and  data['errortypethirteen'] != 'true'  and  data['errortypefourteen'] != 'true'  and  data['errortypefifteen'] != 'true'  and  data['errortypesixteen'] != 'true'  and  data['errortypeseventeen'] != 'true'  %}selected{% endif %}
+        >Error 8 &nbsp;&nbsp;- Year not 4 digits</option>
+
+        <option value="errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=false&errortypefour=false&errortypefive=false&errortypesix=false&errortypeseven=false&errortypeeight=false&errortypenine=true&errortypeten=false&errortypeeleven=false&errortypetwelve=false&errortypethirteen=false&errortypefourteen=false&errortypefifteen=false&errortypesixteen=false&errortypeseventeen=false&"
+                {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] != 'true'  and  data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  and  data['errortypeseven'] != 'true'  and  data['errortypeeight'] != 'true'  and  data['errortypenine'] == 'true'  and  data['errortypeten'] != 'true'  and  data['errortypeeleven'] != 'true'  and  data['errortypetwelve'] != 'true'  and  data['errortypethirteen'] != 'true'  and  data['errortypefourteen'] != 'true'  and  data['errortypefifteen'] != 'true'  and  data['errortypesixteen'] != 'true'  and  data['errortypeseventeen'] != 'true'  %}selected{% endif %}
+        >Error 9 &nbsp;&nbsp;- Invalid year</option>
+
+        <option value="errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=false&errortypefour=false&errortypefive=false&errortypesix=false&errortypeseven=false&errortypeeight=false&errortypenine=false&errortypeten=true&errortypeeleven=false&errortypetwelve=false&errortypethirteen=false&errortypefourteen=false&errortypefifteen=false&errortypesixteen=false&errortypeseventeen=false&"
+                {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] != 'true'  and  data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  and  data['errortypeseven'] != 'true'  and  data['errortypeeight'] != 'true'  and  data['errortypenine'] != 'true'  and  data['errortypeten'] == 'true'  and  data['errortypeeleven'] != 'true'  and  data['errortypetwelve'] != 'true'  and  data['errortypethirteen'] != 'true'  and  data['errortypefourteen'] != 'true'  and  data['errortypefifteen'] != 'true'  and  data['errortypesixteen'] != 'true'  and  data['errortypeseventeen'] != 'true'  %}selected{% endif %}
+        >Error 10 - Invalid month</option>
+
+        <option value="errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=false&errortypefour=false&errortypefive=false&errortypesix=false&errortypeseven=false&errortypeeight=false&errortypenine=false&errortypeten=false&errortypeeleven=true&errortypetwelve=false&errortypethirteen=false&errortypefourteen=false&errortypefifteen=false&errortypesixteen=false&errortypeseventeen=false&"
+                {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] != 'true'  and  data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  and  data['errortypeseven'] != 'true'  and  data['errortypeeight'] != 'true'  and  data['errortypenine'] != 'true'  and  data['errortypeten'] != 'true'  and  data['errortypeeleven'] == 'true'  and  data['errortypetwelve'] != 'true'  and  data['errortypethirteen'] != 'true'  and  data['errortypefourteen'] != 'true'  and  data['errortypefifteen'] != 'true'  and  data['errortypesixteen'] != 'true'  and  data['errortypeseventeen'] != 'true'  %}selected{% endif %}
+        >Error 11 - Invalid day</option>
+
+
+
+        <!-- DATE COMPARISON ERRORS   -->
+        <option value="errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=false&errortypefour=false&errortypefive=false&errortypesix=false&errortypeseven=false&errortypeeight=false&errortypenine=false&errortypeten=false&errortypeeleven=false&errortypetwelve=true&errortypethirteen=false&errortypefourteen=false&errortypefifteen=false&errortypesixteen=false&errortypeseventeen=false&"
+                {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] != 'true'  and  data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  and  data['errortypeseven'] != 'true'  and  data['errortypeeight'] != 'true'  and  data['errortypenine'] != 'true'  and  data['errortypeten'] != 'true'  and  data['errortypeeleven'] != 'true'  and  data['errortypetwelve'] == 'true'  and  data['errortypethirteen'] != 'true'  and  data['errortypefourteen'] != 'true'  and  data['errortypefifteen'] != 'true'  and  data['errortypesixteen'] != 'true'  and  data['errortypeseventeen'] != 'true'  %}selected{% endif %}
+        >Error 12 - Date entered is in the future when it should be in the past</option>
+
 
     </select>
 
 </form>
--->
-<!--  END USER TYPE TOGGLE -->
+<!--  END OF ERROR LOGIC -->
 
 
 
