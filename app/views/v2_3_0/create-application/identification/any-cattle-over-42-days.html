@@ -3,7 +3,7 @@
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    Are you also moving any cattle over 42 days old?
+    Are you also moving any animals 42 days old or older?
 {% endset %}
 
 
@@ -11,7 +11,7 @@
 {% set errorTextHTML %}
     <!-- Nothing was selected -->
     {% if data['errortypeone'] == "true" %}
-        Select if you are also moving any cattle over 42 days old
+        Select if you are also moving any animals 42 days old or older
     {% endif %}
 {% endset %}
 
@@ -105,7 +105,7 @@
 
 
 <!-- ERROR LOGIC  drop down to toggle states  -->
-<form method="post"  action="#" class="for4" style=" float: left; position: relative; bottom:-225px;  ">
+<form method="post"  action="#" class="for4" style=" float: left; position: relative; bottom:-270px;  ">
 
     <select style="height:30px;" onchange="window.location.href='?'+this.value">
 
@@ -124,25 +124,6 @@
 
 
 
-<!-- USER TYPE TOGGLE  -->
-<!--
-<form method="post"  action="#" class="for4" style=" float: left; position: relative; bottom:-225px;  ">
-
-    <select style="height:30px;" onchange="window.location.href='?'+this.value">
-
-        <option value="user=citizen&"
-                {% if  data['user'] != "agent"  %} selected {% endif %}
-        >User type - Individual</option>
-
-        <option value="user=agent&"
-                {% if  data['user'] == "agent"  %} selected {% endif %}
-        >User type - Agent</option>
-
-    </select>
-
-</form>
--->
-<!--  END USER TYPE TOGGLE -->
 
 
 {% endblock %}
