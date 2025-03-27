@@ -336,11 +336,6 @@ module.exports = function (router) {
             {
                 req.session.data['errorthispage'] = "true";
                 req.session.data['errortypetwelve'] = "true";
-                console.log("date in future : " );
-            }
-            else
-            {
-                console.log("date NOT in future : " );
             }
         }
 

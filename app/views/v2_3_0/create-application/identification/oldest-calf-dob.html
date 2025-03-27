@@ -23,39 +23,39 @@ This will save you time.
 {% set errorTextHTML %}
     <!--  NO DATE ENTERED - ALL 3 FIELDS ARE EMPTY  -->
     {%  if  data['errortypeone'] == "true"  %}
-        Enter the date you [PLACEHOLDER]
+        Enter the oldest calf’s date of birth
 
     <!--  DAY MISSING ONLY  -->
     {%  elif  data['errortypetwo'] == "true"  %}
-        The date you [PLACEHOLDER] must include a day
+        Date of birth of the oldest calf must include a day
 
     <!--  MONTH MISSING ONLY  -->
     {%  elif  data['errortypethree'] == "true"  %}
-        The date you [PLACEHOLDER] must include a month
+        Date of birth of the oldest calf must include a month
 
     <!--  YEAR MISSING ONLY  -->
     {%  elif  data['errortypefour'] == "true"  %}
-        The date you [PLACEHOLDER] must include a year
+        Date of birth of the oldest calf must include a year
 
     <!--  DAY and MONTH MISSING ONLY  -->
     {%  elif  data['errortypefive'] == "true"  %}
-        The date you [PLACEHOLDER] must include a day and month
+        Date of birth of the oldest calf must include a day and month
 
     <!--  DAY and YEAR MISSING ONLY  -->
     {%  elif  data['errortypesix'] == "true"  %}
-        The date your [PLACEHOLDER] must include a day and year
+        Date of birth of the oldest calf must include a day and year
 
     <!--  MONTH and YEAR MISSING ONLY  -->
     {%  elif  data['errortypeseven'] == "true"  %}
-        The date your [PLACEHOLDER] must include a month and year
-
-    <!--  NOT VALID NUMBERS ENTERED IN YEAR  -->
-    {%  elif  data['errortypeeight'] == "true"  %}
-        The year you [PLACEHOLDER] must be a real year
+        Date of birth of the oldest calf must include a month and year
 
     <!--  NOT 4 DIGITS FOR THE YEAR  -->
+    {%  elif  data['errortypeeight'] == "true"  %}
+        Year of birth must include 4 numbers
+
+    <!--  NOT VALID NUMBERS ENTERED IN YEAR  -->
     {%  elif  data['errortypenine'] == "true"  %}
-        The year you [PLACEHOLDER] must include 4 digits
+        Year of birth must be a real date
 
     <!--  NOT VALID NUMBERS ENTERED IN MONTH  -->
     {%  elif  data['errortypeten'] == "true"  %}
@@ -63,31 +63,11 @@ This will save you time.
 
     <!--  NOT VALID NUMBERS ENTERED IN DAY  -->
     {%  elif  data['errortypeeleven'] == "true"  %}
-        The day you [PLACEHOLDER] must be a real day
+        Day of birth must be a real date
 
     <!--  NOT IN THE PAST  -->
     {%  elif  data['errortypetwelve'] == "true"  %}
-        The date you [PLACEHOLDER] must be in the past
-
-    <!--  NOT AFTER TAX YEAR  -->
-    {%  elif  data['errortypethirteen'] == "true"  %}
-        The date you [PLACEHOLDER] must be the same as or after {% include "includes/dates/previousTaxYearStartDate.html" %}
-
-    <!--  NOT BEFORE TAX YEAR  -->
-    {%  elif  data['errortypefourteen'] == "true"  %}
-        The date you [PLACEHOLDER] must be the same as or before {% include "includes/dates/previousTaxYearEndDate.html" %}
-
-    <!--  BEFORE SPECIFIC DATE  -->
-    {%  elif  data['errortypefifteen'] == "true"  %}
-        The date you [PLACEHOLDER] must be before [NAME OF DATE], [DATE]
-
-    <!--  AFTER SPECIFIC DATE  -->
-    {%  elif  data['errortypesixteen'] == "true"  %}
-        The date you [PLACEHOLDER] must be after [NAME OF DATE], [DATE]
-
-    <!--  AFTER SPECIFIC DATE  -->
-    {%  elif  data['errortypeseventeen'] == "true"  %}
-        The date you [PLACEHOLDER] must be after 1 January 1900
+        Date of birth of the oldest calf must be in the past
 
     {% endif %}
 {% endset %}

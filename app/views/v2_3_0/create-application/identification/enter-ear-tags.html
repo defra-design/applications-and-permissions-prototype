@@ -3,13 +3,13 @@
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    Animal identification numbers
+    Official ear tag numbers for animals 42 days old or older
 {% endset %}
 
 
 <!-- Setting the smaller secondary heading lower down the page -->
 {% set questionHeadingTextHTML %}
-    Enter the ear tag numbers of the animals over 42 days old you are planning to move
+    Enter the ear tag numbers for these animals
 {% endset %}
 
 
@@ -66,7 +66,9 @@
         </h1>
 
 
-        <p>You need to enter each ear tag number on a separate line and include the country and herd number. For example, UK12345678910.</p>
+        <p>You need to identify the animals using the official ear tags bought from an approved supplier.</p>
+
+        <p>The ear tag must include the country code, herd number and six-digit official ear tag number. For example, UK12345678910.</p>
 
 
         <!-- go to routes.js for routing  -->
@@ -87,7 +89,7 @@
 
                     hint:
                     {
-                        text: ""
+                        text: "You need to enter the ear tag number for every animal 42 days old or older on a separate line"
                     },
 
                     errorMessage: null if data['errorthispage'] != "true"
