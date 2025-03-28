@@ -21,7 +21,7 @@ This will save you time.
 
 <!-- Setting the smaller secondary heading lower down the page -->
 {% set questionHeadingTextHTML %}
-    What measures are staff taking to reduce the risk of spreading TB from the resident cattle?
+    What measures are staff taking to reduce the risk of spreading TB from the resident animals?
 {% endset %}
 
 
@@ -30,7 +30,7 @@ This will save you time.
 {% set errorTextHTML %}
     <!-- Nothing was selected -->
     {% if data['errortypeone'] == "true" %}
-        Enter what measures are staff taking to reduce the risk of spreading TB from the resident cattle
+        Enter what measures are staff taking to reduce the risk of spreading TB from the resident animals
     {% endif %}
 {% endset %}
 
@@ -59,7 +59,7 @@ This will save you time.
                     [
                         {
                             html: errorTextHTML,
-                            href: "#SECTION-PAGENAME_TEXT_COMPLEX-text-input"
+                            href: "#biosecurity-people-disinfection-text-input"
                         }
                     ]
                 })
@@ -74,16 +74,15 @@ This will save you time.
         </h1>
 
 
-        <p>To prevent the spread of TB to the incoming cattle from any resident cattle,
-            staff should have cleaning and disinfection measures in place.</p>
+        <p>Staff should have cleaning and disinfection measures in place to prevent the spread of TB.</p>
 
-        <p>This can include:</p>
+        <p>This should include:</p>
 
         <ul class="govuk-list govuk-list--bullet">
             <li>dedicated clothing and personal protective equipment (PPE)</li>
             <li>cleaning and disinfecting wellington boots, including foot dips</li>
             <li>cleaning and disinfection measures when contractors arrive and leave</li>
-            <li>dedicated staff looking after the incoming cattle</li>
+            <li>dedicated staff looking after the incoming animals</li>
         </ul>
 
 
