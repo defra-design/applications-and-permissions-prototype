@@ -17,6 +17,7 @@ module.exports = function (router)
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////
 
+
     router.post(section + 'PAGENAME_DATE_COMPLEX-router', function (req, res)
     {
         ////////////////////////////////////////////////////////////////////////////////////
@@ -39,9 +40,6 @@ module.exports = function (router)
         req.session.data['errortypetwelve'] = "false";
         req.session.data['errortypethirteen'] = "false";
         req.session.data['errortypefourteen'] = "false";
-        req.session.data['errortypefifteen'] = "false";
-        req.session.data['errortypesixteen'] = "false";
-        req.session.data['errortypeseventeen'] = "false";
 
         // set javascript field check error to off
         let dayEmpty = false;
@@ -130,114 +128,30 @@ module.exports = function (router)
 
 
         // Redirect to same page if errors
-        if (dayEmpty)
+        if (dayEmpty && monthEmpty && yearEmpty)
         {
             req.session.data['errorthispage'] = "true";
-            if (monthEmpty && yearEmpty )
-            {
-                // all fields are empty
-                req.session.data['errortypeone'] = "true";
-            }
-            else if(monthEmpty)
-            {
-                // day and month are empty only
-                req.session.data['errortypefive'] = "true";
-            }
-            else if (yearEmpty)
-            {
-                // day and year are empty only
-                req.session.data['errortypesix'] = "true";
-            }
-            else
-            {
-                // just day is empty
-                req.session.data['errortypetwo'] = "true";
-            }
+            req.session.data['errortypeone'] = "true";
+        }
+        else if (dayEmpty)
+        {
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypetwo'] = "true";
         }
         else if (monthEmpty)
         {
             req.session.data['errorthispage'] = "true";
-            if (yearEmpty)
-            {
-                // month and year are empty only
-                req.session.data['errortypeseven'] = "true";
-            }
-            else
-            {
-                // just month is empty
-                req.session.data['errortypethree'] = "true";
-            }
+            req.session.data['errortypethree'] = "true";
         }
         else if (yearEmpty)
         {
             req.session.data['errorthispage'] = "true";
-            // Only year is empty
             req.session.data['errortypefour'] = "true";
         }
 
 
-
         ////////////////////////////////////////////////////////////////////////////////////
-        ///////     Error 8 - Incorrect/invalid characters entered for Year        ////////
-        ////////////////////////////////////////////////////////////////////////////////////
-
-        // Check for non numbers being entered
-        if (req.session.data['errorthispage'] != "true")
-        {
-            // if no error have been found so far then check for non numbers
-            if (  isNaN(req.session.data['SECTION-PAGENAME_DATE_COMPLEX-date-input-year']) )
-            {
-                // one or more fields isn't a number and isn't empty
-                req.session.data['errorthispage'] = "true";
-                req.session.data['errortypeeight'] = "true";
-            }
-        }
-
-
-
-        ////////////////////////////////////////////////////////////////////////////////////
-        //////////////         Error 9 - Year must be a 4 digit number         /////////////
-        ////////////////////////////////////////////////////////////////////////////////////
-
-        if (req.session.data['errorthispage'] != "true")
-        {
-            if (  req.session.data['SECTION-PAGENAME_DATE_COMPLEX-date-input-year'] < 1000  ||  9999 < req.session.data['SECTION-PAGENAME_DATE_COMPLEX-date-input-year']  )
-            {
-                req.session.data['errorthispage'] = "true";
-                req.session.data['errortypenine'] = "true";
-            }
-        }
-
-
-
-        ////////////////////////////////////////////////////////////////////////////////////
-        ////////     Error 10 - Incorrect/invalid characters entered for MONTH       ////////
-        ////////////////////////////////////////////////////////////////////////////////////
-
-        // Check for non numbers being entered
-        if (req.session.data['errorthispage'] != "true")
-        {
-            // if no error have been found so far then check for non numbers
-            if ( isNaN(req.session.data['SECTION-PAGENAME_DATE_COMPLEX-date-input-month']) )
-            {
-                // one or more fields isn't a number and isn't empty
-                req.session.data['errorthispage'] = "true";
-                req.session.data['errortypeten'] = "true";
-            }
-                // Check if date numbers are 0 or impossibly high. e.g. 14th month
-            // Check for non numbers being entered
-            else if ( req.session.data['SECTION-PAGENAME_DATE_COMPLEX-date-input-month'] < 1  ||  12 < req.session.data['SECTION-PAGENAME_DATE_COMPLEX-date-input-month'] )
-            {
-                // one or more fields isn't a number and isn't empty
-                req.session.data['errorthispage'] = "true";
-                req.session.data['errortypeten'] = "true";
-            }
-        }
-
-
-
-        ////////////////////////////////////////////////////////////////////////////////////
-        /////////     Error 11 - Incorrect/invalid characters entered for DAY       /////////
+        /////////     Error 5 - Incorrect/invalid characters entered for DAY       /////////
         ////////////////////////////////////////////////////////////////////////////////////
 
         // Check for non numbers being entered
@@ -250,7 +164,7 @@ module.exports = function (router)
             {
                 // one or more fields isn't a number and isn't empty
                 req.session.data['errorthispage'] = "true";
-                req.session.data['errortypeeleven'] = "true";
+                req.session.data['errortypefive'] = "true";
             }
                 // Check if date numbers are 0 or impossibly high. e.g. 14th month
             // Check for non numbers being entered
@@ -258,9 +172,74 @@ module.exports = function (router)
             {
                 // one or more fields isn't a number and isn't empty
                 req.session.data['errorthispage'] = "true";
-                req.session.data['errortypeeleven'] = "true";
+                req.session.data['errortypefive'] = "true";
             }
         }
+
+
+
+
+
+        ////////////////////////////////////////////////////////////////////////////////////
+        ////////     Error 6 Incorrect/invalid characters entered for MONTH       ////////
+        ////////////////////////////////////////////////////////////////////////////////////
+
+        // Check for non numbers being entered
+        if (req.session.data['errorthispage'] != "true")
+        {
+            // if no error have been found so far then check for non numbers
+            if ( isNaN(req.session.data['SECTION-PAGENAME_DATE_COMPLEX-date-input-month']) )
+            {
+                // one or more fields isn't a number and isn't empty
+                req.session.data['errorthispage'] = "true";
+                req.session.data['errortypesix'] = "true";
+            }
+                // Check if date numbers are 0 or impossibly high. e.g. 14th month
+            // Check for non numbers being entered
+            else if ( req.session.data['SECTION-PAGENAME_DATE_COMPLEX-date-input-month'] < 1  ||  12 < req.session.data['SECTION-PAGENAME_DATE_COMPLEX-date-input-month'] )
+            {
+                // one or more fields isn't a number and isn't empty
+                req.session.data['errorthispage'] = "true";
+                req.session.data['errortypesix'] = "true";
+            }
+        }
+
+
+        ////////////////////////////////////////////////////////////////////////////////////
+        ///////     Error 7 - Incorrect/invalid characters entered for Year        ////////
+        ////////////////////////////////////////////////////////////////////////////////////
+
+        // Check for non numbers being entered
+        if (req.session.data['errorthispage'] != "true")
+        {
+            // if no error have been found so far then check for non numbers
+            if (  isNaN(req.session.data['SECTION-PAGENAME_DATE_COMPLEX-date-input-year']) )
+            {
+                // one or more fields isn't a number and isn't empty
+                req.session.data['errorthispage'] = "true";
+                req.session.data['errortypeseven'] = "true";
+            }
+        }
+
+
+
+        ////////////////////////////////////////////////////////////////////////////////////
+        //////////////         Error 8 - Year must be a 4 digit number         /////////////
+        ////////////////////////////////////////////////////////////////////////////////////
+
+        if (req.session.data['errorthispage'] != "true")
+        {
+            if (  req.session.data['SECTION-PAGENAME_DATE_COMPLEX-date-input-year'] < 1000  ||  9999 < req.session.data['SECTION-PAGENAME_DATE_COMPLEX-date-input-year']  )
+            {
+                req.session.data['errorthispage'] = "true";
+                req.session.data['errortypeeight'] = "true";
+            }
+        }
+
+
+
+
+
 
 
 
@@ -287,28 +266,101 @@ module.exports = function (router)
 
 
 
-            ////////////////////////////////////////////////////////////////////////////////////
-            //////////////         Error 12 - Date can't be in the future          /////////////
-            //////////////         Very unlikely that this will be needed          /////////////
+        ////////////////////////////////////////////////////////////////////////////////////
+        //////////////         Error 9 - Date can't be in the future           /////////////
+        //////////////           Unlikely that this will be needed             /////////////
         ////////////////////////////////////////////////////////////////////////////////////
 
-        else if (req.session.data['errorthispage'] != "true") {
-            // if date entered if after the previous tax year
-            if (today < inputdate) {
+        if (req.session.data['errorthispage'] != "true")
+        {
+            // if date entered is after today
+            if (today < inputdate)
+            {
                 req.session.data['errorthispage'] = "true";
-                req.session.data['errortypetwelve'] = "true";
+                req.session.data['errortypenine'] = "true";
             }
         }
 
 
 
-            ////////////////////////////////////////////////////////////////////////////////////
-            /////////        Error 13 - date is BEFORE previous/closed tax year        /////////
+        ////////////////////////////////////////////////////////////////////////////////////
+        /////////            Error 10  -  Date is AFTER 1 January 1900             /////////
         ////////////////////////////////////////////////////////////////////////////////////
 
-        else if (req.session.data['errorthispage'] != "true") {
+        if (req.session.data['errorthispage'] != "true")
+        {
+            // If user entered date that is after 1 January
+            let startoflastcentury = new Date(1900, 0, 1);
+            if (inputdate <= startoflastcentury)
+            {
+                req.session.data['errorthispage'] = "true";
+                req.session.data['errortypeten'] = "true";
+            }
+        }
+
+
+
+        ////////////////////////////////////////////////////////////////////////////////////
+        /////////        Error 11  -  Date is BEFORE other user entered date        /////////
+        ////////////////////////////////////////////////////////////////////////////////////
+
+        if (req.session.data['errorthispage'] != "true")
+        {
+            // If user entered date that is after the PLACEHOLDER date
+            // If a user hasn't needed to enter the other date then skip this check
+            if (req.session.data['PLACEHOLDER-OTHER-DATE-IN-USE'] == "Yes")
+            {
+                let inputPLACEHOLDERdateOTHER = new Date(
+                    req.session.data['PLACEHOLDERdateOTHER-year'],
+                    req.session.data['PLACEHOLDERdateOTHER-month'] - 1,
+                    req.session.data['PLACEHOLDERdateOTHER-day']
+                );
+                if (inputPLACEHOLDERdateOTHER <= inputdate)
+                {
+                    req.session.data['errorthispage'] = "true";
+                    req.session.data['errortypeeleven'] = "true";
+                }
+            }
+        }
+
+
+
+        ////////////////////////////////////////////////////////////////////////////////////
+        /////////        Error 12  -  Date is AFTER other user entered date        /////////
+        ////////////////////////////////////////////////////////////////////////////////////
+
+        if (req.session.data['errorthispage'] != "true")
+        {
+            // If user entered date that is after the PLACEHOLDER date
+            // If a user hasn't needed to enter the other date then skip this check
+            if (req.session.data['PLACEHOLDER-OTHER-DATE-IN-USE'] == "Yes")
+            {
+                let inputPLACEHOLDERdateOTHER = new Date(
+                    req.session.data['PLACEHOLDERdateOTHER-year'],
+                    req.session.data['PLACEHOLDERdateOTHER-month'] - 1,
+                    req.session.data['PLACEHOLDERdateOTHER-day']
+                );
+
+                if (inputdate <= inputPLACEHOLDERdateOTHER)
+                {
+                    req.session.data['errorthispage'] = "true";
+                    req.session.data['errortypetwelve'] = "true";
+                }
+            }
+        }
+
+
+
+
+        ////////////////////////////////////////////////////////////////////////////////////
+        /////////        Error 13 - date is BEFORE previous/closed tax year        /////////
+        ////////////////////////////////////////////////////////////////////////////////////
+
+        if (req.session.data['errorthispage'] != "true")
+        {
             // if date entered is before the previous tax year
-            if (inputdate < taxyearstartdate) {
+            if (inputdate < taxyearstartdate)
+            {
                 req.session.data['errorthispage'] = "true";
                 req.session.data['errortypethirteen'] = "true";
             }
@@ -316,13 +368,15 @@ module.exports = function (router)
 
 
 
-            ////////////////////////////////////////////////////////////////////////////////////
-            /////////        Error 14 - date is AFTER previous/closed tax year         /////////
+        ////////////////////////////////////////////////////////////////////////////////////
+        /////////        Error 14 - date is AFTER previous/closed tax year         /////////
         ////////////////////////////////////////////////////////////////////////////////////
 
-        else if (req.session.data['errorthispage'] != "true") {
+        if (req.session.data['errorthispage'] != "true")
+        {
             // if date entered is before the previous tax year
-            if (taxyearenddate < inputdate) {
+            if (taxyearenddate < inputdate)
+            {
                 req.session.data['errorthispage'] = "true";
                 req.session.data['errortypefourteen'] = "true";
             }
@@ -330,63 +384,8 @@ module.exports = function (router)
 
 
 
-            ////////////////////////////////////////////////////////////////////////////////////
-            /////////        Error 15 -  date is BEFORE other user entered date        /////////
-        ////////////////////////////////////////////////////////////////////////////////////
-
-        else if (req.session.data['errorthispage'] != "true") {
-            // If user entered date that is after the PLACEHOLDER date
-            // If a user hasn't needed to enter the other date then skip this check
-            if (req.session.data['PLACEHOLDER-OTHER-DATE-IN-USE'] == "Yes") {
-                let inputPLACEHOLDERdateOTHER = new Date(
-                    req.session.data['PLACEHOLDERdateOTHER-year'],
-                    req.session.data['PLACEHOLDERdateOTHER-month'] - 1,
-                    req.session.data['PLACEHOLDERdateOTHER-day']
-                );
-                if (inputPLACEHOLDERdateOTHER <= inputdate) {
-                    req.session.data['errorthispage'] = "true";
-                    req.session.data['errortypefifteen'] = "true";
-                }
-            }
-        }
 
 
-
-        ////////////////////////////////////////////////////////////////////////////////////
-        /////////        Error 16 -  date is AFTER other user entered date         /////////
-        ////////////////////////////////////////////////////////////////////////////////////
-
-        if (req.session.data['errorthispage'] != "true") {
-            // If user entered date that is after the PLACEHOLDER date
-            // If a user hasn't needed to enter the other date then skip this check
-            if (req.session.data['PLACEHOLDER-OTHER-DATE-IN-USE'] == "Yes") {
-                let inputPLACEHOLDERdateOTHER = new Date(
-                    req.session.data['PLACEHOLDERdateOTHER-year'],
-                    req.session.data['PLACEHOLDERdateOTHER-month'] - 1,
-                    req.session.data['PLACEHOLDERdateOTHER-day']
-                );
-
-                if (inputdate <= inputPLACEHOLDERdateOTHER) {
-                    req.session.data['errorthispage'] = "true";
-                    req.session.data['errortypesixteen'] = "true";
-                }
-            }
-        }
-
-
-
-        ////////////////////////////////////////////////////////////////////////////////////
-        /////////            Error 17 -  date is AFTER 1 January 1900              /////////
-        ////////////////////////////////////////////////////////////////////////////////////
-
-        if (req.session.data['errorthispage'] != "true") {
-            // If user entered date that is after 1 January
-            let startoflastcentury = new Date(1900, 0, 1);
-            if (inputdate <= startoflastcentury) {
-                req.session.data['errorthispage'] = "true";
-                req.session.data['errortypeseventeen'] = "true";
-            }
-        }
 
 
 
@@ -413,6 +412,7 @@ module.exports = function (router)
             // For PLACEHOLDER template only. This should go to the next page.
             res.redirect('THE_NEXT_PAGE_NAME')
         }
+
 
     })
 

@@ -40,9 +40,6 @@ module.exports = function (router)
         req.session.data['errortypetwelve'] = "false";
         req.session.data['errortypethirteen'] = "false";
         req.session.data['errortypefourteen'] = "false";
-        req.session.data['errortypefifteen'] = "false";
-        req.session.data['errortypesixteen'] = "false";
-        req.session.data['errortypeseventeen'] = "false";
 
         // set javascript field check error to off
         let dayEmpty = false;
