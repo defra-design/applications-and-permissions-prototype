@@ -170,40 +170,16 @@ module.exports = function (router) {
         if (dayEmpty)
         {
             req.session.data['errorthispage'] = "true";
-            if (monthEmpty && yearEmpty )
-            {
-                // all fields are empty
-                req.session.data['errortypeone'] = "true";
-            }
-            else if(monthEmpty)
-            {
-                // day and month are empty only
-                req.session.data['errortypefive'] = "true";
-            }
-            else if (yearEmpty)
-            {
-                // day and year are empty only
-                req.session.data['errortypesix'] = "true";
-            }
-            else
-            {
-                // just day is empty
-                req.session.data['errortypetwo'] = "true";
-            }
+            // just day is empty
+            req.session.data['errortypetwo'] = "true";
         }
+
         else if (monthEmpty)
         {
             req.session.data['errorthispage'] = "true";
-            if (yearEmpty)
-            {
-                // month and year are empty only
-                req.session.data['errortypeseven'] = "true";
-            }
-            else
-            {
-                // just month is empty
-                req.session.data['errortypethree'] = "true";
-            }
+            // just month is empty
+            req.session.data['errortypethree'] = "true";
+
         }
         else if (yearEmpty)
         {
