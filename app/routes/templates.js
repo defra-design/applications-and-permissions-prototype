@@ -17,6 +17,8 @@ require('./templates/number.js')(router);
 require('./templates/number-complex.js')(router);
 require('./templates/text.js')(router);
 require('./templates/text-complex.js')(router);
+require('./templates/textarea.js')(router);
+require('./templates/textarea-complex.js')(router);
 require('./templates/yes-no.js')(router);
 require('./templates/yes-no-complex.js')(router);
 require('./templates/radios.js')(router);

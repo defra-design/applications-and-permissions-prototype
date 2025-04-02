@@ -5,12 +5,11 @@ NOTES ON USING THIS TEMPLATE Page
 This will save you time.
 
 1. Type your heading for the page after '% set pageHeadingTextHTML %'
-2. Put your question heading for the page after '% set questionHeadingTextHTML %'
-3. Type/customise the error messages after '% set errorTextHTML %'
-4. Use 'Find and replace' to replace "SECTION" with the name of the section of the service you're working on.
-5. Use 'Find and replace' to replace "PAGENAME_TEXT_COMPLEX" with whatever you named this page/file.
-6. Go to the javascript file 'templates.js' and copy the section 'COMPLEX PAGE  OF TEXT ENTRY' into your routes.js file.
-7. Follow instructions at the top of the 'templates.js'.
+2. Type/customise the error messages after '% set errorTextHTML %'
+3. Use 'Find and replace' to replace "SECTION" with the name of the section of the service you're working on.
+4. Use 'Find and replace' to replace "PAGENAME_TEXTAREA_COMPLEX" with whatever you named this page/file.
+5. Go to the javascript file 'templates.js' and copy the section 'TEXT ENTRY - MANDATORY' into your routes.js file.
+6. Follow instructions at the top of the 'templates.js'.
 -->
 
 
@@ -21,9 +20,8 @@ This will save you time.
 
 <!-- Setting the smaller secondary heading lower down the page -->
 {% set questionHeadingTextHTML %}
-   What is your PLACEHOLDER?
+    What is your PLACEHOLDER?
 {% endset %}
-
 
 <!-- Set the text for each error type -->
 {% set errorTextHTML %}
@@ -62,6 +60,7 @@ This will save you time.
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
+
         <!-- ERROR LOGIC 'error summary' -->
         {% if data['errorthispage'] == "true" %}
             {{ govukErrorSummary
@@ -71,7 +70,7 @@ This will save you time.
                     [
                         {
                             html: errorTextHTML,
-                            href: "#SECTION-PAGENAME_TEXT_COMPLEX-text-input"
+                            href: "#SECTION-PAGENAME_TEXTAREA_COMPLEX-text-input"
                         }
                     ]
                 })
@@ -112,9 +111,10 @@ This will save you time.
 
 
         <!-- go to routes.js for routing  -->
-        <form action="PAGENAME_TEXT_COMPLEX-router" method="post" novalidate>
+        <form action="PAGENAME_TEXTAREA_COMPLEX-router" method="post" novalidate>
 
-            {{ govukInput
+            {{
+                govukTextarea
                 ({
                     label:
                     {
@@ -123,9 +123,9 @@ This will save you time.
                         isPageHeading: false
                     },
 
-                    id: "SECTION-PAGENAME_TEXT_COMPLEX-text-input",
+                    name: "SECTION-PAGENAME_TEXTAREA_COMPLEX-text-input",
 
-                    name: "SECTION-PAGENAME_TEXT_COMPLEX-text-input",
+                    id: "SECTION-PAGENAME_TEXTAREA_COMPLEX-text-input",
 
                     hint:
                     {
@@ -133,17 +133,15 @@ This will save you time.
                     },
 
                     errorMessage: null if data['errorthispage'] != "true"
-                                       else { html: errorTextHTML },
+                    else { html: errorTextHTML },
 
-                    value: data['SECTION-PAGENAME_TEXT_COMPLEX-text-input'],
-
-                    classes: "govuk-input--width-10"
+                    value: data['SECTION-PAGENAME_TEXTAREA_COMPLEX-text-input']
                 })
             }}
 
 
             {{ govukButton({ text: "Continue" }) }}
-
+            
 
         </form>
 
@@ -183,6 +181,7 @@ This will save you time.
 <!--  END OF ERROR LOGIC -->
 
 
+
 <!-- USER TYPE TOGGLE  -->
 <!--
 <form method="post"  action="#" class="for4" style=" float: left; position: relative; bottom:-225px;  ">
@@ -202,8 +201,6 @@ This will save you time.
 </form>
 -->
 <!--  END USER TYPE TOGGLE -->
-
-
 
 
 

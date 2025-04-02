@@ -147,34 +147,7 @@ module.exports = function (router)
         {
             req.session.data['errorthispage'] = "true";
             req.session.data['errortypefour'] = "true";
-        }
 
-
-        ////////////////////////////////////////////////////////////////////////////////////
-        /////////     Error 5 - Incorrect/invalid characters entered for DAY       /////////
-        ////////////////////////////////////////////////////////////////////////////////////
-
-        // Check for non numbers being entered
-        if (req.session.data['errorthispage'] != "true")
-        {
-            var quanityofdaysinmonth =  new Date(req.session.data['SECTION-PAGENAME_DATE_COMPLEX-date-input-year'], req.session.data['SECTION-PAGENAME_DATE_COMPLEX-date-input-month'], 0).getDate();
-
-            // if no error have been found so far then check for non numbers
-            if ( isNaN(req.session.data['SECTION-PAGENAME_DATE_COMPLEX-date-input-day'])  )
-            {
-                // one or more fields isn't a number and isn't empty
-                req.session.data['errorthispage'] = "true";
-                req.session.data['errortypefive'] = "true";
-            }
-                // Check if date numbers are 0 or impossibly high. e.g. 14th month
-            // Check for non numbers being entered
-            else if (  req.session.data['SECTION-PAGENAME_DATE_COMPLEX-date-input-day'] < 1  ||  quanityofdaysinmonth < req.session.data['SECTION-PAGENAME_DATE_COMPLEX-date-input-day'] )
-            {
-                // one or more fields isn't a number and isn't empty
-                req.session.data['errorthispage'] = "true";
-                req.session.data['errortypefive'] = "true";
-            }
-        }
 
 
 
@@ -218,6 +191,41 @@ module.exports = function (router)
                 // one or more fields isn't a number and isn't empty
                 req.session.data['errorthispage'] = "true";
                 req.session.data['errortypeseven'] = "true";
+            }
+        }
+
+
+
+        }
+
+
+        ////////////////////////////////////////////////////////////////////////////////////
+        /////////                                                                  /////////
+        /////////     Error 5 - Incorrect/invalid characters entered for DAY       /////////
+        /////////                                                                  /////////
+        /////////        Checks day number entered is possible for the year        /////////
+        /////////                                                                  /////////
+        ////////////////////////////////////////////////////////////////////////////////////
+
+        // Check for non numbers being entered
+        if (req.session.data['errorthispage'] != "true")
+        {
+            var quanityofdaysinmonth =  new Date(req.session.data['SECTION-PAGENAME_DATE_COMPLEX-date-input-year'], req.session.data['SECTION-PAGENAME_DATE_COMPLEX-date-input-month'], 0).getDate();
+
+            // if no error have been found so far then check for non numbers
+            if ( isNaN(req.session.data['SECTION-PAGENAME_DATE_COMPLEX-date-input-day'])  )
+            {
+                // one or more fields isn't a number and isn't empty
+                req.session.data['errorthispage'] = "true";
+                req.session.data['errortypefive'] = "true";
+            }
+                // Check if date numbers are 0 or impossibly high. e.g. 14th month
+            // Check for non numbers being entered
+            else if (  req.session.data['SECTION-PAGENAME_DATE_COMPLEX-date-input-day'] < 1  ||  quanityofdaysinmonth < req.session.data['SECTION-PAGENAME_DATE_COMPLEX-date-input-day'] )
+            {
+                // one or more fields isn't a number and isn't empty
+                req.session.data['errorthispage'] = "true";
+                req.session.data['errortypefive'] = "true";
             }
         }
 
