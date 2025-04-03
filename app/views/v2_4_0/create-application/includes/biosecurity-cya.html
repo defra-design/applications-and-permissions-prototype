@@ -89,6 +89,32 @@
 
     <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
+            What disinfectant are you using?
+        </dt>
+        <dd class="govuk-summary-list__value">
+            {{ data['biosecurity-disinfectant-text-input'] }}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="../biosecurity/disinfectant">Change<span class="govuk-visually-hidden"> </span></a>
+        </dd>
+    </div>
+
+
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
+            What dilution rate are you using for {{ data['biosecurity-disinfectant-text-input'] }}?
+        </dt>
+        <dd class="govuk-summary-list__value">
+            {{ data['biosecurity-disinfectant-dilution-number-input'] }}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="../biosecurity/disinfectant-dilution">Change<span class="govuk-visually-hidden"> </span></a>
+        </dd>
+    </div>
+
+
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
             Will the incoming cattle be housed?
         </dt>
         <dd class="govuk-summary-list__value">
@@ -158,32 +184,6 @@
         </dd>
         <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="../biosecurity/people-disinfection">Change<span class="govuk-visually-hidden"> </span></a>
-        </dd>
-    </div>
-
-
-    <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
-            What disinfectant are you using?
-        </dt>
-        <dd class="govuk-summary-list__value">
-            {{ data['biosecurity-disinfectant-text-input'] }}
-        </dd>
-        <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="../biosecurity/disinfectant">Change<span class="govuk-visually-hidden"> </span></a>
-        </dd>
-    </div>
-
-
-    <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
-            What dilution rate are you using for {{ data['biosecurity-disinfectant-text-input'] }}?
-        </dt>
-        <dd class="govuk-summary-list__value">
-            {{ data['biosecurity-disinfectant-dilution-number-input'] }}
-        </dd>
-        <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="../biosecurity/disinfectant-dilution">Change<span class="govuk-visually-hidden"> </span></a>
         </dd>
     </div>
 

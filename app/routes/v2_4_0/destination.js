@@ -253,7 +253,7 @@ module.exports = function (router) {
                 res.redirect('contact-the-tb-restricted-zoo');
             }
         }
-        else if (req.session.data['destination-type-of-destination-page-2-radios'] == "Laboratory")
+        else if (req.session.data['destination-type-of-destination-page-2-radios'] == "Laboratory with TB restrictions")
         {
             // Continue to the next page
             if (req.session.data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises")
@@ -265,7 +265,7 @@ module.exports = function (router) {
                 res.redirect('destination-farm-cph');
             }
         }
-        else if (req.session.data['destination-type-of-destination-page-2-radios'] == "Another destination")
+        else if (req.session.data['destination-type-of-destination-page-2-radios'] == "Another destination with TB restrictions")
         {
             // end page next
             res.redirect('type-of-destination-other');

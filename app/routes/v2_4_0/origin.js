@@ -219,9 +219,8 @@ module.exports = function (router) {
         {
             // This page name needs to be the next page the user gets to after successfully continuing
             res.redirect('own-farm-new-cph');
-
         }
-        else if (req.session.data['origin-type-of-origin-page-2-radios'] == "Laboratory")
+        else if (req.session.data['origin-type-of-origin-page-2-radios'] == "Laboratory with TB restrictions")
         {
             // This page name needs to be the next page the user gets to after successfully continuing
             res.redirect('own-farm-new-cph');
@@ -231,7 +230,7 @@ module.exports = function (router) {
             // Continue to the next page
             res.redirect('country');
         }
-        else if (req.session.data['origin-type-of-origin-page-2-radios'] == "Another origin")
+        else if (req.session.data['origin-type-of-origin-page-2-radios'] == "Another origin with TB restrictions")
         {
             // end page next
             res.redirect('type-of-origin-other');
