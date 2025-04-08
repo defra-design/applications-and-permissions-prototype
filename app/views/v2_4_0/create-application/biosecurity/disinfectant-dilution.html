@@ -16,7 +16,12 @@ This will save you time.
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    Calculate your disinfectant dilution rate
+    {% if  data['disinfectanttype'] == "solid"  %}
+        Are you using {{ data['biosecurity-disinfectant-rate'] }} millilitres to one gram of {{ data['biosecurity-disinfectant-type-ahead'] }}?
+    {% else %}
+        Are you using 1 litre of {{ data['biosecurity-disinfectant-type-ahead'] }} to {{ data['biosecurity-disinfectant-rate'] }} litres of water?
+    {% endif %}
+
 {% endset %}
 
 <!-- Setting the smaller secondary heading lower down the page -->
@@ -54,9 +59,10 @@ This will save you time.
 {% endblock %}
 
 
+
 {% block content %}
 <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-grid-column-two-thirds ">
 
 
         <!-- ERROR LOGIC 'error summary' -->
@@ -68,7 +74,7 @@ This will save you time.
                     [
                         {
                             html: errorTextHTML,
-                            href: "#biosecurity-disinfectant-dilution-number-input"
+                            href: "#SECTION-PAGENAME_YES_NO-radios-yes-no"
                         }
                     ]
                 })
@@ -77,60 +83,53 @@ This will save you time.
         <!--  END OF 'error summary' -->
 
 
-        <h1 class="govuk-heading-l">
-            {{ pageHeadingTextHTML }}
-        </h1>
-
-
-        <p>Dilution rate is the amount of water you add to the disinfectant compared to the amount of disinfectant.</p>
-
-        <p>For example, if you use 1 litre of disinfectant with 15 litres of water, the rate is 15.</p>
-
-        <p> You can find the dilution rate on the
-            <a href="http://disinfectants.defra.gov.uk/DisinfectantsExternal/Default.aspx?Module=ApprovalsList_SI"
-                target="_blank">
-                disinfectants approved for use in England, Scotland and Wales GOV.UK page</a>
-            (opens in a new tab).  Your disinfectant must be approved for Tuberculosis Orders.
-        </p>
-
-        <p>
-            For non-liquid disinfectants,
-            the number of millilitres to one gram of disinfectant is shown on the table with an Asterisk.
-        </p>
-
         <!-- go to routes.js for routing  -->
-        <form action="disinfectant-dilution-router" method="post" novalidate>
+        <form action="PAGENAME_YES_NO-router" method="post" novalidate>
 
-            {{ govukInput
+            {{ govukRadios
                 ({
-                    label:
+                    classes: "govuk-radios--inline",
+
+                    name: "SECTION-PAGENAME_YES_NO-radios-yes-no",
+
+                    id: "SECTION-PAGENAME_YES_NO-radios-yes-no",
+
+                    fieldset:
                     {
-                        html: questionHeadingTextHTML,
-                        classes: "govuk-label--m",
-                        isPageHeading: false
+                        legend:
+                        {
+                            html: pageHeadingTextHTML,
+                            isPageHeading: true,
+                            classes: "govuk-fieldset__legend--l"
+                        }
                     },
-
-                    id: "biosecurity-disinfectant-dilution-number-input",
-
-                    name: "biosecurity-disinfectant-dilution-number-input",
 
                     hint:
                     {
-                        text: "For example, 15"
+                        text: ""
                     },
 
+                    items:
+                    [
+                        {
+                            value: "Yes",
+                            text: "Yes",
+                            checked: data['SECTION-PAGENAME_YES_NO-radios-yes-no'] == "Yes"
+                        },
+                        {
+                            value: "No",
+                            text: "No",
+                            checked: data['SECTION-PAGENAME_YES_NO-radios-yes-no'] == "No"
+                        }
+                    ],
+
                     errorMessage: null if data['errorthispage'] != "true"
-                                       else { html: errorTextHTML },
-
-                    value: data['biosecurity-disinfectant-dilution-number-input'],
-
-                    classes: "govuk-input--width-2"
+                                       else { html: errorTextHTML }
                 })
             }}
 
 
             {{ govukButton({ text: "Continue" }) }}
-
 
         </form>
 
@@ -139,28 +138,18 @@ This will save you time.
 
 
 
-
 <!-- ERROR LOGIC  drop down to toggle states  -->
-<!-- Best thing to do would be to replace 'errorthispage', 'errortypeone' and 'errortypetwo' with novel name for this page  -->
-<form method="post"  action="#" class="for4" style=" float: left; position: relative; bottom:-270px;  ">
+<form method="post"  action="#" class="for4" style=" float: left; position: relative; bottom:-225px;  ">
 
     <select style="height:30px;" onchange="window.location.href='?'+this.value">
 
-        <option value="errorthispage=false&errortypeone=false&errortypetwo=false&errortypethree=false&errortypefour=false&errortypefive=false&errortypesix=false&errortypeseven=false&"
+        <option value="errorthispage=false&errortypeone=false"
                 {% if  data['errorthispage'] != "true"  %}selected{% endif %}
         >Errors - Off</option>
 
-        <option value="errorthispage=true&errortypeone=true&errortypetwo=false&errortypethree=false&errortypefour=false&errortypefive=false&errortypesix=false&errortypeseven=false&"
-                {% if  data['errortypeone'] == 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] != 'true'  and data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  and  data['errortypeseven'] != 'true'  %}selected{% endif %}
-        >Error 1 - If no answer/empty/</option>
-
-        <option value="errorthispage=true&errortypeone=false&errortypetwo=true&errortypethree=false&errortypefour=false&errortypefive=false&errortypesix=false&errortypeseven=false&"
-                {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] == 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] != 'true'   and data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  and  data['errortypeseven'] != 'true'  %}selected{% endif %}
-        >Error 2 - If answer is not a whole number</option>
-
-        <option value="errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=true&errortypefour=false&errortypefive=false&errortypesix=false&errortypeseven=false&"
-                {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] == 'true'  and  data['errortypefour'] != 'true'   and data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  and  data['errortypeseven'] != 'true'  %}selected{% endif %}
-        >Error 3 - If answer (number) is 0 or less</option>
+        <option value="errorthispage=true&errortypeone=true"
+                {% if  data['errortypeone'] == 'true'  %}selected{% endif %}
+        >Error 1 - Not selected</option>
 
     </select>
 
@@ -168,11 +157,28 @@ This will save you time.
 <!--  END OF ERROR LOGIC -->
 
 
+<!-- disinfectant type  -->
+
+<form method="post"  action="#" class="for4" style=" float: left; position: relative; bottom:-225px;  ">
+
+    <select style="height:30px;" onchange="window.location.href='?'+this.value">
+
+        <option value="disinfectanttype=liquid&"
+                {% if  data['disinfectanttype'] != "solid"  %} selected {% endif %}
+        >Disinfectant type - Liquid</option>
+
+        <option value="disinfectanttype=solid&"
+                {% if  data['disinfectanttype'] == "solid"  %} selected {% endif %}
+        >Disinfectant type - Solid</option>
+
+    </select>
+
+</form>
+
+<!--  END disinfectant type -->
+
 
 
 {% endblock %}
-
-
-
 
 

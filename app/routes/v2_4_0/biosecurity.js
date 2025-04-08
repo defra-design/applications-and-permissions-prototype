@@ -368,14 +368,9 @@ module.exports = function (router) {
     {
         req.session.data['errorthispage'] = "false";
         req.session.data['errortypeone'] = "false";
-        req.session.data['errortypetwo'] = "false";
-        req.session.data['errortypethree'] = "false";
-        req.session.data['errortypefour'] = "false";
-        req.session.data['errortypefive'] = "false";
-        req.session.data['errortypefour'] = "false";
 
         // Validation check if field is blank
-        if (req.session.data['biosecurity-disinfectant-text-input'] == undefined || req.session.data['biosecurity-disinfectant-text-input'] == "")
+        if (req.session.data['biosecurity-disinfectant-type-ahead'] == undefined || req.session.data['biosecurity-disinfectant-type-ahead'] == "")
         {
             // Trigger validation and relaunch the page
             req.session.data['errorthispage'] = "true";
@@ -388,6 +383,75 @@ module.exports = function (router) {
 
         else
         {
+            req.session.data['biosecurity-disinfectant-rate'] = "15";
+
+            let dissinfactantslist =
+                [
+                  ['Agrichlor', '12', 'solid'],
+                  ['Anigene NaDCC', '12', 'solid'],
+                  ['Anigene Professional Chlorine Tablets', '74', 'solid'],
+                  ['Aquatabs 8.68g', '74', 'solid'],
+                  ['Bi-OO-Cyst', '15', 'liquid'],
+                  ['Bimodex', '14', 'liquid'],
+                  ['BioChlor 200', '12', 'solid'],
+                  ['BioChlor 500', '12', 'solid'],
+                  ['Biocid 30', '14', 'liquid'],
+                  ['BioPhen Xtra', '10', 'liquid'],
+                  ['BIOSPOT', '12', 'solid'],
+                  ['Coxicur', '15', 'liquid'],
+                  ['Credence 1000', '74', 'solid'],
+                  ['Dis-In-Fect', '12', 'solid'],
+                  ['FAM 30', '14', 'liquid'],
+                  ['High Power Sanitising Tablets 3.25g', '12', 'solid'],
+                  ['Interkokask', '32.33', 'liquid'],
+                  ['Interkokask Concentrate', '32.33', 'liquid'],
+                  ['Iodo-Pharm', '14', 'liquid'],
+                  ['Mida CHRIOX F2', '1', 'liquid'],
+                  ['Mira 30', '14', 'liquid'],
+                  ['MS MEGADES OXY D', '1', 'liquid'],
+                  ['NEOGEN Farm Fluid MAX', '20', 'liquid'],
+                  ['Novagen F.P.', '5', 'liquid'],
+                  ['OmniChlor Plus', '12', 'solid'],
+                  ['Prophyl S', '15', 'liquid'],
+                  ['Rapicid', '14', 'liquid'],
+                  ['Septrivet 17', '74', 'solid'],
+                  ['Septrivet 87 8.68g', '74', 'solid'],
+                  ['Stable Safe Strength 4.72g Tablets', '12', 'solid'],
+                  ['Tibicur', '5', 'liquid'],
+                  ['Total Farm Disinfectant', '14', 'liquid'],
+                  ['V18', '14', 'liquid'],
+                  ['Virkon® LSP', '10', 'liquid'],
+                  ['Virochlor 500', '12', 'solid'],
+                  ['Virophor 2.8%', '14', 'liquid'],
+                  ['Virudine Plus', '14', 'liquid']
+                ]
+
+            let searchinput = String(req.session.data['biosecurity-disinfectant-type-ahead']).toLowerCase();
+            let indexoutput = -1;
+
+            // find the index of the entry in the list of dissinfactants
+            for (let i = 0; i < dissinfactantslist.length; i++)
+            {
+                const subArray = dissinfactantslist[i];
+
+                if (subArray[0].toLowerCase() === searchinput)
+                {
+                    indexoutput = i; // Return the index of the outer array
+                }
+            }
+
+            // find out the dilution rate
+            req.session.data['biosecurity-disinfectant-rate'] = dissinfactantslist[indexoutput][1];
+
+            // set dissinfectant type
+            req.session.data['disinfectanttype'] = dissinfactantslist[indexoutput][2];
+
+            console.log("index is : " + indexoutput);
+            console.log("dilusion rate is : " + dissinfactantslist[indexoutput][1]);
+            console.log("type  is : " + dissinfactantslist[indexoutput][2]);
+
+
+
             // This page name needs to be the next page the user gets to after successfully continuing
             res.redirect('disinfectant-dilution');
         }
