@@ -16,17 +16,12 @@ This will save you time.
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    {% if  data['disinfectanttype'] == "solid"  %}
-        Are you using {{ data['biosecurity-disinfectant-rate'] }} millilitres to one gram of {{ data['biosecurity-disinfectant-type-ahead'] }}?
-    {% else %}
-        Are you using 1 litre of {{ data['biosecurity-disinfectant-type-ahead'] }} to {{ data['biosecurity-disinfectant-rate'] }} litres of water?
-    {% endif %}
-
+    Disinfectant dilution rate
 {% endset %}
 
 <!-- Setting the smaller secondary heading lower down the page -->
 {% set questionHeadingTextHTML %}
-    What dilution rate are you using for {{ data['biosecurity-disinfectant-text-input'] }}?
+    Confirmation of the dilution rate
 {% endset %}
 
 
@@ -34,18 +29,9 @@ This will save you time.
 {% set errorTextHTML %}
     <!-- Error 1 - If answer is not a number when it should be -->
     {%  if  data['errortypeone'] == "true"  %}
-        Enter the dilution rate
-
-    <!-- Error 2 - If answer is not a whole number -->
-    {% elif data['errortypetwo'] == "true"  %}
-        Enter a whole number
-
-    <!-- Error 3 - If answer (number) is 0 -->
-    {% elif data['errortypethree'] == "true"  %}
-        Enter a number 1 or above
-
-
+        You need to tick the confirmation box
     {%  endif  %}
+
 {% endset %}
 
 
@@ -74,7 +60,7 @@ This will save you time.
                     [
                         {
                             html: errorTextHTML,
-                            href: "#SECTION-PAGENAME_YES_NO-radios-yes-no"
+                            href: "#biosecurity-disinfectant-dilution-radios-yes-no"
                         }
                     ]
                 })
@@ -82,25 +68,38 @@ This will save you time.
         {% endif %}
         <!--  END OF 'error summary' -->
 
+        <h1 class="govuk-heading-l">
+            {{ pageHeadingTextHTML }}
+        </h1>
+
+        <p>By law you must use a Defra-approved disinfectant when there is an outbreak of TB. This includes using the correct dilution rate.</p>
+
+        <p>The approved dilution rate for {{ data['biosecurity-disinfectant-type-ahead'] }} is 1:{{ data['biosecurity-disinfectant-rate'] }}.</p>
+
+        <p>{% if  data['disinfectanttype'] == "solid"  %}
+                This means for every 1 gram of {{ data['biosecurity-disinfectant-type-ahead'] }}, you are using {{ data['biosecurity-disinfectant-rate'] }}  millilitres of water.
+            {% else %}
+                This means for every 1 litre of {{ data['biosecurity-disinfectant-type-ahead'] }}, you are using {{ data['biosecurity-disinfectant-rate'] }} litres of water.
+            {% endif %}
+        </p>
+
 
         <!-- go to routes.js for routing  -->
-        <form action="PAGENAME_YES_NO-router" method="post" novalidate>
+        <form action="disinfectant-dilution-router" method="post" novalidate>
 
-            {{ govukRadios
+            {{ govukCheckboxes
                 ({
-                    classes: "govuk-radios--inline",
+                    name: "biosecurity-disinfectant-dilution-checkboxes",
 
-                    name: "SECTION-PAGENAME_YES_NO-radios-yes-no",
-
-                    id: "SECTION-PAGENAME_YES_NO-radios-yes-no",
+                    id: "biosecurity-disinfectant-dilution-checkboxes",
 
                     fieldset:
                     {
                         legend:
                         {
-                            html: pageHeadingTextHTML,
-                            isPageHeading: true,
-                            classes: "govuk-fieldset__legend--l"
+                            html: questionHeadingTextHTML,
+                            isPageHeading: false,
+                            classes: "govuk-fieldset__legend--m"
                         }
                     },
 
@@ -109,22 +108,17 @@ This will save you time.
                         text: ""
                     },
 
+                    errorMessage: null if data['errorthispage'] != "true"
+                                       else { html: errorTextHTML },
+
                     items:
                     [
                         {
-                            value: "Yes",
-                            text: "Yes",
-                            checked: data['SECTION-PAGENAME_YES_NO-radios-yes-no'] == "Yes"
-                        },
-                        {
-                            value: "No",
-                            text: "No",
-                            checked: data['SECTION-PAGENAME_YES_NO-radios-yes-no'] == "No"
+                            value: "I confirm this is the dilution rate used on the farm or premises",
+                            text: "I confirm this is the dilution rate used on the farm or premises",
+                            checked: (data['biosecurity-disinfectant-dilution-checkboxes'] or []).indexOf('I confirm this is the dilution rate used on the farm or premises') > -1
                         }
-                    ],
-
-                    errorMessage: null if data['errorthispage'] != "true"
-                                       else { html: errorTextHTML }
+                    ]
                 })
             }}
 
