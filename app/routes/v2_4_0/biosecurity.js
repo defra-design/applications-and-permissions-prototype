@@ -46,6 +46,20 @@ module.exports = function (router) {
     router.get(section + 'begin-biosecurity-details-section', function (req, res)
     {
         // This page name needs to be the next page the user gets to after successfully continuing
+        res.redirect('biosecurity-intro');
+    })
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////      Intro page routing to questions               ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    router.get(section + 'biosecurity-intro-router', function (req, res)
+    {
+        // This page name needs to be the next page the user gets to after successfully continuing
         res.redirect('kept-separately');
     })
 
