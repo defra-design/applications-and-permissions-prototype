@@ -27,6 +27,7 @@ This will save you time.
 
 <!-- Set the text for each error type -->
 {% set errorTextHTML %}
+
     <!--  NO DATE ENTERED - ALL 3 FIELDS ARE EMPTY  -->
     {%  if  data['errortypeone'] == "true"  %}
         Enter the date you [PLACEHOLDER]
@@ -59,26 +60,25 @@ This will save you time.
     {%  elif  data['errortypeeight'] == "true"  %}
         The year you [PLACEHOLDER] must include 4 digits
 
-    <!--  NOT IN THE PAST  -->
+    <!--  MUST BE A REAL DATE  -->
     {%  elif  data['errortypenine'] == "true"  %}
-        The date you [PLACEHOLDER] must be in the past
+        The date you [PLACEHOLDER] must be a real date
 
+    <!--  BEFORE MAX DATE  -->
     {%  elif  data['errortypeten'] == "true"  %}
-        The date you [PLACEHOLDER] must be after 1 January 1900
+        The date you [PLACEHOLDER] must be the same as or before [DATE] BUSINESS REQUIREMENT
 
+    <!--  AFTER MIN DATE  -->
     {%  elif  data['errortypeeleven'] == "true"  %}
+        The date you [PLACEHOLDER] must be the same as or after [DATE] BUSINESS REQUIREMENT
+
+    <!--  NOT BEFORE USER DATE  -->
+    {%  elif  data['errortypetwelve'] == "true"  %}
         The date you [PLACEHOLDER] must be before [NAME OF DATE], [DATE]
 
-    {%  elif  data['errortypetwelve'] == "true"  %}
-        The date you [PLACEHOLDER] must be after [NAME OF DATE], [DATE]
-
-    <!--  NOT AFTER TAX YEAR  -->
+    <!--  NOT AFTER USER DATE  -->
     {%  elif  data['errortypethirteen'] == "true"  %}
-        The date you [PLACEHOLDER] must be the same as or after DDMMYYYY [ TAX YEAR ]
-
-    <!--  NOT BEFORE TAX YEAR  -->
-    {%  elif  data['errortypefourteen'] == "true"  %}
-        The date you [PLACEHOLDER] must be the same as or before DDMMYYYY [ TAX YEAR ]
+        The date you [PLACEHOLDER] must be after [NAME OF DATE], [DATE]
 
     {% endif %}
 {% endset %}
@@ -167,7 +167,7 @@ This will save you time.
                                                                   data['errortypeeight'] == "true" )
                                                               else  "govuk-input--width-2 govuk-input--error",
                             name: "day",
-                            value: data['SECTION-PAGENAME_DATE_COMPLEX-date-input-day']
+                            value: data['SECTION-PAGENAME_DATE-date-input-day']
                         },
                         {
                             classes: "govuk-input--width-2 "  if (data['errorthispage'] != "true" or
@@ -178,7 +178,7 @@ This will save you time.
                                                                   data['errortypeeight'] == "true" )
                                                               else  "govuk-input--width-2 govuk-input--error",
                             name: "month",
-                            value: data['SECTION-PAGENAME_DATE_COMPLEX-date-input-month']
+                            value: data['SECTION-PAGENAME_DATE-date-input-month']
                         },
                         {
                             classes: "govuk-input--width-4 "  if (data['errorthispage'] != "true" or
@@ -188,7 +188,7 @@ This will save you time.
                                                                   data['errortypesix'] == "true"  )
                                                               else  "govuk-input--width-4 govuk-input--error",
                             name: "year",
-                            value: data['SECTION-PAGENAME_DATE_COMPLEX-date-input-year']
+                            value: data['SECTION-PAGENAME_DATE-date-input-year']
                         }
                     ]
                 })
@@ -200,7 +200,6 @@ This will save you time.
 
     </div>
 </div>
-
 
 
 
@@ -254,41 +253,35 @@ This will save you time.
         <!-- DATE COMPARISON ERRORS   -->
         <option value="errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=false&errortypefour=false&errortypefive=false&errortypesix=false&errortypeseven=false&errortypeeight=false&errortypenine=true&errortypeten=false&errortypeeleven=false&errortypetwelve=false&errortypethirteen=false&errortypefourteen=false&"
               {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] != 'true'  and  data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  and  data['errortypeseven'] != 'true'  and  data['errortypeeight'] != 'true'  and  data['errortypenine'] == 'true'  and  data['errortypeten'] != 'true'  and  data['errortypeeleven'] != 'true'  and  data['errortypetwelve'] != 'true'  and  data['errortypethirteen'] != 'true'  and  data['errortypefourteen'] != 'true'  %}selected{% endif %}
-        >Error 9 &nbsp;&nbsp;-&nbsp;&nbsp; Date entered is in the future when it should be in the past</option>
+        >Error 9 &nbsp;&nbsp;-&nbsp;&nbsp; Date entered is not a real date in the Gregorian calendar</option>
 
         <option value="errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=false&errortypefour=false&errortypefive=false&errortypesix=false&errortypeseven=false&errortypeeight=false&errortypenine=false&errortypeten=true&errortypeeleven=false&errortypetwelve=false&errortypethirteen=false&errortypefourteen=false&errortypefifteen=true&errortypesixteen=false&errortypeseventeen=false&"
                 {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] != 'true'  and  data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  and  data['errortypeseven'] != 'true'  and  data['errortypeeight'] != 'true'  and  data['errortypenine'] != 'true'  and  data['errortypeten'] == 'true'  and  data['errortypeeleven'] != 'true'  and  data['errortypetwelve'] != 'true'  and  data['errortypethirteen'] != 'true'  and  data['errortypefourteen'] != 'true'  %}selected{% endif %}
-        >Error 10 -&nbsp;&nbsp; Date entered must be after 1 January 1900</option>
+        >Error 10 -&nbsp;&nbsp; Date entered must be same as or before Business Requirement date</option>
 
         <option value="errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=false&errortypefour=false&errortypefive=false&errortypesix=false&errortypeseven=false&errortypeeight=false&errortypenine=false&errortypeten=false&errortypeeleven=true&errortypetwelve=false&errortypethirteen=false&errortypefourteen=false&"
                 {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] != 'true'  and  data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  and  data['errortypeseven'] != 'true'  and  data['errortypeeight'] != 'true'  and  data['errortypenine'] != 'true'  and  data['errortypeten'] != 'true'  and  data['errortypeeleven'] == 'true'  and  data['errortypetwelve'] != 'true'  and  data['errortypethirteen'] != 'true'  and  data['errortypefourteen'] != 'true'  %}selected{% endif %}
-        >Error 11 -&nbsp;&nbsp; Date entered must be before a specific user entered date</option>
+        >Error 11 -&nbsp;&nbsp; Date entered must be same as or after Business Requirement date</option>
 
         <option value="errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=false&errortypefour=false&errortypefive=false&errortypesix=false&errortypeseven=false&errortypeeight=false&errortypenine=false&errortypeten=false&errortypeeleven=false&errortypetwelve=true&errortypethirteen=false&errortypefourteen=false&"
                 {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] != 'true'  and  data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  and  data['errortypeseven'] != 'true'  and  data['errortypeeight'] != 'true'  and  data['errortypenine'] != 'true'  and  data['errortypeten'] != 'true'  and  data['errortypeeleven'] != 'true'  and  data['errortypetwelve'] == 'true'  and  data['errortypethirteen'] != 'true'  and  data['errortypefourteen'] != 'true'  %}selected{% endif %}
-        >Error 12 -&nbsp;&nbsp; Date entered must be after a specific user entered date</option>
-
+        >Error 12 -&nbsp;&nbsp; Date entered must be before a user entered date</option>
 
         <option value="errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=false&errortypefour=false&errortypefive=false&errortypesix=false&errortypeseven=false&errortypeeight=false&errortypenine=false&errortypeten=false&errortypeeleven=false&errortypetwelve=false&errortypethirteen=true&errortypefourteen=false&"
               {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] != 'true'  and  data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  and  data['errortypeseven'] != 'true'  and  data['errortypeeight'] != 'true'  and  data['errortypenine'] != 'true'  and  data['errortypeten'] != 'true'  and  data['errortypeeleven'] != 'true'  and  data['errortypetwelve'] != 'true'  and  data['errortypethirteen'] == 'true'  and  data['errortypefourteen'] != 'true'  %}selected{% endif %}
-        >Error 13 -&nbsp;&nbsp; Tax year - Date entered is before the tax year when it should be in it </option>
-
-        <option value="errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=false&errortypefour=false&errortypefive=false&errortypesix=false&errortypeseven=false&errortypeeight=false&errortypenine=false&errortypeten=false&errortypeeleven=false&errortypetwelve=false&errortypethirteen=false&errortypefourteen=true&"
-              {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] != 'true'  and  data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  and  data['errortypeseven'] != 'true'  and  data['errortypeeight'] != 'true'  and  data['errortypenine'] != 'true'  and  data['errortypeten'] != 'true'  and  data['errortypeeleven'] != 'true'  and  data['errortypetwelve'] != 'true'  and  data['errortypethirteen'] != 'true'  and  data['errortypefourteen'] == 'true'  %}selected{% endif %}
-        >Error 14 -&nbsp;&nbsp; Tax year - Date entered is after the tax year when it should be in it </option>
+        >Error 13 -&nbsp;&nbsp; Date entered must be after a user entered date</option>
 
 
     </select>
 
 </form>
-
 <!--  END OF ERROR LOGIC -->
 
 
 
 <!-- USER TYPE TOGGLE  -->
 <!--
-<form method="post"  action="#" class="for4" style=" float: left; position: relative; bottom:-340px;  ">
+<form method="post"  action="#" class="for4" style=" float: left; position: relative; bottom:-225px;  ">
 
     <select style="height:30px;" onchange="window.location.href='?'+this.value">
 
@@ -305,8 +298,6 @@ This will save you time.
 </form>
 -->
 <!--  END USER TYPE TOGGLE -->
-
-
 
 
 
