@@ -10,7 +10,7 @@
 
 <!-- Setting the smaller secondary heading lower down the page -->
 {% set questionHeadingTextHTML %}
-    What are the dates of the last TB tests for the cattle that are 42 days old or older?
+    What are the dates of the last TB skin tests for the animals that are 42 days old or older?
 {% endset %}
 
 
@@ -18,7 +18,7 @@
 {% set errorTextHTML %}
     <!-- Error 1 - No answer selected -->
     {% if data['errortypeone'] == "true" %}
-        Enter the dates when cattle over 42 days old were last tested for TB
+        Enter the dates when animals over 42 days old were last tested for TB
 
     {% elif data['errortypetwo'] == "true" %}
         Your answer must be no longer than 5000 characters
@@ -67,7 +67,7 @@
         </h1>
 
 
-        <p>The cattle must have tested negative to a TB skin test within 30 days of the planned movement date.</p>
+        <p>The animals must have tested negative to a TB skin test within 30 days of the planned movement date.</p>
 
         <p>You need to enter the date they were injected on their most recent TB skin test.</p>
 
