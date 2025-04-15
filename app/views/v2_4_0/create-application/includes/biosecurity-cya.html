@@ -4,7 +4,7 @@
 
         <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
-                Will you separate the incoming cattle from the resident herd?
+                Will you separate the incoming animals from the resident herd?
             </dt>
             <dd class="govuk-summary-list__value">
                 {{ data['biosecurity-kept-separately-radios-yes-no'] }}
@@ -18,8 +18,8 @@
         {%  if  data['biosecurity-kept-separately-radios-yes-no'] == "Yes"  %}
 
             <div class="govuk-summary-list__row">
-                    <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
-                    Will the incoming cattle be grazed?
+                <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
+                    Will the incoming animals be grazed?
                 </dt>
                 <dd class="govuk-summary-list__value">
                     {{ data['biosecurity-grazing-radios-yes-no'] }}
@@ -33,8 +33,8 @@
             {%  if data['biosecurity-grazing-radios-yes-no']  == "Yes"  %}
 
                 <div class="govuk-summary-list__row">
-                        <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
-                        How is this grazing field separated from the resident herd?
+                    <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
+                        How will you separate the incoming animals from the resident herd?
                     </dt>
                     <dd class="govuk-summary-list__value">
                         {{ data['biosecurity-grazing-field-how-separated-text-input'] }}
@@ -45,8 +45,8 @@
                 </div>
 
                 <div class="govuk-summary-list__row">
-                        <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
-                        When was the land last grazed by cattle?
+                    <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
+                        How long ago was the field last grazed by the resident herd?
                     </dt>
                     <dd class="govuk-summary-list__value">
                         {{ data['biosecurity-last-grazed-text-input'] }}
@@ -57,7 +57,7 @@
                 </div>
 
                 <div class="govuk-summary-list__row">
-                        <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
+                    <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
                         Has any manure or slurry been put on the grazing field in the past 60 days?
                     </dt>
                     <dd class="govuk-summary-list__value">
@@ -102,10 +102,10 @@
 
     <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
-            What dilution rate are you using for {{ data['biosecurity-disinfectant-text-input'] }}?
+            Confirmation of the dilution rate
         </dt>
         <dd class="govuk-summary-list__value">
-            {{ data['biosecurity-disinfectant-dilution-number-input'] }}
+            I confirm this is the dilution rate used on the farm or premises
         </dd>
         <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="../biosecurity/disinfectant-dilution">Change<span class="govuk-visually-hidden"> </span></a>
@@ -115,7 +115,7 @@
 
     <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
-            Will the incoming cattle be housed?
+            Will the incoming animals be housed?
         </dt>
         <dd class="govuk-summary-list__value">
             {{ data['biosecurity-buildings-any-shared-radios-yes-no'] }}
@@ -130,7 +130,7 @@
 
         <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
-                How will you minimise the risk from buildings used for the incoming cattle?
+                How will you reduce the risk of spreading TB from the resident herd to the incoming animals during housing?
             </dt>
             <dd class="govuk-summary-list__value">
                 {{ data['biosecurity-buildings-how-minimise-contamination-text-input'] }}
@@ -146,7 +146,7 @@
 
     <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
-            Will the incoming cattle share any equipment with the resident herd?
+            Will the incoming animals share any equipment and machinery with the resident herd?
         </dt>
         <dd class="govuk-summary-list__value">
             {{ data['biosecurity-equipment-any-shared-radios-yes-no'] }}
@@ -161,7 +161,7 @@
 
         <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
-                How will you minimise the risk from equipment used for the incoming cattle and any other cattle?
+                How will you reduce the risk of spreading TB from the resident herd to the incoming animals when using shared equipment?
             </dt>
             <dd class="govuk-summary-list__value">
                 {{ data['biosecurity-equipment-how-minimise-contamination-text-input'] }}
@@ -176,8 +176,8 @@
 
 
     <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
-            How will you minimise contamination between people and cattle?
+        <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
+            What measures are staff taking to reduce the risk of spreading TB from the resident herd?
         </dt>
         <dd class="govuk-summary-list__value">
             {{ data['biosecurity-people-disinfection-text-input'] }}
@@ -189,8 +189,8 @@
 
 
     <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
-            Which measures are you taking on your farm or premises to reduce contamination from badgers?
+        <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
+            What measures are staff taking to reduce the risk of spreading TB from the resident herd?
         </dt>
         <dd class="govuk-summary-list__value" style="white-space: pre-wrap;">{{ data['biosecurity-badgers-text-input'] }}
         </dd>

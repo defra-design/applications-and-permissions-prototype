@@ -174,6 +174,11 @@ module.exports = function (router) {
                 res.redirect('own-farm-new-cph');
             }
         }
+        else if (req.session.data['origin-type-of-origin-radios'] == "Location after animals have been imported")
+        {
+            // Continue to the next page
+            res.redirect('country');
+        }
         else if (req.session.data['origin-type-of-origin-radios'] == "Another origin")
         {
             // end page next
@@ -224,11 +229,6 @@ module.exports = function (router) {
         {
             // This page name needs to be the next page the user gets to after successfully continuing
             res.redirect('own-farm-new-cph');
-        }
-        else if (req.session.data['origin-type-of-origin-page-2-radios'] == "Location after animals have been imported")
-        {
-            // Continue to the next page
-            res.redirect('country');
         }
         else if (req.session.data['origin-type-of-origin-page-2-radios'] == "Another origin with TB restrictions")
         {

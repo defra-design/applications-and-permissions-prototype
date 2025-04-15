@@ -23,9 +23,9 @@ This will save you time.
 {% set errorTextHTML %}
     <!-- Error 1 - No answer selected -->
     {% if data['errortypeone'] == "true" %}
-        Enter the CHP number of the farm or premises where the animals are moving off
+        Enter the farm or premises CPH number
 
-    <!-- Error 2 - If answer is too long -->
+    <!-- Error 2 - If answer is not in the correct format -->
     {% elif data['errortypetwo'] == "true" %}
         Enter the CPH number in the correct format, for example, 12/345/6789
 

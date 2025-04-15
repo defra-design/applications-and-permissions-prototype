@@ -2,7 +2,11 @@
 
     <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
-            What is the name of the registered owner of the cattle?
+            {% if  data['origin-to-or-from-own-premises-radios'] != "On to the farm or premises"  %}
+                What is the name of the registered owner of the animals?
+            {% else %}
+                Who will be the registered owner of the animals?
+            {% endif %}
         </dt>
         <dd class="govuk-summary-list__value">
             {{ data['contact-and-updates-licence-first-name-text-input'] }} {{ data['contact-and-updates-licence-last-name-text-input'] }}
