@@ -1,0 +1,204 @@
+{% extends "layouts/v2_5_0.html" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+
+    <div class="govuk-grid-column-full">
+
+        <h1 class="govuk-heading-l">
+            {{ serviceName }}
+        </h1>
+
+        <h2 class="govuk-heading-s govuk-!-margin-bottom-6">
+            Version: {{ version }}
+        </h2>
+
+
+        <p>Account
+            <br>&nbsp;&nbsp;&nbsp;<a href="account/start">Start page</a>
+        </p>
+
+        <p>Create application
+            <br><br>&nbsp;&nbsp;&nbsp;<a href="create-application/task-list">Task list</a>   
+            <br>&nbsp;&nbsp;&nbsp;<a href="create-application/task-list-validation-page">Task list - validation page</a>
+        </p>
+
+        <p>
+                &nbsp;&nbsp;&nbsp;Origin</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="create-application/origin/to-or-from-own-premises">To or from farm</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On to - Own premises - <a href="create-application/origin/type-of-origin?origin-to-or-from-own-premises-radios=On%20to%20the%20farm%20or%20premises&">Premises type</a>   
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Off of - Unrestricted on to TB restricted - <a href="create-application/origin/contact-the-tb-restricted-farm">Can't use the service</a>  
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On to - Own premises - <a href="create-application/origin/type-of-origin-page-2?origin-to-or-from-own-premises-radios=On%20to%20the%20farm%20or%20premises&">Premises type - page 2</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Off of - Own premises - <a href="create-application/origin/type-of-origin?origin-to-or-from-own-premises-radios=Off%20the%20farm%20or%20premises&">Premises type</a>  
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Off of - Own premises - <a href="create-application/origin/type-of-origin-page-2?origin-to-or-from-own-premises-radios=Off%20the%20farm%20or%20premises&">Premises type - page 2</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Off of and On to - Own premises - <a href="create-application/origin/type-of-origin-other">Premises type - Other</a>
+
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On to - Own premises - Import - <a href="create-application/origin/country">Country</a>
+
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On to - Own premises - <a href="create-application/origin/origin-farm-cph">Enter CPH</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On to - Own premises - <a href="create-application/origin/origin-farm-address">Enter address</a>    
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Off of - Own premises - <a href="create-application/origin/own-farm-new-cph">Enter CPH</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Off of - Own premises - <a href="create-application/origin/own-farm-new-address">Enter address</a>
+
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On to premises only - <a href="create-application/origin/fifty-percent-warning">50% compensation warning </a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="create-application/origin/check-answers">Check answers</a>
+        </p>
+
+        <p>
+                &nbsp;&nbsp;&nbsp;Destination</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On to - Destination - <a href="create-application/destination/type-of-destination?origin-to-or-from-own-premises-radios=On%20to%20the%20farm%20or%20premises&">Premises type</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Off of - Destination - <a href="create-application/destination/type-of-destination?origin-to-or-from-own-premises-radios=Off%20the%20farm%20or%20premises&">Premises type</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Off of - Destination -  AFU to another detination - <a href="create-application/destination/type-of-destination?bluetongue=false&origin-to-or-from-own-premises-radios=On%20to%20the%20farm%20or%20premises&errorthispage=false&errortypeone=false&on-or-off-history=On%20to%20the%20farm%20or%20premises&origin-type-of-origin-radios=Approved%20finishing%20unit%20(AFU)&section-origin-complete=true&destination-type-of-destination-radios=Another%20destination&camefromcheckanswers=false&destination-own-farm-new-cph-text-input=12/345/6789&errortypetwo=false&errortypethree=false&errortypefour=false&destination-own-address-line-1=Unit%207,%20The%20meadows&destination-own-address-line-2=ALMS%20CLOSE&destination-own-address-town=HUNTINGDON&destination-own-address-county=&destination-own-address-postcode=PE29%206DY&destination-how-many-animals-number-input=4&errortypefive=false&errortypesix=false&errortypeseven=false&destination-reason-for-movement-radios=Routine%20restocking&destination-quantity-options-radios=No&destination-quantity-half-herd-radios=No&section-destination-complete=true&biosecurity-disinfectant-dilution-number-input=1.2&redirecturl=http://localhost:3000/v2_5_0/create-application/destination/type-of-destination&theoutputquerystring=&%20%20">Premises type</a>&nbsp;
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On to premises only - AFU only - edge case - <a href="create-application/destination/can-not-use-service-afu-only">AFU to another destination</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On to or off of - Destination - <a href="create-application/destination/type-of-destination-page-2">Premises type - page 2 </a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On to or off of - Destination - Other - <a href="create-application/destination/type-of-destination-other">Premises type - Other</a>
+
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Slaughter - <a href="create-application/destination/use-general-licence">General licence</a>
+
+
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Off of - Own premises - <a href="create-application/destination/destination-farm-cph">Enter CPH</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Off of - Own premises - <a href="create-application/destination/destination-farm-address">Enter address</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On to - Own premises - <a href="create-application/destination/own-farm-new-cph">Enter CPH</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On to - Own premises - <a href="create-application/destination/own-farm-new-address">Enter address</a>    
+
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Off of - TV restricted on to TB restricted - <a href="create-application/destination/contact-the-tb-restricted-farm">Can't use the service</a>
+
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On to premises only - TB restricted to TB restricted - <a href="create-application/destination/how-many-animals?origin-type-of-origin-radios=TB restricted farm&">How many animals</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On to premises only - Market or unrestricted to TB restricted  - <a href="create-application/destination/how-many-animals?origin-type-of-origin-radios=Market&">How many animals</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On to premises only - <a href="create-application/destination/reason-for-movement">Reason for movement</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On to premises only - If not restocking - <a href="create-application/destination/any-additional-info">Enter any additional info</a>
+
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="create-application/destination/check-answers">Check answers</a>
+        </p>
+
+        <p>
+                &nbsp;&nbsp;&nbsp;Receiving the licence</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Restricted origin - Off of the premises - <a href="create-application/contact-and-updates/licence-name?origin-to-or-from-own-premises-radios=Off the farm or premises&">User's full name</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Restricted origin - On to the premises - <a href="create-application/contact-and-updates/licence-name?origin-to-or-from-own-premises-radios=On to the farm or premises&">User's full name</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Restricted origin - <a href="create-application/contact-and-updates/licence-email-or-post">Email or post</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Restricted origin - <a href="create-application/contact-and-updates/licence-enter-email-address">Enter email</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Restricted origin - <a href="create-application/contact-and-updates/licence-select-post-can-not-use-this-service">Post selected</a> - Can't use this service
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Restricted origin - <a href="create-application/contact-and-updates/licence-select-post-address">Select post</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Restricted origin - <a href="create-application/contact-and-updates/licence-new-address.html">Enter address</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="create-application/contact-and-updates/check-answers">Check answers</a>
+        </p>
+
+        <p>
+            &nbsp;&nbsp;&nbsp;Animal IDs</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Restricted origin and destination - <a href="create-application/identification/any-calves">Any calves</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Calves only - <a href="create-application/identification/oldest-calf-dob.html">Oldest DOB of Calves</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Calves only - <a href="create-application/identification/warning">Warning</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Calves only - <a href="create-application/identification/enter-ear-tags-calves">Enter IDs - Calves</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Calves only - <a href="create-application/identification/any-cattle-over-42-days">Any also over 42 cattle</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No calves or both only - <a href="create-application/identification/enter-ear-tags-testing-dates">Animal testing dates</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No calves or both only - <a href="create-application/identification/enter-ear-tags">Enter IDs - Cattle over 42 days old</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="create-application/identification/check-answers">Check answers</a>
+        </p>
+
+
+        <p>
+                &nbsp;&nbsp;&nbsp;Biosecurity</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="create-application/biosecurity/biosecurity-intro">Interstitial page</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="create-application/biosecurity/kept-separately">Kept separately</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Kept separately only - <a href="create-application/biosecurity/grazing">Grazed</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Kept separately - Grazed only - <a href="create-application/biosecurity/grazing-field-how-separated">Field separation</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Kept separately - Grazed only - <a href="create-application/biosecurity/last-grazed">Last grazed</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Kept separately - Grazed only - <a href="create-application/biosecurity/manure-and-slurry">Manure and slurry</a>
+            <!-- <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Kept separately - Roads - <a href="create-application/biosecurity/roads-and-tracks">Shared roads</a>  -->
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="create-application/biosecurity/manure-and-slurry-details">Manure and slurry - Details</a>
+
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Disinfectant - <a href="create-application/biosecurity/disinfectant">Name of disinfectant</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Disinfectant - <a href="create-application/biosecurity/disinfectant-dilution">Disinfection concentration</a>
+
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Buildings - <a href="create-application/biosecurity/buildings-any-shared.html">Will cattle be housed?</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Buildings only - <a href="create-application/biosecurity/buildings-how-minimise-contamination">Housing details</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Equipment - <a href="create-application/biosecurity/equipment-any-shared.html">Any shared equipment</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Equipment ony - <a href="create-application/biosecurity/equipment-how-minimise-contamination">Details of equipment contamination</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;People and staff - <a href="create-application/biosecurity/people-disinfection">People disinfection</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Wildlife - <a href="create-application/biosecurity/badgers">Badger separation</a>      &nbsp;&nbsp;&nbsp;<span class="govuk-!-font-weight-bold">(Updated to checkboxes)</span>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Wildlife - <a href="create-application/biosecurity/other-wildlife-measures">Other wildlife measures</a>      &nbsp;&nbsp;&nbsp;<span class="govuk-!-font-weight-bold">(New)</span>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="create-application/biosecurity/check-answers">Check Answers</a>     &nbsp;&nbsp;&nbsp;<span class="govuk-!-font-weight-bold">(Updated with wildlife questions)</span>
+        </p>
+
+
+
+        <p>
+                &nbsp;&nbsp;&nbsp;Biosecurity Map</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="create-application/biosecurity-map/upload-plan">Upload a plan</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="create-application/biosecurity-map/uploading">Uploading spinner</a>    
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="create-application/biosecurity-map/check-answers">Check answers</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="create-application/biosecurity-map/pdf-size-error">PDF size error</a>
+        </p>
+
+
+        <p>
+                &nbsp;&nbsp;&nbsp;<a href="create-application/submit/check-answers">Check answers and declaration</a>
+            <br>&nbsp;&nbsp;&nbsp;<a href="create-application/submit/confirmation">Confirmation page</a>
+        </p>
+
+        <p>
+            <br>&nbsp;&nbsp;&nbsp;<a href="/privacy-policy">Privacy policy</a> (TBC)
+        </p>
+
+        <p>
+            <br>&nbsp;&nbsp;&nbsp;<a href="/accessibility-statement">Accessibility statement</a>  (TBC)
+        </p>
+
+        <p>
+            <br>&nbsp;&nbsp;&nbsp;<a href="/cookies?cookiesaccepted=false&cookiesrejected=false&">Cookies</a> - With banner
+            <br>&nbsp;&nbsp;&nbsp;<a href="/cookies?cookiesaccepted=true&cookiesrejected=false&">Cookies Banner - Accepted</a>
+            <br>&nbsp;&nbsp;&nbsp;<a href="/cookies?cookiesaccepted=false&cookiesrejected=true&">Cookies Banner - Rejected</a>
+        </p>
+
+
+
+
+        <p>
+            <br>&nbsp;&nbsp;&nbsp;Anita review</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reactor - <a href="create-application/task-list?bluetongue=false&origin-to-or-from-own-premises-radios=On%20to%20the%20farm%20or%20premises&errorthispage=false&errortypeone=false&on-or-off-history=On%20to%20the%20farm%20or%20premises&origin-type-of-origin-radios=TB%20restricted%20farm&origin-origin-farm-cph-text-input=12/345/6789&errortypetwo=false&errortypethree=false&origin-origin-farm-address-line-1=sdf&origin-origin-farm-address-line-2=&origin-origin-farm-address-town=sfdgsdf&origin-origin-farm-address-county=&origin-origin-farm-address-postcode=wc13ff&errortypefour=false&section-origin-complete=true&destination-type-of-destination-radios=TB%20restricted%20farm&camefromcheckanswers=false&destination-own-farm-new-cph-text-input=12/345/6789&destination-own-address-line-1=sdf&destination-own-address-line-2=&destination-own-address-town=sfdgsdf&destination-own-address-county=&destination-own-address-postcode=ln83ks&destination-how-many-animals-number-input=4&errortypefive=false&errortypesix=false&errortypeseven=false&destination-reason-for-movement-radios=Routine%20restocking&section-destination-complete=true&redirecturl=http://localhost:3000/v2_5_0/create-application/task-list&%20%20">Task list</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reactor - <a href="create-application/reactors/any-reactors">Any reactors</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reactor - <a href="create-application/reactors/any-date-to-remove-reactors"">Any date for removal</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reactor - If no removal date - <a href="create-application/reactors/you-must-remove-reactors">You must remove reactors</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reactor - If removal date - <a href="create-application/reactors/date-of-reactor-removal">Date of removal</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reactor - <a href="create-application/reactors/check-answers.html">Check answers</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Task list - <a href="create-application/task-list-temp">Before</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Task list - <a href="create-application/task-list-temp-two">After</a>
+        </p>
+
+
+
+
+    </div>
+
+
+    <div class="govuk-grid-column-full govuk-!-margin-top-9">
+        <p class="govuk-!-margin-top-6" style="border-top: 2px solid #1d70b8; margin-bottom: 30px;">
+
+
+            <h2 class="govuk-heading-s govuk-!-margin-top-3">Customer identity</h2>
+            {% if data['customer-identity'] == "true" %}
+                <p>ON<br>
+                    <a href="version-index?customer-identity=false&">Turn OFF</a>
+                </p>
+            {% else %}
+                <p>OFF</br>
+                    <a href="version-index?customer-identity=true&">Turn ON</a>
+                </p>
+            {% endif %}
+
+
+            <h2 class="govuk-heading-s govuk-!-margin-top-3 govuk-!-margin-bottom-3">Defra account registration</h2>
+            {% if data['defra-account-registration'] == "true" %}
+                <p>ON<br>
+                    <a href="version-index?defra-account-registration=false&">Turn OFF</a>
+                </p>
+            {% else %}
+                <p>OFF</br>
+                    <a href="version-index?defra-account-registration=true&">Turn ON</a>
+                </p>
+            {% endif %}
+    </div>
+
+</div>
+{% endblock %}

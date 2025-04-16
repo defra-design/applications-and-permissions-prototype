@@ -1,0 +1,77 @@
+{% extends "layouts/v2_5_0.html" %}
+
+
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-l">Check your answers before you continue your application</h1>
+
+        {% include "../includes/destination-cya.html" %}
+
+         <form action="../task-list?section-destination-complete=true&" method="post" novalidate>
+
+            <button type="submit" class="govuk-button" data-module="govuk-button">
+                Continue
+            </button>
+
+        </form>
+
+    </div>
+</div>
+
+
+
+
+<!-- Toggle states  -->
+<form method="post"  action="#" class="for4" style=" float: left; position: relative; bottom:-270px;  ">
+
+    <select style="height:30px;" onchange="window.location.href='?'+this.value">
+
+        <option value="origin-to-or-from-own-premises-radios=On to the farm or premises&origin-type-of-origin-radios=TB restricted farm&destination-type-of-destination-radios=TB restricted farm&"
+            {%  if  (data['origin-type-of-origin-radios'] == "TB restricted farm"
+                        or data['origin-type-of-origin-page-2-radios'] == "Zoo with TB restrictions")
+                    and
+                    (data['destination-type-of-destination-radios'] == "TB restricted farm"
+                        or data['destination-type-of-destination-page-2-radios'] == "Zoo with TB restrictions")
+            %}
+                selected
+            {% endif %}
+        >State - ON to premises - TB restricted Farm or Zoo to TB restricted  Farm or Zoo </option>
+
+        <option value="origin-to-or-from-own-premises-radios=On to the farm or premises&origin-type-of-origin-radios=Market&destination-type-of-destination-radios=TB restricted farm&"
+            {%  if  data['origin-type-of-origin-radios'] == "Market"
+                    and
+                    data['destination-type-of-destination-radios'] == "TB restricted farm"
+            %}
+                selected
+            {% endif %}
+        >State -  ON to premises - Market or Unrestricted premises to TB restricted Farm or Zoo </option>
+
+        <option value="origin-to-or-from-own-premises-radios=Off the farm or premises&origin-type-of-origin-radios=TB restricted farm&destination-type-of-destination-radios=Dedicated sale for TB (orange market)&"
+            {%  if  (data['origin-type-of-origin-radios'] == "TB restricted farm"
+                        or data['origin-type-of-origin-page-2-radios'] == "Zoo with TB restrictions")
+                    and
+                    (data['destination-type-of-destination-radios'] == "Slaughter"
+                        or data['destination-type-of-destination-radios'] == "Dedicated sale for TB (orange market)"
+                        or data['destination-type-of-destination-radios'] == "Approved finishing unit (AFU)" )
+            %}
+                selected
+            {% endif %}
+        >State -  OFF the premises - TB restricted Farm or Zoo to Market, Slaughter or AFU </option>
+
+    </select>
+
+</form>
+<!--  END OF ERROR LOGIC -->
+
+
+
+
+{% endblock %}
+
+
+
+
+
