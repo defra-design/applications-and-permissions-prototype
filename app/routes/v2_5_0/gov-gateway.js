@@ -45,7 +45,7 @@ module.exports = function (router) {
          // If Yes was selected, continue to next page
         if (req.session.data['customer-identity'] == "true")
         {
-            res.redirect('sign-in-or-not');
+            res.redirect('gov-gateway/sign-in');
         }
         else
         {
