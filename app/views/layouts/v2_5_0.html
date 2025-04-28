@@ -16,10 +16,13 @@
     }}
 
     {% if loggedout != "true" %}
-        <p class="govuk-body-s govuk-!-text-align-right govuk-!-margin-top-2 govuk-!-margin-bottom-0">Alex Smith
-            <span class="govuk-!-margin-left-3"><a href="#">Manage account</a></span>
-            <span class="govuk-!-margin-left-3"><a href="#">Sign out</a></span>
-        </p>
+        <nav class="hmrc-language-select ">
+            <ul class="defra-account-menu__list govuk-!-width-full govuk-!-margin-bottom-0">
+                <li class="govuk-body-s defra-account-menu__list-item govuk-!-margin-left-3 govuk-!-margin-bottom-0">Alex Smith</li>
+                <li class="govuk-body-s defra-account-menu__list-item govuk-!-margin-left-3 govuk-!-margin-bottom-0"><a href="#">Manage account</a></li>
+                <li class="govuk-body-s defra-account-menu__list-item govuk-!-margin-left-3 govuk-!-margin-bottom-0"><a href="#">Sign out</a></li>
+            </ul>
+        </nav>
     {% endif %}
 
     {% if backlinkoff != "true" %}
