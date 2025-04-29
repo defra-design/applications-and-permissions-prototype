@@ -16,5 +16,21 @@
         </dd>
     </div>
 
+    {%  if  data['upload-file-two'] == "true"   %}
+        <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
+                Another biosecurity plan diagram
+            </dt>
+            <dd class="govuk-summary-list__value">
+                {{ data['biosecurity-upload-plan-file-upload-two'] }} [file name]
+                <br>
+                <br>
+                <img src="/public/images/biosecuritydiagram.jpg" width="200" height="150">
+            </dd>
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="../biosecurity-map/upload-plan-another">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        </div>
+    {%  endif  %}
 
 </dl>

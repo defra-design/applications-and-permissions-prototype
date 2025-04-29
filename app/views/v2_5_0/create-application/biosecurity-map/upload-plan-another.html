@@ -4,7 +4,7 @@
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    Upload a biosecurity map
+    Upload a another biosecurity map
 {% endset %}
 
 
@@ -42,7 +42,7 @@
                     [
                         {
                             html: errorTextHTML,
-                            href: "#biosecurity-upload-plan-file-upload"
+                            href: "#biosecurity-upload-plan-file-upload-two"
                         }
                     ]
                 })
@@ -85,18 +85,30 @@
             or a pre-prepared map from an agent or surveyor.
         </p>
 
-        <p>It needs to include: </p>
+
+        <details class="govuk-details">
+            <summary class="govuk-details__summary">
+                <span class="govuk-details__summary-text">
+                    What it needs to include
+                </span>
+            </summary>
+            <div class="govuk-details__text">
+                <ul class="govuk-body govuk-list--bullet">
+                    <li>where the incoming cattle will be isolated</li>
+                    <li>location of the resident cattle and neighbouring cattle</li>
+                    <li>minimum distances between the incoming cattle and any resident and neighbouring cattle</li>
+                    <li>movements of the cattle, including where they will graze, be milked, and be loaded</li>
+                    <li>location of handling facility</li>
+                    <li>location of manure or slurry storage</li>
+                    <li>location of biosecurity points, including badger proof fencing</li>
+                </ul>
+            </div>
+        </details>
+
+        <p></p>
 
 
-        <ul class="govuk-body govuk-list--bullet">
-            <li>where the incoming cattle will be isolated</li>
-            <li>location of the resident cattle and neighbouring cattle</li>
-            <li>minimum distances between the incoming cattle and any resident and neighbouring cattle</li>
-            <li>movements of the cattle, including where they will graze, be milked, and be loaded</li>
-            <li>location of handling facility</li>
-            <li>location of manure or slurry storage</li>
-            <li>location of biosecurity points, including badger proof fencing</li>
-        </ul>
+
 
 
 
@@ -107,9 +119,9 @@
             {{
                 govukFileUpload
                 ({
-                    id: "biosecurity-upload-plan-file-upload",
+                    id: "biosecurity-upload-plan-file-upload-two",
 
-                    name: "biosecurity-upload-plan-file-upload",
+                    name: "biosecurity-upload-plan-file-upload-two",
 
                     label:
                     {
@@ -128,8 +140,7 @@
                 {{ govukButton
                     ({
                         text: "Upload and add another",
-                        classes: "govuk-button--secondary",
-                        href: "uploading-another?upload-file-two=true&"
+                        classes: "govuk-button--secondary"
                     })
                 }}
             </div>
