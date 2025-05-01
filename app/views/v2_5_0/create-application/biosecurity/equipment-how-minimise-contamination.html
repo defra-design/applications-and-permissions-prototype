@@ -15,22 +15,16 @@ This will save you time.
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    Shared equipment and machinery
+    Which measures are in place to clean and disinfect equipment to reduce the risk of spreading TB?
 {% endset %}
 
-
-
-<!-- Setting the smaller secondary heading lower down the page -->
-{% set questionHeadingTextHTML %}
-    How will you reduce the risk of spreading TB from the resident herd to the incoming animals when using shared equipment?
-{% endset %}
 
 
 <!-- Set the text for the error type -->
 {% set errorTextHTML %}
     <!-- Nothing was selected -->
     {% if data['errortypeone'] == "true" %}
-        Enter how you will reduce the risk of spreading TB from the resident herd to the incoming animals when using shared equipment
+        Select which measures are in place to clean and disinfect equipment to reduce the risk of spreading TB?
     {% endif %}
 {% endset %}
 
@@ -68,50 +62,62 @@ This will save you time.
         <!--  END OF 'error summary' -->
 
 
-        <h1 class="govuk-heading-l">
-            {{ pageHeadingTextHTML }}
-        </h1>
-
-
-        <p>You should have cleaning and disinfection measures in place for equipment to prevent the spread of TB.</p>
-
-        <p>This should include:</p>
-
-        <ul class="govuk-list govuk-list--bullet">
-            <li>designated disinfection points</li>
-            <li>cleaning and disinfecting shared machinery</li>
-            <li>not sharing equipment between the incoming animals and the resident herd</li>
-            <li>cleaning and disinfection measures for shared milking and handling facilities</li>
-        </ul>
-
 
         <!-- go to routes.js for routing  -->
         <form action="equipment-how-minimise-contamination-router" method="post" novalidate>
 
-            {{ govukTextarea
+            {{ govukCheckboxes
                 ({
-                    label:
+                    name: "biosecurity-equipment-how-minimise-contamination-checkboxes",
+
+                    id: "biosecurity-equipment-how-minimise-contamination-checkboxes",
+
+                    fieldset:
                     {
-                        html: questionHeadingTextHTML,
-                        classes: "govuk-label--m",
-                        isPageHeading: false
+                        legend:
+                        {
+                            text: pageHeadingTextHTML,
+                            isPageHeading: true,
+                            classes: "govuk-fieldset__legend--l"
+                        }
                     },
-
-                    id: "biosecurity-equipment-how-minimise-contamination-text-input",
-
-                    name: "biosecurity-equipment-how-minimise-contamination-text-input",
 
                     hint:
                     {
-                        text: ""
+                        text: "Only select the measures you are taking. You do not need to select them all to receive your licence."
                     },
 
                     errorMessage: null if data['errorthispage'] != "true"
                                        else { html: errorTextHTML },
 
-                    value: data['biosecurity-equipment-how-minimise-contamination-text-input'],
-
-                    rows: "8"
+                    items:
+                    [
+                        {
+                            value: "Designated disinfection points",
+                            text: "Designated disinfection points",
+                            checked: (data['biosecurity-equipment-how-minimise-contamination-checkboxes'] or []).indexOf('Designated disinfection points') > -1
+                        },
+                        {
+                            value: "Cleaning and disinfecting shared machinery",
+                            text: "Cleaning and disinfecting shared machinery",
+                            checked: (data['biosecurity-equipment-how-minimise-contamination-checkboxes'] or []).indexOf('Cleaning and disinfecting shared machinery') > -1
+                        },
+                        {
+                            value: "Cleaning and disinfecting shared milking and handling facilities",
+                            text: "Cleaning and disinfecting shared milking and handling facilities",
+                            checked: (data['biosecurity-equipment-how-minimise-contamination-checkboxes'] or []).indexOf('Cleaning and disinfecting shared milking and handling facilities') > -1
+                        },
+                        {
+                            value: "Equipment is not shared between the incoming animals and the resident herd",
+                            text: "Equipment is not shared between the incoming animals and the resident herd",
+                            checked: (data['biosecurity-equipment-how-minimise-contamination-checkboxes'] or []).indexOf('Equipment is not shared between the incoming animals and the resident herd') > -1
+                        },
+                        {
+                            value: "Other cleaning and disinfection measures",
+                            text: "Other cleaning and disinfection measures",
+                            checked: (data['biosecurity-equipment-how-minimise-contamination-checkboxes'] or []).indexOf('Other cleaning and disinfection measures') > -1
+                        }
+                    ]
                 })
             }}
 

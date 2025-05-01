@@ -747,7 +747,7 @@ module.exports = function (router) {
     ////////////////                                                    ////////////////
     ////////////////       SHARED EQUIPMENT                             ////////////////
     ////////////////                                                    ////////////////
-    ////////////////                        TEXT AREA                   ////////////////
+    ////////////////             CHECKBOXES                             ////////////////
     ////////////////                                                    ////////////////
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////
@@ -755,10 +755,13 @@ module.exports = function (router) {
 
     router.get(section + 'equipment-how-minimise-contamination-router', function (req, res)
     {
+        // Turn errors off by default
         req.session.data['errorthispage'] = "false";
         req.session.data['errortypeone'] = "false";
 
-        if (req.session.data['biosecurity-equipment-how-minimise-contamination-text-input'] == undefined || req.session.data['biosecurity-equipment-how-minimise-contamination-text-input'] == "")
+        // check if none of the checkboxes are selected
+        if(req.session.data['biosecurity-equipment-how-minimise-contamination-checkboxes'] == undefined  ||
+            req.session.data['biosecurity-equipment-how-minimise-contamination-checkboxes'].length == 0)
         {
             // Trigger validation and relaunch the page
             req.session.data['errorthispage'] = "true";
@@ -767,12 +770,77 @@ module.exports = function (router) {
             // This page name needs to match the page the user was just on
             res.redirect('equipment-how-minimise-contamination');
         }
+
         else
         {
-            // Always proceed to the next questions on shared tracks
+            // Continue to the next page
+            let originalStringequipment = String(req.session.data['biosecurity-equipment-how-minimise-contamination-checkboxes']);
+            let newStringequipment = originalStringequipment.replace(/,(?!\s)/g, "\n\n");
+
+            if(newStringequipment == "undefined")
+            {
+                req.session.data['biosecurity-equipment-checkboxes-formatted'] = "None";
+            }
+            else
+            {
+                req.session.data['biosecurity-equipment-checkboxes-formatted'] = newStringequipment;
+            }
+
+
+            if(newStringequipment.includes("Other cleaning and disinfection measures"))
+            {
+                req.session.data['biosecurity-other-equipment-measures-boolean'] = "true";
+                res.redirect('other-equipment-measures');
+            }
+            else if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['biosecurity-other-equipment-measures-boolean'] = "false";
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('check-answers');
+            }
+            else
+            {
+                req.session.data['biosecurity-other-equipment-measures-boolean'] = "false";
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('people-disinfection');
+            }
+        }
+
+    })
+
+
+    // NOT COMPLEX PAGE
+    // Other equipment free textbox
+    router.post(section + 'other-equipment-measures-router', function (req, res)
+    {
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+        req.session.data['errortypetwo'] = "false";
+        req.session.data['errortypethree'] = "false";
+        req.session.data['errortypefour'] = "false";
+        req.session.data['errortypefive'] = "false";
+        req.session.data['errortypefour'] = "false";
+
+        // Validation check if field is blank
+        if (req.session.data['biosecurity-other-equipment-measures-text-input'] == undefined || req.session.data['biosecurity-other-equipment-measures-text-input'] == "")
+        {
+            // Trigger validation and relaunch the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('other-equipment-measures');
+        }
+
+        else
+        {
+            // This page name needs to be the next page the user gets to after successfully continuing
             res.redirect('people-disinfection');
         }
+
     })
+
+
 
 
 
@@ -782,32 +850,93 @@ module.exports = function (router) {
     ////////////////                                                    ////////////////
     ////////////////       How people avoid contamination               ////////////////
     ////////////////                                                    ////////////////
-    ////////////////                        TEXT AREA                   ////////////////
+    ////////////////                CHECKBOXES                          ////////////////
     ////////////////                                                    ////////////////
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////
 
-
     router.get(section + 'people-disinfection-router', function (req, res)
     {
+        // Turn errors off by default
         req.session.data['errorthispage'] = "false";
         req.session.data['errortypeone'] = "false";
 
-        if (req.session.data['biosecurity-people-disinfection-text-input'] == undefined || req.session.data['biosecurity-people-disinfection-text-input'] == "")
+        // Continue to the next page
+        let originalStringstaff = String(req.session.data['biosecurity-people-disinfection-checkboxes']);
+        let newStringstaff = originalStringstaff.replace(/,(?!\s)/g, "\n\n");
+
+        if(newStringstaff == "undefined")
+        {
+            req.session.data['biosecurity-staff-checkboxes-formatted'] = "None";
+        }
+        else
+        {
+            req.session.data['biosecurity-staff-checkboxes-formatted'] = newStringstaff;
+        }
+
+
+        if(newStringstaff.includes("Other cleaning and disinfection measures"))
+        {
+            req.session.data['biosecurity-other-staff-measures-boolean'] = "true";
+            res.redirect('other-staff-measures');
+        }
+        else if (req.session.data['camefromcheckanswers'] == 'true')
+        {
+            req.session.data['biosecurity-other-staff-measures-boolean'] = "false";
+            req.session.data['camefromcheckanswers'] = false;
+            res.redirect('check-answers');
+        }
+        else
+        {
+            req.session.data['biosecurity-other-staff-measures-boolean'] = "false";
+            // This page name needs to be the next page the user gets to after successfully continuing
+            res.redirect('badgers');
+        }
+
+
+    })
+
+
+
+
+    // NOT COMPLEX PAGE
+    // Other staff free textbox
+    router.post(section + 'other-staff-measures-router', function (req, res)
+    {
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+        req.session.data['errortypetwo'] = "false";
+        req.session.data['errortypethree'] = "false";
+        req.session.data['errortypefour'] = "false";
+        req.session.data['errortypefive'] = "false";
+        req.session.data['errortypefour'] = "false";
+
+        // Validation check if field is blank
+        if (req.session.data['biosecurity-other-staff-measures-text-input'] == undefined || req.session.data['biosecurity-other-staff-measures-text-input'] == "")
         {
             // Trigger validation and relaunch the page
             req.session.data['errorthispage'] = "true";
             req.session.data['errortypeone'] = "true";
 
             // This page name needs to match the page the user was just on
-            res.redirect('people-disinfection');
+            res.redirect('other-staff-measures');
         }
+
         else
         {
-            // Always proceed to the next questions on shared tracks
+            // This page name needs to be the next page the user gets to after successfully continuing
             res.redirect('badgers');
         }
+
     })
+
+
+
+
+
+
+
+
 
 
 
@@ -846,8 +975,8 @@ module.exports = function (router) {
 
         if(newString.includes("Other measures to reduce the risk of infection"))
         {
-            res.redirect('other-wildlife-measures');
             req.session.data['biosecurity-other-wildlife-measures-boolean'] = "true";
+            res.redirect('other-wildlife-measures');
         }
         else
         {
@@ -871,6 +1000,7 @@ module.exports = function (router) {
 
 
     // NOT COMPLEX PAGE
+    // Other wildlife free textbox
     router.post(section + 'other-wildlife-measures-router', function (req, res)
     {
         req.session.data['errorthispage'] = "false";

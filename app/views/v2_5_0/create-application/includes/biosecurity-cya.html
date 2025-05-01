@@ -163,13 +163,25 @@
             <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
                 How will you reduce the risk of spreading TB from the resident herd to the incoming animals when using shared equipment?
             </dt>
-            <dd class="govuk-summary-list__value">
-                {{ data['biosecurity-equipment-how-minimise-contamination-text-input'] }}
+            <dd class="govuk-summary-list__value" style="white-space: pre-wrap;">{{ data['biosecurity-equipment-checkboxes-formatted'] }}
             </dd>
             <dd class="govuk-summary-list__actions">
                 <a class="govuk-link" href="../biosecurity/equipment-how-minimise-contamination">Change<span class="govuk-visually-hidden"> </span></a>
             </dd>
         </div>
+
+        {%  if data['biosecurity-other-equipment-measures-boolean']  == "true"  %}
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
+                    What other measures are in place to clean and disinfect equipment to reduce the risk of spreading TB?
+                </dt>
+                <dd class="govuk-summary-list__value" style="white-space: pre-wrap;">{{ data['biosecurity-other-equipment-measures-text-input'] }}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="../biosecurity/other-equipment-measures">Change<span class="govuk-visually-hidden"> </span></a>
+                </dd>
+            </div>
+        {%  endif %}
 
     {%  endif  %}
 
@@ -179,13 +191,27 @@
         <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
             What measures are staff taking to reduce the risk of spreading TB from the resident herd?
         </dt>
-        <dd class="govuk-summary-list__value">
-            {{ data['biosecurity-people-disinfection-text-input'] }}
+        <dd class="govuk-summary-list__value"  style="white-space: pre-wrap;">{{ data['biosecurity-staff-checkboxes-formatted'] }}
         </dd>
         <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="../biosecurity/people-disinfection">Change<span class="govuk-visually-hidden"> </span></a>
         </dd>
     </div>
+
+
+    {%  if data['biosecurity-other-staff-measures-boolean']  == "true"  %}
+        <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
+                What other measures are you taking to reduce the risk of spreading TB?
+            </dt>
+            <dd class="govuk-summary-list__value" style="white-space: pre-wrap;">{{ data['biosecurity-other-staff-measures-text-input'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="../biosecurity/other-staff-measures">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        </div>
+    {%  endif %}
+
 
 
     <div class="govuk-summary-list__row">
@@ -208,7 +234,7 @@
             <dd class="govuk-summary-list__value" style="white-space: pre-wrap;">{{ data['biosecurity-other-wildlife-measures-text-input'] }}
             </dd>
             <dd class="govuk-summary-list__actions">
-                <a class="govuk-link" href="../biosecurity/badgers">Change<span class="govuk-visually-hidden"> </span></a>
+                <a class="govuk-link" href="../biosecurity/other-wildlife-measures">Change<span class="govuk-visually-hidden"> </span></a>
             </dd>
         </div>
     {%  endif %}

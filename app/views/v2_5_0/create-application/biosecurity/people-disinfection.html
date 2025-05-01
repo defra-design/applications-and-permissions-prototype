@@ -15,13 +15,7 @@ This will save you time.
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    Cleaning and disinfection measures taken by staff
-{% endset %}
-
-
-<!-- Setting the smaller secondary heading lower down the page -->
-{% set questionHeadingTextHTML %}
-    What measures are staff taking to reduce the risk of spreading TB from the resident herd?
+    Which measures are staff taking to reduce the risk of spreading TB?
 {% endset %}
 
 
@@ -30,7 +24,7 @@ This will save you time.
 {% set errorTextHTML %}
     <!-- Nothing was selected -->
     {% if data['errortypeone'] == "true" %}
-        Enter what measures are staff taking to reduce the risk of spreading TB from the resident herd
+        NOT NEEDED
     {% endif %}
 {% endset %}
 
@@ -59,7 +53,7 @@ This will save you time.
                     [
                         {
                             html: errorTextHTML,
-                            href: "#biosecurity-people-disinfection-text-input"
+                            href: "#biosecurity-people-disinfection-checkboxes"
                         }
                     ]
                 })
@@ -68,51 +62,61 @@ This will save you time.
         <!--  END OF 'error summary' -->
 
 
-
-        <h1 class="govuk-heading-l">
-            {{ pageHeadingTextHTML }}
-        </h1>
-
-
-        <p>Staff should have cleaning and disinfection measures in place to prevent the spread of TB.</p>
-
-        <p>This should include:</p>
-
-        <ul class="govuk-list govuk-list--bullet">
-            <li>dedicated clothing and personal protective equipment (PPE)</li>
-            <li>cleaning and disinfecting wellington boots, including foot dips</li>
-            <li>cleaning and disinfection measures when contractors arrive and leave</li>
-            <li>dedicated staff looking after the incoming animals</li>
-        </ul>
-
-
         <!-- go to routes.js for routing  -->
         <form action="people-disinfection-router" method="post" novalidate>
 
-            {{ govukTextarea
+            {{ govukCheckboxes
                 ({
-                    label:
+                    name: "biosecurity-people-disinfection-checkboxes",
+
+                    id: "biosecurity-people-disinfection-checkboxes",
+
+                    fieldset:
                     {
-                        html: questionHeadingTextHTML,
-                        classes: "govuk-label--m",
-                        isPageHeading: false
+                        legend:
+                        {
+                            text: pageHeadingTextHTML,
+                            isPageHeading: true,
+                            classes: "govuk-fieldset__legend--l"
+                        }
                     },
-
-                    id: "biosecurity-people-disinfection-text-input",
-
-                    name: "biosecurity-people-disinfection-text-input",
 
                     hint:
                     {
-                        text: ""
+                        text: "Only select the measures you are taking. You do not need to select them all to receive your licence."
                     },
 
                     errorMessage: null if data['errorthispage'] != "true"
                                        else { html: errorTextHTML },
 
-                    value: data['biosecurity-people-disinfection-text-input'],
-
-                    rows: "8"
+                    items:
+                    [
+                        {
+                            value: "Dedicated clothing and personal protective equipment (PPE)",
+                            text: "Dedicated clothing and personal protective equipment (PPE)",
+                            checked: (data['biosecurity-people-disinfection-checkboxes'] or []).indexOf('Dedicated clothing and personal protective equipment (PPE)') > -1
+                        },
+                        {
+                            value: "Cleaning and disinfecting wellington boots, including foot dips",
+                            text: "Cleaning and disinfecting wellington boots, including foot dips",
+                            checked: (data['biosecurity-people-disinfection-checkboxes'] or []).indexOf('Cleaning and disinfecting wellington boots, including foot dips') > -1
+                        },
+                        {
+                            value: "Cleaning and disinfection measures when contractor arrive and leave",
+                            text: "Cleaning and disinfection measures when contractor arrive and leave",
+                            checked: (data['biosecurity-people-disinfection-checkboxes'] or []).indexOf('Cleaning and disinfection measures when contractor arrive and leave') > -1
+                        },
+                        {
+                            value: "Dedicated staff looking  after the incoming animals",
+                            text: "Dedicated staff looking  after the incoming animals",
+                            checked: (data['biosecurity-people-disinfection-checkboxes'] or []).indexOf('Dedicated staff looking  after the incoming animals') > -1
+                        },
+                        {
+                            value: "Other cleaning and disinfection measures",
+                            text: "Other cleaning and disinfection measures",
+                            checked: (data['biosecurity-people-disinfection-checkboxes'] or []).indexOf('Other cleaning and disinfection measures') > -1
+                        }
+                    ]
                 })
             }}
 
@@ -127,6 +131,7 @@ This will save you time.
 
 
 <!-- ERROR LOGIC  drop down to toggle states  -->
+<!--
 <form method="post"  action="#" class="for4" style=" float: left; position: relative; bottom:-270px;  ">
 
     <select style="height:30px;" onchange="window.location.href='?'+this.value">
@@ -142,6 +147,7 @@ This will save you time.
     </select>
 
 </form>
+-->
 <!--  END OF ERROR LOGIC -->
 
 
