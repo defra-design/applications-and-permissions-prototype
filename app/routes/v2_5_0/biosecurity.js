@@ -460,7 +460,7 @@ module.exports = function (router) {
                 }
             }
 
-            console.log("index of output " + indexoutput);
+            //console.log("index of output " + indexoutput);
 
             if (indexoutput == -1 )
             {
