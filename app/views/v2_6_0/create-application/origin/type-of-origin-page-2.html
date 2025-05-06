@@ -1,0 +1,171 @@
+{% extends "layouts/v2_5_0.html" %}
+
+<!--
+NOTES ON USING THIS TEMPLATE Page
+This will save you time.
+
+1. Type your heading for the page after '% set pageHeadingTextHTML %'
+2. Type/customise the error message after '% set errorTextHTML %'
+3. Use 'Find and replace' to replace "SECTION" with the name of the section of the service you're working on.
+4. Use 'Find and replace' to replace "PAGENAME_RADIOS" with whatever you named this page/file.
+5. Use 'Find and replace' to replace each of the radio button values. Starting with 'A farm'
+6. Go to the javascript file 'templates.js' and copy the section 'RADIO BUTTONS - MANDATORY' into your routes.js file.
+7. Follow instructions at the top of the 'templates.js'
+-->
+
+
+<!-- Setting the big main heading at the top of the page -->
+{% set pageHeadingTextHTML %}
+    Which type of premises are the animals moving off?
+{% endset %}
+
+
+<!-- Set the text for the error type -->
+{% set errorTextHTML %}
+    <!-- Nothing was selected -->
+    {% if data['errortypeone'] == "true" %}
+        Select where the animals are moving from
+    {% endif %}
+{% endset %}
+
+
+<!-- Text that show in the browser tab. Does NOT need changing -->
+{% block pageTitle %}
+    {% if  data['errorthispage'] == "true"  %}
+        Error:
+    {% endif %}
+
+    {{ pageHeadingTextHTML }}
+{% endblock %}
+
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+        <!-- ERROR LOGIC 'error summary' -->
+        {% if data['errorthispage'] == "true" %}
+            {{ govukErrorSummary
+                ({
+                    titleText: "There is a problem",
+                    errorList:
+                    [
+                        {
+                            html: errorTextHTML,
+                            href: "#origin-type-of-origin-page-2-radios"
+                        }
+                    ]
+                })
+            }}
+        {% endif %}
+        <!--  END OF 'error summary' -->
+
+
+        <!-- go to routes.js for routing  -->
+        <form action="type-of-origin-page-2-router" method="post" novalidate>
+
+            {{ govukRadios
+                ({
+                    name: "origin-type-of-origin-page-2-radios",
+
+                    id: "origin-type-of-origin-page-2-radios",
+
+                    fieldset:
+                    {
+                        legend:
+                        {
+                            html: pageHeadingTextHTML,
+                            isPageHeading: true,
+                            classes: "govuk-fieldset__legend--l"
+                        }
+                    },
+
+                    hint:
+                    {
+                        text: ""
+                    },
+
+                    errorMessage: null if data['errorthispage'] != "true"
+                                       else { html: errorTextHTML },
+
+                    items:
+                    [
+                        {
+                            value: "Zoo with TB restrictions",
+                            text: "Zoo with TB restrictions",
+                            checked: data['origin-type-of-origin-page-2-radios'] == "Zoo with TB restrictions"
+                        },
+                        {
+                            value: "Laboratory with TB restrictions",
+                            text: "Laboratory with TB restrictions",
+                            checked: data['origin-type-of-origin-page-2-radios'] == "Laboratory Zoo with TB restrictions"
+                        },
+                        {
+                            value: "Another origin with TB restrictions",
+                            text: "Another origin with TB restrictions",
+                            checked: data['origin-type-of-origin-page-2-radios'] == "Another origin with TB restrictions"
+                        }
+                    ]
+                })
+            }}
+
+
+            {{ govukButton({ text: "Continue" }) }}
+
+        </form>
+
+    </div>
+</div>
+
+
+<!-- ERROR LOGIC  drop down to toggle states  -->
+<form method="post"  action="#" class="for4" style=" float: left; position: relative; bottom:-270px;  ">
+
+    <select style="height:30px;" onchange="window.location.href='?'+this.value">
+
+        <option value="errorthispage=false&errortypeone=false&errortypetwo=false&"
+                {% if (data['errorthispage'] != "true") %}selected{% endif %}
+        >Errors - Off</option>
+
+        <option value="errorthispage=true&errortypeone=true&errortypetwo=false&"
+                {% if (data['errortypeone'] == 'true' and data['errortypetwo'] != 'true')  %}selected{% endif %}
+        >Error 1 - Must select at least one</option>
+
+    </select>
+
+</form>
+<!--  END OF ERROR LOGIC -->
+
+
+
+
+
+<!-- ON OR OFF FARM  drop down to toggle states  -->
+<form method="post"  action="#" class="for4" style=" float: left; position: relative; bottom:-270px;  ">
+
+    <select style="height:30px;" onchange="window.location.href='?'+this.value">
+
+        <option value="origin-to-or-from-own-premises-radios=Off the farm or premises&"
+                {% if  data['origin-to-or-from-own-premises-radios'] != "Off the farm or premises" %}selected{% endif %}
+        >Movement - OFF premises</option>
+
+        <option value="origin-to-or-from-own-premises-radios=On to the farm or premises&"
+                {% if  data['origin-to-or-from-own-premises-radios'] == 'On to the farm or premises'  %}selected{% endif %}
+        >Movement - ON premises</option>
+
+    </select>
+
+</form>
+<!--  END OF ON OR OFF FARM  LOGIC -->
+
+
+
+
+
+
+
+
+{% endblock %}
+
+

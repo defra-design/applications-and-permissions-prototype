@@ -1,0 +1,60 @@
+<dl class="govuk-summary-list">
+
+
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
+            Are reactors still on your farm or premises?
+        </dt>
+        <dd class="govuk-summary-list__value">
+            {{ data['reactors-any-reactors-radios-yes-no'] }}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="../reactors/any-reactors">Change<span class="govuk-visually-hidden"> </span></a>
+        </dd>
+    </div>
+
+
+
+
+    {%  if data['reactors-any-reactors-radios-yes-no'] == "Yes"  %}
+
+        <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key  govuk-!-width-one-half  govuk-!-font-weight-regular">
+                Do you have a date booked to remove the reactors?
+            </dt>
+            <dd class="govuk-summary-list__value">
+                {{ data['reactors-any-date-to-remove-reactors-radios-yes-no'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="../reactors/any-date-to-remove-reactors">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        </div>
+
+
+
+        {%  if data['reactors-any-date-to-remove-reactors-radios-yes-no'] == "Yes"  %}
+
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key  govuk-!-width-one-half  govuk-!-font-weight-regular">
+                    When will you remove the reactors?
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    {{ data['reactors-date-of-reactor-removal-date-input-day'] }}
+                    {{ data['reactors-date-of-reactor-removal-date-input-month-text'] }}
+                    {{ data['reactors-date-of-reactor-removal-date-input-year'] }}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="../reactors/date-of-reactor-removal">Change<span class="govuk-visually-hidden"> </span></a>
+                </dd>
+            </div>
+
+        {%  endif  %}
+
+    {%  endif  %}
+
+
+
+
+
+
+</dl>

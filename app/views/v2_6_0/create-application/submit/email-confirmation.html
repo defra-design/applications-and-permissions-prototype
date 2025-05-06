@@ -1,0 +1,88 @@
+{% extends "layouts/v2_5_0" %}
+
+{% set version = "v2_5_0" %}
+{% set bodyClasses = version %}
+
+{% set loggedout = "true" %}
+{% set backlinkoff = "true" %}
+
+<!-- Setting the big main heading at the top of the page -->
+{% set pageHeadingTextHTML %}
+    Your animal disease movement licence application
+{% endset %}
+
+
+
+<!-- Text that show in the browser tab. Does NOT need changing -->
+{% block pageTitle %}
+    {{ pageHeadingTextHTML }}
+{% endblock %}
+
+
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-!-width-full">
+
+        <div class="govuk-!-margin-9">
+
+            <div class="govuk-!-margin-9">
+
+                <p class="govuk-body">From: &nbsp;&nbsp;&nbsp; Get permission to move animals under disease controls</p>
+
+                <hr>
+
+                <p class="govuk-body govuk-!-margin-top-3">Subject: &nbsp;&nbsp;&nbsp; Bovine TB licence application received</p>
+
+                <hr>
+
+                <p class="govuk-body govuk-!-margin-top-7">Dear ((applicant name))</p>
+
+                <p class="govuk-body">Application reference number: ((application reference number))</p>
+
+                <p class="govuk-body">We have received your Bovine Tuberculosis (TB) movement licence application.</p>
+
+                <h3 class="govuk-heading-s">What happens next</h3>
+
+                <p class="govuk-body">It can take up to 5 working days to process your application.
+                        It may take longer if veterinary checks are required, or we need further information.</p>
+
+                <p class="govuk-body">We will contact you if we need any further information.</p>
+
+
+                <h3 class="govuk-heading-s">How to contact us</h3>
+
+                <p class="govuk-body">This is an automated email. If you have any questions about your application,
+                        please contact the Animal and Plant Health Agency (APHA):</p>
+
+                <ul class="govuk-list govuk-list--bullet">
+                    <li>Telephone: 03000 200 301</li>
+                    <li>Email: CSC.TBlicensing@apha.gov.uk</li>
+                </ul>
+
+                <p class="govuk-body">Regards,</p>
+
+                <p class="govuk-body">Animal and Plant Health Agency (APHA)</p>
+
+                <br>
+                <hr>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+{% endblock %}
+
+
+
+
+
+
