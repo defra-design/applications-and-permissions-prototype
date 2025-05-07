@@ -87,6 +87,18 @@
                     } if data['section-origin-complete'] == "true",
 
 
+                    {
+                        title:
+                        {
+                            text: "Receiving the licence"
+                        },
+                        href: "",
+                        status:
+                        {
+                            text:  "Cannot start yet",
+                            classes: "govuk-task-list__status--cannot-start-yet"
+                        }
+                    } if data['section-origin-complete'] != "true",
 
 
                     {
@@ -104,7 +116,7 @@
                                 classes: "govuk-tag--blue"
                             } if data['section-contact-and-updates-complete'] != "true"
                         }
-                    },
+                    } if data['section-origin-complete'] == "true",
 
 
 
