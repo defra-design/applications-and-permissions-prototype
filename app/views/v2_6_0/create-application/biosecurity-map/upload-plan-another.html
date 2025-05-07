@@ -111,7 +111,7 @@
 
 
         <!-- go to routes.js for routing  -->
-        <form action="upload-plan-router" method="post" novalidate>
+        <form action="upload-plan-another-router" method="post" novalidate>
 
             {{
                 govukFileUpload
@@ -132,12 +132,26 @@
 
 
             <div class="govuk-button-group">
+                {{ govukButton
+                    ({
+                        text: "Add another map",
+                        classes: "govuk-button--secondary",
+                        attributes:
+                        {
+                            formaction: "upload-plan-add-another-map-router"
+                        }
+                    })
+                }}
+            </div>
+
+            <div class="govuk-button-group govuk-!-margin-top-7">
                 {{ govukButton({ text: "Upload" }) }}
 
                 {{ govukButton
                     ({
-                        text: "Upload and add another",
-                        classes: "govuk-button--secondary"
+                        text: "Don't add thins map",
+                        classes: "govuk-button--secondary",
+                        href: "check-answers?upload-file-two=false&"
                     })
                 }}
             </div>

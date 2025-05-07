@@ -123,15 +123,21 @@
 
 
             <div class="govuk-button-group">
-                {{ govukButton({ text: "Upload" }) }}
-
                 {{ govukButton
                     ({
-                        text: "Upload and add another",
+                        text: "Add another map",
                         classes: "govuk-button--secondary",
-                        href: "uploading-another?upload-file-two=true&"
+                        attributes:
+                        {
+                            formaction: "upload-plan-add-another-map-router"
+                        }
                     })
                 }}
+            </div>
+
+
+            <div class="govuk-button-group govuk-!-margin-top-7">
+                {{ govukButton({ text: "Upload" }) }}
             </div>
 
 
