@@ -242,10 +242,58 @@ module.exports = function (router) {
                 }
             else
             {
-                res.redirect('check-answers');
+                res.redirect('send-copy');
             }
         }
     })
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////              Copy of application by email          ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////       YES AND NO - RADIO BUTTONS - MANDATORY       ////////////////
+    ////////////////                   COMPLEX PAGE                     ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    router.post(section + 'send-copy-router', function (req, res)
+    {
+        // Turn errors off by default
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+
+        // If Yes was selected, continue to next page
+        if (req.session.data['contact-and-updates-send-copy-radios-yes-no'] == "Yes")
+        {
+            res.redirect('check-answers');
+        }
+        else if (req.session.data['contact-and-updates-send-copy-radios-yes-no'] == "No")
+        {
+            res.redirect('check-answers');
+        }
+        else
+        {
+            // Trigger validation and reload the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('send-copy');
+        }
+    })
+
+
+
+
+
+
+
+
 
 
 
