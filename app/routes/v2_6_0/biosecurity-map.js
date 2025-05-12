@@ -142,11 +142,10 @@ module.exports = function (router) {
         req.session.data['errorthispage'] = "false";
         req.session.data['errortypeone'] = "false";
 
-        res.redirect('uploading');
 
-        /*
+
         // If file was not selected, reload page with error
-        if (req.session.data['upload-plan-file-upload'] == undefined || req.session.data['upload-plan-file-upload'] == "")
+        if (req.session.data['biosecurity-upload-plan-file-upload'] == undefined || req.session.data['biosecurity-upload-plan-file-upload'] == "")
         {
             // Trigger validation
             req.session.data['errorthispage'] = "true";
@@ -167,12 +166,12 @@ module.exports = function (router) {
             else
             {
                 // This page name needs to be the next page the user gets to after successfully continuing
-                res.redirect('THE_NEXT_PAGE_NAME');
+                res.redirect('uploading');
             }
         }
 
 
-         */
+
     })
 
 
@@ -191,7 +190,33 @@ module.exports = function (router) {
         req.session.data['errorthispage'] = "false";
         req.session.data['errortypeone'] = "false";
 
-        res.redirect('uploading-another');
+
+
+        // If file was not selected, reload page with error
+        if (req.session.data['biosecurity-upload-plan-file-upload'] == undefined || req.session.data['biosecurity-upload-plan-file-upload'] == "")
+        {
+            // Trigger validation
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // Reload the page
+            // This page name needs to match the page the user was just on
+            res.redirect('upload-plan');
+        }
+        else
+        {
+            // Continue to the next page
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('check-answers');
+            }
+            else
+            {
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('uploading-another');
+            }
+        }
     })
 
 
@@ -208,9 +233,34 @@ module.exports = function (router) {
         req.session.data['errorthispage'] = "false";
         req.session.data['errortypeone'] = "false";
 
-        req.session.data['upload-file-two'] = "true";
 
-        res.redirect('check-answers');
+
+        // If file was not selected, reload page with error
+        if (req.session.data['biosecurity-upload-plan-file-upload-two'] == undefined || req.session.data['biosecurity-upload-plan-file-upload-two'] == "")
+        {
+            // Trigger validation
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // Reload the page
+            // This page name needs to match the page the user was just on
+            res.redirect('upload-plan');
+        }
+        else
+        {
+            // Continue to the next page
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('check-answers');
+            }
+            else
+            {
+                req.session.data['upload-file-two'] = "true";
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('check-answers');
+            }
+        }
     })
 
 

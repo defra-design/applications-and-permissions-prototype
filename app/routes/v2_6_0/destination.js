@@ -1012,7 +1012,7 @@ module.exports = function (router) {
         // If Yes was selected, continue to next page
         if (req.session.data['destination-reason-for-movement-radios'] == "Routine restocking")
         {
-            res.redirect('check-answers');
+            res.redirect('restocking-additional-info');
         }
         else if (req.session.data['destination-reason-for-movement-radios'] == "Breeding male")
         {
