@@ -3,6 +3,97 @@
 {% set version = "v2_6_0" %}
 {% set bodyClasses = version %}
 
+{% block bodyStart %}
+
+    {% if cookiesbanner == "accepted" %}
+
+        {% set acceptHtml %}
+          <p class="govuk-body">You’ve accepted additional cookies. You can <a class="govuk-link" href="/cookies?cookiesaccepted=false&cookiesrejected=false&">change your cookie settings</a> at any time.</p>
+        {% endset %}
+
+        {{ govukCookieBanner({
+          ariaLabel: "Cookies on [name of service]",
+          messages: [
+            {
+              html: acceptHtml,
+              actions: [
+                {
+                    text: "Hide cookie message",
+                    type: "button",
+                    href: "cookies?cookiesbannerhidden=true&",
+                    name: "cookies[hide]",
+                    value: "yes"
+                }
+              ]
+            }
+          ]
+        }) }}
+
+
+    {% elif cookiesbanner == "rejected" %}
+
+        {% set acceptHtml %}
+          <p class="govuk-body">You’ve rejected additional cookies. You can <a class="govuk-link" href="/cookies?cookiesaccepted=false&cookiesrejected=false&">change your cookie settings</a> at any time.</p>
+        {% endset %}
+
+        {{ govukCookieBanner({
+          ariaLabel: "Cookies on [name of service]",
+          messages: [
+            {
+              html: acceptHtml,
+              actions: [
+                {
+                    text: "Hide cookie message",
+                    type: "button",
+                    href: "cookies?cookiesbannerhidden=true&",
+                    name: "cookies[hide]",
+                    value: "yes"
+                }
+              ]
+            }
+          ]
+        }) }}
+
+
+    {% elif cookiesbanner == "basic" %}
+
+        {{ govukCookieBanner({
+          ariaLabel: "Cookies on Get permission to move animals under disease controls",
+          messages: [
+            {
+              headingText: "Cookies on Get permission to move animals under disease controls",
+              html: '<p class="govuk-body">We use some essential cookies to make this service work.</p>
+                <p class="govuk-body">We’d also like to use analytics cookies so we can understand how you use the service and make improvements.</p>',
+              actions: [
+                {
+                    text: "Accept analytics cookies",
+                    type: "button",
+                    href: "cookies?cookiesaccepted=true&cookiesrejected=false&cookiesbannerhidden=false&",
+                    name: "cookies[analytics]",
+                    value: "yes"
+                },
+                {
+                    text: "Reject analytics cookies",
+                    type: "button",
+                    href: "cookies?cookiesaccepted=false&cookiesrejected=true&cookiesbannerhidden=false&",
+                    name: "cookies[analytics]",
+                    value: "no"
+                },
+                {
+                    text: "View cookies",
+                    href: "#"
+                }
+              ]
+            }
+          ]
+        }) }}
+
+
+    {% endif %}
+
+{% endblock %}
+
+
 
 {% block beforeContent %}
     {{ govukPhaseBanner
