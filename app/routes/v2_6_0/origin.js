@@ -203,7 +203,7 @@ module.exports = function (router) {
             }
         }
 
-        else if( req.session.data['origin-type-of-origin-on-checkboxes'].includes("Approved finishing unit (AFU)") )
+        else if( req.session.data['origin-type-of-origin-on-checkboxes'].includes("Approved finishing units (AFU)") )
         {
             req.session.data['origin-type-of-origin-on-checkboxes-formatted'] = req.session.data['origin-type-of-origin-on-checkboxes'];
 
