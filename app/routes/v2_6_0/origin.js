@@ -68,7 +68,7 @@ module.exports = function (router) {
 
             // Continue to the next page
             // scope means this is not viable for release 1
-            res.redirect('type-of-origin');
+            res.redirect('type-of-origin-on');
         }
 
         else if (req.session.data['origin-to-or-from-own-premises-radios'] == "Off the farm or premises")
@@ -84,7 +84,7 @@ module.exports = function (router) {
 
 
             // This page name needs to be the next page the user gets to after successfully continuing
-            res.redirect('type-of-origin');
+            res.redirect('type-of-origin-off');
         }
 
         else
@@ -108,82 +108,38 @@ module.exports = function (router) {
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////                                                    ////////////////
     ////////////////        Type of origin premises                     ////////////////
-    ////////////////                 for inbound animals                ////////////////
+    ////////////////         for animal moving off the premises         ////////////////
     ////////////////                                                    ////////////////
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////
 
 
     // NOT COMPLEX PAGE
-    router.post( section + 'type-of-origin-router', function (req, res)
+    router.post( section + 'type-of-origin-off-router', function (req, res)
     {
         // Turn errors off by default
         req.session.data['errorthispage'] = "false";
         req.session.data['errortypeone'] = "false";
 
-        // If Yes was selected, continue to next page
-        if (req.session.data['origin-type-of-origin-radios'] == "Market")
+
+        if (req.session.data['origin-type-of-origin-off-radios'] == "TB restricted farm")
         {
-            // Continue to the next page
-            if (req.session.data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises")
-            {
-                res.redirect('fifty-percent-warning');
-            }
-            else
-            {
-                // This page name needs to be the next page the user gets to after successfully continuing
-                res.redirect('own-farm-new-cph');
-            }
+            // This page name needs to be the next page the user gets to after successfully continuing
+            res.redirect('own-farm-new-cph');
         }
-        else if (req.session.data['origin-type-of-origin-radios'] == "TB restricted farm")
+        else if (req.session.data['origin-type-of-origin-off-radios'] == "Approved finishing unit (AFU)")
         {
-            // Continue to the next page
-            if (req.session.data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises")
-            {
-                res.redirect('origin-farm-cph');
-            }
-            else
-            {
-                // This page name needs to be the next page the user gets to after successfully continuing
-                res.redirect('own-farm-new-cph');
-            }
+            res.redirect('own-farm-new-cph');
         }
-        else if (req.session.data['origin-type-of-origin-radios'] == "Unrestricted farm or premises")
+        else if (req.session.data['origin-type-of-origin-off-radios'] == "Unrestricted farm or premises")
         {
-            // Continue to the next page
-            if (req.session.data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises")
-            {
-                res.redirect('fifty-percent-warning');
-            }
-            else
-            {
-                // This page name needs to be the next page the user gets to after successfully continuing
-                res.redirect('contact-the-tb-restricted-farm');
-            }
+            // This page name needs to be the next page the user gets to after successfully continuing
+            res.redirect('contact-the-tb-restricted-farm');
         }
-        else if (req.session.data['origin-type-of-origin-radios'] == "Approved finishing unit (AFU)")
-        {
-            // Continue to the next page
-            if (req.session.data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises")
-            {
-                res.redirect('origin-farm-cph');
-            }
-            else
-            {
-                // This page name needs to be the next page the user gets to after successfully continuing
-                res.redirect('own-farm-new-cph');
-            }
-        }
-        else if (req.session.data['origin-type-of-origin-radios'] == "Location after animals have been imported")
-        {
-            // Continue to the next page
-            res.redirect('country');
-        }
-        else if (req.session.data['origin-type-of-origin-radios'] == "Another origin")
+        else if (req.session.data['origin-type-of-origin-off-radios'] == "Another TB restricted origin")
         {
             // end page next
-            res.redirect('type-of-origin-page-2');
-
+            res.redirect('type-of-origin-other');
         }
         else
         {
@@ -192,8 +148,153 @@ module.exports = function (router) {
             req.session.data['errortypeone'] = "true";
 
             // This page name needs to match the page the user was just on
-            res.redirect('type-of-origin');
+            res.redirect('type-of-origin-off');
         }
+    })
+
+
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////        Type of origin premises                     ////////////////
+    ////////////////                 for inbound animals                ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    // NOT COMPLEX PAGE
+    router.post( section + 'type-of-origin-on-router', function (req, res)
+    {
+        // Turn errors off by default
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+
+
+        // check if none of the checkboxes are selected
+        if(req.session.data['origin-type-of-origin-on-checkboxes'] == undefined  ||
+           req.session.data['origin-type-of-origin-on-checkboxes'].length == 0)
+        {
+            // Trigger validation and relaunch the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('type-of-origin-on');
+        }
+
+
+        else if( req.session.data['origin-type-of-origin-on-checkboxes'].includes("TB restricted farm") )
+        {
+            req.session.data['origin-type-of-origin-on-checkboxes-formatted'] = req.session.data['origin-type-of-origin-on-checkboxes'];
+
+            // Check if anything else has been selected with 'single option'
+            if( 1 < req.session.data['origin-type-of-origin-on-checkboxes'].length )
+            {
+                res.redirect('not-valid-for-single-licence');
+            }
+            else
+            {
+                res.redirect('origin-farm-cph');
+            }
+        }
+
+        else if( req.session.data['origin-type-of-origin-on-checkboxes'].includes("Approved finishing unit (AFU)") )
+        {
+            req.session.data['origin-type-of-origin-on-checkboxes-formatted'] = req.session.data['origin-type-of-origin-on-checkboxes'];
+
+            // Check if anything else has been selected with 'single option'
+            if( 1 < req.session.data['origin-type-of-origin-on-checkboxes'].length )
+            {
+                res.redirect('not-valid-for-single-licence');
+            }
+            else
+            {
+                // Continue to the next page
+                res.redirect('origin-farm-cph');
+            }
+        }
+
+        else if( req.session.data['origin-type-of-origin-on-checkboxes'].includes("Location after animals have been imported") )
+        {
+            req.session.data['origin-type-of-origin-on-checkboxes-formatted'] = req.session.data['origin-type-of-origin-on-checkboxes'];
+
+            // Check if anything else has been selected with 'single option'
+            if( 1 < req.session.data['origin-type-of-origin-on-checkboxes'].length )
+            {
+                res.redirect('not-valid-for-single-licence');
+            }
+            else
+            {
+                // Continue to the next page
+                res.redirect('country');
+
+            }
+        }
+
+        else if( req.session.data['origin-type-of-origin-on-checkboxes'].includes("Another TB restricted origin") )
+        {
+            req.session.data['origin-type-of-origin-on-checkboxes-formatted'] = req.session.data['origin-type-of-origin-on-checkboxes'];
+
+            // Check if anything else has been selected with 'single option'
+            if( 1 < req.session.data['origin-type-of-origin-on-checkboxes'].length )
+            {
+                res.redirect('not-valid-for-single-licence');
+            }
+            else
+            {
+                // Continue to the next page
+                res.redirect('country');
+
+            }
+        }
+
+        else if( req.session.data['origin-type-of-origin-on-checkboxes'].includes("Market") )
+        {
+
+            req.session.data['origin-type-of-origin-on-checkboxes-formatted'] = req.session.data['origin-type-of-origin-on-checkboxes'];
+
+            if( 2 == req.session.data['origin-type-of-origin-on-checkboxes'].length )
+            {
+                if( req.session.data['origin-type-of-origin-on-checkboxes'].includes("Unrestricted farm or premises") )
+                {
+                    // all fine as both can be selected
+                    // Format them
+                    req.session.data['origin-type-of-origin-on-checkboxes-formatted'] = "Market" + "\n\n" + "Unrestricted farm or premises";
+                }
+                else
+                {
+                    res.redirect('not-valid-for-single-licence');
+                }
+            }
+            res.redirect('fifty-percent-warning');
+        }
+
+        else if( req.session.data['origin-type-of-origin-on-checkboxes'].includes("Unrestricted farm or premises") )
+        {
+            req.session.data['origin-type-of-origin-on-checkboxes-formatted'] = req.session.data['origin-type-of-origin-on-checkboxes'];
+
+            if( 2 == req.session.data['origin-type-of-origin-on-checkboxes'].length )
+            {
+                if( req.session.data['origin-type-of-origin-on-checkboxes'].includes("Market") )
+                {
+                    // all fine as both can be selected
+                    // Format them
+                    req.session.data['origin-type-of-origin-on-checkboxes-formatted'] = "Market" + "\n\n" + "Unrestricted farm or premises";
+                }
+                else
+                {
+                    res.redirect('not-valid-for-single-licence');
+                }
+            }
+            res.redirect('fifty-percent-warning');
+        }
+
+
     })
 
 

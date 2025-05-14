@@ -12,58 +12,23 @@
         </dd>
     </div>
 
-    <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
-            Which type of premises are the animals moving off?
-        </dt>
-        <dd class="govuk-summary-list__value">
-            {{ data['origin-type-of-origin-radios'] }}
-        </dd>
-        <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="../origin/type-of-origin">Change<span class="govuk-visually-hidden"> </span></a>
-        </dd>
-    </div>
 
-
-    {%  if  data['origin-type-of-origin-radios'] == "Another origin"   %}
+    {%  if  data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises"   %}
 
         <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
                 Which type of premises are the animals moving off?
             </dt>
-            <dd class="govuk-summary-list__value">
-                {{ data['origin-type-of-origin-page-2-radios'] }}
-            </dd>
+            <dd class="govuk-summary-list__value" style="white-space: pre-wrap;">{{ data['origin-type-of-origin-on-checkboxes-formatted'] }}</dd>
             <dd class="govuk-summary-list__actions">
-                <a class="govuk-link" href="../origin/type-of-origin-page-2">Change<span class="govuk-visually-hidden"> </span></a>
+                <a class="govuk-link" href="../origin/type-of-origin-on">Change<span class="govuk-visually-hidden"> </span></a>
             </dd>
         </div>
 
-        {%  if  data['origin-type-of-origin-page-2-radios'] == "Another origin"   %}
-
-            <div class="govuk-summary-list__row">
-                <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
-                    What type of premises are the animals moving off?
-                </dt>
-                <dd class="govuk-summary-list__value">
-                    {{ data['origin-type-of-origin-other-text-input'] }}
-                </dd>
-                <dd class="govuk-summary-list__actions">
-                    <a class="govuk-link" href="../origin/type-of-origin-other?camefromcheckanswers=true&">Change<span class="govuk-visually-hidden"> </span></a>
-                </dd>
-            </div>
-
-        {%  endif  %}
-
-    {%  endif  %}
 
 
-
-    {%  if  data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises"   %}
-
-
-            {%  if    data['origin-type-of-origin-radios'] == "Market"
-                   or data['origin-type-of-origin-radios'] == "Unrestricted farm or premises"
+        {%  if    data['origin-type-of-origin-on-radios'] == "Market"
+                   or data['origin-type-of-origin-on-radios'] == "Unrestricted farm or premises"
             %}
 
             <!-- No data needed form the user -->
@@ -111,6 +76,39 @@
 
 
     {%  else  %}
+
+        <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                Which type of premises are the animals moving off?
+            </dt>
+            <dd class="govuk-summary-list__value">
+                {{ data['origin-type-of-origin-off-radios'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="../origin/type-of-origin-off">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        </div>
+
+
+        {%  if  data['origin-type-of-origin-off-radios'] == "Another TB restricted origin"   %}
+
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                    What type of premises are the animals moving off?
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    {{ data['origin-type-of-origin-other-text-input'] }}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="../origin/type-of-origin-other?camefromcheckanswers=true&">Change<span class="govuk-visually-hidden"> </span></a>
+                </dd>
+            </div>
+
+        {%  endif  %}
+
+
+
+
         <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key govuk-!-font-weight-regular">
                 What is the County Parish Holding (CPH) number of your farm or premises where the animals are moving off?
@@ -140,6 +138,16 @@
         </div>
 
     {%  endif  %}
+
+
+
+
+
+
+
+
+
+
 
 
 </dl>

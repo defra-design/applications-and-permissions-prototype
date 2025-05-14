@@ -53,7 +53,7 @@ This will save you time.
                     [
                         {
                             html: errorTextHTML,
-                            href: "#origin-type-of-origin-radios"
+                            href: "#origin-type-of-origin-off-radios"
                         }
                     ]
                 })
@@ -63,13 +63,13 @@ This will save you time.
 
 
         <!-- go to routes.js for routing  -->
-        <form action="type-of-origin-router" method="post" novalidate>
+        <form action="type-of-origin-off-router" method="post" novalidate>
 
             {{ govukRadios
                 ({
-                    name: "origin-type-of-origin-radios",
+                    name: "origin-type-of-origin-off-radios",
 
-                    id: "origin-type-of-origin-radios",
+                    id: "origin-type-of-origin-off-radios",
 
                     fieldset:
                     {
@@ -92,25 +92,10 @@ This will save you time.
                     items:
                     [
                         {
-                            value: "Market",
-                            text: "Market",
-                            checked: data['origin-type-of-origin-radios'] == "Market"
-                        } if data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises",
-                        {
                             value: "TB restricted farm",
                             text: "TB restricted farm",
-                            checked: data['origin-type-of-origin-radios'] == "TB restricted farm"
-                        } if data['origin-to-or-from-own-premises-radios'] == "Off the farm or premises",
-                        {
-                            value: "Unrestricted farm or premises",
-                            text: "Unrestricted farm or premises",
-                            checked: data['origin-type-of-origin-radios'] == "Unrestricted farm or premises"
-                        } if data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises",
-                        {
-                            value: "TB restricted farm",
-                            text: "TB restricted farm",
-                            checked: data['origin-type-of-origin-radios'] == "TB restricted farm"
-                        } if data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises",
+                            checked: data['origin-type-of-origin-off-radios'] == "TB restricted farm"
+                        },
                         {
                             value: "Approved finishing unit (AFU)",
                             text: "Approved finishing unit (AFU)",
@@ -118,22 +103,17 @@ This will save you time.
                             {
                                 text: "Including enhanced with grazing (AFUE)"
                             },
-                            checked: data['origin-type-of-origin-radios'] == "Approved finishing unit (AFU)"
+                            checked: data['origin-type-of-origin-off-radios'] == "Approved finishing unit (AFU)"
                         },
                         {
                             value: "Unrestricted farm or premises",
                             text: "Unrestricted farm or premises",
-                            checked: data['origin-type-of-origin-radios'] == "Unrestricted farm or premises"
-                        } if data['origin-to-or-from-own-premises-radios'] == "Off the farm or premises",
+                            checked: data['origin-type-of-origin-off-radios'] == "Unrestricted farm or premises"
+                        },
                         {
-                            value: "Location after animals have been imported",
-                            text: "Location after animals have been imported",
-                            checked: data['origin-type-of-origin-page-2-radios'] == "Location after animals have been imported"
-                        } if data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises",
-                        {
-                            value: "Another origin",
-                            text: "Another origin",
-                            checked: data['origin-type-of-origin-radios'] == "Another origin"
+                            value: "Another TB restricted origin",
+                            text: "Another TB restricted origin",
+                            checked: data['origin-type-of-origin-off-radios'] == "Another TB restricted origin"
                         }
                     ]
                 })
@@ -168,7 +148,7 @@ This will save you time.
 
 
 
-<!-- ON OR OFF FARM  drop down to toggle states  -->
+<!-- ON OR OFF FARM  drop down to toggle states
 <form method="post"  action="#" class="for4" style=" float: left; position: relative; bottom:-270px;  ">
 
     <select style="height:30px;" onchange="window.location.href='?'+this.value">
@@ -184,7 +164,7 @@ This will save you time.
     </select>
 
 </form>
-<!--  END OF ON OR OFF FARM  LOGIC -->
+ END OF ON OR OFF FARM  LOGIC -->
 
 
 
@@ -194,5 +174,4 @@ This will save you time.
 
 
 {% endblock %}
-
 
