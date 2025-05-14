@@ -95,7 +95,7 @@ This will save you time.
                             value: "TB restricted farm",
                             text: "TB restricted farm",
                             checked: data['destination-type-of-destination-radios'] == "TB restricted farm"
-                        } if   data['origin-type-of-origin-radios'] != "Approved finishing units (AFU)",
+                        } if data['origin-to-or-from-own-premises-radios'] != "Off the farm or premises"  and   data['origin-type-of-origin-radios'] != "Approved finishing units (AFU)" ,
                         {
                             value: "Slaughter",
                             text: "Slaughter",
@@ -116,6 +116,16 @@ This will save you time.
                             },
                             checked: data['destination-type-of-destination-radios'] == "Approved finishing units (AFU)"
                         },
+                        {
+                            value: "TB restricted farm",
+                            text: "TB restricted farm",
+                            checked: data['destination-type-of-destination-radios'] == "TB restricted farm"
+                        } if data['origin-to-or-from-own-premises-radios'] == "Off the farm or premises"  and   data['origin-type-of-origin-radios'] != "Approved finishing units (AFU)" ,
+                        {
+                            value: "TB isolation units",
+                            text: "TB isolation units",
+                            checked: data['destination-type-of-destination-radios'] == "TB isolation units"
+                        } if   data['origin-to-or-from-own-premises-radios'] == "Off the farm or premises"  and  data['origin-type-of-origin-radios'] != "Approved finishing units (AFU)",
                         {
                             value: "Another TB restricted destination",
                             text: "Another TB restricted destination",
