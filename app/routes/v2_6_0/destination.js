@@ -141,12 +141,12 @@ module.exports = function (router) {
                 }
                 else
                 {
-                    res.redirect('type-of-destination-page-2');
+                    res.redirect('type-of-destination-other');
                 }
             }
             else
             {
-                res.redirect('type-of-destination-page-2');
+                res.redirect('type-of-destination-other');
             }
         }
 

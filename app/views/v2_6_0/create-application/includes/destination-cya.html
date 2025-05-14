@@ -14,21 +14,7 @@
     </div>
 
 
-    {%  if  data['destination-type-of-destination-radios'] == "Another destination"   %}
-
-        <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
-                Where are the animals going to?
-            </dt>
-            <dd class="govuk-summary-list__value">
-                {{ data['destination-type-of-destination-page-2-radios'] }}
-            </dd>
-            <dd class="govuk-summary-list__actions">
-                <a class="govuk-link" href="../destination/type-of-destination-page-2">Change<span class="govuk-visually-hidden"> </span></a>
-            </dd>
-        </div>
-
-        {%  if  data['destination-type-of-destination-page-2-radios'] == "Another destination"   %}
+    {%  if  data['destination-type-of-destination-radios'] == "Another TB restricted destination"   %}
 
             <div class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
@@ -41,8 +27,6 @@
                     <a class="govuk-link" href="../destination/type-of-destination-other?camefromcheckanswers=true&">Change<span class="govuk-visually-hidden"> </span></a>
                 </dd>
             </div>
-
-        {%  endif  %}
 
     {%  endif  %}
 
