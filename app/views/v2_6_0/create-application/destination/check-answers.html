@@ -49,13 +49,13 @@
             {% endif %}
         >State -  ON to premises - Market or Unrestricted premises to TB restricted Farm or Zoo </option>
 
-        <option value="origin-to-or-from-own-premises-radios=Off the farm or premises&origin-type-of-origin-radios=TB restricted farm&destination-type-of-destination-radios=Dedicated sale for TB (orange market)&"
+        <option value="origin-to-or-from-own-premises-radios=Off the farm or premises&origin-type-of-origin-radios=TB restricted farm&destination-type-of-destination-radios=Dedicated sales for TB (orange markets)&"
             {%  if  (data['origin-type-of-origin-radios'] == "TB restricted farm"
                         or data['origin-type-of-origin-page-2-radios'] == "Zoo with TB restrictions")
                     and
                     (data['destination-type-of-destination-radios'] == "Slaughter"
-                        or data['destination-type-of-destination-radios'] == "Dedicated sale for TB (orange market)"
-                        or data['destination-type-of-destination-radios'] == "Approved finishing unit (AFU)" )
+                        or data['destination-type-of-destination-radios'] == "Dedicated sales for TB (orange markets)"
+                        or data['destination-type-of-destination-radios'] == "Approved finishing units (AFU)" )
             %}
                 selected
             {% endif %}

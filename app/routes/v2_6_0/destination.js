@@ -101,13 +101,13 @@ module.exports = function (router) {
             res.redirect('use-general-licence');
         }
 
-        else if (req.session.data['destination-type-of-destination-radios'] == "Dedicated sale for TB (orange market)")
+        else if (req.session.data['destination-type-of-destination-radios'] == "Dedicated sales for TB (orange markets)")
         {
             // Continue to the next page
             res.redirect('check-answers');
         }
 
-        else if (req.session.data['destination-type-of-destination-radios'] == "Approved finishing unit (AFU)")
+        else if (req.session.data['destination-type-of-destination-radios'] == "Approved finishing units (AFU)")
         {
             if (req.session.data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises")
             {
@@ -1048,7 +1048,7 @@ module.exports = function (router) {
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////                                                    ////////////////
-    ////////////////               PLACEHOLDER_SUMMARY                  ////////////////
+    ////////////////               quantity of animals                  ////////////////
     ////////////////                                                    ////////////////
     ////////////////                 NUMBER ENTRY                       ////////////////
     ////////////////                NOT COMPLEX PAGE                    ////////////////

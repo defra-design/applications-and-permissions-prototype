@@ -95,32 +95,27 @@ This will save you time.
                             value: "TB restricted farm",
                             text: "TB restricted farm",
                             checked: data['destination-type-of-destination-radios'] == "TB restricted farm"
-                        } if   data['origin-type-of-origin-radios'] != "Approved finishing unit (AFU)",
+                        } if   data['origin-type-of-origin-radios'] != "Approved finishing units (AFU)",
                         {
                             value: "Slaughter",
                             text: "Slaughter",
                             checked: data['destination-type-of-destination-radios'] == "Slaughter"
                         } if   data['origin-to-or-from-own-premises-radios'] == "Off the farm or premises",
                         {
-                            value: "Dedicated sale for TB (orange market)",
-                            text: "Dedicated sale for TB (orange market)",
-                            checked: data['destination-type-of-destination-radios'] == "Dedicated sale for TB (orange market)"
+                            value: "Dedicated sales for TB (orange markets)",
+                            text: "Dedicated sales for TB (orange markets)",
+                            checked: data['destination-type-of-destination-radios'] == "Dedicated sales for TB (orange markets)"
                         } if   data['origin-to-or-from-own-premises-radios'] == "Off the farm or premises"
-                                and  data['origin-type-of-origin-radios'] != "Approved finishing unit (AFU)",
+                                and  data['origin-type-of-origin-radios'] != "Approved finishing units (AFU)",
                         {
-                            value: "Approved finishing unit (AFU)",
-                            text: "Approved finishing unit (AFU)",
+                            value: "Approved finishing units (AFU)",
+                            text: "Approved finishing units (AFU)",
                             hint:
                             {
                                 text: "Including enhanced with grazing (AFUE)"
                             },
-                            checked: data['destination-type-of-destination-radios'] == "Approved finishing unit (AFU)"
+                            checked: data['destination-type-of-destination-radios'] == "Approved finishing units (AFU)"
                         },
-                        {
-                            value: "TB restricted farm",
-                            text: "TB restricted farm",
-                            checked: data['destination-type-of-destination-radios'] == "TB restricted farm"
-                        } if  data['origin-type-of-origin-radios'] == "An unrestricted farm or premises",
                         {
                             value: "Another destination",
                             text: "Another destination",
@@ -199,9 +194,9 @@ This will save you time.
         >Origin type - Unrestricted farm or premises - ON TO PREMISES ONLY</option>
 
 
-        <option value="origin-type-of-origin-radios=Approved finishing unit (AFU)&"
-                {% if  data['origin-type-of-origin-radios'] == "Approved finishing unit (AFU)"  %} selected {% endif %}
-        >Origin type - Approved finishing unit (AFU)</option>
+        <option value="origin-type-of-origin-radios=Approved finishing units (AFU)&"
+                {% if  data['origin-type-of-origin-radios'] == "Approved finishing units (AFU)"  %} selected {% endif %}
+        >Origin type - Approved finishing units (AFU)</option>
 
     </select>
 
