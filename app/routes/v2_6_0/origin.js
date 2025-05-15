@@ -248,7 +248,7 @@ module.exports = function (router) {
             else
             {
                 // Continue to the next page
-                res.redirect('country');
+                res.redirect('type-of-origin-other');
 
             }
         }

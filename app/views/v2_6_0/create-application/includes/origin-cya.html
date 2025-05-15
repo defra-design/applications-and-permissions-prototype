@@ -26,9 +26,25 @@
         </div>
 
 
+        {%  if  data['origin-type-of-origin-on-checkboxes'] == "Another TB restricted origin"   %}
 
-        {%  if    data['origin-type-of-origin-on-radios'] == "Market"
-                   or data['origin-type-of-origin-on-radios'] == "Unrestricted farm or premises"
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                    What type of premises are the animals moving off?
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    {{ data['origin-type-of-origin-other-text-input'] }}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="../origin/type-of-origin-other?camefromcheckanswers=true&">Change<span class="govuk-visually-hidden"> </span></a>
+                </dd>
+            </div>
+
+        {%  endif  %}
+
+
+            {%  if    (data['origin-type-of-origin-on-checkboxes'] or []).indexOf('Market') > -1
+                   or (data['origin-type-of-origin-on-checkboxes'] or []).indexOf('Unrestricted farm or premises') > -1
             %}
 
             <!-- No data needed form the user -->
