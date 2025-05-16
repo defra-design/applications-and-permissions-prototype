@@ -196,6 +196,9 @@
             <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reactor - If no removal date - <a href="create-application/reactors/you-must-remove-reactors">You must remove reactors</a>        &nbsp;&nbsp;&nbsp;<span class="govuk-!-font-weight-regular"  style="color: #d4351c">(Design only)</span>
             <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reactor - If removal date - <a href="create-application/reactors/date-of-reactor-removal">Date of removal</a>        &nbsp;&nbsp;&nbsp;<span class="govuk-!-font-weight-regular"  style="color: #d4351c">(Design only)</span>
             <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reactor - <a href="create-application/reactors/check-answers.html">Check answers</a>        &nbsp;&nbsp;&nbsp;<span class="govuk-!-font-weight-regular"  style="color: #d4351c">(Design only)</span>
+        </p>
+        <p>
+            <br>&nbsp;&nbsp;&nbsp;Task list alternatives</a>        &nbsp;&nbsp;&nbsp;<span class="govuk-!-font-weight-regular"  style="color: #d4351c">(Design only)</span>
             <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Task list - <a href="create-application/task-list-temp">Before</a>        &nbsp;&nbsp;&nbsp;<span class="govuk-!-font-weight-regular"  style="color: #d4351c">(Design only)</span>
             <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Task list - <a href="create-application/task-list-temp-two">After</a>        &nbsp;&nbsp;&nbsp;<span class="govuk-!-font-weight-regular"  style="color: #d4351c">(Design only)</span>
         </p>
@@ -232,6 +235,21 @@
                     <a href="version-index?defra-account-registration=true&">Turn ON</a>
                 </p>
             {% endif %}
+
+
+            <h2 class="govuk-heading-s govuk-!-margin-top-3 govuk-!-margin-bottom-3">TB reactors section</h2>
+            {% if data['show-reactors-section'] == "true" %}
+                <p>ON<br>
+                    <a href="version-index?show-reactors-section=false&">Turn OFF</a>
+                </p>
+            {% else %}
+                <p>OFF</br>
+                    <a href="version-index?show-reactors-section=true&">Turn ON</a>
+                </p>
+            {% endif %}
+
+
+
     </div>
 
 </div>
