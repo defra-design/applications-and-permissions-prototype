@@ -189,9 +189,9 @@ This will save you time.
 
     <select style="height:30px;" onchange="window.location.href='?'+this.value">
 
-        <option value="origin-type-of-origin-radios=Market&origin-to-or-from-own-premises-radios=On to the farm or premises&"
-                {% if  data['origin-type-of-origin-radios'] == "Market" %} selected {% endif %}
-        >Origin type - Market - ON TO PREMISES ONLY</option>
+        <option value="origin-type-of-origin-radios=Unrestricted market&origin-to-or-from-own-premises-radios=On to the farm or premises&"
+                {% if  data['origin-type-of-origin-radios'] == "Unrestricted market" %} selected {% endif %}
+        >Origin type - Unrestricted market - ON TO PREMISES ONLY</option>
 
         <option value="origin-type-of-origin-radios=TB restricted farm&"
                 {% if  data['origin-type-of-origin-radios'] == "TB restricted farm"  %} selected {% endif %}

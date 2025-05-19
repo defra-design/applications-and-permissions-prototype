@@ -40,14 +40,14 @@
             {% endif %}
         >State - ON to premises - TB restricted Farm or Zoo to TB restricted  Farm or Zoo </option>
 
-        <option value="origin-to-or-from-own-premises-radios=On to the farm or premises&origin-type-of-origin-radios=Market&destination-type-of-destination-radios=TB restricted farm&"
-            {%  if  data['origin-type-of-origin-radios'] == "Market"
+        <option value="origin-to-or-from-own-premises-radios=On to the farm or premises&origin-type-of-origin-radios=Unrestricted market&destination-type-of-destination-radios=TB restricted farm&"
+            {%  if  data['origin-type-of-origin-radios'] == "Unrestricted market"
                     and
                     data['destination-type-of-destination-radios'] == "TB restricted farm"
             %}
                 selected
             {% endif %}
-        >State -  ON to premises - Market or Unrestricted premises to TB restricted Farm or Zoo </option>
+        >State -  ON to premises - Unrestricted market or Unrestricted premises to TB restricted Farm or Zoo </option>
 
         <option value="origin-to-or-from-own-premises-radios=Off the farm or premises&origin-type-of-origin-radios=TB restricted farm&destination-type-of-destination-radios=Dedicated sales for TB (orange markets)&"
             {%  if  (data['origin-type-of-origin-radios'] == "TB restricted farm"
