@@ -9,7 +9,7 @@
 
 <!-- Setting the smaller secondary heading lower down the page -->
 {% set questionHeadingTextHTML %}
-    Do you want to be sent a copy of your application?
+    Do you want a copy of your application sent to you?
 {% endset %}
 
 
@@ -17,7 +17,7 @@
 {% set errorTextHTML %}
     <!-- Nothing was selected -->
     {% if data['errortypeone'] == "true" %}
-        Select if you want to be sent a copy of your application
+        Select if you want a copy of your application sent to you
     {% endif %}
 {% endset %}
 
@@ -45,7 +45,7 @@
                     [
                         {
                             html: errorTextHTML,
-                            href: "#contact-and-updates-send-copy-radios-yes-no"
+                            href: "#contact-and-updates-copy-of-application-radios-yes-no"
                         }
                     ]
                 })
@@ -73,15 +73,15 @@
 
 
         <!-- go to the next page, not check answers -->
-        <form action="send-copy-router" method="post" novalidate>
+        <form action="copy-of-application-router" method="post" novalidate>
 
             {{ govukRadios
                 ({
                     classes: "govuk-radios--inline",
 
-                    name: "contact-and-updates-send-copy-radios-yes-no",
+                    name: "contact-and-updates-copy-of-application-radios-yes-no",
 
-                    id: "contact-and-updates-send-copy-radios-yes-no",
+                    id: "contact-and-updates-copy-of-application-radios-yes-no",
 
                     fieldset:
                     {
@@ -103,12 +103,12 @@
                         {
                             value: "Yes",
                             text: "Yes",
-                            checked: data['contact-and-updates-send-copy-radios-yes-no'] == "Yes"
+                            checked: data['contact-and-updates-copy-of-application-radios-yes-no'] == "Yes"
                         },
                         {
                             value: "No",
                             text: "No",
-                            checked: data['contact-and-updates-send-copy-radios-yes-no'] == "No"
+                            checked: data['contact-and-updates-copy-of-application-radios-yes-no'] == "No"
                         }
                     ],
 

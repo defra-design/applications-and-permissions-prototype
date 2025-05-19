@@ -242,7 +242,7 @@ module.exports = function (router) {
                 }
             else
             {
-                res.redirect('send-copy');
+                res.redirect('copy-of-application');
             }
         }
     })
@@ -261,18 +261,18 @@ module.exports = function (router) {
     ////////////////////////////////////////////////////////////////////////////////////
 
 
-    router.post(section + 'send-copy-router', function (req, res)
+    router.post(section + 'copy-of-application-router', function (req, res)
     {
         // Turn errors off by default
         req.session.data['errorthispage'] = "false";
         req.session.data['errortypeone'] = "false";
 
         // If Yes was selected, continue to next page
-        if (req.session.data['contact-and-updates-send-copy-radios-yes-no'] == "Yes")
+        if (req.session.data['contact-and-updates-copy-of-application-radios-yes-no'] == "Yes")
         {
             res.redirect('check-answers');
         }
-        else if (req.session.data['contact-and-updates-send-copy-radios-yes-no'] == "No")
+        else if (req.session.data['contact-and-updates-copy-of-application-radios-yes-no'] == "No")
         {
             res.redirect('check-answers');
         }
@@ -283,7 +283,7 @@ module.exports = function (router) {
             req.session.data['errortypeone'] = "true";
 
             // This page name needs to match the page the user was just on
-            res.redirect('send-copy');
+            res.redirect('copy-of-application');
         }
     })
 
