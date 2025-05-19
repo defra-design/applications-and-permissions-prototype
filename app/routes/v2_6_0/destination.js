@@ -131,18 +131,11 @@ module.exports = function (router) {
             }
         }
 
-        else if (req.session.data['destination-type-of-destination-radios'] == "Another destination")
+        else if (req.session.data['destination-type-of-destination-radios'] == "Another TB restricted destination")
         {
-            if (req.session.data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises")
+            if (req.session.data['origin-type-of-origin-radios'] == "Approved finishing units (AFU)")
             {
-                if (req.session.data['origin-type-of-origin-radios'] == "Approved finishing unit (AFU)")
-                {
-                    res.redirect('can-not-use-service-afu-only');
-                }
-                else
-                {
-                    res.redirect('type-of-destination-other');
-                }
+                res.redirect('can-not-use-service-afu-only');
             }
             else
             {
