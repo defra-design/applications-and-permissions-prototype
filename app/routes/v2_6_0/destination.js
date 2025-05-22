@@ -131,9 +131,14 @@ module.exports = function (router) {
             }
         }
 
+        else if (req.session.data['destination-type-of-destination-radios'] == "TB isolation unit")
+        {
+            res.redirect('tb-isolation-unit');
+        }
+
         else if (req.session.data['destination-type-of-destination-radios'] == "Another TB restricted destination")
         {
-            if (req.session.data['origin-type-of-origin-radios'] == "Approved finishing units (AFU)")
+            if (req.session.data['origin-type-of-origin-off-radios'] == "Approved finishing unit (AFU)")
             {
                 res.redirect('can-not-use-service-afu-only');
             }

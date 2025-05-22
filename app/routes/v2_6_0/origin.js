@@ -136,6 +136,11 @@ module.exports = function (router) {
             // This page name needs to be the next page the user gets to after successfully continuing
             res.redirect('contact-the-tb-restricted-farm');
         }
+        else if (req.session.data['origin-type-of-origin-off-radios'] == "TB isolation unit")
+        {
+            // This page name needs to be the next page the user gets to after successfully continuing
+            res.redirect('own-farm-new-cph');
+        }
         else if (req.session.data['origin-type-of-origin-off-radios'] == "Another TB restricted origin")
         {
             // end page next
