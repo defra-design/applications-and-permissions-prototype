@@ -109,14 +109,12 @@ module.exports = function (router) {
 
         else if (req.session.data['destination-type-of-destination-radios'] == "Approved finishing units (AFU)")
         {
-            if (req.session.data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises")
-            {
-                res.redirect('own-farm-new-cph');
-            }
-            else
-            {
                 res.redirect('check-answers');
-            }
+        }
+
+        else if (req.session.data['destination-type-of-destination-radios'] == "Approved finishing unit (AFU)")
+        {
+            res.redirect('own-farm-new-cph');
         }
 
         else if (req.session.data['destination-type-of-destination-radios'] == "TB restricted farm")
