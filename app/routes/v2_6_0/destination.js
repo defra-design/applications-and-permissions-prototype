@@ -1008,7 +1008,7 @@ module.exports = function (router) {
         // If Yes was selected, continue to next page
         if (req.session.data['destination-reason-for-movement-radios'] == "Routine restocking")
         {
-            res.redirect('restocking-additional-info');
+            res.redirect('restocking-additional-info-animal-type');
         }
         else if (req.session.data['destination-reason-for-movement-radios'] == "Breeding male")
         {
@@ -1133,6 +1133,114 @@ module.exports = function (router) {
         }
 
     })
+
+
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////         Type of animals on restocking              ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////                   CHECKBOXES                       ////////////////
+    ////////////////                NOT COMPLEX PAGE                    ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    router.post(section + 'restocking-additional-info-animal-type-router', function (req, res)
+    {
+        // Turn errors off by default
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+
+        // check if none of the checkboxes are selected
+        if(req.session.data['destination-restocking-additional-info-animal-type-checkboxes'] == undefined  ||
+            req.session.data['destination-restocking-additional-info-animal-type-checkboxes'].length == 0)
+        {
+            // Trigger validation and relaunch the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('restocking-additional-info-animal-type');
+        }
+
+        else
+        {
+            let checkboxesString = req.session.data['destination-restocking-additional-info-animal-type-checkboxes'].toString();
+
+            // 1. Remove square brackets from the beginning and end
+            let processedString = checkboxesString.replace(/^\[|\]$/g, '');
+
+            // 2. Replace commas with new lines
+            processedString = processedString.replace(/,/g, '\n\n');
+
+            req.session.data['destination-restocking-additional-info-animal-type-checkboxes-formatted'] = processedString;
+
+            // Continue to the next page
+            // This page name needs to be the next page the user gets to after successfully continuing
+            res.redirect('restocking-additional-info-reason');
+        }
+    })
+
+
+
+
+
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////            Reason for the restocking               ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////                   CHECKBOXES                       ////////////////
+    ////////////////                NOT COMPLEX PAGE                    ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    router.post(section + 'restocking-additional-info-reason-router', function (req, res)
+    {
+        // Turn errors off by default
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+
+        // check if none of the checkboxes are selected
+        if(req.session.data['destination-restocking-additional-info-reason-checkboxes'] == undefined  ||
+            req.session.data['destination-restocking-additional-info-reason-checkboxes'].length == 0)
+        {
+            // Trigger validation and relaunch the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('restocking-additional-info-reason');
+        }
+        else
+        {
+            let checkboxesreasonString = req.session.data['destination-restocking-additional-info-reason-checkboxes'].toString();
+
+            // 1. Remove square brackets from the beginning and end
+            let processedreasonString = checkboxesreasonString.replace(/^\[|\]$/g, '');
+
+            // 2. Replace commas with new lines
+            processedreasonString = processedreasonString.replace(/,/g, '\n\n');
+
+            req.session.data['destination-restocking-additional-info-reason-checkboxes-formatted'] = processedreasonString;
+
+            // This page name needs to be the next page the user gets to after successfully continuing
+            res.redirect('check-answers');
+        }
+    })
+
 
 
 

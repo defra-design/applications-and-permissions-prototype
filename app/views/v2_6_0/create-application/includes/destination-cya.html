@@ -97,8 +97,29 @@
 
         {%  if  data['destination-reason-for-movement-radios'] == "Routine restocking"  %}
 
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key govuk-!-font-weight-regular ">
+                    Which type of animal are you restocking?
+                </dt>
+                <dd class="govuk-summary-list__value" style="white-space: pre-wrap;">{{ data['destination-restocking-additional-info-animal-type-checkboxes-formatted'] }}</dd>
+                {%  if  data['application-submitted-and-locked'] != "true"  %}
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="../destination/restocking-additional-info-animal-type">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                {%  endif  %}
+            </div>
 
-
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key govuk-!-font-weight-regular ">
+                    Which reason do you have for restocking?
+                </dt>
+                <dd class="govuk-summary-list__value" style="white-space: pre-wrap;">{{ data['destination-restocking-additional-info-reason-checkboxes-formatted'] }}</dd>
+                {%  if  data['application-submitted-and-locked'] != "true"  %}
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="../destination/restocking-additional-info-reason">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                {%  endif  %}
+            </div>
 
         {%  else  %}
 
