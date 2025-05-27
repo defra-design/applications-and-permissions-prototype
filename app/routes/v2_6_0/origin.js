@@ -258,24 +258,31 @@ module.exports = function (router) {
             }
         }
 
-        else if( req.session.data['origin-type-of-origin-on-checkboxes'].includes("Market") )
+        else if( req.session.data['origin-type-of-origin-on-checkboxes'].includes("Unrestricted market") )
         {
 
             req.session.data['origin-type-of-origin-on-checkboxes-formatted'] = req.session.data['origin-type-of-origin-on-checkboxes'];
 
+            console.log("before checkbox count")
+
             if( 2 == req.session.data['origin-type-of-origin-on-checkboxes'].length )
             {
+                console.log("checkbox length is " + req.session.data['origin-type-of-origin-on-checkboxes'].length );
+
                 if( req.session.data['origin-type-of-origin-on-checkboxes'].includes("Unrestricted farm or premises") )
                 {
+                    console.log("Unrestricted farm or premises is INLUCDED "  );
+
                     // all fine as both can be selected
                     // Format them
-                    req.session.data['origin-type-of-origin-on-checkboxes-formatted'] = "Market" + "\n\n" + "Unrestricted farm or premises";
+                    req.session.data['origin-type-of-origin-on-checkboxes-formatted'] = "Unrestricted market" + "\n\n" + "Unrestricted farm or premises";
                 }
                 else
                 {
                     res.redirect('not-valid-for-single-licence');
                 }
             }
+            // Valid selection so proceed
             res.redirect('fifty-percent-warning');
         }
 
@@ -285,17 +292,18 @@ module.exports = function (router) {
 
             if( 2 == req.session.data['origin-type-of-origin-on-checkboxes'].length )
             {
-                if( req.session.data['origin-type-of-origin-on-checkboxes'].includes("Market") )
+                if( req.session.data['origin-type-of-origin-on-checkboxes'].includes("Unrestricted market") )
                 {
                     // all fine as both can be selected
                     // Format them
-                    req.session.data['origin-type-of-origin-on-checkboxes-formatted'] = "Market" + "\n\n" + "Unrestricted farm or premises";
+                    req.session.data['origin-type-of-origin-on-checkboxes-formatted'] = "Unrestricted market" + "\n\n" + "Unrestricted farm or premises";
                 }
                 else
                 {
                     res.redirect('not-valid-for-single-licence');
                 }
             }
+            // Valid selection so proceed
             res.redirect('fifty-percent-warning');
         }
 
