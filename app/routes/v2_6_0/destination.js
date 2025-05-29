@@ -40,7 +40,6 @@ module.exports = function (router) {
 
 
 
-
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////                                                    ////////////////
@@ -104,16 +103,18 @@ module.exports = function (router) {
         else if (req.session.data['destination-type-of-destination-radios'] == "Dedicated sales for TB (orange markets)")
         {
             // Continue to the next page
-            res.redirect('check-answers');
+            res.redirect('any-additional-info');
         }
 
         else if (req.session.data['destination-type-of-destination-radios'] == "Approved finishing units (AFU)")
         {
-                res.redirect('check-answers');
+            // off the premises
+            res.redirect('any-additional-info');
         }
 
         else if (req.session.data['destination-type-of-destination-radios'] == "Approved finishing unit (AFU)")
         {
+            // onto the premises
             res.redirect('own-farm-new-cph');
         }
 
@@ -136,11 +137,21 @@ module.exports = function (router) {
 
         else if (req.session.data['destination-type-of-destination-radios'] == "Another TB restricted destination")
         {
-            if (req.session.data['origin-type-of-origin-off-radios'] == "Approved finishing unit (AFU)")
+            if (req.session.data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises"  &&
+                req.session.data['origin-type-of-origin-on-checkboxes'].includes("Approved finishing units (AFU)"))
             {
-                res.redirect('can-not-use-service-afu-only');
+                // off an AFU to a restricted premses
+                res.redirect('can-not-use-service-afu-only-on');
             }
-            else  if (req.session.data['origin-type-of-origin-off-radios'] == "TB restricted farm")
+
+            else if (req.session.data['origin-to-or-from-own-premises-radios'] == "Off the farm or premises"  &&
+                     req.session.data['origin-type-of-origin-off-radios'] == "Approved finishing unit (AFU)")
+            {
+                // off an AFU to a restricted premses
+                res.redirect('can-not-use-service-afu-only-off');
+            }
+
+            else if (req.session.data['origin-to-or-from-own-premises-radios'] == "Off the farm or premises" )
             {
                 res.redirect('contact-the-tb-restricted-premises');
             }
@@ -178,6 +189,7 @@ module.exports = function (router) {
     {
         req.session.data['errorthispage'] = "false";
         req.session.data['errortypeone'] = "false";
+
         req.session.data['errortypetwo'] = "false";
         req.session.data['errortypethree'] = "false";
         req.session.data['errortypefour'] = "false";
@@ -1241,7 +1253,7 @@ module.exports = function (router) {
             req.session.data['destination-restocking-additional-info-reason-checkboxes-formatted'] = processedreasonString;
 
             // This page name needs to be the next page the user gets to after successfully continuing
-            res.redirect('check-answers');
+            res.redirect('any-additional-info');
         }
     })
 

@@ -201,9 +201,9 @@ This will save you time.
                 {% if  data['origin-type-of-origin-off-radios'] == "TB isolation unit" and data['origin-to-or-from-own-premises-radios'] == "Off the farm or premises" %} selected {% endif %}
         >Origin type - TB isolation unit - OFF THE PREMISES ONLY</option>
 
-        <option value="origin-type-of-origin-on-checkboxes=Approved finishing unit (AFU)&origin-to-or-from-own-premises-radios=On to the farm or premises&"
+        <option value="origin-type-of-origin-on-checkboxes=Approved finishing units (AFU)&origin-to-or-from-own-premises-radios=On to the farm or premises&"
                 {% if  (data['origin-type-of-origin-on-checkboxes'] or []).indexOf('Approved finishing unit (AFU)') > -1    and  data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises" %} selected {% endif %}
-        >Origin type - Approved finishing unit (AFU) - ON TO PREMISES ONLY</option>
+        >Origin type - Approved finishing units (AFU) - ON TO PREMISES ONLY</option>
 
         <option value="origin-type-of-origin-off-radios=Approved finishing unit (AFU)&origin-to-or-from-own-premises-radios=Off the farm or premises&"
                 {% if  data['origin-type-of-origin-off-radios'] == "Approved finishing unit (AFU)" and data['origin-to-or-from-own-premises-radios'] == "Off the farm or premises" %} selected {% endif %}
