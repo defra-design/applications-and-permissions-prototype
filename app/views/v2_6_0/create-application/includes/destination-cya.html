@@ -183,10 +183,17 @@
         <dd class="govuk-summary-list__value">
             {{ data['destination-any-additional-info-text-input'] }}
         </dd>
+
         {%  if  data['application-submitted-and-locked'] != "true"  %}
-        <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="../destination/any-additional-info">Change<span class="govuk-visually-hidden"> </span></a>
-        </dd>
+            {%  if  data['destination-any-additional-info-text-input'] == "None"  %}
+                <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="../destination/any-additional-info?destination-any-additional-info-text-input=&">Change<span class="govuk-visually-hidden"> </span></a>
+                </dd>
+            {%  else  %}
+                <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="../destination/any-additional-info">Change<span class="govuk-visually-hidden"> </span></a>
+                </dd>
+            {%  endif  %}
         {%  endif  %}
     </div>
 

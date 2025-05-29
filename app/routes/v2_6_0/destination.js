@@ -1792,6 +1792,28 @@ module.exports = function (router) {
 
 
 
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////            FREE TEXT - Other details optional      ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    // NOT COMPLEX PAGE
+    router.post( section + 'any-additional-info-router', function (req, res)
+    {
+        // If Yes was selected, continue to next page
+        if (req.session.data['destination-any-additional-info-text-input'] == undefined ||
+            req.session.data['destination-any-additional-info-text-input'] == "")
+        {
+            req.session.data['destination-any-additional-info-text-input'] = "None";
+        }
+        res.redirect('check-answers');
+    })
+
+
 
 
 
