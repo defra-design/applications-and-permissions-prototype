@@ -140,6 +140,10 @@ module.exports = function (router) {
             {
                 res.redirect('can-not-use-service-afu-only');
             }
+            else  if (req.session.data['origin-type-of-origin-off-radios'] == "TB restricted farm")
+            {
+                res.redirect('contact-the-tb-restricted-premises');
+            }
             else
             {
                 res.redirect('type-of-destination-other');
