@@ -1207,6 +1207,55 @@ module.exports = function (router) {
 
 
 
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////    User enters customer details of the restocking  ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////              TEXT ENTRY - MANDATORY                ////////////////
+    ////////////////                 NOT COMPLEX PAGE                   ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    router.post(section + 'restocking-additional-info-reason-other-router', function (req, res)
+    {
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+
+        // Validation check if field is blank
+        if (req.session.data['destination-restocking-additional-info-reason-other-text-input'] == undefined || req.session.data['destination-restocking-additional-info-reason-other-text-input'] == "")
+        {
+            // Trigger validation and relaunch the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('restocking-additional-info-reason-other');
+        }
+
+
+        else
+        {
+            // everything with the input is fine so move on to next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('check-answers');
+            }
+            else
+            {
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('any-additional-info');
+            }
+        }
+
+    })
+
+
 
 
 
@@ -1252,8 +1301,18 @@ module.exports = function (router) {
 
             req.session.data['destination-restocking-additional-info-reason-checkboxes-formatted'] = processedreasonString;
 
-            // This page name needs to be the next page the user gets to after successfully continuing
-            res.redirect('any-additional-info');
+
+            // if other was selected then go there
+            if(req.session.data['destination-restocking-additional-info-reason-checkboxes'].includes("Something else"))
+            {
+                res.redirect('restocking-additional-info-reason-other');
+            }
+            else
+            {
+                // other wasn't selected
+                res.redirect('any-additional-info');
+            }
+
         }
     })
 
