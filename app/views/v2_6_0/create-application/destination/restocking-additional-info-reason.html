@@ -5,13 +5,13 @@
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    Which reason do you have for restocking?
+    Which reasons do you have for restocking?
 {% endset %}
 
 
 <!-- Set the text for the error type -->
 {% set errorTextHTML %}
-    PLACEHOLDER
+    Select the reasons you have for restocking
 {% endset %}
 
 
@@ -113,7 +113,6 @@
 
 
 
-
 <!-- ERROR LOGIC  drop down to toggle states  -->
 <form method="post"  action="#" class="for4" style=" float: left; position: relative; bottom:-225px;  ">
 
@@ -121,15 +120,17 @@
 
         <option value="errorthispage=false&errortypeone=false&errortypetwo=false&"
                 {% if (data['errorthispage'] != "true") %}selected{% endif %}
-        >Errors - Not needed - Optional checkboxes</option>
+        >Errors - Off</option>
+
+        <!-- Nothing was selected -->
+        <option value="errorthispage=true&errortypeone=true&errortypetwo=false&"
+                {% if (data['errortypeone'] == 'true' and data['errortypetwo'] != 'true')  %}selected{% endif %}
+        >Error 1 - Must select at least one</option>
 
     </select>
 
 </form>
 <!--  END OF ERROR LOGIC -->
-
-
-
 
 
 

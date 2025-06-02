@@ -100,7 +100,7 @@
 
             <div class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key govuk-!-font-weight-regular ">
-                    Which type of animal are you restocking?
+                    Which types of animal are you restocking?
                 </dt>
                 <dd class="govuk-summary-list__value" style="white-space: pre-wrap;">{{ data['destination-restocking-additional-info-animal-type-checkboxes-formatted'] }}</dd>
                 {%  if  data['application-submitted-and-locked'] != "true"  %}
@@ -126,7 +126,7 @@
             {%  if    (data['destination-restocking-additional-info-reason-checkboxes'] or []).indexOf('Something else') > -1  %}
                 <div class="govuk-summary-list__row">
                     <dt class="govuk-summary-list__key govuk-!-font-weight-regular ">
-                        What is the reason for restocking?
+                        Which reasons do you have for restocking?
                     </dt>
                     <dd class="govuk-summary-list__value">{{ data['destination-restocking-additional-info-reason-other-text-input'] }}</dd>
                     {%  if  data['application-submitted-and-locked'] != "true"  %}
