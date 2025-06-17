@@ -1,0 +1,217 @@
+<dl class="govuk-summary-list">
+
+
+     <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+            Where are the animals going to?
+        </dt>
+        <dd class="govuk-summary-list__value">
+            {{ data['destination-type-of-destination-radios'] }}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="../destination/type-of-destination">Change<span class="govuk-visually-hidden"> </span></a>
+        </dd>
+    </div>
+
+
+    {%  if  data['destination-type-of-destination-radios'] == "Another TB restricted destination"   %}
+
+        <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                Where are the animals going to?
+            </dt>
+            <dd class="govuk-summary-list__value">
+                {{ data['destination-type-of-destination-other-text-input'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="../destination/type-of-destination-other?camefromcheckanswers=true&">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        </div>
+
+
+    {%  endif  %}
+
+
+    {%  if  data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises"  %}
+    <!-- Applicant is destination -->
+
+        <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
+                What is the CPH number of the farm or premises where the animals are going to?
+            </dt>
+            <dd class="govuk-summary-list__value">
+                {{ data['destination-own-farm-new-cph-text-input'] }}
+            </dd>
+            {%  if  data['application-submitted-and-locked'] != "true"  %}
+                <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="../destination/own-farm-new-cph">Change<span class="govuk-visually-hidden"> </span></a>
+                </dd>
+            {%  endif  %}
+        </div>
+
+        <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key govuk-!-font-weight-regular ">
+                What is the address of the farm or premises where the animals are going to?
+            </dt>
+            <dd class="govuk-summary-list__value">
+                {{ data['destination-own-address-line-1'] }}<br>
+                {{ data['destination-own-address-line-2'] }}<br>
+                {{ data['destination-own-address-town'] }}<br>
+                {{ data['destination-own-address-county'] }}<br>
+                {{ data['destination-own-address-postcode'] }}
+            </dd>
+            {%  if  data['application-submitted-and-locked'] != "true"  %}
+                <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="../destination/own-farm-new-address">Change<span class="govuk-visually-hidden"> </span></a>
+                </dd>
+            {%  endif  %}
+        </div>
+
+
+        <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
+                How many animals are you planning to move?
+            </dt>
+            <dd class="govuk-summary-list__value">
+                {{ data['destination-how-many-animals-number-input'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="../destination/how-many-animals">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        </div>
+    
+
+        <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key govuk-!-font-weight-regular ">
+                What is the reason for the movement?
+            </dt>
+            <dd class="govuk-summary-list__value">
+                {{ data['destination-reason-for-movement-radios'] }}
+            </dd>
+            {%  if  data['application-submitted-and-locked'] != "true"  %}
+                <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="../destination/reason-for-movement">Change<span class="govuk-visually-hidden"> </span></a>
+                </dd>
+            {%  endif  %}
+        </div>
+
+
+        {%  if  data['destination-reason-for-movement-radios'] == "Routine restocking"  %}
+
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key govuk-!-font-weight-regular ">
+                    Which types of animals are you restocking?
+                </dt>
+                <dd class="govuk-summary-list__value" style="white-space: pre-wrap;">{{ data['destination-restocking-additional-info-animal-type-checkboxes-formatted'] }}</dd>
+                {%  if  data['application-submitted-and-locked'] != "true"  %}
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="../destination/restocking-additional-info-animal-type">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                {%  endif  %}
+            </div>
+
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key govuk-!-font-weight-regular ">
+                    Which reason do you have for restocking?
+                </dt>
+                <dd class="govuk-summary-list__value" style="white-space: pre-wrap;">{{ data['destination-restocking-additional-info-reason-checkboxes-formatted'] }}</dd>
+                {%  if  data['application-submitted-and-locked'] != "true"  %}
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="../destination/restocking-additional-info-reason">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                {%  endif  %}
+            </div>
+
+
+            {%  if    (data['destination-restocking-additional-info-reason-checkboxes'] or []).indexOf('Something else') > -1  %}
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key govuk-!-font-weight-regular ">
+                        Which reasons do you have for restocking?
+                    </dt>
+                    <dd class="govuk-summary-list__value">{{ data['destination-restocking-additional-info-reason-other-text-input'] }}</dd>
+                    {%  if  data['application-submitted-and-locked'] != "true"  %}
+                        <dd class="govuk-summary-list__actions">
+                            <a class="govuk-link" href="../destination/restocking-additional-info-reason-other">Change<span class="govuk-visually-hidden"> </span></a>
+                        </dd>
+                    {%  endif  %}
+                </div>
+            {%  endif  %}
+
+
+        {%  endif  %}
+
+
+
+
+
+
+
+    {%  else  %}
+
+        <!--  animals are moving OFF THE PREMISES  -->
+
+        {%  if  data['destination-type-of-destination-radios'] != "Dedicated sales for TB (orange markets)"
+                and  data['destination-type-of-destination-radios'] != "Approved finishing units (AFU)"
+                and  data['destination-type-of-destination-radios'] != "Slaughter"  %}
+
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key govuk-!-font-weight-regular ">
+                    What is the CPH number of the farm where the animals are going to?
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    {{ data['destination-destination-farm-cph-text-input'] }}
+                </dd>
+                {%  if  data['application-submitted-and-locked'] != "true"  %}
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="../destination/destination-farm-cph?camefromcheckanswers=true&">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                {%  endif  %}
+            </div>
+
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key govuk-!-font-weight-regular ">
+                    What is the address of the farm where the animals are going to?
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    {{ data['destination-destination-farm-address-line-1'] }}<br>
+                    {{ data['destination-destination-farm-address-line-2'] }}<br>
+                    {{ data['destination-destination-farm-address-town'] }}<br>
+                    {{ data['destination-destination-farm-address-county'] }}<br>
+                    {{ data['destination-destination-farm-address-postcode'] }}
+                </dd>
+                {%  if  data['application-submitted-and-locked'] != "true"  %}
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="../destination/destination-farm-address">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                {%  endif  %}
+            </div>
+
+        {%  endif  %}
+
+
+    {%  endif  %}
+
+
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-!-font-weight-regular ">
+            Enter any additional information (optional)
+        </dt>
+        <dd class="govuk-summary-list__value">
+            {{ data['destination-any-additional-info-text-input'] }}
+        </dd>
+
+        {%  if  data['application-submitted-and-locked'] != "true"  %}
+            {%  if  data['destination-any-additional-info-text-input'] == "None"  %}
+                <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="../destination/any-additional-info?destination-any-additional-info-text-input=&">Change<span class="govuk-visually-hidden"> </span></a>
+                </dd>
+            {%  else  %}
+                <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="../destination/any-additional-info">Change<span class="govuk-visually-hidden"> </span></a>
+                </dd>
+            {%  endif  %}
+        {%  endif  %}
+    </div>
+
+
+</dl>

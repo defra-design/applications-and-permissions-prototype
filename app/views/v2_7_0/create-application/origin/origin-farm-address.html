@@ -1,0 +1,338 @@
+{% extends "layouts/v2_7_0.html" %}
+
+<!--
+NOTES ON USING THIS TEMPLATE Page
+This will save you time.
+
+1. Type your heading for the page after '% set pageHeadingTextHTML %'
+2. Type/customise the error messages after '% set errorTextHTML %'
+3. Use 'Find and replace' to replace "SECTION" with the name of the section of the service you're working on.
+4. Use 'Find and replace' to replace "PAGENAME_TEXT" with whatever you named this page/file.
+5. Go to the javascript file 'templates.js' and copy the section 'TEXT ENTRY - MANDATORY' into your routes.js file.
+6. Follow instructions at the top of the 'templates.js'.
+-->
+
+
+<!-- Setting the big main heading at the top of the page -->
+
+
+{% set pageHeadingTextHTML %}
+    {% if data['origin-type-of-origin-page-2-radios'] == "Location after animals have been imported" %}
+        What is the address of the UK point of entry?
+    {% else %}
+        What is the address of the farm or premises where the animals are moving off?
+    {% endif %}
+{% endset %}
+
+
+
+<!-- Set the text for each error type -->
+{% set errorTextHTML %}
+
+    <!-- Error 1 - empty line 1-->
+    {%  if  data['errortypeone'] == "true"  %}
+        Enter address line 1, typically the building and street
+
+    <!-- Error 2 - empty city  -->
+    {% elif data['errortypetwo'] == "true"  %}
+        Enter town or city
+
+    <!-- Error 3 - empty post code -->
+    {% elif data['errortypethree'] == "true"  %}
+        Enter postcode
+
+    <!-- Error 3 - empty post code -->
+    {% elif data['errortypefour'] == "true"  %}
+        Enter a full UK postcode
+
+    {%  endif  %}
+
+{% endset %}
+
+
+
+<!-- Text that show in the browser tab. Does NOT need changing -->
+{% block pageTitle %}
+    {% if  data['errorthispage'] == "true"  %}
+        Error:
+    {% endif %}
+
+    {{ pageHeadingTextHTML }}
+{% endblock %}
+
+
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+        <!-- ERROR LOGIC 'error summary' -->
+        {% if data['errorthispage'] == "true" %}
+
+
+            <!-- Error 1 - empty line 1-->
+            {%  if  data['errortypeone'] == "true"  %}
+                {{ govukErrorSummary
+                    ({
+                        titleText: "There is a problem",
+                        errorList:
+                        [
+                            {
+                                html: errorTextHTML,
+                                href: "#origin-origin-farm-address-line-1"
+                            }
+                        ]
+                    })
+                }}
+
+
+
+            <!-- Error 2 - empty city  -->
+            {% elif data['errortypetwo'] == "true"  %}
+                {{ govukErrorSummary
+                    ({
+                        titleText: "There is a problem",
+                        errorList:
+                        [
+                            {
+                                html: errorTextHTML,
+                                href: "#origin-origin-farm-address-town"
+                            }
+                        ]
+                    })
+                }}
+
+
+
+            <!-- Error 3 - empty post code -->
+            {% elif data['errortypethree'] == "true"  %}
+                {{ govukErrorSummary
+                    ({
+                        titleText: "There is a problem",
+                        errorList:
+                        [
+                            {
+                                html: errorTextHTML,
+                                href: "#origin-origin-farm-address-postcode"
+                            }
+                        ]
+                    })
+                }}
+
+
+            {% elif data['errortypefour'] == "true"  %}
+                {{ govukErrorSummary
+                    ({
+                        titleText: "There is a problem",
+                        errorList:
+                        [
+                            {
+                                html: errorTextHTML,
+                                href: "#origin-origin-farm-address-postcode"
+                            }
+                        ]
+                    })
+                }}
+
+
+
+            {%  endif  %}
+
+        {% endif %}
+        <!--  END OF 'error summary' -->
+
+
+
+        <!-- go to routes.js for routing  -->
+        <form action="origin-farm-address-router" method="post" novalidate>
+
+            {% call govukFieldset
+                ({
+                    legend:
+                    {
+                        html: pageHeadingTextHTML,
+                        classes: "govuk-fieldset__legend--l",
+                        isPageHeading: true
+                    }
+                })
+            %}
+
+            {{ govukInput
+                ({
+                    label:
+                    {
+                        text: "Address line 1"
+                    },
+                    id: "origin-origin-farm-address-line-1",
+                    name: "origin-origin-farm-address-line-1",
+
+                    errorMessage: null if data['errortypeone'] != "true"
+                                        else { html: errorTextHTML },
+
+                    value: data['origin-origin-farm-address-line-1'],
+                    autocomplete: "address-line1"
+                })
+            }}
+
+            {{ govukInput
+                ({
+                    label:
+                    {
+                        text: "Address line 2 (optional)"
+                    },
+                    id: "origin-origin-farm-address-line-2",
+                    name: "origin-origin-farm-address-line-2",
+                    value: data['origin-origin-farm-address-line-2'],
+                    autocomplete: "address-line2"
+                })
+            }}
+
+            {{ govukInput
+                ({
+                    label:
+                    {
+                        text: "Town or city"
+                    },
+                    classes: "govuk-!-width-two-thirds",
+                    id: "origin-origin-farm-address-town",
+                    name: "origin-origin-farm-address-town",
+
+                    errorMessage: null if data['errortypetwo'] != "true"
+                                        else { html: errorTextHTML },
+
+                    value: data['origin-origin-farm-address-town'],
+                    autocomplete: "address-level2"
+                })
+            }}
+
+            {{  govukInput
+                ({
+                    label:
+                    {
+                        text: "County (optional)"
+                    },
+                    classes: "govuk-!-width-two-thirds",
+                    id: "origin-origin-farm-address-county",
+                    name: "origin-origin-farm-address-county",
+                    value: data['origin-origin-farm-address-county']
+                })
+            }}
+
+
+
+            {%  if data['errortypefour'] != "true"  %}
+
+                    {{ govukInput
+                        ({
+                            label:
+                            {
+                                text: "Postcode"
+                            },
+                            classes: "govuk-input--width-10",
+                            id: "origin-origin-farm-address-postcode",
+                            name: "origin-origin-farm-address-postcode",
+                            value: data['origin-origin-farm-address-postcode'],
+
+                            errorMessage: null if data['errortypethree'] != "true"
+                                                else { html: errorTextHTML },
+
+                            autocomplete: "postal-code"
+                        })
+                    }}
+
+            {%  else  %}
+
+                    {{ govukInput
+                        ({
+                            label:
+                            {
+                                text: "Postcode"
+                            },
+                            classes: "govuk-input--width-10",
+                            id: "origin-origin-farm-address-postcode",
+                            name: "origin-origin-farm-address-postcode",
+                            value: data['origin-origin-farm-address-postcode'],
+
+                            errorMessage: {html: errorTextHTML},
+
+                            autocomplete: "postal-code"
+                        })
+                    }}
+
+            {%  endif  %}
+
+
+        {% endcall %}
+
+
+            {{ govukButton({ text: "Continue" }) }}
+
+        </form>
+
+    </div>
+</div>
+
+
+
+
+<!-- ERROR LOGIC  drop down to toggle states  -->
+<!-- Best thing to do would be to replace 'errorthispage', 'errortypeone' and 'errortypetwo' with novel name for this page  -->
+<form method="post"  action="#" class="for4" style=" float: left; position: relative; bottom:-270px;  ">
+
+    <select style="height:30px;" onchange="window.location.href='?'+this.value">
+
+        <option value="errorthispage=false&errortypeone=false&errortypetwo=false&errortypethree=false&errortypefour=false&errortypefive=false&errortypesix=false&errortypeseven=false&"
+                {% if  data['errorthispage'] != "true"  %}selected{% endif %}
+        >Errors - Off</option>
+
+        <option value="errorthispage=true&errortypeone=true&errortypetwo=false&errortypethree=false&errortypefour=false&errortypefive=false&errortypesix=false&errortypeseven=false&"
+                {% if  data['errortypeone'] == 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] != 'true'  and data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  and  data['errortypeseven'] != 'true'  %}selected{% endif %}
+        >Error 1 - Address line 1 empty</option>
+
+        <option value="errorthispage=true&errortypeone=false&errortypetwo=true&errortypethree=false&errortypefour=false&errortypefive=false&errortypesix=false&errortypeseven=false&"
+                {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] == 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] != 'true'   and data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  and  data['errortypeseven'] != 'true'  %}selected{% endif %}
+        >Error 2 - Town or city empty </option>
+
+        <option value="errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=true&errortypefour=false&errortypefive=false&errortypesix=false&errortypeseven=false&"
+                {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] == 'true'  and  data['errortypefour'] != 'true'   and data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  and  data['errortypeseven'] != 'true'  %}selected{% endif %}
+        >Error 3 - Postcode empty</option>
+
+        <option value="errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=false&errortypefour=true&errortypefive=false&errortypesix=false&errortypeseven=false&"
+                {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] == 'true'   and data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  and  data['errortypeseven'] != 'true'  %}selected{% endif %}
+        >Error 4 - Postcode - Wrong format</option>
+
+    </select>
+
+</form>
+<!--  END OF ERROR LOGIC -->
+
+
+
+<!--  UK IMPORT LOGIC -->
+<form method="post"  action="#" class="for4" style=" float: left; position: relative; bottom:-270px;  ">
+
+    <select style="height:30px;" onchange="window.location.href='?'+this.value">
+
+        <option value="origin-type-of-origin-page-2-radios=Location after animals have been imported&"
+                {% if data['origin-type-of-origin-page-2-radios'] == "Location after animals have been imported" %}selected{% endif %}
+        >UK import</option>
+
+        <option value="origin-type-of-origin-page-2-radios=null&"
+                {% if data['origin-type-of-origin-page-2-radios'] != "Location after animals have been imported" %}selected{% endif %}
+        >NOT a UK import</option>
+
+
+    </select>
+
+</form>
+<!--  END OF UK IMPORT LOGIC -->
+
+
+
+{% endblock %}
+
+
+
+
+

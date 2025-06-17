@@ -1,0 +1,69 @@
+{% extends "layouts/v2_7_0.html" %}
+
+
+<!-- Setting the big main heading at the top of the page -->
+{% set pageHeadingTextHTML %}
+    Biosecurity on your farm or premises
+{% endset %}
+
+
+
+
+<!-- Text that show in the browser tab. Does NOT need changing -->
+{% block pageTitle %}
+    {{ pageHeadingTextHTML }}
+{% endblock %}
+
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+        <h1 class="govuk-heading-l">{{ pageHeadingTextHTML }}</h1>
+
+        <p>You must answer the questions in this section as accurately as you can.</p>
+
+        <p>It is important you take the time to consider your biosecurity measures and the steps you are taking to reduce the risk of spreading TB.</p>
+
+        <p>A vet will review your answers and decide on the outcome of your application.</p>
+
+        <details class="govuk-details" data-module="govuk-details">
+            <summary class="govuk-details__summary">
+                <span class="govuk-details__summary-text">
+                    Guidance on biosecurity
+                </span>
+            </summary>
+            <div class="govuk-details__text">
+
+                <p>Read the GOV.UK guidance on
+                    <a target="_blank" href="https://www.gov.uk/guidance/protect-cattle-against-tb-infection-in-high-and-low-incidence-areas">
+                        how to protect cattle against TB infection (opens in new tab)</a>.
+                </p>
+
+            </div>
+        </details>
+
+
+
+
+        <!-- go to routes.js for routing  -->
+        <form action="biosecurity-intro-router" method="post" novalidate>
+
+            {{ govukButton({ text: "Continue" }) }}
+
+        </form>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+{% endblock %}
+
+

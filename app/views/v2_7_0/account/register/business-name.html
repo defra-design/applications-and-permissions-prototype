@@ -1,0 +1,93 @@
+{% extends "layouts/v2_7_0.html" %}
+
+{% set serviceName = "Get permission to move animals under disease controls" %}
+
+
+{% if data['registrationOrganisationType'] == "Sole trader" %}
+	{% set pageHeading = "What’s the name of your business?" %}
+{% else %}
+	{% set pageHeading = "What’s the name of the business?" %}
+{% endif %}
+
+{% set pageSection = "Register Defra account" %}
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+		<span class="govuk-caption-xl">{{ pageSection }}</span>
+
+        <div class="gem-c-title govuk-!-margin-top-0 govuk-!-margin-bottom-8">
+            <h1 class="gem-c-title__text govuk-heading-xl">
+                {{ pageHeading }}
+            </h1>
+        </div>
+
+
+		{% if data['registrationOrganisationType'] == "Sole trader" %}
+		<p class="govuk-body">Your business may be trading under your own name or a name you have chosen.</p>
+		{% else %}
+		<p class="govuk-body">Your business may be trading under your own name or a name you have chosen.</p>
+		{% endif %}
+
+		{% if data['registrationOrganisationType'] == "Sole trader" %}
+			<form method="post" action="address/postcode">
+		{% else %}
+    		<form method="post" action="address/add-address-manual">
+		{% endif %}
+
+
+			{% if data['registrationTradeUK'] == "No" %}
+
+				{{ govukInput({
+					label: {
+						text: pageHeading,
+						classes: "govuk-visually-hidden"						
+					},						
+					classes: "govuk-!-width-two-thirds",
+					name: "registrationNonUkName",
+					id: "registrationNonUkName",
+					value: data['registrationNonUkName']
+				}) }}
+
+
+			{% elif data['registrationOrganisationType'] == "Sole trader" %}
+
+				{{ govukInput({
+					label: {
+						text: pageHeading,
+						classes: "govuk-visually-hidden"						
+					},						
+					classes: "govuk-!-width-two-thirds",
+					name: "registrationSoleTraderName",
+					id: "registrationSoleTraderName",
+					value: data['registrationSoleTraderName']
+				}) }}
+
+			{% else %}
+
+				{{ govukInput({
+					label: {
+						text: pageHeading,
+						classes: "govuk-visually-hidden"						
+					},						
+					classes: "govuk-!-width-two-thirds",
+					name: "registrationBusinessName",
+					id: "registrationBusinessName",
+					value: data['registrationBusinessName']
+				}) }}
+
+			{% endif %}
+
+      		{{ govukButton({
+        		text: "Continue"
+      		}) }}      
+
+    	</form>
+
+  	</div>
+</div>
+
+{% endblock %}

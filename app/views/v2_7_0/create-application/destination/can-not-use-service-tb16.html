@@ -1,0 +1,38 @@
+{% extends "layouts/v2_7_0.html" %}
+
+
+<!-- Setting the big main heading at the top of the page -->
+{% set pageHeadingTextHTML %}
+    This service does not currently support this movement type
+{% endset %}
+
+
+
+<!-- Text that show in the browser tab. Does NOT need changing -->
+{% block pageTitle %}
+    {{ pageHeadingTextHTML }}
+{% endblock %}
+
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+        <h1 class="govuk-heading-l">{{ pageHeadingTextHTML }}</h1>
+
+        <p>You can only move animals from a TB restricted premises to an approved finishing unit (AFU) with this service.</p>
+
+        <p>For movements to other destinations,
+            <a href="https://www.gov.uk/government/publications/tb-restricted-cattle-application-for-movement-licence-in-england">
+                complete this GOV.UK application form</a>.
+        </p>
+
+    </div>
+</div>
+
+
+
+{% endblock %}
+
+
