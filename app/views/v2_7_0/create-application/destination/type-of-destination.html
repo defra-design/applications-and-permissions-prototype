@@ -105,7 +105,7 @@ This will save you time.
                             value: "Dedicated sales for TB (orange markets)",
                             text: "Dedicated sales for TB (orange markets)",
                             checked: data['destination-type-of-destination-radios'] == "Dedicated sales for TB (orange markets)"
-                        } if   data['origin-to-or-from-own-premises-radios'] == "Off the farm or premises",
+                        } if   data['origin-to-or-from-own-premises-radios'] == "Off the farm or premises"  and   data['origin-type-of-origin-off-radios'] != 'Approved finishing unit (AFU)' and  data['origin-type-of-origin-off-radios'] != "TB isolation unit",
                         {
                             value: "Approved finishing units (AFU)",
                             text: "Approved finishing units (AFU)",
@@ -128,7 +128,7 @@ This will save you time.
                             value: "TB restricted farm",
                             text: "TB restricted farm",
                             checked: data['destination-type-of-destination-radios'] == "TB restricted farm"
-                        } if data['origin-to-or-from-own-premises-radios'] == "Off the farm or premises"  and   data['origin-type-of-origin-off-radios'] != "Approved finishing unit (AFU)",
+                        } if data['origin-to-or-from-own-premises-radios'] == "Off the farm or premises"  and   data['origin-type-of-origin-off-radios'] != "Approved finishing unit (AFU)"  and  data['origin-type-of-origin-off-radios'] != "TB isolation unit",
                         {
                             value: "TB isolation unit",
                             text: "TB isolation unit",
@@ -138,7 +138,7 @@ This will save you time.
                             value: "Another TB restricted destination",
                             text: "Another TB restricted destination",
                             checked: data['destination-type-of-destination-radios'] == "Another TB restricted destination"
-                        }
+                        } if data['origin-to-or-from-own-premises-radios'] == "Off the farm or premises"  and  data['origin-type-of-origin-off-radios'] != "TB isolation unit"
                     ]
                 })
             }}
