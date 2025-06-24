@@ -126,7 +126,7 @@ module.exports = function (router) {
             }
             else
             {
-                res.redirect('contact-the-tb-restricted-farm');
+                res.redirect('contact-the-tb-restricted-premises');
             }
         }
 
