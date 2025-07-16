@@ -1,0 +1,147 @@
+{% extends "layouts/v2_8_0.html" %}
+
+
+
+<!-- Setting the big main heading at the top of the page -->
+{% set pageHeadingTextHTML %}
+    Which types of animals are you restocking?
+{% endset %}
+
+
+<!-- Set the text for the error type -->
+{% set errorTextHTML %}
+    Select which types of animals you are restocking
+{% endset %}
+
+
+<!-- Text that show in the browser tab. Does NOT need changing -->
+{% block pageTitle %}
+    {{ pageHeadingTextHTML }}
+{% endblock %}
+
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+        <!-- ERROR LOGIC 'error summary' -->
+        {% if data['errorthispage'] == "true" %}
+            {{ govukErrorSummary
+                ({
+                    titleText: "There is a problem",
+                    errorList:
+                    [
+                        {
+                            html: errorTextHTML,
+                            href: "#destination-restocking-additional-info-animal-type-checkboxes"
+                        }
+                    ]
+                })
+            }}
+        {% endif %}
+        <!--  END OF 'error summary' -->
+
+
+        <!-- form URL below turns off errors on the next page  -->
+        <form action="restocking-additional-info-animal-type-router" method="post" novalidate>
+
+            {{ govukCheckboxes
+                ({
+                    name: "destination-restocking-additional-info-animal-type-checkboxes",
+
+                    id: "destination-restocking-additional-info-animal-type-checkboxes",
+
+                    fieldset:
+                    {
+                        legend:
+                        {
+                            text: pageHeadingTextHTML,
+                            isPageHeading: true,
+                            classes: "govuk-fieldset__legend--l"
+                        }
+                    },
+
+                    hint:
+                    {
+                        text: "Select all that apply"
+                    },
+
+                    errorMessage: null if data['errorthispage'] != "true"
+                                       else { html: errorTextHTML },
+
+                    items:
+                    [
+                        {
+                            value: "Calves",
+                            text: "Calves",
+                            checked: (data['destination-restocking-additional-info-animal-type-checkboxes'] or []).indexOf('Calves') > -1
+                        },
+                        {
+                            value: "Heifers",
+                            text: "Heifers",
+                            checked: (data['destination-restocking-additional-info-animal-type-checkboxes'] or []).indexOf('Heifers') > -1
+                        },
+                        {
+                            value: "Cows",
+                            text: "Cows",
+                            checked: (data['destination-restocking-additional-info-animal-type-checkboxes'] or []).indexOf('Cows') > -1
+                        },
+                        {
+                            value: "Pregnant cows",
+                            text: "Pregnant cows",
+                            checked: (data['destination-restocking-additional-info-animal-type-checkboxes'] or []).indexOf('Pregnant cows') > -1
+                        },
+                        {
+                            value: "Dairy cows",
+                            text: "Dairy cows",
+                            checked: (data['destination-restocking-additional-info-animal-type-checkboxes'] or []).indexOf('Dairy cows') > -1
+                        },
+                        {
+                            value: "Suckling calves",
+                            text: "Suckling calves",
+                            checked: (data['destination-restocking-additional-info-animal-type-checkboxes'] or []).indexOf('Suckling calves') > -1
+                        }
+                    ]
+                })
+            }}
+
+
+            {{ govukButton({ text: "Continue" }) }}
+
+        </form>
+
+    </div>
+</div>
+
+
+
+
+<!-- ERROR LOGIC  drop down to toggle states  -->
+<form method="post"  action="#" class="for4" style=" float: left; position: relative; bottom:-225px;  ">
+
+    <select style="height:30px;" onchange="window.location.href='?'+this.value">
+
+        <option value="errorthispage=false&errortypeone=false&errortypetwo=false&"
+                {% if (data['errorthispage'] != "true") %}selected{% endif %}
+        >Errors - Off</option>
+
+        <!-- Nothing was selected -->
+        <option value="errorthispage=true&errortypeone=true&errortypetwo=false&"
+                {% if (data['errortypeone'] == 'true' and data['errortypetwo'] != 'true')  %}selected{% endif %}
+        >Error 1 - Must select at least one</option>
+
+    </select>
+
+</form>
+<!--  END OF ERROR LOGIC -->
+
+
+
+
+
+
+{% endblock %}
+
+
+

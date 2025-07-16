@@ -1,0 +1,141 @@
+{% extends "layouts/v2_8_0.html" %}
+
+
+
+
+<!-- Setting the big main heading at the top of the page -->
+{% set pageHeadingTextHTML %}
+    Which reasons do you have for restocking?
+{% endset %}
+
+
+<!-- Set the text for the error type -->
+{% set errorTextHTML %}
+    Select the reasons you have for restocking
+{% endset %}
+
+
+<!-- Text that show in the browser tab. Does NOT need changing -->
+{% block pageTitle %}
+    {{ pageHeadingTextHTML }}
+{% endblock %}
+
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+        <!-- ERROR LOGIC 'error summary' -->
+        {% if data['errorthispage'] == "true" %}
+            {{ govukErrorSummary
+                ({
+                    titleText: "There is a problem",
+                    errorList:
+                    [
+                        {
+                            html: errorTextHTML,
+                            href: "#destination-restocking-additional-info-reason-checkboxes"
+                        }
+                    ]
+                })
+            }}
+        {% endif %}
+        <!--  END OF 'error summary' -->
+
+
+        <!-- form URL below turns off errors on the next page  -->
+        <form action="restocking-additional-info-reason-router" method="post" novalidate>
+
+            {{ govukCheckboxes
+                ({
+                    name: "destination-restocking-additional-info-reason-checkboxes",
+
+                    id: "destination-restocking-additional-info-reason-checkboxes",
+
+                    fieldset:
+                    {
+                        legend:
+                        {
+                            text: pageHeadingTextHTML,
+                            isPageHeading: true,
+                            classes: "govuk-fieldset__legend--l"
+                        }
+                    },
+
+                    hint:
+                    {
+                        text: "Select all that apply"
+                    },
+
+                    errorMessage: null if data['errorthispage'] != "true"
+                                       else { html: errorTextHTML },
+
+                    items:
+                    [
+
+                        {
+                            value: "Fattening",
+                            text: "Fattening",
+                            checked: (data['destination-restocking-additional-info-reason-checkboxes'] or []).indexOf('Fattening') > -1
+                        },
+                        {
+                            value: "Breeding",
+                            text: "Breeding",
+                            checked: (data['destination-restocking-additional-info-reason-checkboxes'] or []).indexOf('Breeding') > -1
+                        },
+                        {
+                            value: "Suckling restocking",
+                            text: "Suckling restocking",
+                            checked: (data['destination-restocking-additional-info-reason-checkboxes'] or []).indexOf('Suckling restocking') > -1
+                        },
+                        {
+                            value: "Dairy restocking",
+                            text: "Dairy restocking",
+                            checked: (data['destination-restocking-additional-info-reason-checkboxes'] or []).indexOf('Dairy restocking') > -1
+                        },
+                        {
+                            value: "Something else",
+                            text: "Something else",
+                            checked: (data['destination-restocking-additional-info-reason-checkboxes'] or []).indexOf('Something else') > -1
+                        }
+                    ]
+                })
+            }}
+
+
+            {{ govukButton({ text: "Continue" }) }}
+
+        </form>
+
+    </div>
+</div>
+
+
+
+<!-- ERROR LOGIC  drop down to toggle states  -->
+<form method="post"  action="#" class="for4" style=" float: left; position: relative; bottom:-225px;  ">
+
+    <select style="height:30px;" onchange="window.location.href='?'+this.value">
+
+        <option value="errorthispage=false&errortypeone=false&errortypetwo=false&"
+                {% if (data['errorthispage'] != "true") %}selected{% endif %}
+        >Errors - Off</option>
+
+        <!-- Nothing was selected -->
+        <option value="errorthispage=true&errortypeone=true&errortypetwo=false&"
+                {% if (data['errortypeone'] == 'true' and data['errortypetwo'] != 'true')  %}selected{% endif %}
+        >Error 1 - Must select at least one</option>
+
+    </select>
+
+</form>
+<!--  END OF ERROR LOGIC -->
+
+
+
+
+{% endblock %}
+
+
+

@@ -1,0 +1,243 @@
+<dl class="govuk-summary-list">
+
+
+
+        <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
+                Will you separate the incoming animals from the resident herd?
+            </dt>
+            <dd class="govuk-summary-list__value">
+                {{ data['biosecurity-kept-separately-radios-yes-no'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="../biosecurity/kept-separately">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        </div>
+
+
+        {%  if  data['biosecurity-kept-separately-radios-yes-no'] == "Yes"  %}
+
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
+                    Will the incoming animals be grazed?
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    {{ data['biosecurity-grazing-radios-yes-no'] }}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="../biosecurity/grazing">Change<span class="govuk-visually-hidden"> </span></a>
+                </dd>
+            </div>
+
+
+            {%  if data['biosecurity-grazing-radios-yes-no']  == "Yes"  %}
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
+                        How will you separate the incoming animals from the resident herd?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{ data['biosecurity-grazing-field-how-separated-text-input'] }}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="../biosecurity/grazing-field-how-separated">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                </div>
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
+                        How long ago was the field last grazed by the resident herd?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{ data['biosecurity-last-grazed-text-input'] }}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="../biosecurity/last-grazed">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                </div>
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
+                        Has any manure or slurry been put on the grazing field in the past 60 days?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{ data['biosecurity-manure-and-slurry-radios-yes-no'] }}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="../biosecurity/manure-and-slurry">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                </div>
+
+            {%  endif  %}
+
+    <!-- End of how separation will be used -->
+    {%  endif  %}
+
+
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
+            How will you manage manure and slurry?
+        </dt>
+        <dd class="govuk-summary-list__value">
+            {{ data['biosecurity-manure-and-slurry-details-text-input'] }}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="../biosecurity/buildings-any-shared">Change<span class="govuk-visually-hidden"> </span></a>
+        </dd>
+    </div>
+
+
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
+            What disinfectant are you using?
+        </dt>
+        <dd class="govuk-summary-list__value">
+            {{ data['biosecurity-disinfectant-type-ahead'] }}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="../biosecurity/disinfectant">Change<span class="govuk-visually-hidden"> </span></a>
+        </dd>
+    </div>
+
+
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
+            Confirmation of the dilution rate
+        </dt>
+        <dd class="govuk-summary-list__value">
+            I confirm this is the dilution rate used on the farm or premises
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="../biosecurity/disinfectant-dilution">Change<span class="govuk-visually-hidden"> </span></a>
+        </dd>
+    </div>
+
+
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
+            Will the incoming animals be housed?
+        </dt>
+        <dd class="govuk-summary-list__value">
+            {{ data['biosecurity-buildings-any-shared-radios-yes-no'] }}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="../biosecurity/buildings-any-shared">Change<span class="govuk-visually-hidden"> </span></a>
+        </dd>
+    </div>
+
+
+    {%  if data['biosecurity-buildings-any-shared-radios-yes-no']  == "Yes"  %}
+
+        <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
+                How will you reduce the risk of spreading TB from the resident herd to the incoming animals during housing?
+            </dt>
+            <dd class="govuk-summary-list__value">
+                {{ data['biosecurity-buildings-how-minimise-contamination-text-input'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="../biosecurity/buildings-how-minimise-contamination">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        </div>
+
+    {%  endif  %}
+
+
+
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
+            Will the incoming animals share any equipment and machinery with the resident herd?
+        </dt>
+        <dd class="govuk-summary-list__value">
+            {{ data['biosecurity-equipment-any-shared-radios-yes-no'] }}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="../biosecurity/equipment-any-shared">Change<span class="govuk-visually-hidden"> </span></a>
+        </dd>
+    </div>
+
+
+    {%  if data['biosecurity-equipment-any-shared-radios-yes-no']  == "Yes"  %}
+
+        <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
+                How will you reduce the risk of spreading TB from the resident herd to the incoming animals when using shared equipment?
+            </dt>
+            <dd class="govuk-summary-list__value" style="white-space: pre-wrap;">{{ data['biosecurity-equipment-checkboxes-formatted'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="../biosecurity/equipment-how-minimise-contamination">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        </div>
+
+        {%  if data['biosecurity-other-equipment-measures-boolean']  == "true"  %}
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
+                    What other measures are in place to clean and disinfect equipment to reduce the risk of spreading TB?
+                </dt>
+                <dd class="govuk-summary-list__value" style="white-space: pre-wrap;">{{ data['biosecurity-other-equipment-measures-text-input'] }}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="../biosecurity/other-equipment-measures">Change<span class="govuk-visually-hidden"> </span></a>
+                </dd>
+            </div>
+        {%  endif %}
+
+    {%  endif  %}
+
+
+
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
+            What measures are staff taking to reduce the risk of spreading TB from the resident herd?
+        </dt>
+        <dd class="govuk-summary-list__value"  style="white-space: pre-wrap;">{{ data['biosecurity-staff-checkboxes-formatted'] }}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="../biosecurity/people-disinfection">Change<span class="govuk-visually-hidden"> </span></a>
+        </dd>
+    </div>
+
+
+    {%  if data['biosecurity-other-staff-measures-boolean']  == "true"  %}
+        <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
+                What other measures are you taking to reduce the risk of spreading TB?
+            </dt>
+            <dd class="govuk-summary-list__value" style="white-space: pre-wrap;">{{ data['biosecurity-other-staff-measures-text-input'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="../biosecurity/other-staff-measures">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        </div>
+    {%  endif %}
+
+
+
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
+            Which measures are you taking to reduce the risk of infection from wildlife?
+        </dt>
+        <dd class="govuk-summary-list__value" style="white-space: pre-wrap;">{{ data['biosecurity-badgers-checkboxes-formatted'] }}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="../biosecurity/badgers">Change<span class="govuk-visually-hidden"> </span></a>
+        </dd>
+    </div>
+
+
+    {%  if data['biosecurity-other-wildlife-measures-boolean']  == "true"  %}
+        <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
+                What other measures are you taking to reduce the risk of spreading TB?
+            </dt>
+            <dd class="govuk-summary-list__value" style="white-space: pre-wrap;">{{ data['biosecurity-other-wildlife-measures-text-input'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="../biosecurity/other-wildlife-measures">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        </div>
+    {%  endif %}
+
+
+</dl>

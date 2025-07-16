@@ -1,0 +1,393 @@
+{% extends "layouts/v2_8_0.html" %}
+
+
+
+<!-- Setting the big main heading at the top of the page -->
+{% set pageHeadingTextHTML %}
+    Your Bovine Tuberculosis (TB) movement licence application
+{% endset %}
+
+
+
+<!-- Text that show in the browser tab. Does NOT need changing -->
+{% block pageTitle %}
+    {{ pageHeadingTextHTML }}
+{% endblock %}
+
+
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-l">{{ pageHeadingTextHTML }}</h1>
+
+        <p id="whole-text-progress-count" class="govuk-body">You have
+            <span id="section-progress-count"></span> sections left to complete.
+        </p>
+
+        <p id="whole-text-all-complete" style="display: none;">All sections are complete.</p>
+
+
+        <h2 class="govuk-heading-m govuk-!-margin-top-5">Placeholder heading</h2>
+
+
+        {{
+            govukTaskList
+            ({
+                idPrefix: "company-details",
+                items:
+                [
+
+                    {
+                        title:
+                        {
+                            text: "Movement origin"
+                        },
+                        href: "#",
+                        status:
+                        {
+                            text: "Completed",
+                            tag:
+                            {
+                                text: "Incomplete",
+                                classes: "govuk-tag--blue"
+                            } if data['section-origin-complete'] != "true"
+                        }
+                    } ,
+
+
+
+
+
+
+                    {
+                        title:
+                        {
+                            text: "Movement destination"
+                        },
+                        href: "#",
+                        status:
+                        {
+                            text: "Completed",
+                            tag:
+                            {
+                                text: "Incomplete",
+                                classes: "govuk-tag--blue"
+                            } if data['section-destination-complete'] != "true"
+                        }
+                    },
+
+
+
+
+                    {
+                        title:
+                        {
+                            text: "Receiving the licence"
+                        },
+                        href: "#",
+                        status:
+                        {
+                            text: "Completed",
+                            tag:
+                            {
+                                text: "Incomplete",
+                                classes: "govuk-tag--blue"
+                            } if data['section-contact-and-updates-complete'] != "true"
+                        }
+                    },
+
+
+
+                    {
+                        title:
+                        {
+                            text: "Reactors"
+                        },
+                        href: "#",
+                        status:
+                        {
+                            text: "Completed",
+                            tag:
+                            {
+                                text: "Incomplete",
+                                classes: "govuk-tag--blue"
+                            } if data['section-reactors-complete'] != "true"
+                        }
+                    },
+
+
+
+                    {
+                        title:
+                        {
+                            text: "Animal identification"
+                        },
+                        href: "#",
+                        status:
+                        {
+                            text: "Completed",
+                            tag:
+                            {
+                                text: "Incomplete",
+                                classes: "govuk-tag--blue"
+                            } if data['section-identification-complete'] != "true"
+                        }
+                    }
+
+
+
+                ]
+            })
+        }}
+
+
+
+
+        <h2 class="govuk-heading-m govuk-!-margin-top-5">Biosecurity details</h2>
+
+
+        {{
+            govukTaskList
+            ({
+                idPrefix: "company-details",
+                items:
+                [
+
+                    {
+                        title:
+                        {
+                            text: "Separating the cattle"
+                        },
+                        href: "#",
+                        status:
+                        {
+                            text: "Completed",
+                            tag:
+                            {
+                                text: "Incomplete",
+                                classes: "govuk-tag--blue"
+                            } if true
+                        }
+                    } ,
+
+
+                    {
+                        title:
+                        {
+                            text: "Buildings and equipment"
+                        },
+                        href: "#",
+                        status:
+                        {
+                            text: "Completed",
+                            tag:
+                            {
+                                text: "Incomplete",
+                                classes: "govuk-tag--blue"
+                            } if true
+                        }
+                    } ,
+
+
+                    {
+                        title:
+                        {
+                            text: "Staff measures"
+                        },
+                        href: "#",
+                        status:
+                        {
+                            text: "Completed",
+                            tag:
+                            {
+                                text: "Incomplete",
+                                classes: "govuk-tag--blue"
+                            } if true
+                        }
+                    } ,
+
+
+                    {
+                        title:
+                        {
+                            text: "Disinfectant details"
+                        },
+                        href: "#",
+                        status:
+                        {
+                            text: "Completed",
+                            tag:
+                            {
+                                text: "Incomplete",
+                                classes: "govuk-tag--blue"
+                            } if true
+                        }
+                    } ,
+
+
+                    {
+                        title:
+                        {
+                            text: "Risk from wildlife"
+                        },
+                        href: "#",
+                        status:
+                        {
+                            text: "Completed",
+                            tag:
+                            {
+                                text: "Incomplete",
+                                classes: "govuk-tag--blue"
+                            } if true
+                        }
+                    } ,
+
+
+
+
+                    {
+                        title:
+                        {
+                            text: "Biosecurity map"
+                        },
+                        href: "biosecurity-map/check-answers" if data['section-biosecurity-map-complete'] == "true" else "biosecurity-map/upload-plan",
+                        status:
+                        {
+                            text: "Incomplete",
+                            tag:
+                            {
+                                text: "Incomplete",
+                                classes: "govuk-tag--blue"
+                            } if true
+                        }
+                    }
+
+
+                ]
+            })
+        }}
+
+
+
+        <!-- <p>You can <a href="#">message the outbreak team</a> if you need help with your application.</p> -->
+
+
+        <!-- go to routes.js for routing  -->
+
+
+        {{
+            govukButton
+            ({
+                text: "Review and submit",
+                classes: "govuk-button--secondary",
+                href: "task-list-validation-page"
+            })
+        }}
+
+
+
+    </div>
+</div>
+
+
+
+
+<!-- TASKLIST STATES  drop down to toggle states  -->
+<form method="post"  action="#" class="for4" style=" float: left; position: relative; bottom:-270px;  ">
+
+    <select style="height:30px;" onchange="window.location.href='?'+this.value">
+
+        <!--  NOTHING STARTED  -->
+        <option value="section-origin-complete=false&section-destination-complete=false&section-tests-complete=false&section-contact-and-updates-complete=false&origin-to-or-from-own-premises-radios=null&"
+            {% if  data['section-origin-complete'] != "true" and
+                   data['section-destination-complete'] != "true" and
+                   data['section-tests-complete'] != "true" and
+                   data['section-contact-and-updates-complete'] != "true"
+            %}selected{% endif %}
+        >Not Started</option>
+
+
+        <!--  ONTO THE FARM FROM A Unrestricted market -->
+        <option value="section-origin-complete=true&section-destination-complete=false&section-tests-complete=false&section-contact-and-updates-complete=false&origin-to-or-from-own-premises-radios=n to the farm or premises&"
+                {% if  data['section-origin-complete'] == "true" and
+                        data['section-destination-complete'] != "true" and
+                        data['section-tests-complete'] != "true" and
+                        data['section-contact-and-updates-complete'] != "true"
+                %}selected{% endif %}
+        >Origin complete - Only</option>
+
+
+        <!--  ON TO THE FARM FROM A FARM -->
+        <option value="section-origin-complete=true&section-destination-complete=true&section-tests-complete=true&section-contact-and-updates-complete=true&section-biosecurity-complete=true&section-biosecurity-map-complete=true&origin-to-or-from-own-premises-radios=On to the farm or premises&"
+                {% if  data['section-origin-complete'] == "true" and
+                        data['section-destination-complete'] == "true" and
+                        data['section-tests-complete'] == "true" and
+                        data['section-contact-and-updates-complete'] == "true" and
+                        data['section-biosecurity-complete'] == "true" and
+                        data['section-biosecurity-map-complete'] == "true"
+                %}selected{% endif %}
+        >All sections complete</option>
+
+
+
+    </select>
+
+</form>
+<!--  END OF TASKLIST STATES  -->
+
+
+
+
+<script>
+
+    // Update the progress count
+    window.onload = function ()
+    {
+        const elements = document.querySelectorAll('div.govuk-task-list__status');
+
+        let numItems = elements.length;
+
+        let completecounter = 0;
+
+        elements.forEach((element) =>
+        {
+            var tagtext = element.textContent;
+
+            if(tagtext.includes('Completed') )
+            {
+                completecounter++;
+            }
+        });
+
+        let remaniningcount = numItems - completecounter;
+
+
+        document.getElementById("section-progress-count").textContent = remaniningcount + " out of " + numItems;
+
+
+        // make button primary green if all done
+        // also change text at the top
+        if (completecounter == numItems)
+        {
+            const elementbutton = document.querySelector('.govuk-button');
+            elementbutton.classList.remove('govuk-button--secondary');
+            elementbutton.href="submit/check-answers";
+
+            document.getElementById('whole-text-progress-count').style.display = 'none';
+            document.getElementById('whole-text-all-complete').style.display = 'block';
+        }
+
+
+    }
+
+</script>
+
+{% endblock %}
+
+
+
+
+
+
