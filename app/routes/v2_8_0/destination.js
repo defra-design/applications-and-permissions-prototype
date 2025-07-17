@@ -115,8 +115,17 @@ module.exports = function (router) {
 
         else if (req.session.data['destination-type-of-destination-radios'] == "Approved finishing units (AFU)")
         {
-            // off the premises
-            res.redirect('any-additional-info');
+            // if the orogin is an ISO unit then we need more details
+            if (req.session.data['origin-type-of-origin-off-radios'] == "TB isolation unit")
+            {
+                res.redirect('destination-farm-cph');
+            }
+            else
+            {
+                // off the premises
+                res.redirect('any-additional-info');
+            }
+
         }
 
         else if (req.session.data['destination-type-of-destination-radios'] == "Approved finishing unit (AFU)")
@@ -1158,16 +1167,20 @@ module.exports = function (router) {
                     // if the orogin is an ISO unit then we need more details
                     if (req.session.data['origin-type-of-origin-off-radios'] == "TB isolation unit")
                     {
-                        res.redirect('date-of-movement');
+                        if (req.session.data['destination-type-of-destination-radios'] == "Approved finishing units (AFU)")
+                        {
+                            res.redirect('any-additional-info');
+                        }
+                        else
+                        {
+                            res.redirect('date-of-movement');
+                        }
                     }
                     else
                     {
                         // This page name needs to be the next page the user gets to after successfully continuing
                         res.redirect('reason-for-movement');
                     }
-
-
-
                 }
             }
 
@@ -1414,7 +1427,7 @@ module.exports = function (router) {
         if (req.session.data['errorthispage'] != "true")
         {
             // if date entered if after the previous tax year
-            if (today < inputdate)
+            if (inputdate < today)
             {
                 req.session.data['errorthispage'] = "true";
                 req.session.data['errortypetwelve'] = "true";

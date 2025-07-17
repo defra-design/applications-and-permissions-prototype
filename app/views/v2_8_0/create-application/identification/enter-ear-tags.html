@@ -3,7 +3,13 @@
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    Official ear tag numbers for animals 42 days old or older
+    Official ear tag numbers for animals
+    {% if data['origin-type-of-origin-off-radios'] == 'TB isolation unit' %}
+        being moved
+    {% else%}
+        42 days old or older
+    {% endif %}
+
 {% endset %}
 
 

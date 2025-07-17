@@ -196,7 +196,8 @@
 
     <!-- ISO UNITS -->
     {%  if  data['origin-type-of-origin-off-radios'] == "TB isolation unit"
-            and  data['destination-type-of-destination-radios'] == "Slaughter"   %}
+            and  (data['destination-type-of-destination-radios'] == "Slaughter"
+             or  data['destination-type-of-destination-radios'] == "Approved finishing units (AFU)")  %}
 
         <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key govuk-!-font-weight-regular ">
@@ -228,18 +229,19 @@
             </dd>
         </div>
 
-        <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
-                What date will the animals be moved PLACEHOLDER?
-            </dt>
-            <dd class="govuk-summary-list__value">
-                {{ data['destination-date-of-movement-date-input-day'] }} {{ data['destination-date-of-movement-date-input-month-text'] }} {{ data['destination-date-of-movement-date-input-year'] }}
-            </dd>
-            <dd class="govuk-summary-list__actions">
-                <a class="govuk-link" href="../destination/how-many-animals">Change<span class="govuk-visually-hidden"> </span></a>
-            </dd>
-        </div>
-
+        {%  if data['destination-type-of-destination-radios'] == "Slaughter" %}
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
+                    What date will the animals be moved PLACEHOLDER?
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    {{ data['destination-date-of-movement-date-input-day'] }} {{ data['destination-date-of-movement-date-input-month-text'] }} {{ data['destination-date-of-movement-date-input-year'] }}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="../destination/how-many-animals">Change<span class="govuk-visually-hidden"> </span></a>
+                </dd>
+            </div>
+        {%  endif  %}
 
 
     {%  endif  %}
@@ -250,9 +252,7 @@
         <dt class="govuk-summary-list__key govuk-!-font-weight-regular ">
             Enter any additional information (optional)
         </dt>
-        <dd class="govuk-summary-list__value">
-            {{ data['destination-any-additional-info-text-input'] }}
-        </dd>
+        <dd class="govuk-summary-list__value"  style="white-space: pre-wrap;">{{ data['destination-any-additional-info-text-input'] }}</dd>
 
         {%  if  data['application-submitted-and-locked'] != "true"  %}
             {%  if  data['destination-any-additional-info-text-input'] == "None"  %}

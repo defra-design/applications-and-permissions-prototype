@@ -23,13 +23,19 @@ module.exports = function (router) {
     {
         if (req.session.data['origin-type-of-origin-off-radios'] == "TB isolation unit")
         {
-            res.redirect('destination-farm-address');
+            if (req.session.data['destination-type-of-destination-radios'] == "Approved finishing units (AFU)")
+            {
+                res.redirect('enter-ear-tags-testing-dates');
+            }
+            else
+            {
+                res.redirect('enter-ear-tags');
+            }
         }
         else
         {
             res.redirect('any-calves');
         }
-
 
     })
 

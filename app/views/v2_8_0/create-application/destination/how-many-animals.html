@@ -16,7 +16,9 @@ This will save you time.
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
 
-    {% if  ( (data['origin-type-of-origin-on-checkboxes'] or []).indexOf('Unrestricted market') > -1 )  or  ( ( (data['origin-type-of-origin-on-checkboxes'] or []).indexOf('Unrestricted farm or premises') > -1 )  )  %}
+    {% if  (data['origin-to-or-from-own-premises-radios'] == 'On to the farm or premises'  and  data['origin-type-of-origin-on-radios'] == 'Unrestricted farms and markets' )
+            or
+           (data['origin-to-or-from-own-premises-radios'] == 'Off the farm or premises'  and  data['origin-type-of-origin-on-radios'] == 'TB isolation unit' ) %}
            What is the maximum number of animals you are planning to move?
     {% else %}
         How many animals are you planning to move?
@@ -29,7 +31,9 @@ This will save you time.
 {% set errorTextHTML %}
     <!-- Error 1 - If answer is not a number when it should be -->
     {%  if  data['errortypeone'] == "true"  %}
-        {% if  ( (data['origin-type-of-origin-on-checkboxes'] or []).indexOf('Unrestricted market') > -1 )  or  ( ( (data['origin-type-of-origin-on-checkboxes'] or []).indexOf('Unrestricted farm or premises') > -1 )  )  %}
+        {% if  (data['origin-to-or-from-own-premises-radios'] == 'On to the farm or premises'  and  data['origin-type-of-origin-on-radios'] == 'Unrestricted farms and markets' )
+        or
+        (data['origin-to-or-from-own-premises-radios'] == 'Off the farm or premises'  and  data['origin-type-of-origin-on-radios'] == 'TB isolation unit' ) %}
             Enter the maximum number of animals you are planning to move
         {% else %}
             Enter how many animals you are planning to move
@@ -163,7 +167,7 @@ This will save you time.
 
         <option value="origin-type-of-origin-radios=Unrestricted market&"
                 {% if  ( (data['origin-type-of-origin-on-checkboxes'] or []).indexOf('Unrestricted market') > -1 )  or  ( ( (data['origin-type-of-origin-on-checkboxes'] or []).indexOf('Unrestricted farm or premises') > -1 )  )  %}   selected {% endif %}
-        >ON Premises - Origin is Unrestricted market or Unrestricted</option>
+        >ON Premises - Origin is Unrestricted market or Unrestricted or OFF premises - TB Isolation unit origin</option>
 
     </select>
 
