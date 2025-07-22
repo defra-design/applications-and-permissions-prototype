@@ -1,0 +1,59 @@
+{% extends "layouts/v3_0_0.html" %}
+
+
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-l">Check your answers before you continue your application</h1>
+
+        {% include "../includes/biosecurity-cya.html" %}
+
+         <form action="../task-list?section-biosecurity-complete=true&" method="post" novalidate>
+
+            <button type="submit" class="govuk-button" data-module="govuk-button">
+                Continue
+            </button>
+
+         </form>
+
+    </div>
+</div>
+
+
+
+<!-- Toggle states  -->
+<form method="post"  action="#" class="for4" style=" float: left; position: relative; bottom:-270px;  ">
+
+    <select style="height:30px;" onchange="window.location.href='?'+this.value">
+
+        <option value="destination-reason-for-movement-radios=Breeding male"
+                {% if  data['destination-reason-for-movement-radios'] == "Breeding male"
+                        or
+                        data['destination-reason-for-movement-radios'] == "Welfare"  %}
+                    selected
+                {% endif %}
+        >State - Bull or welfare</option>
+
+        <option value="destination-reason-for-movement-radios=Routine restocking"
+                {% if  data['destination-reason-for-movement-radios'] == "Routine restocking"
+                        or
+                        data['destination-reason-for-movement-radios'] == "Something else"  %}
+                    selected
+                {% endif %}
+        >State - Routine restocking or Something else</option>
+
+    </select>
+
+</form>
+<!--  END OF ERROR LOGIC -->
+
+
+
+{% endblock %}
+
+
+
+
+

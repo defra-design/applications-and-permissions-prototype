@@ -1,0 +1,55 @@
+{% extends "layouts/v3_0_0.html" %}
+
+{% set serviceName = "Get permission to move animals under disease controls" %}
+
+{% set pageHeading = "Are you registering as a business or organisation?" %}
+
+{% set pageSection = "Register Defra account" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+        <span class="govuk-caption-xl">{{ pageSection }}</span>
+
+        <div class="gem-c-title govuk-!-margin-top-0 govuk-!-margin-bottom-8">
+            <h1 class="gem-c-title__text govuk-heading-xl">
+                {{ pageHeading }}
+            </h1>
+        </div>
+
+        <!-- <p>You represent a business or organisation (including sole traders and charities) and have permission to register an account.</p> -->
+        <p>This includes if you are a sole trader or registered charity.</p>
+        
+
+        <form method="post" action="account-type-router">
+
+            
+            {{ govukRadios({
+                
+                fieldset: {
+                    legend: { text: pageHeading, isPageHeading: false, classes: "govuk-visually-hidden"  }
+                },
+                items: [
+                    { value: "Business", text: "Yes, and I have permission to create an account",  checked: checked('registrationAccountType', 'Business')  },
+                    { value: "Individual", text: "No, as an individual for personal use", checked: checked('registrationAccountType', 'Individual')  }
+                ],
+                name: "registrationAccountType"
+            }) }}
+            
+            <!-- Removes the temp link if changing account type to hide backbutton -->
+            <input type="hidden" id="backButtonHide" name="backButtonHide" value="" />
+            <!-- // -->
+            
+            {{govukButton({
+                text: "Continue"
+            })}}
+
+        </form>          
+
+    </div>    
+</div>
+
+{% endblock %}

@@ -1,0 +1,123 @@
+<dl class="govuk-summary-list">
+
+
+    {% if data['origin-type-of-origin-off-radios'] == 'TB isolation unit' %}
+
+        {% if data['destination-type-of-destination-radios'] == 'Approved finishing units (AFU)' %}
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                    What are the dates of the last TB tests for the cattle that are 42 days old or older?
+                </dt>
+                <dd class="govuk-summary-list__value"  style="white-space: pre-wrap;">{{ data['identification-enter-ear-tags-testing-dates-text-input'] }}</dd>
+                <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="../identification/enter-ear-tags-testing-dates">Change<span class="govuk-visually-hidden"> </span></a>
+                </dd>
+            </div>
+        {% endif %}
+
+        <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                Official ear tag numbers for animals
+                {% if data['origin-type-of-origin-off-radios'] == 'TB isolation unit' %}
+                    being moved
+                {% else %}
+                    42 days old or older
+                {% endif %}
+            </dt>
+            <dd class="govuk-summary-list__value"  style="white-space: pre-wrap;">{{ data['identification-enter-ear-tags-text-input'] }}</dd>
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="../identification/enter-ear-tags">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        </div>
+
+    {% else %}
+
+
+         <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                Will you move any calves under 42 days old?
+            </dt>
+            <dd class="govuk-summary-list__value">
+                {{ data['identification-any-calves-radios-yes-no'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="../identification/any-calves">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        </div>
+
+
+
+        {%  if  data['identification-any-calves-radios-yes-no'] == "Yes"   %}
+
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                    What is the date of birth of the oldest calf under 42 days old?
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    {{ data['identification-oldest-calf-dob-date-input-day'] }} {{ data['identification-oldest-calf-dob-date-input-month-text'] }} {{ data['identification-oldest-calf-dob-date-input-year'] }}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="../identification/oldest-calf-dob">Change<span class="govuk-visually-hidden"> </span></a>
+                </dd>
+            </div>
+
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                    Enter the ear tag numbers of the calves under 42 days old you are planning to move
+                </dt>
+                <dd class="govuk-summary-list__value"  style="white-space: pre-wrap;">{{ data['identification-enter-ear-tags-calves-text-input'] }}</dd>
+                <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="../identification/enter-ear-tags-calves">Change<span class="govuk-visually-hidden"> </span></a>
+                </dd>
+            </div>
+
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                    Are you also moving any animals 42 days old or older?
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    {{ data['identification-any-cattle-over-42-days-radios-yes-no'] }}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="../identification/any-cattle-over-42-days">Change<span class="govuk-visually-hidden"> </span></a>
+                </dd>
+            </div>
+
+        {%  endif   %}
+
+
+        {%  if  data['identification-any-calves-radios-yes-no'] == "No"  or   data['identification-any-cattle-over-42-days-radios-yes-no'] == "Yes"   %}
+
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                    What are the dates of the last TB tests for the cattle that are 42 days old or older?
+                </dt>
+                <dd class="govuk-summary-list__value"  style="white-space: pre-wrap;">{{ data['identification-enter-ear-tags-testing-dates-text-input'] }}</dd>
+                <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="../identification/enter-ear-tags-testing-dates">Change<span class="govuk-visually-hidden"> </span></a>
+                </dd>
+            </div>
+
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                    Enter the ear tag numbers for these animals
+                </dt>
+                <dd class="govuk-summary-list__value"  style="white-space: pre-wrap;">{{ data['identification-enter-ear-tags-text-input'] }}</dd>
+                <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="../identification/enter-ear-tags">Change<span class="govuk-visually-hidden"> </span></a>
+                </dd>
+            </div>
+
+        {%  endif   %}
+
+
+
+    {% endif %}
+
+
+
+
+
+
+
+</dl>

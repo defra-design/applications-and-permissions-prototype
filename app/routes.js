@@ -27,6 +27,7 @@ require('./routes/v2_5_0/version.js');
 require('./routes/v2_6_0/version.js');
 require('./routes/v2_7_0/version.js');
 require('./routes/v2_8_0/version.js');
+require('./routes/v3_0_0/version.js');
 require('./routes/latest/version.js');
 
 
