@@ -199,6 +199,22 @@
             and  (data['destination-type-of-destination-radios'] == "Slaughter"
              or  data['destination-type-of-destination-radios'] == "Approved finishing units (AFU)")  %}
 
+        {%  if data['destination-type-of-destination-radios'] == "Approved finishing units (AFU)" %}
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key govuk-!-font-weight-regular ">
+                    What is the CPH number of the farm where the animals are going to?
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    {{ data['destination-destination-farm-cph-text-input'] }}
+                </dd>
+                {%  if  data['application-submitted-and-locked'] != "true"  %}
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="../destination/destination-farm-cph?camefromcheckanswers=true&">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                {%  endif  %}
+            </div>
+        {%  endif  %}
+
         <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key govuk-!-font-weight-regular ">
                 What is the address of the farm where the animals are going to?
@@ -232,7 +248,7 @@
         {%  if data['destination-type-of-destination-radios'] == "Slaughter" %}
             <div class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
-                    What date will the animals be moved PLACEHOLDER?
+                    What date will the animals move off the farm or premises?
                 </dt>
                 <dd class="govuk-summary-list__value">
                     {{ data['destination-date-of-movement-date-input-day'] }} {{ data['destination-date-of-movement-date-input-month-text'] }} {{ data['destination-date-of-movement-date-input-year'] }}

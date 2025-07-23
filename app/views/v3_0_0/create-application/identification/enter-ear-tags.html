@@ -4,7 +4,7 @@
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
     Official ear tag numbers for animals
-{% if data['origin-type-of-origin-off-radios'] == 'TB isolation unit' %}
+    {% if data['origin-type-of-origin-off-radios'] == 'TB isolation unit' %}
         being moved
     {% else%}
         42 days old or older
@@ -16,6 +16,12 @@
 <!-- Setting the smaller secondary heading lower down the page -->
 {% set questionHeadingTextHTML %}
     Enter the ear tag numbers
+    {% if data['origin-type-of-origin-off-radios'] == 'TB isolation unit' %}
+
+    {% else%}
+        for these animals
+    {% endif %}
+
 {% endset %}
 
 

@@ -17,12 +17,7 @@
 
         <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
-                Official ear tag numbers for animals
-                {% if data['origin-type-of-origin-off-radios'] == 'TB isolation unit' %}
-                    being moved
-                {% else %}
-                    42 days old or older
-                {% endif %}
+                Enter the ear tag numbers
             </dt>
             <dd class="govuk-summary-list__value"  style="white-space: pre-wrap;">{{ data['identification-enter-ear-tags-text-input'] }}</dd>
             <dd class="govuk-summary-list__actions">
@@ -31,8 +26,7 @@
         </div>
 
     {% else %}
-
-
+    
          <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
                 Will you move any calves under 42 days old?
