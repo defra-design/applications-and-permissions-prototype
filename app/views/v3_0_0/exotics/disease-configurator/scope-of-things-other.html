@@ -1,5 +1,6 @@
 {% extends "layouts/v3_0_0" %}
 
+
 <!--
 NOTES ON USING THIS TEMPLATE Page
 This will save you time.
@@ -16,7 +17,7 @@ This will save you time.
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    For origin {{ data['origin-showing-in-loop'] }}, which destinations are allowed?
+    What things being moved will need a licence?
 {% endset %}
 
 
@@ -53,7 +54,7 @@ This will save you time.
                     [
                         {
                             html: errorTextHTML,
-                            href: "#disease-configurator-select-destination-for-each-origin-checkboxes"
+                            href: "#disease-configurator-scope-of-things-other-checkboxes"
                         }
                     ]
                 })
@@ -63,13 +64,13 @@ This will save you time.
 
 
         <!-- form URL below turns off errors on the next page  -->
-        <form action="select-destination-for-each-origin-router" method="post" novalidate>
+        <form action="scope-of-things-other-router" method="post" novalidate>
 
             {{ govukCheckboxes
                 ({
-                    name: "disease-configurator-select-destination-for-each-origin-checkboxes",
+                    name: "disease-configurator-scope-of-things-other-checkboxes",
 
-                    id: "disease-configurator-select-destination-for-each-origin-checkboxes",
+                    id: "disease-configurator-scope-of-things-other-checkboxes",
 
                     fieldset:
                     {
@@ -92,39 +93,30 @@ This will save you time.
                     items:
                     [
                         {
-                            value: "Farm",
-                            text: "Farm",
-                            checked: (data['disease-configurator-select-destination-for-each-origin-checkboxes'] or []).indexOf('Farm') > -1
+                            value: "Carcasses",
+                            text: "Carcasses",
+                            hint: "Excluding domestic caged birds",
+                            checked: (data['disease-configurator-scope-of-things-other-checkboxes'] or []).indexOf('Carcasses') > -1
                         },
                         {
-                            value: "Approved finishing unit (AFU)",
-                            text: "Approved finishing unit (AFU)",
-                            checked: (data['disease-configurator-select-destination-for-each-origin-checkboxes'] or []).indexOf('Approved finishing unit (AFU)') > -1
+                            value: "Animal by-products and waste materials",
+                            text: "Animal by-products and waste materials",
+                            checked: (data['disease-configurator-scope-of-things-other-checkboxes'] or []).indexOf('Animal by-products and waste materials') > -1
                         },
                         {
-                            value: "Unrestricted market",
-                            text: "Unrestricted market",
-                            checked: (data['disease-configurator-select-destination-for-each-origin-checkboxes'] or []).indexOf('Unrestricted market') > -1
+                            value: "Germplasm",
+                            text: "Germplasm",
+                            checked: (data['disease-configurator-scope-of-things-other-checkboxes'] or []).indexOf('Germplasm') > -1
                         },
                         {
-                            value: "Orange market",
-                            text: "Orange market",
-                            checked: (data['disease-configurator-select-destination-for-each-origin-checkboxes'] or []).indexOf('Orange market') > -1
+                            value: "Machinery and equipment",
+                            text: "Machinery and equipment",
+                            checked: (data['disease-configurator-scope-of-things-other-checkboxes'] or []).indexOf('Machinery and equipment') > -1
                         },
                         {
-                            value: "Hatchery",
-                            text: "Hatchery",
-                            checked: (data['disease-configurator-select-destination-for-each-origin-checkboxes'] or []).indexOf('Hatchery') > -1
-                        },
-                        {
-                            value: "PLACEHOLDER_ANSWER_2",
-                            text: "PLACEHOLDER_ANSWER_2",
-                            checked: (data['disease-configurator-select-destination-for-each-origin-checkboxes'] or []).indexOf('PLACEHOLDER_ANSWER_2') > -1
-                        },
-                        {
-                            value: "PLACEHOLDER_ANSWER_3",
-                            text: "PLACEHOLDER_ANSWER_3",
-                            checked: (data['disease-configurator-select-destination-for-each-origin-checkboxes'] or []).indexOf('PLACEHOLDER_ANSWER_3') > -1
+                            value: "Bedding and feed",
+                            text: "Bedding and feed",
+                            checked: (data['disease-configurator-scope-of-things-other-checkboxes'] or []).indexOf('Bedding and feed') > -1
                         }
                     ]
                 })

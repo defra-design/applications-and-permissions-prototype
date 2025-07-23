@@ -17,7 +17,7 @@ This will save you time.
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    What things being moved will need a licence?
+    What animals being moved will need a licence?
 {% endset %}
 
 
@@ -54,7 +54,7 @@ This will save you time.
                     [
                         {
                             html: errorTextHTML,
-                            href: "#disease-configurator-scope-of-things-checkboxes"
+                            href: "#disease-configurator-scope-of-things-animals-checkboxes"
                         }
                     ]
                 })
@@ -64,13 +64,13 @@ This will save you time.
 
 
         <!-- form URL below turns off errors on the next page  -->
-        <form action="scope-of-things-router" method="post" novalidate>
+        <form action="scope-of-things-animals-router" method="post" novalidate>
 
             {{ govukCheckboxes
                 ({
-                    name: "disease-configurator-scope-of-things-checkboxes",
+                    name: "disease-configurator-scope-of-things-animals-checkboxes",
 
-                    id: "disease-configurator-scope-of-things-checkboxes",
+                    id: "disease-configurator-scope-of-things-animals-checkboxes",
 
                     fieldset:
                     {
@@ -96,37 +96,37 @@ This will save you time.
                             value: "Birds",
                             text: "Birds",
                             hint: "Excluding domestic caged birds",
-                            checked: (data['disease-configurator-scope-of-things-checkboxes'] or []).indexOf('Birds') > -1
+                            checked: (data['disease-configurator-scope-of-things-animals-checkboxes'] or []).indexOf('Birds') > -1
                         },
                         {
                             value: "Camelids",
                             text: "Camelids",
-                            checked: (data['disease-configurator-scope-of-things-checkboxes'] or []).indexOf('Camelids') > -1
+                            checked: (data['disease-configurator-scope-of-things-animals-checkboxes'] or []).indexOf('Camelids') > -1
                         },
                         {
                             value: "Sheep",
                             text: "Sheep",
-                            checked: (data['disease-configurator-scope-of-things-checkboxes'] or []).indexOf('Sheep') > -1
+                            checked: (data['disease-configurator-scope-of-things-animals-checkboxes'] or []).indexOf('Sheep') > -1
                         },
                         {
                             value: "Goats",
                             text: "Goats",
-                            checked: (data['disease-configurator-scope-of-things-checkboxes'] or []).indexOf('Goats') > -1
+                            checked: (data['disease-configurator-scope-of-things-animals-checkboxes'] or []).indexOf('Goats') > -1
                         },
                         {
                             value: "Cattle",
                             text: "Cattle",
-                            checked: (data['disease-configurator-scope-of-things-checkboxes'] or []).indexOf('Cattle') > -1
+                            checked: (data['disease-configurator-scope-of-things-animals-checkboxes'] or []).indexOf('Cattle') > -1
                         },
                         {
                             value: "Pigs",
                             text: "Pigs",
-                            checked: (data['disease-configurator-scope-of-things-checkboxes'] or []).indexOf('Pigs') > -1
+                            checked: (data['disease-configurator-scope-of-things-animals-checkboxes'] or []).indexOf('Pigs') > -1
                         },
                         {
                             value: "Domestic pets",
                             text: "Domestic pets",
-                            checked: (data['disease-configurator-scope-of-things-checkboxes'] or []).indexOf('Domestic pets') > -1
+                            checked: (data['disease-configurator-scope-of-things-animals-checkboxes'] or []).indexOf('Domestic pets') > -1
                         }
                     ]
                 })
