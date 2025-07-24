@@ -92,40 +92,50 @@ This will save you time.
                     items:
                     [
                         {
-                            value: "Farm",
-                            text: "Farm",
-                            checked: (data['disease-configurator-select-destination-for-each-origin-checkboxes'] or []).indexOf('Farm') > -1
-                        },
+                            value: data['disease-configurator-destination-types-checkboxes'][0],
+                            text: data['disease-configurator-destination-types-checkboxes'][0],
+                            checked: (data['disease-configurator-select-destination-for-each-origin-checkboxes'] or []).indexOf(ata['disease-configurator-destination-types-checkboxes'][0]) > -1
+                        } if data['disease-configurator-destination-types-checkboxes'][0] != undefined,
                         {
-                            value: "Approved finishing unit (AFU)",
-                            text: "Approved finishing unit (AFU)",
-                            checked: (data['disease-configurator-select-destination-for-each-origin-checkboxes'] or []).indexOf('Approved finishing unit (AFU)') > -1
-                        },
+                            value: data['disease-configurator-destination-types-checkboxes'][1],
+                            text: data['disease-configurator-destination-types-checkboxes'][1],
+                            checked: (data['disease-configurator-select-destination-for-each-origin-checkboxes'] or []).indexOf(ata['disease-configurator-destination-types-checkboxes'][1]) > -1
+                        } if data['disease-configurator-destination-types-checkboxes'][1] != undefined,
                         {
-                            value: "Unrestricted market",
-                            text: "Unrestricted market",
-                            checked: (data['disease-configurator-select-destination-for-each-origin-checkboxes'] or []).indexOf('Unrestricted market') > -1
-                        },
+                            value: data['disease-configurator-destination-types-checkboxes'][2],
+                            text: data['disease-configurator-destination-types-checkboxes'][2],
+                            checked: (data['disease-configurator-select-destination-for-each-origin-checkboxes'] or []).indexOf(ata['disease-configurator-destination-types-checkboxes'][2]) > -1
+                        } if data['disease-configurator-destination-types-checkboxes'][2] != undefined,
                         {
-                            value: "Orange market",
-                            text: "Orange market",
-                            checked: (data['disease-configurator-select-destination-for-each-origin-checkboxes'] or []).indexOf('Orange market') > -1
-                        },
+                            value: data['disease-configurator-destination-types-checkboxes'][3],
+                            text: data['disease-configurator-destination-types-checkboxes'][3],
+                            checked: (data['disease-configurator-select-destination-for-each-origin-checkboxes'] or []).indexOf(ata['disease-configurator-destination-types-checkboxes'][3]) > -1
+                        } if data['disease-configurator-destination-types-checkboxes'][3] != undefined,
                         {
-                            value: "Hatchery",
-                            text: "Hatchery",
-                            checked: (data['disease-configurator-select-destination-for-each-origin-checkboxes'] or []).indexOf('Hatchery') > -1
-                        },
+                            value: data['disease-configurator-destination-types-checkboxes'][4],
+                            text: data['disease-configurator-destination-types-checkboxes'][4],
+                            checked: (data['disease-configurator-select-destination-for-each-origin-checkboxes'] or []).indexOf(ata['disease-configurator-destination-types-checkboxes'][4]) > -1
+                        } if data['disease-configurator-destination-types-checkboxes'][4] != undefined,
                         {
-                            value: "PLACEHOLDER_ANSWER_2",
-                            text: "PLACEHOLDER_ANSWER_2",
-                            checked: (data['disease-configurator-select-destination-for-each-origin-checkboxes'] or []).indexOf('PLACEHOLDER_ANSWER_2') > -1
-                        },
+                            value: data['disease-configurator-destination-types-checkboxes'][5],
+                            text: data['disease-configurator-destination-types-checkboxes'][5],
+                            checked: (data['disease-configurator-select-destination-for-each-origin-checkboxes'] or []).indexOf(ata['disease-configurator-destination-types-checkboxes'][5]) > -1
+                        } if data['disease-configurator-destination-types-checkboxes'][5] != undefined,
                         {
-                            value: "PLACEHOLDER_ANSWER_3",
-                            text: "PLACEHOLDER_ANSWER_3",
-                            checked: (data['disease-configurator-select-destination-for-each-origin-checkboxes'] or []).indexOf('PLACEHOLDER_ANSWER_3') > -1
-                        }
+                            value: data['disease-configurator-destination-types-checkboxes'][6],
+                            text: data['disease-configurator-destination-types-checkboxes'][6],
+                            checked: (data['disease-configurator-select-destination-for-each-origin-checkboxes'] or []).indexOf(ata['disease-configurator-destination-types-checkboxes'][6]) > -1
+                        } if data['disease-configurator-destination-types-checkboxes'][6] != undefined,
+                        {
+                            value: data['disease-configurator-destination-types-checkboxes'][7],
+                            text: data['disease-configurator-destination-types-checkboxes'][7],
+                            checked: (data['disease-configurator-select-destination-for-each-origin-checkboxes'] or []).indexOf(ata['disease-configurator-destination-types-checkboxes'][7]) > -1
+                        } if data['disease-configurator-destination-types-checkboxes'][7] != undefined,
+                        {
+                            value: data['disease-configurator-destination-types-checkboxes'][8],
+                            text: data['disease-configurator-destination-types-checkboxes'][8],
+                            checked: (data['disease-configurator-select-destination-for-each-origin-checkboxes'] or []).indexOf(ata['disease-configurator-destination-types-checkboxes'][8]) > -1
+                        } if data['disease-configurator-destination-types-checkboxes'][8] != undefined
                     ]
                 })
             }}
