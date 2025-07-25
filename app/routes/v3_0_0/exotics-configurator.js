@@ -659,7 +659,7 @@ module.exports = function (router) {
         var loopcounter = parseInt(req.session.data['origin-loop-counter']);
 
         req.session.data['origin-showing-in-loop']
-            = req.session.data['disease-configurator-origin-types-checkboxes'][loopcounter];
+            = req.session.data['disease-configurator-origin-types-checkboxes-text-for-heading'][loopcounter];
 
         req.session.data['camefromcheckanswers'] = 'true';
 
@@ -722,6 +722,22 @@ module.exports = function (router) {
 
 
 
+
+    router.post(section + 'disease-submit-router', function (req, res)
+    {
+        req.session.data['new-disease-added'] = 'true';
+
+        const options = {
+            day: 'numeric',   // e.g., 25
+            month: 'long',    // e.g., July
+            year: 'numeric'   // e.g., 2025
+        };
+        const formattedDate = new Intl.DateTimeFormat('en-GB', options).format(new Date());
+
+        req.session.data['todays-date'] = formattedDate;
+
+        res.redirect('confirmation');
+    })
 
 
 

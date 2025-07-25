@@ -181,7 +181,7 @@
                         {% endfor %}
                     </dd>
                     <dd class="govuk-summary-list__actions">
-                        <a class="govuk-link" href="?camefromcheckanswers=true&">Change<span class="govuk-visually-hidden"> </span></a>
+                        <a class="govuk-link" href="change-matrix/{{loop.index0}}">Change<span class="govuk-visually-hidden"> </span></a>
                     </dd>
                 </div>
             {% endfor %}
@@ -208,12 +208,26 @@
 
         </dl>
 
+        <form action="disease-submit-router" method="post" novalidate>
 
-
-            {{ govukButton({ text: "Submit" }) }}
+            {{ govukButton({ text: "Submit new disease" }) }}
 
 
         </form>
+
+        {% if data['changing-exisiting-disease'] %}
+
+            {{
+                govukButton
+                ({
+                    text: "Discard changes",
+                    classes: "govuk-button--secondary govuk-!-margin-top-5",
+                    href: "disease-list"
+                })
+            }}
+
+        {% endif %}
+
 
     </div>
 </div>
