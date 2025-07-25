@@ -129,7 +129,7 @@ module.exports = function (router) {
             else
             {
                 // This page name needs to be the next page the user gets to after successfully continuing
-                res.redirect('licence-email-or-post');
+                res.redirect('licence-enter-email-address');
             }
         }
 
