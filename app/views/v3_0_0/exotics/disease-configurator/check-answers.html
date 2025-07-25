@@ -1,0 +1,229 @@
+{% extends "layouts/v3_0_0.html" %}
+
+
+
+<!-- Setting the big main heading at the top of the page -->
+{% set pageHeadingTextHTML %}
+    Your animal disease movement licence application
+{% endset %}
+
+
+
+
+<!-- Set the text for the error type -->
+{% set errorTextHTML %}
+    <!-- Nothing was selected -->
+    {%  if  data['errortypeone'] == "true"  %}
+         You need to tick a declaration box
+    {% endif %}
+{% endset %}
+
+
+<!-- Text that show in the browser tab. Does NOT need changing -->
+{% block pageTitle %}
+    {% if  data['errorthispage'] == "true"  %}
+        Error:
+    {% endif %}
+
+    {{ pageHeadingTextHTML }}
+{% endblock %}
+
+
+
+
+
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+        <h1 class="govuk-heading-l">Check your answers before you complete the details</h1>
+
+        <dl class="govuk-summary-list">
+
+
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                    Enter the name of the disease
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    {{ data['disease-configurator-name-of-disease-text-input'] }}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="name-of-disease?camefromcheckanswers=true&">Change<span class="govuk-visually-hidden"> </span></a>
+                </dd>
+            </div>
+
+
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                    Does the disease affect everything that could move on a premises?
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    {{ data['disease-configurator-scope-of-things-everything-radios-yes-no'] }}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="scope-of-things-everything?camefromcheckanswers=true&">Change<span class="govuk-visually-hidden"> </span></a>
+                </dd>
+            </div>
+
+
+
+
+            {%  if data['disease-configurator-scope-of-things-everything-radios-yes-no'] == "No"  %}
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Do the licensing conditions affect the movements of all live animals?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{ data['disease-configurator-scope-of-things-all-animals-radios-yes-no'] }}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="scope-of-things-all-animals?camefromcheckanswers=true&">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                </div>
+
+                {%  if data['disease-configurator-scope-of-things-all-animals-radios-yes-no'] == "No"  %}
+
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                            Which animals need a movement licence?
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                            {% for item in data['disease-configurator-scope-of-things-animals-checkboxes'] %}
+                                <p>{{ item }}</p>
+                            {% endfor %}
+                        </dd>
+                        <dd class="govuk-summary-list__actions">
+                            <a class="govuk-link" href="scope-of-things-animals?camefromcheckanswers=true&">Change<span class="govuk-visually-hidden"> </span></a>
+                        </dd>
+                    </div>
+
+                {%  endif  %}
+
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        What else can be moved?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {% for item in data['disease-configurator-scope-of-things-other-checkboxes'] %}
+                            <p>{{ item }}</p>
+                        {% endfor %}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="scope-of-things-other?camefromcheckanswers=true&">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                </div>
+
+            {%  endif  %}
+
+
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                    Which movement types does this disease affect?
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    {% for item in data['disease-configurator-types-of-movement-checkboxes'] %}
+                        <p>{{ item }}</p>
+                    {% endfor %}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="types-of-movement?camefromcheckanswers=true&">Change<span class="govuk-visually-hidden"> </span></a>
+                </dd>
+            </div>
+
+
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                    Which origin premises are associated with this disease?
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    {% for item in data['disease-configurator-origin-types-checkboxes'] %}
+                        <p>{{ item }}</p>
+                    {% endfor %}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="origin-types?camefromcheckanswers=true&">Change<span class="govuk-visually-hidden"> </span></a>
+                </dd>
+            </div>
+
+
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                    Which destination premises are associated with this disease?
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    {% for item in data['disease-configurator-destination-types-checkboxes'] %}
+                        <p>{{ item }}</p>
+                    {% endfor %}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="destination-types?camefromcheckanswers=true&">Change<span class="govuk-visually-hidden"> </span></a>
+                </dd>
+            </div>
+
+
+            <!-- loop  -->
+
+            {% for item in data['origin-destination-matrix'] %}
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        If the origin premises is
+                        {{ data['disease-configurator-origin-types-checkboxes-text-for-heading'][loop.index0] }}
+                        , which destinations are allowed for a movement to take place?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {% for itemleveltwo in item %}
+                            <p>{{ itemleveltwo }}</p>
+                        {% endfor %}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="?camefromcheckanswers=true&">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                </div>
+            {% endfor %}
+
+
+
+
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                    Which border movements are allowed under this licence?
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    {% for item in data['disease-configurator-cross-border-movements-checkboxes'] %}
+                        <p>{{ item }}</p>
+                    {% endfor %}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="cross-border-movements?camefromcheckanswers=true&">Change<span class="govuk-visually-hidden"> </span></a>
+                </dd>
+            </div>
+
+
+
+
+        </dl>
+
+
+
+            {{ govukButton({ text: "Submit" }) }}
+
+
+        </form>
+
+    </div>
+</div>
+
+
+
+{% endblock %}
+
+
+
+
+
+

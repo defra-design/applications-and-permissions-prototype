@@ -17,7 +17,7 @@ This will save you time.
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    What type of movements will require a licence?
+    Which movement types does this disease affect?
 {% endset %}
 
 
@@ -93,24 +93,24 @@ This will save you time.
                     items:
                     [
                         {
-                            value: "On to the premises",
-                            text: "On to the premises",
-                            checked: (data['disease-configurator-types-of-movement-checkboxes'] or []).indexOf('On to the farm or premises') > -1
+                            value: "On to a premises",
+                            text: "On to a premises",
+                            checked: (data['disease-configurator-types-of-movement-checkboxes'] or []).indexOf('On to a premises') > -1
                         },
                         {
-                            value: "Off the premises",
-                            text: "Off the premises",
-                            checked: (data['disease-configurator-types-of-movement-checkboxes'] or []).indexOf('Off the farm or premises') > -1
+                            value: "Off a premises",
+                            text: "Off a premises",
+                            checked: (data['disease-configurator-types-of-movement-checkboxes'] or []).indexOf('Off a premises') > -1
                         },
                         {
-                            value: "Visit on to the premises",
-                            text: "Visit on to the premises",
-                            checked: (data['disease-configurator-types-of-movement-checkboxes'] or []).indexOf('Visit on to the farm or premises') > -1
+                            value: "Visits or activities at an origin premises",
+                            text: "Visits or activities at an origin premises",
+                            checked: (data['disease-configurator-types-of-movement-checkboxes'] or []).indexOf('Visits or activities at an origin premises') > -1
                         },
                         {
-                            value: "Visit off the premises",
-                            text: "Visit off the premises",
-                            checked: (data['disease-configurator-types-of-movement-checkboxes'] or []).indexOf('Visit off the premises') > -1
+                            value: "Visits or activities at a destination premises",
+                            text: "Visits or activities at a destination premises",
+                            checked: (data['disease-configurator-types-of-movement-checkboxes'] or []).indexOf('Visits or activities at a destination premises') > -1
                         }
                     ]
                 })

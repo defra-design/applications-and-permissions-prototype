@@ -16,7 +16,7 @@ This will save you time.
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    For origin {{ data['origin-showing-in-loop'] }}, which destinations are allowed?
+    If the origin premises is {{ data['origin-showing-in-loop'] }}, which destinations are allowed for a movement to take place?
 {% endset %}
 
 
@@ -24,7 +24,7 @@ This will save you time.
 {% set errorTextHTML %}
     <!-- Nothing was selected -->
     {%  if  data['errortypeone'] == "true"  %}
-         Select at least one PLACEHOLDER
+         SSelect which destination premises are allowed
     {% endif %}
 {% endset %}
 

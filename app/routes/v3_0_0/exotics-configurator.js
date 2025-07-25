@@ -440,6 +440,30 @@ module.exports = function (router) {
         else
         {
             // Continue to the next page
+            // format the text in a new array to fit in the question for the matrix
+            req.session.data['disease-configurator-origin-types-checkboxes-text-for-heading'] = [];
+            const vowels = 'aeiou';
+
+            for (let i = 0; i < req.session.data['disease-configurator-origin-types-checkboxes'].length; i++) {
+                // Convert the item at the current index to lower case
+                req.session.data['disease-configurator-origin-types-checkboxes-text-for-heading'][i]
+                    = req.session.data['disease-configurator-origin-types-checkboxes'][i].toString().toLowerCase();
+
+                var firstLetter = req.session.data['disease-configurator-origin-types-checkboxes-text-for-heading'][i].toString()[0].toLowerCase();
+
+
+                if (vowels.includes(firstLetter))
+                {
+                    // If it is a vowel, add "an " to the front of the word
+                    req.session.data['disease-configurator-origin-types-checkboxes-text-for-heading'][i] = "an " + req.session.data['disease-configurator-origin-types-checkboxes-text-for-heading'][i];
+                }
+                else
+                {
+                    req.session.data['disease-configurator-origin-types-checkboxes-text-for-heading'][i] = "a " + req.session.data['disease-configurator-origin-types-checkboxes-text-for-heading'][i];
+                }
+            }
+
+
 
             // If the user needs to go back to 'check your answers' then take them directly there
             if (req.session.data['camefromcheckanswers'] == 'true')
@@ -512,7 +536,9 @@ module.exports = function (router) {
 
                     // set the first loop to the first item in the list
                     req.session.data['origin-showing-in-loop']
-                        = req.session.data['disease-configurator-origin-types-checkboxes'][loopcounter];
+                        = req.session.data['disease-configurator-origin-types-checkboxes-text-for-heading'][loopcounter];
+
+
                 }
 
                 // This page name needs to be the next page the user gets to after successfully continuing
@@ -604,7 +630,7 @@ module.exports = function (router) {
 
                     // set the first loop to the first item in the list
                     req.session.data['origin-showing-in-loop']
-                        = req.session.data['disease-configurator-origin-types-checkboxes'][loopcounter];
+                        = req.session.data['disease-configurator-origin-types-checkboxes-text-for-heading'][loopcounter];
 
                     res.redirect('select-destination-for-each-origin');
                 }
@@ -689,7 +715,7 @@ module.exports = function (router) {
             else
             {
                 // This page name needs to be the next page the user gets to after successfully continuing
-                res.redirect('CHECK-ANSWERS-PLACEHOLDER');
+                res.redirect('check-answers');
             }
         }
     })
