@@ -17,6 +17,7 @@ require('./contact-and-updates.js')(router);
 require('./submit.js')(router);
 require('./gov-gateway.js')(router);
 require('./exotics-configurator.js')(router);
+require('./exotics-about-the-movement.js')(router);
 
 
 

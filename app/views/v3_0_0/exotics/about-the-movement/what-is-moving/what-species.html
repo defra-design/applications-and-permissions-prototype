@@ -18,7 +18,13 @@ This will save you time.
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    What animal species are the [USER SELECTION] {{ data['about-the-movement-what-is-moving-radios'] }} from?
+    What animal species are the
+    {% if data['about-the-movement-what-is-moving-radios-formatted'] != 'undefined' %}
+        {{ data['about-the-movement-what-is-moving-radios-formatted'] }}
+    {% else %}
+        [USER SELECTION]
+    {% endif %}
+    from?
 {% endset %}
 
 
