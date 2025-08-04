@@ -1,0 +1,44 @@
+{% extends "layouts/v3_0_0" %}
+
+{% set version = "v3_0_0" %}
+{% set bodyClasses = version %}
+
+
+
+<!-- Setting the big main heading at the top of the page -->
+{% set pageHeadingTextHTML %}
+    You cannot apply for a licence for this movement.
+{% endset %}
+
+
+
+<!-- Text that show in the browser tab. Does NOT need changing -->
+{% block pageTitle %}
+    {{ pageHeadingTextHTML }}
+{% endblock %}
+
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-l">
+            {{ pageHeadingTextHTML }}
+        </h1>
+
+        <p>For [DISEASE NAME], you can only apply to move the following animals:</p>
+
+        <ul class="govuk-body govuk-list--bullet">
+            <li>[Susceptible animal 1]</li>
+            <li>[Susceptible animal 2]</li>
+            <li>[Susceptible animal 3]</li>
+        </ul>
+
+    </div>
+</div>
+
+
+
+{% endblock %}
+
+
