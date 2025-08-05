@@ -57,7 +57,7 @@ This will save you time.
                     [
                         {
                             html: errorTextHTML,
-                            href: "#about-the-movement-birds-enter-bird-type-text-input"
+                            href: "#about-the-movement-enter-bird-type-text-input"
                         }
                     ]
                 })
@@ -67,7 +67,7 @@ This will save you time.
 
 
         <!-- go to routes.js for routing  -->
-        <form action="birds-enter-bird-type-router" method="post" novalidate>
+        <form action="enter-bird-type-router" method="post" novalidate>
 
             {{ govukInput
                 ({
@@ -78,9 +78,9 @@ This will save you time.
                         isPageHeading: true
                     },
 
-                    id: "about-the-movement-birds-enter-bird-type-text-input",
+                    id: "about-the-movement-enter-bird-type-text-input",
 
-                    name: "about-the-movement-birds-enter-bird-type-text-input",
+                    name: "about-the-movement-enter-bird-type-text-input",
 
                     hint:
                     {
@@ -90,7 +90,7 @@ This will save you time.
                     errorMessage: null if data['errorthispage'] != "true"
                                        else { html: errorTextHTML },
 
-                    value: data['about-the-movement-birds-enter-bird-type-text-input'],
+                    value: data['about-the-movement-enter-bird-type-text-input'],
 
                     classes: "govuk-input--width-10"
                 })

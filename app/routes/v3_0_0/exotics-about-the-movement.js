@@ -607,7 +607,7 @@ module.exports = function (router) {
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////                                                    ////////////////
-    ////////////////               PLACEHOLDER_SUMMARY                  ////////////////
+    ////////////////          Entering other animal type                ////////////////
     ////////////////                                                    ////////////////
     ////////////////              TEXT ENTRY - MANDATORY                ////////////////
     ////////////////                 NOT COMPLEX PAGE                   ////////////////
@@ -660,11 +660,492 @@ module.exports = function (router) {
 
 
 
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////           Selecting birds first list               ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////            RADIO BUTTONS - MANDATORY               ////////////////
+    ////////////////                 NOT COMPLEX PAGE                   ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    router.post(section + 'what-is-moving/select-animals/birds-router', function (req, res)
+    {
+        // Turn errors off by default
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+
+        // If Yes was selected, continue to next page
+        if (req.session.data['about-the-movement-birds-radios'] == "Chickens")
+        {
+            // Continue to the next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('check-answers');
+            }
+            else
+            {
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('quantity');
+            }
+        }
+        else if (req.session.data['about-the-movement-birds-radios'] == "Turkeys")
+        {
+            // Continue to the next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('check-answers');
+            }
+            else
+            {
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('quantity');
+            }
+        }
+        else if (req.session.data['about-the-movement-birds-radios'] == "Ducks")
+        {
+            // Continue to the next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('check-answers');
+            }
+            else
+            {
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('quantity');
+            }
+        }
+        else if (req.session.data['about-the-movement-birds-radios'] == "Geese")
+        {
+            // Continue to the next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('check-answers');
+            }
+            else
+            {
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('quantity');
+            }
+        }
+        else if (req.session.data['about-the-movement-birds-radios'] == "Birds of prey")
+        {
+            // Continue to the next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('check-answers');
+            }
+            else
+            {
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('quantity');
+            }
+        }
+        else if (req.session.data['about-the-movement-birds-radios'] == "Racing pigeons")
+        {
+            // Continue to the next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('check-answers');
+            }
+            else
+            {
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('quantity');
+            }
+        }
+        else if (req.session.data['about-the-movement-birds-radios'] == "Another type of bird")
+        {
+            // Continue to the next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('check-answers');
+            }
+            else
+            {
+                // This page name needsTHE_NEXT_PAGE_NAME to be the next page the user gets to after successfully continuing
+                res.redirect('birds/other-birds');
+            }
+        }
+        else
+        {
+            // Trigger validation and reload the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('birds');
+        }
+    })
+
+
+
+
+
+
+
+
 
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////                                                    ////////////////
-    ////////////////               PLACEHOLDER_SUMMARY                  ////////////////
+    ////////////////          Selecting birds second list               ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////            RADIO BUTTONS - MANDATORY               ////////////////
+    ////////////////                 NOT COMPLEX PAGE                   ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    router.post(section + 'what-is-moving/select-animals/birds/other-birds-router', function (req, res)
+    {
+        // Turn errors off by default
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+
+        // If Yes was selected, continue to next page
+        if (req.session.data['about-the-movement-other-birds-radios'] == "Birds in large enclosures (aviary birds)")
+        {
+            // Continue to the next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('check-answers');
+            }
+            else
+            {
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('../quantity');
+            }
+        }
+        else if (req.session.data['about-the-movement-other-birds-radios'] == "Pheasant")
+        {
+            // Continue to the next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('check-answers');
+            }
+            else
+            {
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('../quantity');
+            }
+        }
+        else if (req.session.data['about-the-movement-other-birds-radios'] == "Partridge")
+        {
+            // Continue to the next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('check-answers');
+            }
+            else
+            {
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('../quantity');
+            }
+        }
+        else if (req.session.data['about-the-movement-other-birds-radios'] == "Quail")
+        {
+            // Continue to the next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('check-answers');
+            }
+            else
+            {
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('../quantity');
+            }
+        }
+        else if (req.session.data['about-the-movement-other-birds-radios'] == "Grouse")
+        {
+            // Continue to the next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('check-answers');
+            }
+            else
+            {
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('../quantity');
+            }
+        }
+        else if (req.session.data['about-the-movement-other-birds-radios'] == "Ostriches")
+        {
+            // Continue to the next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('check-answers');
+            }
+            else
+            {
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('../quantity');
+            }
+        }
+        else if (req.session.data['about-the-movement-other-birds-radios'] == "Another type of bird")
+        {
+            // Continue to the next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('check-answers');
+            }
+            else
+            {
+                // This page name needsTHE_NEXT_PAGE_NAME to be the next page the user gets to after successfully continuing
+                res.redirect('enter-bird-type');
+            }
+        }
+        else
+        {
+            // Trigger validation and reload the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('other-birds');
+        }
+    })
+
+
+
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////          Entering other type of bird               ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////              TEXT ENTRY - MANDATORY                ////////////////
+    ////////////////                 NOT COMPLEX PAGE                   ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    router.post(section + 'what-is-moving/select-animals/birds/enter-bird-type-router', function (req, res)
+    {
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+        req.session.data['errortypetwo'] = "false";
+        req.session.data['errortypethree'] = "false";
+        req.session.data['errortypefour'] = "false";
+
+        // Validation check if field is blank
+        if (req.session.data['about-the-movement-enter-bird-type-text-input'] == undefined || req.session.data['about-the-movement-enter-bird-type-text-input'] == "")
+        {
+            // Trigger validation and relaunch the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('enter-bird-type');
+        }
+
+        else
+        {
+            // everything with the input is fine so move on to next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('check-answers');
+            }
+            else
+            {
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('../quantity');
+            }
+        }
+    })
+
+
+
+
+
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////          quanitity of all live animals             ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////                 NUMBER ENTRY                       ////////////////
+    ////////////////                NOT COMPLEX PAGE                    ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    router.post(section + 'what-is-moving/select-animals/quantity-router', function (req, res)
+    {
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+        req.session.data['errortypetwo'] = "false";
+        req.session.data['errortypethree'] = "false";
+        req.session.data['errortypefour'] = "false";
+        req.session.data['errortypefive'] = "false";
+        req.session.data['errortypesix'] = "false";
+        req.session.data['errortypeseven'] = "false";
+
+
+        // Validation check if field is blank
+        if (req.session.data['about-the-movement-quantity-number-input'] == undefined || req.session.data['about-the-movement-quantity-number-input'] == "")
+        {
+            // Trigger validation and relaunch the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('quantity');
+        }
+        else
+        {
+            // Remove any commas which the user or this routing added
+            let nocommasinput = req.session.data['about-the-movement-quantity-number-input'].replace(/,/g, '');
+
+            // if not a number throw first error
+            if( isNaN(req.session.data['about-the-movement-quantity-number-input']) )
+            {
+                // Trigger validation and relaunch the page
+                req.session.data['errorthispage'] = "true";
+                req.session.data['errortypeotwo'] = "true";
+
+                // This page name needs to match the page the user was just on
+                res.redirect('quantity');
+            }
+            else
+            {
+                // convert String input to a number
+                let numberinputfloat =  parseFloat( nocommasinput );
+
+
+                // Check input is a whole number
+                if( numberinputfloat % 1 != 0 )
+                {
+                    // Trigger validation and relaunch the page
+                    req.session.data['errorthispage'] = "true";
+                    req.session.data['errortypetwo'] = "true";
+
+                    // This page name needs to match the page the user was just on
+                    res.redirect('quantity');
+                }
+
+
+                else if ( numberinputfloat < 1 )
+                {
+                    // Trigger validation and relaunch the page for number lower than 4
+                    req.session.data['errorthispage'] = "true";
+                    req.session.data['errortypefive'] = "true";
+
+                    // This page name needs to match the page the user was just on
+                    res.redirect('quantity');
+                }
+
+
+
+                // everything with the input is fine so move on to next page
+                else
+                {
+                    // Format the number with commas
+                    req.session.data['about-the-movement-quantity-number-input'] = numberinputfloat.toLocaleString();
+
+
+                    // If the user needs to go back to 'check your answers' then take them directly there
+                    if (req.session.data['camefromcheckanswers'] == 'true')
+                    {
+                        req.session.data['camefromcheckanswers'] = false;
+                        res.redirect('check-answers');
+                    }
+                    else
+                    {
+                        // This page name needs to be the next page the user gets to after successfully continuing
+                        res.redirect('THE_NEXT_PAGE_NAME');
+                    }
+                }
+            }
+
+        }
+
+    })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////               Carcasses species                    ////////////////
     ////////////////                                                    ////////////////
     ////////////////              TEXT ENTRY - MANDATORY                ////////////////
     ////////////////                 NOT COMPLEX PAGE                   ////////////////
@@ -718,7 +1199,7 @@ module.exports = function (router) {
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////                                                    ////////////////
-    ////////////////               PLACEHOLDER_SUMMARY                  ////////////////
+    ////////////////             Quantity of animal carcasses           ////////////////
     ////////////////                                                    ////////////////
     ////////////////              TEXT ENTRY - MANDATORY                ////////////////
     ////////////////                 NOT COMPLEX PAGE                   ////////////////
