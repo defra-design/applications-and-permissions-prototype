@@ -216,8 +216,11 @@ module.exports = function (router) {
         {
             // Continue to the next page
 
-            // If the user needs to go back to 'check your answers' then take them directly there
-            if (req.session.data['camefromcheckanswers'] == 'true')
+            if(! req.session.data['disease-configurator-scope-of-things-other-checkboxes'].includes("Animal products") )
+            {
+                res.redirect('what-is-moving/you-cannot-apply');
+            }
+            else if (req.session.data['camefromcheckanswers'] == 'true')
             {
                 req.session.data['camefromcheckanswers'] = false;
                 res.redirect('check-answers');
@@ -232,8 +235,11 @@ module.exports = function (router) {
         {
             // Continue to the next page
 
-            // If the user needs to go back to 'check your answers' then take them directly there
-            if (req.session.data['camefromcheckanswers'] == 'true')
+            if(! req.session.data['disease-configurator-scope-of-things-other-checkboxes'].includes("Germplasm") )
+            {
+                res.redirect('what-is-moving/you-cannot-apply');
+            }
+            else if (req.session.data['camefromcheckanswers'] == 'true')
             {
                 req.session.data['camefromcheckanswers'] = false;
                 res.redirect('check-answers');
@@ -248,8 +254,11 @@ module.exports = function (router) {
         {
             // Continue to the next page
 
-            // If the user needs to go back to 'check your answers' then take them directly there
-            if (req.session.data['camefromcheckanswers'] == 'true')
+            if(! req.session.data['disease-configurator-scope-of-things-other-checkboxes'].includes("Bedding and feed") )
+            {
+                res.redirect('what-is-moving/you-cannot-apply');
+            }
+            else if (req.session.data['camefromcheckanswers'] == 'true')
             {
                 req.session.data['camefromcheckanswers'] = false;
                 res.redirect('check-answers');
@@ -264,8 +273,11 @@ module.exports = function (router) {
         {
             // Continue to the next page
 
-            // If the user needs to go back to 'check your answers' then take them directly there
-            if (req.session.data['camefromcheckanswers'] == 'true')
+            if(! req.session.data['disease-configurator-scope-of-things-other-checkboxes'].includes("Animal by-products and waste materials") )
+            {
+                res.redirect('what-is-moving/you-cannot-apply');
+            }
+            else if (req.session.data['camefromcheckanswers'] == 'true')
             {
                 req.session.data['camefromcheckanswers'] = false;
                 res.redirect('check-answers');
@@ -280,8 +292,11 @@ module.exports = function (router) {
         {
             // Continue to the next page
 
-            // If the user needs to go back to 'check your answers' then take them directly there
-            if (req.session.data['camefromcheckanswers'] == 'true')
+            if(! req.session.data['disease-configurator-scope-of-things-other-checkboxes'].includes("Machinery and equipment") )
+            {
+                res.redirect('what-is-moving/you-cannot-apply');
+            }
+            else if (req.session.data['camefromcheckanswers'] == 'true')
             {
                 req.session.data['camefromcheckanswers'] = false;
                 res.redirect('check-answers');
@@ -296,8 +311,11 @@ module.exports = function (router) {
         {
             // Continue to the next page
 
-            // If the user needs to go back to 'check your answers' then take them directly there
-            if (req.session.data['camefromcheckanswers'] == 'true')
+            if(! req.session.data['disease-configurator-scope-of-things-other-checkboxes'].includes("Carcasses") )
+            {
+                res.redirect('what-is-moving/you-cannot-apply');
+            }
+            else if (req.session.data['camefromcheckanswers'] == 'true')
             {
                 req.session.data['camefromcheckanswers'] = false;
                 res.redirect('check-answers');
@@ -364,11 +382,15 @@ module.exports = function (router) {
             if (req.session.data['camefromcheckanswers'] == 'true')
             {
                 req.session.data['camefromcheckanswers'] = false;
-                res.redirect('check-answers');
+                res.redirect('../check-answers');
             }
             else
             {
-                if (req.session.data['about-the-movement-movement-type-radios'] == "A short term visit or activity on a farm or premises")
+                if(! req.session.data['disease-configurator-scope-of-things-animals-checkboxes'].includes("Cattle") )
+                {
+                    res.redirect('select-animals/you-cannot-apply-animals');
+                }
+                else if (req.session.data['about-the-movement-movement-type-radios'] == "A short term visit or activity on a farm or premises")
                 {
                     res.redirect('../check-answers');
                 }
@@ -386,11 +408,15 @@ module.exports = function (router) {
             if (req.session.data['camefromcheckanswers'] == 'true')
             {
                 req.session.data['camefromcheckanswers'] = false;
-                res.redirect('check-answers');
+                res.redirect('../check-answers');
             }
             else
             {
-                if (req.session.data['about-the-movement-movement-type-radios'] == "A short term visit or activity on a farm or premises")
+                if(! req.session.data['disease-configurator-scope-of-things-animals-checkboxes'].includes("Sheep") )
+                {
+                    res.redirect('select-animals/you-cannot-apply-animals');
+                }
+                else if (req.session.data['about-the-movement-movement-type-radios'] == "A short term visit or activity on a farm or premises")
                 {
                     res.redirect('../check-answers');
                 }
@@ -408,11 +434,15 @@ module.exports = function (router) {
             if (req.session.data['camefromcheckanswers'] == 'true')
             {
                 req.session.data['camefromcheckanswers'] = false;
-                res.redirect('check-answers');
+                res.redirect('../check-answers');
             }
             else
             {
-                if (req.session.data['about-the-movement-movement-type-radios'] == "A short term visit or activity on a farm or premises")
+                if(! req.session.data['disease-configurator-scope-of-things-animals-checkboxes'].includes("Goats") )
+                {
+                    res.redirect('select-animals/you-cannot-apply-animals');
+                }
+                else if (req.session.data['about-the-movement-movement-type-radios'] == "A short term visit or activity on a farm or premises")
                 {
                     res.redirect('../check-answers');
                 }
@@ -430,11 +460,15 @@ module.exports = function (router) {
             if (req.session.data['camefromcheckanswers'] == 'true')
             {
                 req.session.data['camefromcheckanswers'] = false;
-                res.redirect('check-answers');
+                res.redirect('../check-answers');
             }
             else
             {
-                if (req.session.data['about-the-movement-movement-type-radios'] == "A short term visit or activity on a farm or premises")
+                if(! req.session.data['disease-configurator-scope-of-things-animals-checkboxes'].includes("Pigs") )
+                {
+                    res.redirect('select-animals/you-cannot-apply-animals');
+                }
+                else if (req.session.data['about-the-movement-movement-type-radios'] == "A short term visit or activity on a farm or premises")
                 {
                     res.redirect('../check-answers');
                 }
@@ -449,10 +483,14 @@ module.exports = function (router) {
             // Continue to the next page
 
             // If the user needs to go back to 'check your answers' then take them directly there
-            if (req.session.data['camefromcheckanswers'] == 'true')
+            if(! req.session.data['disease-configurator-scope-of-things-animals-checkboxes'].includes("Birds") )
+                {
+                    res.redirect('select-animals/you-cannot-apply-animals');
+                }
+                else if (req.session.data['camefromcheckanswers'] == 'true')
             {
                 req.session.data['camefromcheckanswers'] = false;
-                res.redirect('check-answers');
+                res.redirect('../check-answers');
             }
             else
             {
@@ -467,11 +505,15 @@ module.exports = function (router) {
             if (req.session.data['camefromcheckanswers'] == 'true')
             {
                 req.session.data['camefromcheckanswers'] = false;
-                res.redirect('check-answers');
+                res.redirect('../check-answers');
             }
             else
             {
-                if (req.session.data['about-the-movement-movement-type-radios'] == "A short term visit or activity on a farm or premises")
+                if(! req.session.data['disease-configurator-scope-of-things-animals-checkboxes'].includes("Horses") )
+                {
+                    res.redirect('select-animals/you-cannot-apply-animals');
+                }
+                else if (req.session.data['about-the-movement-movement-type-radios'] == "A short term visit or activity on a farm or premises")
                 {
                     res.redirect('../check-answers');
                 }
@@ -489,7 +531,7 @@ module.exports = function (router) {
             if (req.session.data['camefromcheckanswers'] == 'true')
             {
                 req.session.data['camefromcheckanswers'] = false;
-                res.redirect('check-answers');
+                res.redirect('../check-answers');
             }
             else
             {
@@ -546,7 +588,11 @@ module.exports = function (router) {
             }
             else
             {
-                if (req.session.data['about-the-movement-movement-type-radios'] == "A short term visit or activity on a farm or premises")
+                if(! req.session.data['disease-configurator-scope-of-things-animals-checkboxes'].includes("Deer") )
+                {
+                    res.redirect('you-cannot-apply-animals');
+                }
+                else if (req.session.data['about-the-movement-movement-type-radios'] == "A short term visit or activity on a farm or premises")
                 {
                     res.redirect('../../check-answers');
                 }
@@ -568,8 +614,11 @@ module.exports = function (router) {
             }
             else
             {
-                // This page name needs to be the next page the user gets to after successfully continuing
-                if (req.session.data['about-the-movement-movement-type-radios'] == "A short term visit or activity on a farm or premises")
+                if(! req.session.data['disease-configurator-scope-of-things-animals-checkboxes'].includes("Llamas") )
+                {
+                    res.redirect('you-cannot-apply-animals');
+                }
+                else if (req.session.data['about-the-movement-movement-type-radios'] == "A short term visit or activity on a farm or premises")
                 {
                     res.redirect('../../check-answers');
                 }
@@ -591,8 +640,11 @@ module.exports = function (router) {
             }
             else
             {
-                // This page name needs to be the next page the user gets to after successfully continuing
-                if (req.session.data['about-the-movement-movement-type-radios'] == "A short term visit or activity on a farm or premises")
+                if(! req.session.data['disease-configurator-scope-of-things-animals-checkboxes'].includes("Alpacas") )
+                {
+                    res.redirect('you-cannot-apply-animals');
+                }
+                else if (req.session.data['about-the-movement-movement-type-radios'] == "A short term visit or activity on a farm or premises")
                 {
                     res.redirect('../../check-answers');
                 }
@@ -614,8 +666,11 @@ module.exports = function (router) {
             }
             else
             {
-                // This page name needs to be the next page the user gets to after successfully continuing
-                if (req.session.data['about-the-movement-movement-type-radios'] == "A short term visit or activity on a farm or premises")
+                if(! req.session.data['disease-configurator-scope-of-things-animals-checkboxes'].includes("Camels") )
+                {
+                    res.redirect('you-cannot-apply-animals');
+                }
+                else if (req.session.data['about-the-movement-movement-type-radios'] == "A short term visit or activity on a farm or premises")
                 {
                     res.redirect('../../check-answers');
                 }
@@ -637,8 +692,11 @@ module.exports = function (router) {
             }
             else
             {
-                // This page name needs to be the next page the user gets to after successfully continuing
-                if (req.session.data['about-the-movement-movement-type-radios'] == "A short term visit or activity on a farm or premises")
+                if(! req.session.data['disease-configurator-scope-of-things-animals-checkboxes'].includes("Buffalo") )
+                {
+                    res.redirect('you-cannot-apply-animals');
+                }
+                else if (req.session.data['about-the-movement-movement-type-radios'] == "A short term visit or activity on a farm or premises")
                 {
                     res.redirect('../../check-answers');
                 }
@@ -660,8 +718,11 @@ module.exports = function (router) {
             }
             else
             {
-                // This page name needs to be the next page the user gets to after successfully continuing
-                if (req.session.data['about-the-movement-movement-type-radios'] == "A short term visit or activity on a farm or premises")
+                if(! req.session.data['disease-configurator-scope-of-things-animals-checkboxes'].includes("Rabbits") )
+                {
+                    res.redirect('you-cannot-apply-animals');
+                }
+                else if (req.session.data['about-the-movement-movement-type-radios'] == "A short term visit or activity on a farm or premises")
                 {
                     res.redirect('../../check-answers');
                 }
@@ -683,8 +744,11 @@ module.exports = function (router) {
             }
             else
             {
-                // This page name needs to be the next page the user gets to after successfully continuing
-                if (req.session.data['about-the-movement-movement-type-radios'] == "A short term visit or activity on a farm or premises")
+                if(! req.session.data['disease-configurator-scope-of-things-animals-checkboxes'].includes("Fish") )
+                {
+                    res.redirect('you-cannot-apply-animals');
+                }
+                else if (req.session.data['about-the-movement-movement-type-radios'] == "A short term visit or activity on a farm or premises")
                 {
                     res.redirect('../../check-answers');
                 }
@@ -706,8 +770,11 @@ module.exports = function (router) {
             }
             else
             {
-                // This page name needs to be the next page the user gets to after successfully continuing
-                if (req.session.data['about-the-movement-movement-type-radios'] == "A short term visit or activity on a farm or premises")
+                if(! req.session.data['disease-configurator-scope-of-things-animals-checkboxes'].includes("Snails") )
+                {
+                    res.redirect('you-cannot-apply-animals');
+                }
+                else if (req.session.data['about-the-movement-movement-type-radios'] == "A short term visit or activity on a farm or premises")
                 {
                     res.redirect('../../check-answers');
                 }

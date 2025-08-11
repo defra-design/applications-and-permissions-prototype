@@ -7,7 +7,7 @@
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    You cannot apply for a licence for this movement.
+    You cannot apply for a licence for this movement
 {% endset %}
 
 
@@ -26,12 +26,23 @@
             {{ pageHeadingTextHTML }}
         </h1>
 
-        <p>For [DISEASE NAME], you can only apply to move the following animals:</p>
+        <p>For
+            {% if data['disease-configurator-name-of-disease-text-input'] == null %},
+                [CONFIGURATION ENTRY DISEASE NAME]
+            {% else %}
+                {{ data['disease-configurator-name-of-disease-text-input'] }},
+            {% endif %}
+            you can only apply to move the following animals:
+        </p>
 
         <ul class="govuk-body govuk-list--bullet">
-            <li>[Susceptible animal 1]</li>
-            <li>[Susceptible animal 2]</li>
-            <li>[Susceptible animal 3]</li>
+            {% for item in data['disease-configurator-scope-of-things-animals-checkboxes'] %}
+
+                {% if item != "None of the above" %}
+                    <li>{{ item }}</li>
+                {% endif %}
+
+            {% endfor %}
         </ul>
 
     </div>

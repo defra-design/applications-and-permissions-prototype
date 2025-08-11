@@ -150,6 +150,17 @@ module.exports = function (router) {
             else
             {
                 // This page name needs to be the next page the user gets to after successfully continuing
+
+                req.session.data['disease-configurator-scope-of-things-other-checkboxes'] =
+                [
+                  "Animal products",
+                  "Germplasm",
+                  "Bedding and feed",
+                  "Animal by-products and waste materials",
+                  "Machinery and equipment",
+                  "Carcasses"
+                ]
+
                 res.redirect('types-of-movement');
             }
         }

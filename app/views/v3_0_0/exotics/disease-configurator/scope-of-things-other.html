@@ -93,15 +93,9 @@ This will save you time.
                     items:
                     [
                         {
-                            value: "Carcasses",
-                            text: "Carcasses",
-                            hint: "Excluding domestic caged birds",
-                            checked: (data['disease-configurator-scope-of-things-other-checkboxes'] or []).indexOf('Carcasses') > -1
-                        },
-                        {
-                            value: "Animal by-products and waste materials",
-                            text: "Animal by-products and waste materials",
-                            checked: (data['disease-configurator-scope-of-things-other-checkboxes'] or []).indexOf('Animal by-products and waste materials') > -1
+                            value: "Animal products",
+                            text: "Animal products",
+                            checked: (data['disease-configurator-scope-of-things-other-checkboxes'] or []).indexOf('Animal products') > -1
                         },
                         {
                             value: "Germplasm",
@@ -109,14 +103,33 @@ This will save you time.
                             checked: (data['disease-configurator-scope-of-things-other-checkboxes'] or []).indexOf('Germplasm') > -1
                         },
                         {
+                            value: "Bedding and feed",
+                            text: "Bedding and feed",
+                            checked: (data['disease-configurator-scope-of-things-other-checkboxes'] or []).indexOf('Bedding and feed') > -1
+                        },
+                        {
+                            value: "Animal by-products and waste materials",
+                            text: "Animal by-products and waste materials",
+                            checked: (data['disease-configurator-scope-of-things-other-checkboxes'] or []).indexOf('Animal by-products and waste materials') > -1
+                        },
+                        {
                             value: "Machinery and equipment",
                             text: "Machinery and equipment",
                             checked: (data['disease-configurator-scope-of-things-other-checkboxes'] or []).indexOf('Machinery and equipment') > -1
                         },
                         {
-                            value: "Bedding and feed",
-                            text: "Bedding and feed",
-                            checked: (data['disease-configurator-scope-of-things-other-checkboxes'] or []).indexOf('Bedding and feed') > -1
+                            value: "Carcasses",
+                            text: "Carcasses",
+                            hint: "Excluding domestic caged birds",
+                            checked: (data['disease-configurator-scope-of-things-other-checkboxes'] or []).indexOf('Carcasses') > -1
+                        },
+                        {
+                            divider: "or"
+                        },
+                        {
+                            value: "None of the above",
+                            text: "None of the above",
+                            behaviour: "exclusive"
                         }
                     ]
                 })

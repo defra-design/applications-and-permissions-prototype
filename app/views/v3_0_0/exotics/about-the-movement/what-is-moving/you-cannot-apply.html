@@ -26,12 +26,23 @@
             {{ pageHeadingTextHTML }}
         </h1>
 
-        <p>For [DISEASE NAME], you can only apply to move:</p>
+        <p>For
+            {% if data['disease-configurator-name-of-disease-text-input'] == null %},
+                [CONFIGURATION ENTRY DISEASE NAME]
+            {% else %}
+                {{ data['disease-configurator-name-of-disease-text-input'] }},
+            {% endif %}
+            you can only apply to move:</p>
 
         <ul class="govuk-body govuk-list--bullet">
-            <li>live animals</li>
-            <li>carcasses</li>
-            <li>milk products</li>
+            <li>Live animals</li>
+            {% for item in data['disease-configurator-scope-of-things-other-checkboxes'] %}
+
+                {% if item != "None of the above" %}
+                    <li>{{ item }}</li>
+                {% endif %}
+
+            {% endfor %}
         </ul>
 
     </div>
