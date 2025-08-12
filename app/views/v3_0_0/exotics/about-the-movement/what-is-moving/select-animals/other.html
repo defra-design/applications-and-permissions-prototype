@@ -18,7 +18,23 @@ This will save you time.
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    What type of species are you moving?
+
+    {% if  data['about-the-movement-what-is-moving-radios'] == "Live animals"  or
+           data['about-the-movement-what-is-moving-radios'] == "Carcasses"  %}
+        What type of species are you moving?
+
+    {% else %}
+
+        What animal species are the
+        {% if data['about-the-movement-what-is-moving-radios-formatted'] == null %}
+            [USER SELECTION]
+        {% else %}
+            {{ data['about-the-movement-what-is-moving-radios-formatted'] }}
+        {% endif %}
+        from?
+
+    {% endif %}
+
 {% endset %}
 
 
@@ -126,26 +142,29 @@ This will save you time.
 
 
 
-<!-- USER TYPE TOGGLE  -->
-<!--
+
+
+<!-- Thing being moved  drop down to toggle states  -->
 <form method="post"  action="#" class="for4" style=" float: left; position: relative; bottom:-225px;  ">
 
-  <select style="height:30px;" onchange="window.location.href='?'+this.value">
+    <select style="height:30px;" onchange="window.location.href='?'+this.value">
 
-    <option value="user=citizen&"
-            {% if  data['user'] != "agent"  %} selected {% endif %}
-    >User type - Individual</option>
+        <option value="about-the-movement-what-is-moving-radios=Live animals&"
+                {% if (data['about-the-movement-what-is-moving-radios'] == "Live animals" or
+                       data['about-the-movement-what-is-moving-radios'] == "Carcasses") %}selected{% endif %}
+        >Live animals and Carcasses</option>
 
-    <option value="user=agent&"
-            {% if  data['user'] == "agent"  %} selected {% endif %}
-    >User type - Agent</option>
+        <option value="about-the-movement-what-is-moving-radios=Germplasm&about-the-movement-what-is-moving-radios-formatted=germplasm&"
+                {% if (data['about-the-movement-what-is-moving-radios'] == "Animal products" or
+                       data['about-the-movement-what-is-moving-radios'] == "Germplasm" or
+                       data['about-the-movement-what-is-moving-radios'] == "Bedding and feed" or
+                       data['about-the-movement-what-is-moving-radios'] == "Animal by-products and waste materials") %}selected{% endif %}
+        >Animal products, or Germplasm, or Bedding and feed, or Animal by-products and waste materials</option>
 
-  </select>
+    </select>
 
 </form>
--->
-<!--  END USER TYPE TOGGLE -->
-
+<!--  END OF thign being moved LOGIC -->
 
 
 

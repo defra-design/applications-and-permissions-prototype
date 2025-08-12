@@ -7,7 +7,7 @@
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    What is the current use or purpose of the animals?
+    Is the movement to an abattoir?
 {% endset %}
 
 
@@ -15,7 +15,7 @@
 {% set errorTextHTML %}
     <!-- Nothing was selected -->
     {% if data['errortypeone'] == "true" %}
-        PLACEHOLDER
+        Select yes if you PLACEHOLDER between PLACEHOLDER and PLACEHOLDER
     {% endif %}
 {% endset %}
 
@@ -32,7 +32,7 @@
 
 {% block content %}
 <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-grid-column-two-thirds ">
 
 
         <!-- ERROR LOGIC 'error summary' -->
@@ -44,7 +44,7 @@
                     [
                         {
                             html: errorTextHTML,
-                            href: "#about-the-movement-cattle-purpose-radios"
+                            href: "#about-the-movement-abattoir-radios-yes-no"
                         }
                     ]
                 })
@@ -54,13 +54,15 @@
 
 
         <!-- go to routes.js for routing  -->
-        <form action="cattle-purpose-router" method="post" novalidate>
+        <form action="abattoir-router" method="post" novalidate>
 
             {{ govukRadios
                 ({
-                    name: "about-the-movement-cattle-purpose-radios",
+                    classes: "govuk-radios--inline",
 
-                    id: "about-the-movement-cattle-purpose-radios",
+                    name: "about-the-movement-abattoir-radios-yes-no",
+
+                    id: "about-the-movement-abattoir-radios-yes-no",
 
                     fieldset:
                     {
@@ -77,37 +79,22 @@
                         text: ""
                     },
 
-                    errorMessage: null if data['errorthispage'] != "true"
-                                       else { html: errorTextHTML },
-
                     items:
                     [
                         {
-                            value: "Breeding",
-                            text: "Breeding",
-                            checked: data['about-the-movement-cattle-purpose-radios'] == "Breeding"
+                            value: "Yes",
+                            text: "Yes",
+                            checked: data['about-the-movement-abattoir-radios-yes-no'] == "Yes"
                         },
                         {
-                            value: "Fattening",
-                            text: "Fattening",
-                            checked: data['about-the-movement-cattle-purpose-radios'] == "Fattening"
-                        },
-                        {
-                            value: "Suckling",
-                            text: "Suckling",
-                            checked: data['about-the-movement-cattle-purpose-radios'] == "Suckling"
-                        },
-                        {
-                            value: "Dairy",
-                            text: "Dairy",
-                            checked: data['about-the-movement-cattle-purpose-radios'] == "Dairy"
-                        },
-                        {
-                            value: "Something else",
-                            text: "Something else",
-                            checked: data['about-the-movement-cattle-purpose-radios'] == "Something else"
+                            value: "No",
+                            text: "No",
+                            checked: data['about-the-movement-abattoir-radios-yes-no'] == "No"
                         }
-                    ]
+                    ],
+
+                    errorMessage: null if data['errorthispage'] != "true"
+                                       else { html: errorTextHTML }
                 })
             }}
 
@@ -120,18 +107,19 @@
 </div>
 
 
+
 <!-- ERROR LOGIC  drop down to toggle states  -->
 <form method="post"  action="#" class="for4" style=" float: left; position: relative; bottom:-225px;  ">
 
     <select style="height:30px;" onchange="window.location.href='?'+this.value">
 
-        <option value="errorthispage=false&errortypeone=false&errortypetwo=false&"
-                {% if (data['errorthispage'] != "true") %}selected{% endif %}
+        <option value="errorthispage=false&errortypeone=false"
+                {% if  data['errorthispage'] != "true"  %}selected{% endif %}
         >Errors - Off</option>
 
-        <option value="errorthispage=true&errortypeone=true&errortypetwo=false&"
-                {% if (data['errortypeone'] == 'true' and data['errortypetwo'] != 'true')  %}selected{% endif %}
-        >Error 1 - Must select at least one</option>
+        <option value="errorthispage=true&errortypeone=true"
+                {% if  data['errortypeone'] == 'true'  %}selected{% endif %}
+        >Error 1 - Not selected</option>
 
     </select>
 
@@ -159,7 +147,6 @@
 </form>
 -->
 <!--  END USER TYPE TOGGLE -->
-
 
 
 {% endblock %}

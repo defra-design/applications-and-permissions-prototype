@@ -70,8 +70,12 @@ module.exports = function (router) {
         {
             // Continue to the next page
 
+            if(! req.session.data['disease-configurator-types-of-movement-checkboxes'].includes("A short term visit or activity on a farm or premises") )
+            {
+                res.redirect('you-cannot-apply-movement-type');
+            }
             // If the user needs to go back to 'check your answers' then take them directly there
-            if (req.session.data['camefromcheckanswers'] == 'true')
+            else if (req.session.data['camefromcheckanswers'] == 'true')
             {
                 req.session.data['camefromcheckanswers'] = false;
                 res.redirect('check-answers');
@@ -228,7 +232,7 @@ module.exports = function (router) {
             else
             {
                 // This page name needs to be the next page the user gets to after successfully continuing
-                res.redirect('what-is-moving/what-species');
+                res.redirect('what-is-moving/select-animals');
             }
         }
         else if (req.session.data['about-the-movement-what-is-moving-radios'] == "Germplasm")
@@ -247,7 +251,7 @@ module.exports = function (router) {
             else
             {
                 // This page name needs to be the next page the user gets to after successfully continuing
-                res.redirect('what-is-moving/what-species');
+                res.redirect('what-is-moving/select-animals');
             }
         }
         else if (req.session.data['about-the-movement-what-is-moving-radios'] == "Bedding and feed")
@@ -266,7 +270,7 @@ module.exports = function (router) {
             else
             {
                 // This page name needs to be the next page the user gets to after successfully continuing
-                res.redirect('what-is-moving/what-species');
+                res.redirect('what-is-moving/select-animals');
             }
         }
         else if (req.session.data['about-the-movement-what-is-moving-radios'] == "Animal by-products and waste materials")
@@ -285,7 +289,7 @@ module.exports = function (router) {
             else
             {
                 // This page name needs to be the next page the user gets to after successfully continuing
-                res.redirect('what-is-moving/what-species');
+                res.redirect('what-is-moving/select-animals');
             }
         }
         else if (req.session.data['about-the-movement-what-is-moving-radios'] == "Machinery and equipment")
@@ -394,9 +398,14 @@ module.exports = function (router) {
                 {
                     res.redirect('../check-answers');
                 }
-                else
+                else if (req.session.data['about-the-movement-what-is-moving-radios'] == "Live animals"  ||
+                         req.session.data['about-the-movement-what-is-moving-radios'] == "Carcasses"  )
                 {
                     res.redirect('select-animals/quantity');
+                }
+                else
+                {
+                    res.redirect('select-animals/enter-what-is-moving');
                 }
             }
         }
@@ -420,9 +429,14 @@ module.exports = function (router) {
                 {
                     res.redirect('../check-answers');
                 }
-                else
+                else if (req.session.data['about-the-movement-what-is-moving-radios'] == "Live animals"  ||
+                         req.session.data['about-the-movement-what-is-moving-radios'] == "Carcasses"  )
                 {
                     res.redirect('select-animals/quantity');
+                }
+                else
+                {
+                    res.redirect('enter-what-is-moving');
                 }
             }
         }
@@ -446,9 +460,14 @@ module.exports = function (router) {
                 {
                     res.redirect('../check-answers');
                 }
-                else
+                else if (req.session.data['about-the-movement-what-is-moving-radios'] == "Live animals"  ||
+                         req.session.data['about-the-movement-what-is-moving-radios'] == "Carcasses"  )
                 {
                     res.redirect('select-animals/quantity');
+                }
+                else
+                {
+                    res.redirect('enter-what-is-moving');
                 }
             }
         }
@@ -472,9 +491,14 @@ module.exports = function (router) {
                 {
                     res.redirect('../check-answers');
                 }
-                else
+                else if (req.session.data['about-the-movement-what-is-moving-radios'] == "Live animals"  ||
+                         req.session.data['about-the-movement-what-is-moving-radios'] == "Carcasses"  )
                 {
                     res.redirect('select-animals/quantity');
+                }
+                else
+                {
+                    res.redirect('enter-what-is-moving');
                 }
             }
         }
@@ -517,9 +541,14 @@ module.exports = function (router) {
                 {
                     res.redirect('../check-answers');
                 }
-                else
+                else if (req.session.data['about-the-movement-what-is-moving-radios'] == "Live animals"  ||
+                         req.session.data['about-the-movement-what-is-moving-radios'] == "Carcasses"  )
                 {
                     res.redirect('select-animals/quantity');
+                }
+                else
+                {
+                    res.redirect('enter-what-is-moving');
                 }
             }
         }
@@ -596,9 +625,14 @@ module.exports = function (router) {
                 {
                     res.redirect('../../check-answers');
                 }
-                else
+                else if (req.session.data['about-the-movement-what-is-moving-radios'] == "Live animals"  ||
+                         req.session.data['about-the-movement-what-is-moving-radios'] == "Carcasses"  )
                 {
                     res.redirect('quantity');
+                }
+                else
+                {
+                    res.redirect('../enter-what-is-moving');
                 }
             }
         }
@@ -622,9 +656,14 @@ module.exports = function (router) {
                 {
                     res.redirect('../../check-answers');
                 }
-                else
+                else if (req.session.data['about-the-movement-what-is-moving-radios'] == "Live animals"  ||
+                         req.session.data['about-the-movement-what-is-moving-radios'] == "Carcasses"  )
                 {
                     res.redirect('quantity');
+                }
+                else
+                {
+                    res.redirect('../enter-what-is-moving');
                 }
             }
         }
@@ -648,9 +687,14 @@ module.exports = function (router) {
                 {
                     res.redirect('../../check-answers');
                 }
-                else
+                else if (req.session.data['about-the-movement-what-is-moving-radios'] == "Live animals"  ||
+                         req.session.data['about-the-movement-what-is-moving-radios'] == "Carcasses"  )
                 {
                     res.redirect('quantity');
+                }
+                else
+                {
+                    res.redirect('../enter-what-is-moving');
                 }
             }
         }
@@ -674,9 +718,14 @@ module.exports = function (router) {
                 {
                     res.redirect('../../check-answers');
                 }
-                else
+                else if (req.session.data['about-the-movement-what-is-moving-radios'] == "Live animals"  ||
+                         req.session.data['about-the-movement-what-is-moving-radios'] == "Carcasses"  )
                 {
                     res.redirect('quantity');
+                }
+                else
+                {
+                    res.redirect('../enter-what-is-moving');
                 }
             }
         }
@@ -700,9 +749,14 @@ module.exports = function (router) {
                 {
                     res.redirect('../../check-answers');
                 }
-                else
+                else if (req.session.data['about-the-movement-what-is-moving-radios'] == "Live animals"  ||
+                         req.session.data['about-the-movement-what-is-moving-radios'] == "Carcasses"  )
                 {
                     res.redirect('quantity');
+                }
+                else
+                {
+                    res.redirect('../enter-what-is-moving');
                 }
             }
         }
@@ -726,9 +780,14 @@ module.exports = function (router) {
                 {
                     res.redirect('../../check-answers');
                 }
-                else
+                else if (req.session.data['about-the-movement-what-is-moving-radios'] == "Live animals"  ||
+                         req.session.data['about-the-movement-what-is-moving-radios'] == "Carcasses"  )
                 {
                     res.redirect('quantity');
+                }
+                else
+                {
+                    res.redirect('../enter-what-is-moving');
                 }
             }
         }
@@ -752,9 +811,14 @@ module.exports = function (router) {
                 {
                     res.redirect('../../check-answers');
                 }
-                else
+                else if (req.session.data['about-the-movement-what-is-moving-radios'] == "Live animals"  ||
+                         req.session.data['about-the-movement-what-is-moving-radios'] == "Carcasses"  )
                 {
                     res.redirect('quantity');
+                }
+                else
+                {
+                    res.redirect('../enter-what-is-moving');
                 }
             }
         }
@@ -778,9 +842,14 @@ module.exports = function (router) {
                 {
                     res.redirect('../../check-answers');
                 }
-                else
+                else if (req.session.data['about-the-movement-what-is-moving-radios'] == "Live animals"  ||
+                         req.session.data['about-the-movement-what-is-moving-radios'] == "Carcasses"  )
                 {
                     res.redirect('quantity');
+                }
+                else
+                {
+                    res.redirect('../enter-what-is-moving');
                 }
             }
         }
@@ -865,9 +934,14 @@ module.exports = function (router) {
                     {
                         res.redirect('../../check-answers');
                     }
-                    else
+                    else if (req.session.data['about-the-movement-what-is-moving-radios'] == "Live animals"  ||
+                             req.session.data['about-the-movement-what-is-moving-radios'] == "Carcasses"  )
                     {
                         res.redirect('quantity');
+                    }
+                    else
+                    {
+                        res.redirect('../enter-what-is-moving');
                     }
                 }
 
@@ -915,9 +989,14 @@ module.exports = function (router) {
                 {
                     res.redirect('../../check-answers');
                 }
-                else
+                else if (req.session.data['about-the-movement-what-is-moving-radios'] == "Live animals"  ||
+                         req.session.data['about-the-movement-what-is-moving-radios'] == "Carcasses"  )
                 {
                     res.redirect('quantity');
+                }
+                else
+                {
+                    res.redirect('../enter-what-is-moving');
                 }
             }
         }
@@ -938,9 +1017,14 @@ module.exports = function (router) {
                 {
                     res.redirect('../../check-answers');
                 }
-                else
+                else if (req.session.data['about-the-movement-what-is-moving-radios'] == "Live animals"  ||
+                         req.session.data['about-the-movement-what-is-moving-radios'] == "Carcasses"  )
                 {
                     res.redirect('quantity');
+                }
+                else
+                {
+                    res.redirect('../enter-what-is-moving');
                 }
             }
         }
@@ -961,9 +1045,14 @@ module.exports = function (router) {
                 {
                     res.redirect('../../check-answers');
                 }
-                else
+                else if (req.session.data['about-the-movement-what-is-moving-radios'] == "Live animals"  ||
+                         req.session.data['about-the-movement-what-is-moving-radios'] == "Carcasses"  )
                 {
                     res.redirect('quantity');
+                }
+                else
+                {
+                    res.redirect('../enter-what-is-moving');
                 }
             }
         }
@@ -984,9 +1073,14 @@ module.exports = function (router) {
                 {
                     res.redirect('../../check-answers');
                 }
-                else
+                else if (req.session.data['about-the-movement-what-is-moving-radios'] == "Live animals"  ||
+                         req.session.data['about-the-movement-what-is-moving-radios'] == "Carcasses"  )
                 {
                     res.redirect('quantity');
+                }
+                else
+                {
+                    res.redirect('../enter-what-is-moving');
                 }
             }
         }
@@ -1007,9 +1101,14 @@ module.exports = function (router) {
                 {
                     res.redirect('../../check-answers');
                 }
-                else
+                else if (req.session.data['about-the-movement-what-is-moving-radios'] == "Live animals"  ||
+                         req.session.data['about-the-movement-what-is-moving-radios'] == "Carcasses"  )
                 {
                     res.redirect('quantity');
+                }
+                else
+                {
+                    res.redirect('../enter-what-is-moving');
                 }
             }
         }
@@ -1030,9 +1129,14 @@ module.exports = function (router) {
                 {
                     res.redirect('../../check-answers');
                 }
-                else
+                else if (req.session.data['about-the-movement-what-is-moving-radios'] == "Live animals"  ||
+                         req.session.data['about-the-movement-what-is-moving-radios'] == "Carcasses"  )
                 {
                     res.redirect('quantity');
+                }
+                else
+                {
+                    res.redirect('../enter-what-is-moving');
                 }
             }
         }
@@ -1107,9 +1211,14 @@ module.exports = function (router) {
                 {
                     res.redirect('../../../check-answers');
                 }
+                else if (req.session.data['about-the-movement-what-is-moving-radios'] == "Live animals"  ||
+                         req.session.data['about-the-movement-what-is-moving-radios'] == "Carcasses"  )
+                {
+                    res.redirect('../quantity');
+                }
                 else
                 {
-                    res.redirect('quantity');
+                    res.redirect('../../enter-what-is-moving');
                 }
             }
         }
@@ -1130,9 +1239,14 @@ module.exports = function (router) {
                 {
                     res.redirect('../../../check-answers');
                 }
+                else if (req.session.data['about-the-movement-what-is-moving-radios'] == "Live animals"  ||
+                         req.session.data['about-the-movement-what-is-moving-radios'] == "Carcasses"  )
+                {
+                    res.redirect('../quantity');
+                }
                 else
                 {
-                    res.redirect('quantity');
+                    res.redirect('../../enter-what-is-moving');
                 }
             }
         }
@@ -1153,9 +1267,14 @@ module.exports = function (router) {
                 {
                     res.redirect('../../../check-answers');
                 }
+                else if (req.session.data['about-the-movement-what-is-moving-radios'] == "Live animals"  ||
+                         req.session.data['about-the-movement-what-is-moving-radios'] == "Carcasses"  )
+                {
+                    res.redirect('../quantity');
+                }
                 else
                 {
-                    res.redirect('quantity');
+                    res.redirect('../../enter-what-is-moving');
                 }
             }
         }
@@ -1176,9 +1295,14 @@ module.exports = function (router) {
                 {
                     res.redirect('../../../check-answers');
                 }
+                else if (req.session.data['about-the-movement-what-is-moving-radios'] == "Live animals"  ||
+                         req.session.data['about-the-movement-what-is-moving-radios'] == "Carcasses"  )
+                {
+                    res.redirect('../quantity');
+                }
                 else
                 {
-                    res.redirect('quantity');
+                    res.redirect('../../enter-what-is-moving');
                 }
             }
         }
@@ -1199,9 +1323,14 @@ module.exports = function (router) {
                 {
                     res.redirect('../../../check-answers');
                 }
+                else if (req.session.data['about-the-movement-what-is-moving-radios'] == "Live animals"  ||
+                         req.session.data['about-the-movement-what-is-moving-radios'] == "Carcasses"  )
+                {
+                    res.redirect('../quantity');
+                }
                 else
                 {
-                    res.redirect('quantity');
+                    res.redirect('../../enter-what-is-moving');
                 }
             }
         }
@@ -1222,9 +1351,14 @@ module.exports = function (router) {
                 {
                     res.redirect('../../../check-answers');
                 }
+                else if (req.session.data['about-the-movement-what-is-moving-radios'] == "Live animals"  ||
+                         req.session.data['about-the-movement-what-is-moving-radios'] == "Carcasses"  )
+                {
+                    res.redirect('../quantity');
+                }
                 else
                 {
-                    res.redirect('quantity');
+                    res.redirect('../../enter-what-is-moving');
                 }
             }
         }
@@ -1309,9 +1443,14 @@ module.exports = function (router) {
                 {
                     res.redirect('../../../check-answers');
                 }
+                else if (req.session.data['about-the-movement-what-is-moving-radios'] == "Live animals"  ||
+                         req.session.data['about-the-movement-what-is-moving-radios'] == "Carcasses"  )
+                {
+                    res.redirect('../quantity');
+                }
                 else
                 {
-                    res.redirect('quantity');
+                    res.redirect('../../enter-what-is-moving');
                 }
             }
         }
@@ -1328,7 +1467,7 @@ module.exports = function (router) {
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////                                                    ////////////////
-    ////////////////          quantity of all live animals             ////////////////
+    ////////////////    quantity of all live animals or carcases        ////////////////
     ////////////////                                                    ////////////////
     ////////////////                 NUMBER ENTRY                       ////////////////
     ////////////////                NOT COMPLEX PAGE                    ////////////////
@@ -1423,23 +1562,9 @@ module.exports = function (router) {
                         {
                             res.redirect('../../check-answers');
                         }
-
-                        // If the animal selected is PIGS
-                        else if (req.session.data['about-the-movement-select-animals-radios'] == 'Pigs')
-                        {
-                            res.redirect('pigs-types');
-                        }
-
-                        // If the animal selected is CATTLE
-                        else if (req.session.data['about-the-movement-select-animals-radios'] == 'Cattle')
-                        {
-                            res.redirect('cattle-types');
-                        }
-
-                        // IF the animal selected is anything else
                         else
                         {
-                            res.redirect('../purpose');
+                            res.redirect('abattoir');
                         }
 
                     }
@@ -1449,6 +1574,90 @@ module.exports = function (router) {
         }
 
     })
+
+
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////     if live animals are going to an abattoir       ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////       YES AND NO - RADIO BUTTONS - MANDATORY       ////////////////
+    ////////////////                  NOT COMPLEX PAGE                  ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    router.post(section + 'what-is-moving/select-animals/abattoir-router', function (req, res)
+    {
+        // Turn errors off by default
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+
+        // If Yes was selected, continue to next page
+        if (req.session.data['about-the-movement-abattoir-radios-yes-no'] == "Yes")
+        {
+            // Continue to the next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('../../check-answers');
+            }
+            else
+            {
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('../../check-answers');
+            }
+        }
+        else if (req.session.data['about-the-movement-abattoir-radios-yes-no'] == "No")
+        {
+            // Continue to the next page
+
+            // If the animal selected is PIGS
+            if (req.session.data['about-the-movement-select-animals-radios'] == 'Pigs')
+            {
+                res.redirect('pigs-types');
+            }
+
+            // If the animal selected is CATTLE
+            else if (req.session.data['about-the-movement-select-animals-radios'] == 'Cattle')
+            {
+                res.redirect('cattle-types');
+            }
+
+            // IF the animal selected is anything else
+            else
+            {
+                res.redirect('../purpose');
+            }
+
+        }
+        else
+        {
+            // Trigger validation and reload the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('abattoir');
+        }
+    })
+
+
+
+
+
+
+
+
+
+
 
 
 

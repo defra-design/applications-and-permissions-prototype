@@ -32,15 +32,12 @@
             {% else %}
                 {{ data['disease-configurator-name-of-disease-text-input'] }},
             {% endif %}
-            you can only apply to move the following animals:
-        </p>
+            you can only apply to:</p>
 
         <ul class="govuk-body govuk-list--bullet">
-            {% for item in data['disease-configurator-scope-of-things-animals-checkboxes'] %}
+            {% for item in data['disease-configurator-types-of-movement-checkboxes'] %}
 
-                {% if item != "None of the above" %}
                     <li>{{ item }}</li>
-                {% endif %}
 
             {% endfor %}
         </ul>

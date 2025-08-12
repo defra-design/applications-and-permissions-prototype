@@ -159,7 +159,25 @@ module.exports = function (router) {
                   "Animal by-products and waste materials",
                   "Machinery and equipment",
                   "Carcasses"
-                ]
+                ];
+
+                req.session.data['disease-configurator-scope-of-things-animals-checkboxes'] =
+                    [
+                        "Cattle",
+                        "Sheep",
+                        "Goats",
+                        "Pigs",
+                        "Birds",
+                        "Horses",
+                        "Deer",
+                        "Llamas",
+                        "Alpacas",
+                        "Camels",
+                        "Buffalo",
+                        "Rabbits",
+                        "Fish",
+                        "Snails"
+                    ];
 
                 res.redirect('types-of-movement');
             }
@@ -219,6 +237,23 @@ module.exports = function (router) {
         if (req.session.data['disease-configurator-scope-of-things-all-animals-radios-yes-no'] == "Yes")
         {
             // Continue to the next page
+            req.session.data['disease-configurator-scope-of-things-animals-checkboxes'] =
+                [
+                    "Cattle",
+                    "Sheep",
+                    "Goats",
+                    "Pigs",
+                    "Birds",
+                    "Horses",
+                    "Deer",
+                    "Llamas",
+                    "Alpacas",
+                    "Camels",
+                    "Buffalo",
+                    "Rabbits",
+                    "Fish",
+                    "Snails"
+                ];
 
             // If the user needs to go back to 'check your answers' then take them directly there
             if (req.session.data['camefromcheckanswers'] == 'true')
