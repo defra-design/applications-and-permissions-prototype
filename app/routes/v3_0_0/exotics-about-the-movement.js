@@ -992,7 +992,7 @@ module.exports = function (router) {
                 else if (req.session.data['about-the-movement-what-is-moving-radios'] == "Live animals"  ||
                          req.session.data['about-the-movement-what-is-moving-radios'] == "Carcasses"  )
                 {
-                    res.redirect('quantity');
+                    res.redirect('birds/day-old-chicks');
                 }
                 else
                 {
@@ -1020,7 +1020,7 @@ module.exports = function (router) {
                 else if (req.session.data['about-the-movement-what-is-moving-radios'] == "Live animals"  ||
                          req.session.data['about-the-movement-what-is-moving-radios'] == "Carcasses"  )
                 {
-                    res.redirect('quantity');
+                    res.redirect('birds/day-old-chicks');
                 }
                 else
                 {
@@ -1048,7 +1048,7 @@ module.exports = function (router) {
                 else if (req.session.data['about-the-movement-what-is-moving-radios'] == "Live animals"  ||
                          req.session.data['about-the-movement-what-is-moving-radios'] == "Carcasses"  )
                 {
-                    res.redirect('quantity');
+                    res.redirect('birds/day-old-chicks');
                 }
                 else
                 {
@@ -1076,7 +1076,7 @@ module.exports = function (router) {
                 else if (req.session.data['about-the-movement-what-is-moving-radios'] == "Live animals"  ||
                          req.session.data['about-the-movement-what-is-moving-radios'] == "Carcasses"  )
                 {
-                    res.redirect('quantity');
+                    res.redirect('birds/day-old-chicks');
                 }
                 else
                 {
@@ -1167,6 +1167,72 @@ module.exports = function (router) {
         }
     })
 
+
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////      Day old chicks for 4 bird types               ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////       YES AND NO - RADIO BUTTONS - MANDATORY       ////////////////
+    ////////////////                  NOT COMPLEX PAGE                  ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    router.post(section + 'what-is-moving/select-animals/birds/day-old-chicks-router', function (req, res)
+    {
+        // Turn errors off by default
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+
+        // If Yes was selected, continue to next page
+        if (req.session.data['about-the-movement-day-old-chicks-radios-yes-no'] == "Yes")
+        {
+            // Continue to the next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('check-answers');
+            }
+            else
+            {
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('../quantity');
+            }
+        }
+        else if (req.session.data['about-the-movement-day-old-chicks-radios-yes-no'] == "No")
+        {
+            // Continue to the next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('check-answers');
+            }
+            else
+            {
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('../quantity');
+            }
+        }
+        else
+        {
+            // Trigger validation and reload the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('day-old-chicks');
+        }
+    })
 
 
 
