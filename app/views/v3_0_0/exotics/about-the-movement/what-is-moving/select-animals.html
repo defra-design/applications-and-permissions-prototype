@@ -23,6 +23,7 @@ This will save you time.
     {% if  data['about-the-movement-what-is-moving-radios'] == "Live animals"  or
            data['about-the-movement-what-is-moving-radios'] == "Carcasses"  %}
         Which type of animal are you moving?
+
     {% else %}
 
         What animal species are the
@@ -31,7 +32,12 @@ This will save you time.
         {% else %}
             {{ data['about-the-movement-what-is-moving-radios-formatted'] }}
         {% endif %}
-        from?
+
+        {% if  data['about-the-movement-what-is-moving-radios'] == "Bedding and feed"  %}
+            for?
+        {% else %}
+            from?
+        {% endif %}
 
     {% endif %}
 

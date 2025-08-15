@@ -74,6 +74,7 @@
                     {% if  data['about-the-movement-what-is-moving-radios'] == "Live animals"  or
                            data['about-the-movement-what-is-moving-radios'] == "Carcasses"  %}
                         Which type of animal are you moving?
+
                     {% else %}
 
                         What animal species are the
@@ -82,7 +83,12 @@
                         {% else %}
                             {{ data['about-the-movement-what-is-moving-radios-formatted'] }}
                         {% endif %}
-                        from?
+
+                        {% if  data['about-the-movement-what-is-moving-radios'] == "Bedding and feed"  %}
+                            for?
+                        {% else %}
+                            from?
+                        {% endif %}
 
                     {% endif %}
                 </dt>
@@ -110,7 +116,12 @@
                             {% else %}
                                 {{ data['about-the-movement-what-is-moving-radios-formatted'] }}
                             {% endif %}
-                            from?
+
+                            {% if  data['about-the-movement-what-is-moving-radios'] == "Bedding and feed"  %}
+                                for?
+                            {% else %}
+                                from?
+                            {% endif %}
 
                         {% endif %}
                     </dt>
@@ -138,7 +149,12 @@
                                 {% else %}
                                     {{ data['about-the-movement-what-is-moving-radios-formatted'] }}
                                 {% endif %}
-                                from?
+
+                                {% if  data['about-the-movement-what-is-moving-radios'] == "Bedding and feed"  %}
+                                    for?
+                                {% else %}
+                                    from?
+                                {% endif %}
 
                             {% endif %}
                         </dt>
@@ -170,10 +186,11 @@
                 </div>
 
 
-                {%  if data['about-the-movement-birds-radios']  == "Chickens"  or
+                {%  if data['about-the-movement-what-is-moving-radios']  == "Live animals"  and
+                      (data['about-the-movement-birds-radios']  == "Chickens"  or
                        data['about-the-movement-birds-radios']  == "Turkeys"  or
                        data['about-the-movement-birds-radios']  == "Ducks"  or
-                       data['about-the-movement-birds-radios']  == "Geese"
+                       data['about-the-movement-birds-radios']  == "Geese" )
                 %}
 
                     <div class="govuk-summary-list__row">
@@ -349,34 +366,95 @@
 
 
 
-        {%  if data['about-the-movement-what-is-moving-radios']  != "Live animals" and
-               data['about-the-movement-what-is-moving-radios']  != "Carcasses"
+
+
+        {%  if data['about-the-movement-what-is-moving-radios']  == "Animal products"  and
+              (data['about-the-movement-select-animals-radios']  == "Cattle" or
+               data['about-the-movement-select-animals-radios']  == "Sheep" or
+               data['about-the-movement-select-animals-radios']  == "Goats" )
         %}
 
             <div class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
-                    What will be moved?
+                    Are you moving milk?
                 </dt>
                 <dd class="govuk-summary-list__value">
-                    {{ data['about-the-movement-enter-what-is-moving-text-input'] }}
+                    {{ data['about-the-movement-milk-radios-yes-no'] }}
                 </dd>
                 <dd class="govuk-summary-list__actions">
-                    <a class="govuk-link" href="../about-the-movement/what-is-moving/enter-what-is-moving">Change<span class="govuk-visually-hidden"> </span></a>
+                    <a class="govuk-link" href="../about-the-movement/what-is-moving/milk">Change<span class="govuk-visually-hidden"> </span></a>
                 </dd>
             </div>
 
+        {%  elif data['about-the-movement-what-is-moving-radios']  == "Animal products"  and
+                 data['about-the-movement-select-animals-radios']  == "Birds"
+        %}
 
             <div class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
-                    How much will be moved?
+                    Are you moving eggs?
                 </dt>
                 <dd class="govuk-summary-list__value">
-                    {{ data['about-the-movement-enter-what-is-moving-quantity-text-input'] }}
+                    {{ data['about-the-movement-eggs-radios-yes-no'] }}
                 </dd>
                 <dd class="govuk-summary-list__actions">
-                    <a class="govuk-link" href="../about-the-movement/what-is-moving/enter-what-is-moving/quantity">Change<span class="govuk-visually-hidden"> </span></a>
+                    <a class="govuk-link" href="../about-the-movement/what-is-moving/select-animals/birds/eggs">Change<span class="govuk-visually-hidden"> </span></a>
                 </dd>
             </div>
+
+        {%  endif  %}
+
+
+
+
+
+        {%  if data['about-the-movement-what-is-moving-radios']  != "Live animals" and
+               data['about-the-movement-what-is-moving-radios']  != "Carcasses"
+        %}
+
+            {%  if data['about-the-movement-what-is-moving-radios']  == "Animal products"  and
+                  (data['about-the-movement-select-animals-radios']  == "Cattle" or
+                   data['about-the-movement-select-animals-radios']  == "Sheep" or
+                   data['about-the-movement-select-animals-radios']  == "Goats" )
+                    and
+                   data['about-the-movement-milk-radios-yes-no'] == "Yes"
+            %}
+
+
+            {%  elif data['about-the-movement-what-is-moving-radios']  == "Animal products"  and
+                     data['about-the-movement-select-animals-radios']  == "Birds"  and
+                     data['about-the-movement-eggs-radios-yes-no'] == "Yes"
+            %}
+
+
+
+            {%  else %}
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                        What will be moved?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{ data['about-the-movement-enter-what-is-moving-text-input'] }}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="../about-the-movement/what-is-moving/enter-what-is-moving">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                </div>
+
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                        How much will be moved?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{ data['about-the-movement-enter-what-is-moving-quantity-text-input'] }}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="../about-the-movement/what-is-moving/enter-what-is-moving/quantity">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                </div>
+            {%  endif  %}
 
         {%  endif  %}
 

@@ -403,6 +403,10 @@ module.exports = function (router) {
                 {
                     res.redirect('select-animals/quantity');
                 }
+                else if (req.session.data['about-the-movement-what-is-moving-radios'] == "Animal products")
+                {
+                    res.redirect('milk');
+                }
                 else
                 {
                     res.redirect('select-animals/enter-what-is-moving');
@@ -434,6 +438,10 @@ module.exports = function (router) {
                 {
                     res.redirect('select-animals/quantity');
                 }
+                else if (req.session.data['about-the-movement-what-is-moving-radios'] == "Animal products")
+                {
+                    res.redirect('milk');
+                }
                 else
                 {
                     res.redirect('enter-what-is-moving');
@@ -464,6 +472,10 @@ module.exports = function (router) {
                          req.session.data['about-the-movement-what-is-moving-radios'] == "Carcasses"  )
                 {
                     res.redirect('select-animals/quantity');
+                }
+                else if (req.session.data['about-the-movement-what-is-moving-radios'] == "Animal products")
+                {
+                    res.redirect('milk');
                 }
                 else
                 {
@@ -951,6 +963,60 @@ module.exports = function (router) {
 
 
 
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////             Milk product movements                 ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////       YES AND NO - RADIO BUTTONS - MANDATORY       ////////////////
+    ////////////////                  NOT COMPLEX PAGE                  ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    router.post(section + 'what-is-moving/milk-router', function (req, res)
+    {
+        // Turn errors off by default
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+
+        // If Yes was selected, continue to next page
+        if (req.session.data['about-the-movement-milk-radios-yes-no'] == "Yes")
+        {
+            // Continue to the next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('../check-answers');
+            }
+            else
+            {
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('../check-answers');
+            }
+        }
+        else if (req.session.data['about-the-movement-milk-radios-yes-no'] == "No")
+        {
+            // Continue to the next page
+
+            res.redirect('enter-what-is-moving');
+
+        }
+        else
+        {
+            // Trigger validation and reload the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('milk');
+        }
+    })
+
+
 
 
     ////////////////////////////////////////////////////////////////////////////////////
@@ -989,10 +1055,17 @@ module.exports = function (router) {
                 {
                     res.redirect('../../check-answers');
                 }
-                else if (req.session.data['about-the-movement-what-is-moving-radios'] == "Live animals"  ||
-                         req.session.data['about-the-movement-what-is-moving-radios'] == "Carcasses"  )
+                else if (req.session.data['about-the-movement-what-is-moving-radios'] == "Live animals" )
                 {
                     res.redirect('birds/day-old-chicks');
+                }
+                else if (req.session.data['about-the-movement-what-is-moving-radios'] == "Carcasses"  )
+                {
+                    res.redirect('quantity');
+                }
+                else if (req.session.data['about-the-movement-what-is-moving-radios'] == "Animal products")
+                {
+                    res.redirect('birds/eggs');
                 }
                 else
                 {
@@ -1017,10 +1090,17 @@ module.exports = function (router) {
                 {
                     res.redirect('../../check-answers');
                 }
-                else if (req.session.data['about-the-movement-what-is-moving-radios'] == "Live animals"  ||
-                         req.session.data['about-the-movement-what-is-moving-radios'] == "Carcasses"  )
+                else if (req.session.data['about-the-movement-what-is-moving-radios'] == "Live animals" )
                 {
                     res.redirect('birds/day-old-chicks');
+                }
+                else if (req.session.data['about-the-movement-what-is-moving-radios'] == "Carcasses"  )
+                {
+                    res.redirect('quantity');
+                }
+                else if (req.session.data['about-the-movement-what-is-moving-radios'] == "Animal products")
+                {
+                    res.redirect('birds/eggs');
                 }
                 else
                 {
@@ -1045,10 +1125,17 @@ module.exports = function (router) {
                 {
                     res.redirect('../../check-answers');
                 }
-                else if (req.session.data['about-the-movement-what-is-moving-radios'] == "Live animals"  ||
-                         req.session.data['about-the-movement-what-is-moving-radios'] == "Carcasses"  )
+                else if (req.session.data['about-the-movement-what-is-moving-radios'] == "Live animals" )
                 {
                     res.redirect('birds/day-old-chicks');
+                }
+                else if (req.session.data['about-the-movement-what-is-moving-radios'] == "Carcasses"  )
+                {
+                    res.redirect('quantity');
+                }
+                else if (req.session.data['about-the-movement-what-is-moving-radios'] == "Animal products")
+                {
+                    res.redirect('birds/eggs');
                 }
                 else
                 {
@@ -1073,10 +1160,17 @@ module.exports = function (router) {
                 {
                     res.redirect('../../check-answers');
                 }
-                else if (req.session.data['about-the-movement-what-is-moving-radios'] == "Live animals"  ||
-                         req.session.data['about-the-movement-what-is-moving-radios'] == "Carcasses"  )
+                else if (req.session.data['about-the-movement-what-is-moving-radios'] == "Live animals" )
                 {
                     res.redirect('birds/day-old-chicks');
+                }
+                else if (req.session.data['about-the-movement-what-is-moving-radios'] == "Carcasses"  )
+                {
+                    res.redirect('quantity');
+                }
+                else if (req.session.data['about-the-movement-what-is-moving-radios'] == "Animal products")
+                {
+                    res.redirect('birds/eggs');
                 }
                 else
                 {
@@ -1106,6 +1200,10 @@ module.exports = function (router) {
                 {
                     res.redirect('quantity');
                 }
+                else if (req.session.data['about-the-movement-what-is-moving-radios'] == "Animal products")
+                {
+                    res.redirect('birds/eggs');
+                }
                 else
                 {
                     res.redirect('../enter-what-is-moving');
@@ -1133,6 +1231,10 @@ module.exports = function (router) {
                          req.session.data['about-the-movement-what-is-moving-radios'] == "Carcasses"  )
                 {
                     res.redirect('quantity');
+                }
+                else if (req.session.data['about-the-movement-what-is-moving-radios'] == "Animal products")
+                {
+                    res.redirect('birds/eggs');
                 }
                 else
                 {
@@ -1241,6 +1343,12 @@ module.exports = function (router) {
 
 
 
+
+
+
+
+
+
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////                                                    ////////////////
@@ -1282,6 +1390,10 @@ module.exports = function (router) {
                 {
                     res.redirect('../quantity');
                 }
+                else if (req.session.data['about-the-movement-what-is-moving-radios'] == "Animal products")
+                {
+                    res.redirect('eggs');
+                }
                 else
                 {
                     res.redirect('../../enter-what-is-moving');
@@ -1309,6 +1421,10 @@ module.exports = function (router) {
                          req.session.data['about-the-movement-what-is-moving-radios'] == "Carcasses"  )
                 {
                     res.redirect('../quantity');
+                }
+                else if (req.session.data['about-the-movement-what-is-moving-radios'] == "Animal products")
+                {
+                    res.redirect('eggs');
                 }
                 else
                 {
@@ -1338,6 +1454,10 @@ module.exports = function (router) {
                 {
                     res.redirect('../quantity');
                 }
+                else if (req.session.data['about-the-movement-what-is-moving-radios'] == "Animal products")
+                {
+                    res.redirect('eggs');
+                }
                 else
                 {
                     res.redirect('../../enter-what-is-moving');
@@ -1365,6 +1485,10 @@ module.exports = function (router) {
                          req.session.data['about-the-movement-what-is-moving-radios'] == "Carcasses"  )
                 {
                     res.redirect('../quantity');
+                }
+                else if (req.session.data['about-the-movement-what-is-moving-radios'] == "Animal products")
+                {
+                    res.redirect('eggs');
                 }
                 else
                 {
@@ -1394,6 +1518,10 @@ module.exports = function (router) {
                 {
                     res.redirect('../quantity');
                 }
+                else if (req.session.data['about-the-movement-what-is-moving-radios'] == "Animal products")
+                {
+                    res.redirect('eggs');
+                }
                 else
                 {
                     res.redirect('../../enter-what-is-moving');
@@ -1421,6 +1549,10 @@ module.exports = function (router) {
                          req.session.data['about-the-movement-what-is-moving-radios'] == "Carcasses"  )
                 {
                     res.redirect('../quantity');
+                }
+                else if (req.session.data['about-the-movement-what-is-moving-radios'] == "Animal products")
+                {
+                    res.redirect('eggs');
                 }
                 else
                 {
@@ -1514,6 +1646,10 @@ module.exports = function (router) {
                 {
                     res.redirect('../quantity');
                 }
+                else if (req.session.data['about-the-movement-what-is-moving-radios'] == "Animal products")
+                {
+                    res.redirect('eggs');
+                }
                 else
                 {
                     res.redirect('../../enter-what-is-moving');
@@ -1521,6 +1657,67 @@ module.exports = function (router) {
             }
         }
     })
+
+
+
+
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////             Eggs product movements                 ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////       YES AND NO - RADIO BUTTONS - MANDATORY       ////////////////
+    ////////////////                  NOT COMPLEX PAGE                  ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    router.post(section + 'what-is-moving/select-animals/birds/eggs-router', function (req, res)
+    {
+        // Turn errors off by default
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+
+        // If Yes was selected, continue to next page
+        if (req.session.data['about-the-movement-eggs-radios-yes-no'] == "Yes")
+        {
+            // Continue to the next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('../../../check-answers');
+            }
+            else
+            {
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('../../../check-answers');
+            }
+        }
+        else if (req.session.data['about-the-movement-eggs-radios-yes-no'] == "No")
+        {
+            // Continue to the next page
+
+            // This page name needs to be the next page the user gets to after successfully continuing
+            res.redirect('../../enter-what-is-moving');
+        }
+        else
+        {
+            // Trigger validation and reload the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('eggs');
+        }
+    })
+
 
 
 
