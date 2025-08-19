@@ -41,7 +41,7 @@
                         {
                             text: "About the movement or activity"
                         },
-                        href: "about-the-movement/" if data['section-about-the-movement-or-activity-complete'] == "true"  else "about-the-movement/movement-type",
+                        href: "about-the-movement/check-answers" if data['section-about-the-movement-or-activity-complete'] == "true"  else "about-the-movement/movement-type",
                             completed: data['section-about-the-movement-or-activity-complete'] == "true",
                         status:
                         {
@@ -52,7 +52,26 @@
                                 classes: "govuk-tag--blue"
                             } if data['section-origin-complete'] != "true"
                         }
+                    },
+
+                    {
+                        title:
+                        {
+                            text: "Movement origin"
+                        },
+                        href: "movement-origin/check-answers" if data['section-movement-origin-complete'] == "true"  else "about-the-movement/movement-type",
+                            completed: data['section-movement-origin-complete'] == "true",
+                        status:
+                        {
+                            text: "Completed",
+                            tag:
+                            {
+                                text: "Incomplete",
+                                classes: "govuk-tag--blue"
+                            } if data['section-origin-complete'] != "true"
+                        }
                     }
+
 
 
                 ]
