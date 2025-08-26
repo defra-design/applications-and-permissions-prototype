@@ -19,6 +19,7 @@ require('./gov-gateway.js')(router);
 require('./exotics-configurator.js')(router);
 require('./exotics-about-the-movement.js')(router);
 require('./exotics-movement-origin.js')(router);
+require('./exotics-fmd.js')(router);
 
 
 

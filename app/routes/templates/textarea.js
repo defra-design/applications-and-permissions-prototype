@@ -27,7 +27,7 @@ module.exports = function (router)
         req.session.data['errortypefour'] = "false";
 
         // Validation check if field is blank
-        if (req.session.data['SECTION-PAGENAME_TEXTAREA-text-input'] == undefined || req.session.data['SECTION-PAGENAME_TEXTAREA-text-input'] == "")
+        if (req.session.data['SECTION-PAGENAME_TEXTAREA-text-area-input'] == undefined || req.session.data['SECTION-PAGENAME_TEXTAREA-text-area-input'] == "")
         {
             // Trigger validation and relaunch the page
             req.session.data['errorthispage'] = "true";
@@ -37,7 +37,7 @@ module.exports = function (router)
             res.redirect('PAGENAME_TEXTAREA');
         }
 
-        else if (req.session.data['SECTION-PAGENAME_TEXTAREA-text-input'].length > 15)
+        else if (req.session.data['SECTION-PAGENAME_TEXTAREA-text-area-input'].length > 15)
         {
             // Trigger validation and relaunch the page for over 15 characters
             req.session.data['errorthispage'] = "true";
@@ -47,7 +47,7 @@ module.exports = function (router)
             res.redirect('PAGENAME_TEXTAREA');
         }
 
-        else if (req.session.data['SECTION-PAGENAME_TEXTAREA-text-input'].length < 4)
+        else if (req.session.data['SECTION-PAGENAME_TEXTAREA-text-area-input'].length < 4)
         {
             // Trigger validation and relaunch the page for under 5 characters
             req.session.data['errorthispage'] = "true";
@@ -61,7 +61,7 @@ module.exports = function (router)
         {
             // check no illegal charcters have been used
             const acceptableCharacters =  " abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ&:’\,.()-";
-            let inputtext = req.session.data['SECTION-PAGENAME_TEXTAREA-text-input'];
+            let inputtext = req.session.data['SECTION-PAGENAME_TEXTAREA-text-area-input'];
 
             let dissallowedCharacters = "";
 
