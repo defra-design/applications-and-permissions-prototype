@@ -41,8 +41,8 @@
                         {
                             text: "About the movement or activity"
                         },
-                        href: "about-the-movement-or-activity/check-answers" if data['section-about-the-movement-or-activity-or-activity-complete'] == "true"  else "about-the-movement-or-activity/type",
-                            completed: data['section-about-the-movement-or-activity-or-activity-complete'] == "true",
+                        href: "about-the-movement-or-activity/check-answers" if data['section-fmd-about-the-movement-or-activity-complete'] == "true"  else "about-the-movement-or-activity/type",
+                            completed: data['section-fmd-about-the-movement-or-activity-complete'] == "true",
                         status:
                         {
                             text: "Completed",
@@ -50,7 +50,7 @@
                             {
                                 text: "Incomplete",
                                 classes: "govuk-tag--blue"
-                            } if data['section-about-the-movement-or-activity-or-activity-complete'] != "true"
+                            } if data['section-fmd-about-the-movement-or-activity-complete'] != "true"
                         }
                     },
 
@@ -59,8 +59,8 @@
                         {
                             text: "Movement origin"
                         },
-                        href: "movement-origin/check-answers" if data['section-movement-origin-complete'] == "true"  else "about-the-movement/movement-type",
-                            completed: data['section-movement-origin-complete'] == "true",
+                        href: "movement-origin/check-answers" if data['section-fmd-movement-origin-complete'] == "true"  else "about-the-movement/movement-type",
+                            completed: data['section-fmd-movement-origin-complete'] == "true",
                         status:
                         {
                             text: "Completed",
@@ -68,7 +68,7 @@
                             {
                                 text: "Incomplete",
                                 classes: "govuk-tag--blue"
-                            } if data['section-origin-complete'] != "true"
+                            } if data['section-fmd-movement-origin-complete'] != "true"
                         }
                     }
 
