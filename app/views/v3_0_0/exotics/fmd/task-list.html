@@ -59,7 +59,7 @@
                         {
                             text: "Movement origin"
                         },
-                        href: "movement-origin/check-answers" if data['section-fmd-movement-origin-complete'] == "true"  else "about-the-movement/movement-type",
+                        href: "movement-origin/check-answers" if data['section-fmd-movement-origin-complete'] == "true"  else "movement-origin/start-section",
                             completed: data['section-fmd-movement-origin-complete'] == "true",
                         status:
                         {
@@ -69,6 +69,60 @@
                                 text: "Incomplete",
                                 classes: "govuk-tag--blue"
                             } if data['section-fmd-movement-origin-complete'] != "true"
+                        }
+                    },
+
+                    {
+                        title:
+                        {
+                            text: "Movement destination"
+                        },
+                        href: "movement-destination/check-answers"  if  data['section-fmd-movement-details-complete'] == "true"  else  "movement-destination/start-section",
+                                completed: data['section-fmd-movement-details-complete'] == "true",
+                        status:
+                        {
+                            text: "Completed",
+                            tag:
+                            {
+                                text: "Incomplete",
+                                classes: "govuk-tag--blue"
+                            } if data['section-fmd-movement-details-complete'] != "true"
+                        }
+                    },
+
+                    {
+                        title:
+                        {
+                            text: "Movement details"
+                        },
+                        href: "movement-details/check-answers"  if  data['section-fmd-movement-details-complete'] == "true"  else  "movement-details/start-section",
+                                completed: data['section-fmd-movement-details-complete'] == "true",
+                        status:
+                        {
+                            text: "Completed",
+                            tag:
+                            {
+                                text: "Incomplete",
+                                classes: "govuk-tag--blue"
+                            } if data['section-fmd-movement-details-complete'] != "true"
+                        }
+                    },
+
+                    {
+                        title:
+                        {
+                            text: "Receiving the licence"
+                        },
+                        href: "receiving-the-licence/check-answers" if data['section-fmd-receiving-the-licence-complete'] == "true"  else "receiving-the-licence/start-section",
+                            completed: data['section-fmd-receiving-the-licence-complete'] == "true",
+                        status:
+                        {
+                            text: "Completed",
+                            tag:
+                            {
+                                text: "Incomplete",
+                                classes: "govuk-tag--blue"
+                            } if data['section-fmd-receiving-the-licence-complete'] != "true"
                         }
                     }
 

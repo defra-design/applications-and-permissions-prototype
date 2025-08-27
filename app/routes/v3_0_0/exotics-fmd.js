@@ -893,7 +893,7 @@ module.exports = function (router) {
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////                                                    ////////////////
-    ////////////////              TLA  yes or no                        ////////////////
+    ////////////////                 TLA  yes or no                     ////////////////
     ////////////////                                                    ////////////////
     ////////////////       YES AND NO - RADIO BUTTONS - MANDATORY       ////////////////
     ////////////////                  NOT COMPLEX PAGE                  ////////////////
@@ -962,7 +962,7 @@ module.exports = function (router) {
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////                                                    ////////////////
-    ////////////////               PLACEHOLDER_SUMMARY                  ////////////////
+    ////////////////               temporary land                       ////////////////
     ////////////////                                                    ////////////////
     ////////////////              TEXT ENTRY - MANDATORY                ////////////////
     ////////////////                 NOT COMPLEX PAGE                   ////////////////
@@ -1016,7 +1016,7 @@ module.exports = function (router) {
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////                                                    ////////////////
-    ////////////////               PLACEHOLDER_SUMMARY                  ////////////////
+    ////////////////                 premises type                      ////////////////
     ////////////////                                                    ////////////////
     ////////////////            RADIO BUTTONS - MANDATORY               ////////////////
     ////////////////                 NOT COMPLEX PAGE                   ////////////////
@@ -1467,6 +1467,909 @@ module.exports = function (router) {
     })
 
 
+
+
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////                   MOVEMENT DETAILS                 ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+
+    router.get(section + 'movement-details/start-section', function (req, res)
+    {
+
+        if (req.session.data['about-the-movement-or-activity-what-is-moving-radios'] == "Live animals")
+        {
+            // Continue to the next page
+
+            // This page name needs to be the next page the user gets to after successfully continuing
+            res.redirect('more-than-one-movement');
+
+        }
+        else if (req.session.data['about-the-movement-or-activity-what-is-moving-radios'] == "Carcasses")
+        {
+            res.redirect('date');
+        }
+    })
+
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////             More than 1 movement                   ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////            RADIO BUTTONS - MANDATORY               ////////////////
+    ////////////////                 NOT COMPLEX PAGE                   ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    router.post(section + 'movement-details/more-than-one-movement-router', function (req, res)
+    {
+        // Turn errors off by default
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+
+        // If Yes was selected, continue to next page
+        if (req.session.data['movement-details-more-than-one-movement-radios'] == "No, 1 movement only")
+        {
+            // Continue to the next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('check-answers');
+            }
+            else
+            {
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('date');
+            }
+        }
+        else if (req.session.data['movement-details-more-than-one-movement-radios'] == "Yes, several movements")
+        {
+            // Continue to the next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('check-answers');
+            }
+            else
+            {
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('maximum-journeys');
+            }
+        }
+        else
+        {
+            // Trigger validation and reload the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('more-than-one-movement');
+        }
+    })
+
+
+
+
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////               PLACEHOLDER_SUMMARY                  ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////              TEXT ENTRY - MANDATORY                ////////////////
+    ////////////////                 NOT COMPLEX PAGE                   ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    router.post(section + 'movement-details/maximum-journeys-router', function (req, res)
+    {
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+        req.session.data['errortypetwo'] = "false";
+        req.session.data['errortypethree'] = "false";
+        req.session.data['errortypefour'] = "false";
+        req.session.data['errortypefive'] = "false";
+        req.session.data['errortypesix'] = "false";
+        req.session.data['errortypeseven'] = "false";
+
+
+        // Validation check if field is blank
+        if (req.session.data['movement-details-maximum-journeys-number-input'] == undefined || req.session.data['movement-details-maximum-journeys-number-input'] == "")
+        {
+            // Trigger validation and relaunch the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('maximum-journeys');
+        }
+        else
+        {
+            // Remove any commas which the user or this routing added
+            let nocommasinput = req.session.data['movement-details-maximum-journeys-number-input'].replace(/,/g, '');
+
+            // if not a number throw first error
+            if( isNaN(req.session.data['movement-details-maximum-journeys-number-input']) )
+            {
+                // Trigger validation and relaunch the page
+                req.session.data['errorthispage'] = "true";
+                req.session.data['errortypetwo'] = "true";
+
+                // This page name needs to match the page the user was just on
+                res.redirect('maximum-journeys');
+            }
+            else
+            {
+                // convert String input to a number
+                let numberinputfloat =  parseFloat( nocommasinput );
+
+
+                // Check input is a whole number
+                if( numberinputfloat % 1 != 0 )
+                {
+                    // Trigger validation and relaunch the page
+                    req.session.data['errorthispage'] = "true";
+                    req.session.data['errortypetwo'] = "true";
+
+                    // This page name needs to match the page the user was just on
+                    res.redirect('maximum-journeys');
+                }
+
+                else if ( numberinputfloat < 1 )
+                {
+                    // Trigger validation and relaunch the page for number lower than 4
+                    req.session.data['errorthispage'] = "true";
+                    req.session.data['errortypethree'] = "true";
+
+                    // This page name needs to match the page the user was just on
+                    res.redirect('maximum-journeys');
+                }
+
+
+                // everything with the input is fine so move on to next page
+                else
+                {
+                    // Format the number with commas
+                    req.session.data['movement-details-maximum-journeys-number-input'] = numberinputfloat.toLocaleString();
+
+
+                    // If the user needs to go back to 'check your answers' then take them directly there
+                    if (req.session.data['camefromcheckanswers'] == 'true')
+                    {
+                        req.session.data['camefromcheckanswers'] = false;
+                        res.redirect('check-answers');
+                    }
+                    else
+                    {
+                        // This page name needs to be the next page the user gets to after successfully continuing
+                        res.redirect('movements-over-a-day');
+                    }
+                }
+            }
+
+        }
+
+    })
+
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////               PLACEHOLDER_SUMMARY                  ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////       YES AND NO - RADIO BUTTONS - MANDATORY       ////////////////
+    ////////////////                  NOT COMPLEX PAGE                  ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    router.post(section + 'movement-details/movements-over-a-day-router', function (req, res)
+    {
+        // Turn errors off by default
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+
+        // If Yes was selected, continue to next page
+        if (req.session.data['movement-details-movements-over-a-day-radios-yes-no'] == "Yes")
+        {
+            // Continue to the next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('check-answers');
+            }
+            else
+            {
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('movement-dates-multiple');
+            }
+        }
+        else if (req.session.data['movement-details-movements-over-a-day-radios-yes-no'] == "No")
+        {
+            // Continue to the next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('check-answers');
+            }
+            else
+            {
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('date');
+            }
+        }
+        else
+        {
+            // Trigger validation and reload the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('movements-over-a-day');
+        }
+    })
+
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////              Movement date for FMD                 ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////                   DATE ENTRY                       ////////////////
+    ////////////////                NOT COMPLEX PAGE                    ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    router.post(section + 'movement-details/date-router', function (req, res)
+    {
+        ////////////////////////////////////////////////////////////////////////////////////
+        ////////////////           Resetting all errors to off              ////////////////
+        ////////////////////////////////////////////////////////////////////////////////////
+
+        // set in page errors to off
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+        req.session.data['errortypetwo'] = "false";
+        req.session.data['errortypethree'] = "false";
+        req.session.data['errortypefour'] = "false";
+        req.session.data['errortypefive'] = "false";
+        req.session.data['errortypesix'] = "false";
+        req.session.data['errortypeseven'] = "false";
+        req.session.data['errortypeeight'] = "false";
+        req.session.data['errortypenine'] = "false";
+        req.session.data['errortypeten'] = "false";
+        req.session.data['errortypeeleven'] = "false";
+        req.session.data['errortypetwelve'] = "false";
+        req.session.data['errortypethirteen'] = "false";
+        req.session.data['errortypefourteen'] = "false";
+        req.session.data['errortypefifteen'] = "false";
+        req.session.data['errortypesixteen'] = "false";
+        req.session.data['errortypeseventeen'] = "false";
+
+
+
+        // set javascript field check error to off
+        let dayEmpty = false;
+        let monthEmpty = false;
+        let yearEmpty = false;
+
+
+        // work out what the most recent closed tax year was
+        let today = new Date();
+
+
+
+        // Validation check if day field is blank
+        if ( req.session.data['movement-details-date-input-day'] == undefined
+            || req.session.data['movement-details-date-input-day'] == "" )
+        {
+            dayEmpty = true;
+        }
+        // Validation check if month field is blank
+        if ( req.session.data['movement-details-date-input-month'] == undefined
+            || req.session.data['movement-details-date-input-month'] == "" )
+        {
+            monthEmpty = true;
+        }
+        // Validation check if year field is blank
+        if ( req.session.data['movement-details-date-input-year'] == undefined
+            || req.session.data['movement-details-date-input-year'] == "" )
+        {
+            yearEmpty = true;
+        }
+
+
+        // Redirect to same page if errors
+        if (dayEmpty)
+        {
+            req.session.data['errorthispage'] = "true";
+            if (monthEmpty && yearEmpty )
+            {
+                // all fields are empty
+                req.session.data['errortypeone'] = "true";
+            }
+            else if(monthEmpty)
+            {
+                // day and month are empty only
+                req.session.data['errortypefive'] = "true";
+            }
+            else if (yearEmpty)
+            {
+                // day and year are empty only
+                req.session.data['errortypesix'] = "true";
+            }
+            else
+            {
+                // just day is empty
+                req.session.data['errortypetwo'] = "true";
+            }
+        }
+        else if (monthEmpty)
+        {
+            req.session.data['errorthispage'] = "true";
+            if (yearEmpty)
+            {
+                // month and year are empty only
+                req.session.data['errortypeseven'] = "true";
+            }
+            else
+            {
+                // just month is empty
+                req.session.data['errortypethree'] = "true";
+            }
+        }
+        else if (yearEmpty)
+        {
+            req.session.data['errorthispage'] = "true";
+            // Only year is empty
+            req.session.data['errortypefour'] = "true";
+        }
+
+
+
+        ////////////////////////////////////////////////////////////////////////////////////
+        ///////     Error 8 - Incorrect/invalid characters entered for Year        ////////
+        ////////////////////////////////////////////////////////////////////////////////////
+
+        // Check for non numbers being entered
+        if (req.session.data['errorthispage'] != "true")
+        {
+            // if no error have been found so far then check for non numbers
+            if (  isNaN(req.session.data['movement-details-date-input-year']) )
+            {
+                // one or more fields isn't a number and isn't empty
+                req.session.data['errorthispage'] = "true";
+                req.session.data['errortypeeight'] = "true";
+            }
+        }
+
+
+
+        ////////////////////////////////////////////////////////////////////////////////////
+        //////////////         Error 9 - Year must be a 4 digit number         /////////////
+        ////////////////////////////////////////////////////////////////////////////////////
+
+        if (req.session.data['errorthispage'] != "true")
+        {
+            if (  req.session.data['movement-details-date-input-year'] < 1000  ||  9999 < req.session.data['movement-details-date-input-year']  )
+            {
+                req.session.data['errorthispage'] = "true";
+                req.session.data['errortypenine'] = "true";
+            }
+        }
+
+
+
+        ////////////////////////////////////////////////////////////////////////////////////
+        ////////     Error 10 - Incorrect/invalid characters entered for MONTH       ////////
+        ////////////////////////////////////////////////////////////////////////////////////
+
+        // Check for non numbers being entered
+        if (req.session.data['errorthispage'] != "true")
+        {
+            // if no error have been found so far then check for non numbers
+            if ( isNaN(req.session.data['movement-details-date-input-month']) )
+            {
+                // one or more fields isn't a number and isn't empty
+                req.session.data['errorthispage'] = "true";
+                req.session.data['errortypeten'] = "true";
+            }
+                // Check if date numbers are 0 or impossibly high. e.g. 14th month
+            // Check for non numbers being entered
+            else if ( req.session.data['movement-details-date-input-month'] < 1  ||  12 < req.session.data['movement-details-date-input-month'] )
+            {
+                // one or more fields isn't a number and isn't empty
+                req.session.data['errorthispage'] = "true";
+                req.session.data['errortypeten'] = "true";
+            }
+        }
+
+
+
+        ////////////////////////////////////////////////////////////////////////////////////
+        /////////     Error 11 - Incorrect/invalid characters entered for DAY       /////////
+        ////////////////////////////////////////////////////////////////////////////////////
+
+        // Check for non numbers being entered
+        if (req.session.data['errorthispage'] != "true")
+        {
+            var quanityofdaysinmonth =  new Date(req.session.data['movement-details-date-input-year'], req.session.data['movement-details-date-input-month'], 0).getDate();
+
+            // if no error have been found so far then check for non numbers
+            if ( isNaN(req.session.data['movement-details-date-input-day'])  )
+            {
+                // one or more fields isn't a number and isn't empty
+                req.session.data['errorthispage'] = "true";
+                req.session.data['errortypeeleven'] = "true";
+            }
+                // Check if date numbers are 0 or impossibly high. e.g. 14th month
+            // Check for non numbers being entered
+            else if (  req.session.data['movement-details-date-input-day'] < 1  ||  quanityofdaysinmonth < req.session.data['movement-details-date-input-day'] )
+            {
+                // one or more fields isn't a number and isn't empty
+                req.session.data['errorthispage'] = "true";
+                req.session.data['errortypeeleven'] = "true";
+            }
+        }
+
+
+
+        ////////////////////////////////////////////////////////////////////////////////////
+        /////////      Generate date object and update user's inputted date        /////////
+        ////////////////////////////////////////////////////////////////////////////////////
+
+        let inputdate = new Date();
+
+        if (req.session.data['errorthispage'] != "true")
+        {
+            inputdate = new Date(
+                req.session.data['movement-details-date-input-year'],
+                req.session.data['movement-details-date-input-month'] - 1,
+                req.session.data['movement-details-date-input-day']
+            );
+
+            // Save user input date without zeros and month has taxt, e.g. March
+            req.session.data['movement-details-date-input-day'] = inputdate.getDate();
+            req.session.data['movement-details-date-input-month-number'] = inputdate.getMonth() + 1;
+            req.session.data['movement-details-date-input-month-text'] = inputdate.toLocaleString('default', {month: 'long'});
+            req.session.data['movement-details-date-input-year'] = inputdate.getFullYear();
+        }
+
+
+
+        ////////////////////////////////////////////////////////////////////////////////////
+        //////////////         Error 12 - Date can't be in the past          /////////////
+        //////////////         Very unlikely that this will be needed          /////////////
+        ////////////////////////////////////////////////////////////////////////////////////
+
+        if (req.session.data['errorthispage'] != "true")
+        {
+            // if date entered if after the previous tax year
+            if (inputdate < today)
+            {
+                req.session.data['errorthispage'] = "true";
+                req.session.data['errortypetwelve'] = "true";
+            }
+        }
+
+
+
+
+        ////////////////////////////////////////////////////////////////////////////////////
+        //////////////        Check if oldest calf is over 34 days old     /////////////
+        ////////////////////////////////////////////////////////////////////////////////////
+
+        let dateclosetolimit = '';
+
+        if (req.session.data['errorthispage'] != "true")
+        {
+            let datethreshold = new Date(today);
+            datethreshold.setDate(today.getDate() - 35);
+
+            // if date entered if after the previous tax year
+            if (inputdate < datethreshold)
+            {
+                dateclosetolimit = 'true';
+            }
+        }
+
+
+
+
+
+        ////////////////////////////////////////////////////////////////////////////////////
+        //////    Routing for error, no error and returning to check your answers    ///////
+        ////////////////////////////////////////////////////////////////////////////////////
+
+        if ( req.session.data['errorthispage'] == 'true' )
+        {
+            // Redirect to same page with errors
+            res.redirect('date')
+        }
+        else
+        {
+            req.session.data['camefromcheckanswers'] = false;
+            res.redirect( 'check-answers' );
+        }
+
+
+
+    })
+
+
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////               PLACEHOLDER_SUMMARY                  ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////              TEXT AREA - MANDATORY                ////////////////
+    ////////////////                 NOT COMPLEX PAGE                   ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    router.post(section + 'movement-details/movement-dates-multiple-router', function (req, res)
+    {
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+        req.session.data['errortypetwo'] = "false";
+        req.session.data['errortypethree'] = "false";
+        req.session.data['errortypefour'] = "false";
+
+        // Validation check if field is blank
+        if (req.session.data['movement-details-movement-dates-multiple-text-area-input'] == undefined || req.session.data['movement-details-movement-dates-multiple-text-area-input'] == "")
+        {
+            // Trigger validation and relaunch the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('movement-dates-multiple');
+        }
+        else
+        {
+            // everything with the input is fine so move on to next page
+            res.redirect('check-answers');
+        }
+    })
+
+
+
+
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////              RECEIVING THE LICENCE                  ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    router.get(section + 'receiving-the-licence/start-section', function (req, res)
+    {
+        //  IF moving a Milk onto premises
+        if (req.session.data['about-the-movement-or-activity-what-is-moving-radios'] == "Milk")
+        {
+            res.redirect('name-of-person-responsible-at-origin');
+        }
+        else
+        {
+            res.redirect('name-of-registered-keeper');
+        }
+    })
+
+
+
+
+
+
+
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////       Enter your keeper of animals name            ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////              TEXT ENTRY - MANDATORY                ////////////////
+    ////////////////                 NOT COMPLEX PAGE                   ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    router.post(section + 'receiving-the-licence/name-of-registered-keeper-router', function (req, res)
+    {
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+        req.session.data['errortypetwo'] = "false";
+        req.session.data['errortypethree'] = "false";
+        req.session.data['errortypefour'] = "false";
+
+        // Validation check if first name field is blank
+        if (req.session.data['receiving-the-licence-name-of-registered-keeper-first-name-text-input'] == undefined || req.session.data['receiving-the-licence-name-of-registered-keeper-first-name-text-input'] == "")
+        {
+            // Trigger validation and relaunch the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('name-of-registered-keeper');
+        }
+
+        // Validation check if first name field is blank
+        else if (req.session.data['receiving-the-licence-name-of-registered-keeper-last-name-text-input'] == undefined || req.session.data['receiving-the-licence-name-of-registered-keeper-last-name-text-input'] == "")
+        {
+            // Trigger validation and relaunch the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypetwo'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('name-of-registered-keeper');
+        }
+
+        else if (255 < req.session.data['receiving-the-licence-name-of-registered-keeper-first-name-text-input'].length)
+        {
+            // Trigger validation and relaunch the page for over 15 characters
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypethree'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('name-of-registered-keeper');
+        }
+
+
+        else if (255 < req.session.data['receiving-the-licence-name-of-registered-keeper-last-name-text-input'].length)
+        {
+            // Trigger validation and relaunch the page for over 15 characters
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypefour'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('name-of-registered-keeper');
+        }
+
+        else
+        {
+            // everything with the input is fine so move on to next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('check-answers');
+            }
+            else
+            {
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('email-address');
+            }
+        }
+
+    })
+
+
+
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////       Enter  name of responsible property          ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////              TEXT ENTRY - MANDATORY                ////////////////
+    ////////////////                 NOT COMPLEX PAGE                   ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    router.post(section + 'receiving-the-licence/name-of-person-responsible-at-origin-router', function (req, res)
+    {
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+        req.session.data['errortypetwo'] = "false";
+        req.session.data['errortypethree'] = "false";
+        req.session.data['errortypefour'] = "false";
+
+        // Validation check if first name field is blank
+        if (req.session.data['receiving-the-licence-name-of-person-responsible-at-origin-first-name-text-input'] == undefined || req.session.data['receiving-the-licence-name-of-person-responsible-at-origin-first-name-text-input'] == "")
+        {
+            // Trigger validation and relaunch the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('name-of-person-responsible-at-origin');
+        }
+
+        // Validation check if first name field is blank
+        else if (req.session.data['receiving-the-licence-name-of-person-responsible-at-origin-last-name-text-input'] == undefined || req.session.data['receiving-the-licence-name-of-person-responsible-at-origin-last-name-text-input'] == "")
+        {
+            // Trigger validation and relaunch the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypetwo'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('name-of-person-responsible-at-origin');
+        }
+
+        else if (255 < req.session.data['receiving-the-licence-name-of-person-responsible-at-origin-first-name-text-input'].length)
+        {
+            // Trigger validation and relaunch the page for over 15 characters
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypethree'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('name-of-person-responsible-at-origin');
+        }
+
+
+        else if (255 < req.session.data['receiving-the-licence-name-of-person-responsible-at-origin-last-name-text-input'].length)
+        {
+            // Trigger validation and relaunch the page for over 15 characters
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypefour'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('name-of-person-responsible-at-origin');
+        }
+
+        else
+        {
+            // everything with the input is fine so move on to next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('check-answers');
+            }
+            else
+            {
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('email-address');
+            }
+        }
+
+    })
+
+
+
+
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////               entering licence email               ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////              TEXT ENTRY - MANDATORY                ////////////////
+    ////////////////                 NOT COMPLEX PAGE                   ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    router.post(section + 'receiving-the-licence/email-address-router', function (req, res)
+    {
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+        req.session.data['errortypetwo'] = "false";
+        req.session.data['errortypethree'] = "false";
+        req.session.data['errortypefour'] = "false";
+
+        // Validation check if field is blank
+        if (req.session.data['receiving-the-licence-email-address-text-input'] == undefined ||
+            req.session.data['receiving-the-licence-email-address-text-input'] == "")
+        {
+            // Trigger validation and relaunch the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('email-address');
+        }
+        else
+        {
+            let regexpattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+            let emailentered = req.session.data['receiving-the-licence-email-address-text-input'];
+            let result = regexpattern.test(emailentered);
+            if (result == false)
+            {
+                // Trigger validation and relaunch the page
+                req.session.data['errorthispage'] = "true";
+                req.session.data['errortypetwo'] = "true";
+
+                // This page name needs to match the page the user was just on
+                res.redirect('email-address');
+                }
+            else
+            {
+                res.redirect('check-answers');
+            }
+        }
+    })
 
 
 
