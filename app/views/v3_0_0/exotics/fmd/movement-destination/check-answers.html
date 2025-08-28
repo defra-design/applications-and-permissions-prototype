@@ -58,6 +58,82 @@
 
             {%  endif  %}
 
+
+            <!--  LIVE ANIMALS  -->
+
+
+            {%  if data['about-the-movement-or-activity-what-is-moving-radios']  == "Live animals"  %}
+
+                {%  if data['about-the-movement-or-activity-slaughter-yes-no-radios-yes-no']  == "Yes"  %}
+                    <!--  LIVE ANIMAL MOVE TO SLAUGHTER  -->
+
+                        <div class="govuk-summary-list__row">
+                            <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                                What is the name of the approved abattoir?
+                            </dt>
+                            <dd class="govuk-summary-list__value">
+                                {{ data['movement-destination-abattoir-name-text-input'] }}
+                            </dd>
+                            <dd class="govuk-summary-list__actions">
+                                <a class="govuk-link" href="abattoir-name">Change<span class="govuk-visually-hidden"> </span></a>
+                            </dd>
+                        </div>
+
+                        <div class="govuk-summary-list__row">
+                            <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                                What is the address of the approved abattoir?
+                            </dt>
+                            <dd class="govuk-summary-list__value">
+                                {{ data['fmd-movement-destination-abattoir-address-line-1'] }}<br>
+                                {{ data['fmd-movement-destination-abattoir-address-line-2'] }}<br>
+                                {{ data['fmd-movement-destination-abattoir-address-town'] }}<br>
+                                {{ data['fmd-movement-destination-abattoir-address-county'] }}<br>
+                                {{ data['fmd-movement-destination-abattoir-address-postcode'] }}
+                            </dd>
+                            <dd class="govuk-summary-list__actions">
+                                <a class="govuk-link" href="abattoir-address">Change<span class="govuk-visually-hidden"> </span></a>
+                            </dd>
+                        </div>
+
+                        <div class="govuk-summary-list__row">
+                            <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                                Do you know the Food Standards Agency (FSA) number for the approved abattoir?
+                            </dt>
+                            <dd class="govuk-summary-list__value">
+                                {{ data['movement-destination-fsa-number-yes-no-radios-yes-no'] }}
+                            </dd>
+                            <dd class="govuk-summary-list__actions">
+                                <a class="govuk-link" href="fsa-number-yes-no">Change<span class="govuk-visually-hidden"> </span></a>
+                            </dd>
+                        </div>
+
+                        {%  if data['movement-destination-fsa-number-yes-no-radios-yes-no']  == "Yes"  %}
+
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                                    What is the Food Standards Agency (FSA) number for the approved abattoir?
+                                </dt>
+                                <dd class="govuk-summary-list__value">
+                                    {{ data['movement-destination-fsa-number-text-input'] }}
+                                </dd>
+                                <dd class="govuk-summary-list__actions">
+                                    <a class="govuk-link" href="fsa-number">Change<span class="govuk-visually-hidden"> </span></a>
+                                </dd>
+                            </div>
+
+                        {%  endif  %}
+
+
+                {%  else  %}
+                    <!--  LIVE ANIMAL MOVE TO LIVE  -->
+
+
+
+                {%  endif  %}
+
+            {%  endif  %}
+
+
         </dl>
 
 

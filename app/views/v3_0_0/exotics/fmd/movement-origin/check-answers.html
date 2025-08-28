@@ -75,11 +75,11 @@
                             What is the origin premises address?
                         </dt>
                         <dd class="govuk-summary-list__value">
-                            {{ data['fmd-movement-origin-address-address-line-1'] }}<br>
-                            {{ data['fmd-movement-origin-address-address-line-2'] }}<br>
-                            {{ data['fmd-movement-origin-address-address-town'] }}<br>
-                            {{ data['fmd-movement-origin-address-address-county'] }}<br>
-                            {{ data['fmd-movement-origin-address-address-postcode'] }}
+                            {{ data['fmd-movement-origin-address-line-1'] }}<br>
+                            {{ data['fmd-movement-origin-address-line-2'] }}<br>
+                            {{ data['fmd-movement-origin-address-town'] }}<br>
+                            {{ data['fmd-movement-origin-address-county'] }}<br>
+                            {{ data['fmd-movement-origin-address-postcode'] }}
                         </dd>
                         <dd class="govuk-summary-list__actions">
                             <a class="govuk-link" href="origin-address">Change<span class="govuk-visually-hidden"> </span></a>
@@ -97,17 +97,22 @@
 
                 {%  else  %}
 
-                    <div class="govuk-summary-list__row">
-                        <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
-                            What is the grid reference of the location?
-                        </dt>
-                        <dd class="govuk-summary-list__value">
-                            {{ data['movement-origin-grid-reference-text-input'] }}
-                        </dd>
-                        <dd class="govuk-summary-list__actions">
-                            <a class="govuk-link" href="movement-origin">Change<span class="govuk-visually-hidden"> </span></a>
-                        </dd>
-                    </div>
+                    {%  if data['about-the-movement-or-activity-type-radios']  == "Slaughter of animals onsite"  or
+                           data['about-the-movement-or-activity-what-is-moving-radios']  == "Carcasses"  %}
+
+                        <div class="govuk-summary-list__row">
+                            <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                                What is the grid reference of the location?
+                            </dt>
+                            <dd class="govuk-summary-list__value">
+                                {{ data['movement-origin-grid-reference-text-input'] }}
+                            </dd>
+                            <dd class="govuk-summary-list__actions">
+                                <a class="govuk-link" href="movement-origin">Change<span class="govuk-visually-hidden"> </span></a>
+                            </dd>
+                        </div>
+
+                    {%  endif  %}
 
 
                     <div class="govuk-summary-list__row">
