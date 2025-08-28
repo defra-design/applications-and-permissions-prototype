@@ -127,6 +127,110 @@
                 {%  else  %}
                     <!--  LIVE ANIMAL MOVE TO LIVE  -->
 
+                        <div class="govuk-summary-list__row">
+                            <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                                Will the animals move on to a temporary land
+                            </dt>
+                            <dd class="govuk-summary-list__value">
+                                {{ data['movement-destination-tla-yes-no-radios-yes-no'] }}
+                            </dd>
+                            <dd class="govuk-summary-list__actions">
+                                <a class="govuk-link" href="tla-yes-no">Change<span class="govuk-visually-hidden"> </span></a>
+                            </dd>
+                        </div>
+
+
+                        {%  if data['movement-destination-tla-yes-no-radios-yes-no']  == "Yes"  %}
+
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                                    What is the temporary land association (TLA) or temporary county parish holding (tCPH) number?
+                                </dt>
+                                <dd class="govuk-summary-list__value">
+                                    {{ data['movement-destination-tla-or-tcph-number-text-input'] }}
+                                </dd>
+                                <dd class="govuk-summary-list__actions">
+                                    <a class="govuk-link" href="tla-or-tcph-number">Change<span class="govuk-visually-hidden"> </span></a>
+                                </dd>
+                            </div>
+
+
+                        {%  else  %}
+
+
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                                    Where are the animals going to?
+                                </dt>
+                                <dd class="govuk-summary-list__value">
+                                    {{ data['movement-destination-premises-type-radios'] }}
+                                </dd>
+                                <dd class="govuk-summary-list__actions">
+                                    <a class="govuk-link" href="premises-type">Change<span class="govuk-visually-hidden"> </span></a>
+                                </dd>
+                            </div>
+
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                                    What is the county parish holding (CPH) number of the destination premises?
+                                </dt>
+                                <dd class="govuk-summary-list__value">
+                                    {{ data['movement-destination-cph-number-text-input'] }}
+                                </dd>
+                                <dd class="govuk-summary-list__actions">
+                                    <a class="govuk-link" href="cph-number">Change<span class="govuk-visually-hidden"> </span></a>
+                                </dd>
+                            </div>
+
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                                    What is the destination premises address?
+                                </dt>
+                                <dd class="govuk-summary-list__value">
+                                    {{ data['fmd-movement-destination-abattoir-address-line-1'] }}<br>
+                                    {{ data['fmd-movement-destination-abattoir-address-line-2'] }}<br>
+                                    {{ data['fmd-movement-destination-abattoir-address-town'] }}<br>
+                                    {{ data['fmd-movement-destination-abattoir-address-county'] }}<br>
+                                    {{ data['fmd-movement-destination-abattoir-address-postcode'] }}
+                                </dd>
+                                <dd class="govuk-summary-list__actions">
+                                    <a class="govuk-link" href="address">Change<span class="govuk-visually-hidden"> </span></a>
+                                </dd>
+                            </div>
+
+                        {%  endif  %}
+
+
+                        <div class="govuk-summary-list__row">
+                            <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                                What animals are kept on the destination premises?
+                            </dt>
+                            <dd class="govuk-summary-list__value">
+                                {{ data['movement-destination-animals-kept-on-premises-checkboxes'] }}
+                            </dd>
+                            <dd class="govuk-summary-list__actions">
+                                <a class="govuk-link" href="animals-kept-on-premises">Change<span class="govuk-visually-hidden"> </span></a>
+                            </dd>
+                        </div>
+
+
+                        {%  if data['movement-destination-animals-kept-on-premises-checkboxes']  == "Yes"  %}
+
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                                    What other clovenhooved animals are kept on the premises?
+                                </dt>
+                                <dd class="govuk-summary-list__value">
+                                    {{ data['origin-designated-cloven-hooved-animals-text-input'] }}
+                                </dd>
+                                <dd class="govuk-summary-list__actions">
+                                    <a class="govuk-link" href="cloven-hooved-animals">Change<span class="govuk-visually-hidden"> </span></a>
+                                </dd>
+                            </div>
+
+                        {%  endif  %}
+
+
 
 
                 {%  endif  %}

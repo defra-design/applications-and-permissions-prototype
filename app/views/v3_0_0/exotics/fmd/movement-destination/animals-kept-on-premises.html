@@ -7,7 +7,7 @@
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    What animals are kept on the premises?
+    What animals are kept on the destination premises?
 {% endset %}
 
 
@@ -44,7 +44,7 @@
                     [
                         {
                             html: errorTextHTML,
-                            href: "#movement-origin-animals-kept-on-premises-checkboxes"
+                            href: "#movement-destination-animals-kept-on-premises-checkboxes"
                         }
                     ]
                 })
@@ -58,9 +58,9 @@
 
             {{ govukCheckboxes
                 ({
-                    name: "movement-origin-animals-kept-on-premises-checkboxes",
+                    name: "movement-destination-animals-kept-on-premises-checkboxes",
 
-                    id: "movement-origin-animals-kept-on-premises-checkboxes",
+                    id: "movement-destination-animals-kept-on-premises-checkboxes",
 
                     fieldset:
                     {
@@ -85,32 +85,32 @@
                         {
                             value: "Cattle",
                             text: "Cattle",
-                            checked: (data['movement-origin-animals-kept-on-premises-checkboxes'] or []).indexOf('Cattle') > -1
+                            checked: (data['movement-destination-animals-kept-on-premises-checkboxes'] or []).indexOf('Cattle') > -1
                         },
                         {
                             value: "Sheep",
                             text: "Sheep",
-                            checked: (data['movement-origin-animals-kept-on-premises-checkboxes'] or []).indexOf('Sheep') > -1
+                            checked: (data['movement-destination-animals-kept-on-premises-checkboxes'] or []).indexOf('Sheep') > -1
                         },
                         {
                             value: "Goats",
                             text: "Goats",
-                            checked: (data['movement-origin-animals-kept-on-premises-checkboxes'] or []).indexOf('Goats') > -1
+                            checked: (data['movement-destination-animals-kept-on-premises-checkboxes'] or []).indexOf('Goats') > -1
                         },
                         {
                             value: "Pigs",
                             text: "Pigs",
-                            checked: (data['movement-origin-animals-kept-on-premises-checkboxes'] or []).indexOf('Pigs') > -1
+                            checked: (data['movement-destination-animals-kept-on-premises-checkboxes'] or []).indexOf('Pigs') > -1
                         },
                         {
                             value: "Camelids",
                             text: "Camelids",
-                            checked: (data['movement-origin-animals-kept-on-premises-checkboxes'] or []).indexOf('Camelids') > -1
+                            checked: (data['movement-destination-animals-kept-on-premises-checkboxes'] or []).indexOf('Camelids') > -1
                         },
                         {
                             value: "Other cloven-hooved animals",
                             text: "Other cloven-hooved animals",
-                            checked: (data['movement-origin-animals-kept-on-premises-checkboxes'] or []).indexOf('Other cloven-hooved animals') > -1
+                            checked: (data['movement-destination-animals-kept-on-premises-checkboxes'] or []).indexOf('Other cloven-hooved animals') > -1
                         },
                         {
                             divider: "or"
@@ -118,7 +118,7 @@
                         {
                             value: "None of these animals",
                             text: "None of these animals",
-                            checked: (data['movement-origin-animals-kept-on-premises-checkboxes'] or []).indexOf('None of these animals') > -1,
+                            checked: (data['movement-destination-animals-kept-on-premises-checkboxes'] or []).indexOf('None of these animals') > -1,
                             behaviour: "exclusive"
                         }
                     ]
