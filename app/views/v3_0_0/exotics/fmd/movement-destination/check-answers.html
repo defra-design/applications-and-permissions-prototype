@@ -1,0 +1,81 @@
+{% extends "layouts/v3_0_0" %}
+
+{% set version = "v3_0_0" %}
+{% set bodyClasses = version %}
+
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-l">Check your answers before you continue your application</h1>
+
+        <dl class="govuk-summary-list">
+
+            {%  if data['about-the-movement-or-activity-what-is-moving-radios']  == "Milk"  %}
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                        What company are you selling your milk to?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{ data['movement-destination-milk-selling-company-name-text-input'] }}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="milk-selling-company-name">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                </div>
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                        Will a different company be transporting the milk?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{ data['movement-destination-same-transporting-company-yes-no-radios-yes-no'] }}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="same-transporting-company-yes-no">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                </div>
+
+                {%  if data['movement-destination-same-transporting-company-yes-no-radios-yes-no']  == "Yes"  %}
+
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                            What is the name of the company transporting the milk?
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                            {{ data['movement-destination-milk-transporting-company-name-text-input'] }}
+                        </dd>
+                        <dd class="govuk-summary-list__actions">
+                            <a class="govuk-link" href="milk-transporting-company-name">Change<span class="govuk-visually-hidden"> </span></a>
+                        </dd>
+                    </div>
+
+                {%  endif  %}
+
+            {%  endif  %}
+
+        </dl>
+
+
+
+        <form action="../task-list?section-fmd-movement-destination-complete=true&" method="post" novalidate>
+
+            <button type="submit" class="govuk-button" data-module="govuk-button">
+                Continue
+            </button>
+
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}
+
+
+
+
+

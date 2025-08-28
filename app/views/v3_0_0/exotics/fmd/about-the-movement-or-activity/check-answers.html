@@ -33,8 +33,6 @@
                        data['about-the-movement-or-activity-type-radios']  == "Movement off a farm or premises"
                 %}
 
-
-
                     <div class="govuk-summary-list__row">
                         <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
                             What are you moving?
@@ -64,17 +62,21 @@
 
                     {%  else  %}
 
-                        <div class="govuk-summary-list__row">
-                            <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
-                                Are the animals moving to slaughter?
-                            </dt>
-                            <dd class="govuk-summary-list__value">
-                                {{ data['about-the-movement-or-activity-slaughter-yes-no-radios-yes-no'] }}
-                            </dd>
-                            <dd class="govuk-summary-list__actions">
-                                <a class="govuk-link" href="slaughter-yes-no">Change<span class="govuk-visually-hidden"> </span></a>
-                            </dd>
-                        </div>
+                        {%  if  data['about-the-movement-or-activity-what-is-moving-radios']  == "Live animals"    %}
+
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                                    Are the animals moving to slaughter?
+                                </dt>
+                                <dd class="govuk-summary-list__value">
+                                    {{ data['about-the-movement-or-activity-slaughter-yes-no-radios-yes-no'] }}
+                                </dd>
+                                <dd class="govuk-summary-list__actions">
+                                    <a class="govuk-link" href="slaughter-yes-no">Change<span class="govuk-visually-hidden"> </span></a>
+                                </dd>
+                            </div>
+
+                        {%  endif  %}
 
 
                         <div class="govuk-summary-list__row">

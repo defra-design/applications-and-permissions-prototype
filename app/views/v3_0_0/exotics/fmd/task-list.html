@@ -1,4 +1,8 @@
-{% extends "layouts/v3_0_0.html" %}
+{% extends "layouts/v3_0_0" %}
+
+{% set version = "v3_0_0" %}
+{% set bodyClasses = version %}
+
 
 
 
@@ -77,8 +81,8 @@
                         {
                             text: "Movement destination"
                         },
-                        href: "movement-destination/check-answers"  if  data['section-fmd-movement-details-complete'] == "true"  else  "movement-destination/start-section",
-                                completed: data['section-fmd-movement-details-complete'] == "true",
+                        href: "movement-destination/check-answers"  if  data['section-fmd-movement-destination-complete'] == "true"  else  "movement-destination/start-section",
+                                completed: data['section-fmd-movement-destination-complete'] == "true",
                         status:
                         {
                             text: "Completed",
@@ -86,9 +90,9 @@
                             {
                                 text: "Incomplete",
                                 classes: "govuk-tag--blue"
-                            } if data['section-fmd-movement-details-complete'] != "true"
+                            } if data['section-fmd-movement-destination-complete'] != "true"
                         }
-                    },
+                    }   if data['about-the-movement-or-activity-type-radios'] != "Slaughter of animals onsite",
 
                     {
                         title:
