@@ -238,6 +238,145 @@
             {%  endif  %}
 
 
+
+            {%  if data['about-the-movement-or-activity-what-is-moving-radios']  == "Carcasses"  %}
+
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                        Where are the carcasses going?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{ data['movement-destination-type-radios'] }}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="type">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                </div>
+
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                        Is the same business transporting and receiving the carcasses?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{ data['movement-destination-business-receiving-the-licence-radios-yes-no'] }}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="business-receiving-the-licence">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                </div>
+
+
+                {%  if data['movement-destination-business-receiving-the-licence-radios-yes-no']  == "No"  %}
+
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                            What is the name of the business transporting the carcasses?
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                            {{ data['movement-destination-transporting-business-name-text-input'] }}
+                        </dd>
+                        <dd class="govuk-summary-list__actions">
+                            <a class="govuk-link" href="transporting-business-name">Change<span class="govuk-visually-hidden"> </span></a>
+                        </dd>
+                    </div>
+
+                {%  endif  %}
+
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                        What is the name of the destination business?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{ data['movement-destination-business-name-text-input'] }}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="business-name">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                </div>
+
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                        What is the contact phone number of the destination business?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{ data['movement-destination-contact-number-text-input'] }}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="contact-number">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                </div>
+
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                        Do you know the address of the destination premises?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{ data['movement-destination-business-address-yes-no-radios-yes-no'] }}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="business-address-yes-no">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                </div>
+
+
+                {%  if data['movement-destination-business-address-yes-no-radios-yes-no']  == "Yes"  %}
+
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                            What is the address of the business removing the carcasses?
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                                {{ data['fmd-movement-destination-removing-business-address-line-1'] }}<br>
+                                {{ data['fmd-movement-destination-removing-business-address-line-2'] }}<br>
+                                {{ data['fmd-movement-destination-removing-business-address-town'] }}<br>
+                                {{ data['fmd-movement-destination-removing-business-address-county'] }}<br>
+                                {{ data['fmd-movement-destination-removing-business-address-postcode'] }}
+                        </dd>
+                        <dd class="govuk-summary-list__actions">
+                            <a class="govuk-link" href="removing-business-address">Change<span class="govuk-visually-hidden"> </span></a>
+                        </dd>
+                    </div>
+
+                {%  endif  %}
+
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                        Does the destination premises have a county parish holding (CPH) number?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{ data['movement-destination-cph-number-yes-no-radios-yes-no'] }}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="cph-number-yes-no">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                </div>
+
+
+                {%  if data['movement-destination-cph-number-yes-no-radios-yes-no']  == "Yes"  %}
+
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                            What is the county parish holding (CPH) number for the destination premises?
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                            {{ data['movement-destination-cph-number-text-input'] }}
+                        </dd>
+                        <dd class="govuk-summary-list__actions">
+                            <a class="govuk-link" href="cph-number">Change<span class="govuk-visually-hidden"> </span></a>
+                        </dd>
+                    </div>
+
+                {%  endif  %}
+
+
+            {%  endif  %}
+
         </dl>
 
 
