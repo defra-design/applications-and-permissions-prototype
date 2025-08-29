@@ -3552,8 +3552,10 @@ module.exports = function (router) {
         if (req.session.data['errorthispage'] != "true")
         {
             // if date entered if after the previous tax year
+            inputdate.setHours(0, 0, 0, 0);
+            today.setHours(0, 0, 0, 0);
 
-            if (inputdate < today + 1 )
+            if (inputdate < today)
             {
                 req.session.data['errorthispage'] = "true";
                 req.session.data['errortypetwelve'] = "true";
