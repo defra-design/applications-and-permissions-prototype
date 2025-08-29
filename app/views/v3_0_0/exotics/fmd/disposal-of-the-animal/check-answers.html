@@ -1,0 +1,136 @@
+{% extends "layouts/v3_0_0.html" %}
+
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-l">Check your answers before you continue your application</h1>
+
+        <dl class="govuk-summary-list">
+
+            <dl class="govuk-summary-list">
+
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                        Will you dispose of the whole animal?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{ data['PLACEHOLDER'] }}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="whole-animal">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                </div>
+
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                        What date do you expect the disposal from the premises?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{ data['PLACEHOLDER'] }}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="date-of-disposal">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                </div>
+
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                        Where are the {{ PLACEHOLDER }} going?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{ data['PLACEHOLDER'] }}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="premises-type">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                </div>
+
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                        What is the destination's business name?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{ data['PLACEHOLDER'] }}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="destination-business-name">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                </div>
+
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                        What is the contact phone number of the destination business?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{ data['PLACEHOLDER'] }}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="destination-contact-name">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                </div>
+
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                        Does the destination premises have a county parish holding (CPH) number?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{ data['PLACEHOLDER'] }}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="cph-yes-no">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                </div>
+
+
+                {%  if  data['PLACEHOLDER']  == "PLACEHOLDER"  %}
+
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                            What is the county parish holding (CPH) number for the destination premises?
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                            {{ data['PLACEHOLDER'] }}
+                        </dd>
+                        <dd class="govuk-summary-list__actions">
+                            <a class="govuk-link" href="cph-number">Change<span class="govuk-visually-hidden"> </span></a>
+                        </dd>
+                    </div>
+
+                {%  endif  %}
+
+
+
+
+            </dl>
+
+        </dl>
+
+
+
+        <form action="../task-list?section-fmd-receiving-the-licence-complete=true&" method="post" novalidate>
+
+            <button type="submit" class="govuk-button" data-module="govuk-button">
+                Continue
+            </button>
+
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}
+
+
+
+
+
