@@ -63,16 +63,19 @@
                         {
                             text: "Movement origin"
                         },
-                        href: "movement-origin/check-answers" if data['section-fmd-movement-origin-complete'] == "true"  else "movement-origin/start-section",
-                            completed: data['section-fmd-movement-origin-complete'] == "true",
+                        href: "" if data['section-fmd-about-the-movement-or-activity-complete'] != 'true'
+                                    else  ("movement-origin/check-answers" if data['section-fmd-movement-origin-complete'] == 'true'
+                                        else "movement-origin/start-section"),
                         status:
                         {
-                            text: "Completed",
+                            text: "Cannot start yet" if data['section-fmd-about-the-movement-or-activity-complete'] != "true"  else "Completed",
+                            classes: "govuk-task-list__status--cannot-start-yet" if data['section-fmd-about-the-movement-or-activity-complete'] != "true",
                             tag:
                             {
                                 text: "Incomplete",
                                 classes: "govuk-tag--blue"
-                            } if data['section-fmd-movement-origin-complete'] != "true"
+                            } if data['section-fmd-movement-origin-complete'] != "true" and data['section-fmd-about-the-movement-or-activity-complete'] == "true"
+
                         }
                     },
 
@@ -81,16 +84,18 @@
                         {
                             text: "Movement destination"
                         },
-                        href: "movement-destination/check-answers"  if  data['section-fmd-movement-destination-complete'] == "true"  else  "movement-destination/start-section",
-                                completed: data['section-fmd-movement-destination-complete'] == "true",
+                        href: "" if data['section-fmd-about-the-movement-or-activity-complete'] != 'true'
+                                    else  ("movement-destination/check-answers"  if  data['section-fmd-movement-destination-complete'] == 'true'
+                                        else  "movement-destination/start-section"),
                         status:
                         {
-                            text: "Completed",
+                            text: "Cannot start yet" if data['section-fmd-about-the-movement-or-activity-complete'] != "true"  else "Completed",
+                            classes: "govuk-task-list__status--cannot-start-yet" if data['section-fmd-about-the-movement-or-activity-complete'] != "true",
                             tag:
                             {
                                 text: "Incomplete",
                                 classes: "govuk-tag--blue"
-                            } if data['section-fmd-movement-destination-complete'] != "true"
+                            } if data['section-fmd-movement-destination-complete'] != "true"  and  data['section-fmd-about-the-movement-or-activity-complete'] == "true"
                         }
                     }   if data['about-the-movement-or-activity-type-radios'] != "Slaughter of animals onsite",
 
@@ -99,16 +104,19 @@
                         {
                             text: "Movement details"
                         },
-                        href: "movement-details/check-answers"  if  data['section-fmd-movement-details-complete'] == "true"  else  "movement-details/start-section",
-                                completed: data['section-fmd-movement-details-complete'] == "true",
+                        href: "" if data['section-fmd-about-the-movement-or-activity-complete'] != 'true'
+                                    else  ("movement-details/check-answers"  if  data['section-fmd-movement-details-complete'] == 'true'
+                                        else  "movement-details/start-section"),
+
                         status:
                         {
-                            text: "Completed",
+                            text: "Cannot start yet" if data['section-fmd-about-the-movement-or-activity-complete'] != "true"  else "Completed",
+                            classes: "govuk-task-list__status--cannot-start-yet" if data['section-fmd-about-the-movement-or-activity-complete'] != "true",
                             tag:
                             {
                                 text: "Incomplete",
                                 classes: "govuk-tag--blue"
-                            } if data['section-fmd-movement-details-complete'] != "true"
+                            } if data['section-fmd-movement-details-complete'] != "true"  and  data['section-fmd-about-the-movement-or-activity-complete'] == "true"
                         }
                     },
 
@@ -117,20 +125,21 @@
                         {
                             text: "Receiving the licence"
                         },
-                        href: "receiving-the-licence/check-answers" if data['section-fmd-receiving-the-licence-complete'] == "true"  else "receiving-the-licence/start-section",
-                            completed: data['section-fmd-receiving-the-licence-complete'] == "true",
+                        href: "" if data['section-fmd-about-the-movement-or-activity-complete'] != 'true'
+                                    else  ("receiving-the-licence/check-answers" if data['section-fmd-receiving-the-licence-complete'] == "true"
+                                        else "receiving-the-licence/start-section"),
+
                         status:
                         {
-                            text: "Completed",
+                            text: "Cannot start yet" if data['section-fmd-about-the-movement-or-activity-complete'] != "true"  else "Completed",
+                            classes: "govuk-task-list__status--cannot-start-yet" if data['section-fmd-about-the-movement-or-activity-complete'] != "true",
                             tag:
                             {
                                 text: "Incomplete",
                                 classes: "govuk-tag--blue"
-                            } if data['section-fmd-receiving-the-licence-complete'] != "true"
+                            } if data['section-fmd-receiving-the-licence-complete'] != "true"  and  data['section-fmd-about-the-movement-or-activity-complete'] == "true"
                         }
                     }
-
-
 
                 ]
             })
@@ -202,7 +211,6 @@
             document.getElementById('whole-text-progress-count').style.display = 'none';
             document.getElementById('whole-text-all-complete').style.display = 'block';
         }
-
 
     }
 
