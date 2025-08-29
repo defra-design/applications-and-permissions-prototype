@@ -3552,8 +3552,6 @@ module.exports = function (router) {
         if (req.session.data['errorthispage'] != "true")
         {
             // if date entered if after the previous tax year
-            console.log("inputdate: " + inputdate);
-            console.log("\n\ntoday: " + today);
 
             if (inputdate < today + 1 )
             {
