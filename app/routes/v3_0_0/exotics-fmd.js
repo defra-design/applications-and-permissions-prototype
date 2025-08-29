@@ -571,9 +571,9 @@ module.exports = function (router) {
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////                                                    ////////////////
-    ////////////////               PLACEHOLDER_SUMMARY                  ////////////////
+    ////////////////                   Animal IDS                       ////////////////
     ////////////////                                                    ////////////////
-    ////////////////              TEXT AREA - MANDATORY                ////////////////
+    ////////////////              TEXT AREA - MANDATORY                 ////////////////
     ////////////////                 NOT COMPLEX PAGE                   ////////////////
     ////////////////                                                    ////////////////
     ////////////////////////////////////////////////////////////////////////////////////
@@ -829,6 +829,737 @@ module.exports = function (router) {
         }
 
     })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////              SLAUGHTER INFORMATION                 ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////            Knackerman or slaughterman              ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////       YES AND NO - RADIO BUTTONS - MANDATORY       ////////////////
+    ////////////////                  NOT COMPLEX PAGE                  ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    router.post(section + 'slaughter-information/slaughterman-or-knackerman-router', function (req, res)
+    {
+        // Turn errors off by default
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+
+        // If Yes was selected, continue to next page
+        if (req.session.data['slaughter-information-slaughterman-or-knackerman-radios'] == "Knackerman")
+        {
+            // Continue to the next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('check-answers');
+            }
+            else
+            {
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('knackerman-business-name');
+            }
+        }
+        else if (req.session.data['slaughter-information-slaughterman-or-knackerman-radios'] == "Slaughterman")
+        {
+            // Continue to the next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('check-answers');
+            }
+            else
+            {
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('name');
+            }
+        }
+        else
+        {
+            // Trigger validation and reload the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('slaughterman-or-knackerman');
+        }
+    })
+
+
+
+
+
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////               knackerman business                  ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////              TEXT AREA - MANDATORY                 ////////////////
+    ////////////////                 NOT COMPLEX PAGE                   ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    router.post(section + 'slaughter-information/knackerman-business-name-router', function (req, res)
+    {
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+        req.session.data['errortypetwo'] = "false";
+        req.session.data['errortypethree'] = "false";
+        req.session.data['errortypefour'] = "false";
+
+        // Validation check if field is blank
+        if (req.session.data['slaughter-information-knackerman-business-name-text-input'] == undefined || req.session.data['slaughter-information-knackerman-business-name-text-input'] == "")
+        {
+            // Trigger validation and relaunch the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('knackerman-business-name');
+        }
+
+        else if (req.session.data['slaughter-information-knackerman-business-name-text-input'].length > 5000)
+        {
+            // Trigger validation and relaunch the page for over 15 characters
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypetwo'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('knackerman-business-name');
+        }
+
+        else
+        {
+
+            // everything with the input is fine so move on to next page
+
+            res.redirect('watok-licence-number');
+
+        }
+    })
+
+
+
+
+
+
+
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////       Enter slughterman first and last name        ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////              TEXT ENTRY - MANDATORY                ////////////////
+    ////////////////                 NOT COMPLEX PAGE                   ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    router.post(section + 'slaughter-information/name-router', function (req, res)
+    {
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+        req.session.data['errortypetwo'] = "false";
+        req.session.data['errortypethree'] = "false";
+        req.session.data['errortypefour'] = "false";
+
+        // Validation check if first name field is blank
+        if (req.session.data['slaughter-information-name-first-name-text-input'] == undefined || req.session.data['slaughter-information-name-first-name-text-input'] == "")
+        {
+            // Trigger validation and relaunch the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('name');
+        }
+
+        // Validation check if first name field is blank
+        else if (req.session.data['slaughter-information-name-last-name-text-input'] == undefined || req.session.data['slaughter-information-name-last-name-text-input'] == "")
+        {
+            // Trigger validation and relaunch the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypetwo'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('name');
+        }
+
+        else if (255 < req.session.data['slaughter-information-name-first-name-text-input'].length)
+        {
+            // Trigger validation and relaunch the page for over 15 characters
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypethree'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('name');
+        }
+
+
+        else if (255 < req.session.data['slaughter-information-name-last-name-text-input'].length)
+        {
+            // Trigger validation and relaunch the page for over 15 characters
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypefour'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('name');
+        }
+
+        else
+        {
+            res.redirect('watok-licence-number');
+        }
+
+    })
+
+
+
+
+
+
+
+
+
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////              Watok licence number                  ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////              TEXT AREA - MANDATORY                 ////////////////
+    ////////////////                 NOT COMPLEX PAGE                   ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    router.post(section + 'slaughter-information/watok-licence-number-router', function (req, res)
+    {
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+        req.session.data['errortypetwo'] = "false";
+        req.session.data['errortypethree'] = "false";
+        req.session.data['errortypefour'] = "false";
+
+        // Validation check if field is blank
+        if (req.session.data['slaughter-information-watok-licence-number-text-input'] == undefined || req.session.data['slaughter-information-watok-licence-number-text-input'] == "")
+        {
+            // Trigger validation and relaunch the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('watok-licence-number');
+        }
+
+        else if (req.session.data['slaughter-information-watok-licence-number-text-input'].length > 5000)
+        {
+            // Trigger validation and relaunch the page for over 15 characters
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypetwo'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('watok-licence-number');
+        }
+
+        else
+        {
+            res.redirect('contact-number');
+
+        }
+    })
+
+
+
+
+
+
+
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////                  contact number                    ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////              TEXT AREA - MANDATORY                 ////////////////
+    ////////////////                 NOT COMPLEX PAGE                   ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    router.post(section + 'slaughter-information/contact-number-router', function (req, res)
+    {
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+        req.session.data['errortypetwo'] = "false";
+        req.session.data['errortypethree'] = "false";
+        req.session.data['errortypefour'] = "false";
+
+        // Validation check if field is blank
+        if (req.session.data['slaughter-information-contact-number-text-input'] == undefined || req.session.data['slaughter-information-contact-number-text-input'] == "")
+        {
+            // Trigger validation and relaunch the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('contact-number');
+        }
+
+        else if (req.session.data['slaughter-information-contact-number-text-input'].length > 5000)
+        {
+            // Trigger validation and relaunch the page for over 15 characters
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypetwo'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('contact-number');
+        }
+
+        else
+        {
+            res.redirect('vehicle-number-plate');
+
+        }
+    })
+
+
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////    Number plate of person killing the animals      ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////              TEXT AREA - MANDATORY                 ////////////////
+    ////////////////                 NOT COMPLEX PAGE                   ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    router.post(section + 'slaughter-information/vehicle-number-plate-router', function (req, res)
+    {
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+        req.session.data['errortypetwo'] = "false";
+        req.session.data['errortypethree'] = "false";
+        req.session.data['errortypefour'] = "false";
+
+        // Validation check if field is blank
+        if (req.session.data['slaughter-information-vehicle-number-plate-text-input'] == undefined || req.session.data['slaughter-information-vehicle-number-plate-text-input'] == "")
+        {
+            // Trigger validation and relaunch the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('vehicle-number-plate');
+        }
+
+        else if (req.session.data['slaughter-information-vehicle-number-plate-text-input'].length > 5000)
+        {
+            // Trigger validation and relaunch the page for over 15 characters
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypetwo'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('vehicle-number-plate');
+        }
+
+        else
+        {
+            res.redirect('date-of-slaughter');
+        }
+    })
+
+
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////              Movement date for FMD                 ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////                   DATE ENTRY                       ////////////////
+    ////////////////                NOT COMPLEX PAGE                    ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    router.post(section + 'slaughter-information/date-of-slaughter-router', function (req, res)
+    {
+        ////////////////////////////////////////////////////////////////////////////////////
+        ////////////////           Resetting all errors to off              ////////////////
+        ////////////////////////////////////////////////////////////////////////////////////
+
+        // set in page errors to off
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+        req.session.data['errortypetwo'] = "false";
+        req.session.data['errortypethree'] = "false";
+        req.session.data['errortypefour'] = "false";
+        req.session.data['errortypefive'] = "false";
+        req.session.data['errortypesix'] = "false";
+        req.session.data['errortypeseven'] = "false";
+        req.session.data['errortypeeight'] = "false";
+        req.session.data['errortypenine'] = "false";
+        req.session.data['errortypeten'] = "false";
+        req.session.data['errortypeeleven'] = "false";
+        req.session.data['errortypetwelve'] = "false";
+        req.session.data['errortypethirteen'] = "false";
+        req.session.data['errortypefourteen'] = "false";
+        req.session.data['errortypefifteen'] = "false";
+        req.session.data['errortypesixteen'] = "false";
+        req.session.data['errortypeseventeen'] = "false";
+
+
+
+        // set javascript field check error to off
+        let dayEmpty = false;
+        let monthEmpty = false;
+        let yearEmpty = false;
+
+
+        // work out what the most recent closed tax year was
+        let today = new Date();
+
+
+
+        // Validation check if day field is blank
+        if ( req.session.data['movement-details-date-of-slaughter-input-day'] == undefined
+            || req.session.data['movement-details-date-of-slaughter-input-day'] == "" )
+        {
+            dayEmpty = true;
+        }
+        // Validation check if month field is blank
+        if ( req.session.data['movement-details-date-of-slaughter-input-month'] == undefined
+            || req.session.data['movement-details-date-of-slaughter-input-month'] == "" )
+        {
+            monthEmpty = true;
+        }
+        // Validation check if year field is blank
+        if ( req.session.data['movement-details-date-of-slaughter-input-year'] == undefined
+            || req.session.data['movement-details-date-of-slaughter-input-year'] == "" )
+        {
+            yearEmpty = true;
+        }
+
+
+        // Redirect to same page if errors
+        if (dayEmpty)
+        {
+            req.session.data['errorthispage'] = "true";
+            if (monthEmpty && yearEmpty )
+            {
+                // all fields are empty
+                req.session.data['errortypeone'] = "true";
+            }
+            else if(monthEmpty)
+            {
+                // day and month are empty only
+                req.session.data['errortypefive'] = "true";
+            }
+            else if (yearEmpty)
+            {
+                // day and year are empty only
+                req.session.data['errortypesix'] = "true";
+            }
+            else
+            {
+                // just day is empty
+                req.session.data['errortypetwo'] = "true";
+            }
+        }
+        else if (monthEmpty)
+        {
+            req.session.data['errorthispage'] = "true";
+            if (yearEmpty)
+            {
+                // month and year are empty only
+                req.session.data['errortypeseven'] = "true";
+            }
+            else
+            {
+                // just month is empty
+                req.session.data['errortypethree'] = "true";
+            }
+        }
+        else if (yearEmpty)
+        {
+            req.session.data['errorthispage'] = "true";
+            // Only year is empty
+            req.session.data['errortypefour'] = "true";
+        }
+
+
+
+        ////////////////////////////////////////////////////////////////////////////////////
+        ///////     Error 8 - Incorrect/invalid characters entered for Year        ////////
+        ////////////////////////////////////////////////////////////////////////////////////
+
+        // Check for non numbers being entered
+        if (req.session.data['errorthispage'] != "true")
+        {
+            // if no error have been found so far then check for non numbers
+            if (  isNaN(req.session.data['movement-details-date-of-slaughter-input-year']) )
+            {
+                // one or more fields isn't a number and isn't empty
+                req.session.data['errorthispage'] = "true";
+                req.session.data['errortypeeight'] = "true";
+            }
+        }
+
+
+
+        ////////////////////////////////////////////////////////////////////////////////////
+        //////////////         Error 9 - Year must be a 4 digit number         /////////////
+        ////////////////////////////////////////////////////////////////////////////////////
+
+        if (req.session.data['errorthispage'] != "true")
+        {
+            if (  req.session.data['movement-details-date-of-slaughter-input-year'] < 1000  ||  9999 < req.session.data['movement-details-date-of-slaughter-input-year']  )
+            {
+                req.session.data['errorthispage'] = "true";
+                req.session.data['errortypenine'] = "true";
+            }
+        }
+
+
+
+        ////////////////////////////////////////////////////////////////////////////////////
+        ////////     Error 10 - Incorrect/invalid characters entered for MONTH       ////////
+        ////////////////////////////////////////////////////////////////////////////////////
+
+        // Check for non numbers being entered
+        if (req.session.data['errorthispage'] != "true")
+        {
+            // if no error have been found so far then check for non numbers
+            if ( isNaN(req.session.data['movement-details-date-of-slaughter-input-month']) )
+            {
+                // one or more fields isn't a number and isn't empty
+                req.session.data['errorthispage'] = "true";
+                req.session.data['errortypeten'] = "true";
+            }
+                // Check if date numbers are 0 or impossibly high. e.g. 14th month
+            // Check for non numbers being entered
+            else if ( req.session.data['movement-details-date-of-slaughter-input-month'] < 1  ||  12 < req.session.data['movement-details-date-of-slaughter-input-month'] )
+            {
+                // one or more fields isn't a number and isn't empty
+                req.session.data['errorthispage'] = "true";
+                req.session.data['errortypeten'] = "true";
+            }
+        }
+
+
+
+        ////////////////////////////////////////////////////////////////////////////////////
+        /////////     Error 11 - Incorrect/invalid characters entered for DAY       /////////
+        ////////////////////////////////////////////////////////////////////////////////////
+
+        // Check for non numbers being entered
+        if (req.session.data['errorthispage'] != "true")
+        {
+            var quanityofdaysinmonth =  new Date(req.session.data['movement-details-date-of-slaughter-input-year'], req.session.data['movement-details-date-of-slaughter-input-month'], 0).getDate();
+
+            // if no error have been found so far then check for non numbers
+            if ( isNaN(req.session.data['movement-details-date-of-slaughter-input-day'])  )
+            {
+                // one or more fields isn't a number and isn't empty
+                req.session.data['errorthispage'] = "true";
+                req.session.data['errortypeeleven'] = "true";
+            }
+                // Check if date numbers are 0 or impossibly high. e.g. 14th month
+            // Check for non numbers being entered
+            else if (  req.session.data['movement-details-date-of-slaughter-input-day'] < 1  ||  quanityofdaysinmonth < req.session.data['movement-details-date-of-slaughter-input-day'] )
+            {
+                // one or more fields isn't a number and isn't empty
+                req.session.data['errorthispage'] = "true";
+                req.session.data['errortypeeleven'] = "true";
+            }
+        }
+
+
+
+        ////////////////////////////////////////////////////////////////////////////////////
+        /////////      Generate date object and update user's inputted date        /////////
+        ////////////////////////////////////////////////////////////////////////////////////
+
+        let inputdate = new Date();
+
+        if (req.session.data['errorthispage'] != "true")
+        {
+            inputdate = new Date(
+                req.session.data['movement-details-date-of-slaughter-input-year'],
+                req.session.data['movement-details-date-of-slaughter-input-month'] - 1,
+                req.session.data['movement-details-date-of-slaughter-input-day']
+            );
+
+            // Save user input date without zeros and month has taxt, e.g. March
+            req.session.data['movement-details-date-of-slaughter-input-day'] = inputdate.getDate();
+            req.session.data['movement-details-date-of-slaughter-input-month-number'] = inputdate.getMonth() + 1;
+            req.session.data['movement-details-date-of-slaughter-input-month-text'] = inputdate.toLocaleString('default', {month: 'long'});
+            req.session.data['movement-details-date-of-slaughter-input-year'] = inputdate.getFullYear();
+        }
+
+
+
+        ////////////////////////////////////////////////////////////////////////////////////
+        //////////////         Error 12 - Date can't be in the past          /////////////
+        //////////////         Very unlikely that this will be needed          /////////////
+        ////////////////////////////////////////////////////////////////////////////////////
+
+        if (req.session.data['errorthispage'] != "true")
+        {
+            // if date entered if after the previous tax year
+            inputdate.setHours(0, 0, 0, 0);
+            today.setHours(0, 0, 0, 0);
+
+            if (inputdate < today)
+            {
+                req.session.data['errorthispage'] = "true";
+                req.session.data['errortypetwelve'] = "true";
+            }
+        }
+
+
+
+
+
+        ////////////////////////////////////////////////////////////////////////////////////
+        //////    Routing for error, no error and returning to check your answers    ///////
+        ////////////////////////////////////////////////////////////////////////////////////
+
+        if ( req.session.data['errorthispage'] == 'true' )
+        {
+            // Redirect to same page with errors
+            res.redirect('date-of-slaughter')
+        }
+        else
+        {
+            req.session.data['camefromcheckanswers'] = false;
+            res.redirect( 'check-answers' );
+        }
+
+
+
+    })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
