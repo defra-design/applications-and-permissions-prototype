@@ -14,18 +14,21 @@
             <dl class="govuk-summary-list">
 
 
-                <div class="govuk-summary-list__row">
-                    <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
-                        Is the origin premises a temporary land association (TLA)?
-                    </dt>
-                    <dd class="govuk-summary-list__value">
-                        {{ data['movement-origin-tla-yes-no-radios-yes-no'] }}
-                    </dd>
-                    <dd class="govuk-summary-list__actions">
-                        <a class="govuk-link" href="tla-yes-no">Change<span class="govuk-visually-hidden"> </span></a>
-                    </dd>
-                </div>
+                {%  if data['about-the-movement-or-activity-what-is-moving-radios']  != "Milk"  %}
 
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                            Is the origin premises a temporary land association (TLA)?
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                            {{ data['movement-origin-tla-yes-no-radios-yes-no'] }}
+                        </dd>
+                        <dd class="govuk-summary-list__actions">
+                            <a class="govuk-link" href="tla-yes-no">Change<span class="govuk-visually-hidden"> </span></a>
+                        </dd>
+                    </div>
+
+                {%  endif  %}
 
 
                 {%  if data['movement-origin-tla-yes-no-radios-yes-no']  == "Yes"  %}

@@ -14,11 +14,11 @@
 
         <dl class="govuk-summary-list">
 
-            {%  if data['about-the-movement-or-activity-what-is-moving-radios']  != "Carcasses"  %}
+            {%  if data['about-the-movement-or-activity-what-is-moving-radios']  == "Live animals"  %}
 
                 <div class="govuk-summary-list__row">
                     <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
-                        Select if there will be more than 1 movement
+                        Will there be more than 1 movement?
                     </dt>
                     <dd class="govuk-summary-list__value">
                         {{ data['movement-details-more-than-one-movement-radios'] }}
@@ -73,11 +73,65 @@
                 {%  endif  %}
 
 
-                {%  if data['about-the-movement-or-activity-what-is-moving-radios']  == "Carcasses"  or
-                       (data['movement-details-more-than-one-movement-radios'] == "Yes, several movements"  and
-                        data['movement-details-movements-over-a-day-radios-yes-no'] == "No")  or
-                       data['movement-details-more-than-one-movement-radios'] == "No, 1 movement only"
-                %}
+            {%  endif  %}
+
+
+
+
+            {%  if (data['about-the-movement-or-activity-what-is-moving-radios']  == "Carcasses"  or
+                   (data['movement-details-more-than-one-movement-radios'] == "Yes, several movements"  and
+                    data['movement-details-movements-over-a-day-radios-yes-no'] == "No")  or
+                    data['movement-details-more-than-one-movement-radios'] == "No, 1 movement only") and
+                    data['about-the-movement-or-activity-what-is-moving-radios']  != "Milk"
+            %}
+
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                            What date do you expect the movement to take place?
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                             {{  data['movement-details-date-input-day']  }}
+                             {{  data['movement-details-date-input-month-text']  }}
+                             {{  data['movement-details-date-input-year']  }}
+                        </dd>
+                        <dd class="govuk-summary-list__actions">
+                            <a class="govuk-link" href="dates">Change<span class="govuk-visually-hidden"> </span></a>
+                        </dd>
+                    </div>
+
+            {%  endif  %}
+
+
+
+            {%  if data['about-the-movement-or-activity-what-is-moving-radios']  == "Milk"  %}
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                        Will there be more than 1 movement?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{ data['movement-details-more-than-one-movement-radios'] }}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="more-than-one-movement">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                </div>
+
+
+
+                {%  if  data['movement-details-more-than-one-movement-radios'] == "Yes, several movements"  %}
+
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                            What are the dates for when you expect the movement to take place?
+                        </dt>
+                        <dd class="govuk-summary-list__value" style="white-space: pre-wrap;">{{ data['movement-details-movement-dates-multiple-text-area-input'] }}</dd>
+                        <dd class="govuk-summary-list__actions">
+                            <a class="govuk-link" href="movement-dates-multiple">Change<span class="govuk-visually-hidden"> </span></a>
+                        </dd>
+                    </div>
+
+                {%  else  %}
 
                     <div class="govuk-summary-list__row">
                         <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
@@ -95,9 +149,9 @@
 
                 {%  endif  %}
 
+
+
             {%  endif  %}
-
-
 
 
 

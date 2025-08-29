@@ -1,4 +1,5 @@
 const {log} = require("govuk-prototype-kit/migrator/logger");
+const system = require("govuk-prototype-kit/migrator/logger");
 module.exports = function (router) {
 
 
@@ -1510,7 +1511,7 @@ module.exports = function (router) {
         }
         else if (req.session.data['about-the-movement-or-activity-what-is-moving-radios'] == "Carcasses")
         {
-            res.redirect('PLACEHOLDER');
+            res.redirect('type');
         }
         else if (req.session.data['about-the-movement-or-activity-what-is-moving-radios'] == "Live animals")
         {
@@ -2245,7 +2246,14 @@ module.exports = function (router) {
             }
             else
             {
-                res.redirect('address');
+                if (req.session.data['about-the-movement-or-activity-what-is-moving-radios'] == "Carcasses")
+                {
+                    res.redirect('check-answers');
+                }
+                else
+                {
+                    res.redirect('address');
+                }
             }
         }
 
@@ -2458,6 +2466,454 @@ module.exports = function (router) {
 
 
 
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////             Type of premises carcasses             ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////            RADIO BUTTONS - MANDATORY               ////////////////
+    ////////////////                 NOT COMPLEX PAGE                   ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    router.post(section + 'movement-destination/type-router', function (req, res)
+    {
+        // Turn errors off by default
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+
+        // If Yes was selected, continue to next page
+        if (req.session.data['movement-destination-type-radios'] == "Knacker's yard")
+        {
+            // Continue to the next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('check-answers');
+            }
+            else
+            {
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('business-receiving-the-licence');
+            }
+        }
+        else if (req.session.data['movement-destination-type-radios'] == "Rendering plant")
+        {
+            // Continue to the next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('check-answers');
+            }
+            else
+            {
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('business-receiving-the-licence');
+            }
+        }
+        else if (req.session.data['movement-destination-type-radios'] == "Incinerator")
+        {
+            // Continue to the next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('check-answers');
+            }
+            else
+            {
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('business-receiving-the-licence');
+            }
+        }
+        else if (req.session.data['movement-destination-type-radios'] == "Hunt kennel")
+        {
+            // Continue to the next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('check-answers');
+            }
+            else
+            {
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('business-receiving-the-licence');
+            }
+        }
+        else if (req.session.data['movement-destination-type-radios'] == "Somewhere else")
+        {
+            // This page name needs to be the next page the user gets to after successfully continuing
+            res.redirect('somewhere-else');
+        }
+        else
+        {
+            // Trigger validation and reload the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('type');
+        }
+    })
+
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////                 TLA  yes or no                     ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////       YES AND NO - RADIO BUTTONS - MANDATORY       ////////////////
+    ////////////////                  NOT COMPLEX PAGE                  ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    router.post(section + 'movement-destination/business-receiving-the-licence-router', function (req, res)
+    {
+        // Turn errors off by default
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+
+        // If Yes was selected, continue to next page
+        if (req.session.data['movement-destination-business-receiving-the-licence-radios-yes-no'] == "Yes")
+        {
+            // Continue to the next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('check-answers');
+            }
+            else
+            {
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('business-name');
+            }
+        }
+        else if (req.session.data['movement-destination-business-receiving-the-licence-radios-yes-no'] == "No")
+        {
+            // Continue to the next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('check-answers');
+            }
+            else
+            {
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('transporting-business-name');
+            }
+        }
+        else
+        {
+            // Trigger validation and reload the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('business-receiving-the-licence');
+        }
+    })
+
+
+
+
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////             transporting business name             ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////              TEXT ENTRY - MANDATORY                ////////////////
+    ////////////////                 NOT COMPLEX PAGE                   ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    router.post(section + 'movement-destination/transporting-business-name-router', function (req, res)
+    {
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+        req.session.data['errortypetwo'] = "false";
+        req.session.data['errortypethree'] = "false";
+        req.session.data['errortypefour'] = "false";
+
+
+        // Validation check if field is blank
+        if (req.session.data['movement-destination-transporting-business-name-text-input'] == undefined || req.session.data['movement-destination-transporting-business-name-text-input'] == "")
+        {
+            // Trigger validation and relaunch the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('transporting-business-name');
+        }
+        else
+        {
+            res.redirect('business-name');
+        }
+    })
+
+
+
+
+
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////         destination business name carcasses        ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////              TEXT ENTRY - MANDATORY                ////////////////
+    ////////////////                 NOT COMPLEX PAGE                   ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    router.post(section + 'movement-destination/business-name-router', function (req, res)
+    {
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+        req.session.data['errortypetwo'] = "false";
+        req.session.data['errortypethree'] = "false";
+        req.session.data['errortypefour'] = "false";
+
+
+        // Validation check if field is blank
+        if (req.session.data['movement-destination-business-name-text-input'] == undefined || req.session.data['movement-destination-business-name-text-input'] == "")
+        {
+            // Trigger validation and relaunch the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('business-name');
+        }
+        else
+        {
+            res.redirect('contact-number');
+        }
+    })
+
+
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////        destination contact number carcasses        ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////              TEXT ENTRY - MANDATORY                ////////////////
+    ////////////////                 NOT COMPLEX PAGE                   ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    router.post(section + 'movement-destination/contact-number-router', function (req, res)
+    {
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+        req.session.data['errortypetwo'] = "false";
+        req.session.data['errortypethree'] = "false";
+        req.session.data['errortypefour'] = "false";
+
+
+        // Validation check if field is blank
+        if (req.session.data['movement-destination-contact-number-text-input'] == undefined || req.session.data['movement-destination-contact-number-text-input'] == "")
+        {
+            // Trigger validation and relaunch the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('contact-number');
+        }
+        else
+        {
+            res.redirect('business-address-yes-no');
+        }
+    })
+
+
+
+
+
+
+
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////        Know the destination business address       ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////       YES AND NO - RADIO BUTTONS - MANDATORY       ////////////////
+    ////////////////                  NOT COMPLEX PAGE                  ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    router.post(section + 'movement-destination/business-address-yes-no-router', function (req, res)
+    {
+        // Turn errors off by default
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+
+        // If Yes was selected, continue to next page
+        if (req.session.data['movement-destination-business-address-yes-no-radios-yes-no'] == "Yes")
+        {
+            // Continue to the next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('check-answers');
+            }
+            else
+            {
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('removing-business-address');
+            }
+        }
+        else if (req.session.data['movement-destination-business-address-yes-no-radios-yes-no'] == "No")
+        {
+            // Continue to the next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('check-answers');
+            }
+            else
+            {
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('cph-number-yes-no');
+            }
+        }
+        else
+        {
+            // Trigger validation and reload the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('business-address-yes-no');
+        }
+    })
+
+
+
+
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////        Address of destination abattoir             ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    // NOT COMPLEX PAGE
+    router.post( section + 'movement-destination/removing-business-address-router', function (req, res)
+    {
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+        req.session.data['errortypetwo'] = "false";
+        req.session.data['errortypethree'] = "false";
+        req.session.data['errortypefour'] = "false";
+
+
+        // Validation check if line 1 field is blank
+        if (req.session.data['fmd-movement-destination-removing-business-address-line-1'] == undefined || req.session.data['fmd-movement-destination-removing-business-address-line-1'] == "")
+        {
+            // Trigger validation and relaunch the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('removing-business-address');
+        }
+        // Validation check if town field is blank
+        else if (req.session.data['fmd-movement-destination-removing-business-address-town'] == undefined || req.session.data['fmd-movement-destination-removing-business-address-town'] == "")
+        {
+            // Trigger validation and relaunch the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypetwo'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('removing-business-address');
+        }
+
+        // Validation check if postcode field is blank
+        else if (req.session.data['fmd-movement-destination-removing-business-address-postcode'] == undefined || req.session.data['fmd-movement-destination-removing-business-address-postcode'] == "")
+        {
+            // Trigger validation and relaunch the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypethree'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('removing-business-address');
+        }
+        else
+        {
+            let regexpattern = /^[a-zA-Z]{1,2}[0-9][a-zA-Z0-9]?\s?[0-9][a-zA-Z]{2}$/;
+            let addressentered = req.session.data['fmd-movement-destination-removing-business-address-postcode'];
+            let cphnospaces = addressentered.trim();
+            let result = regexpattern.test(cphnospaces);
+            if (result == false)
+            {
+                // Trigger validation and relaunch the page
+                req.session.data['errorthispage'] = "true";
+                req.session.data['errortypefour'] = "true";
+
+                // This page name needs to match the page the user was just on
+                res.redirect('removing-business-address');
+            }
+            else
+            {
+                res.redirect('cph-number-yes-no');
+            }
+        }
+
+    })
 
 
 
@@ -2471,12 +2927,67 @@ module.exports = function (router) {
 
 
 
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////             cph NUMBER known yes or no             ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////       YES AND NO - RADIO BUTTONS - MANDATORY       ////////////////
+    ////////////////                  NOT COMPLEX PAGE                  ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
 
 
+    router.post(section + 'movement-destination/cph-number-yes-no-router', function (req, res)
+    {
+        // Turn errors off by default
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
 
+        // If Yes was selected, continue to next page
+        if (req.session.data['movement-destination-cph-number-yes-no-radios-yes-no'] == "Yes")
+        {
+            // Continue to the next page
 
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('check-answers');
+            }
+            else
+            {
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('cph-number');
+            }
+        }
+        else if (req.session.data['movement-destination-cph-number-yes-no-radios-yes-no'] == "No")
+        {
+            // Continue to the next page
 
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('check-answers');
+            }
+            else
+            {
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('check-answers');
+            }
+        }
+        else
+        {
+            // Trigger validation and reload the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
 
+            // This page name needs to match the page the user was just on
+            res.redirect('cph-number-yes-no');
+        }
+    })
 
 
 
@@ -2548,7 +3059,7 @@ module.exports = function (router) {
         }
         else if (req.session.data['about-the-movement-or-activity-what-is-moving-radios'] == "Milk")
         {
-            res.redirect('XYZ');
+            res.redirect('more-than-one-movement');
         }
     })
 
@@ -2603,8 +3114,15 @@ module.exports = function (router) {
             }
             else
             {
-                // This page name needs to be the next page the user gets to after successfully continuing
-                res.redirect('maximum-journeys');
+                if (req.session.data['about-the-movement-or-activity-what-is-moving-radios'] == "Milk")
+                {
+                    res.redirect('movement-dates-multiple');
+                }
+                else
+                {
+                    // This page name needs to be the next page the user gets to after successfully continuing
+                    res.redirect('maximum-journeys');
+                }
             }
         }
         else
@@ -3034,7 +3552,10 @@ module.exports = function (router) {
         if (req.session.data['errorthispage'] != "true")
         {
             // if date entered if after the previous tax year
-            if (inputdate < today)
+            console.log("inputdate: " + inputdate);
+            console.log("\n\ntoday: " + today);
+
+            if (inputdate < today + 1 )
             {
                 req.session.data['errorthispage'] = "true";
                 req.session.data['errortypetwelve'] = "true";
@@ -3044,23 +3565,6 @@ module.exports = function (router) {
 
 
 
-        ////////////////////////////////////////////////////////////////////////////////////
-        //////////////        Check if oldest calf is over 34 days old     /////////////
-        ////////////////////////////////////////////////////////////////////////////////////
-
-        let dateclosetolimit = '';
-
-        if (req.session.data['errorthispage'] != "true")
-        {
-            let datethreshold = new Date(today);
-            datethreshold.setDate(today.getDate() - 35);
-
-            // if date entered if after the previous tax year
-            if (inputdate < datethreshold)
-            {
-                dateclosetolimit = 'true';
-            }
-        }
 
 
 
