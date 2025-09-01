@@ -1,5 +1,7 @@
-{% extends "layouts/v3_0_0.html" %}
+{% extends "layouts/v3_0_0" %}
 
+{% set version = "v3_0_0" %}
+{% set bodyClasses = version %}
 
 
 {% block content %}
@@ -19,10 +21,10 @@
                         Will you dispose of the whole animal?
                     </dt>
                     <dd class="govuk-summary-list__value">
-                        {{ data['PLACEHOLDER'] }}
+                        {{ data['disposal-of-animal-whole-animal-radios-yes-no'] }}
                     </dd>
                     <dd class="govuk-summary-list__actions">
-                        <a class="govuk-link" href="whole-animal">Change<span class="govuk-visually-hidden"> </span></a>
+                        <a class="govuk-link" href="whole-animal?camefromcheckanswers=true&">Change<span class="govuk-visually-hidden"> </span></a>
                     </dd>
                 </div>
 
@@ -32,23 +34,31 @@
                         What date do you expect the disposal from the premises?
                     </dt>
                     <dd class="govuk-summary-list__value">
-                        {{ data['PLACEHOLDER'] }}
+                        {{  data['disposal-of-animal-date-of-disposal-date-input-day']  }}
+                        {{  data['disposal-of-animal-date-of-disposal-date-input-month-text']  }}
+                        {{  data['disposal-of-animal-date-of-disposal-date-input-year']  }}
                     </dd>
                     <dd class="govuk-summary-list__actions">
-                        <a class="govuk-link" href="date-of-disposal">Change<span class="govuk-visually-hidden"> </span></a>
+                        <a class="govuk-link" href="date-of-disposal?camefromcheckanswers=true&">Change<span class="govuk-visually-hidden"> </span></a>
                     </dd>
                 </div>
 
 
                 <div class="govuk-summary-list__row">
                     <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
-                        Where are the {{ PLACEHOLDER }} going?
+                        Where are the
+                        {% if  data['disposal-of-animal-whole-animal-radios-yes-no'] == "Yes"  %}
+                            carcasses
+                        {% else %}
+                            animal by-products
+                        {% endif %}
+                        going?
                     </dt>
                     <dd class="govuk-summary-list__value">
-                        {{ data['PLACEHOLDER'] }}
+                        {{ data['disposal-of-animal-premises-type-radios'] }}
                     </dd>
                     <dd class="govuk-summary-list__actions">
-                        <a class="govuk-link" href="premises-type">Change<span class="govuk-visually-hidden"> </span></a>
+                        <a class="govuk-link" href="premises-type?camefromcheckanswers=true&">Change<span class="govuk-visually-hidden"> </span></a>
                     </dd>
                 </div>
 
@@ -58,10 +68,10 @@
                         What is the destination's business name?
                     </dt>
                     <dd class="govuk-summary-list__value">
-                        {{ data['PLACEHOLDER'] }}
+                        {{ data['disposal-of-animal-destination-business-name-text-input'] }}
                     </dd>
                     <dd class="govuk-summary-list__actions">
-                        <a class="govuk-link" href="destination-business-name">Change<span class="govuk-visually-hidden"> </span></a>
+                        <a class="govuk-link" href="destination-business-name?camefromcheckanswers=true&">Change<span class="govuk-visually-hidden"> </span></a>
                     </dd>
                 </div>
 
@@ -71,10 +81,10 @@
                         What is the contact phone number of the destination business?
                     </dt>
                     <dd class="govuk-summary-list__value">
-                        {{ data['PLACEHOLDER'] }}
+                        {{ data['disposal-of-animal-destination-contact-number-text-input'] }}
                     </dd>
                     <dd class="govuk-summary-list__actions">
-                        <a class="govuk-link" href="destination-contact-name">Change<span class="govuk-visually-hidden"> </span></a>
+                        <a class="govuk-link" href="destination-contact-number?camefromcheckanswers=true&">Change<span class="govuk-visually-hidden"> </span></a>
                     </dd>
                 </div>
 
@@ -84,22 +94,22 @@
                         Does the destination premises have a county parish holding (CPH) number?
                     </dt>
                     <dd class="govuk-summary-list__value">
-                        {{ data['PLACEHOLDER'] }}
+                        {{ data['disposal-of-animal-cph-number-yes-no-radios-yes-no'] }}
                     </dd>
                     <dd class="govuk-summary-list__actions">
-                        <a class="govuk-link" href="cph-yes-no">Change<span class="govuk-visually-hidden"> </span></a>
+                        <a class="govuk-link" href="cph-yes-no?camefromcheckanswers=true&">Change<span class="govuk-visually-hidden"> </span></a>
                     </dd>
                 </div>
 
 
-                {%  if  data['PLACEHOLDER']  == "PLACEHOLDER"  %}
+                {%  if  data['disposal-of-animal-cph-number-yes-no-radios-yes-no']  == "Yes"  %}
 
                     <div class="govuk-summary-list__row">
                         <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
                             What is the county parish holding (CPH) number for the destination premises?
                         </dt>
                         <dd class="govuk-summary-list__value">
-                            {{ data['PLACEHOLDER'] }}
+                            {{ data['disposal-of-animal-cph-number-text-input'] }}
                         </dd>
                         <dd class="govuk-summary-list__actions">
                             <a class="govuk-link" href="cph-number">Change<span class="govuk-visually-hidden"> </span></a>
@@ -109,15 +119,12 @@
                 {%  endif  %}
 
 
-
-
             </dl>
 
         </dl>
 
 
-
-        <form action="../task-list?section-fmd-receiving-the-licence-complete=true&" method="post" novalidate>
+        <form action="../task-list?section-fmd-disposal-of-animal-complete=true&" method="post" novalidate>
 
             <button type="submit" class="govuk-button" data-module="govuk-button">
                 Continue

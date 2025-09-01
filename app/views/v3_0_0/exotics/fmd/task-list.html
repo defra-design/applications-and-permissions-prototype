@@ -85,7 +85,7 @@
                             text: "Slaughter information"
                         },
                         href: "slaughter-information/check-answers" if data['section-fmd-slaughter-information-complete'] == 'true'
-                                        else "slaughter-information/whole-animal",
+                                        else "slaughter-information/slaughterman-or-knackerman",
                         status:
                         {
                             text: "Completed",
@@ -104,8 +104,8 @@
                         {
                             text: "Disposal of the animal"
                         },
-                        href: "disposal-of-the-animal/check-answers" if data['section-fmd-disposal-of-the-animal-complete'] == 'true'
-                                        else "disposal-of-the-animal/slaughterman-or-knackerman",
+                        href: "disposal-of-animal/check-answers" if data['section-fmd-disposal-of-animal-complete'] == 'true'
+                                        else "disposal-of-animal/whole-animal",
                         status:
                         {
                             text: "Completed",
@@ -113,7 +113,7 @@
                             {
                                 text: "Incomplete",
                                 classes: "govuk-tag--blue"
-                            } if data['section-fmd-disposal-of-the-animal-complete'] != "true" and data['section-fmd-about-the-movement-or-activity-complete'] == "true"
+                            } if data['section-fmd-disposal-of-animal-complete'] != "true" and data['section-fmd-about-the-movement-or-activity-complete'] == "true"
 
                         }
                     } if data['section-fmd-about-the-movement-or-activity-complete'] == "true"  and data['about-the-movement-or-activity-type-radios'] == "Slaughter of animals onsite",
@@ -244,7 +244,7 @@
         {
             const elementbutton = document.querySelector('.govuk-button');
             elementbutton.classList.remove('govuk-button--secondary');
-            elementbutton.href="submit/check-answers";
+            elementbutton.href="";
 
             document.getElementById('whole-text-progress-count').style.display = 'none';
             document.getElementById('whole-text-all-complete').style.display = 'block';
