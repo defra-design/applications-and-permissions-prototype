@@ -144,7 +144,7 @@
                             text: "Movement details"
                         },
 
-                        href: "movement-details/check-answers"  if  data['section-fmd-slaughter-information-complete'] == 'true'
+                        href: "movement-details/check-answers"  if  data['section-fmd-movement-details-complete'] == 'true'
                                         else  "movement-details/start-section",
 
                         status:
@@ -154,7 +154,7 @@
                             {
                                 text: "Incomplete",
                                 classes: "govuk-tag--blue"
-                            } if data['section-fmd-slaughter-information-complete'] != "true"  and  data['section-fmd-about-the-movement-or-activity-complete'] == "true"
+                            } if data['section-fmd-movement-details-complete'] != "true"  and  data['section-fmd-about-the-movement-or-activity-complete'] == "true"
                         }
                     } if data['section-fmd-about-the-movement-or-activity-complete'] == "true"  and data['about-the-movement-or-activity-type-radios'] != "Slaughter of animals onsite",
 
