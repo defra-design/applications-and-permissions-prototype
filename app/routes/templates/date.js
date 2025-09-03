@@ -55,6 +55,7 @@ module.exports = function (router)
 
         // work out what the most recent closed tax year was
         let today = new Date();
+        today.setHours(0,0,0,0);
         let closedTaxYearsEndCalendarYear;
 
         if ( today.getMonth() <= 2 )
@@ -76,7 +77,9 @@ module.exports = function (router)
         }
 
         let taxyearstartdate = new Date( closedTaxYearsEndCalendarYear-1, 3, 6 );
+        taxyearstartdate.setHours(0,0,0,0);
         let taxyearenddate = new Date( closedTaxYearsEndCalendarYear, 3, 5 );
+        taxyearenddate.setHours(0,0,0,0);
         // note that April is written as month 3.  Tediously, months start from 0, year and date start from 1.
 
 
@@ -278,24 +281,23 @@ module.exports = function (router)
         /////////      Generate date object and update user's inputted date        /////////
         ////////////////////////////////////////////////////////////////////////////////////
         let inputdate = new Date();
+        inputdate.setHours(0,0,0,0);
 
         // If the date has no errors then make a date object
         if (req.session.data['errorthispage'] != "true")
         {
-            if (req.session.data['errorthispage'] != "true")
-            {
-                inputdate = new Date(
-                    req.session.data['SECTION-PAGENAME_DATE-date-input-year'],
-                    req.session.data['SECTION-PAGENAME_DATE-date-input-month'] - 1,
-                    req.session.data['SECTION-PAGENAME_DATE-date-input-day']
-                );
+            inputdate = new Date(
+                req.session.data['SECTION-PAGENAME_DATE-date-input-year'],
+                req.session.data['SECTION-PAGENAME_DATE-date-input-month'] - 1,
+                req.session.data['SECTION-PAGENAME_DATE-date-input-day']
+            );
+            inputdate.setHours(0,0,0,0);
 
-                // Save user input date without zeros and month has taxt, e.g. March
-                req.session.data['SECTION-PAGENAME_DATE-date-input-day'] = inputdate.getDate();
-                req.session.data['SECTION-PAGENAME_DATE-date-input-month-number'] = inputdate.getMonth() + 1;
-                req.session.data['SECTION-PAGENAME_DATE-date-input-month-text'] = inputdate.toLocaleString('default', {month: 'long'});
-                req.session.data['SECTION-PAGENAME_DATE-date-input-year'] = inputdate.getFullYear();
-            }
+            // Save user input date without zeros and month has taxt, e.g. March
+            req.session.data['SECTION-PAGENAME_DATE-date-input-day'] = inputdate.getDate();
+            req.session.data['SECTION-PAGENAME_DATE-date-input-month-number'] = inputdate.getMonth() + 1;
+            req.session.data['SECTION-PAGENAME_DATE-date-input-month-text'] = inputdate.toLocaleString('default', {month: 'long'});
+            req.session.data['SECTION-PAGENAME_DATE-date-input-year'] = inputdate.getFullYear();
         }
 
 
@@ -316,6 +318,7 @@ module.exports = function (router)
                     req.session.data['PLACEHOLDERdateOTHER-month'] - 1,
                     req.session.data['PLACEHOLDERdateOTHER-day']
                 );
+                PLACEHOLDERdateOTHER.setHours(0,0,0,0);
 
                 if ( inputdate < PLACEHOLDERdateOTHER )
                 {
@@ -341,6 +344,7 @@ module.exports = function (router)
                     req.session.data['PLACEHOLDERdateOTHER-month'] - 1,
                     req.session.data['PLACEHOLDERdateOTHER-day']
                 );
+                PLACEHOLDERdateOTHER.setHours(0,0,0,0);
 
                 if ( PLACEHOLDERdateOTHER < inputdate )
                 {
@@ -366,6 +370,7 @@ module.exports = function (router)
                     req.session.data['PLACEHOLDERdateOTHER-month'] - 1,
                     req.session.data['PLACEHOLDERdateOTHER-day']
                 );
+                inputPLACEHOLDERdateOTHER.setHours(0,0,0,0);
 
                 if ( inputdate <= inputPLACEHOLDERdateOTHER )
                 {
@@ -390,6 +395,7 @@ module.exports = function (router)
                     req.session.data['PLACEHOLDERdateOTHER-month'] - 1,
                     req.session.data['PLACEHOLDERdateOTHER-day']
                 );
+                inputPLACEHOLDERdateOTHER.setHours(0,0,0,0);
 
                 if ( inputPLACEHOLDERdateOTHER <= inputdate )
                 {
