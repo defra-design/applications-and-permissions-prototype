@@ -23,6 +23,8 @@ require('./templates/yes-no.js')(router);
 require('./templates/yes-no-complex.js')(router);
 require('./templates/radios.js')(router);
 require('./templates/radios-complex.js')(router);
+require('./templates/address.js')(router);
+require('./templates/address-complex.js')(router);
 
 
 
