@@ -7,7 +7,12 @@
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    Is the origin premises a temporary land association (TLA)?
+    Temporary land association (TLA)
+{% endset %}
+
+
+{% set questionHeadingTextHTML %}
+    Is the origin premises a TLA?
 {% endset %}
 
 
@@ -53,6 +58,22 @@
         <!--  END OF 'error summary' -->
 
 
+        <h1 class="govuk-heading-l">
+            {{ pageHeadingTextHTML }}
+        </h1>
+
+
+        <p>A temporary land association (TLA) is for land or buildings that:</p>
+
+        <ul class="govuk-body govuk-list--bullet">
+            <li>are within 10 miles of the main area you keep livestock</li>
+            <li>you do not own</li>
+            <li>are in England or Wales</li>
+            <li>are in the same bovine TB risk area as your CPH number</li>
+        </ul>
+
+
+
         <!-- go to routes.js for routing  -->
         <form action="tla-yes-no-router" method="post" novalidate>
 
@@ -68,9 +89,9 @@
                     {
                         legend:
                         {
-                            html: pageHeadingTextHTML,
-                            isPageHeading: true,
-                            classes: "govuk-fieldset__legend--l"
+                            html: questionHeadingTextHTML,
+                            isPageHeading: false,
+                            classes: "govuk-fieldset__legend--m"
                         }
                     },
 
