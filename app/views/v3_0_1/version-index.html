@@ -1,0 +1,449 @@
+{% extends "layouts/v3_0_1" %}
+
+{% set version = "v3_0_1" %}
+{% set bodyClasses = version %}
+
+{% set loggedout = "true" %}
+{% set backlinkoff = "true" %}
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+
+    <div class="govuk-grid-column-full">
+
+        <h1 class="govuk-heading-l">
+            {{ serviceName }}
+        </h1>
+
+        <h2 class="govuk-heading-m govuk-!-margin-bottom-6">
+            Version: {{ version }}
+        </h2>
+
+
+        <h2 class="govuk-heading-s govuk-!-margin-bottom-6">
+            Foot and mouth (MVP)
+        </h2>
+
+        <p>&nbsp;&nbsp;&nbsp;<a href="exotics/fmd/start">Start page</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+            <br>&nbsp;&nbsp;&nbsp;<a href="exotics/fmd/task-list">Task list</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+        </p>
+
+        <p>About the movement or activity
+            <br><br>&nbsp;&nbsp;&nbsp;<a href="exotics/fmd/about-the-movement-or-activity/type">Type of movement</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+            <br>&nbsp;&nbsp;&nbsp;<a href="exotics/fmd/about-the-movement-or-activity/what-is-moving">What is moving</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+            <br>&nbsp;&nbsp;&nbsp;<a href="exotics/fmd/about-the-movement-or-activity/slaughter-yes-no">Moving to slaughter</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+            <br>&nbsp;&nbsp;&nbsp;<a href="exotics/fmd/about-the-movement-or-activity/animal-type">Type of animals</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+            <br>&nbsp;&nbsp;&nbsp;<a href="exotics/fmd/about-the-movement-or-activity/number-of-animals">How many animals</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+            <br>&nbsp;&nbsp;&nbsp;<a href="exotics/fmd/about-the-movement-or-activity/id-number">Animals IDs</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+            <br>&nbsp;&nbsp;&nbsp;Sluaghter only - <a href="exotics/fmd/about-the-movement-or-activity/animal-being-slughtered">Type of animal being sluaghtered</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+            <br>&nbsp;&nbsp;&nbsp;Sluaghter only - <a href="exotics/fmd/about-the-movement-or-activity/number-of-animals-being-slughtered">How many animals being sluaghtered</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+            <br>&nbsp;&nbsp;&nbsp;Milk only - <a href="exotics/fmd/about-the-movement-or-activity/animal-the-milk-is-from">What animal is the milk from</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+            <br>&nbsp;&nbsp;&nbsp;<a href="exotics/fmd/about-the-movement-or-activity/movement-on-exit-page">Movement on not possible for carcases or milk</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+
+            <br>&nbsp;&nbsp;&nbsp;<a href="exotics/fmd/about-the-movement-or-activity/check-abswers">Check answers</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+        </p>
+
+
+        <p>Movement origin
+            <br><br>&nbsp;&nbsp;&nbsp;<a href="exotics/fmd/movement-origin/tla-yes-no">On TLA land or not</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+            <br>&nbsp;&nbsp;&nbsp;<a href="exotics/fmd/movement-origin/tla-or-tcph-number">Enter TLA number</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+            <br>&nbsp;&nbsp;&nbsp;<a href="exotics/fmd/movement-origin/premises-type">Type of premises</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+            <br>&nbsp;&nbsp;&nbsp;<a href="exotics/fmd/movement-origin/cph-number">CPH numer</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+            <br>&nbsp;&nbsp;&nbsp;<a href="exotics/fmd/movement-origin/address">Address</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+            <br>&nbsp;&nbsp;&nbsp;<a href="exotics/fmd/movement-origin/designated-premises">Designated premises</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+            <br>&nbsp;&nbsp;&nbsp;<a href="exotics/fmd/movement-origin/grid-reference">Grid reference</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+            <br>&nbsp;&nbsp;&nbsp;<a href="exotics/fmd/movement-origin/animals-kept-on-premises">Animals kept on premises</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+            <br>&nbsp;&nbsp;&nbsp;<a href="exotics/fmd/movement-origin/cloven-hooved-animals">Enter other cloven hooved animals</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+            <br>&nbsp;&nbsp;&nbsp;<a href="exotics/fmd/movement-origin/check-answers">Check answers</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+        </p>
+
+
+        <p>Slaughter information
+            <br>
+            <br>&nbsp;&nbsp;&nbsp;<a href="exotics/fmd/slaughter-information/slaughterman-or-knackerman">Slaughterman or Knackerman</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+            <br>&nbsp;&nbsp;&nbsp;IF Slaughterman - <a href="exotics/fmd/slaughter-information/name">Slaughterman name</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+            <br>&nbsp;&nbsp;&nbsp;IF Knackerman - <a href="exotics/fmd/slaughter-information/knackerman-business-name">Knackerman business name</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+            <br>&nbsp;&nbsp;&nbsp;<a href="exotics/fmd/slaughter-information/watok-licence-number">Watok licence number</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+            <br>&nbsp;&nbsp;&nbsp;<a href="exotics/fmd/slaughter-information/contact-number">Contact number</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+            <br>&nbsp;&nbsp;&nbsp;<a href="exotics/fmd/slaughter-information/vehicle-number-plate">Vehicle number plate</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+            <br>&nbsp;&nbsp;&nbsp;<a href="exotics/fmd/slaughter-information/date-of-slaughter">Date of slaughter</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+        </p>
+
+
+        <p>Disposal of the animal
+            <br>
+            <br>&nbsp;&nbsp;&nbsp;<a href="exotics/fmd/disposal-of-animal/whole-animal">Dispose of the whole animal</a>        &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+            <br>&nbsp;&nbsp;&nbsp;<a href="exotics/fmd/disposal-of-animal/date-of-disposal">Disposal date</a>        &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+            <br>&nbsp;&nbsp;&nbsp;<a href="exotics/fmd/disposal-of-animal/premises-type">Carcasses or ABP destination</a>        &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+            <br>&nbsp;&nbsp;&nbsp;<a href="exotics/fmd/disposal-of-animal/somewhere-else">Invalid destination - exit page</a>        &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+            <br>&nbsp;&nbsp;&nbsp;<a href="exotics/fmd/disposal-of-animal/destination-business-name">Destination's business name</a>        &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+            <br>&nbsp;&nbsp;&nbsp;<a href="exotics/fmd/disposal-of-animal/destination-contact-number">Contact phone number</a>        &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+            <br>&nbsp;&nbsp;&nbsp;<a href="exotics/fmd/disposal-of-animal/cph-yes-no">Know CPH yes or no</a>        &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+            <br>&nbsp;&nbsp;&nbsp;IF CPH is known - <a href="exotics/fmd/disposal-of-animal/cph-number">CPH number</a>        &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+        </p>
+
+
+
+
+
+        <p>Movement destination
+            <br><br>&nbsp;&nbsp;&nbsp;Milk - <a href="exotics/fmd/movement-destination/milk-selling-company-name">More than 1 movement</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+            <br>&nbsp;&nbsp;&nbsp;Milk - <a href="exotics/fmd/movement-destination/same-transporting-company-yes-no">Maximum number of journeys</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+            <br>&nbsp;&nbsp;&nbsp;Milk - IF Different transporter<a href="exotics/fmd/movement-destination/milk-transporting-company-name">Movements over more than 1 day</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+
+            <br>&nbsp;&nbsp;&nbsp;Live animal to slaughter - <a href="exotics/fmd/movement-destination/abattoir-name">Abattoir name</a>
+            <br>&nbsp;&nbsp;&nbsp;Live animal to slaughter - <a href="exotics/fmd/movement-destination/abattoir-address">Abattoir address</a>
+            <br>&nbsp;&nbsp;&nbsp;Live animal to slaughter - <a href="exotics/fmd/movement-destination/fsa-number-yes-no">FSA number yes or no</a>
+            <br>&nbsp;&nbsp;&nbsp;Live animal to slaughter - IF FSA number - <a href="exotics/fmd/movement-destination/fsa-number">Enter FSA number</a>
+
+            <br>&nbsp;&nbsp;&nbsp;Live animal NOT to slaughter - <a href="exotics/fmd/movement-destination/tla-yes-no">TLA yes or no</a>
+            <br>&nbsp;&nbsp;&nbsp;Live animal NOT to slaughter - TLA only - <a href="exotics/fmd/movement-destination/tla-or-tcph-number">TLA or cph number</a>
+            <br>&nbsp;&nbsp;&nbsp;Live animal NOT to slaughter - <a href="exotics/fmd/movement-destination/premises-type">Type of premises</a>
+            <br>&nbsp;&nbsp;&nbsp;Live animal NOT to slaughter - <a href="exotics/fmd/movement-destination/cph-number">CPH number</a>
+            <br>&nbsp;&nbsp;&nbsp;Live animal NOT to slaughter - <a href="exotics/fmd/movement-destination/address">Address of destination</a>
+            <br>&nbsp;&nbsp;&nbsp;Live animal NOT to slaughter - <a href="exotics/fmd/movement-destination/animals-kept-on-premises">Animals kept on the destination</a>
+            <br>&nbsp;&nbsp;&nbsp;Live animal NOT to slaughter - Other animals - <a href="exotics/fmd/movement-destination/cloven-hooved-animals">Other cloven hooved animals</a>
+
+            <br>&nbsp;&nbsp;&nbsp;Carcasses - <a href="exotics/fmd/movement-destination/type">Premises type</a> - Reused page
+            <br>&nbsp;&nbsp;&nbsp;Carcasses - <a href="exotics/fmd/movement-destination/somewhere-else">Not allowed destination</a>
+            <br>&nbsp;&nbsp;&nbsp;Carcasses - <a href="exotics/fmd/movement-destination/business-receiving-the-licence">Same business transporting</a>
+            <br>&nbsp;&nbsp;&nbsp;Carcasses - IF different transporter - <a href="exotics/fmd/movement-destination/transporting-business-name">Transporting business name</a>
+            <br>&nbsp;&nbsp;&nbsp;Carcasses - <a href="exotics/fmd/movement-destination/business-name">Destination business name</a>
+            <br>&nbsp;&nbsp;&nbsp;Carcasses - <a href="exotics/fmd/movement-destination/contact-number">Business contact number</a>
+            <br>&nbsp;&nbsp;&nbsp;Carcasses - <a href="exotics/fmd/movement-destination/business-address-yes-no">Know the business address, yes or no</a>
+            <br>&nbsp;&nbsp;&nbsp;Carcasses - IF address known - <a href="exotics/fmd/movement-destination/removing-business-address">Address of removing business</a>
+            <br>&nbsp;&nbsp;&nbsp;Carcasses - <a href="exotics/fmd/movement-destination/cph-number-yes-no">Know the CPH, yes or now</a>
+            <br>&nbsp;&nbsp;&nbsp;Carcasses - IF CPH known - <a href="exotics/fmd/movement-destination/cph-number">Enter CPH</a> - Reused page
+
+            <br>&nbsp;&nbsp;&nbsp;<a href="exotics/fmd/movement-destination/check-answers">Check answers</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+        </p>
+
+
+        <p>Movement details
+            <br><br>&nbsp;&nbsp;&nbsp;Live animals - <a href="exotics/fmd/movement-details/more-than-one-movement">More than 1 movement</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+            <br>&nbsp;&nbsp;&nbsp;Live animals - <a href="exotics/fmd/movement-details/maximum-journeys">Maximum number of journeys</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+            <br>&nbsp;&nbsp;&nbsp;Live animals - <a href="exotics/fmd/movement-details/movements-over-a-day">Movements over more than 1 day</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+            <br>&nbsp;&nbsp;&nbsp;Live animals - <a href="exotics/fmd/movement-details/movement-dates-multiple">Multiple dates</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+            <br>&nbsp;&nbsp;&nbsp;Live animals and Carcass - <a href="exotics/fmd/movement-details/date">Movement date</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+            <br>&nbsp;&nbsp;&nbsp;Live animals - <a href="exotics/fmd/movement-details/check-answers">Check answers</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+        </p>
+
+
+        <p>Receiving the licence
+            <br><br>&nbsp;&nbsp;&nbsp;Not Milk - <a href="exotics/fmd/receiving-the-licence/name-of-registered-keeper">Registered keeper</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+            <br>&nbsp;&nbsp;&nbsp;Milk - <a href="exotics/fmd/receiving-the-licence/name-of-person-responsible-at-origin">Name responsible for the premises</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+            <br>&nbsp;&nbsp;&nbsp;<a href="exotics/fmd/receiving-the-licence/email-address">Email address</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+            <br>&nbsp;&nbsp;&nbsp;<a href="exotics/fmd/receiving-the-licence/check-answers">Check answers</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+        </p>
+
+
+
+
+
+
+        <h2 class="govuk-heading-s govuk-!-margin-bottom-6 govuk-!-margin-top-9">
+            Exotics
+        </h2>
+
+        <p>Disease configurator
+            <br><br>&nbsp;&nbsp;&nbsp;<a href="exotics/disease-configurator/disease-list">Disease list</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+            <br>&nbsp;&nbsp;&nbsp;<a href="exotics/disease-configurator/name-of-disease">Name of disease</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+            <br>&nbsp;&nbsp;&nbsp;<a href="exotics/disease-configurator/types-of-movement">Types of movement</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)
+            <br>&nbsp;&nbsp;&nbsp;Scope
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="exotics/disease-configurator/scope-of-things-everything">Scope of things - everything</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="exotics/disease-configurator/scope-of-things-all-animals">Scope of things - All animals</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="exotics/disease-configurator/scope-of-things-animals">Scope of Animals</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="exotics/disease-configurator/scope-of-things-other">Scope of other/non-animals</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+            <br>&nbsp;&nbsp;&nbsp;<a href="exotics/disease-configurator/origin-types">Origin types</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+            <br>&nbsp;&nbsp;&nbsp;<a href="exotics/disease-configurator/destination-types">Destination types</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+            <br>&nbsp;&nbsp;&nbsp;<a href="exotics/disease-configurator/select-destination-for-each-origin">Select destination for each origin type</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+            <br>&nbsp;&nbsp;&nbsp;<a href="exotics/disease-configurator/cross-border-movements">Cross-border movements</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+            <br>&nbsp;&nbsp;&nbsp;<a href="exotics/disease-configurator/check-answers">Check answers</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+            <br>&nbsp;&nbsp;&nbsp;<a href="exotics/disease-configurator/confirmation">Confirmation</a>  of addition or change        &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+        </p>
+
+
+
+
+        <p>Exotics User facing</p>
+
+        <p>&nbsp;&nbsp;&nbsp;<a href="exotics/start">Start page - Dynamic</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+           <br>&nbsp;&nbsp;&nbsp;<a href="exotics/task-list">Task list</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+        </p>
+
+        <p>About the movement or activity
+            <br>&nbsp;&nbsp;&nbsp;<a href="exotics/about-the-movement/movement-type">Movement type</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+            <br>&nbsp;&nbsp;&nbsp;Movement - <a href="exotics/about-the-movement/what-is-moving">What are you moving</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+            <br>&nbsp;&nbsp;&nbsp;Movement - Not animals - <a href="exotics/about-the-movement/what-is-moving/you-cannot-apply">You cannot apply</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+            <br>&nbsp;&nbsp;&nbsp;Movement - Not animals - Products, Germplasm, bedding, by-products - <a href="exotics/about-the-movement/what-is-moving/what-species">What animal species</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+            <br>&nbsp;&nbsp;&nbsp;Movement - Not animals - Not carcasses - <a href="exotics/about-the-movement/what-is-moving/enter-what-is-moving">What are you moving</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+            <br>&nbsp;&nbsp;&nbsp;Movement - Not animals - Not carcasses - <a href="exotics/about-the-movement/what-is-moving/enter-what-is-moving/quantity">How much are you moving</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+            <br>&nbsp;&nbsp;&nbsp;Movement - Live animals - <a href="exotics/about-the-movement/what-is-moving/select-animals">Which type of animal</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+            <br>&nbsp;&nbsp;&nbsp;Movement - Live animals - Other animals - <a href="exotics/about-the-movement/what-is-moving/select-animals/select-other-animals">Which type of animal (other)</a>          &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+            <br>&nbsp;&nbsp;&nbsp;Movement - Live animals - <a href="exotics/about-the-movement/what-is-moving/select-animals/you-cannot-apply-animals">You cannot apply</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+            <br>&nbsp;&nbsp;&nbsp;Movement - Live animals - Other other animals - <a href="exotics/about-the-movement/what-is-moving/select-animals/other">What type of species</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+            <br>&nbsp;&nbsp;&nbsp;Movement - Live animals - Birds - <a href="exotics/about-the-movement/what-is-moving/select-animals/birds">Which type of bird</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+            <br>&nbsp;&nbsp;&nbsp;Movement - Live animals - Another type of bird - <a href="exotics/about-the-movement/what-is-moving/select-animals/birds/other-birds">Which type of bird (other)</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+            <br>&nbsp;&nbsp;&nbsp;Movement - Live animals - Another another type of bird - <a href="exotics/about-the-movement/what-is-moving/select-animals/birds/enter-bird-type">What type of bird</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+            <br>&nbsp;&nbsp;&nbsp;Movement - Live animals - <a href="exotics/about-the-movement/what-is-moving/select-animals/quantity">How many animals</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+            <br>&nbsp;&nbsp;&nbsp;Movement - Live animals - Movement Off - Cattle - <a href="exotics/about-the-movement/what-is-moving/select-animals/cattle-types">Which types of animals</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+            <br>&nbsp;&nbsp;&nbsp;Movement - Live animals - Movement Off - Cattle - <a href="exotics/about-the-movement/what-is-moving/select-animals/cattle-purpose">Current use or pupose</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+            <br>&nbsp;&nbsp;&nbsp;Movement - Live animals - Movement Off - Pigs - <a href="exotics/about-the-movement/what-is-moving/select-animals/pigs-types">Which type of animal</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+            <br>&nbsp;&nbsp;&nbsp;Movement - Live animals - Movement Off - Pigs - <a href="exotics/about-the-movement/what-is-moving/select-animals/pigs-purpose">What current use</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+            <br>&nbsp;&nbsp;&nbsp;Movement - Live animals - Movement Off - Not cattle or pigs - <a href="exotics/about-the-movement/what-is-moving/purpose">What current use or purpose</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+            <br>&nbsp;&nbsp;&nbsp;<a href="exotics/about-the-movement/check-answers">Check answers</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+        </p>
+
+
+        <p>About the movement or activity
+            <br>&nbsp;&nbsp;&nbsp;Moving on - Product - <a href="exotics/movement-origin/product-address">Origin address</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+            <br>&nbsp;&nbsp;&nbsp;<a href="exotics/movement-origin/premises-type">Type of premises</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+            <br>&nbsp;&nbsp;&nbsp;<a href="exotics/movement-origin/check-answers">Check answers</a>         &nbsp;&nbsp;&nbsp;<span class="">(In progress)</span>
+        </p>
+
+
+        <h2 class="govuk-heading-s govuk-!-margin-bottom-6 govuk-!-margin-top-9">
+            Bovine Tuberculosis
+        </h2>
+
+
+        <p><span class="">All footers</span>
+            <br>&nbsp;&nbsp;&nbsp;<a href="account/start-temporary">Footer phone number</a>
+        </p>
+
+        <p><a href="account/start">Start page</a>
+            <br>
+        </p>
+
+        <p>Create application
+            <br><br>&nbsp;&nbsp;&nbsp;<a href="create-application/task-list">Task list</a>
+            <br>&nbsp;&nbsp;&nbsp;<a href="create-application/task-list-validation-page">Task list - validation page</a>
+        </p>
+
+        <p>
+                &nbsp;&nbsp;&nbsp;Origin</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="create-application/origin/to-or-from-own-premises">To or from farm</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Off of - Own premises - <a href="create-application/origin/type-of-origin-off?origin-to-or-from-own-premises-radios=On%20to%20the%20farm%20or%20premises&">Premises type</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On to - Own premises - <a href="create-application/origin/type-of-origin-on?origin-to-or-from-own-premises-radios=On%20to%20the%20farm%20or%20premises&">Premises type</a>
+
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Off of - Unrestricted on to TB restricted - <a href="create-application/origin/contact-the-tb-restricted-farm">Can't use the service</a>  
+            <!-- <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On to - Own premises - <a href="create-application/origin/type-of-origin-page-2?origin-to-or-from-own-premises-radios=On%20to%20the%20farm%20or%20premises&">Premises type - page 2</a>   &nbsp;&nbsp;&nbsp;<span class="govuk-!-font-weight-bold">(New)</span>  -->
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Off of - Own premises - <a href="create-application/origin/type-of-origin?origin-to-or-from-own-premises-radios=Off%20the%20farm%20or%20premises&">Premises type</a>  
+            <!-- <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Off of - Own premises - <a href="create-application/origin/type-of-origin-page-2?origin-to-or-from-own-premises-radios=Off%20the%20farm%20or%20premises&">Premises type - page 2</a>   &nbsp;&nbsp;&nbsp;<span class="govuk-!-font-weight-bold">(New)</span>  -->
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Off of and On to - Own premises - <a href="create-application/origin/type-of-origin-other">Premises type - Other</a>
+
+
+
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On to - Own premises - Import - <a href="create-application/origin/country">Country</a>     &nbsp;&nbsp;&nbsp;<span class="govuk-!-font-weight-bold">(Typeahead instead of text field)</span>
+
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On to - Own premises - <a href="create-application/origin/origin-farm-cph">Enter CPH</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On to - Own premises - <a href="create-application/origin/origin-farm-address">Enter address</a>    
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Off of - Own premises - <a href="create-application/origin/own-farm-new-cph">Enter CPH</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Off of - Own premises - <a href="create-application/origin/own-farm-new-address">Enter address</a>
+
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On to premises only - <a href="create-application/origin/fifty-percent-warning">50% compensation warning </a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="create-application/origin/check-answers">Check answers</a>
+        </p>
+
+        <p>
+                &nbsp;&nbsp;&nbsp;Destination</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On to and Off of premises - Destination - <a href="create-application/destination/type-of-destination?origin-type-of-origin-on-checkboxes=[Unrestricted market]&origin-to-or-from-own-premises-radios=On to the farm or premises&">Premises type</a>    
+
+
+           <!--  ><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On to or off of - Destination - <a href="create-application/destination/type-of-destination-page-2">Premises type - page 2 </a>   &nbsp;&nbsp;&nbsp;<span class="govuk-!-font-weight-bold">(New)</span>  -->
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On to or off of - Destination - Other - <a href="create-application/destination/type-of-destination-other">Premises type - Other</a>
+
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Slaughter - <a href="create-application/destination/use-general-licence">General licence</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Off premises - AFU to Another destination - <a href="create-application/destination/can-not-use-service-afu-only-off">Can't use the service</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On to premises - AFU to Another destination - <a href="create-application/destination/can-not-use-service-afu-only-on">Can't use the service</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Off premises - TB restricted premises (not AFU) to Another destination - <a href="create-application/destination/contact-the-tb-restricted-premises">Can't use the service</a>
+
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Destination selected - <a href="create-application/destination/tb-isolation-unit">TB isolation units</a>
+
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Off of - Own premises - <a href="create-application/destination/destination-farm-cph">Enter CPH</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Off of - Own premises - <a href="create-application/destination/destination-farm-address">Enter address</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On to - Own premises - <a href="create-application/destination/own-farm-new-cph">Enter CPH</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On to - Own premises - <a href="create-application/destination/own-farm-new-address">Enter address</a>    
+
+
+
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On to premises only - TB restricted to TB restricted - <a href="create-application/destination/how-many-animals?origin-type-of-origin-radios=TB restricted farm&">How many animals</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On to premises only - Market or unrestricted to TB restricted  - <a href="create-application/destination/how-many-animals?origin-type-of-origin-radios=Unrestricted market&">How many animals</a>
+
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On to premises only - <a href="create-application/destination/reason-for-movement">Reason for movement</a>
+
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On to premises only - If restocking - <a href="create-application/destination/restocking-additional-info-animal-type">Animal type</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On to premises only - If restocking - <a href="create-application/destination/restocking-additional-info-reason">Reason</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On to premises only - If restocking - <a href="create-application/destination/restocking-additional-info-reason-other">Other reason</a>
+
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Off premises - ISO unit origin ONLY - <a href="create-application/destination/date-of-movement">Date of movement</a>
+
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On to or off premises - <a href="create-application/destination/any-additional-info">Enter any additional info</a>
+
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On to premises only - If restocking - <a href="create-application/destination/quantity-options">More than 75 cattle?</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On to premises only - If restocking and fewer than 75 - <a href="create-application/destination/quantity-half-herd">More than half the herd</a>
+
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="create-application/destination/check-answers">Check answers</a>
+        </p>
+
+        <p>
+                &nbsp;&nbsp;&nbsp;Receiving the licence</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Restricted origin - Off of the premises - <a href="create-application/contact-and-updates/licence-name?origin-to-or-from-own-premises-radios=Off the farm or premises&">User's full name</a>    &nbsp;&nbsp;&nbsp;<span>(IN DESIGN)</span>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Restricted origin - On to the premises - <a href="create-application/contact-and-updates/licence-name?origin-to-or-from-own-premises-radios=On to the farm or premises&">User's full name</a>    &nbsp;&nbsp;&nbsp;<span class="govuk-!-font-weight-bold">(NEEDS REMOVING)</span>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Restricted origin - <a href="create-application/contact-and-updates/licence-email-or-post">Email or post</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Restricted origin - <a href="create-application/contact-and-updates/licence-enter-email-address">Enter email</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Restricted origin - <a href="create-application/contact-and-updates/licence-select-post-can-not-use-this-service">Post selected</a> - Can't use this service
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Restricted origin - <a href="create-application/contact-and-updates/copy-of-application?contact-and-updates-licence-enter-email-address-text-input=PLACEHOLDER@email.com&">Confirm application copy</a>       &nbsp;&nbsp;&nbsp;<span class="govuk-!-font-weight-bold">(New)</span>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="create-application/contact-and-updates/check-answers">Check answers</a>
+        </p>
+
+        <p>
+            &nbsp;&nbsp;&nbsp;Animal IDs</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Restricted origin and destination - <a href="create-application/identification/any-calves">Any calves</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Calves only - <a href="create-application/identification/oldest-calf-dob.html">Oldest DOB of Calves</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Calves only - <a href="create-application/identification/warning">Warning</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Calves only - <a href="create-application/identification/enter-ear-tags-calves">Enter IDs - Calves</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Calves only - <a href="create-application/identification/any-cattle-over-42-days">Any also over 42 cattle</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No calves or both only - <a href="create-application/identification/enter-ear-tags-testing-dates">Animal testing dates</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No calves or both only - <a href="create-application/identification/enter-ear-tags">Enter IDs - Cattle over 42 days old</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="create-application/identification/check-answers">Check answers</a>
+        </p>
+
+
+        <p>
+                &nbsp;&nbsp;&nbsp;Biosecurity</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="create-application/biosecurity/biosecurity-intro">Interstitial page</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="create-application/biosecurity/kept-separately">Kept separately</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Kept separately only - <a href="create-application/biosecurity/grazing">Grazed</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Kept separately - Grazed only - <a href="create-application/biosecurity/grazing-field-how-separated">Field separation</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Kept separately - Grazed only - <a href="create-application/biosecurity/last-grazed">Last grazed</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Kept separately - Grazed only - <a href="create-application/biosecurity/manure-and-slurry">Manure and slurry</a>
+            <!-- <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Kept separately - Roads - <a href="create-application/biosecurity/roads-and-tracks">Shared roads</a>  -->
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="create-application/biosecurity/manure-and-slurry-details">Manure and slurry - Details</a>
+
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Disinfectant - <a href="create-application/biosecurity/disinfectant">Name of disinfectant</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Disinfectant - <a href="create-application/biosecurity/disinfectant-dilution">Disinfection concentration</a>
+
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Buildings - <a href="create-application/biosecurity/buildings-any-shared.html">Will cattle be housed?</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Buildings only - <a href="create-application/biosecurity/buildings-how-minimise-contamination">Housing details</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Equipment - <a href="create-application/biosecurity/equipment-any-shared.html">Any shared equipment</a>
+
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Equipment only - <a href="create-application/biosecurity/equipment-how-minimise-contamination">Details of equipment contamination</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Equipment only - <a href="create-application/biosecurity/other-equipment-measures">Other equipment measures</a>
+
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;People and staff - <a href="create-application/biosecurity/people-disinfection">People disinfection</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;People and staff only - <a href="create-application/biosecurity/other-staff-measures">Other staff measures</a>
+
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Wildlife - <a href="create-application/biosecurity/badgers">Badger separation</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Wildlife - <a href="create-application/biosecurity/other-wildlife-measures">Other wildlife measures</a>      &nbsp;&nbsp;&nbsp;<span class="govuk-!-font-weight-bold" >(Updated box height)</span>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="create-application/biosecurity/check-answers">Check Answers</a>
+        </p>
+
+
+
+        <p>
+                &nbsp;&nbsp;&nbsp;Biosecurity Map
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="create-application/biosecurity-map/upload-plan">Upload a plan</a>    &nbsp;&nbsp;&nbsp;<span class="govuk-!-font-weight-bold" >(updated content and buttons)</span>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="create-application/biosecurity-map/uploading">Uploading spinner</a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="create-application/biosecurity-map/upload-plan-another">Upload another plan</a>    &nbsp;&nbsp;&nbsp;<span class="govuk-!-font-weight-bold">(Added)</span>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="create-application/biosecurity-map/check-answers">Check answers</a>     &nbsp;&nbsp;&nbsp;<span class="govuk-!-font-weight-bold">(Updated)</span>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="create-application/biosecurity-map/pdf-size-error">PDF size error</a>
+        </p>
+
+
+        <p>
+                &nbsp;&nbsp;&nbsp;<a href="create-application/submit/check-answers">Check answers and declaration</a>     &nbsp;&nbsp;&nbsp;<span class="govuk-!-font-weight-bold">(Updated - Checkboxes, now 1 word)</span>
+            <br>&nbsp;&nbsp;&nbsp;<a href="create-application/submit/confirmation">Confirmation page</a>
+        </p>
+
+        <p>
+            <br>&nbsp;&nbsp;&nbsp;<a href="create-application/submit/email-confirmation">Email confirmation</a>        &nbsp;&nbsp;&nbsp;<span class="govuk-!-font-weight-bold"  >(Updated to include application data for the user)</span>
+        </p>
+
+        <p>
+            <br>&nbsp;&nbsp;&nbsp;<a href="privacy-policy">Privacy policy</a>       &nbsp;&nbsp;&nbsp;<span class="govuk-!-font-weight-bold">(Update - Needs correct apostrophe character - Check rest of service)</span>
+        </p>
+
+        <p>
+            <br>&nbsp;&nbsp;&nbsp;<a href="accessibility-statement">Accessibility statement</a>
+        </p>
+
+        <p>
+            <br>&nbsp;&nbsp;&nbsp;<a href="cookies?cookiesbannerhidden=true&">Cookies - Only</a>
+            <br>&nbsp;&nbsp;&nbsp;<a href="cookies?cookiesaccepted=false&cookiesrejected=false&cookiesbannerhidden=false&">Cookies Banner</a>
+            <br>&nbsp;&nbsp;&nbsp;<a href="cookies?cookiesaccepted=true&cookiesrejected=false&cookiesbannerhidden=false&">Cookies Banner - Accepted</a>
+            <br>&nbsp;&nbsp;&nbsp;<a href="cookies?cookiesaccepted=false&cookiesrejected=true&cookiesbannerhidden=false&">Cookies Banner - Rejected</a>
+
+        </p>
+
+
+
+
+        <p>
+            <br>&nbsp;&nbsp;&nbsp;Reactors</a>        &nbsp;&nbsp;&nbsp;<span class="govuk-!-font-weight-regular"  style="color: #d4351c">(Design only)</span>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reactor - <a href="create-application/task-list?bluetongue=false&origin-to-or-from-own-premises-radios=On%20to%20the%20farm%20or%20premises&errorthispage=false&errortypeone=false&on-or-off-history=On%20to%20the%20farm%20or%20premises&origin-type-of-origin-radios=TB%20restricted%20farm&origin-origin-farm-cph-text-input=12/345/6789&errortypetwo=false&errortypethree=false&origin-origin-farm-address-line-1=sdf&origin-origin-farm-address-line-2=&origin-origin-farm-address-town=sfdgsdf&origin-origin-farm-address-county=&origin-origin-farm-address-postcode=wc13ff&errortypefour=false&section-origin-complete=true&destination-type-of-destination-radios=TB%20restricted%20farm&camefromcheckanswers=false&destination-own-farm-new-cph-text-input=12/345/6789&destination-own-address-line-1=sdf&destination-own-address-line-2=&destination-own-address-town=sfdgsdf&destination-own-address-county=&destination-own-address-postcode=ln83ks&destination-how-many-animals-number-input=4&errortypefive=false&errortypesix=false&errortypeseven=false&destination-reason-for-movement-radios=Routine%20restocking&section-destination-complete=true&redirecturl=http://localhost:3000/v3_0_1/create-application/task-list&%20%20">Task list</a>        &nbsp;&nbsp;&nbsp;<span class="govuk-!-font-weight-regular"  style="color: #d4351c">(Design only)</span>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reactor - <a href="create-application/reactors/any-reactors">Any reactors</a>        &nbsp;&nbsp;&nbsp;<span class="govuk-!-font-weight-regular"  style="color: #d4351c">(Design only)</span>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reactor - <a href="create-application/reactors/any-date-to-remove-reactors"">Any date for removal</a>        &nbsp;&nbsp;&nbsp;<span class="govuk-!-font-weight-regular"  style="color: #d4351c">(Design only)</span>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reactor - If no removal date - <a href="create-application/reactors/you-must-remove-reactors">You must remove reactors</a>        &nbsp;&nbsp;&nbsp;<span class="govuk-!-font-weight-regular"  style="color: #d4351c">(Design only)</span>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reactor - If removal date - <a href="create-application/reactors/date-of-reactor-removal">Date of removal</a>        &nbsp;&nbsp;&nbsp;<span class="govuk-!-font-weight-regular"  style="color: #d4351c">(Design only)</span>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reactor - <a href="create-application/reactors/check-answers.html">Check answers</a>        &nbsp;&nbsp;&nbsp;<span class="govuk-!-font-weight-regular"  style="color: #d4351c">(Design only)</span>
+        </p>
+        <p>
+            <br>&nbsp;&nbsp;&nbsp;Task list alternatives</a>        &nbsp;&nbsp;&nbsp;<span class="govuk-!-font-weight-regular"  style="color: #d4351c">(Design only)</span>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Task list - <a href="create-application/task-list-temp">Before</a>        &nbsp;&nbsp;&nbsp;<span class="govuk-!-font-weight-regular"  style="color: #d4351c">(Design only)</span>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Task list - <a href="create-application/task-list-temp-two">After</a>        &nbsp;&nbsp;&nbsp;<span class="govuk-!-font-weight-regular"  style="color: #d4351c">(Design only)</span>
+        </p>
+
+
+
+
+    </div>
+
+
+    <div class="govuk-grid-column-full govuk-!-margin-top-9">
+        <p class="govuk-!-margin-top-6" style="border-top: 2px solid #1d70b8; margin-bottom: 30px;">
+
+
+            <h2 class="govuk-heading-s govuk-!-margin-top-3">Customer identity</h2>
+            {% if data['customer-identity'] == "true" %}
+                <p>ON<br>
+                    <a href="version-index?customer-identity=false&">Turn OFF</a>
+                </p>
+            {% else %}
+                <p>OFF</br>
+                    <a href="version-index?customer-identity=true&">Turn ON</a>
+                </p>
+            {% endif %}
+
+
+            <h2 class="govuk-heading-s govuk-!-margin-top-3 govuk-!-margin-bottom-3">Defra account registration</h2>
+            {% if data['defra-account-registration'] == "true" %}
+                <p>ON<br>
+                    <a href="version-index?defra-account-registration=false&">Turn OFF</a>
+                </p>
+            {% else %}
+                <p>OFF</br>
+                    <a href="version-index?defra-account-registration=true&">Turn ON</a>
+                </p>
+            {% endif %}
+
+
+            <h2 class="govuk-heading-s govuk-!-margin-top-3 govuk-!-margin-bottom-3">TB reactors section</h2>
+            {% if data['show-reactors-section'] == "true" %}
+                <p>ON<br>
+                    <a href="version-index?show-reactors-section=false&">Turn OFF</a>
+                </p>
+            {% else %}
+                <p>OFF</br>
+                    <a href="version-index?show-reactors-section=true&">Turn ON</a>
+                </p>
+            {% endif %}
+
+
+
+    </div>
+
+</div>
+{% endblock %}

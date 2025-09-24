@@ -1,0 +1,188 @@
+{% extends "layouts/v3_0_1.html" %}
+
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-l">Check your answers before you continue your application</h1>
+
+        <dl class="govuk-summary-list">
+
+            <dl class="govuk-summary-list">
+
+
+                {%  if data['about-the-movement-or-activity-what-is-moving-radios']  != "Milk"  %}
+
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                            Is the origin premises a temporary land association (TLA)?
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                            {{ data['movement-origin-tla-yes-no-radios-yes-no'] }}
+                        </dd>
+                        <dd class="govuk-summary-list__actions">
+                            <a class="govuk-link" href="tla-yes-no">Change<span class="govuk-visually-hidden"> </span></a>
+                        </dd>
+                    </div>
+
+                {%  endif  %}
+
+
+                {%  if data['movement-origin-tla-yes-no-radios-yes-no']  == "Yes"  %}
+
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                            What is the temporary land association (TLA) or temporary county parish holding (tCPH) number?
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                            {{ data['movement-origin-tla-or-tcph-number-text-input'] }}
+                        </dd>
+                        <dd class="govuk-summary-list__actions">
+                            <a class="govuk-link" href="tla-or-tcph-number">Change<span class="govuk-visually-hidden"> </span></a>
+                        </dd>
+                    </div>
+
+                {%  else  %}
+
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                            What type of premises is the origin?
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                            {{ data['movement-origin-premises-type-radios'] }}
+                        </dd>
+                        <dd class="govuk-summary-list__actions">
+                            <a class="govuk-link" href="premises-type">Change<span class="govuk-visually-hidden"> </span></a>
+                        </dd>
+                    </div>
+
+
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                            What is the county parish holding (CPH) number of the origin premises?
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                            {{ data['movement-origin-cph-number-text-input'] }}
+                        </dd>
+                        <dd class="govuk-summary-list__actions">
+                            <a class="govuk-link" href="cph-number">Change<span class="govuk-visually-hidden"> </span></a>
+                        </dd>
+                    </div>
+
+
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                            What is the origin premises address?
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                            {{ data['fmd-movement-origin-address-line-1'] }}<br>
+                            {{ data['fmd-movement-origin-address-line-2'] }}<br>
+                            {{ data['fmd-movement-origin-address-town'] }}<br>
+                            {{ data['fmd-movement-origin-address-county'] }}<br>
+                            {{ data['fmd-movement-origin-address-postcode'] }}
+                        </dd>
+                        <dd class="govuk-summary-list__actions">
+                            <a class="govuk-link" href="origin-address">Change<span class="govuk-visually-hidden"> </span></a>
+                        </dd>
+                    </div>
+
+                {%  endif  %}
+
+
+
+
+                {%  if  data['about-the-movement-or-activity-what-is-moving-radios']  == "Milk"  %}
+
+                    <!--  No more pages when on the milk journey -->
+
+                {%  else  %}
+
+                    {%  if data['about-the-movement-or-activity-type-radios']  == "Slaughter of animals onsite"  or
+                           data['about-the-movement-or-activity-what-is-moving-radios']  == "Carcasses"  %}
+
+                        <div class="govuk-summary-list__row">
+                            <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                                What is the grid reference of the location?
+                            </dt>
+                            <dd class="govuk-summary-list__value">
+                                {{ data['movement-origin-grid-reference-text-input'] }}
+                            </dd>
+                            <dd class="govuk-summary-list__actions">
+                                <a class="govuk-link" href="movement-origin">Change<span class="govuk-visually-hidden"> </span></a>
+                            </dd>
+                        </div>
+
+                    {%  endif  %}
+
+
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                            What animals are kept on the premises?
+                        </dt>
+                        <dd class="govuk-summary-list__value" style="white-space: pre-wrap">{{ data['movement-origin-animals-kept-on-premises-checkboxes-formatted'] }}</dd>
+                        <dd class="govuk-summary-list__actions">
+                            <a class="govuk-link" href="animals-kept-on-premises">Change<span class="govuk-visually-hidden"> </span></a>
+                        </dd>
+                    </div>
+
+
+                    {%  if  data['movement-origin-animals-kept-on-premises-checkboxes'].includes("Other cloven-hooved animals")  %}
+
+                        <div class="govuk-summary-list__row">
+                            <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                                Enter what other cloven-hooved animals are kept on the premises
+                            </dt>
+                            <dd class="govuk-summary-list__value">
+                                {{ data['origin-designated-cloven-hooved-animals-text-input'] }}
+                            </dd>
+                            <dd class="govuk-summary-list__actions">
+                                <a class="govuk-link" href="cloven-hooved-animals">Change<span class="govuk-visually-hidden"> </span></a>
+                            </dd>
+                        </div>
+
+                    {%  endif  %}
+
+
+                {%  endif  %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </dl>
+
+        </dl>
+
+
+
+        <form action="../task-list?section-fmd-movement-origin-complete=true&" method="post" novalidate>
+
+            <button type="submit" class="govuk-button" data-module="govuk-button">
+                Continue
+            </button>
+
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}
+
+
+
+
+

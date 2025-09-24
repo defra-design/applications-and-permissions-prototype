@@ -1,0 +1,101 @@
+{% extends "layouts/v3_0_1.html" %}
+
+
+<!-- Setting the big main heading at the top of the page -->
+{% set pageHeadingTextHTML %}
+    Which measures are you taking to reduce the risk of infection from wildlife?
+{% endset %}
+
+
+<!-- Text that show in the browser tab. Does NOT need changing -->
+{% block pageTitle %}
+    {{ pageHeadingTextHTML }}
+{% endblock %}
+
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds ">
+
+        <form action="badgers-router" method="post" novalidate>
+
+        {{ govukCheckboxes
+            ({
+                name: "biosecurity-badgers-checkboxes",
+
+                id: "biosecurity-badgers-checkboxes",
+
+                fieldset:
+                {
+                    legend:
+                    {
+                        text: pageHeadingTextHTML,
+                        isPageHeading: true,
+                        classes: "govuk-fieldset__legend--l"
+                    }
+                },
+
+                hint:
+                {
+                    text: "Only select the measures you are taking. You do not need to select them all to receive your licence."
+                },
+
+                items:
+                [
+                    {
+                        value: "Badger-proof fencing, such as wired fences, solid aluminium sheeted gates and rail fences or retractable electric fences",
+                        text: "Badger-proof fencing, such as wired fences, solid aluminium sheeted gates and rail fences or retractable electric fences",
+                        checked: (data['biosecurity-badgers-checkboxes'] or []).indexOf('Badger-proof fencing, such as wired fences, solid aluminium sheeted gates and rail fences or retractable electric fences') > -1
+                    },
+                    {
+                        value: "Aluminium feed bins",
+                        text: "Aluminium feed bins",
+                        checked: (data['biosecurity-badgers-checkboxes'] or []).indexOf('Aluminium feed bins') > -1
+                    },
+                    {
+                        value: "Limiting access to badger latrines and setts",
+                        text: "Limiting access to badger latrines and setts",
+                        checked: (data['biosecurity-badgers-checkboxes'] or []).indexOf('Limiting access to badger latrines and setts') > -1
+                    },
+                    {
+                        value: "Feed and water troughs raised over 90cm",
+                        text: "Feed and water troughs raised over 90cm",
+                        checked: (data['biosecurity-badgers-checkboxes'] or []).indexOf('Feed and water troughs raised over 90cm') > -1
+                    },
+                    {
+                        value: "Feed stores are secured",
+                        text: "Feed stores are secured",
+                        checked: (data['biosecurity-badgers-checkboxes'] or []).indexOf('Feed stores are secured') > -1
+                    },
+                    {
+                        value: "Mineral licks kept out of reach of wildlife",
+                        text: "Mineral licks kept out of reach of wildlife",
+                        checked: (data['biosecurity-badgers-checkboxes'] or []).indexOf('Mineral licks kept out of reach of wildlife') > -1
+                    },
+                    {
+                        value: "Other measures to reduce the risk of infection",
+                        text: "Other measures to reduce the risk of infection",
+                        checked: (data['biosecurity-badgers-checkboxes'] or []).indexOf('Other measures to reduce the risk of infection') > -1
+                    }
+                ]
+            })
+        }}
+
+
+        <p>If there are measures you are not taking but want to find out more,
+            <a href="https://tbhub.co.uk/preventing-tb-breakdowns/protect-your-herd-from-bovine-tb/protect-your-herd-from-tb-a-review-of-the-science/" target="_blank">
+                read the guidance on the TB Hub</a> (opens in a new tab).
+        </p>
+
+
+            {{ govukButton({ text: "Continue" }) }}
+
+        </form>
+
+    </div>
+</div>
+
+
+
+{% endblock %}
+
