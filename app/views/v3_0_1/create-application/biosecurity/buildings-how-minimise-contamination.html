@@ -1,35 +1,17 @@
 {% extends "layouts/v3_0_1.html" %}
 
-<!--
-NOTES ON USING THIS TEMPLATE Page
-This will save you time.
-
-1. Type your heading for the page after '% set pageHeadingTextHTML %'
-2. Type/customise the error message after '% set errorTextHTML %'
-3. Use 'Find and replace' to replace "SECTION" with the name of the section of the service you're working on.
-4. Use 'Find and replace' to replace "PAGENAME_YES_NO" with whatever you named this page/file.
-5. Go to the javascript file 'templates.js' and copy the section 'YES AND NO - RADIO BUTTONS - MANDATORY' into your routes.js file.
-6. Follow instructions at the top of the 'templates.js'
--->
-
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    Housing the incoming animals
+    Which measures are being taken to reduce the spread of TB during housing?
 {% endset %}
 
-
-
-<!-- Setting the smaller secondary heading lower down the page -->
-{% set questionHeadingTextHTML %}
-    How will you reduce the risk of spreading TB from the resident herd to the incoming animals during housing?
-{% endset %}
 
 <!-- Set the text for the error type -->
 {% set errorTextHTML %}
     <!-- Nothing was selected -->
-    {% if data['errortypeone'] == "true" %}
-        Enter how will you reduce the risk of spreading TB from the resident herd to the incoming animals during housing
+    {%  if  data['errortypeone'] == "true"  %}
+         Select at least one PLACEHOLDER
     {% endif %}
 {% endset %}
 
@@ -46,7 +28,7 @@ This will save you time.
 
 {% block content %}
 <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds ">
+    <div class="govuk-grid-column-two-thirds">
 
 
         <!-- ERROR LOGIC 'error summary' -->
@@ -58,7 +40,7 @@ This will save you time.
                     [
                         {
                             html: errorTextHTML,
-                            href: "#biosecurity-buildings-how-minimise-contamination-text-input"
+                            href: "#SECTION-PAGENAME_CHECKBOXES-checkboxes"
                         }
                     ]
                 })
@@ -67,48 +49,61 @@ This will save you time.
         <!--  END OF 'error summary' -->
 
 
-        <h1 class="govuk-heading-l">
-            {{ pageHeadingTextHTML }}
-        </h1>
+        <!-- form URL below turns off errors on the next page  -->
+        <form action="PAGENAME_CHECKBOXES-router" method="post" novalidate>
 
-
-        <p>You should have measures in place to prevent the spread of TB when the incoming animals are housed or have access to shared buildings.</p>
-
-        <p>You should include:</p>
-
-        <ul class="govuk-list govuk-list--bullet">
-            <li>how the incoming animals will be separated from the resident herd</li>
-            <li>cleaning and disinfection measures for housing and shared buildings, including handling and milking facilities</li>
-        </ul>
-
-
-        <!-- go to routes.js for routing  -->
-        <form action="buildings-how-minimise-contamination-router" method="post" novalidate>
-
-            {{ govukTextarea
+            {{ govukCheckboxes
                 ({
-                    label:
+                    name: "SECTION-PAGENAME_CHECKBOXES-checkboxes",
+
+                    id: "SECTION-PAGENAME_CHECKBOXES-checkboxes",
+
+                    fieldset:
                     {
-                        html: questionHeadingTextHTML,
-                        classes: "govuk-label--m",
-                        isPageHeading: false
+                        legend:
+                        {
+                            text: pageHeadingTextHTML,
+                            isPageHeading: true,
+                            classes: "govuk-fieldset__legend--l"
+                        }
                     },
-
-                    id: "biosecurity-buildings-how-minimise-contamination-text-input",
-
-                    name: "biosecurity-buildings-how-minimise-contamination-text-input",
 
                     hint:
                     {
-                        text: ""
+                        text: "Only select the measures you are taking. You do not need to select them all to receive your licence."
                     },
 
                     errorMessage: null if data['errorthispage'] != "true"
                                        else { html: errorTextHTML },
 
-                    value: data['biosecurity-buildings-how-minimise-contamination-text-input'],
-
-                    rows: "8"
+                    items:
+                    [
+                        {
+                            value: "Cleaning and disinfecting of shared buildings before the animals arrive",
+                            text: "Cleaning and disinfecting of shared buildings before the animals arrive",
+                            checked: (data['SECTION-PAGENAME_CHECKBOXES-checkboxes'] or []).indexOf('Cleaning and disinfecting of shared buildings before the animals arrive') > -1
+                        },
+                        {
+                            value: "Isolation of incoming animals in a separate building, shed or pen on arrival",
+                            text: "Isolation of incoming animals in a separate building, shed or pen on arrival",
+                            checked: (data['SECTION-PAGENAME_CHECKBOXES-checkboxes'] or []).indexOf('Isolation of incoming animals in a separate building, shed or pen on arrival') > -1
+                        },
+                        {
+                            value: "Incoming animals will be permanently housed ",
+                            text: "Incoming animals will be permanently housed ",
+                            checked: (data['SECTION-PAGENAME_CHECKBOXES-checkboxes'] or []).indexOf('Incoming animals will be permanently housed ') > -1
+                        },
+                        {
+                            value: "Disinfection points located at the housing entrances and exits",
+                            text: "Disinfection points located at the housing entrances and exits",
+                            checked: (data['SECTION-PAGENAME_CHECKBOXES-checkboxes'] or []).indexOf('Disinfection points located at the housing entrances and exits') > -1
+                        },
+                        {
+                            value: "Other separation measures",
+                            text: "Other separation measures",
+                            checked: (data['SECTION-PAGENAME_CHECKBOXES-checkboxes'] or []).indexOf('Other separation measures') > -1
+                        }
+                    ]
                 })
             }}
 
@@ -122,18 +117,20 @@ This will save you time.
 
 
 
+
 <!-- ERROR LOGIC  drop down to toggle states  -->
-<form method="post"  action="#" class="for4" style=" float: left; position: relative; bottom:-270px;  ">
+<form method="post"  action="#" class="for4" style=" float: left; position: relative; bottom:-225px;  ">
 
     <select style="height:30px;" onchange="window.location.href='?'+this.value">
 
-        <option value="errorthispage=false&errortypeone=false"
-                {% if  data['errorthispage'] != "true"  %}selected{% endif %}
+        <option value="errorthispage=false&errortypeone=false&errortypetwo=false&"
+                {% if (data['errorthispage'] != "true") %}selected{% endif %}
         >Errors - Off</option>
 
-        <option value="errorthispage=true&errortypeone=true"
-                {% if  data['errortypeone'] == 'true'  %}selected{% endif %}
-        >Error 1 - Not selected</option>
+        <!-- Nothing was selected -->
+        <option value="errorthispage=true&errortypeone=true&errortypetwo=false&"
+                {% if (data['errortypeone'] == 'true' and data['errortypetwo'] != 'true')  %}selected{% endif %}
+        >Error 1 - Must select at least one</option>
 
     </select>
 
@@ -141,9 +138,9 @@ This will save you time.
 <!--  END OF ERROR LOGIC -->
 
 
-
-
-
 {% endblock %}
+
+
+
 
 
