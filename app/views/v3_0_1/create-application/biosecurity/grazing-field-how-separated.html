@@ -1,21 +1,5 @@
 {% extends "layouts/v3_0_1.html" %}
 
-{% extends "layouts/main.html" %}
-
-
-<!--
-NOTES ON USING THIS TEMPLATE Page
-This will save you time.
-
-1. Type your heading for the page after '% set pageHeadingTextHTML %'
-2. Type/customise the error message after '% set errorTextHTML %'
-3. Use 'Find and replace' to replace "SECTION" with the name of the section of the service you're working on.
-4. Use 'Find and replace' to replace "PAGENAME_CHECKBOXES" with whatever you named this page/file.
-5. Use 'Find and replace' to replace each of the checkbox values. Starting with 'PLACEHOLDER_ANSWER_1'
-6. Go to the javascript file 'templates.js' and copy the section 'CHECKBOXES - MANDATORY' into your routes.js file.
-7. Follow instructions at the top of the 'templates.js'.
--->
-
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
@@ -40,13 +24,13 @@ This will save you time.
 
 
         <!-- form URL below turns off errors on the next page  -->
-        <form action="PAGENAME_CHECKBOXES-router" method="post" novalidate>
+        <form action="grazing-field-how-separated-router" method="post" novalidate>
 
             {{ govukCheckboxes
                 ({
-                    name: "SECTION-PAGENAME_CHECKBOXES-checkboxes",
+                    name: "biosecurity-grazing-field-how-separated-checkboxes",
 
-                    id: "SECTION-PAGENAME_CHECKBOXES-checkboxes",
+                    id: "biosecurity-grazing-field-how-separated-checkboxes",
 
                     fieldset:
                     {
@@ -72,17 +56,17 @@ This will save you time.
                         {
                             value: "A separate field will be used for the incoming animals' arrival",
                             text: "A separate field will be used for the incoming animals' arrival",
-                            checked: (data['SECTION-PAGENAME_CHECKBOXES-checkboxes'] or []).indexOf("A separate field will be used for the incoming animals’ arrival") > -1
+                            checked: (data['biosecurity-grazing-field-how-separated-checkboxes'] or []).indexOf("A separate field will be used for the incoming animals’ arrival") > -1
                         },
                         {
                             value: "Incoming animals will graze in a separate field to the resident animals",
                             text: "Incoming animals will graze in a separate field to the resident animals",
-                            checked: (data['SECTION-PAGENAME_CHECKBOXES-checkboxes'] or []).indexOf('Incoming animals will graze in a separate field to the resident animals') > -1
+                            checked: (data['biosecurity-grazing-field-how-separated-checkboxes'] or []).indexOf('Incoming animals will graze in a separate field to the resident animals') > -1
                         },
                         {
                             value: "Roads create a boundary between the animals",
                             text: "Roads create a boundary between the animals",
-                            checked: (data['SECTION-PAGENAME_CHECKBOXES-checkboxes'] or []).indexOf('Roads create a boundary between the animals') > -1
+                            checked: (data['biosecurity-grazing-field-how-separated-checkboxes'] or []).indexOf('Roads create a boundary between the animals') > -1
                         },
                         {
                             value: "A minimum of 3 metres will separate the animals",
@@ -91,12 +75,12 @@ This will save you time.
                             {
                                 text: "Such as by hedges, fences or walls"
                             },
-                            checked: (data['SECTION-PAGENAME_CHECKBOXES-checkboxes'] or []).indexOf('A minimum of 3 metres will separate the animals') > -1
+                            checked: (data['biosecurity-grazing-field-how-separated-checkboxes'] or []).indexOf('A minimum of 3 metres will separate the animals') > -1
                         },
                         {
                             value: "Other separation measures",
                             text: "Other separation measures",
-                            checked: (data['SECTION-PAGENAME_CHECKBOXES-checkboxes'] or []).indexOf('Other separation measures') > -1
+                            checked: (data['biosecurity-grazing-field-how-separated-checkboxes'] or []).indexOf('Other separation measures') > -1
                         }
                     ]
                 })

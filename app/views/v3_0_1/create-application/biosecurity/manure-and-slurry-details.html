@@ -3,19 +3,6 @@
 {% extends "layouts/main.html" %}
 
 
-<!--
-NOTES ON USING THIS TEMPLATE Page
-This will save you time.
-
-1. Type your heading for the page after '% set pageHeadingTextHTML %'
-2. Type/customise the error message after '% set errorTextHTML %'
-3. Use 'Find and replace' to replace "SECTION" with the name of the section of the service you're working on.
-4. Use 'Find and replace' to replace "PAGENAME_CHECKBOXES" with whatever you named this page/file.
-5. Use 'Find and replace' to replace each of the checkbox values. Starting with 'PLACEHOLDER_ANSWER_1'
-6. Go to the javascript file 'templates.js' and copy the section 'CHECKBOXES - MANDATORY' into your routes.js file.
-7. Follow instructions at the top of the 'templates.js'.
--->
-
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
@@ -56,7 +43,7 @@ This will save you time.
                     [
                         {
                             html: errorTextHTML,
-                            href: "#SECTION-PAGENAME_CHECKBOXES-checkboxes"
+                            href: "#biosecurity-manure-and-slurry-details-checkboxes"
                         }
                     ]
                 })
@@ -66,13 +53,13 @@ This will save you time.
 
 
         <!-- form URL below turns off errors on the next page  -->
-        <form action="PAGENAME_CHECKBOXES-router" method="post" novalidate>
+        <form action="manure-and-slurry-details-router" method="post" novalidate>
 
             {{ govukCheckboxes
                 ({
-                    name: "SECTION-PAGENAME_CHECKBOXES-checkboxes",
+                    name: "biosecurity-manure-and-slurry-details-checkboxes",
 
-                    id: "SECTION-PAGENAME_CHECKBOXES-checkboxes",
+                    id: "biosecurity-manure-and-slurry-details-checkboxes",
 
                     fieldset:
                     {
@@ -98,32 +85,32 @@ This will save you time.
                         {
                             value: "Manure is not purchased from other farms",
                             text: "Manure is not purchased from other farms",
-                            checked: (data['SECTION-PAGENAME_CHECKBOXES-checkboxes'] or []).indexOf('Manure is not purchased from other farms') > -1
+                            checked: (data['biosecurity-manure-and-slurry-details-checkboxes'] or []).indexOf('Manure is not purchased from other farms') > -1
                         },
                         {
                             value: "Manure and slurry is securely stored so domestic and wild animals can't access it",
                             text: "Manure and slurry is securely stored so domestic and wild animals can't access it",
-                            checked: (data['SECTION-PAGENAME_CHECKBOXES-checkboxes'] or []).indexOf("Manure and slurry is securely stored so domestic and wild animals can't access it") > -1
+                            checked: (data['biosecurity-manure-and-slurry-details-checkboxes'] or []).indexOf("Manure and slurry is securely stored so domestic and wild animals can't access it") > -1
                         },
                         {
                             value: "Manure is stored for at least 3 weeks before spreading on pasture",
                             text: "Manure is stored for at least 3 weeks before spreading on pasture",
-                            checked: (data['SECTION-PAGENAME_CHECKBOXES-checkboxes'] or []).indexOf('Manure is stored for at least 3 weeks before spreading on pasture') > -1
+                            checked: (data['biosecurity-manure-and-slurry-details-checkboxes'] or []).indexOf('Manure is stored for at least 3 weeks before spreading on pasture') > -1
                         },
                         {
                             value: "Slurry is stored for at least 6 months before spreading on pasture",
                             text: "Slurry is stored for at least 6 months before spreading on pasture",
-                            checked: (data['SECTION-PAGENAME_CHECKBOXES-checkboxes'] or []).indexOf('Slurry is stored for at least 6 months before spreading on pasture') > -1
+                            checked: (data['biosecurity-manure-and-slurry-details-checkboxes'] or []).indexOf('Slurry is stored for at least 6 months before spreading on pasture') > -1
                         },
                         {
                             value: "Manure will not be spread on land grazed by cattle or cut for forage for at least 60 days",
                             text: "Manure will not be spread on land grazed by cattle or cut for forage for at least 60 days",
-                            checked: (data['SECTION-PAGENAME_CHECKBOXES-checkboxes'] or []).indexOf('Manure will not be spread on land grazed by cattle or cut for forage for at least 60 days') > -1
+                            checked: (data['biosecurity-manure-and-slurry-details-checkboxes'] or []).indexOf('Manure will not be spread on land grazed by cattle or cut for forage for at least 60 days') > -1
                         },
                         {
                             value: "Other measures",
                             text: "Other measures",
-                            checked: (data['SECTION-PAGENAME_CHECKBOXES-checkboxes'] or []).indexOf('Other measures') > -1
+                            checked: (data['biosecurity-manure-and-slurry-details-checkboxes'] or []).indexOf('Other measures') > -1
                         }
                     ]
                 })

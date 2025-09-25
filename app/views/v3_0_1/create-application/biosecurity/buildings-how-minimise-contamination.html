@@ -40,7 +40,7 @@
                     [
                         {
                             html: errorTextHTML,
-                            href: "#SECTION-PAGENAME_CHECKBOXES-checkboxes"
+                            href: "#biosecurity-buildings-how-minimise-contamination-checkboxes"
                         }
                     ]
                 })
@@ -50,13 +50,13 @@
 
 
         <!-- form URL below turns off errors on the next page  -->
-        <form action="PAGENAME_CHECKBOXES-router" method="post" novalidate>
+        <form action="buildings-how-minimise-contamination-router" method="post" novalidate>
 
             {{ govukCheckboxes
                 ({
-                    name: "SECTION-PAGENAME_CHECKBOXES-checkboxes",
+                    name: "biosecurity-buildings-how-minimise-contamination-checkboxes",
 
-                    id: "SECTION-PAGENAME_CHECKBOXES-checkboxes",
+                    id: "biosecurity-buildings-how-minimise-contamination-checkboxes",
 
                     fieldset:
                     {
@@ -81,27 +81,27 @@
                         {
                             value: "Cleaning and disinfecting of shared buildings before the animals arrive",
                             text: "Cleaning and disinfecting of shared buildings before the animals arrive",
-                            checked: (data['SECTION-PAGENAME_CHECKBOXES-checkboxes'] or []).indexOf('Cleaning and disinfecting of shared buildings before the animals arrive') > -1
+                            checked: (data['biosecurity-buildings-how-minimise-contamination-checkboxes'] or []).indexOf('Cleaning and disinfecting of shared buildings before the animals arrive') > -1
                         },
                         {
                             value: "Isolation of incoming animals in a separate building, shed or pen on arrival",
                             text: "Isolation of incoming animals in a separate building, shed or pen on arrival",
-                            checked: (data['SECTION-PAGENAME_CHECKBOXES-checkboxes'] or []).indexOf('Isolation of incoming animals in a separate building, shed or pen on arrival') > -1
+                            checked: (data['biosecurity-buildings-how-minimise-contamination-checkboxes'] or []).indexOf('Isolation of incoming animals in a separate building, shed or pen on arrival') > -1
                         },
                         {
                             value: "Incoming animals will be permanently housed ",
                             text: "Incoming animals will be permanently housed ",
-                            checked: (data['SECTION-PAGENAME_CHECKBOXES-checkboxes'] or []).indexOf('Incoming animals will be permanently housed ') > -1
+                            checked: (data['biosecurity-buildings-how-minimise-contamination-checkboxes'] or []).indexOf('Incoming animals will be permanently housed ') > -1
                         },
                         {
                             value: "Disinfection points located at the housing entrances and exits",
                             text: "Disinfection points located at the housing entrances and exits",
-                            checked: (data['SECTION-PAGENAME_CHECKBOXES-checkboxes'] or []).indexOf('Disinfection points located at the housing entrances and exits') > -1
+                            checked: (data['biosecurity-buildings-how-minimise-contamination-checkboxes'] or []).indexOf('Disinfection points located at the housing entrances and exits') > -1
                         },
                         {
                             value: "Other separation measures",
                             text: "Other separation measures",
-                            checked: (data['SECTION-PAGENAME_CHECKBOXES-checkboxes'] or []).indexOf('Other separation measures') > -1
+                            checked: (data['biosecurity-buildings-how-minimise-contamination-checkboxes'] or []).indexOf('Other separation measures') > -1
                         }
                     ]
                 })
