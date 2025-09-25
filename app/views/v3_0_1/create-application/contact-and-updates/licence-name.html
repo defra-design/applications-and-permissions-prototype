@@ -5,9 +5,9 @@
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
     {% if  data['origin-to-or-from-own-premises-radios'] != "On to the farm or premises"  %}
-        What is the name of the registered owner of the animals?
+        What is the name of the person registered as the keeper of the animals?
     {% else %}
-        Who will be the registered owner of the animals?
+        What is the name of the person registered as the keeper of the animals?
     {% endif %}
 
 {% endset %}
@@ -18,19 +18,20 @@
     <!-- Error 1 - No answer selected -->
     {% if data['errortypeone'] == "true" %}
         {% if  data['origin-to-or-from-own-premises-radios'] != "On to the farm or premises"  %}
-            Enter the first name of the registered owner of the animals
+            Enter the first name of the person registered as the keeper of the animals
         {% else %}
-            Enter the first name of who will be the registered owner of the animals
+            Enter the first name of the person registered as the keeper of the animals
         {% endif %}
 
 
     <!-- Error 2 - If answer is too long -->
     {% elif data['errortypetwo'] == "true" %}
         {% if  data['origin-to-or-from-own-premises-radios'] != "On to the farm or premises"  %}
-            Enter the last name of the registered owner of the animals
+            Enter the last name of the person registered as the keeper of the animals
         {% else %}
-            Enter the last name of who will be the registered owner of the animals
+            Enter the last name of the person registered as the keeper of the animals
         {% endif %}
+
     <!-- Error 3 - too long first name -->
     {% elif data['errortypethree'] == "true" %}
         First name must be no longer than 50 characters
