@@ -34,18 +34,6 @@
 
                 <div class="govuk-summary-list__row">
                     <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
-                        How will you separate the incoming animals from the resident herd?
-                    </dt>
-                    <dd class="govuk-summary-list__value">
-                        {{ data['biosecurity-grazing-field-how-separated-text-input'] }}
-                    </dd>
-                    <dd class="govuk-summary-list__actions">
-                        <a class="govuk-link" href="../biosecurity/grazing-field-how-separated">Change<span class="govuk-visually-hidden"> </span></a>
-                    </dd>
-                </div>
-
-                <div class="govuk-summary-list__row">
-                    <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
                         How long ago was the field last grazed by the resident herd?
                     </dt>
                     <dd class="govuk-summary-list__value">
@@ -68,6 +56,30 @@
                     </dd>
                 </div>
 
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
+                        Which measures are being taken to reduce the spread of TB when the animals are grazing?
+                    </dt>
+                    <dd class="govuk-summary-list__value"  style="white-space: pre-wrap;">{{ data['biosecurity-grazing-field-how-separated-checkboxes-formatted'] }}</dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="../biosecurity/grazing-field-how-separated">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                </div>
+
+                {%  if 'Other separation measures' in data['biosecurity-grazing-field-how-separated-checkboxes-formatted'] %}
+
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
+                            What other measures are being taken to reduce the spread of TB when the animals are grazing?
+                        </dt>
+                        <dd class="govuk-summary-list__value"  style="white-space: pre-wrap;">{{ data['biosecurity-grazing-field-how-separated-other-text-area'] }}</dd>
+                        <dd class="govuk-summary-list__actions">
+                            <a class="govuk-link" href="../biosecurity/grazing-field-how-separated-other">Change<span class="govuk-visually-hidden"> </span></a>
+                        </dd>
+                    </div>
+
+                {%  endif  %}
+
             {%  endif  %}
 
     <!-- End of how separation will be used -->
@@ -78,13 +90,26 @@
         <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
             How will you manage manure and slurry?
         </dt>
-        <dd class="govuk-summary-list__value">
-            {{ data['biosecurity-manure-and-slurry-details-text-input'] }}
-        </dd>
+        <dd class="govuk-summary-list__value"  style="white-space: pre-wrap;">{{ data['biosecurity-manure-and-slurry-details-checkboxes-formatted'] }}</dd>
         <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="../biosecurity/buildings-any-shared">Change<span class="govuk-visually-hidden"> </span></a>
+            <a class="govuk-link" href="../biosecurity/manure-and-slurry-details">Change<span class="govuk-visually-hidden"> </span></a>
         </dd>
     </div>
+
+
+    {%  if 'Other measures' in data['biosecurity-manure-and-slurry-details-checkboxes-formatted'] %}
+
+        <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
+                What other measures are being taken to manage slurry and manure?
+            </dt>
+            <dd class="govuk-summary-list__value"  style="white-space: pre-wrap;">{{ data['biosecurity-manure-and-slurry-details-other-text-area'] }}</dd>
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="../biosecurity/manure-and-slurry-details-other">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        </div>
+
+    {%  endif  %}
 
 
     <div class="govuk-summary-list__row">
@@ -130,15 +155,29 @@
 
         <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
-                How will you reduce the risk of spreading TB from the resident herd to the incoming animals during housing?
+                Which measures are being taken to reduce the spread of TB during housing?
             </dt>
-            <dd class="govuk-summary-list__value">
-                {{ data['biosecurity-buildings-how-minimise-contamination-text-input'] }}
-            </dd>
+            <dd class="govuk-summary-list__value"  style="white-space: pre-wrap;">{{ data['biosecurity-buildings-how-minimise-contamination-checkboxes-formatted'] }}</dd>
             <dd class="govuk-summary-list__actions">
                 <a class="govuk-link" href="../biosecurity/buildings-how-minimise-contamination">Change<span class="govuk-visually-hidden"> </span></a>
             </dd>
         </div>
+
+
+        {%  if 'Other measures' in data['biosecurity-buildings-how-minimise-contamination-checkboxes-formatted'] %}
+
+        <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
+                What other measures are being taken to reduce the spread of TB during housing?
+            </dt>
+            <dd class="govuk-summary-list__value"  style="white-space: pre-wrap;">{{ data['biosecurity-buildings-how-minimise-contamination-other-text-area'] }}</dd>
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="../biosecurity/buildings-how-minimise-contamination-other">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        </div>
+
+        {%  endif  %}
+
 
     {%  endif  %}
 

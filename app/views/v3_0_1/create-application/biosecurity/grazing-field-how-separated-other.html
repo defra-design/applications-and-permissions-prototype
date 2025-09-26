@@ -1,17 +1,5 @@
 {% extends "layouts/v3_0_1.html" %}
 
-<!--
-NOTES ON USING THIS TEMPLATE Page
-This will save you time.
-
-1. Type your heading for the page after '% set pageHeadingTextHTML %'
-2. Type/customise the error message after '% set errorTextHTML %'
-3. Use 'Find and replace' to replace "SECTION" with the name of the section of the service you're working on.
-4. Use 'Find and replace' to replace "PAGENAME_YES_NO" with whatever you named this page/file.
-5. Go to the javascript file 'templates.js' and copy the section 'YES AND NO - RADIO BUTTONS - MANDATORY' into your routes.js file.
-6. Follow instructions at the top of the 'templates.js'
--->
-
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
@@ -52,7 +40,7 @@ This will save you time.
                     [
                         {
                             html: errorTextHTML,
-                            href: "#biosecurity-grazing-field-how-separated-other-text-input"
+                            href: "#biosecurity-grazing-field-how-separated-other-text-area"
                         }
                     ]
                 })
@@ -73,9 +61,9 @@ This will save you time.
                         isPageHeading: true
                     },
 
-                    id: "biosecurity-grazing-field-how-separated-other-text-input",
+                    id: "biosecurity-grazing-field-how-separated-other-text-area",
 
-                    name: "biosecurity-grazing-field-how-separated-other-text-input",
+                    name: "biosecurity-grazing-field-how-separated-other-text-area",
 
                     hint:
                     {
@@ -85,7 +73,7 @@ This will save you time.
                     errorMessage: null if data['errorthispage'] != "true"
                                        else { html: errorTextHTML },
 
-                    value: data['biosecurity-grazing-field-how-separated-other-text-input'],
+                    value: data['biosecurity-grazing-field-how-separated-other-text-area'],
 
                     rows: "4"
                 })

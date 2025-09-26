@@ -151,14 +151,10 @@ module.exports = function (router) {
             else
             {
                 // This page name needs to be the next page the user gets to after successfully continuing
-                res.redirect('grazing-field-how-separated');
+                res.redirect('last-grazed');
             }
         }
         else if (req.session.data['biosecurity-grazing-radios-yes-no'] == "No")
-        {
-            res.redirect('manure-and-slurry-details');
-        }
-        else if (req.session.data['biosecurity-grazing-radios-yes-no'] == "I don't know")
         {
             res.redirect('manure-and-slurry-details');
         }
@@ -175,36 +171,6 @@ module.exports = function (router) {
 
 
 
-    ////////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////////
-    ////////////////                                                    ////////////////
-    ////////////////       Initial routing based on cattle type         ////////////////
-    ////////////////                                                    ////////////////
-    ////////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////////
-
-
-    router.get(section + 'grazing-field-how-separated-router', function (req, res)
-    {
-        req.session.data['errorthispage'] = "false";
-        req.session.data['errortypeone'] = "false";
-
-        if (req.session.data['biosecurity-grazing-field-how-separated-text-input'] == undefined || req.session.data['biosecurity-grazing-field-how-separated-text-input'] == "")
-        {
-            // Trigger validation and relaunch the page
-            req.session.data['errorthispage'] = "true";
-            req.session.data['errortypeone'] = "true";
-
-            // This page name needs to match the page the user was just on
-            res.redirect('grazing-field-how-separated');
-        }
-        else
-        {
-            // Always proceed to the next questions on shared tracks
-            res.redirect('last-grazed');
-
-        }
-    })
 
 
 
@@ -238,7 +204,6 @@ module.exports = function (router) {
             res.redirect('last-grazed');
         }
 
-
         else
         {
             // everything with the input is fine so move on to next page
@@ -257,6 +222,9 @@ module.exports = function (router) {
         }
 
     })
+
+
+
 
 
 
@@ -294,7 +262,7 @@ module.exports = function (router) {
             else
             {
                 // This page name needs to be the next page the user gets to after successfully continuing
-                res.redirect('manure-and-slurry-details');
+                res.redirect('grazing-field-how-separated');
             }
         }
         else if (req.session.data['biosecurity-manure-and-slurry-radios-yes-no'] == "No")
@@ -310,7 +278,7 @@ module.exports = function (router) {
             else
             {
                 // This page name needs to be the next page the user gets to after successfully continuing
-                res.redirect('manure-and-slurry-details');
+                res.redirect('grazing-field-how-separated');
             }
         }
         else
@@ -323,6 +291,105 @@ module.exports = function (router) {
             res.redirect('manure-and-slurry');
         }
     })
+
+
+
+
+
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////       Initial routing based on cattle type         ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    router.get(section + 'grazing-field-how-separated-router', function (req, res)
+    {
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+
+        var checkboxestext = "";
+
+        if(req.session.data['biosecurity-grazing-field-how-separated-checkboxes'] != undefined)
+        {
+            checkboxestext = req.session.data['biosecurity-grazing-field-how-separated-checkboxes'].toString();
+
+            let newStringgrazing = checkboxestext.replace(/,(?!\s)/g, "\n\n");
+            req.session.data['biosecurity-grazing-field-how-separated-checkboxes-formatted'] = newStringgrazing;
+        }
+        else
+        {
+            req.session.data['biosecurity-grazing-field-how-separated-checkboxes-formatted'] = "None";
+        }
+
+        if (checkboxestext.includes("Other separation measures"))
+        {
+            // Always proceed to the next questions on shared tracks
+            res.redirect('grazing-field-how-separated-other');
+        }
+        else
+        {
+            // Always proceed to the next questions on shared tracks
+            res.redirect('manure-and-slurry-details');
+
+        }
+    })
+
+
+
+
+
+
+
+    // NOT COMPLEX PAGE
+    // Other staff free textbox
+    router.post(section + 'grazing-field-how-separated-other-router', function (req, res)
+    {
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+        req.session.data['errortypetwo'] = "false";
+        req.session.data['errortypethree'] = "false";
+        req.session.data['errortypefour'] = "false";
+        req.session.data['errortypefive'] = "false";
+        req.session.data['errortypefour'] = "false";
+
+        // Validation check if field is blank
+        if (req.session.data['biosecurity-grazing-field-how-separated-other-text-area'] == undefined || req.session.data['biosecurity-grazing-field-how-separated-other-text-area'] == "")
+        {
+            // Trigger validation and relaunch the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('grazing-field-how-separated-other');
+        }
+
+        else
+        {
+            // This page name needs to be the next page the user gets to after successfully continuing
+            res.redirect('manure-and-slurry-details');
+        }
+
+    })
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -340,15 +407,41 @@ module.exports = function (router) {
         req.session.data['errorthispage'] = "false";
         req.session.data['errortypeone'] = "false";
 
-        if (req.session.data['biosecurity-manure-and-slurry-details-text-input'] == undefined || req.session.data['biosecurity-manure-and-slurry-details-text-input'] == "")
+        var checkboxestext = "";
+
+        if(req.session.data['biosecurity-manure-and-slurry-details-checkboxes'] != undefined)
+        {
+            checkboxestext = req.session.data['biosecurity-manure-and-slurry-details-checkboxes'].toString();
+
+            let newStringmanure = checkboxestext.replace(/,(?!\s)/g, "\n\n");
+            req.session.data['biosecurity-manure-and-slurry-details-checkboxes-formatted'] = newStringmanure;
+        }
+        else
+        {
+            req.session.data['biosecurity-manure-and-slurry-details-checkboxes-formatted'] = "None";
+        }
+
+
+        if (req.session.data['biosecurity-manure-and-slurry-details-checkboxes'] == undefined || req.session.data['biosecurity-manure-and-slurry-details-checkboxes'] == "")
         {
             // Trigger validation and relaunch the page
-            req.session.data['errorthispage'] = "true";
-            req.session.data['errortypeone'] = "true";
+            //req.session.data['errorthispage'] = "true";
+            //req.session.data['errortypeone'] = "true";
 
             // This page name needs to match the page the user was just on
-            res.redirect('manure-and-slurry-details');
+            res.redirect('disinfectant');
         }
+
+        else if (checkboxestext.includes("Other measures"))
+        {
+            // Trigger validation and relaunch the page
+            //req.session.data['errorthispage'] = "true";
+            //req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('manure-and-slurry-details-other');
+        }
+
         else
         {
             // Always proceed to the next questions on shared tracks
@@ -359,6 +452,43 @@ module.exports = function (router) {
 
 
 
+
+
+
+
+
+
+
+    // NOT COMPLEX PAGE
+    // Other staff free textbox
+    router.post(section + 'manure-and-slurry-details-other-router', function (req, res)
+    {
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+        req.session.data['errortypetwo'] = "false";
+        req.session.data['errortypethree'] = "false";
+        req.session.data['errortypefour'] = "false";
+        req.session.data['errortypefive'] = "false";
+        req.session.data['errortypefour'] = "false";
+
+        // Validation check if field is blank
+        if (req.session.data['biosecurity-manure-and-slurry-details-other-text-area'] == undefined || req.session.data['biosecurity-manure-and-slurry-details-other-text-area'] == "")
+        {
+            // Trigger validation and relaunch the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('manure-and-slurry-details-other');
+        }
+
+        else
+        {
+            // This page name needs to be the next page the user gets to after successfully continuing
+            res.redirect('disinfectant');
+        }
+
+    })
 
 
 
@@ -655,14 +785,30 @@ module.exports = function (router) {
         req.session.data['errorthispage'] = "false";
         req.session.data['errortypeone'] = "false";
 
-        if (req.session.data['biosecurity-buildings-how-minimise-contamination-text-input'] == undefined || req.session.data['biosecurity-buildings-how-minimise-contamination-text-input'] == "")
-        {
-            // Trigger validation and relaunch the page
-            req.session.data['errorthispage'] = "true";
-            req.session.data['errortypeone'] = "true";
+        var checkboxestext = "";
 
+        if(req.session.data['biosecurity-buildings-how-minimise-contamination-checkboxes'] != undefined)
+        {
+            checkboxestext = req.session.data['biosecurity-buildings-how-minimise-contamination-checkboxes'].toString();
+
+            let newStringbuildings = checkboxestext.replace(/,(?!\s)/g, "\n\n");
+            req.session.data['biosecurity-buildings-how-minimise-contamination-checkboxes-formatted'] = newStringbuildings;
+        }
+        else
+        {
+            req.session.data['biosecurity-buildings-how-minimise-contamination-checkboxes-formatted'] = "None";
+        }
+
+
+        if(req.session.data['biosecurity-buildings-how-minimise-contamination-checkboxes'] != undefined)
+        {
+            checkboxestext = req.session.data['biosecurity-buildings-how-minimise-contamination-checkboxes'].toString();
+        }
+
+        if (checkboxestext.includes("Other measures"))
+        {
             // This page name needs to match the page the user was just on
-            res.redirect('buildings-how-minimise-contamination');
+            res.redirect('buildings-how-minimise-contamination-other');
         }
         else
         {
@@ -670,6 +816,46 @@ module.exports = function (router) {
             res.redirect('equipment-any-shared');
         }
     })
+
+
+
+
+
+
+    // NOT COMPLEX PAGE
+    // Other staff free textbox
+    router.post(section + 'buildings-how-minimise-contamination-other-router', function (req, res)
+    {
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+        req.session.data['errortypetwo'] = "false";
+        req.session.data['errortypethree'] = "false";
+        req.session.data['errortypefour'] = "false";
+        req.session.data['errortypefive'] = "false";
+        req.session.data['errortypefour'] = "false";
+
+        // Validation check if field is blank
+        if (req.session.data['biosecurity-buildings-how-minimise-contamination-other-text-area'] == undefined || req.session.data['biosecurity-buildings-how-minimise-contamination-other-text-area'] == "")
+        {
+            // Trigger validation and relaunch the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('buildings-how-minimise-contamination-other');
+        }
+
+        else
+        {
+
+
+            // This page name needs to be the next page the user gets to after successfully continuing
+            res.redirect('equipment-any-shared');
+        }
+
+    })
+
+
 
 
 

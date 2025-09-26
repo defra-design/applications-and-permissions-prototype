@@ -34,6 +34,9 @@ This will save you time.
 
 {% endset %}
 
+{% set dilutionratecheckboxtext %}I confirm a dilution rate of 1:{{ data['biosecurity-disinfectant-rate'] }} is used on the farm or premises{% endset %}
+
+
 
 <!-- Text that show in the browser tab. Does NOT need changing -->
 {% block pageTitle %}
@@ -114,9 +117,9 @@ This will save you time.
                     items:
                     [
                         {
-                            value: "I confirm this is the dilution rate used on the farm or premises",
-                            text: "I confirm this is the dilution rate used on the farm or premises",
-                            checked: (data['biosecurity-disinfectant-dilution-checkboxes'] or []).indexOf('I confirm this is the dilution rate used on the farm or premises') > -1
+                            value: dilutionratecheckboxtext,
+                            text: dilutionratecheckboxtext,
+                            checked: (data['biosecurity-disinfectant-dilution-checkboxes'] or []).includes(dilutionratecheckboxtext)
                         }
                     ]
                 })
