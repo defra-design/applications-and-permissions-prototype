@@ -134,12 +134,17 @@
                         {
                             value: "I confirm all the information given about my farm or premises is correct to the best of my knowledge",
                             text: "I confirm all the information given about my farm or premises is correct to the best of my knowledge",
-                            checked: (data['check-answers-confirmation-checkboxes'] or []).indexOf('I confirm all the information given about my farm or premises is correct to the best of my knowledge') > -1
+                            checked: (data['check-answers-confirmation-checkboxes'] or []).indexOf('I confirm all the information given about my farm or premises is correct to the best of my knowledge') > -1,
+                            behaviour: "exclusive"
+                        },
+                        {
+                            divider: "or"
                         },
                         {
                             value: "I am submitting this form on behalf of someone else and confirm all the information given is correct to the best of my knowledge",
                             text: "I am submitting this form on behalf of someone else and confirm all the information given is correct to the best of my knowledge",
-                            checked: (data['check-answers-confirmation-checkboxes'] or []).indexOf('I am submitting this form on behalf of someone else and confirm all the information given is correct to the best of my knowledge') > -1
+                            checked: (data['check-answers-confirmation-checkboxes'] or []).indexOf('I am submitting this form on behalf of someone else and confirm all the information given is correct to the best of my knowledge') > -1,
+                            behaviour: "exclusive"
                         }
                     ]
                 })
