@@ -672,190 +672,10 @@ module.exports = function (router) {
             else
             {
                 // This page name needs to be the next page the user gets to after successfully continuing
-                res.redirect('buildings-any-shared');
-            }
-        }
-    })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    ////////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////////
-    ////////////////                                                    ////////////////
-    ////////////////          Housing the cattle                        ////////////////
-    ////////////////                                                    ////////////////
-    ////////////////       YES AND NO - RADIO BUTTONS - MANDATORY       ////////////////
-    ////////////////                                                    ////////////////
-    ////////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////////
-
-
-    // NOT COMPLEX PAGE
-    router.post(section + 'buildings-any-shared-router', function (req, res)
-    {
-        // Turn errors off by default
-        req.session.data['errorthispage'] = "false";
-        req.session.data['errortypeone'] = "false";
-
-        // If Yes was selected, continue to next page
-        if (req.session.data['biosecurity-buildings-any-shared-radios-yes-no'] == "Yes")
-        {
-            // Continue to the next page
-
-            // If the user needs to go back to 'check your answers' then take them directly there
-            if (req.session.data['camefromcheckanswers'] == 'true')
-            {
-                req.session.data['camefromcheckanswers'] = false;
-                res.redirect('check-answers');
-            }
-            else
-            {
-                // This page name needs to be the next page the user gets to after successfully continuing
-                res.redirect('buildings-how-minimise-contamination');
-            }
-        }
-        else if (req.session.data['biosecurity-buildings-any-shared-radios-yes-no'] == "No")
-        {
-            // Continue to the next page
-
-            // If the user needs to go back to 'check your answers' then take them directly there
-            if (req.session.data['camefromcheckanswers'] == 'true')
-            {
-                req.session.data['camefromcheckanswers'] = false;
-                res.redirect('check-answers');
-            }
-            else
-            {
-                // This page name needs to be the next page the user gets to after successfully continuing
                 res.redirect('equipment-any-shared');
             }
         }
-        else
-        {
-            // Trigger validation and reload the page
-            req.session.data['errorthispage'] = "true";
-            req.session.data['errortypeone'] = "true";
-
-            // This page name needs to match the page the user was just on
-            res.redirect('buildings-any-shared');
-        }
     })
-
-
-
-
-
-    ////////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////////
-    ////////////////                                                    ////////////////
-    ////////////////       How will shared buildings be kept clean      ////////////////
-    ////////////////                                                    ////////////////
-    ////////////////                        TEXT AREA                   ////////////////
-    ////////////////                                                    ////////////////
-    ////////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////////
-
-
-    router.get(section + 'buildings-how-minimise-contamination-router', function (req, res)
-    {
-        req.session.data['errorthispage'] = "false";
-        req.session.data['errortypeone'] = "false";
-
-        var checkboxestext = "";
-
-        if(req.session.data['biosecurity-buildings-how-minimise-contamination-checkboxes'] != undefined)
-        {
-            checkboxestext = req.session.data['biosecurity-buildings-how-minimise-contamination-checkboxes'].toString();
-
-            let newStringbuildings = checkboxestext.replace(/,(?!\s)/g, "\n\n");
-            req.session.data['biosecurity-buildings-how-minimise-contamination-checkboxes-formatted'] = newStringbuildings;
-        }
-        else
-        {
-            req.session.data['biosecurity-buildings-how-minimise-contamination-checkboxes-formatted'] = "None";
-        }
-
-
-        if(req.session.data['biosecurity-buildings-how-minimise-contamination-checkboxes'] != undefined)
-        {
-            checkboxestext = req.session.data['biosecurity-buildings-how-minimise-contamination-checkboxes'].toString();
-        }
-
-        if (checkboxestext.includes("Other measures"))
-        {
-            // This page name needs to match the page the user was just on
-            res.redirect('buildings-how-minimise-contamination-other');
-        }
-        else
-        {
-            // Always proceed to the next questions on shared tracks
-            res.redirect('equipment-any-shared');
-        }
-    })
-
-
-
-
-
-
-    // NOT COMPLEX PAGE
-    // Other staff free textbox
-    router.post(section + 'buildings-how-minimise-contamination-other-router', function (req, res)
-    {
-        req.session.data['errorthispage'] = "false";
-        req.session.data['errortypeone'] = "false";
-        req.session.data['errortypetwo'] = "false";
-        req.session.data['errortypethree'] = "false";
-        req.session.data['errortypefour'] = "false";
-        req.session.data['errortypefive'] = "false";
-        req.session.data['errortypefour'] = "false";
-
-        // Validation check if field is blank
-        if (req.session.data['biosecurity-buildings-how-minimise-contamination-other-text-area'] == undefined || req.session.data['biosecurity-buildings-how-minimise-contamination-other-text-area'] == "")
-        {
-            // Trigger validation and relaunch the page
-            req.session.data['errorthispage'] = "true";
-            req.session.data['errortypeone'] = "true";
-
-            // This page name needs to match the page the user was just on
-            res.redirect('buildings-how-minimise-contamination-other');
-        }
-
-        else
-        {
-
-
-            // This page name needs to be the next page the user gets to after successfully continuing
-            res.redirect('equipment-any-shared');
-        }
-
-    })
-
-
 
 
 
@@ -910,7 +730,7 @@ module.exports = function (router) {
             else
             {
                 // This page name needs to be the next page the user gets to after successfully continuing
-                res.redirect('people-disinfection');
+                res.redirect('buildings-any-shared');
             }
         }
         else
@@ -988,7 +808,7 @@ module.exports = function (router) {
             {
                 req.session.data['biosecurity-other-equipment-measures-boolean'] = "false";
                 // This page name needs to be the next page the user gets to after successfully continuing
-                res.redirect('people-disinfection');
+                res.redirect('buildings-any-shared');
             }
         }
 
@@ -1021,10 +841,174 @@ module.exports = function (router) {
         else
         {
             // This page name needs to be the next page the user gets to after successfully continuing
+            res.redirect('buildings-any-shared');
+        }
+
+    })
+
+
+
+
+
+
+
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////          Housing the cattle                        ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////       YES AND NO - RADIO BUTTONS - MANDATORY       ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    // NOT COMPLEX PAGE
+    router.post(section + 'buildings-any-shared-router', function (req, res)
+    {
+        // Turn errors off by default
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+
+        // If Yes was selected, continue to next page
+        if (req.session.data['biosecurity-buildings-any-shared-radios-yes-no'] == "Yes")
+        {
+            // Continue to the next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('check-answers');
+            }
+            else
+            {
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('buildings-how-minimise-contamination');
+            }
+        }
+        else if (req.session.data['biosecurity-buildings-any-shared-radios-yes-no'] == "No")
+        {
+            // Continue to the next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('check-answers');
+            }
+            else
+            {
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('people-disinfection');
+            }
+        }
+        else
+        {
+            // Trigger validation and reload the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('buildings-any-shared');
+        }
+    })
+
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////       How will shared buildings be kept clean      ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////                   CHECK BOXES                      ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    router.get(section + 'buildings-how-minimise-contamination-router', function (req, res)
+    {
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+
+        var checkboxestext = "";
+
+        if(req.session.data['biosecurity-buildings-how-minimise-contamination-checkboxes'] != undefined)
+        {
+            checkboxestext = req.session.data['biosecurity-buildings-how-minimise-contamination-checkboxes'].toString();
+
+            let newStringbuildings = checkboxestext.replace(/,(?!\s)/g, "\n\n");
+            req.session.data['biosecurity-buildings-how-minimise-contamination-checkboxes-formatted'] = newStringbuildings;
+        }
+        else
+        {
+            req.session.data['biosecurity-buildings-how-minimise-contamination-checkboxes-formatted'] = "None";
+        }
+
+
+        if(req.session.data['biosecurity-buildings-how-minimise-contamination-checkboxes'] != undefined)
+        {
+            checkboxestext = req.session.data['biosecurity-buildings-how-minimise-contamination-checkboxes'].toString();
+        }
+
+        if (checkboxestext.includes("Other measures"))
+        {
+            // This page name needs to match the page the user was just on
+            res.redirect('buildings-how-minimise-contamination-other');
+        }
+        else
+        {
+            // Always proceed to the next questions on shared tracks
+            res.redirect('people-disinfection');
+        }
+    })
+
+
+
+
+
+
+    // NOT COMPLEX PAGE
+    // Other staff free textbox
+    router.post(section + 'buildings-how-minimise-contamination-other-router', function (req, res)
+    {
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+        req.session.data['errortypetwo'] = "false";
+        req.session.data['errortypethree'] = "false";
+        req.session.data['errortypefour'] = "false";
+        req.session.data['errortypefive'] = "false";
+        req.session.data['errortypefour'] = "false";
+
+        // Validation check if field is blank
+        if (req.session.data['biosecurity-buildings-how-minimise-contamination-other-text-area'] == undefined || req.session.data['biosecurity-buildings-how-minimise-contamination-other-text-area'] == "")
+        {
+            // Trigger validation and relaunch the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('buildings-how-minimise-contamination-other');
+        }
+
+        else
+        {
+
+
+            // This page name needs to be the next page the user gets to after successfully continuing
             res.redirect('people-disinfection');
         }
 
     })
+
+
 
 
 

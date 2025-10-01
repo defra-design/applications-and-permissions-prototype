@@ -138,6 +138,51 @@
     </div>
 
 
+
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
+            Will the incoming animals share any equipment and machinery with the resident herd?
+        </dt>
+        <dd class="govuk-summary-list__value">
+            {{ data['biosecurity-equipment-any-shared-radios-yes-no'] }}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="../biosecurity/equipment-any-shared">Change<span class="govuk-visually-hidden"> </span></a>
+        </dd>
+    </div>
+
+
+    {%  if data['biosecurity-equipment-any-shared-radios-yes-no']  == "Yes"  %}
+
+        <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
+                How will you reduce the risk of spreading TB from the resident herd to the incoming animals when using shared equipment?
+            </dt>
+            <dd class="govuk-summary-list__value" style="white-space: pre-wrap;">{{ data['biosecurity-equipment-checkboxes-formatted'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="../biosecurity/equipment-how-minimise-contamination">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        </div>
+
+        {%  if data['biosecurity-other-equipment-measures-boolean']  == "true"  %}
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
+                    What other measures are in place to clean and disinfect equipment to reduce the risk of spreading TB?
+                </dt>
+                <dd class="govuk-summary-list__value" style="white-space: pre-wrap;">{{ data['biosecurity-other-equipment-measures-text-input'] }}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="../biosecurity/other-equipment-measures">Change<span class="govuk-visually-hidden"> </span></a>
+                </dd>
+            </div>
+        {%  endif %}
+
+    {%  endif  %}
+
+
+
+
     <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
             Will the incoming animals be housed?
@@ -182,47 +227,6 @@
     {%  endif  %}
 
 
-
-    <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
-            Will the incoming animals share any equipment and machinery with the resident herd?
-        </dt>
-        <dd class="govuk-summary-list__value">
-            {{ data['biosecurity-equipment-any-shared-radios-yes-no'] }}
-        </dd>
-        <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="../biosecurity/equipment-any-shared">Change<span class="govuk-visually-hidden"> </span></a>
-        </dd>
-    </div>
-
-
-    {%  if data['biosecurity-equipment-any-shared-radios-yes-no']  == "Yes"  %}
-
-        <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
-                How will you reduce the risk of spreading TB from the resident herd to the incoming animals when using shared equipment?
-            </dt>
-            <dd class="govuk-summary-list__value" style="white-space: pre-wrap;">{{ data['biosecurity-equipment-checkboxes-formatted'] }}
-            </dd>
-            <dd class="govuk-summary-list__actions">
-                <a class="govuk-link" href="../biosecurity/equipment-how-minimise-contamination">Change<span class="govuk-visually-hidden"> </span></a>
-            </dd>
-        </div>
-
-        {%  if data['biosecurity-other-equipment-measures-boolean']  == "true"  %}
-            <div class="govuk-summary-list__row">
-                <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
-                    What other measures are in place to clean and disinfect equipment to reduce the risk of spreading TB?
-                </dt>
-                <dd class="govuk-summary-list__value" style="white-space: pre-wrap;">{{ data['biosecurity-other-equipment-measures-text-input'] }}
-                </dd>
-                <dd class="govuk-summary-list__actions">
-                    <a class="govuk-link" href="../biosecurity/other-equipment-measures">Change<span class="govuk-visually-hidden"> </span></a>
-                </dd>
-            </div>
-        {%  endif %}
-
-    {%  endif  %}
 
 
 
