@@ -107,6 +107,12 @@ module.exports = function (router) {
             }
         }
 
+        else if (req.session.data['destination-type-of-destination-radios'] == "TB sales at orange markets and approved finishing units (AFU)")
+        {
+            // Continue to the next page
+            res.redirect('any-additional-info');
+        }
+
         else if (req.session.data['destination-type-of-destination-radios'] == "Dedicated sales for TB (orange markets)")
         {
             // Continue to the next page
