@@ -1,0 +1,42 @@
+{% extends "layouts/v3_0_2.html" %}
+
+
+<!-- Setting the big main heading at the top of the page -->
+{% set pageHeadingTextHTML %}
+    Your application might be unsuccessful
+{% endset %}
+
+
+
+
+<!-- Text that show in the browser tab. Does NOT need changing -->
+{% block pageTitle %}
+    {{ pageHeadingTextHTML }}
+{% endblock %}
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+        <h1 class="govuk-heading-l">{{ pageHeadingTextHTML }}</h1>
+
+        <p>There’s a possibility the calf will be 42 days old or older while we review your application.</p>
+
+        <p>Calves 42 days old or older must be tested for TB for a licence to be granted.</p>
+
+        <!-- go to routes.js for routing  -->
+        <form action="enter-ear-tags-calves" method="post" novalidate>
+
+            {{ govukButton({ text: "Continue" }) }}
+
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}
+
+

@@ -1,0 +1,263 @@
+{% extends "layouts/v3_0_2" %}
+
+{% set version = "v3_0_2" %}
+{% set bodyClasses = version %}
+
+
+
+
+<!-- Setting the big main heading at the top of the page -->
+{% set pageHeadingTextHTML %}
+    Your  {{ data['disease-configurator-name-of-disease-text-input'] }} licence application
+{% endset %}
+
+
+
+<!-- Text that show in the browser tab. Does NOT need changing -->
+{% block pageTitle %}
+    {{ pageHeadingTextHTML }}
+{% endblock %}
+
+
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-l">{{ pageHeadingTextHTML }}</h1>
+
+        <p id="whole-text-progress-count" class="govuk-body">You have
+            <span id="section-progress-count"></span> sections left to complete.
+        </p>
+
+        <p id="whole-text-all-complete" style="display: none;">All sections are complete.</p>
+
+
+        {{
+            govukTaskList
+            ({
+                idPrefix: "company-details",
+                items:
+                [
+
+                    {
+                        title:
+                        {
+                            text: "About the movement or activity"
+                        },
+                        href: "about-the-movement-or-activity/check-answers" if data['section-fmd-about-the-movement-or-activity-complete'] == "true"  else "about-the-movement-or-activity/type",
+                            completed: data['section-fmd-about-the-movement-or-activity-complete'] == "true",
+                        status:
+                        {
+                            text: "Completed",
+                            tag:
+                            {
+                                text: "Incomplete",
+                                classes: "govuk-tag--blue"
+                            } if data['section-fmd-about-the-movement-or-activity-complete'] != "true"
+                        }
+                    },
+
+                    {
+                        title:
+                        {
+                            text: "Movement origin"
+                        },
+                        href: "" if data['section-fmd-about-the-movement-or-activity-complete'] != 'true'
+                                    else  ("movement-origin/check-answers" if data['section-fmd-movement-origin-complete'] == 'true'
+                                        else "movement-origin/start-section"),
+                        status:
+                        {
+                            text: "Cannot start yet" if data['section-fmd-about-the-movement-or-activity-complete'] != "true"  else "Completed",
+                            classes: "govuk-task-list__status--cannot-start-yet" if data['section-fmd-about-the-movement-or-activity-complete'] != "true",
+                            tag:
+                            {
+                                text: "Incomplete",
+                                classes: "govuk-tag--blue"
+                            } if data['section-fmd-movement-origin-complete'] != "true" and data['section-fmd-about-the-movement-or-activity-complete'] == "true"
+
+                        }
+                    },
+
+                    {
+                        title:
+                        {
+                            text: "Slaughter information"
+                        },
+                        href: "slaughter-information/check-answers" if data['section-fmd-slaughter-information-complete'] == 'true'
+                                        else "slaughter-information/slaughterman-or-knackerman",
+                        status:
+                        {
+                            text: "Completed",
+                            tag:
+                            {
+                                text: "Incomplete",
+                                classes: "govuk-tag--blue"
+                            } if data['section-fmd-slaughter-information-complete'] != "true" and data['section-fmd-about-the-movement-or-activity-complete'] == "true"
+
+                        }
+                    } if data['section-fmd-about-the-movement-or-activity-complete'] == "true"  and data['about-the-movement-or-activity-type-radios'] == "Slaughter of animals onsite",
+
+
+                    {
+                        title:
+                        {
+                            text: "Disposal of the animal"
+                        },
+                        href: "disposal-of-animal/check-answers" if data['section-fmd-disposal-of-animal-complete'] == 'true'
+                                        else "disposal-of-animal/whole-animal",
+                        status:
+                        {
+                            text: "Completed",
+                            tag:
+                            {
+                                text: "Incomplete",
+                                classes: "govuk-tag--blue"
+                            } if data['section-fmd-disposal-of-animal-complete'] != "true" and data['section-fmd-about-the-movement-or-activity-complete'] == "true"
+
+                        }
+                    } if data['section-fmd-about-the-movement-or-activity-complete'] == "true"  and data['about-the-movement-or-activity-type-radios'] == "Slaughter of animals onsite",
+
+
+                    {
+                        title:
+                        {
+                            text: "Movement destination"
+                        },
+                        href: "movement-destination/check-answers"  if  data['section-fmd-movement-destination-complete'] == 'true'
+                                        else  "movement-destination/start-section",
+                        status:
+                        {
+                            text: "Completed",
+                            tag:
+                            {
+                                text: "Incomplete",
+                                classes: "govuk-tag--blue"
+                            } if data['section-fmd-movement-destination-complete'] != "true"  and  data['section-fmd-about-the-movement-or-activity-complete'] == "true"
+                        }
+                    }  if data['section-fmd-about-the-movement-or-activity-complete'] == "true"  and data['about-the-movement-or-activity-type-radios'] != "Slaughter of animals onsite",
+
+
+                    {
+                        title:
+                        {
+                            text: "Movement details"
+                        },
+
+                        href: "movement-details/check-answers"  if  data['section-fmd-movement-details-complete'] == 'true'
+                                        else  "movement-details/start-section",
+
+                        status:
+                        {
+                            text: "Completed",
+                            tag:
+                            {
+                                text: "Incomplete",
+                                classes: "govuk-tag--blue"
+                            } if data['section-fmd-movement-details-complete'] != "true"  and  data['section-fmd-about-the-movement-or-activity-complete'] == "true"
+                        }
+                    } if data['section-fmd-about-the-movement-or-activity-complete'] == "true"  and data['about-the-movement-or-activity-type-radios'] != "Slaughter of animals onsite",
+
+                    {
+                        title:
+                        {
+                            text: "Receiving the licence"
+                        },
+                        href: "" if data['section-fmd-about-the-movement-or-activity-complete'] != 'true'
+                                    else  ("receiving-the-licence/check-answers" if data['section-fmd-receiving-the-licence-complete'] == "true"
+                                        else "receiving-the-licence/start-section"),
+
+                        status:
+                        {
+                            text: "Cannot start yet" if data['section-fmd-about-the-movement-or-activity-complete'] != "true"  else "Completed",
+                            classes: "govuk-task-list__status--cannot-start-yet" if data['section-fmd-about-the-movement-or-activity-complete'] != "true",
+                            tag:
+                            {
+                                text: "Incomplete",
+                                classes: "govuk-tag--blue"
+                            } if data['section-fmd-receiving-the-licence-complete'] != "true"  and  data['section-fmd-about-the-movement-or-activity-complete'] == "true"
+                        }
+                    }
+
+                ]
+            })
+        }}
+
+
+
+        <!-- <p>You can <a href="#">message the outbreak team</a> if you need help with your application.</p> -->
+
+
+        <!-- go to routes.js for routing  -->
+
+
+        {{
+            govukButton
+            ({
+                text: "Review and submit",
+                classes: "govuk-button--secondary",
+                href: "#"
+            })
+        }}
+
+
+
+    </div>
+</div>
+
+
+
+
+
+
+
+<script>
+
+    // Update the progress count
+    window.onload = function ()
+    {
+        const elements = document.querySelectorAll('div.govuk-task-list__status');
+
+        let numItems = elements.length;
+
+        let completecounter = 0;
+
+        elements.forEach((element) =>
+        {
+            var tagtext = element.textContent;
+
+            if(tagtext.includes('Completed') )
+            {
+                completecounter++;
+            }
+        });
+
+        let remaniningcount = numItems - completecounter;
+
+
+        document.getElementById("section-progress-count").textContent = remaniningcount + " out of " + numItems;
+
+
+        // make button primary green if all done
+        // also change text at the top
+        if (completecounter == numItems)
+        {
+            const elementbutton = document.querySelector('.govuk-button');
+            elementbutton.classList.remove('govuk-button--secondary');
+            elementbutton.href="";
+
+            document.getElementById('whole-text-progress-count').style.display = 'none';
+            document.getElementById('whole-text-all-complete').style.display = 'block';
+        }
+
+    }
+
+</script>
+
+{% endblock %}
+
+
+
+
+
+

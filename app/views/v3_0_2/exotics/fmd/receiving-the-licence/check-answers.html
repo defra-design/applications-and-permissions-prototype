@@ -1,0 +1,85 @@
+{% extends "layouts/v3_0_2.html" %}
+
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-l">Check your answers before you continue your application</h1>
+
+        <dl class="govuk-summary-list">
+
+            <dl class="govuk-summary-list">
+
+
+                {%  if  data['about-the-movement-or-activity-what-is-moving-radios']  == "Milk"  %}
+
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                            Who is responsible for the origin premises?
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                            {{ data['receiving-the-licence-name-of-person-responsible-at-origin-first-name-text-input'] }}<br>
+                            {{ data['receiving-the-licence-name-of-person-responsible-at-origin-last-name-text-input'] }}
+                        </dd>
+                        <dd class="govuk-summary-list__actions">
+                            <a class="govuk-link" href="name-of-person-responsible-at-origin">Change<span class="govuk-visually-hidden"> </span></a>
+                        </dd>
+                    </div>
+
+                {%  else  %}
+
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                            Who is the registered keeper of the animals?
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                            {{ data['receiving-the-licence-name-of-registered-keeper-first-name-text-input'] }}<br>
+                            {{ data['receiving-the-licence-name-of-registered-keeper-first-name-text-input'] }}
+                        </dd>
+                        <dd class="govuk-summary-list__actions">
+                            <a class="govuk-link" href="name-of-registered-keeper">Change<span class="govuk-visually-hidden"> </span></a>
+                        </dd>
+                    </div>
+
+                {%  endif  %}
+
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                        What email address would you like the licence sent to?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{ data['receiving-the-licence-email-address-text-input'] }}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="email-address">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                </div>
+
+
+            </dl>
+
+        </dl>
+
+
+
+        <form action="../task-list?section-fmd-receiving-the-licence-complete=true&" method="post" novalidate>
+
+            <button type="submit" class="govuk-button" data-module="govuk-button">
+                Continue
+            </button>
+
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}
+
+
+
+
+

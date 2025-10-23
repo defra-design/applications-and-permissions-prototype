@@ -1,0 +1,36 @@
+<dl class="govuk-summary-list">
+
+
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
+            Biosecurity map
+        </dt>
+        <dd class="govuk-summary-list__value">
+            {{ data['biosecurity-upload-plan-file-upload'] }} [file name]
+            <br>
+            <br>
+            <img src="/public/images/biosecuritydiagram.jpg" width="200" height="150">
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="../biosecurity-map/upload-plan">Change<span class="govuk-visually-hidden"> </span></a>
+        </dd>
+    </div>
+
+    {%  if  data['upload-file-two'] == "true"   %}
+        <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
+                Additional biosecurity map
+            </dt>
+            <dd class="govuk-summary-list__value">
+                {{ data['biosecurity-upload-plan-file-upload-two'] }} [file name]
+                <br>
+                <br>
+                <img src="/public/images/biosecuritydiagramtwo.jpg" width="200" height="150">
+            </dd>
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="../biosecurity-map/upload-plan-another">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        </div>
+    {%  endif  %}
+
+</dl>
