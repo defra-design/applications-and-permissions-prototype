@@ -3,9 +3,13 @@
 
 
 <!-- Setting the big main heading at the top of the page -->
+<!-- If moving on AND from a market OR unrestricted farm OR import THEN ask who will be -->
 {% set pageHeadingTextHTML %}
-    {% if  data['origin-to-or-from-own-premises-radios'] != "On to the farm or premises"  %}
-        What is the name of the person registered as the keeper of the animals?
+    {% if  data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises"
+          and (data['origin-type-of-origin-on-radios'] == "Unrestricted farms and markets"
+            or data['origin-type-of-origin-on-radios'] == "Location after animals have been imported")
+    %}
+        What is the name of the person who will be the registered keeper of the animals?
     {% else %}
         What is the name of the person registered as the keeper of the animals?
     {% endif %}
@@ -250,9 +254,26 @@
                 {% if  data['origin-to-or-from-own-premises-radios'] != "Off the farm or premises"  %}selected{% endif %}
         >Movement - OFF premises</option>
 
-        <option value="origin-to-or-from-own-premises-radios=On to the farm or premises&"
-                {% if  data['origin-to-or-from-own-premises-radios'] == 'On to the farm or premises'  %}selected{% endif %}
-        >Movement - ON premises</option>
+        <option value="origin-to-or-from-own-premises-radios=On to the farm or premises&origin-type-of-origin-on-radios=Unrestricted farms and markets"
+                {% if  data['origin-to-or-from-own-premises-radios'] == 'On to the farm or premises'
+                       and
+                       data['origin-type-of-origin-on-radios'] == 'Unrestricted farms and markets'  %}selected{% endif %}
+        >Movement - ON premises - From Unrestricted farms and markets</option>
+
+        <option value="origin-to-or-from-own-premises-radios=On to the farm or premises&origin-type-of-origin-on-radios=Location after animals have been imported"
+                {% if  data['origin-to-or-from-own-premises-radios'] == 'On to the farm or premises'
+                       and
+                       data['origin-type-of-origin-on-radios'] == 'Location after animals have been imported'  %}selected{% endif %}
+        >Movement - ON premises - From Location after animals have been imported</option>
+
+        <option value="origin-to-or-from-own-premises-radios=On to the farm or premises&origin-type-of-origin-on-radios=TB restricted farm"
+                {% if  data['origin-to-or-from-own-premises-radios'] == 'On to the farm or premises'
+                       and
+                       data['origin-type-of-origin-on-radios'] != 'Unrestricted farms and markets'
+                       and
+                       data['origin-type-of-origin-on-radios'] != 'Location after animals have been imported'
+                        %}selected{% endif %}
+        >Movement - ON premises - From any other origin</option>
 
     </select>
 
