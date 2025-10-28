@@ -21,8 +21,11 @@
 {% set errorTextHTML %}
     <!-- Error 1 - No answer selected -->
     {% if data['errortypeone'] == "true" %}
-        {% if  data['origin-to-or-from-own-premises-radios'] != "On to the farm or premises"  %}
-            Enter the first name of the person registered as the keeper of the animals
+        {% if  data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises"
+              and (data['origin-type-of-origin-on-radios'] == "Unrestricted farms and markets"
+                or data['origin-type-of-origin-on-radios'] == "Location after animals have been imported")
+        %}
+            Enter the first name of the person who will be the registered keeper of the animals
         {% else %}
             Enter the first name of the person registered as the keeper of the animals
         {% endif %}
@@ -30,8 +33,11 @@
 
     <!-- Error 2 - If answer is too long -->
     {% elif data['errortypetwo'] == "true" %}
-        {% if  data['origin-to-or-from-own-premises-radios'] != "On to the farm or premises"  %}
-            Enter the last name of the person registered as the keeper of the animals
+        {% if  data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises"
+              and (data['origin-type-of-origin-on-radios'] == "Unrestricted farms and markets"
+                or data['origin-type-of-origin-on-radios'] == "Location after animals have been imported")
+        %}
+            Enter the last name of the person who will be the registered keeper of the animals
         {% else %}
             Enter the last name of the person registered as the keeper of the animals
         {% endif %}

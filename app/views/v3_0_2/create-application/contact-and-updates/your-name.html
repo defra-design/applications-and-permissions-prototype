@@ -13,11 +13,11 @@
 {% set errorTextHTML %}
     <!-- Error 1 - No answer selected -->
     {% if data['errortypeone'] == "true" %}
-        Enter the first name of ZZZZZZZZZZZZZ
+        Enter your first name
 
     <!-- Error 2 - If answer is too long -->
     {% elif data['errortypetwo'] == "true" %}
-        Enter the last name of ZZZZZZZZZZZZZZZ
+        Enter your last name
 
     <!-- Error 3 - too long first name -->
     {% elif data['errortypethree'] == "true" %}
