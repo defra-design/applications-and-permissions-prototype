@@ -56,7 +56,7 @@ module.exports = function (router) {
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////                                                    ////////////////
-    ////////////////                 Enter your name                    ////////////////
+    ////////////////         Enter license person's name                ////////////////
     ////////////////                                                    ////////////////
     ////////////////              TEXT ENTRY - MANDATORY                ////////////////
     ////////////////                 NOT COMPLEX PAGE                   ////////////////
@@ -95,7 +95,7 @@ module.exports = function (router) {
             res.redirect('licence-name');
         }
 
-        else if (255 < req.session.data['contact-and-updates-licence-first-name-text-input'].length)
+        else if (50 < req.session.data['contact-and-updates-licence-first-name-text-input'].length)
         {
             // Trigger validation and relaunch the page for over 15 characters
             req.session.data['errorthispage'] = "true";
@@ -106,7 +106,7 @@ module.exports = function (router) {
         }
 
 
-        else if (255 < req.session.data['contact-and-updates-licence-last-name-text-input'].length)
+        else if (50 < req.session.data['contact-and-updates-licence-last-name-text-input'].length)
         {
             // Trigger validation and relaunch the page for over 15 characters
             req.session.data['errorthispage'] = "true";
@@ -128,12 +128,120 @@ module.exports = function (router) {
             }
             else
             {
-                // This page name needs to be the next page the user gets to after successfully continuing
-                res.redirect('licence-enter-email-address');
+                //    Origin and destination are restricted - Moving on
+                if (req.session.data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises"
+                    &&  (req.session.data['origin-type-of-origin-on-radios'] == "TB restricted farm"
+                         ||  req.session.data['origin-type-of-origin-on-radios'] == "Another TB restricted origin")
+                    &&  (req.session.data['destination-type-of-destination-radios'] == "TB restricted farm"
+                        ||  req.session.data['destination-type-of-destination-radios'] == "Another TB restricted destination")
+                    )
+                {
+                    // we also need the name of the applicant in this case
+                    res.redirect('your-name');
+                }
+                else
+                {
+                    // This page name needs to be the next page the user gets to after successfully continuing
+                    res.redirect('licence-enter-email-address');
+                }
+
             }
         }
 
     })
+
+
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////                 Enter your name                    ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////              TEXT ENTRY - MANDATORY                ////////////////
+    ////////////////                 NOT COMPLEX PAGE                   ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    router.post(section + 'your-name-router', function (req, res)
+    {
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+        req.session.data['errortypetwo'] = "false";
+        req.session.data['errortypethree'] = "false";
+        req.session.data['errortypefour'] = "false";
+
+        // Validation check if first name field is blank
+        if (req.session.data['contact-and-updates-your-name-first-name-text-input'] == undefined || req.session.data['contact-and-updates-your-name-first-name-text-input'] == "")
+        {
+            // Trigger validation and relaunch the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('your-name');
+        }
+
+        // Validation check if first name field is blank
+        else if (req.session.data['contact-and-updates-your-name-last-name-text-input'] == undefined || req.session.data['contact-and-updates-your-name-last-name-text-input'] == "")
+        {
+            // Trigger validation and relaunch the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypetwo'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('your-name');
+        }
+
+        else if (50 < req.session.data['contact-and-updates-your-name-first-name-text-input'].length)
+        {
+            // Trigger validation and relaunch the page for over 15 characters
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypethree'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('your-name');
+        }
+
+
+        else if (50 < req.session.data['contact-and-updates-your-name-last-name-text-input'].length)
+        {
+            // Trigger validation and relaunch the page for over 15 characters
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypefour'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('your-name');
+        }
+
+        else
+        {
+            // everything with the input is fine so move on to next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('check-answers');
+            }
+            else
+            {
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('origin-email-address');
+
+            }
+        }
+
+    })
+
+
+
+
+
 
 
 
@@ -242,10 +350,139 @@ module.exports = function (router) {
                 }
             else
             {
-                res.redirect('copy-of-application');
+                // BLOCK UNTIL WE VERIFY EMAILL ADDRESSES
+                // res.redirect('copy-of-application');
+
+                res.redirect('check-answers');
             }
         }
     })
+
+
+
+
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////               entering origin email               ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////              TEXT ENTRY - MANDATORY                ////////////////
+    ////////////////                 NOT COMPLEX PAGE                   ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    router.post(section + 'origin-email-address-router', function (req, res) {
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+        req.session.data['errortypetwo'] = "false";
+        req.session.data['errortypethree'] = "false";
+        req.session.data['errortypefour'] = "false";
+
+        // Validation check if field is blank
+        if (req.session.data['contact-and-updates-origin-email-address-text-input'] == undefined || req.session.data['contact-and-updates-origin-email-address-text-input'] == "")
+        {
+            // Trigger validation and relaunch the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('origin-email-address');
+        }
+        else
+        {
+            let regexpattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+            let emailentered = req.session.data['contact-and-updates-origin-email-address-text-input'];
+            let result = regexpattern.test(emailentered);
+            if (result == false)
+            {
+                // Trigger validation and relaunch the page
+                req.session.data['errorthispage'] = "true";
+                req.session.data['errortypetwo'] = "true";
+
+                // This page name needs to match the page the user was just on
+                res.redirect('origin-email-address');
+            }
+            else
+            {
+                // BLOCK UNTIL WE VERIFY EMAILL ADDRESSES
+                // res.redirect('copy-of-application');
+
+                res.redirect('destination-email-address');
+            }
+        }
+    })
+
+
+
+
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////            entering destination email              ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////              TEXT ENTRY - MANDATORY                ////////////////
+    ////////////////                 NOT COMPLEX PAGE                   ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    router.post(section + 'destination-email-address-router', function (req, res)
+    {
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+        req.session.data['errortypetwo'] = "false";
+        req.session.data['errortypethree'] = "false";
+        req.session.data['errortypefour'] = "false";
+
+        // Validation check if field is blank
+        if (req.session.data['contact-and-updates-destination-email-address-text-input'] == undefined || req.session.data['contact-and-updates-destination-email-address-text-input'] == "")
+        {
+            // Trigger validation and relaunch the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('destination-email-address');
+        }
+        else
+        {
+            let regexpattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+            let emailentered = req.session.data['contact-and-updates-destination-email-address-text-input'];
+            let result = regexpattern.test(emailentered);
+            if (result == false)
+            {
+                // Trigger validation and relaunch the page
+                req.session.data['errorthispage'] = "true";
+                req.session.data['errortypetwo'] = "true";
+
+                // This page name needs to match the page the user was just on
+                res.redirect('destination-email-address');
+            }
+            else
+            {
+                // BLOCK UNTIL WE VERIFY EMAILL ADDRESSES
+                // res.redirect('copy-of-application');
+
+                res.redirect('check-answers');
+            }
+        }
+    })
+
+
+
+
+
 
 
 

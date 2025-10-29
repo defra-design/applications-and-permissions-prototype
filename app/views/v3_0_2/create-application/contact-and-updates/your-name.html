@@ -56,7 +56,7 @@
                     [
                         {
                             html: errorTextHTML,
-                            href: "#contact-and-updates-licence-first-name-text-input"
+                            href: "#contact-and-updates-your-name-first-name-text-input"
                         }
                     ]
                 })
@@ -71,7 +71,7 @@
                     [
                         {
                             html: errorTextHTML,
-                            href: "#contact-and-updates-licence-last-name-text-input"
+                            href: "#contact-and-updates-your-name-last-name-text-input"
                         }
                     ]
                 })
@@ -87,7 +87,7 @@
                     [
                         {
                             html: errorTextHTML,
-                            href: "#contact-and-updates-licence-first-name-text-input"
+                            href: "#contact-and-updates-your-name-first-name-text-input"
                         }
                     ]
                 })
@@ -102,7 +102,7 @@
                     [
                         {
                             html: errorTextHTML,
-                            href: "#contact-and-updates-licence-last-name-text-input"
+                            href: "#contact-and-updates-your-name-last-name-text-input"
                         }
                     ]
                 })
@@ -114,7 +114,7 @@
 
 
         <!-- go to routes.js for routing  -->
-        <form action="licence-name-router" method="post" novalidate>
+        <form action="your-name-router" method="post" novalidate>
 
 
             {% call govukFieldset
@@ -137,9 +137,9 @@
                             isPageHeading: false
                         },
 
-                        id: "contact-and-updates-licence-first-name-text-input",
+                        id: "contact-and-updates-your-name-first-name-text-input",
 
-                        name: "contact-and-updates-licence-first-name-text-input",
+                        name: "contact-and-updates-your-name-first-name-text-input",
 
                         hint:
                         {
@@ -149,7 +149,7 @@
                         errorMessage: null if data['errortypeone'] != "true" and data['errortypethree'] != "true"
                                             else { html: errorTextHTML },
 
-                        value: data['contact-and-updates-licence-first-name-text-input'],
+                        value: data['contact-and-updates-your-name-first-name-text-input'],
 
                         classes: "govuk-input--width-20"
                     })
@@ -165,9 +165,9 @@
                             isPageHeading: false
                         },
 
-                        id: "contact-and-updates-licence-last-name-text-input",
+                        id: "contact-and-updates-your-name-last-name-text-input",
 
-                        name: "contact-and-updates-licence-last-name-text-input",
+                        name: "contact-and-updates-your-name-last-name-text-input",
 
                         hint:
                         {
@@ -177,7 +177,7 @@
                         errorMessage: null if data['errortypetwo'] != "true" and data['errortypefour'] != "true"
                                            else { html: errorTextHTML },
 
-                        value: data['contact-and-updates-licence-last-name-text-input'],
+                        value: data['contact-and-updates-your-name-last-name-text-input'],
 
                         classes: "govuk-input--width-20"
                     })

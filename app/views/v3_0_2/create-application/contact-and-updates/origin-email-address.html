@@ -58,7 +58,7 @@ This will save you time.
                     [
                         {
                             html: errorTextHTML,
-                            href: "#contact-and-updates-licence-enter-email-address-text-input"
+                            href: "#contact-and-updates-origin-email-address-text-input"
                         }
                     ]
                 })
@@ -68,7 +68,7 @@ This will save you time.
 
 
         <!-- go to routes.js for routing  -->
-        <form action="licence-enter-email-address-router" method="post" novalidate>
+        <form action="origin-email-address-router" method="post" novalidate>
 
             {{ govukInput
                 ({
@@ -79,9 +79,9 @@ This will save you time.
                         isPageHeading: true
                     },
 
-                    id: "contact-and-updates-licence-enter-email-address-text-input",
+                    id: "contact-and-updates-origin-email-address-text-input",
 
-                    name: "contact-and-updates-licence-enter-email-address-text-input",
+                    name: "contact-and-updates-origin-email-address-text-input",
 
                     hint:
                     {
@@ -91,7 +91,7 @@ This will save you time.
                     errorMessage: null if data['errorthispage'] != "true"
                                        else { html: errorTextHTML },
 
-                    value: data['contact-and-updates-licence-enter-email-address-text-input'],
+                    value: data['contact-and-updates-origin-email-address-text-input'],
 
                     classes: "govuk-input--width-20"
                 })

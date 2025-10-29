@@ -1,28 +1,26 @@
 {% extends "layouts/v3_0_2.html" %}
 
 
-
 {% block content %}
-<div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
 
-        <h1 class="govuk-heading-l">Check your answers before you continue your application</h1>
 
-        {% include "../includes/contact-and-updates-cya.html" %}
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
 
-        <form action="../task-list?section-contact-and-updates-complete=true&" method="post" novalidate>
+            <h1 class="govuk-heading-l">Check your answers before you continue your application</h1>
 
-            <button type="submit" class="govuk-button" data-module="govuk-button">
-                Continue
-            </button>
+            {% include "../includes/contact-and-updates-cya.html" %}
 
-        </form>
+            <form action="../task-list?section-contact-and-updates-complete=true&" method="post" novalidate>
 
+                <button type="submit" class="govuk-button" data-module="govuk-button">
+                    Continue
+                </button>
+
+            </form>
+
+        </div>
     </div>
-</div>
-
-
-
 
 
 {% endblock %}
