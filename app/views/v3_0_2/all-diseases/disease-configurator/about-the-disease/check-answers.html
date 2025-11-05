@@ -48,35 +48,95 @@
                     Enter the name of the disease
                 </dt>
                 <dd class="govuk-summary-list__value">
-                    {{ data['disease-configurator-name-of-disease-text-input'] }}
+                    {{ data['disease-configurator-disease-name-text-input'] }}
                 </dd>
                 <dd class="govuk-summary-list__actions">
-                    <a class="govuk-link" href="name-of-disease?camefromcheckanswers=true&">Change<span class="govuk-visually-hidden"> </span></a>
+                    <a class="govuk-link" href="disease-name?camefromcheckanswers=true&">Change<span class="govuk-visually-hidden"> </span></a>
                 </dd>
             </div>
 
 
             <div class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key">
-                    Does the disease affect everything that could move on a premises?
+                    Does
+                    {% if  data['disease-configurator-disease-name-text-input'] != ""
+                            and data['disease-configurator-disease-name-text-input'] != undefined  %}
+                        {{ data['disease-configurator-disease-name-text-input'] }}
+                    {% else %}
+                        [ Disease Name ]
+                    {% endif %}
+                        have a vaccine?
                 </dt>
                 <dd class="govuk-summary-list__value">
-                    {{ data['disease-configurator-scope-of-things-everything-radios-yes-no'] }}
+                    {{ data['disease-configurator-vaccine-radios-yes-no'] }}
                 </dd>
                 <dd class="govuk-summary-list__actions">
-                    <a class="govuk-link" href="scope-of-things-everything?camefromcheckanswers=true&">Change<span class="govuk-visually-hidden"> </span></a>
+                    <a class="govuk-link" href="vaccine?camefromcheckanswers=true&">Change<span class="govuk-visually-hidden"> </span></a>
                 </dd>
             </div>
 
 
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                    Which GIS risk zones are relevant for
+                    {% if  data['disease-configurator-disease-name-text-input'] != ""
+                            and data['disease-configurator-disease-name-text-input'] != undefined  %}
+                        {{ data['disease-configurator-disease-name-text-input'] }}?
+                    {% else %}
+                        [ Disease Name ]?
+                    {% endif %}
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    {{ data['disease-configurator-gis-data-radios'] }}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="gis-data?camefromcheckanswers=true&">Change<span class="govuk-visually-hidden"> </span></a>
+                </dd>
+            </div>
+
+
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                    Which transmission pathways apply for
+                    {% if  data['disease-configurator-disease-name-text-input'] != ""
+                            and data['disease-configurator-disease-name-text-input'] != undefined  %}
+                        {{ data['disease-configurator-disease-name-text-input'] }}?
+                    {% else %}
+                        [ Disease Name ]?
+                    {% endif %}
+                </dt>
+                <dd class="govuk-summary-list__value" style="white-space: pre-wrap">{{ data['disease-configurator-transmission-pathways-checkboxes-formatted'] }}</dd>
+                <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="transmission-pathways?camefromcheckanswers=true&">Change<span class="govuk-visually-hidden"> </span></a>
+                </dd>
+            </div>
+
+
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                    Who will conduct the biosecurity assessments for
+                    {% if  data['disease-configurator-disease-name-text-input'] != ""
+                            and data['disease-configurator-disease-name-text-input'] != undefined  %}
+                        {{ data['disease-configurator-disease-name-text-input'] }}?
+                    {% else %}
+                        [ Disease Name ]?
+                    {% endif %}
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    {{ data['disease-configurator-biosecurity-level-radios'] }}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="biosecurity-level?camefromcheckanswers=true&">Change<span class="govuk-visually-hidden"> </span></a>
+                </dd>
+            </div>
 
         </dl>
 
 
 
-        <form action="disease-submit-router" method="post" novalidate>
+        <form action="../task-list?section-about-the-disease-complete=true&" method="post" novalidate>
 
-            {{ govukButton({ text: "Submit new disease" }) }}
+            {{ govukButton({ text: "Continue" }) }}
 
 
         </form>

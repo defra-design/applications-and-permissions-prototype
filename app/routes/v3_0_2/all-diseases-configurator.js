@@ -290,6 +290,8 @@ module.exports = function (router) {
         req.session.data['errorthispage'] = "false";
         req.session.data['errortypeone'] = "false";
 
+        var checkboxestext = "";
+
         // check if none of the checkboxes are selected
         if(req.session.data['disease-configurator-transmission-pathways-checkboxes'] == undefined  ||
             req.session.data['disease-configurator-transmission-pathways-checkboxes'].length == 0)
@@ -301,8 +303,56 @@ module.exports = function (router) {
             // This page name needs to match the page the user was just on
             res.redirect('transmission-pathways');
         }
-
         else
+        {
+            // Make formatted text for check answer review page
+            checkboxestext = req.session.data['disease-configurator-transmission-pathways-checkboxes'].toString();
+
+            let newStringmanure = checkboxestext.replace(/,(?!\s)/g, "\n\n");
+            req.session.data['disease-configurator-transmission-pathways-checkboxes-formatted'] = newStringmanure;
+
+
+            // Continue to the next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('check-answers');
+            }
+            else
+            {
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('biosecurity-level');
+            }
+        }
+    })
+
+
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////               PLACEHOLDER_SUMMARY                  ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////            RADIO BUTTONS - MANDATORY               ////////////////
+    ////////////////                 NOT COMPLEX PAGE                   ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    router.post(section + 'about-the-disease/biosecurity-level-router', function (req, res)
+    {
+        // Turn errors off by default
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+
+        // If Yes was selected, continue to next page
+        if (req.session.data['disease-configurator-biosecurity-level-radios'] == "The person responsible for the premises")
         {
             // Continue to the next page
 
@@ -318,13 +368,64 @@ module.exports = function (router) {
                 res.redirect('check-answers');
             }
         }
+        else if (req.session.data['disease-configurator-biosecurity-level-radios'] == "APHA vets")
+        {
+            // Continue to the next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('check-answers');
+            }
+            else
+            {
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('check-answers');
+            }
+        }
+        else if (req.session.data['disease-configurator-biosecurity-level-radios'] == "Private vets")
+        {
+            // Continue to the next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('check-answers');
+            }
+            else
+            {
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('check-answers');
+            }
+        }
+        else if (req.session.data['disease-configurator-biosecurity-level-radios'] == "Someone else")
+        {
+            // Continue to the next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('check-answers');
+            }
+            else
+            {
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('check-answers');
+            }
+        }
+        else
+        {
+            // Trigger validation and reload the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('PAGENAME_RADIOS');
+        }
     })
-
-
-
-
-
-
 
 
 
