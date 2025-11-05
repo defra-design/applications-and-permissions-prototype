@@ -10,27 +10,9 @@ module.exports = function (router) {
         e.g  registration.js   and   search.js
         This avoids having one huge hard to manage routes.js
      */
-    let section = "/exotics/disease-configurator/";
+    let section = "/all-diseases/disease-configurator/";
 
 
-    /*
-        Each of the template html pages has corresponding routing javascript.
-        This checks for errors and reloads the page showing the error.
-        If there are no errors it goes to the next page or back to the 'check your answers' page
-        ***  How to use this ***
-        1. Copy the correct 'router.post ...' which matches the template you're using
-        2. Paste those lines into the routes file for the section of your service you're working on.
-        3. On that pasted javascript then use 'Find and replace' to replace the page name with whatever you named the html page/file.
-            e.g replace 'PAGENAME_RADIOS' with 'select-country'
-        4. On that pasted javascript use 'Find and replace' to replace the next page with whatever you named the next html page/file in the user journey.
-            e.g replace 'THE_NEXT_PAGE_NAME' with 'enter-name'
-        5. Not all errors will be required in your service.  Delete the lines of javascript which you don't need.
-            e.g. If you don't have an upper limit on the number entry then remove the lines around 'else if ( numberinputfloat < 3 )'
-        6. If you have a 'Check your answers' page/file in your journey make sure it is in the same folder and is named 'check-answers' to matcth this routing
-                If you don't have a 'Check your answers' page/file then remove that javascript from the near the bottom of the javascript you copied.
-                This should leave just 'res.redirect('THE_NEXT_PAGE_NAME');'
-        7. Your html page should not have working routing.  Check each error and routing scenario works by entering data and clicking continue on that page.
-     */
 
 
 
@@ -49,7 +31,7 @@ module.exports = function (router) {
     router.get(section + 'routing-exotics-configurator-start', function (req, res)
     {
         // Continue to the next pages where farmer is the origin
-        res.redirect('name-of-disease');
+        res.redirect('task-list');
     })
 
 
@@ -68,7 +50,7 @@ module.exports = function (router) {
     ////////////////////////////////////////////////////////////////////////////////////
 
 
-    router.post(section + 'name-of-disease-router', function (req, res)
+    router.post(section + 'about-the-disease/disease-name-router', function (req, res)
     {
         req.session.data['errorthispage'] = "false";
         req.session.data['errortypeone'] = "false";
@@ -77,24 +59,24 @@ module.exports = function (router) {
         req.session.data['errortypefour'] = "false";
 
         // Validation check if field is blank
-        if (req.session.data['disease-configurator-name-of-disease-text-input'] == undefined || req.session.data['disease-configurator-name-of-disease-text-input'] == "")
+        if (req.session.data['disease-configurator-disease-name-text-input'] == undefined || req.session.data['disease-configurator-disease-name-text-input'] == "")
         {
             // Trigger validation and relaunch the page
             req.session.data['errorthispage'] = "true";
             req.session.data['errortypeone'] = "true";
 
             // This page name needs to match the page the user was just on
-            res.redirect('name-of-disease');
+            res.redirect('disease-name');
         }
 
-        else if (req.session.data['disease-configurator-name-of-disease-text-input'].length >100)
+        else if (req.session.data['disease-configurator-disease-name-text-input'].length >100)
         {
             // Trigger validation and relaunch the page for over 15 characters
             req.session.data['errorthispage'] = "true";
             req.session.data['errortypetwo'] = "true";
 
             // This page name needs to match the page the user was just on
-            res.redirect('name-of-disease');
+            res.redirect('disease-name');
         }
         else
         {
@@ -109,11 +91,251 @@ module.exports = function (router) {
             else
             {
                 // This page name needs to be the next page the user gets to after successfully continuing
-                res.redirect('scope-of-things-everything');
+                res.redirect('vaccine');
             }
 
         }
     })
+
+
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////                  Vaccine Yes or No                 ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////       YES AND NO - RADIO BUTTONS - MANDATORY       ////////////////
+    ////////////////                  NOT COMPLEX PAGE                  ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    router.post(section + 'about-the-disease/vaccine-router', function (req, res)
+    {
+        // Turn errors off by default
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+
+        // If Yes was selected, continue to next page
+        if (req.session.data['disease-configurator-vaccine-radios-yes-no'] == "Yes")
+        {
+            // Continue to the next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('check-answers');
+            }
+            else
+            {
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('gis-data');
+            }
+        }
+        else if (req.session.data['disease-configurator-vaccine-radios-yes-no'] == "No")
+        {
+            // Continue to the next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('check-answers');
+            }
+            else
+            {
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('gis-data');
+            }
+        }
+        else
+        {
+            // Trigger validation and reload the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('vaccine');
+        }
+    })
+
+
+
+
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////                GIS mapping data                    ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////            RADIO BUTTONS - MANDATORY               ////////////////
+    ////////////////                 NOT COMPLEX PAGE                   ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    router.post(section + 'about-the-disease/gis-data-router', function (req, res)
+    {
+        // Turn errors off by default
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+
+        // If Yes was selected, continue to next page
+        if (req.session.data['disease-configurator-gis-data-radios'] == "Avian influenza")
+        {
+            // Continue to the next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('check-answers');
+            }
+            else
+            {
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('transmission-pathways');
+            }
+        }
+        else if (req.session.data['disease-configurator-gis-data-radios'] == "Bluetongue virus (BTV)")
+        {
+            // Continue to the next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('check-answers');
+            }
+            else
+            {
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('transmission-pathways');
+            }
+        }
+        else if (req.session.data['disease-configurator-gis-data-radios'] == "Tuboculosis (TB)")
+        {
+            // Continue to the next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('check-answers');
+            }
+            else
+            {
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('transmission-pathways');
+            }
+        }
+        else if (req.session.data['disease-configurator-gis-data-radios'] == "None of the above")
+        {
+            // Continue to the next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('check-answers');
+            }
+            else
+            {
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('transmission-pathways');
+            }
+        }
+        else
+        {
+            // Trigger validation and reload the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('gis-data');
+        }
+    })
+
+
+
+
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////             Transmission pathways                  ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////                   CHECKBOXES                       ////////////////
+    ////////////////                NOT COMPLEX PAGE                    ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    router.post(section + 'about-the-disease/transmission-pathways-router', function (req, res)
+    {
+        // Turn errors off by default
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+
+        // check if none of the checkboxes are selected
+        if(req.session.data['disease-configurator-transmission-pathways-checkboxes'] == undefined  ||
+            req.session.data['disease-configurator-transmission-pathways-checkboxes'].length == 0)
+        {
+            // Trigger validation and relaunch the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('transmission-pathways');
+        }
+
+        else
+        {
+            // Continue to the next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('check-answers');
+            }
+            else
+            {
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('check-answers');
+            }
+        }
+    })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
