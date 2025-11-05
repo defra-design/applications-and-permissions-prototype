@@ -24,6 +24,8 @@ module.exports = function (router)
         req.session.data['errorthispage'] = "false";
         req.session.data['errortypeone'] = "false";
 
+        var checkboxestext = "";
+
         // check if none of the checkboxes are selected
         if(req.session.data['SECTION-PAGENAME_CHECKBOXES-checkboxes'] == undefined  ||
            req.session.data['SECTION-PAGENAME_CHECKBOXES-checkboxes'].length == 0)
@@ -38,6 +40,13 @@ module.exports = function (router)
 
         else
         {
+            // Make formatted text for check answer review page
+            checkboxestext = req.session.data['SECTION-PAGENAME_CHECKBOXES-checkboxes'].toString();
+
+            let newStringmanure = checkboxestext.replace(/,(?!\s)/g, "\n\n");
+            req.session.data['SECTION-PAGENAME_CHECKBOXES-checkboxes-formatted'] = newStringmanure;
+
+
             // Continue to the next page
 
             // If the user needs to go back to 'check your answers' then take them directly there

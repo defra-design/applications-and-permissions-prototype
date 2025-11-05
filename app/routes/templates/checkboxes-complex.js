@@ -24,6 +24,8 @@ module.exports = function (router)
         req.session.data['errorthispage'] = "false";
         req.session.data['errortypeone'] = "false";
 
+        var checkboxestext = "";
+
         // check if none of the checkboxes are selected
         if(req.session.data['SECTION-PAGENAME_CHECKBOXES_COMPLEX-checkboxes'] == undefined  ||
             req.session.data['SECTION-PAGENAME_CHECKBOXES_COMPLEX-checkboxes'].length == 0)
@@ -38,9 +40,11 @@ module.exports = function (router)
 
         else
         {
-            // Turn off validation
-            req.session.data['errorthispage'] = "false";
-            req.session.data['errortypeone'] = "false";
+            // Make formatted text for check answer review page
+            checkboxestext = req.session.data['SECTION-PAGENAME_CHECKBOXES_COMPLEX-checkboxes'].toString();
+
+            let newStringmanure = checkboxestext.replace(/,(?!\s)/g, "\n\n");
+            req.session.data['SECTION-PAGENAME_CHECKBOXES_COMPLEX-checkboxes-formatted'] = newStringmanure;
 
             // Continue to the next page
 

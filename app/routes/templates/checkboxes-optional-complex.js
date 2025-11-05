@@ -20,6 +20,22 @@ module.exports = function (router)
 
     router.post(section + 'PAGENAME_CHECKBOXES_OPTIONAL_COMPLEX-router', function (req, res)
     {
+        // Make formatted text for check answer review page
+        if (req.session.data['SECTION-PAGENAME_CHECKBOXES_OPTIONAL_COMPLEX-checkboxes'] != undefined &&
+            req.session.data['SECTION-PAGENAME_CHECKBOXES_OPTIONAL_COMPLEX-checkboxes'].length != 0)
+        {
+            var checkboxestext = "";
+            checkboxestext = req.session.data['SECTION-PAGENAME_CHECKBOXES_OPTIONAL_COMPLEX-checkboxes'].toString();
+
+            let newStringmanure = checkboxestext.replace(/,(?!\s)/g, "\n\n");
+            req.session.data['SECTION-PAGENAME_CHECKBOXES_OPTIONAL_COMPLEX-checkboxes-formatted'] = newStringmanure;
+
+        }
+        else
+        {
+            req.session.data['SECTION-PAGENAME_CHECKBOXES_OPTIONAL_COMPLEX-checkboxes-formatted'] = "";
+        }
+
         // Continue to the next page
 
         // If the user needs to go back to 'check your answers' then take them directly there
