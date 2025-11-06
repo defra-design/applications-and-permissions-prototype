@@ -4,24 +4,29 @@
 NOTES ON USING THIS TEMPLATE Page
 This will save you time.
 
-1. Put your heading for the page after '% set pageHeadingTextHTML %'
-2. Put your question heading for the page after '% set questionHeadingTextHTML %'
-3. Type/customise the error message after '% set errorTextHTML %'
-4. Use 'Find and replace' to replace "SECTION" with the name of the section of the service you're working on.
-5. Use 'Find and replace' to replace "PAGENAME_YES_NO_COMPLEX" with whatever you named this page/file.
-7. Go to the javascript file 'templates.js' and copy the section 'COMPLEX PAGE  OF YES AND NO' into your routes.js file.
-8. Follow instructions at the top of the 'templates.js'.
+1. Type the heading for the page after '% set pageHeadingTextHTML %'
+2. Type the heading for the page after '% set questionHeadingTextHTML %'
+3. Type the error message after '% set errorTextHTML %'
+4. Type the routes file section after '% set SECTION %'
+5. Type the error message after '% set PAGENAME_YES_NO %'
+6. OPTIONAL: Type the hint text after '% set HINT_TEXT %'
+
+7. Go to the javascript folder 'templates'
+8. Open 'yes-no-complex.js'
+9. Copy into your routes.js file.
+10. Rename PAGENAME_YES_NO in the URL to match the page name
+11. Rename THE_NEXT_PAGE_NAME
 -->
 
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    Paying PLACEHOLDER
+    PLACEHOLDER_HEADING
 {% endset %}
 
 <!-- Setting the smaller secondary heading lower down the page -->
 {% set questionHeadingTextHTML %}
-    Did you PLACEHOLDER between PLACEHOLDER and PLACEHOLDER?
+    Did_you_PLACEHOLDER?
 {% endset %}
 
 
@@ -44,6 +49,18 @@ This will save you time.
 {% endblock %}
 
 
+
+<!-- Set the section name -->
+{% set SECTION %}templates{% endset %}
+
+<!-- Set the page name -->
+{% set PAGENAME_YES_NO_COMPLEX %}PAGENAME_YES_NO_COMPLEX{% endset %}
+
+<!-- Set the hint text -->
+{% set HINT_TEXT %}PLACEHOLDER_HINT_TEXT{% endset %}
+
+
+
 {% block content %}
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
@@ -57,7 +74,7 @@ This will save you time.
                     [
                         {
                             html: errorTextHTML,
-                            href: "#SECTION-PAGENAME_YES_NO_COMPLEX-radios-yes-no"
+                            href: "#" + SECTION + "-" + PAGENAME_YES_NO_COMPLEX + "-radios-yes-no"
                         }
                     ]
                 })
@@ -97,15 +114,15 @@ This will save you time.
 
 
         <!-- go to the next page, not check answers -->
-        <form action="PAGENAME_YES_NO_COMPLEX-router" method="post" novalidate>
+        <form action="{{PAGENAME_YES_NO_COMPLEX}}-router/{{PAGENAME_YES_NO_COMPLEX}}" method="post" novalidate>
 
             {{ govukRadios
                 ({
                     classes: "govuk-radios--inline",
 
-                    name: "SECTION-PAGENAME_YES_NO_COMPLEX-radios-yes-no",
+                    name: SECTION + "-" + PAGENAME_YES_NO_COMPLEX+ "-radios-yes-no",
 
-                    id: "SECTION-PAGENAME_YES_NO_COMPLEX-radios-yes-no",
+                    id: SECTION + "-" + PAGENAME_YES_NO_COMPLEX+ "-radios-yes-no",
 
                     fieldset:
                     {
@@ -119,20 +136,20 @@ This will save you time.
 
                     hint:
                     {
-                        text: "PLACEHOLDER hint text if needed."
-                    },
+                        text: HINT_TEXT
+                    } if HINT_TEXT != "PLACEHOLDER_HINT_TEXT",
 
                     items:
                     [
                         {
                             value: "Yes",
                             text: "Yes",
-                            checked: data['SECTION-PAGENAME_YES_NO_COMPLEX-radios-yes-no'] == "Yes"
+                            checked: data[SECTION + "-" + PAGENAME_YES_NO_COMPLEX + '-radios-yes-no'] == "Yes"
                         },
                         {
                             value: "No",
                             text: "No",
-                            checked: data['SECTION-PAGENAME_YES_NO_COMPLEX-radios-yes-no'] == "No"
+                            checked: data[SECTION + "-" + PAGENAME_YES_NO_COMPLEX + '-radios-yes-no'] == "No"
                         }
                     ],
 
@@ -140,7 +157,6 @@ This will save you time.
                                        else { html: errorTextHTML }
                 })
             }}
-
 
             {{ govukButton({ text: "Continue" }) }}
 

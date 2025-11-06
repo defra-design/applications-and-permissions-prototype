@@ -1,6 +1,7 @@
 const {log} = require("govuk-prototype-kit/migrator/logger");
 
-let section = "/templates/";
+let section = "templates";
+let sectionURL = "/" + section + "/";
 
 module.exports = function (router)
 {
@@ -16,15 +17,19 @@ module.exports = function (router)
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////
 
+    // 1. Change PAGENAME_YES_NO_COMPLEX
+    // 2. Change THE_NEXT_PAGE_NAME
 
-    router.post(section + 'PAGENAME_YES_NO-router', function (req, res)
+    router.post(sectionURL + 'PAGENAME_YES_NO-router/:pageName', function (req, res)
     {
+        let page_name_submitted = req.params.pageName;
+
         // Turn errors off by default
         req.session.data['errorthispage'] = "false";
         req.session.data['errortypeone'] = "false";
 
         // If Yes was selected, continue to next page
-        if (req.session.data['SECTION-PAGENAME_YES_NO-radios-yes-no'] == "Yes")
+        if (req.session.data[section + '-' + page_name_submitted + '-radios-yes-no'] == "Yes")
         {
             // Continue to the next page
 
@@ -37,10 +42,10 @@ module.exports = function (router)
             else
             {
                 // This page name needs to be the next page the user gets to after successfully continuing
-                res.redirect('THE_NEXT_PAGE_NAME');
+                res.redirect('../' + 'THE_NEXT_PAGE_NAME');
             }
         }
-        else if (req.session.data['SECTION-PAGENAME_YES_NO-radios-yes-no'] == "No")
+        else if (req.session.data[section + '-' + page_name_submitted + '-radios-yes-no'] == "No")
         {
             // Continue to the next page
 
@@ -53,7 +58,7 @@ module.exports = function (router)
             else
             {
                 // This page name needs to be the next page the user gets to after successfully continuing
-                res.redirect('THE_NEXT_PAGE_NAME');
+                res.redirect('../' + 'THE_NEXT_PAGE_NAME');
             }
         }
         else
@@ -62,8 +67,7 @@ module.exports = function (router)
             req.session.data['errorthispage'] = "true";
             req.session.data['errortypeone'] = "true";
 
-            // This page name needs to match the page the user was just on
-            res.redirect('PAGENAME_YES_NO');
+            res.redirect('../' + page_name_submitted);
         }
     })
 

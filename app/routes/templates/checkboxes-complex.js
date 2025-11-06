@@ -1,6 +1,7 @@
 const {log} = require("govuk-prototype-kit/migrator/logger");
 
-let section = "/templates/";
+let section = "templates";
+let sectionURL = "/" + section + "/";
 
 module.exports = function (router)
 {
@@ -18,33 +19,36 @@ module.exports = function (router)
     ////////////////////////////////////////////////////////////////////////////////////
 
 
-    router.post(section + 'PAGENAME_CHECKBOXES_COMPLEX-router', function (req, res)
+    router.post(sectionURL + 'PAGENAME_CHECKBOXES_COMPLEX-router/:pageName', function (req, res)
     {
+        let page_name_submitted = req.params.pageName;
+
         // Turn errors off by default
         req.session.data['errorthispage'] = "false";
         req.session.data['errortypeone'] = "false";
 
+
         var checkboxestext = "";
 
         // check if none of the checkboxes are selected
-        if(req.session.data['SECTION-PAGENAME_CHECKBOXES_COMPLEX-checkboxes'] == undefined  ||
-            req.session.data['SECTION-PAGENAME_CHECKBOXES_COMPLEX-checkboxes'].length == 0)
+        if(req.session.data[section + '-' + page_name_submitted + '-checkboxes'] == undefined  ||
+            req.session.data[section + '-' + page_name_submitted + '-checkboxes'].length == 0)
         {
             // Trigger validation and relaunch the page
             req.session.data['errorthispage'] = "true";
             req.session.data['errortypeone'] = "true";
 
-            // This page name needs to match the page the user was just on
-            res.redirect('PAGENAME_CHECKBOXES_COMPLEX');
+            res.redirect('../' + page_name_submitted);
         }
 
         else
         {
             // Make formatted text for check answer review page
-            checkboxestext = req.session.data['SECTION-PAGENAME_CHECKBOXES_COMPLEX-checkboxes'].toString();
+            checkboxestext = req.session.data[section + '-' + page_name_submitted + '-checkboxes'].toString();
 
             let newStringmanure = checkboxestext.replace(/,(?!\s)/g, "\n\n");
-            req.session.data['SECTION-PAGENAME_CHECKBOXES_COMPLEX-checkboxes-formatted'] = newStringmanure;
+            req.session.data[section + '-' + page_name_submitted + '-checkboxes-formatted'] = newStringmanure;
+
 
             // Continue to the next page
 
@@ -57,7 +61,7 @@ module.exports = function (router)
             else
             {
                 // This page name needs to be the next page the user gets to after successfully continuing
-                res.redirect('THE_NEXT_PAGE_NAME');
+                res.redirect('../' + 'THE_NEXT_PAGE_NAME');
             }
         }
     })

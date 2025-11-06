@@ -4,18 +4,24 @@
 NOTES ON USING THIS TEMPLATE Page
 This will save you time.
 
-1. Type your heading for the page after '% set pageHeadingTextHTML %'
-2. Type/customise the error message after '% set errorTextHTML %'
-3. Use 'Find and replace' to replace "SECTION" with the name of the section of the service you're working on.
-4. Use 'Find and replace' to replace "PAGENAME_YES_NO" with whatever you named this page/file.
-5. Go to the javascript file 'templates.js' and copy the section 'YES AND NO - RADIO BUTTONS - MANDATORY' into your routes.js file.
-6. Follow instructions at the top of the 'templates.js'
+1. Type the heading for the page after '% set pageHeadingTextHTML %'
+2. Type the error message after '% set errorTextHTML %'
+3. Type the routes file section after '% set SECTION %'
+4. Type the error message after '% set PAGENAME_YES_NO %'
+5. OPTIONAL: Type the hint text after '% set HINT_TEXT %'
+
+6. Go to the javascript folder 'templates'
+7. Open 'yes-no-complex.js'
+8. Copy into your routes.js file.
+9. Rename PAGENAME_YES_NO in the URL to match the page name
+10. Rename THE_NEXT_PAGE_NAME
 -->
+
 
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    Did you PLACEHOLDER between PLACEHOLDER and PLACEHOLDER?
+    Did_you_PLACEHOLDER?
 {% endset %}
 
 
@@ -23,9 +29,20 @@ This will save you time.
 {% set errorTextHTML %}
     <!-- Nothing was selected -->
     {% if data['errortypeone'] == "true" %}
-        Select yes if you PLACEHOLDER between PLACEHOLDER and PLACEHOLDER
+        Select_yes_if_you_PLACEHOLDER
     {% endif %}
 {% endset %}
+
+
+<!-- Set the section name -->
+{% set SECTION %}templates{% endset %}
+
+<!-- Set the page name -->
+{% set PAGENAME_YES_NO %}PAGENAME_YES_NO{% endset %}
+
+<!-- Set the hint text -->
+{% set HINT_TEXT %}PLACEHOLDER_HINT_TEXT{% endset %}
+
 
 
 <!-- Text that show in the browser tab. Does NOT need changing -->
@@ -36,6 +53,7 @@ This will save you time.
 
     {{ pageHeadingTextHTML }}
 {% endblock %}
+
 
 
 {% block content %}
@@ -52,7 +70,7 @@ This will save you time.
                     [
                         {
                             html: errorTextHTML,
-                            href: "#SECTION-PAGENAME_YES_NO-radios-yes-no"
+                            href: "#" + SECTION + "-" + PAGENAME_YES_NO + "-radios-yes-no"
                         }
                     ]
                 })
@@ -62,15 +80,15 @@ This will save you time.
 
 
         <!-- go to routes.js for routing  -->
-        <form action="PAGENAME_YES_NO-router" method="post" novalidate>
+        <form action="{{PAGENAME_YES_NO}}-router/{{PAGENAME_YES_NO}}" method="post" novalidate>
 
             {{ govukRadios
                 ({
                     classes: "govuk-radios--inline",
 
-                    name: "SECTION-PAGENAME_YES_NO-radios-yes-no",
+                    name: SECTION + "-" + PAGENAME_YES_NO + "-radios-yes-no",
 
-                    id: "SECTION-PAGENAME_YES_NO-radios-yes-no",
+                    id: SECTION + "-" + PAGENAME_YES_NO + "-radios-yes-no",
 
                     fieldset:
                     {
@@ -84,20 +102,20 @@ This will save you time.
 
                     hint:
                     {
-                        text: "PLACEHOLDER hint text if needed."
-                    },
+                        text: HINT_TEXT
+                    } if HINT_TEXT != "PLACEHOLDER_HINT_TEXT",
 
                     items:
                     [
                         {
                             value: "Yes",
                             text: "Yes",
-                            checked: data['SECTION-PAGENAME_YES_NO-radios-yes-no'] == "Yes"
+                            checked: data[SECTION + "-" + PAGENAME_YES_NO + '-radios-yes-no'] == "Yes"
                         },
                         {
                             value: "No",
                             text: "No",
-                            checked: data['SECTION-PAGENAME_YES_NO-radios-yes-no'] == "No"
+                            checked: data[SECTION + "-" + PAGENAME_YES_NO + '-radios-yes-no'] == "No"
                         }
                     ],
 
@@ -105,7 +123,6 @@ This will save you time.
                                        else { html: errorTextHTML }
                 })
             }}
-
 
             {{ govukButton({ text: "Continue" }) }}
 

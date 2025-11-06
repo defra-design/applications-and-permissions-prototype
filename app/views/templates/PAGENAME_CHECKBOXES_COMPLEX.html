@@ -1,29 +1,33 @@
 {% extends "layouts/main.html" %}
 
-
 <!--
 NOTES ON USING THIS TEMPLATE Page
 This will save you time.
 
-1. Type your heading for the page after '% set pageHeadingTextHTML %'
-2. Put your question heading for the page after '% set questionHeadingTextHTML %'
-3. Type/customise the error message after '% set errorTextHTML %'
-4. Use 'Find and replace' to replace "SECTION" with the name of the section of the service you're working on.
-5. Use 'Find and replace' to replace "PAGENAME_CHECKBOXES" with whatever you named this page/file.
-6. Use 'Find and replace' to replace each of the checkbox values. Starting with 'PLACEHOLDER_ANSWER_1'
-7. Go to the javascript file 'templates.js' and copy the section 'CHECKBOXES - MANDATORY' into your routes.js file.
-8. Follow instructions at the top of the 'templates.js'.
+1. Type the heading for the page after '% set pageHeadingTextHTML %'
+2. Type the heading for the page after '% set questionHeadingTextHTML %'
+3. Type the error message after '% set errorTextHTML %'
+4. Type the routes file section after '% set SECTION %'
+5. Type the error message after '% set PAGENAME_YES_NO %'
+6. OPTIONAL: Type the hint text after '% set HINT_TEXT %'
+
+7. Go to the javascript folder 'templates'
+8. Open 'yes-no-complex.js'
+9. Copy into your routes.js file.
+10. Rename PAGENAME_YES_NO in the URL to match the page name
+11. Rename THE_NEXT_PAGE_NAME
 -->
+
 
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    Your PLACEHOLDERs
+    Your_PLACEHOLDERs
 {% endset %}
 
 <!-- Setting the smaller secondary heading lower down the page -->
 {% set questionHeadingTextHTML %}
-    Which of your PLACEHOLDERs were PLACEHOLDER?
+    Which_of_your_PLACEHOLDERs_were_PLACEHOLDER?
 {% endset %}
 
 
@@ -31,7 +35,7 @@ This will save you time.
 {% set errorTextHTML %}
     <!-- Nothing was selected -->
     {%  if  data['errortypeone'] == "true"  %}
-         Select at least one PLACEHOLDER
+         Select_at_least_one_PLACEHOLDER
     {% endif %}
 {% endset %}
 
@@ -44,6 +48,53 @@ This will save you time.
 
     {{ questionHeadingTextHTML }}
 {% endblock %}
+
+
+
+<!-- Set the section name -->
+{% set SECTION %}templates{% endset %}
+
+<!-- Set the page name -->
+{% set PAGENAME_CHECKBOXES_COMPLEX %}PAGENAME_CHECKBOXES_COMPLEX{% endset %}
+
+<!-- Set the hint text -->
+{% set HINT_TEXT %}PLACEHOLDER_HINT_TEXT{% endset %}
+
+
+
+<!-- CHECKBOX NAME 1 -->
+{% set CHECKBOX_COMPLEX_ANSWER_1 %}PLACEHOLDER_ANSWER_1{% endset %}
+
+<!-- CHECKBOX NAME 2 -->
+{% set CHECKBOX_COMPLEX_ANSWER_2 %}PLACEHOLDER_ANSWER_2{% endset %}
+
+<!-- CHECKBOX NAME 3 -->
+{% set CHECKBOX_COMPLEX_ANSWER_3 %}PLACEHOLDER_ANSWER_3{% endset %}
+
+<!-- CHECKBOX NAME 4 -->
+{% set CHECKBOX_COMPLEX_ANSWER_4 %}PLACEHOLDER_ANSWER_4{% endset %}
+
+<!-- CHECKBOX NAME 5 -->
+{% set CHECKBOX_COMPLEX_ANSWER_5 %}PLACEHOLDER_ANSWER_5{% endset %}
+
+<!-- CHECKBOX NAME 6 -->
+{% set CHECKBOX_COMPLEX_ANSWER_6 %}PLACEHOLDER_ANSWER_6{% endset %}
+
+<!-- CHECKBOX NAME 7 -->
+{% set CHECKBOX_COMPLEX_ANSWER_7 %}PLACEHOLDER_ANSWER_7{% endset %}
+
+<!-- CHECKBOX NAME 8 -->
+{% set CHECKBOX_COMPLEX_ANSWER_8 %}PLACEHOLDER_ANSWER_8{% endset %}
+
+<!-- CHECKBOX NAME 9 -->
+{% set CHECKBOX_COMPLEX_ANSWER_9 %}PLACEHOLDER_ANSWER_9{% endset %}
+
+<!-- CHECKBOX NAME 10 -->
+{% set CHECKBOX_COMPLEX_ANSWER_10 %}PLACEHOLDER_ANSWER_10{% endset %}
+
+<!-- CHECKBOX NAME for OR OPTION -->
+{% set CHECKBOX_COMPLEX_ANSWER_OR_OPTION %}PLACEHOLDER_ANSWER_OR_OPTION{% endset %}
+
 
 
 {% block content %}
@@ -60,7 +111,7 @@ This will save you time.
                     [
                         {
                             html: errorTextHTML,
-                            href: "#SECTION-PAGENAME_CHECKBOXES_COMPLEX-checkboxes"
+                            href: "#" + SECTION + "-" + PAGENAME_CHECKBOXES_COMPLEX + "-checkboxes"
                         }
                     ]
                 })
@@ -102,13 +153,13 @@ This will save you time.
 
 
         <!-- form URL below turns off errors on the next page  -->
-        <form action="PAGENAME_CHECKBOXES_COMPLEX-router" method="post" novalidate>
+        <form action="PAGENAME_CHECKBOXES_COMPLEX-router/{{PAGENAME_CHECKBOXES_COMPLEX}}" method="post" novalidate>
 
             {{ govukCheckboxes
                 ({
-                    name: "SECTION-PAGENAME_CHECKBOXES_COMPLEX-checkboxes",
+                    name: SECTION + "-" + PAGENAME_CHECKBOXES_COMPLEX + "-checkboxes",
 
-                    id: "SECTION-PAGENAME_CHECKBOXES_COMPLEX-checkboxes",
+                    id: SECTION + "-" + PAGENAME_CHECKBOXES_COMPLEX + "-checkboxes",
 
                     fieldset:
                     {
@@ -122,8 +173,8 @@ This will save you time.
 
                     hint:
                     {
-                        text: "Select all that apply"
-                    },
+                        text: HINT_TEXT
+                    } if HINT_TEXT != "PLACEHOLDER_HINT_TEXT",
 
                     errorMessage: null if data['errorthispage'] != "true"
                                        else { html: errorTextHTML },
@@ -131,48 +182,67 @@ This will save you time.
                     items:
                     [
                         {
-                            value: "PLACEHOLDER_ANSWER_1",
-                            text: "PLACEHOLDER_ANSWER_1",
-                            checked: (data['SECTION-PAGENAME_CHECKBOXES_COMPLEX-checkboxes'] or []).indexOf('PLACEHOLDER_ANSWER_1') > -1
+                            value: CHECKBOX_COMPLEX_ANSWER_1,
+                            text: CHECKBOX_COMPLEX_ANSWER_1,
+                            checked: (data[SECTION + '-' + PAGENAME_CHECKBOXES_COMPLEX + '-checkboxes'] or []).indexOf(CHECKBOX_COMPLEX_ANSWER_1) > -1
                         },
                         {
-                            value: "PLACEHOLDER_ANSWER_2",
-                            text: "PLACEHOLDER_ANSWER_2",
-                            checked: (data['SECTION-PAGENAME_CHECKBOXES_COMPLEX-checkboxes'] or []).indexOf('PLACEHOLDER_ANSWER_2') > -1
+                            value: CHECKBOX_COMPLEX_ANSWER_2,
+                            text: CHECKBOX_COMPLEX_ANSWER_2,
+                            checked: (data[SECTION + '-' + PAGENAME_CHECKBOXES_COMPLEX + '-checkboxes'] or []).indexOf(CHECKBOX_COMPLEX_ANSWER_2) > -1
                         },
                         {
-                            value: "PLACEHOLDER_ANSWER_3",
-                            text: "PLACEHOLDER_ANSWER_3",
-                            checked: (data['SECTION-PAGENAME_CHECKBOXES_COMPLEX-checkboxes'] or []).indexOf('PLACEHOLDER_ANSWER_3') > -1
-                        },
+                            value: CHECKBOX_COMPLEX_ANSWER_3,
+                            text: CHECKBOX_COMPLEX_ANSWER_3,
+                            checked: (data[SECTION + '-' + PAGENAME_CHECKBOXES_COMPLEX + '-checkboxes'] or []).indexOf(CHECKBOX_COMPLEX_ANSWER_3) > -1
+                        } if CHECKBOX_COMPLEX_ANSWER_3 != "PLACEHOLDER_ANSWER_3",
                         {
-                            value: "PLACEHOLDER_ANSWER_4",
-                            text: "PLACEHOLDER_ANSWER_4",
-                            checked: (data['SECTION-PAGENAME_CHECKBOXES_COMPLEX-checkboxes'] or []).indexOf('PLACEHOLDER_ANSWER_4') > -1
-                        },
+                            value: CHECKBOX_COMPLEX_ANSWER_4,
+                            text: CHECKBOX_COMPLEX_ANSWER_4,
+                            checked: (data[SECTION + '-' + PAGENAME_CHECKBOXES_COMPLEX + '-checkboxes'] or []).indexOf(CHECKBOX_COMPLEX_ANSWER_4) > -1
+                        } if CHECKBOX_COMPLEX_ANSWER_4 != "PLACEHOLDER_ANSWER_4",
                         {
-                            value: "PLACEHOLDER_ANSWER_5",
-                            text: "PLACEHOLDER_ANSWER_5",
-                            checked: (data['SECTION-PAGENAME_CHECKBOXES_COMPLEX-checkboxes'] or []).indexOf('PLACEHOLDER_ANSWER_5') > -1
-                        },
+                            value: CHECKBOX_COMPLEX_ANSWER_5,
+                            text: CHECKBOX_COMPLEX_ANSWER_5,
+                            checked: (data[SECTION + '-' + PAGENAME_CHECKBOXES_COMPLEX + '-checkboxes'] or []).indexOf(CHECKBOX_COMPLEX_ANSWER_5) > -1
+                        } if CHECKBOX_COMPLEX_ANSWER_5 != "PLACEHOLDER_ANSWER_5",
                         {
-                            value: "PLACEHOLDER_ANSWER_6",
-                            text: "PLACEHOLDER_ANSWER_6",
-                            checked: (data['SECTION-PAGENAME_CHECKBOXES_COMPLEX-checkboxes'] or []).indexOf('PLACEHOLDER_ANSWER_6') > -1
-                        },
+                            value: CHECKBOX_COMPLEX_ANSWER_6,
+                            text: CHECKBOX_COMPLEX_ANSWER_6,
+                            checked: (data[SECTION + '-' + PAGENAME_CHECKBOXES_COMPLEX + '-checkboxes'] or []).indexOf(CHECKBOX_COMPLEX_ANSWER_6) > -1
+                        } if CHECKBOX_COMPLEX_ANSWER_6 != "PLACEHOLDER_ANSWER_6",
+                        {
+                            value: CHECKBOX_COMPLEX_ANSWER_7,
+                            text: CHECKBOX_COMPLEX_ANSWER_7,
+                            checked: (data[SECTION + '-' + PAGENAME_CHECKBOXES_COMPLEX + '-checkboxes'] or []).indexOf(CHECKBOX_COMPLEX_ANSWER_7) > -1
+                        } if CHECKBOX_COMPLEX_ANSWER_7 != "PLACEHOLDER_ANSWER_7",
+                        {
+                            value: CHECKBOX_COMPLEX_ANSWER_8,
+                            text: CHECKBOX_COMPLEX_ANSWER_8,
+                            checked: (data[SECTION + '-' + PAGENAME_CHECKBOXES_COMPLEX + '-checkboxes'] or []).indexOf(CHECKBOX_COMPLEX_ANSWER_8) > -1
+                        } if CHECKBOX_COMPLEX_ANSWER_8 != "PLACEHOLDER_ANSWER_8",
+                        {
+                            value: CHECKBOX_COMPLEX_ANSWER_9,
+                            text: CHECKBOX_COMPLEX_ANSWER_9,
+                            checked: (data[SECTION + '-' + PAGENAME_CHECKBOXES_COMPLEX + '-checkboxes'] or []).indexOf(CHECKBOX_COMPLEX_ANSWER_9) > -1
+                        } if CHECKBOX_COMPLEX_ANSWER_9 != "PLACEHOLDER_ANSWER_9",
+                        {
+                            value: CHECKBOX_COMPLEX_ANSWER_10,
+                            text: CHECKBOX_COMPLEX_ANSWER_10,
+                            checked: (data[SECTION + '-' + PAGENAME_CHECKBOXES_COMPLEX + '-checkboxes'] or []).indexOf(CHECKBOX_COMPLEX_ANSWER_10) > -1
+                        } if CHECKBOX_COMPLEX_ANSWER_10 != "PLACEHOLDER_ANSWER_10",
                         {
                             divider: "or"
-                        },
+                        } if CHECKBOX_COMPLEX_ANSWER_OR_OPTION != "PLACEHOLDER_ANSWER_OR_OPTION",
                         {
-                            value: "None of the PLACEHOLDER",
-                            text: "None of the PLACEHOLDER",
-                            checked: (data['SECTION-PAGENAME_CHECKBOXES_COMPLEX-checkboxes'] or []).indexOf('None of the PLACEHOLDER') > -1,
+                            value: CHECKBOX_COMPLEX_ANSWER_OR_OPTION,
+                            text: CHECKBOX_COMPLEX_ANSWER_OR_OPTION,
+                            checked: (data[SECTION + '-' + CHECKBOX_COMPLEX_ANSWER_OR_OPTION + '-checkboxes']or []).indexOf(CHECKBOX_COMPLEX_ANSWER_OR_OPTION) > -1,
                             behaviour: "exclusive"
-                        }
+                        } if CHECKBOX_COMPLEX_ANSWER_OR_OPTION != "PLACEHOLDER_ANSWER_OR_OPTION"
                     ]
                 })
             }}
-
 
 
             {{ govukButton({ text: "Continue" }) }}
