@@ -17,7 +17,13 @@ This will save you time.
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    Select the types of movement covered by general licences
+    Select the types of movement covered by general licences for
+    {% if  data['disease-configurator-disease-name-text-input'] != ""
+            and data['disease-configurator-disease-name-text-input'] != undefined  %}
+        {{ data['disease-configurator-disease-name-text-input'] }}?
+    {% else %}
+        [ Disease Name ]?
+    {% endif %}
 {% endset %}
 
 
@@ -42,7 +48,7 @@ This will save you time.
 
 
 <!-- Set the section name -->
-{% set SECTION %}general-licences{% endset %}
+{% set SECTION %}disease-configurator{% endset %}
 
 <!-- Set the page name -->
 {% set PAGENAME_CHECKBOXES %}types-of-movement{% endset %}
@@ -111,7 +117,7 @@ This will save you time.
 
 
         <!-- form URL below turns off errors on the next page  -->
-        <form action="{{PAGENAME_CHECKBOXES}}-router" method="post" novalidate>
+        <form action="{{PAGENAME_CHECKBOXES}}-router/{{PAGENAME_CHECKBOXES}}" method="post" novalidate>
 
             {{ govukCheckboxes
                 ({

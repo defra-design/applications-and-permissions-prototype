@@ -1,7 +1,7 @@
 const {log} = require("govuk-prototype-kit/migrator/logger");
 
 let section = "templates";
-let sectionURL = "/" + section + "/";
+let sectionURL = "/" + "templates" + "/";
 
 module.exports = function (router)
 {

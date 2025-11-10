@@ -16,7 +16,13 @@ This will save you time.
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    Are there any general licences?
+    Are there any general licences for
+    {% if  data['disease-configurator-disease-name-text-input'] != ""
+            and data['disease-configurator-disease-name-text-input'] != undefined  %}
+        {{ data['disease-configurator-disease-name-text-input'] }}?
+    {% else %}
+        [ Disease Name ]?
+    {% endif %}
 {% endset %}
 
 
@@ -74,7 +80,7 @@ This will save you time.
 
 
         <!-- go to routes.js for routing  -->
-        <form action="{{PAGENAME_YES_NO}}-router" method="post" novalidate>
+        <form action="{{PAGENAME_YES_NO}}-router/{{PAGENAME_YES_NO}}" method="post" novalidate>
 
             {{ govukRadios
                 ({

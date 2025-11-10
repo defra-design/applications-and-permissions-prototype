@@ -1,7 +1,7 @@
 const {log} = require("govuk-prototype-kit/migrator/logger");
 
 let section = "templates";
-let sectionURL = "/" + section + "/";
+let sectionURL = "/" + "templates" + "/";
 
 module.exports = function (router)
 {
@@ -17,7 +17,10 @@ module.exports = function (router)
     ////////////////                                                    ////////////////
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
 
+    // 1. Change PAGENAME_YES_NO_COMPLEX
+    // 2. Change THE_NEXT_PAGE_NAME
 
     router.post(sectionURL + 'PAGENAME_CHECKBOXES_COMPLEX-router/:pageName', function (req, res)
     {
@@ -51,10 +54,13 @@ module.exports = function (router)
 
 
             // Continue to the next page
-
-            // If the user needs to go back to 'check your answers' then take them directly there
-            if (req.session.data['camefromcheckanswers'] == 'true')
+            if(req.session.data[section + '-' + page_name_submitted + '-checkboxes'].includes("PLACEHOLDER_CHECKBOX_TEXT") )
             {
+                res.redirect('../' + 'CONDITONAL_NEXT_PAGE_NAME');
+            }
+            else if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                // If the user needs to go back to 'check your answers' then take them directly there
                 req.session.data['camefromcheckanswers'] = false;
                 res.redirect('check-answers');
             }
