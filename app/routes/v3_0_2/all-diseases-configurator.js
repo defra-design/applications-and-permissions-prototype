@@ -861,6 +861,7 @@ module.exports = function (router) {
                 {
                     // if the selected origin is undefined then we're not in the loop and need to begin
                     let loopcounter = 0;
+
                     req.session.data['origin-general-licence-loop-counter'] = loopcounter;
 
                     // set the first loop to the first item in the list
@@ -868,10 +869,119 @@ module.exports = function (router) {
                         = req.session.data['disease-configurator-origin-types-checkboxes-text-for-general-licences-headings'][loopcounter];
                 }
 
-                res.redirect('../' + 'THE_NEXT_PAGE_NAME');
+                res.redirect('../' + 'select-destination-for-each-origin-general-licences');
             }
         }
     })
+
+
+
+
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////           Select destination of reach              ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////                   CHECKBOXES                       ////////////////
+    ////////////////                NOT COMPLEX PAGE                    ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    router.post(sectionURL + 'general-licences/select-destination-for-each-origin-general-licences-router', function (req, res)
+    {
+        // Turn errors off by default
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+
+
+        // check if none of the checkboxes are selected
+        if(req.session.data['disease-configurator-select-destination-for-each-origin-general-licences-checkboxes'] == undefined  ||
+            req.session.data['disease-configurator-select-destination-for-each-origin-general-licences-checkboxes'].length == 0)
+        {
+            // Trigger validation and relaunch the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('select-destination-for-each-origin-general-licences');
+        }
+
+        else
+        {
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                // save the answers for the specific index changed
+                var loopcounter = parseInt(req.session.data['origin-general-licence-loop-counter']);
+                req.session.data['origin-destination-matrix-general-licences'][loopcounter]
+                    = req.session.data['disease-configurator-select-destination-for-each-origin-general-licences-checkboxes'];
+
+                // clear the loop
+                req.session.data['disease-configurator-select-destination-for-each-origin-general-licences-checkboxes'] =  undefined;
+
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('check-answers');
+            }
+            else
+            {
+                // Save the submitted data for this loop
+                var loopcounter = parseInt(req.session.data['origin-general-licence-loop-counter']);
+
+                // set up the output array if new
+                if ( req.session.data['origin-destination-matrix-general-licences'] == undefined)
+                {
+                    req.session.data['origin-destination-matrix-general-licences'] = [];
+                }
+
+                req.session.data['origin-destination-matrix-general-licences'][loopcounter]
+                    = req.session.data['disease-configurator-select-destination-for-each-origin-general-licences-checkboxes'];
+
+                // Iterate through the loop unless from check answers
+                let sizeofarray = req.session.data['disease-configurator-origin-types-general-licences-checkboxes'].length;
+
+                // Check if this is the final item in the list
+                if ( sizeofarray == req.session.data['origin-general-licence-loop-counter'] + 1 ) {
+                    req.session.data['origin-showing-in-loop-general-licences'] == undefined
+
+                    // Go to the final page
+                    res.redirect('check-answers');
+                }
+                else
+                {
+                    // if the selected origin is undefined then we're not in the loop and need to begin
+                    loopcounter = loopcounter + 1 ;
+                    req.session.data['origin-general-licence-loop-counter'] = loopcounter;
+
+                    // set the first loop to the first item in the list
+                    req.session.data['origin-general-licence-showing-in-loop']
+                        = req.session.data['disease-configurator-origin-types-checkboxes-text-for-general-licences-headings'][loopcounter];
+
+                    res.redirect('select-destination-for-each-origin-general-licences');
+                }
+            }
+        }
+    })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
