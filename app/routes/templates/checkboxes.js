@@ -61,7 +61,7 @@ module.exports = function (router)
             {
                 // If the user needs to go back to 'check your answers' then take them directly there
                 req.session.data['camefromcheckanswers'] = false;
-                res.redirect('check-answers');
+                res.redirect('../' + 'check-answers');
             }
             else
             {

@@ -4,19 +4,9 @@
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    Your animal disease movement licence application
+    Check your answers before you complete the details
 {% endset %}
 
-
-
-
-<!-- Set the text for the error type -->
-{% set errorTextHTML %}
-    <!-- Nothing was selected -->
-    {%  if  data['errortypeone'] == "true"  %}
-         You need to tick a declaration box
-    {% endif %}
-{% endset %}
 
 
 <!-- Text that show in the browser tab. Does NOT need changing -->
@@ -38,7 +28,7 @@
     <div class="govuk-grid-column-two-thirds">
 
 
-        <h1 class="govuk-heading-l">Check your answers before you complete the details</h1>
+        <h1 class="govuk-heading-l">{{ pageHeadingTextHTML }}</h1>
 
         <dl class="govuk-summary-list">
 

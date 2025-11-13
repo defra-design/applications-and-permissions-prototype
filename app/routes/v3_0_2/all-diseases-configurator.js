@@ -435,6 +435,20 @@ module.exports = function (router) {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////
 
@@ -477,7 +491,7 @@ module.exports = function (router) {
             if (req.session.data['camefromcheckanswers'] == 'true')
             {
                 req.session.data['camefromcheckanswers'] = false;
-                res.redirect('check-answers');
+                res.redirect('../' + 'check-answers');
             }
             else
             {
@@ -493,7 +507,7 @@ module.exports = function (router) {
             if (req.session.data['camefromcheckanswers'] == 'true')
             {
                 req.session.data['camefromcheckanswers'] = false;
-                res.redirect('check-answers');
+                res.redirect('../' + 'check-answers');
             }
             else
             {
@@ -564,7 +578,7 @@ module.exports = function (router) {
             if (req.session.data['camefromcheckanswers'] == 'true')
             {
                 req.session.data['camefromcheckanswers'] = false;
-                res.redirect('check-answers');
+                res.redirect('../' + 'check-answers');
             }
             else
             {
@@ -630,11 +644,11 @@ module.exports = function (router) {
             else if (req.session.data['camefromcheckanswers'] == 'true')
             {
                 req.session.data['camefromcheckanswers'] = false;
-                res.redirect('check-answers');
+                res.redirect('../' + 'check-answers');
             }
             else
             {
-                res.redirect('../' + 'THE_NEXT_PAGE_NAME');
+                res.redirect('../' + 'origin-types-general-licences');
             }
         }
     })
@@ -696,7 +710,7 @@ module.exports = function (router) {
             {
                 // If the user needs to go back to 'check your answers' then take them directly there
                 req.session.data['camefromcheckanswers'] = false;
-                res.redirect('check-answers');
+                res.redirect('../' + 'check-answers');
             }
             else
             {
@@ -786,7 +800,7 @@ module.exports = function (router) {
             {
                 // If the user needs to go back to 'check your answers' then take them directly there
                 req.session.data['camefromcheckanswers'] = false;
-                res.redirect('check-answers');
+                res.redirect('../' + 'check-answers');
             }
             else
             {
@@ -852,7 +866,7 @@ module.exports = function (router) {
             {
                 // If the user needs to go back to 'check your answers' then take them directly there
                 req.session.data['camefromcheckanswers'] = false;
-                res.redirect('check-answers');
+                res.redirect('../' + 'check-answers');
             }
             else
             {
