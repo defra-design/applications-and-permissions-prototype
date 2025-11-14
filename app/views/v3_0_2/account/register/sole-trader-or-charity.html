@@ -29,6 +29,7 @@
                 },
                 items: [
                     { value: "Charity", text: 'Charity', checked: checked ('registrationOrganisationType','Charity') },
+                    { value: "Partnership", text: 'Partnership', checked: checked ('registrationOrganisationType','Partnership') },
                     { value: "Sole trader", text: 'Sole trader', checked: checked ('registrationOrganisationType','Sole trader')   }
                 ],
                 name: "registrationOrganisationType",
@@ -41,7 +42,7 @@
                 {{govukButton({
                     text: "Continue"
                 })}}
-                <a class="govuk-link" href="#">We are not a charity or sole trader</a>
+                
             </div>        
         </form>
 
