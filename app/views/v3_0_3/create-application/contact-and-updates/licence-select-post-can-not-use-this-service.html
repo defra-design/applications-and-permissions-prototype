@@ -1,0 +1,44 @@
+{% extends "layouts/v3_0_3.html" %}
+
+
+<!-- Setting the big main heading at the top of the page -->
+{% set pageHeadingTextHTML %}
+    This service does not currently send licences by post
+{% endset %}
+
+
+
+<!-- Text that show in the browser tab. Does NOT need changing -->
+{% block pageTitle %}
+    {{ pageHeadingTextHTML }}
+{% endblock %}
+
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-l">{{ pageHeadingTextHTML }}</h1>
+
+        <p>If you want to receive your licence by post, you need to
+            <a href="https://www.gov.uk/government/publications/tb-restricted-cattle-application-for-movement-licence-in-england">
+                complete the current application form on GOV.UK</a>
+            and post it to APHA.
+        </p>
+
+
+        {{
+            govukButton
+            ({
+                text: "Continue with email",
+                classes: "govuk-button--secondary",
+                href: "licence-enter-email-address?contact-and-updates-licence-email-or-post-radios=Email&"
+            })
+        }}
+
+    </div>
+</div>
+
+
+
+{% endblock %}

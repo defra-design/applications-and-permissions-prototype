@@ -1,0 +1,178 @@
+{% extends "layouts/v3_0_3" %}
+
+{% set version = "v3_0_3" %}
+{% set bodyClasses = version %}
+
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-l">Check your answers before you continue your application</h1>
+
+        <dl class="govuk-summary-list">
+
+            {%  if data['about-the-movement-or-activity-what-is-moving-radios']  == "Live animals"  %}
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                        Will there be more than 1 movement?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{ data['movement-details-more-than-one-movement-radios'] }}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="more-than-one-movement">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                </div>
+
+                {%  if  data['movement-details-more-than-one-movement-radios'] == "Yes, several movements"  %}
+
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                            What are the maximum number of journeys needed to move the animals?
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                            {{ data['movement-details-maximum-journeys-number-input'] }}
+                        </dd>
+                        <dd class="govuk-summary-list__actions">
+                            <a class="govuk-link" href="maximum-journeys">Change<span class="govuk-visually-hidden"> </span></a>
+                        </dd>
+                    </div>
+
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                            Will the movement take more than 1 day?
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                            {{ data['movement-details-movements-over-a-day-radios-yes-no'] }}
+                        </dd>
+                        <dd class="govuk-summary-list__actions">
+                            <a class="govuk-link" href="movements-over-a-day">Change<span class="govuk-visually-hidden"> </span></a>
+                        </dd>
+                    </div>
+
+
+                    {%  if  data['movement-details-movements-over-a-day-radios-yes-no'] == "Yes"  %}
+
+                        <div class="govuk-summary-list__row">
+                            <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                                What are the dates for when you expect the movement to take place?
+                            </dt>
+                            <dd class="govuk-summary-list__value" style="white-space: pre-wrap;">{{ data['movement-details-movement-dates-multiple-text-area-input'] }}</dd>
+                            <dd class="govuk-summary-list__actions">
+                                <a class="govuk-link" href="movement-dates-multiple">Change<span class="govuk-visually-hidden"> </span></a>
+                            </dd>
+                        </div>
+
+                    {%  endif  %}
+
+
+                {%  endif  %}
+
+
+            {%  endif  %}
+
+
+
+
+            {%  if (data['about-the-movement-or-activity-what-is-moving-radios']  == "Carcasses"  or
+                   (data['movement-details-more-than-one-movement-radios'] == "Yes, several movements"  and
+                    data['movement-details-movements-over-a-day-radios-yes-no'] == "No")  or
+                    data['movement-details-more-than-one-movement-radios'] == "No, 1 movement only") and
+                    data['about-the-movement-or-activity-what-is-moving-radios']  != "Milk"
+            %}
+
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                            What date do you expect the movement to take place?
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                             {{  data['movement-details-date-input-day']  }}
+                             {{  data['movement-details-date-input-month-text']  }}
+                             {{  data['movement-details-date-input-year']  }}
+                        </dd>
+                        <dd class="govuk-summary-list__actions">
+                            <a class="govuk-link" href="date">Change<span class="govuk-visually-hidden"> </span></a>
+                        </dd>
+                    </div>
+
+            {%  endif  %}
+
+
+
+            {%  if data['about-the-movement-or-activity-what-is-moving-radios']  == "Milk"  %}
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                        Will there be more than 1 movement?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{ data['movement-details-more-than-one-movement-radios'] }}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="more-than-one-movement">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                </div>
+
+
+
+                {%  if  data['movement-details-more-than-one-movement-radios'] == "Yes, several movements"  %}
+
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                            What are the dates for when you expect the movement to take place?
+                        </dt>
+                        <dd class="govuk-summary-list__value" style="white-space: pre-wrap;">{{ data['movement-details-movement-dates-multiple-text-area-input'] }}</dd>
+                        <dd class="govuk-summary-list__actions">
+                            <a class="govuk-link" href="movement-dates-multiple">Change<span class="govuk-visually-hidden"> </span></a>
+                        </dd>
+                    </div>
+
+                {%  else  %}
+
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                            What date do you expect the movement to take place?
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                             {{  data['movement-details-date-input-day']  }}
+                             {{  data['movement-details-date-input-month-text']  }}
+                             {{  data['movement-details-date-input-year']  }}
+                        </dd>
+                        <dd class="govuk-summary-list__actions">
+                            <a class="govuk-link" href="date">Change<span class="govuk-visually-hidden"> </span></a>
+                        </dd>
+                    </div>
+
+                {%  endif  %}
+
+
+
+            {%  endif  %}
+
+
+
+        </dl>
+
+
+
+        <form action="../task-list?section-fmd-movement-details-complete=true&" method="post" novalidate>
+
+            <button type="submit" class="govuk-button" data-module="govuk-button">
+                Continue
+            </button>
+
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}
+
+
+
+
+

@@ -1,0 +1,97 @@
+{% extends "layouts/v3_0_3.html" %}
+
+{% set serviceName = "Get permission to move animals under disease controls" %}
+
+
+{% set pageHeading = "What’s your name?" %}
+{% set pageSection = "Register Defra account" %}
+
+
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <span class="govuk-caption-xl">{{ pageSection }}</span>
+
+        <div class="gem-c-title govuk-!-margin-top-0 govuk-!-margin-bottom-8">
+            <h1 class="gem-c-title__text govuk-heading-xl">
+                {{ pageHeading }}
+            </h1>
+        </div>
+
+        <!-- Invited Team Member for a Trusted Third Party -->
+        {% if data['userType'] == "TPmemberInvite"  %}
+				<form method="post" action="/register/check-your-answers">        
+        {% elif data['registrationAccountType'] == "Individual" %}
+            {% if data['registrationAddressUK'] == "No" %}
+                <form method="post" action="personal-contact">
+            {% else %}
+                <form method="post" action="personal-contact">
+            {% endif %}
+        {% elif data['registrationOrganisationType'] == "Charity" %}
+            <form method="post" action="personal-contact">
+        {% else %}                        
+            <form method="post" action="personal-contact">
+        {% endif %}
+
+            {% if data['userType'] == "TPmemberInvite" %}
+
+                {{ govukInput({
+                    label: {
+                        text: "First name"
+                    },
+                    classes: "govuk-!-width-three-quarters",
+                    name: "regTeamTPfirstName",
+                    id: "regTeamTPfirstName",
+                    value: data['regTeamTPfirstName']
+                }) }}
+
+                {{ govukInput({
+                    label: {
+                        text: "Last name"
+                    },
+                    classes: "govuk-!-width-three-quarters",
+                    name: "regTeamTPlastName",
+                    id: "regTeamTPlastName",
+                    value: data['regTeamTPlastName']
+                }) }}
+
+            {% else %}
+        
+            
+            {{ govukInput({
+                label: {
+                    text: "First name"
+                },
+                classes: "govuk-!-width-three-quarters",
+                name: "defaultFirstName",
+                id: "defaultFirstName",
+                value: data['defaultFirstName']
+            }) }}
+
+            {{ govukInput({
+                label: {
+                    text: "Last name"
+                },
+                classes: "govuk-!-width-three-quarters",
+                name: "defaultSurname",
+                id: "defaultSurname",
+                value: data['defaultSurname']
+            }) }}
+
+            {% endif %}
+
+       
+
+            {{ govukButton({
+                text: "Continue"
+            }) }}
+
+        </form>
+
+    </div>     
+</div>
+
+{% endblock %}
