@@ -122,7 +122,7 @@
 								classes: "govuk-!-margin-bottom-7"
 							},
 							rows: [
-								{ key: { text: "Name" }, value: { text: data.defaultFirstName + ' ' + data.defaultSurname }, actions: { items: [ { href: "personal-name?link=change", text: "Change", visuallyHiddenText: "your name", classes: "govuk-link--no-visited-state" } ] } },
+								{ key: { text: "Name" }, value: { text: data.defaultfirstName + ' ' + data.defaultsurName }, actions: { items: [ { href: "personal-name?link=change", text: "Change", visuallyHiddenText: "your name", classes: "govuk-link--no-visited-state" } ] } },
 								{ key: { text: "Telephone number" }, value: { text: data.registrationContactPhonePersonal or data.defaultIndividualPhone  }, actions: { items: [ { href: "personal-contact?link=change", text: "Change", visuallyHiddenText: "your telephone number", classes: "govuk-link--no-visited-state" } ] } },
 								{ key: { text: "Address" }, value: { html: data.registrationSoleTraderAddress }, actions: { items: [ { href: "address/postcode?link=change", text: "Change", visuallyHiddenText: "your address", classes: "govuk-link--no-visited-state" } ] } },
 								{ key: { text: "Memorable word" }, value: { text: data.registrationMemorableWord or data.defaultIndividualWord }, actions: { items: [ { href: "personal-security?link=change", text: "Change", visuallyHiddenText: "your memorable word", classes: "govuk-link--no-visited-state" } ] } },
@@ -139,7 +139,7 @@
 		classes: "govuk-!-margin-bottom-7"        
     },
     rows: [		
-        { key: { text: "Name" }, value: { text: accountUserName or data.defaultIndividualName }, actions: { items: [ { href: "personal-name?link=change", text: "Change", visuallyHiddenText: "your name", classes: "govuk-link--no-visited-state" } ] } },
+        { key: { text: "Name" }, value: { text: data.defaultfirstName + ' ' + data.defaultsurName  }, actions: { items: [ { href: "personal-name?link=change", text: "Change", visuallyHiddenText: "your name", classes: "govuk-link--no-visited-state" } ] } },
         { key: { text: "Telephone number" }, value: { text: data.registrationContactPhonePersonal or data.defaultIndividualPhone  }, actions: { items: [ { href: "personal-contact?link=change", text: "Change", visuallyHiddenText: "your telephone number", classes: "govuk-link--no-visited-state" } ] } },
         { key: { text: "Address" }, value: { html: data.registrationIndividualAddress or data.defaultIndividualAddress }, actions: { items: [ { href: "address/postcode?link=change", text: "Change", visuallyHiddenText: "your address", classes: "govuk-link--no-visited-state" } ] } },
         { key: { text: "Memorable word" }, value: { text: data.registrationMemorableWord or data.defaultIndividualWord }, actions: { items: [ { href: "personal-security?link=change", text: "Change", visuallyHiddenText: "your memorable word", classes: "govuk-link--no-visited-state" } ] } },
@@ -156,7 +156,7 @@
 
 							},
 							rows: [
-								{ key: { text: "Type" }, value: { text: " Limited company" } },
+								{ key: { text: "Type" }, value: { text: "Limited company" } },
 								{ key: { text: "Name" }, value: { text: 'Acme Org Ltd' } },
 								{ key: { text: "Company number" }, value: { html: data.registrationCompanyNumber or data.defaultCompanyNumber }, actions: { items: [ { href: "/register/company-contact?flowType=check", text: "Change", visuallyHiddenText: "age", classes: "govuk-link--no-visited-state" } ] } },
 								{ key: { text: "Registered address" }, value: { html: "Acme Org Ltd <br>1 Francis Crick Avenue <br>Cambridge Biomedical Campus <br>Cambridge <br>United Kingdom <br>CB2 0AA" } },
@@ -192,7 +192,7 @@
 						rows: [
 							{ key: { text: "Type" }, value: { text: "Non-UK" } },
 							{ key: { text: "Name" }, value: { text: data.registrationNonUkName or data.defaultBusinessNonUkName }, actions: { items: [ { href: "/account/thirdParty/add/service-role?addTeamThirdParty=Yes", text: "Change", visuallyHiddenText: "age", classes: "govuk-link--no-visited-state" }] } },
-							{ key: { text: "Address" }, value: { html: data.defaultBusinessNonUkAddress }, actions: { items: [ { href: "/account/thirdParty/add/service-role?addTeamThirdParty=Yes", text: "Change", visuallyHiddenText: "age", classes: "govuk-link--no-visited-state" }] } },
+							{ key: { text: "Address" }, value: { text: 'Placeholder address' }, actions: { items: [ { href: "/account/thirdParty/add/service-role?addTeamThirdParty=Yes", text: "Change", visuallyHiddenText: "age", classes: "govuk-link--no-visited-state" }] } },
 							{ key: { text: "Telephone number" }, value: { text: data.registrationNonUkPhone or data.defaultBusinessNonUKPhone }, actions: { items: [ { href: "/account/thirdParty/add/service-role?addTeamThirdParty=Yes", text: "Change", visuallyHiddenText: "age", classes: "govuk-link--no-visited-state" }] } },
 							{ key: { text: "Email address" }, value: { text: data.registrationNonUkEmail or data.defaultBusinessNonUKEmail }, actions: { items: [ { href: "/account/thirdParty/add/service-role?addTeamThirdParty=Yes", text: "Change", visuallyHiddenText: "age", classes: "govuk-link--no-visited-state" }] } }
 						]
@@ -204,9 +204,9 @@
 							classes: "govuk-!-margin-bottom-7"
 						},
 						rows: [
-							{ key: { text: "Name" }, value: { text: accountUserName or data.defaultIndividualName }, actions: { items: [ { href: "personal-name?link=change", text: "Change", visuallyHiddenText: "your name", classes: "govuk-link--no-visited-state" } ] } },
+							{ key: { text: "Name" }, value: { text: data.defaultFirstName + ' ' + data.defaultSurname }, actions: { items: [ { href: "personal-name?link=change", text: "Change", visuallyHiddenText: "your name", classes: "govuk-link--no-visited-state" } ] } },
 							{ key: { text: "Telephone number" }, value: { text: data.registrationContactPhonePersonal or data.defaultIndividualPhone  }, actions: { items: [ { href: "personal-contact?link=change", text: "Change", visuallyHiddenText: "your telephone number", classes: "govuk-link--no-visited-state" } ] } },
-							{ key: { text: "Address" }, value: { html: data.registrationIndividualAddress or data.defaultIndividualAddress }, actions: { items: [ { href: "address/postcode?link=change", text: "Change", visuallyHiddenText: "your address", classes: "govuk-link--no-visited-state" } ] } },
+							{ key: { text: "Address" }, value: { text: 'Placeholder address' }, actions: { items: [ { href: "address/postcode?link=change", text: "Change", visuallyHiddenText: "your address", classes: "govuk-link--no-visited-state" } ] } },
 							{ key: { text: "Memorable word" }, value: { text: data.registrationMemorableWord or data.defaultIndividualWord }, actions: { items: [ { href: "personal-security?link=change", text: "Change", visuallyHiddenText: "your memorable word", classes: "govuk-link--no-visited-state" } ] } },
 							{ key: { text: "Hint question" }, value: { text: data.registrationMemorableHint or data.defaultIndividualHint }, actions: { items: [ { href: "personal-security?link=change", text: "Change", visuallyHiddenText: "your hint question", classes: "govuk-link--no-visited-state" } ] } }
 						]

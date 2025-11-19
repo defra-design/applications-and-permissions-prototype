@@ -7,51 +7,21 @@ module.exports = function (router) {
 
 
 
-
-
-
-    // NOT COMPLEX PAGE
-    router.post(section + 'ZZZZZZZZZZZZZZZ', function (req, res)
-    {
-        // Turn errors off by default
-        req.session.data['errorthispage'] = "false";
-        req.session.data['errortypeone'] = "false";
-
-        // If Yes was selected, continue to next page
-        if (req.session.data['DDDDDDDDDDDDD'] == "XXX")
-        {
-            res.redirect('THE_NEXT_PAGE_NAME');
-        }
-        else if (req.session.data['DDDDDDDDD'] == "YYY")
-        {
-            res.redirect('THE_NEXT_PAGE_NAME');
-        }
-        else
-        {
-            // This page name needs to match the page the user was just on
-            res.redirect('ZZZZZZZZZZZZZZZ');
-        }
-    })
-
-
-
-
-
-
-
     // From start page
     router.get(section + 'start-router', function (req, res)
     {
-         // If Yes was selected, continue to next page
+        // If Yes was selected, continue to next page
         if (req.session.data['customer-identity'] == "true")
         {
-            res.redirect('gov-gateway/sign-in');
+            res.redirect('sign-in-or-not');
         }
         else
         {
             res.redirect('../create-application/task-list');
         }
     })
+
+
 
 
 
@@ -65,7 +35,7 @@ module.exports = function (router) {
         // If Yes was selected, continue to next page
         if (req.session.data['account-sign-in-or-not-radios'] == "Yes, sign in")
         {
-            res.redirect('gov-gateway/sign-in');
+            res.redirect('gg-or-gov-one-login');
         }
         else if (req.session.data['account-sign-in-or-not-radios'] == "No, use the service without signing in")
         {
@@ -81,6 +51,105 @@ module.exports = function (router) {
             res.redirect('sign-in-or-not');
         }
     })
+
+
+
+
+
+    // Select gg or one login
+    router.post(section + 'gg-or-gov-one-login-router', function (req, res)
+    {
+        // Turn errors off by default
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+
+        // If Yes was selected, continue to next page
+        if (req.session.data['account-gg-or-gov-one-login-radios'] == "Sign in with GOV UK One Login")
+        {
+            res.redirect('start-of-gov-one-login');
+        }
+        else if (req.session.data['account-gg-or-gov-one-login-radios'] == "Sign in with Government Gateway")
+        {
+            res.redirect('gov-gateway/sign-in');
+        }
+        else
+        {
+            // This page name needs to match the page the user was just on
+            res.redirect('gg-or-gov-one-login');
+        }
+    })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // Select gg or one login
+    router.post(section + 'gg-or-gov-one-login-router', function (req, res)
+    {
+        // Turn errors off by default
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+
+        // If Yes was selected, continue to next page
+        if (req.session.data['account-gg-or-gov-one-login-radios'] == "Sign in with GOV UK One Login")
+        {
+            res.redirect('start-of-gov-one-login');
+        }
+        else if (req.session.data['account-gg-or-gov-one-login-radios'] == "Sign in with Government Gateway")
+        {
+            res.redirect('gov-gateway/sign-in');
+        }
+        else
+        {
+            // This page name needs to match the page the user was just on
+            res.redirect('gg-or-gov-one-login');
+        }
+    })
+
+
+
+
+
+    // Select gg or one login
+    router.post(section + 'sign-in-gov-one-login-email-router', function (req, res)
+    {
+
+        // This page name needs to match the page the user was just on
+        res.redirect('sign-in-gov-one-login-password');
+
+    })
+
+
+
+    // NOT COMPLEX PAGE
+    router.post(section + 'sign-in-gov-one-login-password-router', function (req, res)
+    {
+        // Turn errors off by default
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+
+        // If Yes was selected, continue to next page
+        if (req.session.data['defra-account-registration'] == "true")
+        {
+            res.redirect('register/index');
+        }
+        else
+        {
+            res.redirect('../../create-application/task-list');
+        }
+    })
+
+
 
 
 

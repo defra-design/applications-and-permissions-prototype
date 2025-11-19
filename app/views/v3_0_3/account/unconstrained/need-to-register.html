@@ -1,0 +1,42 @@
+{% extends "layouts/v3_0_3.html" %}
+{% set serviceName = "Get permission to move animals under disease controls" %}
+
+{% set pageHeading = "You need to register for a Defra account" %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <div class="gem-c-title govuk-!-margin-top-0 govuk-!-margin-bottom-8">
+            <h1 class="gem-c-title__text govuk-heading-l">
+                {{ pageHeading }}
+            </h1>
+        </div>
+
+
+        <p class="govuk-body">An account allows you to:</p>
+
+        <ul class="govuk-list govuk-list--bullet">
+            <li>register for, access and manage online services from Defra</li>
+            <li>invite and manage other team members from your business</li>
+            <li>access services on behalf of businesses you represent</li>
+        </ul>
+
+
+        <h2 class="govuk-heading-m">Using and sharing your information</h2>
+
+        <p class="govuk-body">To find out how we use, process and store your personal information, read our <a href="#" target="_blank" >Privacy notice (opens in new tab)</a>.</p>
+
+
+        <form method="post" action="terms-and-conditions">
+
+            {{ govukButton({
+                text: "Continue"
+            })}}
+        </form>    
+
+    </div>
+</div>
+
+{% endblock %}
