@@ -2,10 +2,9 @@
 
 
 
-
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    What is your name?
+    What is your phone number?
 {% endset %}
 
 
@@ -55,7 +54,7 @@
                     [
                         {
                             html: errorTextHTML,
-                            href: "#unconstrained-your-name-text-input"
+                            href: "#unconstrained-your-contact-number-text-input"
                         }
                     ]
                 })
@@ -67,7 +66,8 @@
 
 
         <!-- go to routes.js for routing  -->
-        <form action="your-name-router" method="post" novalidate>
+        <form action="personal-use" method="post" novalidate>
+
 
             {{ govukInput
                 ({
@@ -78,16 +78,16 @@
                         isPageHeading: true
                     },
 
-                    id: "unconstrained-your-name-text-input",
+                    id: "unconstrained-your-contact-number-text-input",
 
-                    name: "unconstrained-your-name-text-input",
+                    name: "unconstrained-your-contact-number-text-input",
 
                     errorMessage: null if data['errorthispage'] != "true"
                                        else { html: errorTextHTML },
 
-                    value: data['unconstrained-your-name-text-input'],
+                    value: data['unconstrained-your-contact-number-text-input'],
 
-                    classes: "govuk-input--width-20"
+                    classes: "govuk-input--width-10"
                 })
             }}
 
@@ -131,27 +131,6 @@
 
 </form>
 <!--  END OF ERROR LOGIC -->
-
-
-<!-- USER TYPE TOGGLE  -->
-<!--
-<form method="post"  action="#" class="for4" style=" float: left; position: relative; bottom:-225px;  ">
-
-  <select style="height:30px;" onchange="window.location.href='?'+this.value">
-
-    <option value="user=citizen&"
-            {% if  data['user'] != "agent"  %} selected {% endif %}
-    >User type - Individual</option>
-
-    <option value="user=agent&"
-            {% if  data['user'] == "agent"  %} selected {% endif %}
-    >User type - Agent</option>
-
-  </select>
-
-</form>
--->
-<!--  END USER TYPE TOGGLE -->
 
 
 

@@ -106,12 +106,16 @@
         </div>
 
 
-        <form method="post" action="personal-use" >
+        <form method="post" action="check-answers" >
 
-            {{ govukButton({
-                text: "Accept and continue",
-                classes: "govuk-!-margin-top-5"
-            })}}
+            {{
+                govukButton
+                ({
+                    text: "Accept and continue",
+                    classes: "govuk-!-margin-top-5"
+                })
+            }}
+
         </form>        
 
     </div>    
