@@ -4,7 +4,7 @@
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    Your  {{ data['disease-configurator-name-of-disease-text-input'] }} licence application
+    Register for a Defra account
 {% endset %}
 
 
@@ -70,6 +70,44 @@
                                 classes: "govuk-tag--blue"
                             } if data['section-personal-details-complete'] != "true"
                         }
+                    },
+
+
+                    {
+                        title:
+                        {
+                            text: "Business details"
+                        },
+                        href: "business-details/check-answers" if data['section-business-details-complete'] == "true"  else "business-details/uk-business-or-not",
+                            completed: data['section-business-details-complete'] == "true",
+                        status:
+                        {
+                            text: "Completed",
+                            tag:
+                            {
+                                text: "Incomplete",
+                                classes: "govuk-tag--blue"
+                            } if data['section-business-details-complete'] != "true"
+                        }
+                    } if data['section-personal-details-complete'] == "true" and data['unconstrained-personal-use-radios-yes-no'] == "No",
+
+
+                    {
+                        title:
+                        {
+                            text: "Secrutiy"
+                        },
+                        href: "security/check-answers" if data['section-security-complete'] == "true"  else "security/memorable-word",
+                            completed: data['section-security-complete'] == "true",
+                        status:
+                        {
+                            text: "Completed",
+                            tag:
+                            {
+                                text: "Incomplete",
+                                classes: "govuk-tag--blue"
+                            } if data['section-security-complete'] != "true"
+                        }
                     }
 
 
@@ -91,7 +129,7 @@
             ({
                 text: "Review and submit",
                 classes: "govuk-button--secondary",
-                href: "task-list-validation-page"
+                href: "#"
             })
         }}
 
@@ -139,7 +177,7 @@
         {
             const elementbutton = document.querySelector('.govuk-button');
             elementbutton.classList.remove('govuk-button--secondary');
-            elementbutton.href="submit/check-answers";
+            elementbutton.href="check-answers";
 
             document.getElementById('whole-text-progress-count').style.display = 'none';
             document.getElementById('whole-text-all-complete').style.display = 'block';

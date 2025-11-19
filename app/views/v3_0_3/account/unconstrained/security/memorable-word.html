@@ -1,10 +1,8 @@
 {% extends "layouts/v3_0_3.html" %}
 
-{% set serviceName = "Get permission to move animals under disease controls" %}
 
 {% set pageHeading = "Create a memorable word" %}
 
-{% set pageSection = "Register Defra account" %}
 
 
 {% block content %}
@@ -20,14 +18,10 @@
 				{{ pageHeading }}
 			</h1>
 		</div>
-        
 
-    	{% if data['route'] == "charity" %}
-      		<form method="post" action="task-list-page-charity-details?personal-security-completed=y">
-    	{% else %}
-      		<form method="post" action="check-your-answers">
-    	{% endif %}
 
+
+		<form method="post" action="check-answers">
 
 		
 

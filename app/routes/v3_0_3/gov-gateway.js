@@ -281,4 +281,82 @@ module.exports = function (router) {
     })
 
 
+
+
+
+    /////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////
+
+     //               unconstrained registration for defra account
+
+    /////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+    // Select gg or one login
+    router.post(section + 'unconstrained/business-details/uk-business-or-not-router', function (req, res)
+    {
+        // Turn errors off by default
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+
+        // If Yes was selected, continue to next page
+        if (req.session.data['unconstrained-uk-business-or-not-radios-yes-no'] == "Yes")
+        {
+            res.redirect('business-type');
+        }
+        else if (req.session.data['unconstrained-uk-business-or-not-radios-yes-no'] == "No")
+        {
+            res.redirect('business-name');
+        }
+        else
+        {
+            // This page name needs to match the page the user was just on
+            res.redirect('uk-business-or-not');
+        }
+    })
+
+
+
+
+    // Select gg or one login
+    router.post(section + 'unconstrained/business-details/business-type-router', function (req, res)
+    {
+        // Turn errors off by default
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+
+        // If Yes was selected, continue to next page
+        if (req.session.data['unconstrained-business-type-radios'] == "Sole trader")
+        {
+            res.redirect('check-answers');
+        }
+        else if (req.session.data['unconstrained-business-type-radios'] == "Partnership")
+        {
+            res.redirect('business-name');
+        }
+        else if (req.session.data['unconstrained-business-type-radios'] == "Limited liability partnership (LLP)")
+        {
+            res.redirect('companies-house-number');
+        }
+        else if (req.session.data['unconstrained-business-type-radios'] == "Limited liability (LTD)")
+        {
+            res.redirect('companies-house-number');
+        }
+        else if (req.session.data['unconstrained-business-type-radios'] == "Another business type")
+        {
+            res.redirect('business-name');
+        }
+        else
+        {
+            // This page name needs to match the page the user was just on
+            res.redirect('business-type');
+        }
+    })
+
+
+
+
 }
