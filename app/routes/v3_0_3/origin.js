@@ -504,11 +504,76 @@ module.exports = function (router) {
             }
             else
             {
-                res.redirect('own-farm-new-address');
+                if (req.session.data['account-sign-in-or-not-radios'] == "Yes, sign in")
+                {
+                    res.redirect('own-farm-new-address-prepop');
+                }
+                else
+                {
+                    res.redirect('own-farm-new-address');
+                }
+
             }
         }
 
     })
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////             FOR SPECIAL ACCOUNT UR WORK            ////////////////
+    ////////////////                    SELECT YOU NAME                 ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////              TEXT ENTRY - MANDATORY                ////////////////
+    ////////////////                 NOT COMPLEX PAGE                   ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+
+    router.post(section + 'own-farm-new-address-prepop-router', function (req, res)
+    {
+        // Turn errors off by default
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+
+        // If Yes was selected, continue to next page
+        if (req.session.data['origin-own-farm-new-address-prepop-radios'] == undefined )
+        {
+            // Trigger validation and reload the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('origin-own-farm-new-address-prepop');
+        }
+        else if (req.session.data['origin-own-farm-new-address-prepop-radios'] == "Another address")
+        {
+            res.redirect('own-farm-new-address');
+        }
+        else
+        {
+            // set placeholder address
+            req.session.data['origin-own-address-line-1'] = "Placehoder House";
+            req.session.data['origin-own-address-line-2'] = "Placeholer lane";
+            req.session.data['origin-own-address-town'] = "Planceholder city";
+            req.session.data['origin-own-address-postcode'] = "PL37DR";
+
+
+            res.redirect('check-answers');
+        }
+    })
+
+
+
+
+
+
+
 
 
 

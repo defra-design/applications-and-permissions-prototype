@@ -1,0 +1,163 @@
+{% extends "layouts/v3_0_3.html" %}
+
+
+<!-- Setting the big main heading at the top of the page -->
+{% set pageHeadingTextHTML %}
+    Select the address of your farm or premises where the animals are moving off?
+{% endset %}
+
+
+<!-- Set the text for the error type -->
+{% set errorTextHTML %}
+    <!-- Nothing was selected -->
+    {% if data['errortypeone'] == "true" %}
+        Select where you did PLACEHOLDER
+    {% endif %}
+{% endset %}
+
+
+<!-- Text that show in the browser tab. Does NOT need changing -->
+{% block pageTitle %}
+    {% if  data['errorthispage'] == "true"  %}
+        Error:
+    {% endif %}
+
+    {{ pageHeadingTextHTML }}
+{% endblock %}
+
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+        <!-- ERROR LOGIC 'error summary' -->
+        {% if data['errorthispage'] == "true" %}
+            {{ govukErrorSummary
+                ({
+                    titleText: "There is a problem",
+                    errorList:
+                    [
+                        {
+                            html: errorTextHTML,
+                            href: "#origin-own-farm-new-address-prepop-radios"
+                        }
+                    ]
+                })
+            }}
+        {% endif %}
+        <!--  END OF 'error summary' -->
+
+
+        <!-- go to routes.js for routing  -->
+        <form action="own-farm-new-address-prepop-router" method="post" novalidate>
+
+            {{ govukRadios
+                ({
+                    name: "origin-own-farm-new-address-prepop-radios",
+
+                    id: "origin-own-farm-new-address-prepop-radios",
+
+                    fieldset:
+                    {
+                        legend:
+                        {
+                            html: pageHeadingTextHTML,
+                            isPageHeading: true,
+                            classes: "govuk-fieldset__legend--l"
+                        }
+                    },
+
+                    errorMessage: null if data['errorthispage'] != "true"
+                                       else { html: errorTextHTML },
+
+                    items:
+                    [
+                        {
+                            value: data['registrationSoleTraderAddress'],
+                            text: data['registrationSoleTraderAddress'],
+                            checked: data['origin-own-farm-new-address-prepop-radios'] == data['registrationSoleTraderAddress']
+                        } if data['registrationSoleTraderAddress'] != undefined  and  data['registrationSoleTraderAddress'] != "",
+                        {
+                            value: data['registrationCharityAddress'],
+                            text: data['registrationCharityAddress'],
+                            checked: data['origin-own-farm-new-address-prepop-radios'] == data['registrationCharityAddress']
+                        } if data['registrationCharityAddress'] != undefined  and  data['registrationCharityAddress'] != "",
+                        {
+                            value: data['registrationIndividualAddress'],
+                            text: data['registrationIndividualAddress'],
+                            checked: data['origin-own-farm-new-address-prepop-radios'] == data['registrationIndividualAddress']
+                        } if data['registrationIndividualAddress'] != undefined  and  data['registrationIndividualAddress'] != "",
+                        {
+                            value: data['registrationManualAddressLine1'] + ", " + data['registrationManualAddressLine2']  + ", " + data['registrationManualAddressTownCity']  + ", " + data['registrationManualAddressPostCode'] + ", " + data['registrationManualAddressCountry'],
+                            text: data['registrationManualAddressLine1'] + ", " + data['registrationManualAddressLine2']  + ", " + data['registrationManualAddressTownCity']  + ", " + data['registrationManualAddressPostCode'] + ", " + data['registrationManualAddressCountry'],
+                            checked: data['origin-own-farm-new-address-prepop-radios'] == data['registrationManualAddressLine1'] + ", " + data['registrationManualAddressLine2']  + ", " + data['registrationManualAddressTownCity']  + ", " + data['registrationManualAddressPostCode'] + ", " + data['registrationManualAddressCountry']
+                        } if data['registrationManualAddressLine1'] != undefined  and  data['registrationManualAddressLine1'] != "",
+                        {
+                            value: "1 Francis Crick Avenue, Cambridge Biomedical Campus, Cambridge, United Kingdom, CB2 0AA",
+                            text: "1 Francis Crick Avenue, Cambridge Biomedical Campus, Cambridge, United Kingdom, CB2 0AA",
+                            checked: "1 Francis Crick Avenue, Cambridge Biomedical Campus, Cambridge, United Kingdom, CB2 0AA"
+                        } if data['registrationTradeUK'] == "Yes",
+                        {
+                            value: "Another address",
+                            text: "Another address",
+                            checked: data['origin-own-farm-new-address-prepop-radios'] == "Another address"
+                        }
+                    ]
+                })
+            }}
+
+
+            {{ govukButton({ text: "Continue" }) }}
+
+        </form>
+
+    </div>
+</div>
+
+
+<!-- ERROR LOGIC  drop down to toggle states  -->
+<form method="post"  action="#" class="for4" style=" float: left; position: relative; bottom:-225px;  ">
+
+    <select style="height:30px;" onchange="window.location.href='?'+this.value">
+
+        <option value="errorthispage=false&errortypeone=false&errortypetwo=false&"
+                {% if (data['errorthispage'] != "true") %}selected{% endif %}
+        >Errors - Off</option>
+
+        <option value="errorthispage=true&errortypeone=true&errortypetwo=false&"
+                {% if (data['errortypeone'] == 'true' and data['errortypetwo'] != 'true')  %}selected{% endif %}
+        >Error 1 - Must select at least one</option>
+
+    </select>
+
+</form>
+<!--  END OF ERROR LOGIC -->
+
+
+
+<!-- USER TYPE TOGGLE  -->
+<!--
+<form method="post"  action="#" class="for4" style=" float: left; position: relative; bottom:-225px;  ">
+
+    <select style="height:30px;" onchange="window.location.href='?'+this.value">
+
+        <option value="user=citizen&"
+                {% if  data['user'] != "agent"  %} selected {% endif %}
+        >User type - Individual</option>
+
+        <option value="user=agent&"
+                {% if  data['user'] == "agent"  %} selected {% endif %}
+        >User type - Agent</option>
+
+    </select>
+
+</form>
+-->
+<!--  END USER TYPE TOGGLE -->
+
+
+
+{% endblock %}
+
+

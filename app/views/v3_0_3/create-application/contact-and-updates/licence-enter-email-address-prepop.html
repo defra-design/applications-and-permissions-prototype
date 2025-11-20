@@ -4,7 +4,7 @@
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    What email address would you like the licence sent to?
+    Select the email address would you like the licence sent to?
 {% endset %}
 
 
@@ -75,6 +75,11 @@
 
                     items:
                     [
+                        {
+                            value: data['account-sign-in-gov-one-login-email-text-input'],
+                            text: data['account-sign-in-gov-one-login-email-text-input'],
+                            checked: data['origin-own-farm-new-address-prepop-radios'] == data['account-sign-in-gov-one-login-email-text-input']
+                        } if data['account-sign-in-gov-one-login-email-text-input'] != undefined  and  data['account-sign-in-gov-one-login-email-text-input'] != "",
                         {
                             value: data['registrationNonUkEmail'],
                             text: data['registrationNonUkEmail'],
