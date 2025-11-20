@@ -187,7 +187,7 @@ module.exports = function (router) {
             req.session.data['contact-and-updates-licence-last-name-text-input'] = req.session.data['defaultFirstName'] + " " + req.session.data['defaultSurname']
 
             // This page name needs to be the next page the user gets to after successfully continuing
-            res.redirect('licence-enter-email-address');
+            res.redirect('licence-enter-email-address-prepop');
         }
         else if (req.session.data['contact-and-updates-licence-name-prepop-radios'] == "Someone else")
         {
@@ -208,7 +208,56 @@ module.exports = function (router) {
 
 
 
+    router.post(section + 'licence-enter-email-address-prepop-router', function (req, res)
+    {
+        // Turn errors off by default
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
 
+        // If Yes was selected, continue to next page
+        if (req.session.data['contact-and-updates-licence-enter-email-address-prepop-radios'] ==  req.session.data['registrationNonUkEmail'])
+        {
+            req.session.data['contact-and-updates-licence-enter-email-address-text-input'] = req.session.data['registrationNonUkEmail']
+
+            // This page name needs to be the next page the user gets to after successfully continuing
+            res.redirect('check-answers');
+        }
+        else if (req.session.data['contact-and-updates-licence-enter-email-address-prepop-radios'] ==  req.session.data['registrationSoleTraderEmail'])
+        {
+            req.session.data['contact-and-updates-licence-enter-email-address-text-input'] = req.session.data['registrationSoleTraderEmail']
+
+            // This page name needs to be the next page the user gets to after successfully continuing
+            res.redirect('check-answers');
+        }
+        else if (req.session.data['contact-and-updates-licence-enter-email-address-prepop-radios'] ==  req.session.data['registrationCharityEmail'])
+        {
+            req.session.data['contact-and-updates-licence-enter-email-address-text-input'] = req.session.data['registrationCharityEmail']
+
+            // This page name needs to be the next page the user gets to after successfully continuing
+            res.redirect('check-answers');
+        }
+        else if (req.session.data['contact-and-updates-licence-enter-email-address-prepop-radios'] ==  req.session.data['registrationEmail'])
+        {
+            req.session.data['contact-and-updates-licence-enter-email-address-text-input'] = req.session.data['registrationEmail']
+
+            // This page name needs to be the next page the user gets to after successfully continuing
+            res.redirect('check-answers');
+        }
+        else if (req.session.data['contact-and-updates-licence-enter-email-address-prepop-radios'] == "Another email address")
+        {
+            // This page name needs to be the next page the user gets to after successfully continuing
+            res.redirect('licence-enter-email-address');
+        }
+        else
+        {
+            // Trigger validation and reload the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('licence-enter-email-address-prepop');
+        }
+    })
 
 
 

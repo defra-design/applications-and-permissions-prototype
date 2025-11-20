@@ -219,6 +219,8 @@ module.exports = function (router) {
             req.session.data['defaultFirstName'] = "Alex";
             req.session.data['defaultSurname'] = "Smith";
 
+            req.session.data['registrationEmail'] = "alex.smith@gmail.com";
+
             res.redirect('address/postcode');
         }
         else
