@@ -216,6 +216,9 @@ module.exports = function (router) {
         }
         else if (req.session.data['registrationAccountType'] == "Individual")
         {
+            req.session.data['defaultFirstName'] = "Alex";
+            req.session.data['defaultSurname'] = "Smith";
+
             res.redirect('address/postcode');
         }
         else

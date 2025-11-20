@@ -46,9 +46,15 @@ module.exports = function (router) {
     // NOT COMPLEX PAGE
     router.get(section + 'routing-contact-and-updates', function (req, res)
     {
-        // For release one we need the user to enter their name for every licence.
-        res.redirect('licence-name');
-
+        if (req.session.data['account-sign-in-or-not-radios'] == "Yes, sign in")
+        {
+            res.redirect('licence-name-prepop');
+        }
+        else
+        {
+            // For release one we need the user to enter their name for every licence.
+            res.redirect('licence-name');
+        }
     })
 
 
@@ -149,6 +155,67 @@ module.exports = function (router) {
         }
 
     })
+
+
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////             FOR SPECIAL ACCOUNT UR WORK            ////////////////
+    ////////////////                    SELECT YOU NAME                 ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////              TEXT ENTRY - MANDATORY                ////////////////
+    ////////////////                 NOT COMPLEX PAGE                   ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+
+    router.post(section + 'licence-name-prepop-router', function (req, res)
+    {
+        // Turn errors off by default
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+
+        // If Yes was selected, continue to next page
+        if (req.session.data['contact-and-updates-licence-name-prepop-radios'] == req.session.data['defaultFirstName'] + " " + req.session.data['defaultSurname'])
+        {
+            req.session.data['contact-and-updates-licence-last-name-text-input'] = req.session.data['defaultFirstName'] + " " + req.session.data['defaultSurname']
+
+            // This page name needs to be the next page the user gets to after successfully continuing
+            res.redirect('licence-enter-email-address');
+        }
+        else if (req.session.data['contact-and-updates-licence-name-prepop-radios'] == "Someone else")
+        {
+
+            // This page name needs to be the next page the user gets to after successfully continuing
+            res.redirect('licence-name');
+        }
+        else
+        {
+            // Trigger validation and reload the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('licence-name-prepop');
+        }
+    })
+
+
+
+
+
+
+
+
+
+
+
 
 
 
