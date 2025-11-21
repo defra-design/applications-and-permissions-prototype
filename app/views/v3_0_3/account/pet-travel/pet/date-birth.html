@@ -1,0 +1,163 @@
+{% extends "layouts/pet-travel.html" %}
+
+{% block pageTitle %}What is your pet's date of birth – {{ serviceName }} – GOV.UK {% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {% if data['error'] == 'p20notselected' %}
+    <div class="govuk-error-summary" data-module="govuk-error-summary">
+      <div role="alert">
+        <h2 class="govuk-error-summary__title">
+          There is a problem
+        </h2>
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            <li>
+              <a href="#">Enter a date in the correct format, for example 11 4 2021</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    {% if data['error'] == 'p26notselected' %}
+    <div class="govuk-error-summary" data-module="govuk-error-summary">
+      <div role="alert">
+        <h2 class="govuk-error-summary__title">
+          There is a problem
+        </h2>
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            <li>
+              <a href="#">The date you entered is too far in the past, check your pet's date of birth again</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    {% if data['error'] == 'p27notselected' %}
+    <div class="govuk-error-summary" data-module="govuk-error-summary">
+      <div role="alert">
+        <h2 class="govuk-error-summary__title">
+          There is a problem
+        </h2>
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            <li>
+              <a href="#">The date you entered must be in the past</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    {% if data['error'] == 'p28notselected' %}
+    <div class="govuk-error-summary" data-module="govuk-error-summary">
+      <div role="alert">
+        <h2 class="govuk-error-summary__title">
+          There is a problem
+        </h2>
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            <li>
+              <a href="#">Enter a date in the correct format, for example 11 04 2021</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+    {% if data['returnPage'] === '/v26/create/check' %}
+    <form
+      action="/v26/create/check"
+      method="POST"
+    >
+    {% else %} 
+    <form class="form" action="/v26/pet/check-pet-dob" method="post">
+    {% endif %}
+
+            <div class="govuk-form-group {% if data['error'] == 'p20notselected' %}govuk-form-group--error{% endif %} {% if data['error'] == 'p26notselected' %}govuk-form-group--error{% endif %} {% if data['error'] == 'p27notselected' %}govuk-form-group--error{% endif %} {% if data['error'] == 'p28notselected' %}govuk-form-group--error{% endif %}">
+      <fieldset class="govuk-fieldset" role="group" aria-describedby="petDOB-hint">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+          <h1 id="documents" class="govuk-fieldset__heading">
+            {# <span class="govuk-caption-xl">{{ serviceName }}</span> #}
+            What is your pet's date of birth?
+          </h1>
+        </legend>
+
+        {# <div class="govuk-inset-text"> #}
+        <div id="contact-hint" class="govuk-hint">
+          {# <p class="govuk-body"> #}
+            Your pet's date of birth should be displayed on their microchip certificate.
+          {# </p>
+          <p class="govuk-body"> #}
+            Use an approximate date of birth if you are unsure.
+          {# </p> #}
+        </div>
+
+        <div class="govuk-form-group">
+          <div id="petDOB-hint" class="govuk-hint">
+            For example, 27 3 2020
+          </div>
+          {% if data['error'] == 'p20notselected' %}
+          <p id="whereDoYouLive-error" class="govuk-error-message">
+            <span class="govuk-visually-hidden">Error:</span> Enter a date in the correct format, for example 11 4 2021
+          </p>
+          {% endif %}
+          {% if data['error'] == 'p26notselected' %}
+          <p id="whereDoYouLive-error" class="govuk-error-message">
+            <span class="govuk-visually-hidden">Error:</span> The date you entered is too far in the past, check your pet's date of birth again
+          </p>
+          {% endif %}
+          {% if data['error'] == 'p27notselected' %}
+          <p id="whereDoYouLive-error" class="govuk-error-message">
+            <span class="govuk-visually-hidden">Error:</span> The date you entered must be in the past
+          </p>
+          {% endif %}
+          {% if data['error'] == 'p28notselected' %}
+          <p id="whereDoYouLive-error" class="govuk-error-message">
+            <span class="govuk-visually-hidden">Error:</span> Enter a date in the correct format, for example 11 04 2021
+          </p>
+          {% endif %}
+          <div class="govuk-date-input" id="petDOB">
+            <div class="govuk-date-input__item">
+              <div class="govuk-form-group">
+                <label class="govuk-label govuk-date-input__label" for="petDOB-day">
+                  Day
+                </label>
+                <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="petDOB-day" name="petDOB-day" type="text" inputmode="numeric">
+              </div>
+            </div>
+            <div class="govuk-date-input__item">
+              <div class="govuk-form-group">
+                <label class="govuk-label govuk-date-input__label" for="petDOB-month">
+                  Month
+                </label>
+                <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="petDOB-month" name="petDOB-month" type="text" inputmode="numeric">
+              </div>
+            </div>
+            <div class="govuk-date-input__item">
+              <div class="govuk-form-group">
+                <label class="govuk-label govuk-date-input__label" for="petDOB-year">
+                  Year
+                </label>
+                <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="petDOB-year" name="petDOB-year" type="text" inputmode="numeric">
+              </div>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+      </div>
+        <div class="govuk-button-group">
+          <button class="govuk-button" data-module="govuk-button">
+            Continue
+          </button>
+        </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

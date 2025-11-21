@@ -1,0 +1,145 @@
+{% extends "layouts/pet-travel.html" %}
+
+{% block pageTitle %}What is the main colour of your cat – {{ serviceName }} – GOV.UK {% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {% if data['error'] == 'p21notselected' %}
+    <div class="govuk-error-summary" data-module="govuk-error-summary">
+      <div role="alert">
+        <h2 class="govuk-error-summary__title">
+          There is a problem
+        </h2>
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            <li>
+              <a href="#">Select the main colour of your cat</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    {% if data['error'] == 'p25notselected' %}
+    <div class="govuk-error-summary" data-module="govuk-error-summary">
+      <div role="alert">
+        <h2 class="govuk-error-summary__title">
+          There is a problem
+        </h2>
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            <li>
+              <a href="#">Describe the main colour of your cat</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+    <form class="form" action="/v26/pet/check-pet-colour-cat" method="post">
+            <div class="govuk-form-group {% if data['error'] == 'p21notselected' %}govuk-form-group--error{% endif %}">
+      <fieldset class="govuk-fieldset" aria-describedby="petColour-hint">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+          <h1 id="documents" class="govuk-fieldset__heading">
+            What is the main colour of your cat?
+          </h1>
+        </legend>
+
+        <div id="petColour-hint" class="govuk-hint">
+          Choose the main colour of your cat. For example, if your cat is mostly black with white spots, choose black.
+        </div>
+
+        {% if data['error'] == 'p21notselected' %}
+        <p id="whereDoYouLive-error" class="govuk-error-message">
+          <span class="govuk-visually-hidden">Error:</span> Select the main colour of your cat
+        </p>
+        {% endif %}
+
+        <div class="govuk-form-group">
+          <div class="govuk-radios" data-module="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="petColour" name="petColour" type="radio" value="Black">
+              <label class="govuk-label govuk-radios__label" for="petColour">
+                Black
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="petColour-5" name="petColour" type="radio" value="Calico">
+              <label class="govuk-label govuk-radios__label" for="petColour-5">
+                Calico
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="petColour-4" name="petColour" type="radio" value="Ginger">
+              <label class="govuk-label govuk-radios__label" for="petColour-4">
+                Ginger
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="petColour-3" name="petColour" type="radio" value="Grey or silver">
+              <label class="govuk-label govuk-radios__label" for="petColour-3">
+                Grey or silver
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="petColour-8" name="petColour" type="radio" value="Tabby">
+              <label class="govuk-label govuk-radios__label" for="petColour-8">
+                Tabby
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="petColour-6" name="petColour" type="radio" value="Tortoiseshell">
+              <label class="govuk-label govuk-radios__label" for="petColour-6">
+                Tortoiseshell
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="petColour-5" name="petColour" type="radio" value="Tuxedo">
+              <label class="govuk-label govuk-radios__label" for="petColour-5">
+                Tuxedo
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="petColour-2" name="petColour" type="radio" value="White">
+              <label class="govuk-label govuk-radios__label" for="petColour-2">
+                White
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" {% if data['error'] == 'p25notselected' %}checked{% endif %} id="petColour-9" name="petColour" type="radio" value="Other" data-aria-controls="conditional-petColourOther">
+              <label class="govuk-label govuk-radios__label" for="petColour-9">
+                Other
+              </label>
+            </div>
+            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-petColourOther">
+              <div class="govuk-form-group {% if data['error'] == 'p25notselected' %}govuk-form-group--error{% endif %}">
+                <label class="govuk-label" for="petColourOther">
+                  Describe the colour of your cat
+                </label>
+                {# <div id="account-number-hint" class="govuk-hint">
+                </div> #}
+                {% if data['error'] == 'p25notselected' %}
+                <p id="whereDoYouLive-error" class="govuk-error-message">
+                  <span class="govuk-visually-hidden">Error:</span> Describe the main colour of your cat
+                </p>
+                {% endif %}
+                <input class="govuk-input govuk-!-width-two-thirds" id="petColourOther" name="petColourOther" type="input">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="govuk-button-group">
+          <button class="govuk-button" data-module="govuk-button">
+            Continue
+          </button>
+        </div>
+      </fieldset>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

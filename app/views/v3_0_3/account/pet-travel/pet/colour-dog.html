@@ -1,0 +1,153 @@
+{% extends "layouts/pet-travel.html" %}
+
+{% block pageTitle %}What is the main colour of your dog – {{ serviceName }} – GOV.UK {% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {% if data['error'] == 'p21notselected' %}
+    <div class="govuk-error-summary" data-module="govuk-error-summary">
+      <div role="alert">
+        <h2 class="govuk-error-summary__title">
+          There is a problem
+        </h2>
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            <li>
+              <a href="#">Select the main colour of your dog</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    {% if data['error'] == 'p25notselected' %}
+    <div class="govuk-error-summary" data-module="govuk-error-summary">
+      <div role="alert">
+        <h2 class="govuk-error-summary__title">
+          There is a problem
+        </h2>
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            <li>
+              <a href="#">Describe the main colour of your dog</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+    {% if data['returnPage'] === '/v26/create/check' %}
+    <form
+      action="/v26/create/check"
+      method="POST"
+    >
+    {% else %} 
+    <form class="form" action="/v26/pet/check-pet-colour-dog" method="post">
+    {% endif %}
+
+            <div class="govuk-form-group {% if data['error'] == 'p21notselected' %}govuk-form-group--error{% endif %}">
+      <fieldset class="govuk-fieldset" aria-describedby="petColour-hint">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+          <h1 id="documents" class="govuk-fieldset__heading">
+            What is the main colour of your dog?
+          </h1>
+        </legend>
+
+        <div id="petColour-hint" class="govuk-hint">
+          Choose the main colour of your dog. For example, if your dog is mostly black with white spots, choose black.
+        </div>
+
+        {% if data['error'] == 'p21notselected' %}
+        <p id="whereDoYouLive-error" class="govuk-error-message">
+          <span class="govuk-visually-hidden">Error:</span> Select the main colour of your dog
+        </p>
+        {% endif %}
+
+        <div class="govuk-form-group">
+          <div class="govuk-radios" data-module="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="petColour" name="petColour" type="radio" value="Black">
+              <label class="govuk-label govuk-radios__label" for="petColour">
+                Black
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="petColour-9" name="petColour" type="radio" value="Brindle (tiger striped)">
+              <label class="govuk-label govuk-radios__label" for="petColour-9">
+                Brindle (tiger striped)
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="petColour-2" name="petColour" type="radio" value="Brown, tan or chocolate">
+              <label class="govuk-label govuk-radios__label" for="petColour-2">
+                Brown, tan or chocolate
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="petColour-8" name="petColour" type="radio" value="Gold or yellow">
+              <label class="govuk-label govuk-radios__label" for="petColour-8">
+                Gold or yellow
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="petColour-4" name="petColour" type="radio" value="Grey, silver or blue">
+              <label class="govuk-label govuk-radios__label" for="petColour-4">
+                Grey, silver or blue
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="petColour-10" name="petColour" type="radio" value="Merle (white flecks)">
+              <label class="govuk-label govuk-radios__label" for="petColour-10">
+                Merle (white flecks)
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="petColour-5" name="petColour" type="radio" value="Red">
+              <label class="govuk-label govuk-radios__label" for="petColour-5">
+                Red
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="petColour-7" name="petColour" type="radio" value="White, cream or sand">
+              <label class="govuk-label govuk-radios__label" for="petColour-7">
+                White, cream or sand
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" {% if data['error'] == 'p25notselected' %}checked{% endif %} id="petColour-11" name="petColour" type="radio" value="Other" data-aria-controls="conditional-petColourOther">
+              <label class="govuk-label govuk-radios__label" for="petColour-11">
+                Other
+              </label>
+            </div>
+            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-petColourOther">
+              <div class="govuk-form-group {% if data['error'] == 'p25notselected' %}govuk-form-group--error{% endif %}">
+                <label class="govuk-label" for="petColourOther">
+                  Describe the colour of your dog
+                </label>
+                {# <div id="account-number-hint" class="govuk-hint">
+                </div> #}
+                {% if data['error'] == 'p25notselected' %}
+                <p id="whereDoYouLive-error" class="govuk-error-message">
+                  <span class="govuk-visually-hidden">Error:</span> Describe the main colour of your dog
+                </p>
+                {% endif %}
+                <input class="govuk-input govuk-!-width-two-thirds" id="petColourOther" name="petColourOther" type="input">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="govuk-button-group">
+          <button class="govuk-button" data-module="govuk-button">
+            Continue
+          </button>
+        </div>
+      </fieldset>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,164 @@
+{% extends "layouts/pet-travel.html" %}
+
+{% block pageTitle %}When was your pet microchipped or last scanned – {{ serviceName }} – GOV.UK {% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {% if data['error'] == 'p11notselected' %}
+    <div class="govuk-error-summary" data-module="govuk-error-summary">
+      <div role="alert">
+        <h2 class="govuk-error-summary__title">
+          There is a problem
+        </h2>
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            <li>
+              <a href="#">Enter a date in the correct format, for example 11 4 2021</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    {% if data['error'] == 'p26notselected' %}
+    <div class="govuk-error-summary" data-module="govuk-error-summary">
+      <div role="alert">
+        <h2 class="govuk-error-summary__title">
+          There is a problem
+        </h2>
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            <li>
+              <a href="#">The date you entered is too far in the past</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+    {% if data['error'] == 'p12notselected' %}
+    <div class="govuk-error-summary" data-module="govuk-error-summary">
+      <div role="alert">
+        <h2 class="govuk-error-summary__title">
+          There is a problem
+        </h2>
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            <li>
+              <a href="#">The date you entered must be in the past</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+    {% if data['error'] == 'p13notselected' %}
+    <div class="govuk-error-summary" data-module="govuk-error-summary">
+      <div role="alert">
+        <h2 class="govuk-error-summary__title">
+          There is a problem
+        </h2>
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            <li>
+              <a href="#">Enter a date in the correct format, for example 11 04 2021</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+    <form class="form" action="../pet/pet" method="post">
+    <div class="govuk-form-group
+          {% if data['error'] == 'p11notselected' %}govuk-form-group--error{% endif %}
+          {% if data['error'] == 'p12notselected' %}govuk-form-group--error{% endif %}
+          {% if data['error'] == 'p13notselected' %}govuk-form-group--error{% endif %}
+          {% if data['error'] == 'p26notselected' %}govuk-form-group--error{% endif %}">
+
+      <fieldset class="govuk-fieldset" role="group" aria-describedby="microchipDate-hint">
+
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+          <h1 id="documents" class="govuk-fieldset__heading">
+              When was your pet microchipped or last scanned?
+          </h1>
+        </legend>
+
+          <div id="contact-hint" class="govuk-body">
+            Check your pet's microchip certificate or vaccination record for the microchip or scan date. If you do not know the date of insertion or last scan, enter an estimated date.
+          </div>
+
+          <div id="contact-hint" class="govuk-hint">
+            For example, 27 3 2023          
+          </div>
+
+        {% if data['error'] == 'p11notselected' %}
+        <p id="whereDoYouLive-error" class="govuk-error-message">
+          <span class="govuk-visually-hidden">Error:</span> Enter a date in the correct format, for example 11 4 2021
+        </p>
+        {% endif %}
+
+        {% if data['error'] == 'p12notselected' %}
+        <p id="whereDoYouLive-error" class="govuk-error-message">
+          <span class="govuk-visually-hidden">Error:</span> The date you entered must be in the past
+        </p>
+        {% endif %}
+
+        {% if data['error'] == 'p13notselected' %}
+        <p id="whereDoYouLive-error" class="govuk-error-message">
+          <span class="govuk-visually-hidden">Error:</span> Enter a date in the correct format, for example 11 04 2021
+        </p>
+        {% endif %}
+
+        {% if data['error'] == 'p26notselected' %}
+        <p id="whereDoYouLive-error" class="govuk-error-message">
+          <span class="govuk-visually-hidden">Error:</span> The date you entered is too far in the past
+        </p>
+        {% endif %}
+
+        <div class="govuk-form-group">
+          <div class="govuk-date-input" id="microchipDate">
+            <div class="govuk-date-input__item">
+              <div class="govuk-form-group">
+                <label class="govuk-label govuk-date-input__label" for="microchipDate-day">
+                  Day
+                </label>
+                <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="microchipDate-day" name="microchipDate-day" type="text" inputmode="numeric">
+              </div>
+            </div>
+            <div class="govuk-date-input__item">
+              <div class="govuk-form-group">
+                <label class="govuk-label govuk-date-input__label" for="microchipDate-month">
+                  Month
+                </label>
+                <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="microchipDate-month" name="microchipDate-month" type="text" inputmode="numeric">
+              </div>
+            </div>
+            <div class="govuk-date-input__item">
+              <div class="govuk-form-group">
+                <label class="govuk-label govuk-date-input__label" for="microchipDate-year">
+                  Year
+                </label>
+                <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="microchipDate-year" name="microchipDate-year" type="text" inputmode="numeric">
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </fieldset>
+
+    </div>
+        <div class="govuk-button-group">
+          <button class="govuk-button" data-module="govuk-button">
+            Continue
+          </button>
+        </div>
+    </form>
+
+  </div>
+</div>
+{% endblock %}

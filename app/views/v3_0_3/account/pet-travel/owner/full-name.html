@@ -1,0 +1,65 @@
+{% extends "layouts/pet-travel.html" %}
+
+{% block pageTitle %} What is your full name – {{ serviceName }} – GOV.UK {% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {% if data['error'] == 'p2notselected' %}
+    <div class="govuk-error-summary" data-module="govuk-error-summary">
+      <div role="alert">
+        <h2 class="govuk-error-summary__title">
+          There is a problem
+        </h2>
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            <li>
+              <a href="#">Enter your full name</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+  {% if data['returnPage'] === '/v23/create/check' %}
+    <form
+      action="postcode"
+      method="POST"
+    >
+    {% else %}
+    <form
+      action="postcode"
+      method="POST"
+    >
+    {% endif %}
+      <div class="govuk-form-group {% if data['error'] == 'p2notselected' %}govuk-form-group--error{% endif %}">
+        <h1 id="documents" class="govuk-label-wrapper">
+          <label class="govuk-label govuk-label--xl" for="petOwnerName">
+            What is your full name?
+          </label>
+        </h1>
+
+        {% if data['error'] == 'p2notselected' %}
+        <p id="whereDoYouLive-error" class="govuk-error-message">
+          <span class="govuk-visually-hidden">Error:</span> Enter your full name
+        </p>
+        {% endif %}
+        
+        <input class="govuk-input" id="petOwnerName" name="petOwnerName" type="text" spellcheck="false" autocomplete="name">
+      </div>
+      <button
+        type="submit"
+        id="continue"
+        class="govuk-button"
+        formnovalidate=""
+        data-module="govuk-button"
+        data-prevent-double-click="true"
+      >
+        Continue
+      </button>
+    </form>
+  </div>
+</div>
+{% endblock %}

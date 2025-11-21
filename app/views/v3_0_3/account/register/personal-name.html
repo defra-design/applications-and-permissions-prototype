@@ -61,25 +61,25 @@
             {% else %}
         
             
-            {{ govukInput({
-                label: {
-                    text: "First name"
-                },
-                classes: "govuk-!-width-three-quarters",
-                name: "defaultFirstName",
-                id: "defaultFirstName",
-                value: data['defaultFirstName']
-            }) }}
+                {{ govukInput({
+                    label: {
+                        text: "First name"
+                    },
+                    classes: "govuk-!-width-three-quarters",
+                    name: "defaultFirstName",
+                    id: "defaultFirstName",
+                    value: data['defaultFirstName']
+                }) }}
 
-            {{ govukInput({
-                label: {
-                    text: "Last name"
-                },
-                classes: "govuk-!-width-three-quarters",
-                name: "defaultSurname",
-                id: "defaultSurname",
-                value: data['defaultSurname']
-            }) }}
+                {{ govukInput({
+                    label: {
+                        text: "Last name"
+                    },
+                    classes: "govuk-!-width-three-quarters",
+                    name: "defaultSurname",
+                    id: "defaultSurname",
+                    value: data['defaultSurname']
+                }) }}
 
             {% endif %}
 

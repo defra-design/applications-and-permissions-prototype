@@ -7,6 +7,10 @@
 	{% set pageHeading = "What’s your address?" %} 
 {% elif data['registrationTradeUK'] == "No" %}
 	{% set pageHeading = "What’s the business’s address?" %}
+{% elif data['registrationOrganisationType'] == "Sole trader" %}
+	{% set pageHeading = "What’s the business’s address?" %}
+{% elif data['registrationOrganisationType'] == "Partnership" %}
+	{% set pageHeading = "What’s the business’s address?" %}
 {% else %}
 	{% set pageHeading = "What’s {Charity Name}’s telephone and email address?" %}
 {% endif %}
@@ -385,7 +389,7 @@
 		
 				{% endcall %}
 
-			{% elif data['registrationAddressUK'] == "Yes" %}
+			{% elif data['registrationAddressUK'] == "Yes"   or   data['registrationOrganisationType'] == "Partnership" %}
 				
 
 				{% call govukFieldset({

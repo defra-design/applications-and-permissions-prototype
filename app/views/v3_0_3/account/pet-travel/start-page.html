@@ -1,0 +1,140 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Start page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {{ govukHeader() }}
+{% endblock %}
+
+{% block beforeContent %}
+
+  {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "Home",
+        href: "#"
+      },
+      {
+        text: "Passports, travel and living abroad",
+        href: "#"
+      },
+      {
+        text: "Travel abroad"
+      }
+    ]
+  }) }}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-xl">
+      Apply for a Northern Ireland pet travel document
+    </h1>
+
+    <p>Use this service to apply for a pet travel document (PTD) to take your dog, cat or ferret from Great Britain (England, Scotland and Wales) to Northern Ireland.</p>
+
+    <p>It’s free to apply and will last as long as you own the pet.</p>
+
+    <p>If you live in Northern Ireland and your pet is microchipped, you do not need a PTD for travel to and from Great Britain.</p>
+
+    <!-- <div class="govuk-inset-text">
+      This service is also available <a href="#">in Welsh (Cymraeg)</a>.
+    </div> -->
+
+    <h2 class="govuk-heading-m">
+      Who can apply
+    </h2>
+
+    <p>You can apply for a PTD if you:</p>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>live in England, Scotland or Wales</li>
+      <li><a href="#">have your pet microchipped</a></li>
+      <li>are the pet owner and over 16 years old</li>
+    </ul>
+
+    <p>You’ll need a separate PTD for each pet.</p>
+
+    <p>You’ll need <a href="#">different documents</a> if you’re travelling onward, for example, through Northern Ireland to another country.</p>
+
+    <h1 class="govuk-heading-m">
+      Apply online
+    </h1>
+
+    <p>You’ll need to sign in with your Government Gateway user ID and password. If you do not have a user ID you can create one. You’ll also need to set up a Defra account.</p>
+
+    {{ govukButton({
+      text: "Start now",
+      href: "sign-in-or-not",
+      isStartButton: true
+    }) }}
+
+    <h2 class="govuk-heading-m">
+      Before you start
+    </h2>
+
+    <p>
+      You’ll be asked for:
+    </p>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>your pet’s microchip number</li>
+      <li>the date your pet was microchipped or when the microchip was last scanned</li>
+      <li>your pet’s breed, colour and sex</li>
+      <li>any unusual features your pet might have, like a missing eye or leg</li>
+    </ul>
+
+    <h2 class="govuk-heading-m">
+      Guide and assistance dogs
+    </h2>
+
+    <p>You need to apply for a PTD to travel with a guide or assistance dog.</p>
+
+    <p>You can find out about <a href="https://www.guidedogs.org.uk/getting-support/information-and-advice/travelling-with-your-assistance-dog/">travelling with your assistance dog on the Guide Dogs website</a>.</p>
+    
+    <h2 class="govuk-heading-m">
+      Letting someone else travel with your pet
+    </h2>
+
+    <p>Only one person can be named as the pet’s owner on the PTD.</p>
+
+    <p>After you get your PTD, you can authorise someone else to travel with your pet to Northern Ireland. For example, this could be a family member or pet courier.</p>
+
+    <p>
+      They will need:
+    </p>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>the pet travel document</li>
+      <li>written approval from you, like a letter or email </li>
+      <li>to sign a declaration at the ferry port or airport, if they’re asked</li>
+    </ul>
+
+    <h2 class="govuk-heading-m">
+      Get help applying
+    </h2>
+
+    <p>Call the Animal and Plant Health Agency helpline if you need help applying online.</p>
+
+    <div class="govuk-inset-text">
+      Animal and Plant Health Agency
+      <br>
+      Telephone: 03000 200 301
+      <br>
+      Monday to Friday, 8:30am to 5pm (closed on bank holidays)
+      <br>
+      <a href="https://www.gov.uk/call-charges">Find out about call charges</a>
+    </div>
+
+  </div>
+  
+</div>
+
+{% endblock %}

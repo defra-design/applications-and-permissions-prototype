@@ -26,6 +26,8 @@
 			<form method="post" action="task-list-page-charity-details?contact-details-completed=y">
 		{% elif data['registrationOrganisationType'] == "Sole trader" %}
 			<form method="post" action="business-name">
+		{% elif data['registrationOrganisationType'] == "Partnership" %}
+			<form method="post" action="business-name">
 		{% else %}
 			{% if data['registrationAccountType'] == "Individual" %}
 
