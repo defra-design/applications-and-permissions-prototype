@@ -71,14 +71,26 @@
     </div>
     {% endif %}
 
-    {% if data['returnPage'] === '/v26/create/check' %}
-    <form
-      action="/v26/create/check"
-      method="POST"
-    >
+
+    {% if data['petSpecie'] === 'Cat' %}
+      <form
+              action="colour-cat"
+              method="POST"
+      >
+
+    {% elif data['petSpecie'] === 'Dog' %}
+        <form
+          action="colour-dog"
+          method="POST"
+        >
+
     {% else %} 
-    <form class="form" action="/v26/pet/check-pet-dob" method="post">
+        <form class="form" action="colour-ferret" method="post">
+
     {% endif %}
+
+
+
 
             <div class="govuk-form-group {% if data['error'] == 'p20notselected' %}govuk-form-group--error{% endif %} {% if data['error'] == 'p26notselected' %}govuk-form-group--error{% endif %} {% if data['error'] == 'p27notselected' %}govuk-form-group--error{% endif %} {% if data['error'] == 'p28notselected' %}govuk-form-group--error{% endif %}">
       <fieldset class="govuk-fieldset" role="group" aria-describedby="petDOB-hint">

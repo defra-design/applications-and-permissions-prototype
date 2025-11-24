@@ -25,11 +25,11 @@
 
     {% if data['returnPage'] === '/v26/create/check' %}
     <form
-      action="/v26/create/check"
+      action="name"
       method="POST"
     >
     {% else %} 
-    <form class="form" action="/v26/pet/check-pet-species" method="post">
+    <form class="form" action="name" method="post">
     {% endif %}
 
     <div class="govuk-form-group {% if data['error'] == 'p14notselected' %}govuk-form-group--error{% endif %}">

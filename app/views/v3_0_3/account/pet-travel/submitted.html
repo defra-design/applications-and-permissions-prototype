@@ -1,0 +1,69 @@
+{% extends "layouts/pet-travel.html" %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <div class="govuk-panel govuk-panel--confirmation govuk-!-static-margin-bottom-7">
+      <h1 id="documents" class="govuk-panel__title">
+        Application submitted
+      </h1>
+      <div class="govuk-panel__body">
+        Your reference number<br><strong>PETS1234</strong>
+      </div>
+    </div>
+
+    <p class="govuk-body">We have sent you a confirmation email.</p>
+    {# <p class="govuk-body">You can travel while your application is reviewed.</p> #}
+    {# <p class="govuk-body">
+      <a href="/v26/declaration/" class="govuk-link">View your lifelong pet travel document</a>.
+    </p> #}
+
+    <h2 class="govuk-heading-m">What happens next</h2>
+    <p class="govuk-body">We’ve sent your application to the Animal and Plant Health Agency (APHA) for review.</p>
+    <p class="govuk-body">You will receive a response to your application within 5 working days.</p>
+    <p class="govuk-body">APHA may contact you and ask for more evidence to support your application.</p>
+
+    <h2 class="govuk-heading-m">If someone else is taking your pet</h2>
+    <p class="govuk-body">They will need:</p>
+    <ul class="govuk-list govuk-list--bullet govuk-list--spaced">
+      <li>the lifelong pet travel document</li>
+      <li>written approval from you, like a letter or email</li>
+      <li>to sign a declaration, if asked to, at the ferry port or airport</li>
+    </ul>
+
+
+
+
+
+    {{ govukButton
+        ({
+          "text": "Register for a Defra account",
+          "classes": "govuk-!-margin-top-6",
+          "href": "../unconstrained/task-list"
+        })
+    }}
+
+
+
+
+    <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
+
+    <p class="govuk-body">
+      <a href="/v26/create/owner/" class="govuk-link">
+        Apply for another lifelong pet travel document
+      </a>
+    </p>
+    <p class="govuk-body">
+      <a href="/v26/service/document/?pageState=sign" class="govuk-link">
+        View all your lifelong pet travel documents
+      </a>
+    </p>
+    <p class="govuk-body">
+      <a target="_blank" href="../end_of_transaction_survey" class="govuk-link">What did you think of this service?</a>
+      (takes 30 seconds)
+    </p> 
+
+  </div>
+</div>
+{% endblock %}

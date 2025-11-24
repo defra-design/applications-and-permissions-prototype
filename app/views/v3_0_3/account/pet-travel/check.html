@@ -1,0 +1,300 @@
+{% extends "layouts/pet-travel.html" %}
+
+{% block pageTitle %}Check your answers and sign the declaration – {{ serviceName }} – GOV.UK {% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+
+    <h1 id="documents" class="govuk-heading-xl">
+      Check your answers and sign the declaration
+    </h1>
+
+
+      <div id="document-owner-card" class="govuk-summary-card">
+          <div class="govuk-summary-card__title-wrapper">
+              <h2 class="govuk-summary-card__title">Pet owner details</h2>
+          </div>
+          <div class="govuk-summary-card__content">
+              <dl class="govuk-summary-list">
+                  <div class="govuk-summary-list__row">
+                      <dt class="govuk-summary-list__key">Name</dt>
+                      <dd class="govuk-summary-list__value">{{ data['petOwnerName'] if data['petOwnerName'] else "Taylor Smith"}}</dd>
+                      {% if data['pageState'] == "change" or data['pageState'] == "edit" %}
+                      <dd class="govuk-summary-list__actions">
+                          <a class="govuk-link" href="/v26/create/owner/full-name?returnPage=/v26/create/check">
+                              Change<span class="govuk-visually-hidden"> name of pet owner</span>
+                          </a>
+                      </dd>
+                      {% endif %}
+                  </div>
+                  <div class="govuk-summary-list__row">
+                      <dt class="govuk-summary-list__key">Email</dt>
+                      <dd class="govuk-summary-list__value">{{ data['emailAddress'] if data['emailAddress'] else "email@emailprovider.com"}}</dd>
+                      {% if data['pageState'] == "change" or data['pageState'] == "edit" %}
+                      {# <dd class="govuk-summary-list__actions">
+                      <a class="govuk-link" href="/v26/edit/account/email?returnPage=/v26/create/check">
+                          Change<span class="govuk-visually-hidden"> email</span>
+                      </a>
+                  </dd> #}
+                      {% endif %}
+                  </div>
+                  <div class="govuk-summary-list__row">
+                      <dt class="govuk-summary-list__key">
+                          Address
+                      </dt>
+                      <dd class="govuk-summary-list__value">
+                          {{ data['address'] if data['address'] else '72 Guild Street<br class="pet-br-print">London<br class="pet-br-print">SE23 6FH' | safe}}
+                      </dd>
+                      {% if data['pageState'] == "change" or data['pageState'] == "edit" %}
+                      <dd class="govuk-summary-list__actions">
+                          <a class="govuk-link" href="/v26/create/owner/postcode?returnPage=/v26/create/check">
+                              Change<span class="govuk-visually-hidden"> address</span>
+                          </a>
+                      </dd>
+                      {% endif %}
+                  </div>
+                  <div class="govuk-summary-list__row">
+                      <dt class="govuk-summary-list__key">Phone number</dt>
+                      <dd class="govuk-summary-list__value">{{ data['telephoneNumber'] if data['telephoneNumber'] else "07492123456"}}</dd>
+                      {% if data['pageState'] == "change" or data['pageState'] == "edit" %}
+                      <dd class="govuk-summary-list__actions">
+                          <a class="govuk-link" href="/v26/create/owner/phone?returnPage=/v26/create/check">
+                              Change<span class="govuk-visually-hidden"> phone number</span>
+                          </a>
+                      </dd>
+                      {% endif %}
+                  </div>
+              </dl>
+          </div>
+      </div>
+
+
+
+
+
+
+
+
+      {# <h2 class="govuk-heading-m">C. Identification of Animal (pet)</h2> #}
+      <div id="document-microchip-card" class="govuk-summary-card">
+          <div class="govuk-summary-card__title-wrapper">
+              <h2 class="govuk-summary-card__title">Microchip information</h2>
+          </div>
+          <div class="govuk-summary-card__content">
+              <dl class="govuk-summary-list">
+
+                  <div class="govuk-summary-list__row">
+                      <dt class="govuk-summary-list__key">
+                          Microchip number
+                      </dt>
+                      <dd class="govuk-summary-list__value">
+                          {{ data['microchip-number'] if data['microchip-number'] else "012345678912345"}}
+                      </dd>
+                      {% if data['pageState'] == "change" %}
+                      <dd class="govuk-summary-list__actions">
+                          <a class="govuk-link" href="/v26/create/change-microchip">
+                              Change<span class="govuk-visually-hidden"> microchip number</span>
+                          </a>
+                      </dd>
+                      {% endif %}
+                  </div>
+
+                  <div class="govuk-summary-list__row">
+                      <dt class="govuk-summary-list__key">
+                          Implant location
+                      </dt>
+                      <dd class="govuk-summary-list__value">
+                          Under the skin
+                      </dd>
+                      {# {% if data['pageState'] == "change" %}
+                      <dd class="govuk-summary-list__actions">
+                          <a class="govuk-link" href="/v26/create/microchip/change-date">
+                              Change<span class="govuk-visually-hidden"> implant location</span>
+                          </a>
+                      </dd>
+                      {% endif %} #}
+                  </div>
+
+                  <div class="govuk-summary-list__row">
+                      <dt class="govuk-summary-list__key">
+                          Implant or scan date
+                      </dt>
+                      <dd class="govuk-summary-list__value">
+                          {{ data['microchipDate'] if data['microchipDate'] else "10/03/2020"}}
+                      </dd>
+                      {% if data['pageState'] == "change" %}
+                      <dd class="govuk-summary-list__actions">
+                          <a class="govuk-link" href="/v26/create/microchip/date">
+                              Change<span class="govuk-visually-hidden"> implant or scan date</span>
+                          </a>
+                      </dd>
+                      {% endif %}
+                  </div>
+              </dl>
+          </div>
+      </div>
+
+
+
+
+
+      <div id="document-pet-card" class="govuk-summary-card">
+          <div class="govuk-summary-card__title-wrapper">
+              <h2 class="govuk-summary-card__title">Pet details</h2>
+          </div>
+          <div class="govuk-summary-card__content">
+              <dl class="govuk-summary-list">
+                  <div class="govuk-summary-list__row">
+                      <dt class="govuk-summary-list__key">
+                          Name
+                      </dt>
+                      <dd class="govuk-summary-list__value">
+                          {{ data['petName'] if data['petName'] else "Toto"}}
+                      </dd>
+                      {% if data['pageState'] == "change" %}
+                      <dd class="govuk-summary-list__actions">
+                          <a class="govuk-link" href="/v26/create/pet/name?returnPage=/v26/create/check">
+                              Change<span class="govuk-visually-hidden"> pet's name</span>
+                          </a>
+                      </dd>
+                      {% endif %}
+                  </div>
+
+                  <div class="govuk-summary-list__row">
+                      <dt class="govuk-summary-list__key">
+                          Species
+                      </dt>
+                      <dd class="govuk-summary-list__value">
+                          {{ data['petSpecie'] if data['petSpecie'] else "Dog"}}
+                      </dd>
+                      {% if data['pageState'] == "change" %}
+                      <dd class="govuk-summary-list__actions">
+                          <a class="govuk-link" href="/v26/create/pet?returnPage=/v26/create/check">
+                              Change<span class="govuk-visually-hidden"> pet's species</span>
+                          </a>
+                      </dd>
+                      {% endif %}
+                  </div>
+
+
+
+
+                  <div class="govuk-summary-list__row">
+                      <dt class="govuk-summary-list__key">
+                          Sex
+                      </dt>
+                      <dd class="govuk-summary-list__value">
+                          {{ data['petSex'] if data['petSex'] else "Male"}}
+                      </dd>
+                      {% if data['pageState'] == "change" %}
+                      <dd class="govuk-summary-list__actions">
+                          <a class="govuk-link" href="/v26/create/pet/change-sex">
+                              Change<span class="govuk-visually-hidden"> pet's sex</span>
+                          </a>
+                      </dd>
+                      {% endif %}
+                  </div>
+                  <div class="govuk-summary-list__row">
+                      <dt class="govuk-summary-list__key">
+                          Date of birth
+                      </dt>
+                      <dd class="govuk-summary-list__value">
+                          {{ data['petDOB'] if data['petDOB'] else "20/01/2020"}}
+                      </dd>
+                      {% if data['pageState'] == "change" %}
+                      <dd class="govuk-summary-list__actions">
+                          <a class="govuk-link" href="/v26/create/pet/date-birth?returnPage=/v26/create/check">
+                              Change<span class="govuk-visually-hidden"> pet's date of birth</span>
+                          </a>
+                      </dd>
+                      {% endif %}
+                  </div>
+                  <div class="govuk-summary-list__row">
+                      <dt class="govuk-summary-list__key">
+                          Colour
+                      </dt>
+                      <dd class="govuk-summary-list__value">
+                          {{ data['petColour'] if data['petColour'] else "Black"}}
+                      </dd>
+                      {% if data['pageState'] == "change" %}
+                      <dd class="govuk-summary-list__actions">
+                          <a class="govuk-link" href="/v26/create/pet/colour-dog?returnPage=/v26/create/check">
+                              Change<span class="govuk-visually-hidden"> pet's colour</span>
+                          </a>
+                      </dd>
+                      {% endif %}
+                  </div>
+                  <div class="govuk-summary-list__row">
+                      <dt class="govuk-summary-list__key">
+                          Significant features
+                      </dt>
+                      <dd class="govuk-summary-list__value">
+                          {{ data['petFeaturesDetail'] if data['petFeaturesDetail'] else "No"}}
+                      </dd>
+                      {% if data['pageState'] == "change" %}
+                      <dd class="govuk-summary-list__actions">
+                          <a class="govuk-link" href="/v26/create/pet/features">
+                              Change<span class="govuk-visually-hidden"> pet's significant features</span>
+                          </a>
+                      </dd>
+                      {% endif %}
+                  </div>
+              </dl>
+          </div>
+      </div>
+
+
+
+
+  <form class="form" action="submitted" method="post">
+
+
+
+      <div class="govuk-form-group  govuk-!-static-margin-top-9  {% if data['error'] == 'p24notselected' %}govuk-form-group--error{% endif %}">
+
+
+          <h2 class="govuk-heading-l govuk-!-margin-top-6">Declaration</h2>
+            <p class="govuk-body">I declare that:</p>
+            <ul class="govuk-list govuk-list--bullet">
+              <li>I am the applicant</li>
+              <li>the answers I have given are true and correct to the best of my knowledge</li>
+              <li>I understand that I can travel with this pet to and from Northern Ireland only and not to an EU member state (Ireland is an EU member state)</li>
+              <li>I am not taking the animal as part of a commercial movement</li>
+              <li>I have read and I accept the <a class="govuk-link" href="/v26/service/terms-conditions/">Pet Travel Scheme terms and conditions</a></li>
+              <li>I have read the <a class="govuk-link" target="_blank" href="https://www.gov.uk/government/publications/animal-and-plant-heath-agency-privacy-notices/pet-travel-scheme-privacy-notice" target="_blank">privacy notice (opens in new tab)</a></li>
+            </ul>
+
+
+          <div class="govuk-checkboxes govuk-!-static-margin-top-6" data-module="govuk-checkboxes">
+            {% if data['error'] == 'p24notselected' %}
+            <p id="whereDoYouLive-error" class="govuk-error-message">
+              <span class="govuk-visually-hidden">Error:</span> Agree to the declaration
+            </p>
+            {% endif %}
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="pet-declaration-check" name="petDeclarationCheck" type="checkbox" value="Agree">
+              <label class="govuk-label govuk-checkboxes__label" for="pet-declaration-check">
+                I agree
+                {# to the declaration #}
+              </label>
+            </div>
+          </div>
+
+      </div>
+
+      <input type="hidden" id="pageState" name="pageState" value="pending" />
+
+      <div class="govuk-button-group">
+        <button class="govuk-button" data-module="govuk-button">
+          Send application
+        </button>
+      </div>
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}
