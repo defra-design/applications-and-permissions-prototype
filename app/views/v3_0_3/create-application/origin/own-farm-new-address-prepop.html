@@ -89,15 +89,15 @@
                             checked: data['origin-own-farm-new-address-prepop-radios'] == data['registrationIndividualAddress']
                         } if data['registrationIndividualAddress'] != undefined  and  data['registrationIndividualAddress'] != "",
                         {
-                            value: data['registrationManualAddressLine1'] + ", " + data['registrationManualAddressLine2']  + ", " + data['registrationManualAddressTownCity']  + ", " + data['registrationManualAddressPostCode'] + ", " + data['registrationManualAddressCountry'],
-                            text: data['registrationManualAddressLine1'] + ", " + data['registrationManualAddressLine2']  + ", " + data['registrationManualAddressTownCity']  + ", " + data['registrationManualAddressPostCode'] + ", " + data['registrationManualAddressCountry'],
-                            checked: data['origin-own-farm-new-address-prepop-radios'] == data['registrationManualAddressLine1'] + ", " + data['registrationManualAddressLine2']  + ", " + data['registrationManualAddressTownCity']  + ", " + data['registrationManualAddressPostCode'] + ", " + data['registrationManualAddressCountry']
+                            value: data['registrationManualAddressLine1'] + ", " + data['registrationManualAddressLine2']  + ", " + data['registrationManualAddressTownCity']  + ", " + data['registrationManualAddressPostCode'],
+                            text: data['registrationManualAddressLine1'] + ", " + data['registrationManualAddressLine2']  + ", " + data['registrationManualAddressTownCity']  + ", " + data['registrationManualAddressPostCode'],
+                            checked: data['origin-own-farm-new-address-prepop-radios'] == data['registrationManualAddressLine1'] + ", " + data['registrationManualAddressLine2']  + ", " + data['registrationManualAddressTownCity']  + ", " + data['registrationManualAddressPostCode']
                         } if data['registrationManualAddressLine1'] != undefined  and  data['registrationManualAddressLine1'] != "",
                         {
                             value: "1 Francis Crick Avenue, Cambridge Biomedical Campus, Cambridge, United Kingdom, CB2 0AA",
                             text: "1 Francis Crick Avenue, Cambridge Biomedical Campus, Cambridge, United Kingdom, CB2 0AA",
                             checked: "1 Francis Crick Avenue, Cambridge Biomedical Campus, Cambridge, United Kingdom, CB2 0AA"
-                        } if data['registrationTradeUK'] == "Yes",
+                        } if data['registrationTradeUK'] == "Yes" and  data['registrationCompanyRegistrationNumber'] == "Yes",
                         {
                             value: "Another address",
                             text: "Another address",

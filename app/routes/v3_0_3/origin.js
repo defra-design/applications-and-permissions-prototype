@@ -558,10 +558,10 @@ module.exports = function (router) {
         else
         {
             // set placeholder address
-            req.session.data['origin-own-address-line-1'] = "Placehoder House";
-            req.session.data['origin-own-address-line-2'] = "Placeholer lane";
-            req.session.data['origin-own-address-town'] = "Planceholder city";
-            req.session.data['origin-own-address-postcode'] = "PL37DR";
+            req.session.data['origin-own-address-line-1'] = req.session.data['origin-own-farm-new-address-prepop-radios'];
+            req.session.data['origin-own-address-line-2'] = "";
+            req.session.data['origin-own-address-town'] = "";
+            req.session.data['origin-own-address-postcode'] = "";
 
 
             res.redirect('check-answers');

@@ -58,32 +58,6 @@ module.exports = function (router) {
 
 
 
-    // Select gg or one login
-    router.post(section + 'gg-or-gov-one-login-router', function (req, res)
-    {
-        // Turn errors off by default
-        req.session.data['errorthispage'] = "false";
-        req.session.data['errortypeone'] = "false";
-
-        // If Yes was selected, continue to next page
-        if (req.session.data['account-gg-or-gov-one-login-radios'] == "Sign in with GOV UK One Login")
-        {
-            res.redirect('start-of-gov-one-login');
-        }
-        else if (req.session.data['account-gg-or-gov-one-login-radios'] == "Sign in with Government Gateway")
-        {
-            res.redirect('gov-gateway/sign-in');
-        }
-        else
-        {
-            // This page name needs to match the page the user was just on
-            res.redirect('gg-or-gov-one-login');
-        }
-    })
-
-
-
-
 
 
 
@@ -105,10 +79,14 @@ module.exports = function (router) {
         // If Yes was selected, continue to next page
         if (req.session.data['account-gg-or-gov-one-login-radios'] == "Sign in with GOV UK One Login")
         {
+            req.session.data['account-sign-in-gg-email'] = "your.name@gmail.com";
+
             res.redirect('start-of-gov-one-login');
         }
         else if (req.session.data['account-gg-or-gov-one-login-radios'] == "Sign in with Government Gateway")
         {
+            req.session.data['account-sign-in-gg-email'] = "your.name@gmail.com";
+
             res.redirect('gov-gateway/sign-in');
         }
         else
@@ -286,6 +264,57 @@ module.exports = function (router) {
             res.redirect('companies-house');
         }
     })
+
+
+
+
+    // a ltd company or not a company
+    router.get(section + 'register/confirmtion-onwards-to-service', function (req, res)
+    {
+        // Turn errors off by default
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+
+        // If Yes was selected, continue to next page
+        if (req.session.data['registrationSoleTraderAddress'] != undefined )
+        {
+            req.session.data['registrationSoleTraderAddress']
+                = req.session.data['registrationSoleTraderAddress'].replace(/<br\s*\/?>/gi, '');
+        }
+
+        if (req.session.data['registrationCharityAddress'] != undefined )
+        {
+            req.session.data['registrationCharityAddress']
+                = req.session.data['registrationCharityAddress'].replace(/<br\s*\/?>/gi, '');
+        }
+        
+        if (req.session.data['registrationIndividualAddress'] != undefined )
+        {
+            req.session.data['registrationIndividualAddress']
+                = req.session.data['registrationIndividualAddress'].replace(/<br\s*\/?>/gi, '');
+        }
+
+        // This page name needs to match the page the user was just on
+        res.redirect('../../create-application/task-list');
+
+
+    })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

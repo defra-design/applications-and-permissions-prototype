@@ -76,6 +76,11 @@
                     items:
                     [
                         {
+                            value: data['account-sign-in-gg-email'],
+                            text: data['account-sign-in-gg-email'],
+                            checked: data['origin-own-farm-new-address-prepop-radios'] == data['account-sign-in-gg-email']
+                        } if data['account-sign-in-gg-email'] != undefined  and  data['account-sign-in-gg-email'] != ""   and   data['registrationEmail'] == undefined,
+                        {
                             value: data['account-sign-in-gov-one-login-email-text-input'],
                             text: data['account-sign-in-gov-one-login-email-text-input'],
                             checked: data['origin-own-farm-new-address-prepop-radios'] == data['account-sign-in-gov-one-login-email-text-input']

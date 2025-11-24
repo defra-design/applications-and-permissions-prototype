@@ -217,28 +217,35 @@ module.exports = function (router) {
         // If Yes was selected, continue to next page
         if (req.session.data['contact-and-updates-licence-enter-email-address-prepop-radios'] ==  req.session.data['registrationNonUkEmail'])
         {
-            req.session.data['contact-and-updates-licence-enter-email-address-text-input'] = req.session.data['registrationNonUkEmail']
+            req.session.data['contact-and-updates-licence-enter-email-address-text-input'] = req.session.data['registrationNonUkEmail'];
 
             // This page name needs to be the next page the user gets to after successfully continuing
             res.redirect('check-answers');
         }
         else if (req.session.data['contact-and-updates-licence-enter-email-address-prepop-radios'] ==  req.session.data['registrationSoleTraderEmail'])
         {
-            req.session.data['contact-and-updates-licence-enter-email-address-text-input'] = req.session.data['registrationSoleTraderEmail']
+            req.session.data['contact-and-updates-licence-enter-email-address-text-input'] = req.session.data['registrationSoleTraderEmail'];
 
             // This page name needs to be the next page the user gets to after successfully continuing
             res.redirect('check-answers');
         }
         else if (req.session.data['contact-and-updates-licence-enter-email-address-prepop-radios'] ==  req.session.data['registrationCharityEmail'])
         {
-            req.session.data['contact-and-updates-licence-enter-email-address-text-input'] = req.session.data['registrationCharityEmail']
+            req.session.data['contact-and-updates-licence-enter-email-address-text-input'] = req.session.data['registrationCharityEmail'];
 
             // This page name needs to be the next page the user gets to after successfully continuing
             res.redirect('check-answers');
         }
         else if (req.session.data['contact-and-updates-licence-enter-email-address-prepop-radios'] ==  req.session.data['registrationEmail'])
         {
-            req.session.data['contact-and-updates-licence-enter-email-address-text-input'] = req.session.data['registrationEmail']
+            req.session.data['contact-and-updates-licence-enter-email-address-text-input'] = req.session.data['registrationEmail'];
+
+            // This page name needs to be the next page the user gets to after successfully continuing
+            res.redirect('check-answers');
+        }
+        else if (req.session.data['contact-and-updates-licence-enter-email-address-prepop-radios'] ==  req.session.data['account-sign-in-gg-email'])
+        {
+            req.session.data['contact-and-updates-licence-enter-email-address-text-input'] = req.session.data['account-sign-in-gg-email'];
 
             // This page name needs to be the next page the user gets to after successfully continuing
             res.redirect('check-answers');

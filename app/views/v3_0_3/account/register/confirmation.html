@@ -90,16 +90,16 @@
 			
 			
 
-			<form method="post" action="../../create-application/task-list">
+			<form method="post" action="confirmtion-onwards-to-service">
 				<input type="hidden" id="registrationStatus" name="registrationStatus" value="Enrolled" />
 
-
-				{{ govukButton({
-					text: "Continue",
-					classes: "govuk-!-margin-top-3"
-
-				})}}
-
+				{{
+					govukButton
+					({
+						text: "Continue",
+						classes: "govuk-!-margin-top-3"
+					})
+				}}
 
 			</form>
 		{% endif %}
