@@ -626,4 +626,40 @@ module.exports = function (router) {
 
 
 
+
+
+
+
+
+
+    //    PETS sign in after service
+    /////////////////////////////////////////
+
+
+    // Select gg or one login
+    router.post(section + 'pet-travel/pets-gg-or-gov-one-login-router', function (req, res)
+    {
+        // Turn errors off by default
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+
+        // If Yes was selected, continue to next page
+        if (req.session.data['account-pets-gg-or-gov-one-login-radios'] == "Sign in with GOV UK One Login")
+        {
+            res.redirect('start-of-gov-one-login');
+        }
+        else if (req.session.data['account-pets-gg-or-gov-one-login-radios'] == "Sign in with Government Gateway")
+        {
+            res.redirect('sign-in-gg');
+        }
+        else
+        {
+            // This page name needs to match the page the user was just on
+            res.redirect('uk-business-or-not');
+        }
+    })
+
+
+
+
 }

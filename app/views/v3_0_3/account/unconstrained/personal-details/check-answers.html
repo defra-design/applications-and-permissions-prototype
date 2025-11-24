@@ -29,11 +29,18 @@
                     What is your address?
                 </dt>
                 <dd class="govuk-summary-list__value" >
-                    {{ data['unconstrained-your-address-address-line-1'] }}<br>
-                    {{ data['unconstrained-your-address-address-line-2'] }}<br>
-                    {{ data['unconstrained-your-address-address-town'] }}<br>
-                    {{ data['unconstrained-your-address-address-county'] }}<br>
-                    {{ data['unconstrained-your-address-address-postcode'] }}
+                    {%  if  data['address']  != "undefined"
+                            and  data['unconstrained-your-address-select-radios'] != "Another address" %}
+                        {{ data['address']  }}
+
+                    {%  else  %}
+                        {{ data['unconstrained-your-address-address-line-1'] }}<br>
+                        {{ data['unconstrained-your-address-address-line-2'] }}<br>
+                        {{ data['unconstrained-your-address-address-town'] }}<br>
+                        {{ data['unconstrained-your-address-address-county'] }}<br>
+                        {{ data['unconstrained-your-address-address-postcode'] }}
+
+                    {%  endif  %}
                 </dd>
                 <dd class="govuk-summary-list__actions">
                     <a class="govuk-link" href="your-address">Change<span class="govuk-visually-hidden"> </span></a>
