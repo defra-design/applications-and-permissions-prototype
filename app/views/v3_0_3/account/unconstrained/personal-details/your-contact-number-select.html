@@ -4,15 +4,7 @@
 <!-- Setting the big main heading at the top of the page -->
 <!-- If moving on AND from a market OR unrestricted farm OR import THEN ask who will be -->
 {% set pageHeadingTextHTML %}
-    {% if  data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises"
-          and (data['origin-type-of-origin-on-radios'] == "Unrestricted farms and markets"
-            or data['origin-type-of-origin-on-radios'] == "Location after animals have been imported")
-    %}
-        Select the name of the person who will be the registered keeper of the animals
-    {% else %}
-        Select the name of the person registered as the keeper of the animals
-    {% endif %}
-
+        Select your phone number?
 {% endset %}
 
 
@@ -20,7 +12,7 @@
 {% set errorTextHTML %}
     <!-- Nothing was selected -->
     {% if data['errortypeone'] == "true" %}
-        Select where you did PLACEHOLDER
+        Select your name
     {% endif %}
 {% endset %}
 
@@ -49,7 +41,7 @@
                     [
                         {
                             html: errorTextHTML,
-                            href: "#contact-and-updates-licence-name-prepop-radios"
+                            href: "#unconstrained-your-phone-number-select-radios"
                         }
                     ]
                 })
@@ -59,13 +51,13 @@
 
 
         <!-- go to routes.js for routing  -->
-        <form action="licence-name-prepop-router" method="post" novalidate>
+        <form action="your-contact-number-select-router" method="post" novalidate>
 
             {{ govukRadios
                 ({
-                    name: "contact-and-updates-licence-name-prepop-radios",
+                    name: "unconstrained-your-contact-number-select-radios",
 
-                    id: "contact-and-updates-licence-name-prepop-radios",
+                    id: "unconstrained-your-contact-number-select-radios",
 
                     fieldset:
                     {
@@ -83,14 +75,14 @@
                     items:
                     [
                         {
-                            value: data['defaultFirstName'] + " " + data['defaultSurname'],
-                            text: data['defaultFirstName'] + " " + data['defaultSurname'],
-                            checked: data['contact-and-updates-licence-name-prepop-radios'] == data['defaultFirstName'] + " " + data['defaultSurname']
+                            value: data['telephoneNumber'],
+                            text: data['telephoneNumber'],
+                            checked: data['unconstrained-your-contact-number-select-radios'] == data['telephoneNumber']
                         },
                         {
-                            value: "Someone else",
-                            text: "Someone else",
-                            checked: data['contact-and-updates-licence-name-prepop-radios'] == "Someone else"
+                            value: "Another phone number",
+                            text: "Another phone number",
+                            checked: data['unconstrained-your-contact-number-select-radios'] == "Another phone number"
                         }
                     ]
                 })

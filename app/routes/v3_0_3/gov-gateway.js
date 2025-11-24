@@ -35,6 +35,8 @@ module.exports = function (router) {
         // If Yes was selected, continue to next page
         if (req.session.data['account-sign-in-or-not-radios'] == "Yes, sign in")
         {
+            req.session.data['end-of-journey-register-defra-account'] = "false";
+
             res.redirect('gg-or-gov-one-login');
         }
         else if (req.session.data['account-sign-in-or-not-radios'] == "No, use the service without signing in")
@@ -300,6 +302,234 @@ module.exports = function (router) {
 
 
 
+
+    // Routng to prepop registration
+    router.get(section + 'unconstrained/personal-details/personal-details-start', function (req, res)
+    {
+        // Turn errors off by default
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+
+        // If Yes was selected, continue to next page
+        if (req.session.data['end-of-journey-register-defra-account'] == "true")
+        {
+            res.redirect('your-name-select');
+        }
+        else
+        {
+            res.redirect('your-name');
+        }
+    })
+
+
+
+    // Routng to prepop registration
+    router.get(section + 'unconstrained/personal-details/your-name-select-router', function (req, res)
+    {
+        // Turn errors off by default
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+
+
+        // If Yes was selected, continue to next page
+        if (req.session.data['unconstrained-your-name-select-radios'] == "Another name")
+        {
+            res.redirect('your-name');
+        }
+        else if (req.session.data['unconstrained-your-name-select-radios'] == undefined
+                  ||  req.session.data['unconstrained-your-name-select-radios'] == "" )
+        {
+            // Trigger validation and reload the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('your-name-select');
+        }
+        else
+        {
+            req.session.data['unconstrained-your-name-text-input'] = req.session.data['unconstrained-your-name-select-radios'];
+
+            res.redirect('your-address-select');
+        }
+    })
+
+
+
+
+
+    router.post(section + 'unconstrained/personal-details/your-name-router', function (req, res)
+    {
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+        req.session.data['errortypetwo'] = "false";
+
+        // Validation check if field is blank
+        if (req.session.data['unconstrained-your-name-text-input'] == undefined || req.session.data['unconstrained-your-name-text-input'] == "")
+        {
+            // Trigger validation and relaunch the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('your-name');
+        }
+
+        else
+        {
+            if (req.session.data['end-of-journey-register-defra-account'] == "true")
+            {
+                res.redirect('your-address-select');
+            }
+            else
+            {
+                res.redirect('your-address');
+            }
+        }
+    })
+
+
+
+
+
+    // Routng to prepop registration
+    router.get(section + 'unconstrained/personal-details/your-address-select-router', function (req, res)
+    {
+        // Turn errors off by default
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+
+
+        // If Yes was selected, continue to next page
+        if (req.session.data['unconstrained-your-address-select-radios'] == "Another address")
+        {
+            res.redirect('your-address');
+        }
+        else if (req.session.data['unconstrained-your-address-select-radios'] == undefined
+            ||  req.session.data['unconstrained-your-address-select-radios'] == "" )
+        {
+            // Trigger validation and reload the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page address needs to match the page the user was just on
+            res.redirect('your-address-select');
+        }
+        else
+        {
+            req.session.data['unconstrained-your-address-text-input'] = req.session.data['unconstrained-your-address-select-radios'];
+
+            res.redirect('your-contact-number-select');
+        }
+    })
+
+
+
+
+
+
+    router.post(section + 'unconstrained/personal-details/your-address-router', function (req, res)
+    {
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+        req.session.data['errortypetwo'] = "false";
+
+        // Validation check if field is blank
+        if (req.session.data['unconstrained-your-address-address-line-1'] == undefined || req.session.data['unconstrained-your-address-address-line-1'] == "")
+        {
+            // Trigger validation and relaunch the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page address needs to match the page the user was just on
+            res.redirect('your-address');
+        }
+
+        else
+        {
+            if (req.session.data['end-of-journey-register-defra-account'] == "true")
+            {
+                res.redirect('your-contact-number-select');
+            }
+            else
+            {
+                res.redirect('your-contact-number');
+            }
+        }
+    })
+
+
+
+
+
+    // Routng to prepop registration
+    router.get(section + 'unconstrained/personal-details/your-contact-number-select-router', function (req, res)
+    {
+        // Turn errors off by default
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+
+
+        // If Yes was selected, continue to next page
+        if (req.session.data['unconstrained-your-contact-number-select-radios'] == "Another phone number")
+        {
+            res.redirect('your-contact-number');
+        }
+        else if (req.session.data['unconstrained-your-contact-number-select-radios'] == undefined
+            ||  req.session.data['unconstrained-your-contact-number-select-radios'] == "" )
+        {
+            // Trigger validation and reload the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page contact-number needs to match the page the user was just on
+            res.redirect('your-contact-number-select');
+        }
+        else
+        {
+            req.session.data['unconstrained-your-contact-number-text-input'] = req.session.data['unconstrained-your-contact-number-select-radios'];
+
+            res.redirect('personal-use');
+        }
+    })
+
+
+
+
+
+
+    router.post(section + 'unconstrained/personal-details/your-contact-number-router', function (req, res)
+    {
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+        req.session.data['errortypetwo'] = "false";
+
+        // Validation check if field is blank
+        if (req.session.data['unconstrained-your-contact-number-text-input'] == undefined || req.session.data['unconstrained-your-contact-number-text-input'] == "")
+        {
+            // Trigger validation and relaunch the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page contact-number needs to match the page the user was just on
+            res.redirect('your-contact-number');
+        }
+
+        else
+        {
+            res.redirect('personal-use');
+        }
+    })
+
+
+
+
+
+
+
+
+
+
     // Select gg or one login
     router.post(section + 'unconstrained/business-details/uk-business-or-not-router', function (req, res)
     {
@@ -322,6 +552,9 @@ module.exports = function (router) {
             res.redirect('uk-business-or-not');
         }
     })
+
+
+
 
 
 
