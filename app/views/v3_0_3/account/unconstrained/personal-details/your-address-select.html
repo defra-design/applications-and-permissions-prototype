@@ -4,7 +4,7 @@
 <!-- Setting the big main heading at the top of the page -->
 <!-- If moving on AND from a market OR unrestricted farm OR import THEN ask who will be -->
 {% set pageHeadingTextHTML %}
-        Select your address
+    What is your address?
 {% endset %}
 
 
@@ -80,9 +80,9 @@
                             checked: data['unconstrained-your-address-select-radios'] == data['address']
                         },
                         {
-                            value: "Another address",
-                            text: "Another address",
-                            checked: data['unconstrained-your-address-select-radios'] == "Another address"
+                            value: "I want to register using a different address",
+                            text: "I want to register using a different address",
+                            checked: data['unconstrained-your-address-select-radios'] == "I want to register using a different address"
                         }
                     ]
                 })

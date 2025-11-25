@@ -361,7 +361,7 @@ module.exports = function (router) {
 
 
         // If Yes was selected, continue to next page
-        if (req.session.data['unconstrained-your-name-select-radios'] == "Another name")
+        if (req.session.data['unconstrained-your-name-select-radios'] == "I want to register using a different name")
         {
             res.redirect('your-name');
         }
@@ -430,7 +430,7 @@ module.exports = function (router) {
 
 
         // If Yes was selected, continue to next page
-        if (req.session.data['unconstrained-your-address-select-radios'] == "Another address")
+        if (req.session.data['unconstrained-your-address-select-radios'] == "I want to register using a different address")
         {
             res.redirect('your-address');
         }
@@ -500,7 +500,7 @@ module.exports = function (router) {
 
 
         // If Yes was selected, continue to next page
-        if (req.session.data['unconstrained-your-contact-number-select-radios'] == "Another phone number")
+        if (req.session.data['unconstrained-your-contact-number-select-radios'] == "I want to register using a different phone number")
         {
             res.redirect('your-contact-number');
         }

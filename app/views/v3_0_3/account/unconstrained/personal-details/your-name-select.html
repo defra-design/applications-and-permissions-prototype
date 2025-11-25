@@ -4,7 +4,7 @@
 <!-- Setting the big main heading at the top of the page -->
 <!-- If moving on AND from a market OR unrestricted farm OR import THEN ask who will be -->
 {% set pageHeadingTextHTML %}
-        Select your name
+    What is your name?
 {% endset %}
 
 
@@ -80,9 +80,9 @@
                             checked: data['unconstrained-your-name-select-radios'] == data['petOwnerName']
                         },
                         {
-                            value: "Another name",
-                            text: "Another name",
-                            checked: data['unconstrained-your-name-select-radios'] == "Another name"
+                            value: "I want to register using a different name",
+                            text: "I want to register using a different name",
+                            checked: data['unconstrained-your-name-select-radios'] == "I want to register using a different name"
                         }
                     ]
                 })

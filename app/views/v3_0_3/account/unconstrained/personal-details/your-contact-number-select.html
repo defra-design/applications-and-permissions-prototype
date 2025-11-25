@@ -4,7 +4,7 @@
 <!-- Setting the big main heading at the top of the page -->
 <!-- If moving on AND from a market OR unrestricted farm OR import THEN ask who will be -->
 {% set pageHeadingTextHTML %}
-        Select your phone number?
+     What is your phone number?
 {% endset %}
 
 
@@ -80,9 +80,9 @@
                             checked: data['unconstrained-your-contact-number-select-radios'] == data['telephoneNumber']
                         },
                         {
-                            value: "Another phone number",
-                            text: "Another phone number",
-                            checked: data['unconstrained-your-contact-number-select-radios'] == "Another phone number"
+                            value: "I want to register using a different phone number",
+                            text: "I want to register using a different phone number",
+                            checked: data['unconstrained-your-contact-number-select-radios'] == "I want to register using a different phone number"
                         }
                     ]
                 })
