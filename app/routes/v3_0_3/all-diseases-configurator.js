@@ -12,6 +12,7 @@ module.exports = function (router) {
      */
 
     let section  = "disease-configurator";
+    let section_general_licence  = "disease-configurator-general-licence";
     let sectionURL = "/" + "all-diseases/disease-configurator" + "/";
 
 
@@ -449,6 +450,22 @@ module.exports = function (router) {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////
 
@@ -483,23 +500,17 @@ module.exports = function (router) {
         req.session.data['errortypeone'] = "false";
 
         // If Yes was selected, continue to next page
-        if (req.session.data[section + '-' + page_name_submitted + '-radios-yes-no'] == "Yes")
+        if (req.session.data[section_general_licence + '-' + page_name_submitted + '-radios-yes-no'] == "Yes")
         {
             // Continue to the next page
-
+            req.session.data['camefromcheckanswers'] = false;
             // If the user needs to go back to 'check your answers' then take them directly there
-            if (req.session.data['camefromcheckanswers'] == 'true')
-            {
-                req.session.data['camefromcheckanswers'] = false;
-                res.redirect('../' + 'check-answers');
-            }
-            else
-            {
-                // This page name needs to be the next page the user gets to after successfully continuing
-                res.redirect('../' + 'types-of-movement');
-            }
+
+            // This page name needs to be the next page the user gets to after successfully continuing
+            res.redirect('../' + 'types-of-movement');
+
         }
-        else if (req.session.data[section + '-' + page_name_submitted + '-radios-yes-no'] == "No")
+        else if (req.session.data[section_general_licence + '-' + page_name_submitted + '-radios-yes-no'] == "No")
         {
             // Continue to the next page
 
@@ -553,8 +564,8 @@ module.exports = function (router) {
         var checkboxestext = "";
 
         // check if none of the checkboxes are selected
-        if(req.session.data[section + '-' + page_name_submitted + '-checkboxes'] == undefined  ||
-            req.session.data[section + '-' + page_name_submitted + '-checkboxes'].length == 0)
+        if(req.session.data[section_general_licence + '-' + page_name_submitted + '-checkboxes'] == undefined  ||
+            req.session.data[section_general_licence + '-' + page_name_submitted + '-checkboxes'].length == 0)
         {
             // Trigger validation and relaunch the page
             req.session.data['errorthispage'] = "true";
@@ -566,10 +577,10 @@ module.exports = function (router) {
         else
         {
             // Make formatted text for check answer review page
-            checkboxestext = req.session.data[section + '-' + page_name_submitted + '-checkboxes'].toString();
+            checkboxestext = req.session.data[section_general_licence + '-' + page_name_submitted + '-checkboxes'].toString();
 
             let newStringmanure = checkboxestext.replace(/,(?!\s)/g, "\n\n");
-            req.session.data[section + '-' + page_name_submitted + '-checkboxes-formatted'] = newStringmanure;
+            req.session.data[section_general_licence + '-' + page_name_submitted + '-checkboxes-formatted'] = newStringmanure;
 
 
             // Continue to the next page
@@ -614,8 +625,8 @@ module.exports = function (router) {
         var checkboxestext = "";
 
         // check if none of the checkboxes are selected
-        if(req.session.data[section + '-' + page_name_submitted + '-checkboxes'] == undefined  ||
-           req.session.data[section + '-' + page_name_submitted + '-checkboxes'].length == 0)
+        if(req.session.data[section_general_licence + '-' + page_name_submitted + '-checkboxes'] == undefined  ||
+           req.session.data[section_general_licence + '-' + page_name_submitted + '-checkboxes'].length == 0)
         {
             // Trigger validation and relaunch the page
             req.session.data['errorthispage'] = "true";
@@ -627,17 +638,17 @@ module.exports = function (router) {
         else
         {
             // Make formatted text for check answer review page
-            checkboxestext = req.session.data[section + '-' + page_name_submitted + '-checkboxes'].toString();
+            checkboxestext = req.session.data[section_general_licence + '-' + page_name_submitted + '-checkboxes'].toString();
 
             let newStringmanure = checkboxestext.replace(/,(?!\s)/g, "\n\n");
-            req.session.data[section + '-' + page_name_submitted + '-checkboxes-formatted'] = newStringmanure;
+            req.session.data[section_general_licence + '-' + page_name_submitted + '-checkboxes-formatted'] = newStringmanure;
 
 
             // Continue to the next page
 
             // If the user needs to go back to 'check your answers' then take them directly there
 
-            if(req.session.data[section + '-' + page_name_submitted + '-checkboxes'].includes("Animals") )
+            if(req.session.data[section_general_licence + '-' + page_name_submitted + '-checkboxes'].includes("Animals") )
             {
                 res.redirect('../' + 'animals-under-general-licences');
             }
@@ -679,11 +690,10 @@ module.exports = function (router) {
         req.session.data['errorthispage'] = "false";
         req.session.data['errortypeone'] = "false";
 
-        var checkboxestext = "";
 
         // check if none of the checkboxes are selected
-        if(req.session.data[section + '-' + page_name_submitted + '-checkboxes'] == undefined  ||
-            req.session.data[section + '-' + page_name_submitted + '-checkboxes'].length == 0)
+        if(req.session.data[section_general_licence + '-' + page_name_submitted + '-checkboxes'] == undefined  ||
+            req.session.data[section_general_licence + '-' + page_name_submitted + '-checkboxes'].length == 0)
         {
             // Trigger validation and relaunch the page
             req.session.data['errorthispage'] = "true";
@@ -695,14 +705,15 @@ module.exports = function (router) {
         else
         {
             // Make formatted text for check answer review page
-            checkboxestext = req.session.data[section + '-' + page_name_submitted + '-checkboxes'].toString();
+            let checkboxestext = "";
+            checkboxestext = req.session.data[section_general_licence + '-' + page_name_submitted + '-checkboxes'].toString();
 
             let newStringmanure = checkboxestext.replace(/,(?!\s)/g, "\n\n");
-            req.session.data[section + '-' + page_name_submitted + '-checkboxes-formatted'] = newStringmanure;
+            req.session.data[section_general_licence + '-' + page_name_submitted + '-checkboxes-formatted'] = newStringmanure;
 
 
             // Continue to the next page
-            if(req.session.data[section + '-' + page_name_submitted + '-checkboxes'].includes("PLACEHOLDER_CHECKBOX_TEXT") )
+            if(req.session.data[section_general_licence + '-' + page_name_submitted + '-checkboxes'].includes("PLACEHOLDER_CHECKBOX_TEXT") )
             {
                 res.redirect('../' + 'CONDITONAL_NEXT_PAGE_NAME');
             }
@@ -748,8 +759,8 @@ module.exports = function (router) {
         var checkboxestext = "";
 
         // check if none of the checkboxes are selected
-        if(req.session.data[section + '-' + page_name_submitted + '-checkboxes'] == undefined  ||
-            req.session.data[section + '-' + page_name_submitted + '-checkboxes'].length == 0)
+        if(req.session.data[section_general_licence + '-' + page_name_submitted + '-checkboxes'] == undefined  ||
+            req.session.data[section_general_licence + '-' + page_name_submitted + '-checkboxes'].length == 0)
         {
             // Trigger validation and relaunch the page
             req.session.data['errorthispage'] = "true";
@@ -761,38 +772,38 @@ module.exports = function (router) {
         else
         {
             // Make formatted text for check answer review page
-            checkboxestext = req.session.data[section + '-' + page_name_submitted + '-checkboxes'].toString();
+            checkboxestext = req.session.data[section_general_licence + '-' + page_name_submitted + '-checkboxes'].toString();
 
             let newStringmanure = checkboxestext.replace(/,(?!\s)/g, "\n\n");
-            req.session.data[section + '-' + page_name_submitted + '-checkboxes-formatted'] = newStringmanure;
+            req.session.data[section_general_licence + '-' + page_name_submitted + '-checkboxes-formatted'] = newStringmanure;
 
 
             // format the text in a new array to fit in the question for the matrix
-            req.session.data['disease-configurator-origin-types-checkboxes-text-for-general-licences-headings'] = [];
+            req.session.data[section_general_licence + '-' + 'origin-types-checkboxes-text-for-general-licences-headings'] = [];
             const vowels = 'aeiou';
 
-            for (let i = 0; i < req.session.data[section + '-' + page_name_submitted + '-checkboxes'].length; i++) {
+            for (let i = 0; i < req.session.data[section_general_licence + '-' + page_name_submitted + '-checkboxes'].length; i++) {
                 // Convert the item at the current index to lower case
-                req.session.data['disease-configurator-origin-types-checkboxes-text-for-general-licences-headings'][i]
-                    = req.session.data[section + '-' + page_name_submitted + '-checkboxes'][i].toString().toLowerCase();
+                req.session.data[section_general_licence + '-' + 'origin-types-checkboxes-text-for-general-licences-headings'][i]
+                    = req.session.data[section_general_licence + '-' + page_name_submitted + '-checkboxes'][i].toString().toLowerCase();
 
-                var firstLetter = req.session.data['disease-configurator-origin-types-checkboxes-text-for-general-licences-headings'][i].toString()[0].toLowerCase();
+                var firstLetter = req.session.data[section_general_licence + '-' + 'origin-types-checkboxes-text-for-general-licences-headings'][i].toString()[0].toLowerCase();
 
 
                 if (vowels.includes(firstLetter))
                 {
                     // If it is a vowel, add "an " to the front of the word
-                    req.session.data['disease-configurator-origin-types-checkboxes-text-for-general-licences-headings'][i] = "an " + req.session.data['disease-configurator-origin-types-checkboxes-text-for-general-licences-headings'][i];
+                    req.session.data[section_general_licence + '-' + 'origin-types-checkboxes-text-for-general-licences-headings'][i] = "an " + req.session.data[section_general_licence + '-' + 'origin-types-checkboxes-text-for-general-licences-headings'][i];
                 }
                 else
                 {
-                    req.session.data['disease-configurator-origin-types-checkboxes-text-for-general-licences-headings'][i] = "a " + req.session.data['disease-configurator-origin-types-checkboxes-text-for-general-licences-headings'][i];
+                    req.session.data[section_general_licence + '-' + 'origin-types-checkboxes-text-for-general-licences-headings'][i] = "a " + req.session.data[section_general_licence + '-' + 'origin-types-checkboxes-text-for-general-licences-headings'][i];
                 }
             }
 
 
             // Continue to the next page
-            if(req.session.data[section + '-' + page_name_submitted + '-checkboxes'].includes("PLACEHOLDER_CHECKBOX_TEXT") )
+            if(req.session.data[section_general_licence + '-' + page_name_submitted + '-checkboxes'].includes("PLACEHOLDER_CHECKBOX_TEXT") )
             {
                 res.redirect('../' + 'CONDITONAL_NEXT_PAGE_NAME');
             }
@@ -838,8 +849,8 @@ module.exports = function (router) {
         var checkboxestext = "";
 
         // check if none of the checkboxes are selected
-        if(req.session.data[section + '-' + page_name_submitted + '-checkboxes'] == undefined  ||
-            req.session.data[section + '-' + page_name_submitted + '-checkboxes'].length == 0)
+        if(req.session.data[section_general_licence + '-' + page_name_submitted + '-checkboxes'] == undefined  ||
+            req.session.data[section_general_licence + '-' + page_name_submitted + '-checkboxes'].length == 0)
         {
             // Trigger validation and relaunch the page
             req.session.data['errorthispage'] = "true";
@@ -851,14 +862,14 @@ module.exports = function (router) {
         else
         {
             // Make formatted text for check answer review page
-            checkboxestext = req.session.data[section + '-' + page_name_submitted + '-checkboxes'].toString();
+            checkboxestext = req.session.data[section_general_licence + '-' + page_name_submitted + '-checkboxes'].toString();
 
             let newStringmanure = checkboxestext.replace(/,(?!\s)/g, "\n\n");
-            req.session.data[section + '-' + page_name_submitted + '-checkboxes-formatted'] = newStringmanure;
+            req.session.data[section_general_licence + '-' + page_name_submitted + '-checkboxes-formatted'] = newStringmanure;
 
 
             // Continue to the next page
-            if(req.session.data[section + '-' + page_name_submitted + '-checkboxes'].includes("PLACEHOLDER_CHECKBOX_TEXT") )
+            if(req.session.data[section_general_licence + '-' + page_name_submitted + '-checkboxes'].includes("PLACEHOLDER_CHECKBOX_TEXT") )
             {
                 res.redirect('../' + 'CONDITONAL_NEXT_PAGE_NAME');
             }
@@ -880,7 +891,7 @@ module.exports = function (router) {
 
                     // set the first loop to the first item in the list
                     req.session.data['origin-general-licence-showing-in-loop']
-                        = req.session.data['disease-configurator-origin-types-checkboxes-text-for-general-licences-headings'][loopcounter];
+                        = req.session.data[section_general_licence + '-' + 'origin-types-checkboxes-text-for-general-licences-headings'][loopcounter];
                 }
 
                 res.redirect('../' + 'select-destination-for-each-origin-general-licences');
@@ -915,8 +926,8 @@ module.exports = function (router) {
 
 
         // check if none of the checkboxes are selected
-        if(req.session.data['disease-configurator-select-destination-for-each-origin-general-licences-checkboxes'] == undefined  ||
-            req.session.data['disease-configurator-select-destination-for-each-origin-general-licences-checkboxes'].length == 0)
+        if(req.session.data[section_general_licence + '-' + 'select-destination-for-each-origin-general-licences-checkboxes'] == undefined  ||
+            req.session.data[section_general_licence + '-' + 'select-destination-for-each-origin-general-licences-checkboxes'].length == 0)
         {
             // Trigger validation and relaunch the page
             req.session.data['errorthispage'] = "true";
@@ -934,10 +945,10 @@ module.exports = function (router) {
                 // save the answers for the specific index changed
                 var loopcounter = parseInt(req.session.data['origin-general-licence-loop-counter']);
                 req.session.data['origin-destination-matrix-general-licences'][loopcounter]
-                    = req.session.data['disease-configurator-select-destination-for-each-origin-general-licences-checkboxes'];
+                    = req.session.data[section_general_licence + '-' + 'select-destination-for-each-origin-general-licences-checkboxes'];
 
                 // clear the loop
-                req.session.data['disease-configurator-select-destination-for-each-origin-general-licences-checkboxes'] =  undefined;
+                req.session.data[section_general_licence + '-' + 'select-destination-for-each-origin-general-licences-checkboxes'] =  undefined;
 
                 req.session.data['camefromcheckanswers'] = false;
                 res.redirect('check-answers');
@@ -954,10 +965,10 @@ module.exports = function (router) {
                 }
 
                 req.session.data['origin-destination-matrix-general-licences'][loopcounter]
-                    = req.session.data['disease-configurator-select-destination-for-each-origin-general-licences-checkboxes'];
+                    = req.session.data[section_general_licence + '-' + 'select-destination-for-each-origin-general-licences-checkboxes'];
 
                 // Iterate through the loop unless from check answers
-                let sizeofarray = req.session.data['disease-configurator-origin-types-general-licences-checkboxes'].length;
+                let sizeofarray = req.session.data[section_general_licence + '-' + 'origin-types-general-licences-checkboxes'].length;
 
                 // Check if this is the final item in the list
                 if ( sizeofarray == req.session.data['origin-general-licence-loop-counter'] + 1 ) {
@@ -974,13 +985,125 @@ module.exports = function (router) {
 
                     // set the first loop to the first item in the list
                     req.session.data['origin-general-licence-showing-in-loop']
-                        = req.session.data['disease-configurator-origin-types-checkboxes-text-for-general-licences-headings'][loopcounter];
+                        = req.session.data[section_general_licence + '-' + 'origin-types-checkboxes-text-for-general-licences-headings'][loopcounter];
 
                     res.redirect('select-destination-for-each-origin-general-licences');
                 }
             }
         }
     })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////      Border movements allowed under  licence       ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////                   CHECKBOXES                       ////////////////
+    ////////////////                NOT COMPLEX PAGE                    ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    router.post(sectionURL + 'devolved-administrations/devolved-administrations-list-router', function (req, res)
+    {
+        // Turn errors off by default
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+
+        var checkboxestext = "";
+
+        // check if none of the checkboxes are selected
+        if(req.session.data['disease-configurator-devolved-administrations-list-checkboxes'] == undefined  ||
+            req.session.data['disease-configurator-devolved-administrations-list-checkboxes'].length == 0)
+        {
+            // Trigger validation and relaunch the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('cross-border-movements');
+        }
+
+        else
+        {
+            // Continue to the next page
+            // Make formatted text for check answer review page
+            checkboxestext = req.session.data[section + '-' + 'devolved-administrations-list' + '-checkboxes'].toString();
+
+            let newStringmanure = checkboxestext.replace(/,(?!\s)/g, "\n\n");
+            req.session.data[section + '-' + 'devolved-administrations-list' + '-checkboxes-formatted'] = newStringmanure;
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('check-answers');
+            }
+            else
+            {
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('check-answers');
+            }
+        }
+    })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

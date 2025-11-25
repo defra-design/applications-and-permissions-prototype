@@ -30,7 +30,7 @@ module.exports = function (router)
         req.session.data['errorthispage'] = "false";
         req.session.data['errortypeone'] = "false";
 
-        var checkboxestext = "";
+
 
         // check if none of the checkboxes are selected
         if(req.session.data[section + '-' + page_name_submitted + '-checkboxes'] == undefined  ||
@@ -45,6 +45,7 @@ module.exports = function (router)
 
         else
         {
+            let checkboxestext = "";
             // Make formatted text for check answer review page
             checkboxestext = req.session.data[section + '-' + page_name_submitted + '-checkboxes'].toString();
 

@@ -1,17 +1,6 @@
 {% extends "layouts/v3_0_3" %}
 
-<!--
-NOTES ON USING THIS TEMPLATE Page
-This will save you time.
 
-1. Type your heading for the page after '% set pageHeadingTextHTML %'
-2. Type/customise the error message after '% set errorTextHTML %'
-3. Use 'Find and replace' to replace "SECTION" with the name of the section of the service you're working on.
-4. Use 'Find and replace' to replace "PAGENAME_CHECKBOXES" with whatever you named this page/file.
-5. Use 'Find and replace' to replace each of the checkbox values. Starting with 'PLACEHOLDER_ANSWER_1'
-6. Go to the javascript file 'templates.js' and copy the section 'CHECKBOXES - MANDATORY' into your routes.js file.
-7. Follow instructions at the top of the 'templates.js'.
--->
 
 
 <!-- Setting the big main heading at the top of the page -->
@@ -46,6 +35,12 @@ This will save you time.
 {% endblock %}
 
 
+
+<!-- Set the section name -->
+{% set SECTION %}disease-configurator-general-licence{% endset %}
+
+
+
 {% block content %}
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
@@ -60,7 +55,7 @@ This will save you time.
                     [
                         {
                             html: errorTextHTML,
-                            href: "#disease-configurator-select-destination-for-each-origin-general-licences-checkboxes"
+                            href: "#' + SECTION + '-select-destination-for-each-origin-general-licences-checkboxes"
                         }
                     ]
                 })
@@ -74,9 +69,9 @@ This will save you time.
 
             {{ govukCheckboxes
                 ({
-                    name: "disease-configurator-select-destination-for-each-origin-general-licences-checkboxes",
+                    name: SECTION + '-select-destination-for-each-origin-general-licences-checkboxes',
 
-                    id: "disease-configurator-select-destination-for-each-origin-general-licences-checkboxes",
+                    id: SECTION + '-select-destination-for-each-origin-general-licences-checkboxes',
 
                     fieldset:
                     {
@@ -99,50 +94,50 @@ This will save you time.
                     items:
                     [
                         {
-                            value: data['disease-configurator-destination-types-general-licences-checkboxes'][0],
-                            text: data['disease-configurator-destination-types-general-licences-checkboxes'][0],
-                            checked: (data['origin-destination-matrix-general-licences'][data['origin-general-licence-loop-counter']] or []).indexOf(data['disease-configurator-destination-types-general-licences-checkboxes'][0]) > -1
-                        } if data['disease-configurator-destination-types-general-licences-checkboxes'][0] != undefined,
+                            value: data[SECTION + '-destination-types-general-licences-checkboxes'][0],
+                            text: data[SECTION + '-destination-types-general-licences-checkboxes'][0],
+                            checked: (data['origin-destination-matrix-general-licences'][data['origin-general-licence-loop-counter']] or []).indexOf(data[SECTION + '-destination-types-general-licences-checkboxes'][0]) > -1
+                        } if data[SECTION + '-destination-types-general-licences-checkboxes'][0] != undefined,
                         {
-                            value: data['disease-configurator-destination-types-general-licences-checkboxes'][1],
-                            text: data['disease-configurator-destination-types-general-licences-checkboxes'][1],
-                            checked: (data['origin-destination-matrix-general-licences'][data['origin-general-licence-loop-counter']] or []).indexOf(data['disease-configurator-destination-types-general-licences-checkboxes'][1]) > -1
-                        } if data['disease-configurator-destination-types-general-licences-checkboxes'][1] != undefined,
+                            value: data[SECTION + '-destination-types-general-licences-checkboxes'][1],
+                            text: data[SECTION + '-destination-types-general-licences-checkboxes'][1],
+                            checked: (data['origin-destination-matrix-general-licences'][data['origin-general-licence-loop-counter']] or []).indexOf(data[SECTION + '-destination-types-general-licences-checkboxes'][1]) > -1
+                        } if data[SECTION + '-destination-types-general-licences-checkboxes'][1] != undefined,
                         {
-                            value: data['disease-configurator-destination-types-general-licences-checkboxes'][2],
-                            text: data['disease-configurator-destination-types-general-licences-checkboxes'][2],
-                            checked: (data['origin-destination-matrix-general-licences'][data['origin-general-licence-loop-counter']] or []).indexOf(data['disease-configurator-destination-types-general-licences-checkboxes'][2]) > -1
-                        } if data['disease-configurator-destination-types-general-licences-checkboxes'][2] != undefined,
+                            value: data[SECTION + '-destination-types-general-licences-checkboxes'][2],
+                            text: data[SECTION + '-destination-types-general-licences-checkboxes'][2],
+                            checked: (data['origin-destination-matrix-general-licences'][data['origin-general-licence-loop-counter']] or []).indexOf(data[SECTION + '-destination-types-general-licences-checkboxes'][2]) > -1
+                        } if data[SECTION + '-destination-types-general-licences-checkboxes'][2] != undefined,
                         {
-                            value: data['disease-configurator-destination-types-general-licences-checkboxes'][3],
-                            text: data['disease-configurator-destination-types-general-licences-checkboxes'][3],
-                            checked: (data['origin-destination-matrix-general-licences'][data['origin-general-licence-loop-counter']] or []).indexOf(data['disease-configurator-destination-types-general-licences-checkboxes'][3]) > -1
-                        } if data['disease-configurator-destination-types-general-licences-checkboxes'][3] != undefined,
+                            value: data[SECTION + '-destination-types-general-licences-checkboxes'][3],
+                            text: data[SECTION + '-destination-types-general-licences-checkboxes'][3],
+                            checked: (data['origin-destination-matrix-general-licences'][data['origin-general-licence-loop-counter']] or []).indexOf(data[SECTION + '-destination-types-general-licences-checkboxes'][3]) > -1
+                        } if data[SECTION + '-destination-types-general-licences-checkboxes'][3] != undefined,
                         {
-                            value: data['disease-configurator-destination-types-general-licences-checkboxes'][4],
-                            text: data['disease-configurator-destination-types-general-licences-checkboxes'][4],
-                            checked: (data['origin-destination-matrix-general-licences'][data['origin-general-licence-loop-counter']] or []).indexOf(data['disease-configurator-destination-types-general-licences-checkboxes'][4]) > -1
-                        } if data['disease-configurator-destination-types-general-licences-checkboxes'][4] != undefined,
+                            value: data[SECTION + '-destination-types-general-licences-checkboxes'][4],
+                            text: data[SECTION + '-destination-types-general-licences-checkboxes'][4],
+                            checked: (data['origin-destination-matrix-general-licences'][data['origin-general-licence-loop-counter']] or []).indexOf(data[SECTION + '-destination-types-general-licences-checkboxes'][4]) > -1
+                        } if data[SECTION + '-destination-types-general-licences-checkboxes'][4] != undefined,
                         {
-                            value: data['disease-configurator-destination-types-general-licences-checkboxes'][5],
-                            text: data['disease-configurator-destination-types-general-licences-checkboxes'][5],
-                            checked: (data['origin-destination-matrix-general-licences'][data['origin-general-licence-loop-counter']] or []).indexOf(data['disease-configurator-destination-types-general-licences-checkboxes'][5]) > -1
-                        } if data['disease-configurator-destination-types-general-licences-checkboxes'][5] != undefined,
+                            value: data[SECTION + '-destination-types-general-licences-checkboxes'][5],
+                            text: data[SECTION + '-destination-types-general-licences-checkboxes'][5],
+                            checked: (data['origin-destination-matrix-general-licences'][data['origin-general-licence-loop-counter']] or []).indexOf(data[SECTION + '-destination-types-general-licences-checkboxes'][5]) > -1
+                        } if data[SECTION + '-destination-types-general-licences-checkboxes'][5] != undefined,
                         {
-                            value: data['disease-configurator-destination-types-general-licences-checkboxes'][6],
-                            text: data['disease-configurator-destination-types-general-licences-checkboxes'][6],
-                            checked: (data['origin-destination-matrix-general-licences'][data['origin-general-licence-loop-counter']] or []).indexOf(data['disease-configurator-destination-types-general-licences-checkboxes'][6]) > -1
-                        } if data['disease-configurator-destination-types-general-licences-checkboxes'][6] != undefined,
+                            value: data[SECTION + '-destination-types-general-licences-checkboxes'][6],
+                            text: data[SECTION + '-destination-types-general-licences-checkboxes'][6],
+                            checked: (data['origin-destination-matrix-general-licences'][data['origin-general-licence-loop-counter']] or []).indexOf(data[SECTION + '-destination-types-general-licences-checkboxes'][6]) > -1
+                        } if data[SECTION + '-destination-types-general-licences-checkboxes'][6] != undefined,
                         {
-                            value: data['disease-configurator-destination-types-general-licences-checkboxes'][7],
-                            text: data['disease-configurator-destination-types-general-licences-checkboxes'][7],
-                            checked: (data['origin-destination-matrix-general-licences'][data['origin-general-licence-loop-counter']] or []).indexOf(data['disease-configurator-destination-types-general-licences-checkboxes'][7]) > -1
-                        } if data['disease-configurator-destination-types-general-licences-checkboxes'][7] != undefined,
+                            value: data[SECTION + '-destination-types-general-licences-checkboxes'][7],
+                            text: data[SECTION + '-destination-types-general-licences-checkboxes'][7],
+                            checked: (data['origin-destination-matrix-general-licences'][data['origin-general-licence-loop-counter']] or []).indexOf(data[SECTION + '-destination-types-general-licences-checkboxes'][7]) > -1
+                        } if data[SECTION + '-destination-types-general-licences-checkboxes'][7] != undefined,
                         {
-                            value: data['disease-configurator-destination-types-general-licences-checkboxes'][8],
-                            text: data['disease-configurator-destination-types-general-licences-checkboxes'][8],
-                            checked: (data['origin-destination-matrix-general-licences'][data['origin-general-licence-loop-counter']]  or []).indexOf(data['disease-configurator-destination-types-general-licences-checkboxes'][8]) > -1
-                        } if data['disease-configurator-destination-types-general-licences-checkboxes'][8] != undefined
+                            value: data[SECTION + '-destination-types-general-licences-checkboxes'][8],
+                            text: data[SECTION + '-destination-types-general-licences-checkboxes'][8],
+                            checked: (data['origin-destination-matrix-general-licences'][data['origin-general-licence-loop-counter']]  or []).indexOf(data[SECTION + '-destination-types-general-licences-checkboxes'][8]) > -1
+                        } if data[SECTION + '-destination-types-general-licences-checkboxes'][8] != undefined
                     ]
                 })
             }}

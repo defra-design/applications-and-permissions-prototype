@@ -55,6 +55,7 @@
 
 
 
+
                     {
                         title:
                         {
@@ -83,7 +84,9 @@
                             text:  "Cannot start yet",
                             classes: "govuk-task-list__status--cannot-start-yet"
                         }
-                    } if data['section-about-the-disease-complete'] != "true" ,
+                    } if data['section-general-licences-complete'] != "true" ,
+
+
 
 
 
@@ -102,7 +105,7 @@
                                 classes: "govuk-tag--blue"
                             } if data['section-specific-licences-complete'] != "true"
                         }
-                    } if data['section-general-licences-complete'] == "true",
+                    } if data['section-specific-licences-complete'] == "true",
 
                     {
                         title:
@@ -115,7 +118,8 @@
                             text:  "Cannot start yet",
                             classes: "govuk-task-list__status--cannot-start-yet"
                         }
-                    } if data['section-general-licences-complete'] != "true" ,
+                    } if data['section-specific-licences-complete'] != "true" ,
+
 
 
 
@@ -123,7 +127,7 @@
                     {
                         title:
                         {
-                            text: "Allowed without needing a licence"
+                            text: "Movements allowed without needing a licence"
                         },
                         href: "",
                         status:
@@ -140,7 +144,7 @@
                     {
                         title:
                         {
-                            text: "Allowed without needing a licence"
+                            text: "Movements allowed without needing a licence"
                         },
                         href: "",
                         status:
@@ -152,12 +156,14 @@
 
 
 
+
+
                     {
                         title:
                         {
-                            text: "Devolved-administrations"
+                            text: "Devolved administrations"
                         },
-                        href: "devolved-administrations/check-answers" if data['section-devolved-administrations-complete'] == "true" else "devolved-administrations/devolved-administrations",
+                        href: "devolved-administrations/check-answers" if data['section-devolved-administrations-complete'] == "true" else "devolved-administrations/devolved-administrations-list",
                         status:
                         {
                             text: "Completed",

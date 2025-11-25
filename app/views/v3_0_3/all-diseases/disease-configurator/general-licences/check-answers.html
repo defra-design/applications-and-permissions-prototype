@@ -22,7 +22,7 @@
 {% endblock %}
 
 
-
+{% set SECTION %}disease-configurator-general-licence{% endset %}
 
 
 
@@ -46,7 +46,7 @@
                     {% endif %}
                 </dt>
                 <dd class="govuk-summary-list__value">
-                    {{ data['disease-configurator-any-general-licences-radios-yes-no'] }}
+                    {{ data[SECTION + '-any-general-licences-radios-yes-no'] }}
                 </dd>
                 <dd class="govuk-summary-list__actions">
                     <a class="govuk-link" href="any-general-licences?camefromcheckanswers=true&">Change<span class="govuk-visually-hidden"> </span></a>
@@ -54,7 +54,7 @@
             </div>
 
 
-            {% if  data['disease-configurator-any-general-licences-radios-yes-no'] == "Yes" %}
+            {% if  data[SECTION + '-any-general-licences-radios-yes-no'] == "Yes" %}
 
                 <div class="govuk-summary-list__row">
                     <dt class="govuk-summary-list__key">
@@ -66,7 +66,7 @@
                             [ Disease Name ]?
                         {% endif %}
                     </dt>
-                    <dd class="govuk-summary-list__value" style="white-space: pre-wrap">{{ data['disease-configurator-types-of-movement-checkboxes-formatted'] }}</dd>
+                    <dd class="govuk-summary-list__value" style="white-space: pre-wrap">{{ data[SECTION + '-types-of-movement-checkboxes-formatted'] }}</dd>
                     <dd class="govuk-summary-list__actions">
                         <a class="govuk-link" href="types-of-movement?camefromcheckanswers=true&">Change<span class="govuk-visually-hidden"> </span></a>
                     </dd>
@@ -83,28 +83,32 @@
                             [ Disease Name ]?
                         {% endif %}
                     </dt>
-                    <dd class="govuk-summary-list__value" style="white-space: pre-wrap">{{ data['disease-configurator-things-covered-by-general-licences-checkboxes-formatted'] }}</dd>
+                    <dd class="govuk-summary-list__value" style="white-space: pre-wrap">{{ data[SECTION + '-things-covered-by-general-licences-checkboxes-formatted'] }}</dd>
                     <dd class="govuk-summary-list__actions">
                         <a class="govuk-link" href="things-covered-by-general-licences?camefromcheckanswers=true&">Change<span class="govuk-visually-hidden"> </span></a>
                     </dd>
                 </div>
 
 
-                <div class="govuk-summary-list__row">
-                    <dt class="govuk-summary-list__key">
-                        Which animals can move under a general licence for
-                        {% if  data['disease-configurator-disease-name-text-input'] != ""
-                                and data['disease-configurator-disease-name-text-input'] != undefined  %}
-                            {{ data['disease-configurator-disease-name-text-input'] }}?
-                        {% else %}
-                            [ Disease Name ]?
-                        {% endif %}
-                    </dt>
-                    <dd class="govuk-summary-list__value" style="white-space: pre-wrap">{{ data['disease-configurator-animals-under-general-licences-checkboxes-formatted'] }}</dd>
-                    <dd class="govuk-summary-list__actions">
-                        <a class="govuk-link" href="animals-under-general-licences?camefromcheckanswers=true&">Change<span class="govuk-visually-hidden"> </span></a>
-                    </dd>
-                </div>
+                {% if  (data[SECTION + '-things-covered-by-general-licences-checkboxes'] or []).indexOf('Animals') > -1 %}
+
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                            Which animals can move under a general licence for
+                            {% if  data['disease-configurator-disease-name-text-input'] != ""
+                                    and data['disease-configurator-disease-name-text-input'] != undefined  %}
+                                {{ data['disease-configurator-disease-name-text-input'] }}?
+                            {% else %}
+                                [ Disease Name ]?
+                            {% endif %}
+                        </dt>
+                        <dd class="govuk-summary-list__value" style="white-space: pre-wrap">{{ data[SECTION + '-animals-under-general-licences-checkboxes-formatted'] }}</dd>
+                        <dd class="govuk-summary-list__actions">
+                            <a class="govuk-link" href="animals-under-general-licences?camefromcheckanswers=true&">Change<span class="govuk-visually-hidden"> </span></a>
+                        </dd>
+                    </div>
+
+                {% endif %}
 
 
                 <div class="govuk-summary-list__row">
@@ -117,7 +121,7 @@
                             [ Disease Name ]?
                         {% endif %}
                     </dt>
-                    <dd class="govuk-summary-list__value" style="white-space: pre-wrap">{{ data['disease-configurator-origin-types-general-licences-checkboxes-formatted'] }}</dd>
+                    <dd class="govuk-summary-list__value" style="white-space: pre-wrap">{{ data[SECTION + '-origin-types-general-licences-checkboxes-formatted'] }}</dd>
                     <dd class="govuk-summary-list__actions">
                         <a class="govuk-link" href="origin-types-general-licences?camefromcheckanswers=true&">Change<span class="govuk-visually-hidden"> </span></a>
                     </dd>
@@ -134,7 +138,7 @@
                             [ Disease Name ]?
                         {% endif %}
                     </dt>
-                    <dd class="govuk-summary-list__value" style="white-space: pre-wrap">{{ data['disease-configurator-destination-types-general-licences-checkboxes-formatted'] }}</dd>
+                    <dd class="govuk-summary-list__value" style="white-space: pre-wrap">{{ data[SECTION + '-destination-types-general-licences-checkboxes-formatted'] }}</dd>
                     <dd class="govuk-summary-list__actions">
                         <a class="govuk-link" href="destination-types-general-licences?camefromcheckanswers=true&">Change<span class="govuk-visually-hidden"> </span></a>
                     </dd>
@@ -167,7 +171,7 @@
 
 
 
-        <form action="../task-list?section-about-the-disease-complete=true&" method="post" novalidate>
+        <form action="../task-list?section-general-licences-complete=true&" method="post" novalidate>
 
             {{ govukButton({ text: "Continue" }) }}
 
