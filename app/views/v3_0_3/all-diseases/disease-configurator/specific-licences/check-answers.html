@@ -22,7 +22,7 @@
 {% endblock %}
 
 
-{% set SECTION %}disease-configurator-general-licence{% endset %}
+{% set SECTION %}disease-configurator-specific-licence{% endset %}
 
 
 
@@ -37,7 +37,7 @@
 
             <div class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key">
-                    Are there any general licences for
+                    Are there any specific licences for
                     {% if  data['disease-configurator-disease-name-text-input'] != ""
                             and data['disease-configurator-disease-name-text-input'] != undefined  %}
                         {{ data['disease-configurator-disease-name-text-input'] }}?
@@ -46,19 +46,19 @@
                     {% endif %}
                 </dt>
                 <dd class="govuk-summary-list__value">
-                    {{ data[SECTION + '-any-general-licences-radios-yes-no'] }}
+                    {{ data[SECTION + '-any-specific-licences-radios-yes-no'] }}
                 </dd>
                 <dd class="govuk-summary-list__actions">
-                    <a class="govuk-link" href="any-general-licences?camefromcheckanswers=true&">Change<span class="govuk-visually-hidden"> </span></a>
+                    <a class="govuk-link" href="any-specific-licences?camefromcheckanswers=true&">Change<span class="govuk-visually-hidden"> </span></a>
                 </dd>
             </div>
 
 
-            {% if  data[SECTION + '-any-general-licences-radios-yes-no'] == "Yes" %}
+            {% if  data[SECTION + '-any-specific-licences-radios-yes-no'] == "Yes" %}
 
                 <div class="govuk-summary-list__row">
                     <dt class="govuk-summary-list__key">
-                        Select the types of movement covered by general licences for
+                        Select the types of movement covered by specific licences for
                         {% if  data['disease-configurator-disease-name-text-input'] != ""
                                 and data['disease-configurator-disease-name-text-input'] != undefined  %}
                             {{ data['disease-configurator-disease-name-text-input'] }}?
@@ -75,7 +75,7 @@
 
                 <div class="govuk-summary-list__row">
                     <dt class="govuk-summary-list__key">
-                        Which things are covered by general licences for
+                        Which things are covered by specific licences for
                         {% if  data['disease-configurator-disease-name-text-input'] != ""
                                 and data['disease-configurator-disease-name-text-input'] != undefined  %}
                             {{ data['disease-configurator-disease-name-text-input'] }}?
@@ -83,18 +83,18 @@
                             [ Disease Name ]?
                         {% endif %}
                     </dt>
-                    <dd class="govuk-summary-list__value" style="white-space: pre-wrap">{{ data[SECTION + '-things-covered-by-general-licences-checkboxes-formatted'] }}</dd>
+                    <dd class="govuk-summary-list__value" style="white-space: pre-wrap">{{ data[SECTION + '-things-covered-by-specific-licences-checkboxes-formatted'] }}</dd>
                     <dd class="govuk-summary-list__actions">
-                        <a class="govuk-link" href="things-covered-by-general-licences?camefromcheckanswers=true&">Change<span class="govuk-visually-hidden"> </span></a>
+                        <a class="govuk-link" href="things-covered-by-specific-licences?camefromcheckanswers=true&">Change<span class="govuk-visually-hidden"> </span></a>
                     </dd>
                 </div>
 
 
-                {% if  (data[SECTION + '-things-covered-by-general-licences-checkboxes'] or []).indexOf('Animals') > -1 %}
+                {% if  (data[SECTION + '-things-covered-by-specific-licences-checkboxes'] or []).indexOf('Animals') > -1 %}
 
                     <div class="govuk-summary-list__row">
                         <dt class="govuk-summary-list__key">
-                            Which animals can move under a general licence for
+                            Which animals can move under a specific licence for
                             {% if  data['disease-configurator-disease-name-text-input'] != ""
                                     and data['disease-configurator-disease-name-text-input'] != undefined  %}
                                 {{ data['disease-configurator-disease-name-text-input'] }}?
@@ -102,9 +102,9 @@
                                 [ Disease Name ]?
                             {% endif %}
                         </dt>
-                        <dd class="govuk-summary-list__value" style="white-space: pre-wrap">{{ data[SECTION + '-animals-under-general-licences-checkboxes-formatted'] }}</dd>
+                        <dd class="govuk-summary-list__value" style="white-space: pre-wrap">{{ data[SECTION + '-animals-under-specific-licences-checkboxes-formatted'] }}</dd>
                         <dd class="govuk-summary-list__actions">
-                            <a class="govuk-link" href="animals-under-general-licences?camefromcheckanswers=true&">Change<span class="govuk-visually-hidden"> </span></a>
+                            <a class="govuk-link" href="animals-under-specific-licences?camefromcheckanswers=true&">Change<span class="govuk-visually-hidden"> </span></a>
                         </dd>
                     </div>
 
@@ -113,7 +113,7 @@
 
                 <div class="govuk-summary-list__row">
                     <dt class="govuk-summary-list__key">
-                        Which types of origin premises are covered by general licences for
+                        Which types of origin premises are covered by specific licences for
                         {% if  data['disease-configurator-disease-name-text-input'] != ""
                                 and data['disease-configurator-disease-name-text-input'] != undefined  %}
                             {{ data['disease-configurator-disease-name-text-input'] }}?
@@ -121,16 +121,16 @@
                             [ Disease Name ]?
                         {% endif %}
                     </dt>
-                    <dd class="govuk-summary-list__value" style="white-space: pre-wrap">{{ data[SECTION + '-origin-types-general-licences-checkboxes-formatted'] }}</dd>
+                    <dd class="govuk-summary-list__value" style="white-space: pre-wrap">{{ data[SECTION + '-origin-types-specific-licences-checkboxes-formatted'] }}</dd>
                     <dd class="govuk-summary-list__actions">
-                        <a class="govuk-link" href="origin-types-general-licences?camefromcheckanswers=true&">Change<span class="govuk-visually-hidden"> </span></a>
+                        <a class="govuk-link" href="origin-types-specific-licences?camefromcheckanswers=true&">Change<span class="govuk-visually-hidden"> </span></a>
                     </dd>
                 </div>
 
 
                 <div class="govuk-summary-list__row">
                     <dt class="govuk-summary-list__key">
-                        Which types of destination premises are covered by general licences for
+                        Which types of destination premises are covered by specific licences for
                         {% if  data['disease-configurator-disease-name-text-input'] != ""
                                 and data['disease-configurator-disease-name-text-input'] != undefined  %}
                             {{ data['origin-showing-in-loop'] }}?
@@ -138,18 +138,18 @@
                             [ Disease Name ]?
                         {% endif %}
                     </dt>
-                    <dd class="govuk-summary-list__value" style="white-space: pre-wrap">{{ data[SECTION + '-destination-types-general-licences-checkboxes-formatted'] }}</dd>
+                    <dd class="govuk-summary-list__value" style="white-space: pre-wrap">{{ data[SECTION + '-destination-types-specific-licences-checkboxes-formatted'] }}</dd>
                     <dd class="govuk-summary-list__actions">
-                        <a class="govuk-link" href="destination-types-general-licences?camefromcheckanswers=true&">Change<span class="govuk-visually-hidden"> </span></a>
+                        <a class="govuk-link" href="destination-types-specific-licences?camefromcheckanswers=true&">Change<span class="govuk-visually-hidden"> </span></a>
                     </dd>
                 </div>
 
 
-                {% for item in data['origin-destination-matrix-general-licences'] %}
+                {% for item in data['origin-destination-matrix-specific-licences'] %}
                     <div class="govuk-summary-list__row">
                         <dt class="govuk-summary-list__key">
                             If the origin premises is
-                            {{ data[SECTION + '-origin-types-checkboxes-text-for-general-licences-headings'][loop.index0] }},
+                            {{ data['disease-configurator-origin-types-checkboxes-text-for-specific-licences-headings'][loop.index0] }},
                             which destinations are allowed for a movement to take place?
                         </dt>
                         <dd class="govuk-summary-list__value">
@@ -171,7 +171,7 @@
 
 
 
-        <form action="../task-list?section-general-licences-complete=true&" method="post" novalidate>
+        <form action="../task-list?section-specific-licences-complete=true&" method="post" novalidate>
 
             {{ govukButton({ text: "Continue" }) }}
 
