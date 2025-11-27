@@ -227,6 +227,13 @@ module.exports = function (router) {
             // This page name needs to be the next page the user gets to after successfully continuing
             res.redirect('check-answers');
         }
+        else if (req.session.data['contact-and-updates-licence-enter-email-address-prepop-radios'] ==  req.session.data['account-sign-in-gov-one-login-email-text-input'])
+        {
+            req.session.data['contact-and-updates-licence-enter-email-address-text-input'] = req.session.data['account-sign-in-gov-one-login-email-text-input'];
+
+            // This page name needs to be the next page the user gets to after successfully continuing
+            res.redirect('check-answers');
+        }
         else if (req.session.data['contact-and-updates-licence-enter-email-address-prepop-radios'] ==  req.session.data['registrationSoleTraderEmail'])
         {
             req.session.data['contact-and-updates-licence-enter-email-address-text-input'] = req.session.data['registrationSoleTraderEmail'];
