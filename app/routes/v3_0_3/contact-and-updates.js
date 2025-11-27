@@ -175,16 +175,21 @@ module.exports = function (router) {
 
 
 
-    router.post(section + 'licence-name-prepop-router', function (req, res)
-    {
+    router.post(section + 'licence-name-prepop-router', function (req, res) {
         // Turn errors off by default
         req.session.data['errorthispage'] = "false";
         req.session.data['errortypeone'] = "false";
 
         // If Yes was selected, continue to next page
-        if (req.session.data['contact-and-updates-licence-name-prepop-radios'] == req.session.data['defaultFirstName'] + " " + req.session.data['defaultSurname'])
+        if (req.session.data['contact-and-updates-licence-name-prepop-radios'] == req.session.data['unconstrained-your-name-text-input'])
         {
-            req.session.data['contact-and-updates-licence-last-name-text-input'] = req.session.data['defaultFirstName'] + " " + req.session.data['defaultSurname']
+            req.session.data['contact-and-updates-licence-first-name-text-input'] = req.session.data['contact-and-updates-licence-name-prepop-radios'];
+
+            res.redirect('licence-enter-email-address-prepop');
+        }
+        else if (req.session.data['contact-and-updates-licence-name-prepop-radios'] == req.session.data['defaultFirstName'] + " " + req.session.data['defaultSurname'])
+        {
+            req.session.data['contact-and-updates-licence-first-name-text-input'] = req.session.data['defaultFirstName'] + " " + req.session.data['defaultSurname']
 
             // This page name needs to be the next page the user gets to after successfully continuing
             res.redirect('licence-enter-email-address-prepop');

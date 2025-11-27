@@ -83,10 +83,15 @@
                     items:
                     [
                         {
+                            value: data['unconstrained-your-name-text-input'],
+                            text: data['unconstrained-your-name-text-input'],
+                            checked: data['contact-and-updates-licence-name-prepop-radios'] == data['unconstrained-your-name-text-input']
+                        } if data['uncontrained-before-tb'] == 'true' ,
+                        {
                             value: data['defaultFirstName'] + " " + data['defaultSurname'],
                             text: data['defaultFirstName'] + " " + data['defaultSurname'],
                             checked: data['contact-and-updates-licence-name-prepop-radios'] == data['defaultFirstName'] + " " + data['defaultSurname']
-                        },
+                        } if data['defaultFirstName'] != undefined,
                         {
                             value: "Someone else",
                             text: "Someone else",

@@ -79,13 +79,13 @@ module.exports = function (router) {
         // If Yes was selected, continue to next page
         if (req.session.data['account-gg-or-gov-one-login-radios'] == "Sign in with GOV UK One Login")
         {
-            req.session.data['account-sign-in-gg-email'] = "your.name@gmail.com";
+            req.session.data['account-sign-in-gg-email'] = "your.account.name@gmail.com";
 
             res.redirect('start-of-gov-one-login');
         }
         else if (req.session.data['account-gg-or-gov-one-login-radios'] == "Sign in with Government Gateway")
         {
-            req.session.data['account-sign-in-gg-email'] = "your.name@gmail.com";
+            req.session.data['account-sign-in-gg-email'] = "your.account.name@gmail.com";
 
             res.redirect('gov-gateway/sign-in');
         }
@@ -121,7 +121,14 @@ module.exports = function (router) {
         // If Yes was selected, continue to next page
         if (req.session.data['defra-account-registration'] == "true")
         {
-            res.redirect('register/index');
+            if (req.session.data['uncontrained-before-tb'] == "true")
+            {
+                res.redirect('unconstrained/task-list');
+            }
+            else
+            {
+                res.redirect('register/index');
+            }
         }
         else
         {
@@ -144,7 +151,14 @@ module.exports = function (router) {
         // If Yes was selected, continue to next page
         if (req.session.data['defra-account-registration'] == "true")
         {
-            res.redirect('../register/index');
+            if (req.session.data['uncontrained-before-tb'] == "true")
+            {
+                res.redirect('../unconstrained/task-list');
+            }
+            else
+            {
+                res.redirect('../register/index');
+            }
         }
         else
         {

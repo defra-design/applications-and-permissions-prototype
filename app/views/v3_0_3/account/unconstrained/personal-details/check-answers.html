@@ -29,9 +29,18 @@
                     What is your address?
                 </dt>
                 <dd class="govuk-summary-list__value" >
-                    {%  if  data['address']  != "undefined"
+
+
+                    {%  if  data['uncontrained-before-tb']  == "true"  %}
+                        {{ data['unconstrained-your-address-address-line-1'] }}<br>
+                        {{ data['unconstrained-your-address-address-line-2'] }}<br>
+                        {{ data['unconstrained-your-address-address-town'] }}<br>
+                        {{ data['unconstrained-your-address-address-county'] }}<br>
+                        {{ data['unconstrained-your-address-address-postcode'] }}
+
+                    {%  elif  data['address']  != "undefined"
                             and  data['unconstrained-your-address-select-radios'] != "Another address" %}
-                        {{ data['address']  }}
+                            {{ data['address']  }}
 
                     {%  else  %}
                         {{ data['unconstrained-your-address-address-line-1'] }}<br>

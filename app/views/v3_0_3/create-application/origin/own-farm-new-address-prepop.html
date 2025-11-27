@@ -74,6 +74,11 @@
                     items:
                     [
                         {
+                            value: data['unconstrained-your-address-address-line-1'] + ", " + data['unconstrained-your-address-address-line-2']  + ", " + data['unconstrained-your-address-address-town']  + ", " + data['unconstrained-your-address-address-postcode'],
+                            text: data['unconstrained-your-address-address-line-1'] + ", " + data['unconstrained-your-address-address-line-2']  + ", " + data['unconstrained-your-address-address-town']  + ", " + data['unconstrained-your-address-address-postcode'],
+                            checked: data['origin-own-farm-new-address-prepop-radios'] == data['unconstrained-your-address-address-line-1'] + ", " + data['unconstrained-your-address-address-line-2']  + ", " + data['unconstrained-your-address-address-town']  + ", " + data['unconstrained-your-address-address-postcode']
+                        } if data['unconstrained-your-address-address-line-1'] != undefined  and  data['unconstrained-your-address-address-line-1'] != "",
+                        {
                             value: data['registrationSoleTraderAddress'],
                             text: data['registrationSoleTraderAddress'],
                             checked: data['origin-own-farm-new-address-prepop-radios'] == data['registrationSoleTraderAddress']
