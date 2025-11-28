@@ -129,7 +129,7 @@
                         {
                             text: "Movements allowed without needing a licence"
                         },
-                        href: "",
+                        href: "without-licences/check-answers" if data['section-without-licences-complete'] == "true"  else "without-licences/any-without-licences",
                         status:
                         {
                             text: "Completed",
@@ -137,7 +137,7 @@
                             {
                                 text: "Incomplete",
                                 classes: "govuk-tag--blue"
-                            } if data['section-allowed-without-a-licence-complete'] != "true"
+                            } if data['section-without-licences-complete'] != "true"
                         }
                     } if data['section-specific-licences-complete'] == "true",
 
@@ -194,7 +194,7 @@
             ({
                 text: "Review and submit",
                 classes: "govuk-button--secondary",
-                href: "task-list-validation-page"
+                href: "#"
             })
         }}
 

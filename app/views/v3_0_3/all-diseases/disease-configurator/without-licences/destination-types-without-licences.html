@@ -21,7 +21,7 @@ This will save you time.
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    Which types of destination premises are covered by general licences for
+    Which types of destination premises are covered by movements without a licence for
     {% if  data['disease-configurator-disease-name-text-input'] != ""
             and data['disease-configurator-disease-name-text-input'] != undefined  %}
         {{ data['disease-configurator-disease-name-text-input'] }}?
@@ -52,10 +52,10 @@ This will save you time.
 
 
 <!-- Set the section name -->
-{% set SECTION %}disease-configurator-general-licence{% endset %}
+{% set SECTION %}disease-configurator-without-licence{% endset %}
 
 <!-- Set the page name -->
-{% set PAGENAME_CHECKBOXES %}destination-types-general-licences{% endset %}
+{% set PAGENAME_CHECKBOXES %}destination-types-without-licences{% endset %}
 
 <!-- Set the hint text -->
 {% set HINT_TEXT %}Select all that apply{% endset %}

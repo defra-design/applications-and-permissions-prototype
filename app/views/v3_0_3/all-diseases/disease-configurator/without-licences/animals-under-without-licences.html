@@ -21,7 +21,7 @@ This will save you time.
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    Which types of destination premises are covered by general licences for
+    Which animals can move without a licence for
     {% if  data['disease-configurator-disease-name-text-input'] != ""
             and data['disease-configurator-disease-name-text-input'] != undefined  %}
         {{ data['disease-configurator-disease-name-text-input'] }}?
@@ -52,10 +52,10 @@ This will save you time.
 
 
 <!-- Set the section name -->
-{% set SECTION %}disease-configurator-general-licence{% endset %}
+{% set SECTION %}disease-configurator-without-licence{% endset %}
 
 <!-- Set the page name -->
-{% set PAGENAME_CHECKBOXES %}destination-types-general-licences{% endset %}
+{% set PAGENAME_CHECKBOXES %}animals-under-without-licences{% endset %}
 
 <!-- Set the hint text -->
 {% set HINT_TEXT %}Select all that apply{% endset %}
@@ -63,44 +63,60 @@ This will save you time.
 
 
 <!-- CHECKBOX NAME 1 -->
-{% set CHECKBOX_ANSWER_1 %}Unrestrcited markets{% endset %}
+{% set CHECKBOX_ANSWER_1 %}Cattle{% endset %}
 {% set CHECKBOX_HINT_TEXT_1 %}PLACEHOLDER_HINT_TEXT_1{% endset %}
 
 <!-- CHECKBOX NAME 2 -->
-{% set CHECKBOX_ANSWER_2 %}Unrestricted premises{% endset %}
+{% set CHECKBOX_ANSWER_2 %}Cattle{% endset %}
 {% set CHECKBOX_HINT_TEXT_2 %}PLACEHOLDER_HINT_TEXT_2{% endset %}
 
 <!-- CHECKBOX NAME 3 -->
-{% set CHECKBOX_ANSWER_3 %}Restricted premises{% endset %}
+{% set CHECKBOX_ANSWER_3 %}Goats{% endset %}
 {% set CHECKBOX_HINT_TEXT_3 %}PLACEHOLDER_HINT_TEXT_3{% endset %}
 
 <!-- CHECKBOX NAME 4 -->
-{% set CHECKBOX_ANSWER_4 %}Restricted markets{% endset %}
+{% set CHECKBOX_ANSWER_4 %}Pigs{% endset %}
 {% set CHECKBOX_HINT_TEXT_4 %}PLACEHOLDER_HINT_TEXT_4{% endset %}
 
 <!-- CHECKBOX NAME 5 -->
-{% set CHECKBOX_ANSWER_5 %}Approved finishing unit (AFU){% endset %}
+{% set CHECKBOX_ANSWER_5 %}Birds{% endset %}
 {% set CHECKBOX_HINT_TEXT_5 %}PLACEHOLDER_HINT_TEXT_5{% endset %}
 
 <!-- CHECKBOX NAME 6 -->
-{% set CHECKBOX_ANSWER_6 %}Hatchery{% endset %}
+{% set CHECKBOX_ANSWER_6 %}Horses{% endset %}
 {% set CHECKBOX_HINT_TEXT_6 %}PLACEHOLDER_HINT_TEXT_6{% endset %}
 
 <!-- CHECKBOX NAME 7 -->
-{% set CHECKBOX_ANSWER_7 %}Egg Production Site{% endset %}
+{% set CHECKBOX_ANSWER_7 %}Llamas{% endset %}
 {% set CHECKBOX_HINT_TEXT_7 %}PLACEHOLDER_HINT_TEXT_7{% endset %}
 
 <!-- CHECKBOX NAME 8 -->
-{% set CHECKBOX_ANSWER_8 %}Animal gathering{% endset %}
+{% set CHECKBOX_ANSWER_8 %}Alpacas{% endset %}
 {% set CHECKBOX_HINT_TEXT_8 %}PLACEHOLDER_HINT_TEXT_8{% endset %}
 
 <!-- CHECKBOX NAME 9 -->
-{% set CHECKBOX_ANSWER_9 %}Milk processing plant{% endset %}
+{% set CHECKBOX_ANSWER_9 %}Camels{% endset %}
 {% set CHECKBOX_HINT_TEXT_9 %}PLACEHOLDER_HINT_TEXT_9{% endset %}
 
 <!-- CHECKBOX NAME 10 -->
-{% set CHECKBOX_ANSWER_10 %}Abattoir ???{% endset %}
+{% set CHECKBOX_ANSWER_10 %}Buffalo{% endset %}
 {% set CHECKBOX_HINT_TEXT_10 %}PLACEHOLDER_HINT_TEXT_10{% endset %}
+
+<!-- CHECKBOX NAME 11 -->
+{% set CHECKBOX_ANSWER_11 %}Fish{% endset %}
+{% set CHECKBOX_HINT_TEXT_11 %}PLACEHOLDER_HINT_TEXT_11{% endset %}
+
+<!-- CHECKBOX NAME 12 -->
+{% set CHECKBOX_ANSWER_12 %}Snails{% endset %}
+{% set CHECKBOX_HINT_TEXT_12 %}PLACEHOLDER_HINT_TEXT_12{% endset %}
+
+<!-- CHECKBOX NAME 13 -->
+{% set CHECKBOX_ANSWER_13 %}PLACEHOLDER_ANSWER_13{% endset %}
+{% set CHECKBOX_HINT_TEXT_13 %}PLACEHOLDER_HINT_TEXT_13{% endset %}
+
+<!-- CHECKBOX NAME 14 -->
+{% set CHECKBOX_ANSWER_14 %}PLACEHOLDER_ANSWER_14{% endset %}
+{% set CHECKBOX_HINT_TEXT_14 %}PLACEHOLDER_HINT_TEXT_14{% endset %}
 
 <!-- CHECKBOX NAME for OR OPTION -->
 {% set CHECKBOX_ANSWER_OR_OPTION %}PLACEHOLDER_ANSWER_OR_OPTION{% endset %}
@@ -249,20 +265,43 @@ This will save you time.
                                 text: CHECKBOX_HINT_TEXT_10
                             } if CHECKBOX_HINT_TEXT_10 != "PLACEHOLDER_HINT_TEXT_10",
                             checked: (data[SECTION + '-' + PAGENAME_CHECKBOXES + '-checkboxes'] or []).indexOf(CHECKBOX_ANSWER_10) > -1
-                        } if CHECKBOX_ANSWER_10 != "PLACEHOLDER_ANSWER_10",   
+                        } if CHECKBOX_ANSWER_10 != "PLACEHOLDER_ANSWER_10",
                         {
-                            divider: "or"
-                        } if CHECKBOX_ANSWER_OR_OPTION != "PLACEHOLDER_ANSWER_OR_OPTION",
-                        {
-                            value: CHECKBOX_ANSWER_OR_OPTION,
-                            text: CHECKBOX_ANSWER_OR_OPTION,
+                            value: CHECKBOX_ANSWER_11,
+                            text: CHECKBOX_ANSWER_11,
                             hint:
                             {
-                                text: CHECKBOX_HINT_TEXT_OR_OPTION
-                            } if CHECKBOX_HINT_TEXT_OR_OPTION != "PLACEHOLDER_HINT_TEXT_OR_OPTION",
-                            checked: (data[SECTION + '-' + CHECKBOX_ANSWER_OR_OPTION + '-checkboxes']or []).indexOf(CHECKBOX_ANSWER_OR_OPTION) > -1,
-                            behaviour: "exclusive"
-                        } if CHECKBOX_ANSWER_OR_OPTION != "PLACEHOLDER_ANSWER_OR_OPTION"
+                                text: CHECKBOX_HINT_TEXT_11
+                            } if CHECKBOX_HINT_TEXT_11 != "PLACEHOLDER_HINT_TEXT_11",
+                            checked: (data[SECTION + '-' + PAGENAME_CHECKBOXES + '-checkboxes'] or []).indexOf(CHECKBOX_ANSWER_11) > -1
+                        } if CHECKBOX_ANSWER_11 != "PLACEHOLDER_ANSWER_11",
+                        {
+                            value: CHECKBOX_ANSWER_12,
+                            text: CHECKBOX_ANSWER_12,
+                            hint:
+                            {
+                                text: CHECKBOX_HINT_TEXT_12
+                            } if CHECKBOX_HINT_TEXT_12 != "PLACEHOLDER_HINT_TEXT_12",
+                            checked: (data[SECTION + '-' + PAGENAME_CHECKBOXES + '-checkboxes'] or []).indexOf(CHECKBOX_ANSWER_12) > -1
+                        } if CHECKBOX_ANSWER_12 != "PLACEHOLDER_ANSWER_12",
+                        {
+                            value: CHECKBOX_ANSWER_13,
+                            text: CHECKBOX_ANSWER_13,
+                            hint:
+                            {
+                                text: CHECKBOX_HINT_TEXT_13
+                            } if CHECKBOX_HINT_TEXT_13 != "PLACEHOLDER_HINT_TEXT_13",
+                            checked: (data[SECTION + '-' + PAGENAME_CHECKBOXES + '-checkboxes'] or []).indexOf(CHECKBOX_ANSWER_13) > -1
+                        } if CHECKBOX_ANSWER_13 != "PLACEHOLDER_ANSWER_13",
+                        {
+                            value: CHECKBOX_ANSWER_14,
+                            text: CHECKBOX_ANSWER_14,
+                            hint:
+                            {
+                                text: CHECKBOX_HINT_TEXT_14
+                            } if CHECKBOX_HINT_TEXT_14 != "PLACEHOLDER_HINT_TEXT_14",
+                            checked: (data[SECTION + '-' + PAGENAME_CHECKBOXES + '-checkboxes'] or []).indexOf(CHECKBOX_ANSWER_14) > -1
+                        } if CHECKBOX_ANSWER_14 != "PLACEHOLDER_ANSWER_14"
                     ]
                 })
             }}

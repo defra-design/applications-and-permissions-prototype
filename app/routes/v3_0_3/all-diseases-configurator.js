@@ -14,7 +14,7 @@ module.exports = function (router) {
     let section  = "disease-configurator";
     let section_general_licence  = "disease-configurator-general-licence";
     let section_specific_licence  = "disease-configurator-specific-licence";
-
+    let section_without_licence  = "disease-configurator-without-licence";
 
     let sectionURL = "/" + "all-diseases/disease-configurator" + "/";
 
@@ -1647,6 +1647,571 @@ module.exports = function (router) {
 
 
 
+
+
+
+
+
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+    //                              WITHOUT LICENCES
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////           Are there any without licences           ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////       YES AND NO - RADIO BUTTONS - MANDATORY       ////////////////
+    ////////////////                  NOT COMPLEX PAGE                  ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+    // 1. Change PAGENAME_YES_NO_COMPLEX
+    // 2. Change THE_NEXT_PAGE_NAME
+
+    router.post(sectionURL + 'without-licences/any-without-licences-router/:pageName', function (req, res)
+    {
+        let page_name_submitted = req.params.pageName;
+
+        // Turn errors off by default
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+
+        // If Yes was selected, continue to next page
+        if (req.session.data[section_without_licence + '-' + page_name_submitted + '-radios-yes-no'] == "Yes")
+        {
+            // Continue to the next page
+            req.session.data['camefromcheckanswers'] = false;
+            // If the user needs to go back to 'check your answers' then take them directly there
+
+            // This page name needs to be the next page the user gets to after successfully continuing
+            res.redirect('../' + 'types-of-movement');
+
+        }
+        else if (req.session.data[section_without_licence + '-' + page_name_submitted + '-radios-yes-no'] == "No")
+        {
+            // Continue to the next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('../' + 'check-answers');
+            }
+            else
+            {
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect('../' + 'check-answers');
+            }
+        }
+        else
+        {
+            // Trigger validation and reload the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            res.redirect('../' + page_name_submitted);
+        }
+    })
+
+
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////         Types of movement on or off etc            ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////                   CHECKBOXES                       ////////////////
+    ////////////////                NOT COMPLEX PAGE                    ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    router.post(sectionURL + 'without-licences/types-of-movement-router/:pageName', function (req, res)
+    {
+        let page_name_submitted = req.params.pageName;
+
+        // Turn errors off by default
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+
+        var checkboxestext = "";
+
+        // check if none of the checkboxes are selected
+        if(req.session.data[section_without_licence + '-' + page_name_submitted + '-checkboxes'] == undefined  ||
+            req.session.data[section_without_licence + '-' + page_name_submitted + '-checkboxes'].length == 0)
+        {
+            // Trigger validation and relaunch the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            res.redirect('../' + page_name_submitted);
+        }
+
+        else
+        {
+            // Make formatted text for check answer review page
+            checkboxestext = req.session.data[section_without_licence + '-' + page_name_submitted + '-checkboxes'].toString();
+
+            let newStringmanure = checkboxestext.replace(/,(?!\s)/g, "\n\n");
+            req.session.data[section_without_licence + '-' + page_name_submitted + '-checkboxes-formatted'] = newStringmanure;
+
+
+            // Continue to the next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('../' + 'check-answers');
+            }
+            else
+            {
+                res.redirect('../' + 'things-covered-by-without-licences');
+            }
+        }
+    })
+
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////          Things covered by without licence         ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////                   CHECKBOXES                       ////////////////
+    ////////////////                NOT COMPLEX PAGE                    ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    router.post(sectionURL + 'without-licences/things-covered-by-without-licences-router/:pageName', function (req, res)
+    {
+        let page_name_submitted = req.params.pageName;
+
+        // Turn errors off by default
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+
+        var checkboxestext = "";
+
+        // check if none of the checkboxes are selected
+        if(req.session.data[section_without_licence + '-' + page_name_submitted + '-checkboxes'] == undefined  ||
+           req.session.data[section_without_licence + '-' + page_name_submitted + '-checkboxes'].length == 0)
+        {
+            // Trigger validation and relaunch the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            res.redirect('../' + page_name_submitted);
+        }
+
+        else
+        {
+            // Make formatted text for check answer review page
+            checkboxestext = req.session.data[section_without_licence + '-' + page_name_submitted + '-checkboxes'].toString();
+
+            let newStringmanure = checkboxestext.replace(/,(?!\s)/g, "\n\n");
+            req.session.data[section_without_licence + '-' + page_name_submitted + '-checkboxes-formatted'] = newStringmanure;
+
+
+            // Continue to the next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+
+            if(req.session.data[section_without_licence + '-' + page_name_submitted + '-checkboxes'].includes("Animals") )
+            {
+                res.redirect('../' + 'animals-under-without-licences');
+            }
+            else if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('../' + 'check-answers');
+            }
+            else
+            {
+                res.redirect('../' + 'origin-types-without-licences');
+            }
+        }
+    })
+
+
+
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////     Select animals covered by without licences     ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////                   CHECKBOXES                       ////////////////
+    ////////////////                NOT COMPLEX PAGE                    ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+    router.post(sectionURL + 'without-licences/animals-under-without-licences-router/:pageName', function (req, res)
+    {
+        let page_name_submitted = req.params.pageName;
+
+        // Turn errors off by default
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+
+
+        // check if none of the checkboxes are selected
+        if(req.session.data[section_without_licence + '-' + page_name_submitted + '-checkboxes'] == undefined  ||
+            req.session.data[section_without_licence + '-' + page_name_submitted + '-checkboxes'].length == 0)
+        {
+            // Trigger validation and relaunch the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            res.redirect('../' + page_name_submitted);
+        }
+
+        else
+        {
+            // Make formatted text for check answer review page
+            let checkboxestext = "";
+            checkboxestext = req.session.data[section_without_licence + '-' + page_name_submitted + '-checkboxes'].toString();
+
+            let newStringmanure = checkboxestext.replace(/,(?!\s)/g, "\n\n");
+            req.session.data[section_without_licence + '-' + page_name_submitted + '-checkboxes-formatted'] = newStringmanure;
+
+
+            // Continue to the next page
+            if(req.session.data[section_without_licence + '-' + page_name_submitted + '-checkboxes'].includes("PLACEHOLDER_CHECKBOX_TEXT") )
+            {
+                res.redirect('../' + 'CONDITONAL_NEXT_PAGE_NAME');
+            }
+            else if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                // If the user needs to go back to 'check your answers' then take them directly there
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('../' + 'check-answers');
+            }
+            else
+            {
+                res.redirect('../' + 'origin-types-without-licences');
+            }
+        }
+    })
+
+
+
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////        Selecting all the relevant origins          ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////                   CHECKBOXES                       ////////////////
+    ////////////////                NOT COMPLEX PAGE                    ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+    router.post(sectionURL + 'without-licences/origin-types-without-licences-router/:pageName', function (req, res)
+    {
+        let page_name_submitted = req.params.pageName;
+
+        // Turn errors off by default
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+
+        var checkboxestext = "";
+
+        // check if none of the checkboxes are selected
+        if(req.session.data[section_without_licence + '-' + page_name_submitted + '-checkboxes'] == undefined  ||
+            req.session.data[section_without_licence + '-' + page_name_submitted + '-checkboxes'].length == 0)
+        {
+            // Trigger validation and relaunch the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            res.redirect('../' + page_name_submitted);
+        }
+
+        else
+        {
+            // Make formatted text for check answer review page
+            checkboxestext = req.session.data[section_without_licence + '-' + page_name_submitted + '-checkboxes'].toString();
+
+            let newStringmanure = checkboxestext.replace(/,(?!\s)/g, "\n\n");
+            req.session.data[section_without_licence + '-' + page_name_submitted + '-checkboxes-formatted'] = newStringmanure;
+
+
+            // format the text in a new array to fit in the question for the matrix
+            req.session.data[section_without_licence + '-' + 'origin-types-checkboxes-text-for-without-licences-headings'] = [];
+            const vowels = 'aeiou';
+
+            for (let i = 0; i < req.session.data[section_without_licence + '-' + page_name_submitted + '-checkboxes'].length; i++) {
+                // Convert the item at the current index to lower case
+                req.session.data[section_without_licence + '-' + 'origin-types-checkboxes-text-for-without-licences-headings'][i]
+                    = req.session.data[section_without_licence + '-' + page_name_submitted + '-checkboxes'][i].toString().toLowerCase();
+
+                var firstLetter = req.session.data[section_without_licence + '-' + 'origin-types-checkboxes-text-for-without-licences-headings'][i].toString()[0].toLowerCase();
+
+
+                if (vowels.includes(firstLetter))
+                {
+                    // If it is a vowel, add "an " to the front of the word
+                    req.session.data[section_without_licence + '-' + 'origin-types-checkboxes-text-for-without-licences-headings'][i] = "an " + req.session.data[section_without_licence + '-' + 'origin-types-checkboxes-text-for-without-licences-headings'][i];
+                }
+                else
+                {
+                    req.session.data[section_without_licence + '-' + 'origin-types-checkboxes-text-for-without-licences-headings'][i] = "a " + req.session.data[section_without_licence + '-' + 'origin-types-checkboxes-text-for-without-licences-headings'][i];
+                }
+            }
+
+
+            // Continue to the next page
+            if(req.session.data[section_without_licence + '-' + page_name_submitted + '-checkboxes'].includes("PLACEHOLDER_CHECKBOX_TEXT") )
+            {
+                res.redirect('../' + 'CONDITONAL_NEXT_PAGE_NAME');
+            }
+            else if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                // If the user needs to go back to 'check your answers' then take them directly there
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('../' + 'check-answers');
+            }
+            else
+            {
+                res.redirect('../' + 'destination-types-without-licences');
+            }
+        }
+    })
+
+
+
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////     Destination types for without licences         ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////                   CHECKBOXES                       ////////////////
+    ////////////////                NOT COMPLEX PAGE                    ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+    router.post(sectionURL + 'without-licences/destination-types-without-licences-router/:pageName', function (req, res)
+    {
+        let page_name_submitted = req.params.pageName;
+
+        // Turn errors off by default
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+
+        var checkboxestext = "";
+
+        // check if none of the checkboxes are selected
+        if(req.session.data[section_without_licence + '-' + page_name_submitted + '-checkboxes'] == undefined  ||
+            req.session.data[section_without_licence + '-' + page_name_submitted + '-checkboxes'].length == 0)
+        {
+            // Trigger validation and relaunch the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            res.redirect('../' + page_name_submitted);
+        }
+
+        else
+        {
+            // Make formatted text for check answer review page
+            checkboxestext = req.session.data[section_without_licence + '-' + page_name_submitted + '-checkboxes'].toString();
+
+            let newStringmanure = checkboxestext.replace(/,(?!\s)/g, "\n\n");
+            req.session.data[section_without_licence + '-' + page_name_submitted + '-checkboxes-formatted'] = newStringmanure;
+
+
+            // Continue to the next page
+            if(req.session.data[section_without_licence + '-' + page_name_submitted + '-checkboxes'].includes("PLACEHOLDER_CHECKBOX_TEXT") )
+            {
+                res.redirect('../' + 'CONDITONAL_NEXT_PAGE_NAME');
+            }
+            else if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                // If the user needs to go back to 'check your answers' then take them directly there
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('../' + 'check-answers');
+            }
+            else
+            {
+                // Count things for the loop
+                if (req.session.data['origin-without-licence-showing-in-loop'] == undefined)
+                {
+                    // if the selected origin is undefined then we're not in the loop and need to begin
+                    let loopcounter = 0;
+
+                    req.session.data['origin-without-licence-loop-counter'] = loopcounter;
+
+                    // set the first loop to the first item in the list
+                    req.session.data['origin-without-licence-showing-in-loop']
+                        = req.session.data[section_without_licence + '-' + 'origin-types-checkboxes-text-for-without-licences-headings'][loopcounter];
+                }
+
+                res.redirect('../' + 'select-destination-for-each-origin-without-licences');
+            }
+        }
+    })
+
+
+
+
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////           Select destination of reach              ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////                   CHECKBOXES                       ////////////////
+    ////////////////                NOT COMPLEX PAGE                    ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    router.post(sectionURL + 'without-licences/select-destination-for-each-origin-without-licences-router', function (req, res)
+    {
+        // Turn errors off by default
+        req.session.data['errorthispage'] = "false";
+        req.session.data['errortypeone'] = "false";
+
+
+        // check if none of the checkboxes are selected
+        if(req.session.data[section_without_licence + '-' + 'select-destination-for-each-origin-without-licences-checkboxes'] == undefined  ||
+            req.session.data[section_without_licence + '-' + 'select-destination-for-each-origin-without-licences-checkboxes'].length == 0)
+        {
+            // Trigger validation and relaunch the page
+            req.session.data['errorthispage'] = "true";
+            req.session.data['errortypeone'] = "true";
+
+            // This page name needs to match the page the user was just on
+            res.redirect('select-destination-for-each-origin-without-licences');
+        }
+
+        else
+        {
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                // save the answers for the without index changed
+                var loopcounter = parseInt(req.session.data['origin-without-licence-loop-counter']);
+                req.session.data['origin-destination-matrix-without-licences'][loopcounter]
+                    = req.session.data[section_without_licence + '-' + 'select-destination-for-each-origin-without-licences-checkboxes'];
+
+                // clear the loop
+                req.session.data[section_without_licence + '-' + 'select-destination-for-each-origin-without-licences-checkboxes'] =  undefined;
+
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect('check-answers');
+            }
+            else
+            {
+                // Save the submitted data for this loop
+                var loopcounter = parseInt(req.session.data['origin-without-licence-loop-counter']);
+
+                // set up the output array if new
+                if ( req.session.data['origin-destination-matrix-without-licences'] == undefined)
+                {
+                    req.session.data['origin-destination-matrix-without-licences'] = [];
+                }
+
+                req.session.data['origin-destination-matrix-without-licences'][loopcounter]
+                    = req.session.data[section_without_licence + '-' + 'select-destination-for-each-origin-without-licences-checkboxes'];
+
+                // Iterate through the loop unless from check answers
+                let sizeofarray = req.session.data[section_without_licence + '-' + 'origin-types-without-licences-checkboxes'].length;
+
+                // Check if this is the final item in the list
+                if ( sizeofarray == req.session.data['origin-without-licence-loop-counter'] + 1 ) {
+                    req.session.data['origin-showing-in-loop-without-licences'] == undefined
+
+                    // Go to the final page
+                    res.redirect('check-answers');
+                }
+                else
+                {
+                    // if the selected origin is undefined then we're not in the loop and need to begin
+                    loopcounter = loopcounter + 1 ;
+                    req.session.data['origin-without-licence-loop-counter'] = loopcounter;
+
+                    // set the first loop to the first item in the list
+                    req.session.data['origin-without-licence-showing-in-loop']
+                        = req.session.data[section_without_licence + '-' + 'origin-types-checkboxes-text-for-without-licences-headings'][loopcounter];
+
+                    res.redirect('select-destination-for-each-origin-without-licences');
+                }
+            }
+        }
+    })
+
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////      CHanging disease matric from check answers   ////////////////
+    ////////////////                 Specific licence                   ////////////////
+    ////////////////                   CHECKBOXES                       ////////////////
+    ////////////////                NOT COMPLEX PAGE                    ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    router.get( sectionURL + 'without-licences/change-matrix/:originindex', function (req, res)
+    {
+        req.session.data['origin-without-licence-loop-counter'] = req.params.originindex;
+
+        var loopcounter = parseInt(req.session.data['origin-without-licence-loop-counter']);
+
+        req.session.data['origin-without-licence-showing-in-loop']
+            = req.session.data[section_without_licence + '-' + 'origin-types-checkboxes-text-for-without-licences-headings'][loopcounter];
+
+        req.session.data['camefromcheckanswers'] = 'true';
+
+        res.redirect('../select-destination-for-each-origin-without-licences');
+    })
 
 
 
