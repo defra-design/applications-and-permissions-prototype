@@ -101,13 +101,17 @@ module.exports = function (router) {
             {
                 res.redirect('destination-farm-address');
             }
+            else if (req.session.data['origin-type-of-origin-off-radios'] == "Approved finishing unit (AFU)")
+            {
+                res.redirect('afu-to-slaughter');
+            }
             else
             {
                 res.redirect('use-general-licence');
             }
         }
 
-        else if (req.session.data['destination-type-of-destination-radios'] == "Approved finishing units (AFU) and TB dedicated sales at orange markets")
+        else if (req.session.data['destination-type-of-destination-radios'] == "Approved finishing units and TB sales at orange markets")
         {
             // Continue to the next page
             res.redirect('any-additional-info');
@@ -137,7 +141,14 @@ module.exports = function (router) {
         else if (req.session.data['destination-type-of-destination-radios'] == "Approved finishing unit (AFU)")
         {
             // onto the premises
-            res.redirect('own-farm-new-cph');
+            if (req.session.data['origin-type-of-origin-on-radios'] == "Unrestricted farms and markets")
+            {
+                res.redirect('do-not-need-service-tb15h');
+            }
+            else
+            {
+                res.redirect('own-farm-new-cph');
+            }
         }
 
         else if (req.session.data['destination-type-of-destination-radios'] == "TB restricted farm")

@@ -150,7 +150,7 @@
 
         <!--  animals are moving OFF THE PREMISES  -->
 
-        {%  if  data['destination-type-of-destination-radios'] != "Approved finishing units (AFU) and TB dedicated sales at orange markets"
+        {%  if  data['destination-type-of-destination-radios'] != "Approved finishing units and TB sales at orange markets"
                 and  data['destination-type-of-destination-radios'] != "Slaughter"  %}
 
             <div class="govuk-summary-list__row">
@@ -196,7 +196,7 @@
     <!-- ISO UNITS -->
     {%  if  data['origin-type-of-origin-off-radios'] == "TB isolation unit"
             and  (data['destination-type-of-destination-radios'] == "Slaughter"
-             or  data['destination-type-of-destination-radios'] == "Approved finishing units (AFU) and TB dedicated sales at orange markets")  %}
+             or  data['destination-type-of-destination-radios'] == "Approved finishing units and TB sales at orange markets")  %}
 
         {%  if data['destination-type-of-destination-radios'] == "Approved finishing units (AFU)" %}
             <div class="govuk-summary-list__row">
