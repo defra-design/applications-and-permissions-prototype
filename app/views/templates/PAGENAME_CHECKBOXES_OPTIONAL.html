@@ -1,42 +1,84 @@
 {% extends "layouts/main.html" %}
 
-
 <!--
-NOTES ON USING THIS TEMPLATE Page
-This will save you time.
+    NOTES ON USING THIS TEMPLATE Page
+    This will save you time.
 
-1. Type your heading for the page after '% set pageHeadingTextHTML %'
-2. Use 'Find and replace' to replace "SECTION" with the name of the section of the service you're working on.
-3. Use 'Find and replace' to replace "PAGENAME_CHECKBOXES_OPTIONAL" with whatever you named this page/file.
-4. Use 'Find and replace' to replace each of the checkbox values. Starting with 'PLACEHOLDER_ANSWER_1'
-5. Go to the javascript file 'templates.js' and copy the section 'CHECKBOXES - OPTIONAL' into your routes.js file.
-6. Follow instructions at the top of the 'templates.js'.
+    1. Type the heading for the page after '% set pageHeadingTextHTML %'
+    2. Type the routes file section after '% set SECTION %'
+    3. Type the page name after '% set PAGENAME_CHECKBOXES_OPTIONAL %'
+    5. OPTIONAL: Type the hint text after '% set HINT_TEXT %'
+
+    6. Go to the routes javascript folder 'templates'
+    7. Open 'checkboxes-optional.js'
+    8. Copy into your routes.js file.
+    9. Rename PAGENAME_CHECKBOXES_OPTIONAL in the URL to match the page name
+    10. Rename THE_NEXT_PAGE_NAME
 -->
+
 
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    Where did you PLACEHOLDER?
-{% endset %}
-
-
-<!-- Set the text for each error type -->
-{% set errorTextHTML %}
-    <!-- Nothing was selected -->
-    {% if data['errortypeone'] == "true" %}
-        Select yes if you PLACEHOLDER between PLACEHOLDER and PLACEHOLDER
-    {% endif %}
+    Where_did_you_PLACEHOLDER?
 {% endset %}
 
 
 <!-- Text that show in the browser tab. Does NOT need changing -->
 {% block pageTitle %}
-    {% if  data['errorthispage'] == "true"  %}
-        Error:
-    {% endif %}
-
     {{ pageHeadingTextHTML }}
 {% endblock %}
+
+
+<!-- Set the section name -->
+{% set SECTION %}templates{% endset %}
+
+<!-- Set the page name -->
+{% set PAGENAME_CHECKBOXES_OPTIONAL %}PAGENAME_CHECKBOXES_OPTIONAL{% endset %}
+
+<!-- Set the hint text -->
+{% set HINT_TEXT %}Select all that apply{% endset %}
+
+
+<!-- CHECKBOX NAME 1 -->
+{% set CHECKBOXES_OPTIONAL_ANSWER_1 %}PLACEHOLDER_ANSWER_1{% endset %}
+{% set CHECKBOXES_OPTIONAL_HINT_TEXT_1 %}PLACEHOLDER_HINT_TEXT_1{% endset %}
+
+<!-- CHECKBOX NAME 2 -->
+{% set CHECKBOXES_OPTIONAL_ANSWER_2 %}PLACEHOLDER_ANSWER_2{% endset %}
+{% set CHECKBOXES_OPTIONAL_HINT_TEXT_2 %}PLACEHOLDER_HINT_TEXT_2{% endset %}
+
+<!-- CHECKBOX NAME 3 -->
+{% set CHECKBOXES_OPTIONAL_ANSWER_3 %}PLACEHOLDER_ANSWER_3{% endset %}
+{% set CHECKBOXES_OPTIONAL_HINT_TEXT_3 %}PLACEHOLDER_HINT_TEXT_3{% endset %}
+
+<!-- CHECKBOX NAME 4 -->
+{% set CHECKBOXES_OPTIONAL_ANSWER_4 %}PLACEHOLDER_ANSWER_4{% endset %}
+{% set CHECKBOXES_OPTIONAL_HINT_TEXT_4 %}PLACEHOLDER_HINT_TEXT_4{% endset %}
+
+<!-- CHECKBOX NAME 5 -->
+{% set CHECKBOXES_OPTIONAL_ANSWER_5 %}PLACEHOLDER_ANSWER_5{% endset %}
+{% set CHECKBOXES_OPTIONAL_HINT_TEXT_5 %}PLACEHOLDER_HINT_TEXT_5{% endset %}
+
+<!-- CHECKBOX NAME 6 -->
+{% set CHECKBOXES_OPTIONAL_ANSWER_6 %}PLACEHOLDER_ANSWER_6{% endset %}
+{% set CHECKBOXES_OPTIONAL_HINT_TEXT_6 %}PLACEHOLDER_HINT_TEXT_6{% endset %}
+
+<!-- CHECKBOX NAME 7 -->
+{% set CHECKBOXES_OPTIONAL_ANSWER_7 %}PLACEHOLDER_ANSWER_7{% endset %}
+{% set CHECKBOXES_OPTIONAL_HINT_TEXT_7 %}PLACEHOLDER_HINT_TEXT_7{% endset %}
+
+<!-- CHECKBOX NAME 8 -->
+{% set CHECKBOXES_OPTIONAL_ANSWER_8 %}PLACEHOLDER_ANSWER_8{% endset %}
+{% set CHECKBOXES_OPTIONAL_HINT_TEXT_8 %}PLACEHOLDER_HINT_TEXT_8{% endset %}
+
+<!-- CHECKBOX NAME 9 -->
+{% set CHECKBOXES_OPTIONAL_ANSWER_9 %}PLACEHOLDER_ANSWER_9{% endset %}
+{% set CHECKBOXES_OPTIONAL_HINT_TEXT_9 %}PLACEHOLDER_HINT_TEXT_9{% endset %}
+
+<!-- CHECKBOX NAME 10 -->
+{% set CHECKBOXES_OPTIONAL_ANSWER_10 %}PLACEHOLDER_ANSWER_10{% endset %}
+{% set CHECKBOXES_OPTIONAL_HINT_TEXT_10 %}PLACEHOLDER_HINT_TEXT_10{% endset %}
 
 
 {% block content %}
@@ -45,7 +87,7 @@ This will save you time.
 
 
         <!-- form URL below turns off errors on the next page  -->
-        <form action="PAGENAME_CHECKBOXES_OPTIONAL-router" method="post" novalidate>
+        <form action="{{PAGENAME_CHECKBOXES_OPTIONAL}}-router/{{PAGENAME_CHECKBOXES_OPTIONAL}}" method="post" novalidate>
 
             {{ govukCheckboxes
                 ({
@@ -71,35 +113,95 @@ This will save you time.
                     items:
                     [
                         {
-                            value: "PLACEHOLDER_ANSWER_1",
-                            text: "PLACEHOLDER_ANSWER_1",
-                            checked: (data['SECTION-PAGENAME_CHECKBOXES_OPTIONAL-checkboxes'] or []).indexOf('PLACEHOLDER_ANSWER_1') > -1
+                            value: CHECKBOXES_OPTIONAL_ANSWER_1,
+                            text: CHECKBOXES_OPTIONAL_ANSWER_1,
+                            hint:
+                            {
+                                text: CHECKBOXES_OPTIONAL_HINT_TEXT_1
+                            } if CHECKBOXES_OPTIONAL_HINT_TEXT_1 != "PLACEHOLDER_HINT_TEXT_1",
+                            checked: (data[SECTION + '-' + PAGENAME_CHECKBOXES + '-checkboxes'] or []).indexOf(CHECKBOXES_OPTIONAL_ANSWER_1) > -1
                         },
                         {
-                            value: "PLACEHOLDER_ANSWER_2",
-                            text: "PLACEHOLDER_ANSWER_2",
-                            checked: (data['SECTION-PAGENAME_CHECKBOXES_OPTIONAL-checkboxes'] or []).indexOf('PLACEHOLDER_ANSWER_2') > -1
+                            value: CHECKBOXES_OPTIONAL_ANSWER_2,
+                            text: CHECKBOXES_OPTIONAL_ANSWER_2,
+                            hint:
+                            {
+                                text: CHECKBOXES_OPTIONAL_HINT_TEXT_2
+                            } if CHECKBOXES_OPTIONAL_HINT_TEXT_2 != "PLACEHOLDER_HINT_TEXT_2",
+                            checked: (data[SECTION + '-' + PAGENAME_CHECKBOXES + '-checkboxes'] or []).indexOf(CHECKBOXES_OPTIONAL_ANSWER_2) > -1
                         },
                         {
-                            value: "PLACEHOLDER_ANSWER_3",
-                            text: "PLACEHOLDER_ANSWER_3",
-                            checked: (data['SECTION-PAGENAME_CHECKBOXES_OPTIONAL-checkboxes'] or []).indexOf('PLACEHOLDER_ANSWER_3') > -1
-                        },
+                            value: CHECKBOXES_OPTIONAL_ANSWER_3,
+                            text: CHECKBOXES_OPTIONAL_ANSWER_3,
+                            hint:
+                            {
+                                text: CHECKBOXES_OPTIONAL_HINT_TEXT_3
+                            } if CHECKBOXES_OPTIONAL_HINT_TEXT_3 != "PLACEHOLDER_HINT_TEXT_3",
+                            checked: (data[SECTION + '-' + PAGENAME_CHECKBOXES + '-checkboxes'] or []).indexOf(CHECKBOXES_OPTIONAL_ANSWER_3) > -1
+                        } if CHECKBOXES_OPTIONAL_ANSWER_3 != "PLACEHOLDER_ANSWER_3",
                         {
-                            value: "PLACEHOLDER_ANSWER_4",
-                            text: "PLACEHOLDER_ANSWER_4",
-                            checked: (data['SECTION-PAGENAME_CHECKBOXES_OPTIONAL-checkboxes'] or []).indexOf('PLACEHOLDER_ANSWER_4') > -1
-                        },
+                            value: CHECKBOXES_OPTIONAL_ANSWER_4,
+                            text: CHECKBOXES_OPTIONAL_ANSWER_4,
+                            hint:
+                            {
+                                text: CHECKBOXES_OPTIONAL_HINT_TEXT_4
+                            } if CHECKBOXES_OPTIONAL_HINT_TEXT_4 != "PLACEHOLDER_HINT_TEXT_4",
+                            checked: (data[SECTION + '-' + PAGENAME_CHECKBOXES + '-checkboxes'] or []).indexOf(CHECKBOXES_OPTIONAL_ANSWER_4) > -1
+                        } if CHECKBOXES_OPTIONAL_ANSWER_4 != "PLACEHOLDER_ANSWER_4",
                         {
-                            value: "PLACEHOLDER_ANSWER_5",
-                            text: "PLACEHOLDER_ANSWER_5",
-                            checked: (data['SECTION-PAGENAME_CHECKBOXES_OPTIONAL-checkboxes'] or []).indexOf('PLACEHOLDER_ANSWER_5') > -1
-                        },
+                            value: CHECKBOXES_OPTIONAL_ANSWER_5,
+                            text: CHECKBOXES_OPTIONAL_ANSWER_5,
+                            hint:
+                            {
+                                text: CHECKBOXES_OPTIONAL_HINT_TEXT_5
+                            } if CHECKBOXES_OPTIONAL_HINT_TEXT_5 != "PLACEHOLDER_HINT_TEXT_5",
+                            checked: (data[SECTION + '-' + PAGENAME_CHECKBOXES + '-checkboxes'] or []).indexOf(CHECKBOXES_OPTIONAL_ANSWER_5) > -1
+                        } if CHECKBOXES_OPTIONAL_ANSWER_5 != "PLACEHOLDER_ANSWER_5",
                         {
-                            value: "PLACEHOLDER_ANSWER_6",
-                            text: "PLACEHOLDER_ANSWER_6",
-                            checked: (data['SECTION-PAGENAME_CHECKBOXES_OPTIONAL-checkboxes'] or []).indexOf('PLACEHOLDER_ANSWER_6') > -1
-                        }
+                            value: CHECKBOXES_OPTIONAL_ANSWER_6,
+                            text: CHECKBOXES_OPTIONAL_ANSWER_6,
+                            hint:
+                            {
+                                text: CHECKBOXES_OPTIONAL_HINT_TEXT_6
+                            } if CHECKBOXES_OPTIONAL_HINT_TEXT_6 != "PLACEHOLDER_HINT_TEXT_6",
+                            checked: (data[SECTION + '-' + PAGENAME_CHECKBOXES + '-checkboxes'] or []).indexOf(CHECKBOXES_OPTIONAL_ANSWER_6) > -1
+                        } if CHECKBOXES_OPTIONAL_ANSWER_6 != "PLACEHOLDER_ANSWER_6",
+                        {
+                            value: CHECKBOXES_OPTIONAL_ANSWER_7,
+                            text: CHECKBOXES_OPTIONAL_ANSWER_7,
+                            hint:
+                            {
+                                text: CHECKBOXES_OPTIONAL_HINT_TEXT_7
+                            } if CHECKBOXES_OPTIONAL_HINT_TEXT_7 != "PLACEHOLDER_HINT_TEXT_7",
+                            checked: (data[SECTION + '-' + PAGENAME_CHECKBOXES + '-checkboxes'] or []).indexOf(CHECKBOXES_OPTIONAL_ANSWER_7) > -1
+                        } if CHECKBOXES_OPTIONAL_ANSWER_7 != "PLACEHOLDER_ANSWER_7",
+                        {
+                            value: CHECKBOXES_OPTIONAL_ANSWER_8,
+                            text: CHECKBOXES_OPTIONAL_ANSWER_8,
+                            hint:
+                            {
+                                text: CHECKBOXES_OPTIONAL_HINT_TEXT_8
+                            } if CHECKBOXES_OPTIONAL_HINT_TEXT_8 != "PLACEHOLDER_HINT_TEXT_8",
+                            checked: (data[SECTION + '-' + PAGENAME_CHECKBOXES + '-checkboxes'] or []).indexOf(CHECKBOXES_OPTIONAL_ANSWER_8) > -1
+                        } if CHECKBOXES_OPTIONAL_ANSWER_8 != "PLACEHOLDER_ANSWER_8",
+                        {
+                            value: CHECKBOXES_OPTIONAL_ANSWER_9,
+                            text: CHECKBOXES_OPTIONAL_ANSWER_9,
+                            hint:
+                            {
+                                text: CHECKBOXES_OPTIONAL_HINT_TEXT_9
+                            } if CHECKBOXES_OPTIONAL_HINT_TEXT_9 != "PLACEHOLDER_HINT_TEXT_9",
+                            checked: (data[SECTION + '-' + PAGENAME_CHECKBOXES + '-checkboxes'] or []).indexOf(CHECKBOXES_OPTIONAL_ANSWER_9) > -1
+                        } if CHECKBOXES_OPTIONAL_ANSWER_9 != "PLACEHOLDER_ANSWER_9",
+                        {
+                            value: CHECKBOXES_OPTIONAL_ANSWER_10,
+                            text: CHECKBOXES_OPTIONAL_ANSWER_10,
+                            hint:
+                            {
+                                text: CHECKBOXES_OPTIONAL_HINT_TEXT_10
+                            } if CHECKBOXES_OPTIONAL_HINT_TEXT_10 != "PLACEHOLDER_HINT_TEXT_10",
+                            checked: (data[SECTION + '-' + PAGENAME_CHECKBOXES + '-checkboxes'] or []).indexOf(CHECKBOXES_OPTIONAL_ANSWER_10) > -1
+                        } if CHECKBOXES_OPTIONAL_ANSWER_10 != "PLACEHOLDER_ANSWER_10"
                     ]
                 })
             }}

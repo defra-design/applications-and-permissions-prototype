@@ -19,8 +19,10 @@ module.exports = function (router)
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////
 
-    // 1. Change PAGENAME_YES_NO_COMPLEX
+    // 1. Change PAGENAME_CHECKBOXES_COMPLEX
     // 2. Change THE_NEXT_PAGE_NAME
+
+    // 3. Optional - Change the conditional next page when a specific checkbox is selected.
 
     router.post(sectionURL + 'PAGENAME_CHECKBOXES_COMPLEX-router/:pageName', function (req, res)
     {

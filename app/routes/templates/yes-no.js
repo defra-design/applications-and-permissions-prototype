@@ -17,7 +17,7 @@ module.exports = function (router)
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////
 
-    // 1. Change PAGENAME_YES_NO_COMPLEX
+    // 1. Change PAGENAME_YES_NO
     // 2. Change THE_NEXT_PAGE_NAME
 
     router.post(sectionURL + 'PAGENAME_YES_NO-router/:pageName', function (req, res)

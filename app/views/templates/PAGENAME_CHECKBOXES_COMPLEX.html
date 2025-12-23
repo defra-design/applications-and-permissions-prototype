@@ -1,21 +1,21 @@
 {% extends "layouts/main.html" %}
 
 <!--
-NOTES ON USING THIS TEMPLATE Page
-This will save you time.
+    NOTES ON USING THIS TEMPLATE Page
+    This will save you time.
 
-1. Type the heading for the page after '% set pageHeadingTextHTML %'
-2. Type the heading for the page after '% set questionHeadingTextHTML %'
-3. Type the error message after '% set errorTextHTML %'
-4. Type the routes file section after '% set SECTION %'
-5. Type the error message after '% set PAGENAME_YES_NO %'
-6. OPTIONAL: Type the hint text after '% set HINT_TEXT %'
+    1. Type the heading for the page after '% set pageHeadingTextHTML %'
+    2. Type the heading for the page after '% set questionHeadingTextHTML %'
+    3. Type the error message after '% set errorTextHTML %'
+    4. Type the routes file section after '% set SECTION %'
+    5. Type the page name after '% set PAGENAME_CHECKBOXES_COMPLEX %'
+    6. OPTIONAL: Type the hint text after '% set HINT_TEXT %'
 
-7. Go to the javascript folder 'templates'
-8. Open 'yes-no-complex.js'
-9. Copy into your routes.js file.
-10. Rename PAGENAME_YES_NO in the URL to match the page name
-11. Rename THE_NEXT_PAGE_NAME
+    7. Go to the routes javascript folder 'templates'
+    8. Open 'checkboxes-complex.js'
+    9. Copy into your routes.js file.
+    10. Rename PAGENAME_CHECKBOXES_COMPLEX in the URL to match the page name
+    11. Rename THE_NEXT_PAGE_NAME
 -->
 
 
@@ -163,7 +163,7 @@ This will save you time.
 
 
         <!-- form URL below turns off errors on the next page  -->
-        <form action="PAGENAME_CHECKBOXES_COMPLEX-router/{{PAGENAME_CHECKBOXES_COMPLEX}}" method="post" novalidate>
+        <form action="{{PAGENAME_CHECKBOXES_COMPLEX}}-router/{{PAGENAME_CHECKBOXES_COMPLEX}}" method="post" novalidate>
 
             {{ govukCheckboxes
                 ({
