@@ -1,7 +1,7 @@
-const {log} = require("govuk-prototype-kit/migrator/logger");
+const {log} = require('govuk-prototype-kit/migrator/logger');
 
-let section = "templates";
-let sectionURL = "/" + "templates" + "/";
+let section = 'templates';
+let sectionURL = '/' + 'templates' + '/';
 
 module.exports = function (router)
 {
@@ -25,11 +25,11 @@ module.exports = function (router)
         let page_name_submitted = req.params.pageName;
 
         // Turn errors off by default
-        req.session.data['errorthispage'] = "false";
-        req.session.data['errortypeone'] = "false";
+        req.session.data['errorthispage'] = 'false';
+        req.session.data['errortypeone'] = 'false';
 
         // If Yes was selected, continue to next page
-        if (req.session.data[section + '-' + page_name_submitted + '-radios-yes-no'] == "Yes")
+        if (req.session.data[section + '-' + page_name_submitted + '-radios-yes-no'] == 'Yes')
         {
             // Continue to the next page
 
@@ -45,7 +45,7 @@ module.exports = function (router)
                 res.redirect('../' + 'THE_NEXT_PAGE_NAME');
             }
         }
-        else if (req.session.data[section + '-' + page_name_submitted + '-radios-yes-no'] == "No")
+        else if (req.session.data[section + '-' + page_name_submitted + '-radios-yes-no'] == 'No')
         {
             // Continue to the next page
 
@@ -64,14 +64,12 @@ module.exports = function (router)
         else
         {
             // Trigger validation and reload the page
-            req.session.data['errorthispage'] = "true";
-            req.session.data['errortypeone'] = "true";
+            req.session.data['errorthispage'] = 'true';
+            req.session.data['errortypeone'] = 'true';
 
             res.redirect('../' + page_name_submitted);
         }
     })
-
-
 
 
     ////////////////////////////////////////////////////////////////////////////////////
@@ -83,8 +81,6 @@ module.exports = function (router)
     ////////////////                                                    ////////////////
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////
-
-
 
 
 }

@@ -1,10 +1,10 @@
-const {log} = require("govuk-prototype-kit/migrator/logger");
+const {log} = require('govuk-prototype-kit/migrator/logger');
 
-let section = "/templates/";
+let section = 'templates';
+let sectionURL = '/' + 'templates' + '/';
 
 module.exports = function (router)
 {
-
 
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////
@@ -17,54 +17,62 @@ module.exports = function (router)
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////
 
+    // 1. Change PAGENAME_TEXT_COMPLEX
+    // 2. Change THE_NEXT_PAGE_NAME
 
-    router.post(section + 'PAGENAME_TEXT_COMPLEX-router', function (req, res)
+    // 3. Optional - Remove the checks below for checking length of the input text and invalid characters.
+
+    router.post(sectionURL + 'PAGENAME_TEXT_COMPLEX-router/:pageName', function (req, res)
     {
-        req.session.data['errorthispage'] = "false";
-        req.session.data['errortypeone'] = "false";
-        req.session.data['errortypetwo'] = "false";
-        req.session.data['errortypethree'] = "false";
-        req.session.data['errortypefour'] = "false";
+        let page_name_submitted = req.params.pageName;
 
+        req.session.data['errorthispage'] = 'false';
+        req.session.data['errortypeone'] = 'false';
+        req.session.data['errortypetwo'] = 'false';
+        req.session.data['errortypethree'] = 'false';
+        req.session.data['errortypefour'] = 'false';
 
-        // Validation check if field is blank
-        if (req.session.data['SECTION-PAGENAME_TEXT_COMPLEX-text-input'] == undefined || req.session.data['SECTION-PAGENAME_TEXT_COMPLEX-text-input'] == "")
+        // Validation check if the field is blank
+        if (req.session.data[section + '-' + page_name_submitted + '-text-input'] == undefined ||
+            req.session.data[section + '-' + page_name_submitted + '-text-input'] == '')
         {
             // Trigger validation and relaunch the page
-            req.session.data['errorthispage'] = "true";
-            req.session.data['errortypeone'] = "true";
+            req.session.data['errorthispage'] = 'true';
+            req.session.data['errortypeone'] = 'true';
 
             // This page name needs to match the page the user was just on
-            res.redirect('PAGENAME_TEXT_COMPLEX');
+            res.redirect('../' + page_name_submitted);
         }
 
-        else if (req.session.data['SECTION-PAGENAME_TEXT_COMPLEX-text-input'].length > 15)
+        // Input too long
+        else if (req.session.data[section + '-' + page_name_submitted + '-text-input'].length > 15)
         {
             // Trigger validation and relaunch the page for over 15 characters
-            req.session.data['errorthispage'] = "true";
-            req.session.data['errortypetwo'] = "true";
+            req.session.data['errorthispage'] = 'true';
+            req.session.data['errortypetwo'] = 'true';
 
             // This page name needs to match the page the user was just on
-            res.redirect('PAGENAME_TEXT_COMPLEX');
+            res.redirect('../' + page_name_submitted);
         }
 
-        else if (req.session.data['SECTION-PAGENAME_TEXT_COMPLEX-text-input'].length < 4)
+        // Input too short
+        else if (req.session.data[section + '-' + page_name_submitted + '-text-input'].length < 4)
         {
             // Trigger validation and relaunch the page for under 5 characters
-            req.session.data['errorthispage'] = "true";
-            req.session.data['errortypethree'] = "true";
+            req.session.data['errorthispage'] = 'true';
+            req.session.data['errortypethree'] = 'true';
 
             // This page name needs to match the page the user was just on
-            res.redirect('PAGENAME_TEXT_COMPLEX');
+            res.redirect('../' + page_name_submitted);
         }
 
         else
         {
             // check no illegal charcters have been used
             const acceptableCharacters =  " abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ&:’\,.()-";
-            let inputtext = req.session.data['SECTION-PAGENAME_TEXT_COMPLEX-text-input'];
+            let inputtext = req.session.data[section + '-' + page_name_submitted + '-text-input'];
 
-            let dissallowedCharacters = "";
+            let dissallowedCharacters = '';
 
             // go through every character in the input and save  illegals ones
             for (var i = 0; i < inputtext.length; i++)
@@ -73,7 +81,7 @@ module.exports = function (router)
 
                 if( acceptableCharacters.includes( singlecharacter ) )
                 {
-                    // character is fine skip it
+                    // character is fine, so skip it
                 }
                 else
                 {
@@ -91,11 +99,11 @@ module.exports = function (router)
                 req.session.data['dissallowedcharacters'] = dissallowedCharacters;
 
                 // Trigger validation and relaunch the page for invalid characters
-                req.session.data['errorthispage'] = "true";
-                req.session.data['errortypefour'] = "true";
+                req.session.data['errorthispage'] = 'true';
+                req.session.data['errortypefour'] = 'true';
 
                 // This page name needs to match the page the user was just on
-                res.redirect('PAGENAME_TEXT_COMPLEX');
+                res.redirect('../' + page_name_submitted);
             }
             else
             {
@@ -110,7 +118,7 @@ module.exports = function (router)
                 else
                 {
                     // This page name needs to be the next page the user gets to after successfully continuing
-                    res.redirect('THE_NEXT_PAGE_NAME');
+                    res.redirect('../' + 'THE_NEXT_PAGE_NAME');
                 }
             }
         }
@@ -126,9 +134,6 @@ module.exports = function (router)
     ////////////////                                                    ////////////////
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////
-
-
-
 
 
 }
