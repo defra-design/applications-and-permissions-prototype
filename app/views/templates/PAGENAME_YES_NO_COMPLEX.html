@@ -39,7 +39,7 @@ This will save you time.
 {% endset %}
 
 
-<!-- Text that show in the browser tab. Does NOT need changing -->
+<!-- Text that shows in the browser tab. Does NOT need changing -->
 {% block pageTitle %}
     {% if  data['errorthispage'] == 'true'  %}
         Error:
@@ -113,10 +113,10 @@ This will save you time.
         </details>
 
 
-        <!-- go to the next page, not check answers -->
         <form action='{{PAGENAME_YES_NO_COMPLEX}}-router/{{PAGENAME_YES_NO_COMPLEX}}' method='post' novalidate>
 
-            {{ govukRadios
+            {{
+                govukRadios
                 ({
                     classes: 'govuk-radios--inline',
 

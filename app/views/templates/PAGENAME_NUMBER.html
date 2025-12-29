@@ -1,22 +1,40 @@
-{% extends "layouts/main.html" %}
+{% extends 'layouts/main.html' %}
 
 <!--
-NOTES ON USING THIS TEMPLATE Page
-This will save you time.
+    NOTES ON USING THIS TEMPLATE Page
+    This will save you time.
 
-1. Type your heading for the page after '% set pageHeadingTextHTML %'
-2. Type/customise the error messages after '% set errorTextHTML %'
-3. Use 'Find and replace' to replace "SECTION" with the name of the section of the service you're working on.
-4. Use 'Find and replace' to replace "PAGENAME_NUMBER" with whatever you named this page/file.
-5. Go to the javascript file 'templates.js' and copy the section 'NUMBER ENTRY' into your routes.js file.
-6. Follow instructions at the top of the 'templates.js'.
+    1. Type the heading for the page after '% set pageHeadingTextHTML %'
+    2. Type the error message after '% set errorTextHTML %'
+    3. Type the routes file section after '% set SECTION %'
+    4. Type the error message after '% set PAGENAME_NUMBER %'
+    5. OPTIONAL: Type the hint text after '% set HINT_TEXT %'
+    6. OPTIONAL: Change limitations on entry. ZERO_ALLOWED, LOWEST_NUMBER, HIGHEST_NUMBER
+
+    7. Go to the javascript folder 'templates'
+    8. Open 'number.js'
+    9. Copy into your routes.js file.
+    10. Rename PAGENAME_NUMBER in the URL to match the page name
+    11. Rename THE_NEXT_PAGE_NAME
 -->
 
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    How many PLACEHOLDER did you have?
+    How_many_PLACEHOLDER_did_you_have?
 {% endset %}
+
+
+
+<!-- OPTIONAL: Set the zero allowe from 'false' to 'true' if neededs -->
+{% set ZERO_ALLOWED %}false{% endset %}
+
+<!-- OPTIONAL: Set the lowest number allowed. Replace the word false below.  e.g. 5  -->
+{% set LOWEST_NUMBER %}false{% endset %}
+
+<!-- OPTIONAL: Set the highest number allowed. Replace the word false below.  e.g. 25 -->
+{% set HIGHEST_NUMBER %}false{% endset %}
+
 
 
 <!-- Set the text for each error type -->
@@ -39,21 +57,21 @@ This will save you time.
 
     <!-- Error 5 - If answer (number) is too low -->
     {% elif data['errortypefive'] == "true"  %}
-        PLACEHOLDER must be LOWEST_NUMBER or more
+        PLACEHOLDER must be {{LOWEST_NUMBER}} or more
 
     <!-- Error 6 - If answer (number) is too high -->
     {% elif data['errortypesix'] == "true"  %}
-        PLACEHOLDER must be HIGHEST_NUMBER or fewer
+        PLACEHOLDER must be {{HIGHEST_NUMBER}} or fewer
 
     <!-- Error 7 - If answer must be between 2 numbers -->
     {% elif data['errortypeseven'] == "true"  %}
-        PLACEHOLDER must be between LOWEST_NUMBER and HIGHEST_NUMBER
+        PLACEHOLDER must be between {{LOWEST_NUMBER}} and {{HIGHEST_NUMBER}}
 
     {%  endif  %}
 {% endset %}
 
 
-<!-- Text that show in the browser tab. Does NOT need changing -->
+<!-- Text that shows in the browser tab. Does NOT need changing -->
 {% block pageTitle %}
     {% if  data['errorthispage'] == "true"  %}
         Error:
@@ -61,6 +79,18 @@ This will save you time.
 
     {{ pageHeadingTextHTML }}
 {% endblock %}
+
+
+
+<!-- Set the section name -->
+{% set SECTION %}templates{% endset %}
+
+<!-- Set the page name -->
+{% set PAGENAME_NUMBER %}PAGENAME_NUMBER{% endset %}
+
+<!-- Set the hint text -->
+{% set HINT_TEXT %}PLACEHOLDER_HINT_TEXT{% endset %}
+
 
 
 {% block content %}
@@ -77,7 +107,7 @@ This will save you time.
                     [
                         {
                             html: errorTextHTML,
-                            href: "#SECTION-PAGENAME_NUMBER-number-input"
+                            href: '#' + SECTION + '-' + PAGENAME_NUMBER + '-number-input'
                         }
                     ]
                 })
@@ -87,9 +117,10 @@ This will save you time.
 
 
         <!-- go to routes.js for routing  -->
-        <form action="PAGENAME_NUMBER-router" method="post" novalidate>
+        <form action='{{PAGENAME_NUMBER}}-router/{{PAGENAME_NUMBER}}/{{ZERO_ALLOWED}}/{{LOWEST_NUMBER}}/{{HIGHEST_NUMBER}}' method='post' novalidate>
 
-            {{ govukInput
+            {{ 
+                govukInput
                 ({
                     label:
                     {
@@ -98,19 +129,19 @@ This will save you time.
                         isPageHeading: true
                     },
 
-                    id: "SECTION-PAGENAME_NUMBER-number-input",
+                    id: SECTION + '-' + PAGENAME_NUMBER + '-number-input',
 
-                    name: "SECTION-PAGENAME_NUMBER-number-input",
+                    name: SECTION + '-' + PAGENAME_NUMBER + '-number-input',
 
                     hint:
                     {
-                        text: "PLACEHOLDER hint text if needed."
-                    },
+                        text: HINT_TEXT
+                    } if HINT_TEXT != 'PLACEHOLDER_HINT_TEXT',
 
-                    errorMessage: null if data['errorthispage'] != "true"
+                    errorMessage: null if data['errorthispage'] != 'true'
                                        else { html: errorTextHTML },
 
-                    value: data['SECTION-PAGENAME_NUMBER-number-input'],
+                    value: data[SECTION + '-' + PAGENAME_NUMBER + '-number-input'],
 
                     classes: "govuk-input--width-2"
                 })
@@ -144,25 +175,38 @@ This will save you time.
                 {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] == 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] != 'true'   and data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  and  data['errortypeseven'] != 'true'  %}selected{% endif %}
         >Error 2 - If answer is not a whole number</option>
 
-        <option value="errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=true&errortypefour=false&errortypefive=false&errortypesix=false&errortypeseven=false&"
-                {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] == 'true'  and  data['errortypefour'] != 'true'   and data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  and  data['errortypeseven'] != 'true'  %}selected{% endif %}
-        >Error 3 - If answer (number) is 0</option>
+
+        {% if ZERO_ALLOWED != false %}
+            <option value="errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=true&errortypefour=false&errortypefive=false&errortypesix=false&errortypeseven=false&"
+                    {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] == 'true'  and  data['errortypefour'] != 'true'   and data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  and  data['errortypeseven'] != 'true'  %}selected{% endif %}
+            >Error 3 - If answer (number) is 0</option>
+        {% endif %}
+
 
         <option value="errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=false&errortypefour=true&errortypefive=false&errortypesix=false&errortypeseven=false&"
                 {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] == 'true'  and  data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  and  data['errortypeseven'] != 'true'  %}selected{% endif %}
         >Error 4 - If answer (number) is less than 0 (negative)</option>
 
-        <option value="errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=false&errortypefour=false&errortypefive=true&errortypesix=false&errortypeseven=false&"
-                {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] != 'true'  and  data['errortypefive'] == 'true'  and  data['errortypesix'] != 'true'  and  data['errortypeseven'] != 'true'  %}selected{% endif %}
-        >Error 5 - If answer (number) is too low</option>
 
-        <option value="errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=false&errortypefour=false&errortypefive=false&errortypesix=true&errortypeseven=false&"
-                {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] != 'true'  and  data['errortypefive'] != 'true'  and  data['errortypesix'] == 'true'  and  data['errortypeseven'] != 'true'  %}selected{% endif %}
-        >Error 6 - If answer (number) is too high</option>
+        {% if LOWEST_NUMBER != 'false' and HIGHEST_NUMBER == 'false' %}
+            <option value="errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=false&errortypefour=false&errortypefive=true&errortypesix=false&errortypeseven=false&"
+                    {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] != 'true'  and  data['errortypefive'] == 'true'  and  data['errortypesix'] != 'true'  and  data['errortypeseven'] != 'true'  %}selected{% endif %}
+            >Error 5 - If answer (number) is too low</option>
+        {% endif %}
 
-        <option value="errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=false&errortypefour=false&errortypefive=false&errortypesix=false&errortypeseven=true&"
-                {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] != 'true'  and  data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  and  data['errortypeseven'] == 'true'  %}selected{% endif %}
-        >Error 7 - If answer must be between 2 numbers</option>
+
+        {% if LOWEST_NUMBER == 'false' and HIGHEST_NUMBER != 'false' %}
+            <option value="errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=false&errortypefour=false&errortypefive=false&errortypesix=true&errortypeseven=false&"
+                    {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] != 'true'  and  data['errortypefive'] != 'true'  and  data['errortypesix'] == 'true'  and  data['errortypeseven'] != 'true'  %}selected{% endif %}
+            >Error 6 - If answer (number) is too high</option>
+        {% endif %}
+
+
+        {% if LOWEST_NUMBER != 'false' and HIGHEST_NUMBER != 'false' %}
+            <option value="errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=false&errortypefour=false&errortypefive=false&errortypesix=false&errortypeseven=true&"
+                    {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] != 'true'  and  data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  and  data['errortypeseven'] == 'true'  %}selected{% endif %}
+            >Error 7 - If answer must be between 2 numbers</option>
+        {% endif %}
 
     </select>
 

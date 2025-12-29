@@ -1,16 +1,22 @@
 {% extends "layouts/main.html" %}
 
 <!--
-NOTES ON USING THIS TEMPLATE Page
-This will save you time.
+    NOTES ON USING THIS TEMPLATE Page
+    This will save you time.
 
-1. Type your heading for the page after '% set pageHeadingTextHTML %'
-2. Put your question heading for the page after '% set questionHeadingTextHTML %'
-3. Type/customise the error messages after '% set errorTextHTML %'
-4. Use 'Find and replace' to replace "SECTION" with the name of the section of the service you're working on.
-5. Use 'Find and replace' to replace "PAGENAME_NUMBER_COMPLEX" with whatever you named this page/file.
-6. Go to the javascript file 'templates.js' and copy the section 'COMPLEX PAGE  OF NUMBER ENTRY' into your routes.js file.
-7. Follow instructions at the top of the 'templates.js'.
+    1. Type the heading for the page after '% set pageHeadingTextHTML %'
+    2. Type the heading for the page after '% set questionHeadingTextHTML %'
+    3. Type the error message after '% set errorTextHTML %'
+    4. Type the routes file section after '% set SECTION %'
+    5. Type the error message after '% set PAGENAME_NUMBER_COMPLEX %'
+    6. OPTIONAL: Type the hint text after '% set HINT_TEXT %'
+    7. OPTIONAL: Change limitations on entry. ZERO_ALLOWED, LOWEST_NUMBER, HIGHEST_NUMBER
+
+    8. Go to the javascript folder 'templates'
+    9. Open 'number.js'
+    10. Copy into your routes.js file.
+    11. Rename PAGENAME_NUMBER_COMPLEX in the URL to match the page name
+    12. Rename THE_NEXT_PAGE_NAME
 -->
 
 
@@ -21,8 +27,20 @@ This will save you time.
 
 <!-- Setting the smaller secondary heading lower down the page -->
 {% set questionHeadingTextHTML %}
-    How many PLACEHOLDER did you have?
+    How_many_PLACEHOLDER_did_you_have?
 {% endset %}
+
+
+
+<!-- OPTIONAL: Set the zero allowe from 'false' to 'true' if neededs -->
+{% set ZERO_ALLOWED %}false{% endset %}
+
+<!-- OPTIONAL: Set the lowest number allowed. Replace the word false below.  e.g. 5  -->
+{% set LOWEST_NUMBER %}false{% endset %}
+
+<!-- OPTIONAL: Set the highest number allowed. Replace the word false below.  e.g. 25 -->
+{% set HIGHEST_NUMBER %}false{% endset %}
+
 
 
 <!-- Set the text for each error type -->
@@ -45,15 +63,15 @@ This will save you time.
 
     <!-- Error 5 - If answer (number) is too low -->
     {% elif data['errortypefive'] == "true"  %}
-        PLACEHOLDER must be LOWEST_NUMBER or more
+        PLACEHOLDER must be {{LOWEST_NUMBER}} or more
 
     <!-- Error 6 - If answer (number) is too high -->
     {% elif data['errortypesix'] == "true"  %}
-        PLACEHOLDER must be HIGHEST_NUMBER or fewer
+        PLACEHOLDER must be {{HIGHEST_NUMBER}} or fewer
 
     <!-- Error 7 - If answer must be between 2 numbers -->
     {% elif data['errortypeseven'] == "true"  %}
-        PLACEHOLDER must be between LOWEST_NUMBER and HIGHEST_NUMBER
+        PLACEHOLDER must be between {{LOWEST_NUMBER}} and {{HIGHEST_NUMBER}}
 
     {%  endif  %}
 {% endset %}
@@ -67,6 +85,18 @@ This will save you time.
 
     {{ questionHeadingTextHTML }}
 {% endblock %}
+
+
+
+<!-- Set the section name -->
+{% set SECTION %}templates{% endset %}
+
+<!-- Set the page name -->
+{% set PAGENAME_NUMBER_COMPLEX %}PAGENAME_NUMBER_COMPLEX{% endset %}
+
+<!-- Set the hint text -->
+{% set HINT_TEXT %}PLACEHOLDER_HINT_TEXT{% endset %}
+
 
 
 {% block content %}
@@ -83,7 +113,7 @@ This will save you time.
                     [
                         {
                             html: errorTextHTML,
-                            href: "#SECTION-PAGENAME_NUMBER_COMPLEX-number-input"
+                            href: '#' + SECTION + '-' + PAGENAME_NUMBER_COMPLEX + '-number-input'
                         }
                     ]
                 })
@@ -125,30 +155,31 @@ This will save you time.
 
 
         <!-- go to routes.js for routing  -->
-        <form action="PAGENAME_NUMBER_COMPLEX-router" method="post" novalidate>
+        <form action='{{PAGENAME_NUMBER_COMPLEX}}-router/{{PAGENAME_NUMBER_COMPLEX}}/{{ZERO_ALLOWED}}/{{LOWEST_NUMBER}}/{{HIGHEST_NUMBER}}' method='post' novalidate>
 
-            {{ govukInput
+            {{
+                govukInput
                 ({
                     label:
                     {
-                        html: questionHeadingTextHTML,
-                        classes: "govuk-label--m",
-                        isPageHeading: false
+                        text: questionHeadingTextHTML,
+                        isPageHeading: false,
+                        classes: "govuk-fieldset__legend--m"
                     },
 
-                    id: "SECTION-PAGENAME_NUMBER_COMPLEX-number-input",
+                    id: SECTION + '-' + PAGENAME_NUMBER_COMPLEX + '-number-input',
 
-                    name: "SECTION-PAGENAME_NUMBER_COMPLEX-number-input",
+                    name: SECTION + '-' + PAGENAME_NUMBER_COMPLEX + '-number-input',
 
                     hint:
                     {
-                        text: "PLACEHOLDER hint text if needed."
-                    },
+                        text: HINT_TEXT
+                    } if HINT_TEXT != 'PLACEHOLDER_HINT_TEXT',
 
-                    errorMessage: null if data['errorthispage'] != "true"
+                    errorMessage: null if data['errorthispage'] != 'true'
                                        else { html: errorTextHTML },
 
-                    value: data['SECTION-PAGENAME_NUMBER_COMPLEX-number-input'],
+                    value: data[SECTION + '-' + PAGENAME_NUMBER_COMPLEX + '-number-input'],
 
                     classes: "govuk-input--width-2"
                 })
@@ -227,6 +258,8 @@ This will save you time.
 </form>
 -->
 <!--  END USER TYPE TOGGLE -->
+
+
 
 
 {% endblock %}

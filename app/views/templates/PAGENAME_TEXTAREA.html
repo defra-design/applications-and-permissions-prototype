@@ -1,37 +1,50 @@
-{% extends "layouts/main.html" %}
+{% extends 'layouts/main.html' %}
 
 <!--
-NOTES ON USING THIS TEMPLATE Page
-This will save you time.
+    NOTES ON USING THIS TEMPLATE Page
+    This will save you time.
 
-1. Type your heading for the page after '% set pageHeadingTextHTML %'
-2. Type/customise the error messages after '% set errorTextHTML %'
-3. Use 'Find and replace' to replace "SECTION" with the name of the section of the service you're working on.
-4. Use 'Find and replace' to replace "PAGENAME_TEXTAREA" with whatever you named this page/file.
-5. Go to the javascript file 'templates.js' and copy the section 'TEXT ENTRY - MANDATORY' into your routes.js file.
-6. Follow instructions at the top of the 'templates.js'.
+    1. Type the heading for the page after '% set pageHeadingTextHTML %'
+    2. Type the error message after '% set errorTextHTML %'
+    3. Type the routes file section after '% set SECTION %'
+    4. Type the error message after '% set PAGENAME_TEXTAREA %'
+    5. OPTIONAL: Type the hint text after '% set HINT_TEXT %'
+    6. OPTIONAL: Change limitations on entry.  LOWEST_NUMBER, HIGHEST_NUMBER
+
+    7. Go to the javascript folder 'templates'
+    8. Open 'textarea.js'
+    9. Copy into your routes.js file.
+    10. Rename PAGENAME_TEXTAREA in the URL to match the page name
+    11. Rename THE_NEXT_PAGE_NAME
 -->
 
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    What is your PLACEHOLDER?
+    What_is_your_PLACEHOLDER?
 {% endset %}
+
+
+<!-- OPTIONAL: Set the lowest quantity of characters allowed. 1 or more. Replace the word false below.  e.g. 5  -->
+{% set LOWEST_NUMBER %}false{% endset %}
+
+<!-- OPTIONAL: Set the highest quantity of characters allowed. Replace the word false below.  e.g. 200 -->
+{% set HIGHEST_NUMBER %}false{% endset %}
 
 
 <!-- Set the text for each error type -->
 {% set errorTextHTML %}
     <!-- Error 1 - No answer selected -->
     {% if data['errortypeone'] == "true" %}
-        Enter your PLACEHOLDER
+        Enter_your_PLACEHOLDER
 
     <!-- Error 2 - If answer is too long -->
     {% elif data['errortypetwo'] == "true" %}
-        PLACEHOLDER must be MAXIMUM_NUMBER characters or fewer
+        PLACEHOLDER must be {{HIGHEST_NUMBER}} characters or fewer
 
     <!-- Error 3 - If answer is too short -->
     {% elif data['errortypethree'] == "true" %}
-        PLACEHOLDER must be MINIMUM_NUMBER characters or more
+        PLACEHOLDER must be {{LOWEST_NUMBER}} characters or more
 
     <!-- Error 4 - If answer has characters that aren't allowed and you know what the characters are -->
     {% elif data['errortypefour'] == "true" %}
@@ -52,6 +65,17 @@ This will save you time.
 
 
 
+<!-- Set the section name -->
+{% set SECTION %}templates{% endset %}
+
+<!-- Set the page name -->
+{% set PAGENAME_TEXTAREA %}PAGENAME_TEXTAREA{% endset %}
+
+<!-- Set the hint text -->
+{% set HINT_TEXT %}PLACEHOLDER_HINT_TEXT{% endset %}
+
+
+
 {% block content %}
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
@@ -66,7 +90,7 @@ This will save you time.
                     [
                         {
                             html: errorTextHTML,
-                            href: "#SECTION-PAGENAME_TEXTAREA-text-area-input"
+                            href: '#' + SECTION + '-' + PAGENAME_TEXTAREA + '-text-area-input'
                         }
                     ]
                 })
@@ -76,7 +100,7 @@ This will save you time.
 
 
         <!-- go to routes.js for routing  -->
-        <form action="PAGENAME_TEXTAREA-router" method="post" novalidate>
+        <form action="{{PAGENAME_TEXTAREA}}-router/{{PAGENAME_TEXTAREA}}/{{LOWEST_NUMBER}}/{{HIGHEST_NUMBER}}" method="post" novalidate>
 
             {{
                 govukTextarea
@@ -88,19 +112,21 @@ This will save you time.
                         isPageHeading: true
                     },
 
-                    name: "SECTION-PAGENAME_TEXTAREA-text-area-input",
+                    id: SECTION + '-' + PAGENAME_TEXTAREA + '-text-area-input',
 
-                    id: "SECTION-PAGENAME_TEXTAREA-text-area-input",
+                    name: SECTION + '-' + PAGENAME_TEXTAREA + '-text-area-input',
 
                     hint:
                     {
-                        text: "PLACEHOLDER hint text if needed."
-                    },
+                        text: HINT_TEXT
+                    } if HINT_TEXT != 'PLACEHOLDER_HINT_TEXT',
 
-                    errorMessage: null if data['errorthispage'] != "true"
-                    else { html: errorTextHTML },
+                    errorMessage: null if data['errorthispage'] != 'true'
+                                       else { html: errorTextHTML },
 
-                    value: data['SECTION-PAGENAME_TEXTAREA-text-area-input']
+                    value: data[SECTION + '-' + PAGENAME_TEXTAREA + '-text-area-input'],
+
+                    rows: '4'
                 })
             }}
 
@@ -128,13 +154,17 @@ This will save you time.
                 {% if  data['errortypeone'] == 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] != 'true'  and data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  %}selected{% endif %}
         >Error 1 - No answer entered</option>
 
-        <option value="errorthispage=true&errortypeone=false&errortypetwo=true&errortypethree=false&errortypefour=false&errortypefive=false&errortypesix=false&"
-                {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] == 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] != 'true'   and data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  %}selected{% endif %}
-        >Error 2 - If answer is too long</option>
+        {% if  HIGHEST_NUMBER != 'false'  %}
+            <option value="errorthispage=true&errortypeone=false&errortypetwo=true&errortypethree=false&errortypefour=false&errortypefive=false&errortypesix=false&"
+                    {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] == 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] != 'true'   and data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  %}selected{% endif %}
+            >Error 2 - If answer is too long</option>
+        {% endif %}
 
-        <option value="errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=true&errortypefour=false&errortypefive=false&errortypesix=false&"
-                {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] == 'true'  and  data['errortypefour'] != 'true'   and data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  %}selected{% endif %}
-        >Error 3 - If answer is too short</option>
+        {% if  LOWEST_NUMBER != 'false'  %}
+            <option value="errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=true&errortypefour=false&errortypefive=false&errortypesix=false&"
+                    {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] == 'true'  and  data['errortypefour'] != 'true'   and data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  %}selected{% endif %}
+            >Error 3 - If answer is too short</option>
+        {% endif %}
 
         <option value="errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=false&errortypefour=true&errortypefive=false&errortypesix=false&"
                 {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] == 'true'  and  data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  %}selected{% endif %}

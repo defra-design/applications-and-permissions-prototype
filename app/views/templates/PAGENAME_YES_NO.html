@@ -34,6 +34,17 @@ This will save you time.
 {% endset %}
 
 
+<!-- Text that shows in the browser tab. Does NOT need changing -->
+{% block pageTitle %}
+    {% if  data['errorthispage'] == 'true'  %}
+        Error:
+    {% endif %}
+
+    {{ pageHeadingTextHTML }}
+{% endblock %}
+
+
+
 <!-- Set the section name -->
 {% set SECTION %}templates{% endset %}
 
@@ -42,17 +53,6 @@ This will save you time.
 
 <!-- Set the hint text -->
 {% set HINT_TEXT %}PLACEHOLDER_HINT_TEXT{% endset %}
-
-
-
-<!-- Text that show in the browser tab. Does NOT need changing -->
-{% block pageTitle %}
-    {% if  data['errorthispage'] == 'true'  %}
-        Error:
-    {% endif %}
-
-    {{ pageHeadingTextHTML }}
-{% endblock %}
 
 
 
@@ -79,10 +79,10 @@ This will save you time.
         <!--  END OF 'error summary' -->
 
 
-        <!-- go to routes.js for routing  -->
         <form action='{{PAGENAME_YES_NO}}-router/{{PAGENAME_YES_NO}}' method='post' novalidate>
 
-            {{ govukRadios
+            {{
+                govukRadios
                 ({
                     classes: 'govuk-radios--inline',
 

@@ -1,20 +1,21 @@
 {% extends 'layouts/main.html' %}
 
 <!--
-NOTES ON USING THIS TEMPLATE Page
-This will save you time.
+    NOTES ON USING THIS TEMPLATE Page
+    This will save you time.
 
-1. Type the heading for the page after '% set pageHeadingTextHTML %'
-2. Type the error message after '% set errorTextHTML %'
-3. Type the routes file section after '% set SECTION %'
-4. Type the error message after '% set PAGENAME_TEXT %'
-5. OPTIONAL: Type the hint text after '% set HINT_TEXT %'
+    1. Type the heading for the page after '% set pageHeadingTextHTML %'
+    2. Type the error message after '% set errorTextHTML %'
+    3. Type the routes file section after '% set SECTION %'
+    4. Type the error message after '% set PAGENAME_TEXT %'
+    5. OPTIONAL: Type the hint text after '% set HINT_TEXT %'
+    6. OPTIONAL: Change limitations on entry.  LOWEST_NUMBER, HIGHEST_NUMBER
 
-6. Go to the javascript folder 'templates'
-7. Open 'text.js'
-8. Copy into your routes.js file.
-9. Rename PAGENAME_TEXT in the URL to match the page name
-10. Rename THE_NEXT_PAGE_NAME
+    7. Go to the javascript folder 'templates'
+    8. Open 'text.js'
+    9. Copy into your routes.js file.
+    10. Rename PAGENAME_TEXT in the URL to match the page name
+    11. Rename THE_NEXT_PAGE_NAME
 -->
 
 
@@ -22,6 +23,13 @@ This will save you time.
 {% set pageHeadingTextHTML %}
     What_is_your_PLACEHOLDER?
 {% endset %}
+
+
+<!-- OPTIONAL: Set the lowest quantity of characters allowed. 1 or more. Replace the word false below.  e.g. 5  -->
+{% set LOWEST_NUMBER %}false{% endset %}
+
+<!-- OPTIONAL: Set the highest quantity of characters allowed. Replace the word false below.  e.g. 200 -->
+{% set HIGHEST_NUMBER %}false{% endset %}
 
 
 <!-- Set the text for each error type -->
@@ -32,11 +40,11 @@ This will save you time.
 
     <!-- Error 2 - If answer is too long -->
     {% elif data['errortypetwo'] == 'true' %}
-        PLACEHOLDER must be MAXIMUM_NUMBER characters or fewer
+        PLACEHOLDER must be {{HIGHEST_NUMBER}} characters or fewer
 
     <!-- Error 3 - If answer is too short -->
     {% elif data['errortypethree'] == 'true' %}
-        PLACEHOLDER must be MINIMUM_NUMBER characters or more
+        PLACEHOLDER must be {{LOWEST_NUMBER}} characters or more
 
     <!-- Error 4 - If answer has characters that aren't allowed and you know what the characters are -->
     {% elif data['errortypefour'] == 'true' %}
@@ -46,7 +54,7 @@ This will save you time.
 {% endset %}
 
 
-<!-- Text that show in the browser tab. Does NOT need changing -->
+<!-- Text that shows in the browser tab. Does NOT need changing -->
 {% block pageTitle %}
     {% if  data['errorthispage'] == 'true'  %}
         Error:
@@ -54,6 +62,7 @@ This will save you time.
 
     {{ questionHeadingTextHTML }}
 {% endblock %}
+
 
 
 <!-- Set the section name -->
@@ -64,6 +73,7 @@ This will save you time.
 
 <!-- Set the hint text -->
 {% set HINT_TEXT %}PLACEHOLDER_HINT_TEXT{% endset %}
+
 
 
 {% block content %}
@@ -88,11 +98,10 @@ This will save you time.
         <!--  END OF 'error summary' -->
 
 
+        <form action='{{PAGENAME_TEXT}}-router/{{PAGENAME_TEXT}}/{{LOWEST_NUMBER}}/{{HIGHEST_NUMBER}}' method='post' novalidate>
 
-        <!-- go to routes.js for routing  -->
-        <form action='{{PAGENAME_TEXT}}-router/{{PAGENAME_TEXT}}' method='post' novalidate>
-
-            {{ govukInput
+            {{
+                govukInput
                 ({
                     label:
                     {
@@ -144,13 +153,17 @@ This will save you time.
                 {% if  data['errortypeone'] == 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] != 'true'  and data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  %}selected{% endif %}
         >Error 1 - No answer entered</option>
 
-        <option value='errorthispage=true&errortypeone=false&errortypetwo=true&errortypethree=false&errortypefour=false&errortypefive=false&errortypesix=false&'
-                {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] == 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] != 'true'   and data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  %}selected{% endif %}
-        >Error 2 - If answer is too long</option>
+        {% if  HIGHEST_NUMBER != 'false'  %}
+            <option value='errorthispage=true&errortypeone=false&errortypetwo=true&errortypethree=false&errortypefour=false&errortypefive=false&errortypesix=false&'
+                    {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] == 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] != 'true'   and data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  %}selected{% endif %}
+            >Error 2 - If answer is too long</option>
+        {% endif %}
 
-        <option value='errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=true&errortypefour=false&errortypefive=false&errortypesix=false&'
-                {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] == 'true'  and  data['errortypefour'] != 'true'   and data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  %}selected{% endif %}
-        >Error 3 - If answer is too short</option>
+        {% if  LOWEST_NUMBER != 'false'  %}
+            <option value='errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=true&errortypefour=false&errortypefive=false&errortypesix=false&'
+                    {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] == 'true'  and  data['errortypefour'] != 'true'   and data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  %}selected{% endif %}
+            >Error 3 - If answer is too short</option>
+        {% endif %}
 
         <option value='errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=false&errortypefour=true&errortypefive=false&errortypesix=false&'
                 {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] == 'true'  and  data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  %}selected{% endif %}
