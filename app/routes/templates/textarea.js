@@ -29,19 +29,20 @@ module.exports = function (router)
         let lowest_number_submitted = req.params.lowestNumber;
         let highest_number_submitted = req.params.highestNumber;
 
-
-        let lowestNumberIsNumber = isNaN(lowest_number_submitted) == false;
+        let lowest_number_submitted_without_comma = lowest_number_submitted.replace(/,/g, '');
+        let lowestNumberIsNumber = isNaN(lowest_number_submitted_without_comma) == false;
         var lowest_number_submitted_float = null;
         if (lowestNumberIsNumber)
         {
-            lowest_number_submitted_float = parseFloat(lowest_number_submitted);
+            lowest_number_submitted_float = parseFloat(lowest_number_submitted_without_comma);
         }
 
-        let highestNumberIsNumber = isNaN(highest_number_submitted) == false;
+        let highest_number_submitted_without_comma = highest_number_submitted.replace(/,/g, '');
+        let highestNumberIsNumber = isNaN(highest_number_submitted_without_comma) == false;
         var highest_number_submitted_float = null;
         if (highestNumberIsNumber)
         {
-            highest_number_submitted_float = parseFloat(highest_number_submitted);
+            highest_number_submitted_float = parseFloat(highest_number_submitted_without_comma);
         }
 
 
@@ -65,7 +66,7 @@ module.exports = function (router)
         }
 
         // Input too long
-        else if ( highest_number_submitted_float != null &&
+        else if ( highestNumberIsNumber &&
                   highest_number_submitted_float < req.session.data[section + '-' + page_name_submitted + '-text-area-input'].length )
         {
             // Trigger validation and relaunch the page for over 15 characters
@@ -77,7 +78,7 @@ module.exports = function (router)
         }
 
         // Input too short
-        else if ( lowest_number_submitted_float != null &&
+        else if ( lowestNumberIsNumber &&
                   req.session.data[section + '-' + page_name_submitted + '-text-area-input'].length < lowest_number_submitted_float )
         {
             // Trigger validation and relaunch the page for under 5 characters

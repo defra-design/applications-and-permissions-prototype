@@ -20,8 +20,6 @@ module.exports = function (router)
     // 1. Change PAGENAME_NUMBER
     // 2. Change THE_NEXT_PAGE_NAME
 
-    // 3. Optional - Remove the checks below for checking the size of the input number and invalid characters.
-
     router.post(sectionURL + 'PAGENAME_NUMBER-router/:pageName/:allowZero/:lowestNumber/:highestNumber', function (req, res)
     {
         let page_name_submitted = req.params.pageName;
@@ -29,19 +27,20 @@ module.exports = function (router)
         let lowest_number_submitted = req.params.lowestNumber;
         let highest_number_submitted = req.params.highestNumber;
 
-
-        let lowestNumberIsNumber = isNaN(lowest_number_submitted) == false;
+        let lowest_number_submitted_without_comma = lowest_number_submitted.replace(/,/g, '');
+        let lowestNumberIsNumber = isNaN(lowest_number_submitted_without_comma) == false;
         var lowest_number_submitted_float = null;
         if (lowestNumberIsNumber)
         {
-            lowest_number_submitted_float = parseFloat(lowest_number_submitted);
+            lowest_number_submitted_float = parseFloat(lowest_number_submitted_without_comma);
         }
 
-        let highestNumberIsNumber = isNaN(highest_number_submitted) == false;
+        let highest_number_submitted_without_comma = highest_number_submitted.replace(/,/g, '');
+        let highestNumberIsNumber = isNaN(highest_number_submitted_without_comma) == false;
         var highest_number_submitted_float = null;
         if (highestNumberIsNumber)
         {
-            highest_number_submitted_float = parseFloat(highest_number_submitted);
+            highest_number_submitted_float = parseFloat(highest_number_submitted_without_comma);
         }
 
 
@@ -72,7 +71,7 @@ module.exports = function (router)
             let nocommasinput = req.session.data[section + '-' + page_name_submitted + '-number-input'].replace(/,/g, '');
 
             // if not a number throw first error
-            if( isNaN(req.session.data[section + '-' + page_name_submitted + '-number-input']) )
+            if( isNaN(nocommasinput) )
             {
                 // Trigger validation and relaunch the page
                 req.session.data['errorthispage'] = "true";
@@ -98,7 +97,8 @@ module.exports = function (router)
                     res.redirect('../../../../' + page_name_submitted);
                 }
 
-                else if ( allow_zero_submitted == 'false'  &&  numberinputfloat == 0 )
+                else if ( allow_zero_submitted == 'false'  &&
+                          numberinputfloat == 0 )
                 {
                     // Trigger validation and relaunch the page for number being 0
                     req.session.data['errorthispage'] = "true";
@@ -118,8 +118,8 @@ module.exports = function (router)
                     res.redirect('../../../../' + page_name_submitted);
                 }
 
-                else if ( lowest_number_submitted_float != null &&
-                          highest_number_submitted_float != null &&
+                else if ( lowestNumberIsNumber &&
+                          highestNumberIsNumber &&
                           ( numberinputfloat < lowest_number_submitted_float  ||
                             highest_number_submitted_float < numberinputfloat )
                         )
@@ -132,7 +132,7 @@ module.exports = function (router)
                     res.redirect('../../../../' + page_name_submitted);
                 }
 
-                else if ( lowest_number_submitted_float != null &&
+                else if ( lowestNumberIsNumber &&
                           numberinputfloat < lowest_number_submitted_float   )
                 {
                     // Trigger validation and relaunch the page for number lower than 3
@@ -143,7 +143,7 @@ module.exports = function (router)
                     res.redirect('../../../../' + page_name_submitted);
                 }
 
-                else if ( highest_number_submitted_float != null &&
+                else if ( highestNumberIsNumber &&
                           highest_number_submitted_float < numberinputfloat )
                 {
                     // Trigger validation and relaunch the page for number lower than 4

@@ -20,7 +20,7 @@ module.exports = function (router)
     // 1. Change PAGENAME_TEXT_COMPLEX
     // 2. Change THE_NEXT_PAGE_NAME
 
-    // 3. Optional - Remove the checks below for checking length of the input text and invalid characters.
+    // 3. Optional - Remove the checks below for invalid characters.
 
     router.post(sectionURL + 'PAGENAME_TEXT_COMPLEX-router/:pageName/:lowestNumber/:highestNumber', function (req, res)
     {
@@ -28,19 +28,20 @@ module.exports = function (router)
         let lowest_number_submitted = req.params.lowestNumber;
         let highest_number_submitted = req.params.highestNumber;
 
-
-        let lowestNumberIsNumber = isNaN(lowest_number_submitted) == false;
+        let lowest_number_submitted_without_comma = lowest_number_submitted.replace(/,/g, '');
+        let lowestNumberIsNumber = isNaN(lowest_number_submitted_without_comma) == false;
         var lowest_number_submitted_float = null;
         if (lowestNumberIsNumber)
         {
-            lowest_number_submitted_float = parseFloat(lowest_number_submitted);
+            lowest_number_submitted_float = parseFloat(lowest_number_submitted_without_comma);
         }
 
-        let highestNumberIsNumber = isNaN(highest_number_submitted) == false;
+        let highest_number_submitted_without_comma = highest_number_submitted.replace(/,/g, '');
+        let highestNumberIsNumber = isNaN(highest_number_submitted_without_comma) == false;
         var highest_number_submitted_float = null;
         if (highestNumberIsNumber)
         {
-            highest_number_submitted_float = parseFloat(highest_number_submitted);
+            highest_number_submitted_float = parseFloat(highest_number_submitted_without_comma);
         }
 
         req.session.data['errorthispage'] = 'false';
@@ -62,7 +63,7 @@ module.exports = function (router)
         }
 
         // Input too long
-        else if ( highest_number_submitted_float != null &&
+        else if ( highestNumberIsNumber &&
                   highest_number_submitted_float < req.session.data[section + '-' + page_name_submitted + '-text-input'].length )
         {
             // Trigger validation and relaunch the page for over 15 characters
@@ -74,7 +75,7 @@ module.exports = function (router)
         }
 
         // Input too short
-        else if ( lowest_number_submitted_float != null &&
+        else if ( lowestNumberIsNumber &&
                   req.session.data[section + '-' + page_name_submitted + '-text-input'].length < lowest_number_submitted_float   )
         {
             // Trigger validation and relaunch the page for under 5 characters
