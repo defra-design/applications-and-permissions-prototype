@@ -58,8 +58,8 @@
     <!-- Error 8 - The file is not in a template that must be used or the template has been changed -->
     {%  elif  data['errortypeeight'] == 'true'  %}
         The selected file must use the template
-    {% endif %}
 
+    {% endif %}
 {% endset %}
 
 
@@ -152,13 +152,13 @@
 
 
 <!-- ERROR LOGIC  drop down to toggle states  -->
-<form method='post'  action='#' class='for4' style=' float: left; position: relative; bottom:-225px;  '>
+<form method='post'  action='#' class='for4' style='float: left; position: relative; bottom:-300px;'>
 
     <select style="height:30px;" onchange="window.location.href='?'+this.value">
 
         <option value='errorthispage=false&errortypeone=false&errortypetwo=false&errortypethree=false&errortypefour=false&errortypefive=false&errortypesix=false&errortypeseven=false&errortypeeight=false&'
               {% if (data['errorthispage'] != 'true') %}selected{% endif %}
-        >Errors - Off</option>
+        >Errors &nbsp;&nbsp;&nbsp;-&nbsp;&nbsp; Off</option>
 
         <option value='errorthispage=true&errortypeone=true&errortypetwo=false&errortypethree=false&errortypefour=false&errortypefive=false&errortypesix=false&errortypeseven=false&errortypeeight=false&'
               {% if data['errortypeone'] == 'true' and data['errortypetwo'] != 'true' and data['errortypethree'] != 'true'  and  data['errortypefour'] != 'true'  and  data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  and  data['errortypeseven'] != 'true'  and  data['errortypeeight'] != 'true'  %}selected{% endif %}
@@ -204,7 +204,7 @@
 <!--
 <form method='post'  action='#' class='for4' style=' float: left; position: relative; bottom:-340px;  '>
 
-    <select style='height:30px;' onchange='window.location.href='?'+this.value'>
+    <select style="height:30px;" onchange="window.location.href='?'+this.value">
 
         <option value='user=citizen&'
                 {% if  data['user'] != 'agent'  %} selected {% endif %}

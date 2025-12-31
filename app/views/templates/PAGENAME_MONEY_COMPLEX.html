@@ -120,7 +120,7 @@
 
         <p>A link on <a target='_blank' href='#'>PLACEHOLDER about PLACEHOLDER (opens in a new tab)</a>.</p>
 
-        <details class='govuk-details govuk-!-margin-bottom-3' data-module='govuk-details'>
+        <details class='govuk-details' data-module='govuk-details'>
             <summary class='govuk-details__summary'>
                 <span class='govuk-details__summary-text'>
                     Understanding PLACEHOLDER
@@ -141,7 +141,7 @@
         </details>
         
 
-        <!-- go to routes.js for routing  -->
+
         <form action='{{PAGENAME_MONEY_COMPLEX}}-router/{{PAGENAME_MONEY_COMPLEX}}/{{ZERO_ALLOWED}}/{{HIGHEST_NUMBER}}' method='post' novalidate>
 
             {{
@@ -189,40 +189,40 @@
 
 <!-- ERROR LOGIC  drop down to toggle states  -->
 <!-- Best thing to do would be to replace 'errorthispage', 'errortypeone' and 'errortypetwo' with novel name for this page  -->
-<form method='post'  action='#' class='for4' style=' float: left; position: relative; bottom:-225px;  '>
+<form method='post'  action='#' class='for4' style='float: left; position: relative; bottom:-300px;'>
 
     <select style="height:30px;" onchange="window.location.href='?'+this.value">
 
         <option value='errorthispage=false&errortypeone=false&errortypetwo=false&errortypethree=false&errortypefour=false&errortypefive=false&'
                 {% if  data['errorthispage'] != 'true'  %}selected{% endif %}
-        >Errors - Off</option>
+        >Errors &nbsp;&nbsp;&nbsp;-&nbsp;&nbsp; Off</option>
 
         <option value='errorthispage=true&errortypeone=true&errortypetwo=false&errortypethree=false&errortypefour=false&errortypefive=false&'
                 {% if  data['errortypeone'] == 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] != 'true'  and  data['errortypefive'] != 'true'  %}selected{% endif %}
-        >Error 1 - No amount entered</option>
+        >Error 1 &nbsp;&nbsp;-&nbsp;&nbsp; No amount entered</option>
 
         <option value='errorthispage=true&errortypeone=false&errortypetwo=true&errortypethree=false&errortypefour=false&errortypefive=false&'
                 {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] == 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] != 'true'  and  data['errortypefive'] != 'true'   %}selected{% endif %}
-        >Error 2 - Entry is not a number</option>
+        >Error 2 &nbsp;&nbsp;-&nbsp;&nbsp; Entry is not a number</option>
 
 
         {% if  HIGHEST_NUMBER != 'false'  %}
             <option value='errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=true&errortypefour=false&errortypefive=false&'
                   {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] == 'true'  and  data['errortypefour'] != 'true'  and  data['errortypefive'] != 'true'   %}selected{% endif %}
-            >Error 3 - Amount entered is larger than is possible for context</option>
+            >Error 3 &nbsp;&nbsp;-&nbsp;&nbsp; Amount entered is larger than is possible for context</option>
         {% endif %}
 
 
         {% if  ZERO_ALLOWED != false  %}
             <option value='errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=false&errortypefour=true&errortypefive=false&'
                   {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] == 'true'  and  data['errortypefive'] != 'true'   %}selected{% endif %}
-            >Error 4 - Amount entered is 0 or negative</option>
+            >Error 4 &nbsp;&nbsp;-&nbsp;&nbsp; Amount entered is 0 or negative</option>
         {% endif %}
 
 
         <option value='errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=false&errortypefour=false&errortypefive=true&'
               {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] != 'true'  and  data['errortypefive'] == 'true'   %}selected{% endif %}
-        >Error 5 - Amount entered is higher than a different amount previously entered</option>
+        >Error 5 &nbsp;&nbsp;-&nbsp;&nbsp; Amount entered is higher than a different amount previously entered</option>
 
     </select>
 
@@ -233,17 +233,17 @@
 
 <!-- USER TYPE TOGGLE  -->
 <!--
-<form method='post'  action='#' class='for4' style=' float: left; position: relative; bottom:-225px;  '>
+<form method='post'  action='#' class='for4' style='float: left; position: relative; bottom:-300px;'>
 
-    <select style='height:30px;' onchange='window.location.href='?'+this.value'>
+    <select style="height:30px;" onchange="window.location.href='?'+this.value">
 
         <option value='user=citizen&'
                 {% if  data['user'] != 'agent'  %} selected {% endif %}
-        >User type - Individual</option>
+        >User type &nbsp;&nbsp;-&nbsp;&nbsp; Individual</option>
 
         <option value='user=agent&'
                 {% if  data['user'] == 'agent'  %} selected {% endif %}
-        >User type - Agent</option>
+        >User type &nbsp;&nbsp;-&nbsp;&nbsp; Agent</option>
 
     </select>
 

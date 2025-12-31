@@ -22,7 +22,7 @@ module.exports = function (router)
 
     // 3. Optional - Remove the checks below for invalid characters.
 
-    router.post(sectionURL + 'PAGENAME_TEXT-router/:pageName/:lowestNumber/:highestNumber', function (req, res)
+    router.post( sectionURL + 'PAGENAME_TEXT-router/:pageName/:lowestNumber/:highestNumber', function (req, res)
     {
         let page_name_submitted = req.params.pageName;
         let lowest_number_submitted = req.params.lowestNumber;
@@ -52,46 +52,46 @@ module.exports = function (router)
         req.session.data['errortypefour'] = 'false';
 
         // Validation check if the field is blank
-        if (req.session.data[section + '-' + page_name_submitted + '-text-input'] == undefined ||
-            req.session.data[section + '-' + page_name_submitted + '-text-input'] == '')
+        if (req.session.data[ section + '-' + page_name_submitted + '-text-input' ] == undefined ||
+            req.session.data[ section + '-' + page_name_submitted + '-text-input' ] == '')
         {
             // Trigger validation and relaunch the page
             req.session.data['errorthispage'] = 'true';
             req.session.data['errortypeone'] = 'true';
 
             // This page name needs to match the page the user was just on
-            res.redirect('../../../' + page_name_submitted);
+            res.redirect( '../../../' + page_name_submitted );
         }
 
         // Input too long
         else if ( highestNumberIsNumber &&
-                  highest_number_submitted_float < req.session.data[section + '-' + page_name_submitted + '-text-input'].length )
+                  highest_number_submitted_float < req.session.data[ section + '-' + page_name_submitted + '-text-input' ].length )
         {
             // Trigger validation and relaunch the page for over 15 characters
             req.session.data['errorthispage'] = 'true';
             req.session.data['errortypetwo'] = 'true';
 
             // This page name needs to match the page the user was just on
-            res.redirect('../../../' + page_name_submitted);
+            res.redirect( '../../../' + page_name_submitted );
         }
 
         // Input too short
         else if ( lowestNumberIsNumber &&
-                  req.session.data[section + '-' + page_name_submitted + '-text-input'].length < lowest_number_submitted_float   )
+                  req.session.data[ section + '-' + page_name_submitted + '-text-input' ].length < lowest_number_submitted_float   )
         {
             // Trigger validation and relaunch the page for under 5 characters
             req.session.data['errorthispage'] = 'true';
             req.session.data['errortypethree'] = 'true';
 
             // This page name needs to match the page the user was just on
-            res.redirect('../../../' + page_name_submitted);
+            res.redirect( '../../../' + page_name_submitted );
         }
 
         else
         {
             // check no illegal charcters have been used
             const acceptableCharacters =  " abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ&:’\,.()-";
-            let inputtext = req.session.data[section + '-' + page_name_submitted + '-text-input'];
+            let inputtext = req.session.data[ section + '-' + page_name_submitted + '-text-input' ];
 
             let dissallowedCharacters = '';
 
@@ -124,7 +124,7 @@ module.exports = function (router)
                 req.session.data['errortypefour'] = 'true';
 
                 // This page name needs to match the page the user was just on
-                res.redirect('../../../' + page_name_submitted);
+                res.redirect( '../../../' + page_name_submitted );
             }
             else
             {
@@ -134,12 +134,12 @@ module.exports = function (router)
                 if (req.session.data['camefromcheckanswers'] == 'true')
                 {
                     req.session.data['camefromcheckanswers'] = false;
-                    res.redirect('check-answers');
+                    res.redirect( '../../../' + 'check-answers' );
                 }
                 else
                 {
                     // This page name needs to be the next page the user gets to after successfully continuing
-                    res.redirect('../../../' + 'THE_NEXT_PAGE_NAME');
+                    res.redirect( '../../../' + 'THE_NEXT_PAGE_NAME' );
                 }
             }
         }

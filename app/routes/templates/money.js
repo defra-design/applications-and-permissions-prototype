@@ -21,7 +21,7 @@ module.exports = function (router)
     // 1. Change PAGENAME_MONEY
     // 2. Change THE_NEXT_PAGE_NAME
 
-    router.post(sectionURL + 'PAGENAME_MONEY-router/:pageName/:allowZero/:highestNumber', function (req, res)
+    router.post( sectionURL + 'PAGENAME_MONEY-router/:pageName/:allowZero/:highestNumber', function (req, res)
     {
         let page_name_submitted = req.params.pageName;
         let allow_zero_submitted = req.params.allowZero;
@@ -45,21 +45,21 @@ module.exports = function (router)
 
 
         // Validation check if field is blank
-        if (req.session.data[section + '-' + page_name_submitted + '-money-input'] == undefined ||
-            req.session.data[section + '-' + page_name_submitted + '-money-input'] == '')
+        if (req.session.data[ section + '-' + page_name_submitted + '-money-input' ] == undefined ||
+            req.session.data[ section + '-' + page_name_submitted + '-money-input' ] == '')
         {
             // Trigger validation and relaunch the page
             req.session.data['errorthispage'] = 'true';
             req.session.data['errortypeone'] = 'true';
 
             // This page name needs to match the page the user was just on
-            res.redirect('../../../' + page_name_submitted);
+            res.redirect( '../../../' + page_name_submitted );
         }
         else
         {
             // Make any entered or existing amount have no commas
-            let nocommasinput = req.session.data[section + '-' + page_name_submitted + '-money-input'].replace(/,/g, '');
-            let nocommasinputfloat = parseFloat(req.session.data[section + '-' + page_name_submitted + '-money-input'].replace(/,/g, ''));
+            let nocommasinput = req.session.data[ section + '-' + page_name_submitted + '-money-input' ].replace(/,/g, '');
+            let nocommasinputfloat = parseFloat(req.session.data[ section + '-' + page_name_submitted + '-money-input' ].replace(/,/g, ''));
 
             // if not a number throw first error
             if( isNaN( nocommasinput ) )
@@ -69,7 +69,7 @@ module.exports = function (router)
                 req.session.data['errortypetwo'] = 'true';
 
                 // This page name needs to match the page the user was just on
-                res.redirect('../../../' + page_name_submitted);
+                res.redirect( '../../../' + page_name_submitted );
             }
             else
             {
@@ -78,7 +78,7 @@ module.exports = function (router)
 
                 // Remove pound symbol
                 let moneyformatted = tempnumber.replace(/\u00A3/g, '');
-                req.session.data[section + '-' + page_name_submitted + '-money-input'] = moneyformatted;
+                req.session.data[ section + '-' + page_name_submitted + '-money-input' ] = moneyformatted;
 
 
                 // if the number is too large
@@ -91,7 +91,7 @@ module.exports = function (router)
                     req.session.data['errortypethree'] = 'true';
 
                     // This page name needs to match the page the user was just on
-                    res.redirect('../../../' + page_name_submitted);
+                    res.redirect( '../../../' + page_name_submitted );
                 }
 
                 // if the number is 0 or less
@@ -103,7 +103,7 @@ module.exports = function (router)
                     req.session.data['errortypefour'] = 'true';
 
                     // This page name needs to match the page the user was just on
-                    res.redirect('../../../' + page_name_submitted);
+                    res.redirect( '../../../' + page_name_submitted );
                 }
 
                 else
@@ -121,7 +121,7 @@ module.exports = function (router)
                         req.session.data['errortypefive'] = 'true';
 
                         // This page name needs to match the page the user was just on
-                        res.redirect('../../../' + page_name_submitted);
+                        res.redirect( '../../../' + page_name_submitted );
                     }
 
 
@@ -129,18 +129,18 @@ module.exports = function (router)
                     else
                     {
                         // Save a separate bit of session data which shows the amount with the pound sign
-                        req.session.data[section + '-' + page_name_submitted + '-money-input-with-pound-sign'] = '£' + moneyformatted;
+                        req.session.data[ section + '-' + page_name_submitted + '-money-input-with-pound-sign'] = '£' + moneyformatted;
 
                         // If the user needs to go back to 'check your answers' then take them directly there
                         if (req.session.data['camefromcheckanswers'] == 'true')
                         {
                             req.session.data['camefromcheckanswers'] = false;
-                            res.redirect('check-answers');
+                            res.redirect( '../../../' + 'check-answers' );
                         }
                         else
                         {
                             // This page name needs to be the next page the user gets to after successfully continuing
-                            res.redirect('../../../' + 'THE_NEXT_PAGE_NAME');
+                            res.redirect( '../../../' + 'THE_NEXT_PAGE_NAME' );
                         }
                     }
                 }

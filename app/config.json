@@ -1,3 +1,8 @@
 {
-  "serviceName": "Get permission to move animals under disease controls"
+  "serviceName": "Get permission to move animals under disease controls",
+  "plugins": {
+    "govuk-frontend": {
+      "rebrand": true
+    }
+  }
 }

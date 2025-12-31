@@ -134,17 +134,17 @@ This will save you time.
 
 
 <!-- ERROR LOGIC  drop down to toggle states  -->
-<form method='post'  action='#' class='for4' style=' float: left; position: relative; bottom:-225px;  '>
+<form method='post'  action='#' class='for4' style='float: left; position: relative; bottom:-300px;'>
 
     <select style="height:30px;" onchange="window.location.href='?'+this.value">
 
         <option value='errorthispage=false&errortypeone=false'
                 {% if  data['errorthispage'] != 'true'  %}selected{% endif %}
-        >Errors - Off</option>
+        >Errors &nbsp;&nbsp;&nbsp;-&nbsp;&nbsp; Off</option>
 
         <option value='errorthispage=true&errortypeone=true'
                 {% if  data['errortypeone'] == 'true'  %}selected{% endif %}
-        >Error 1 - Not selected</option>
+        >Error 1 &nbsp;&nbsp;-&nbsp;&nbsp; Not selected</option>
 
     </select>
 
@@ -155,17 +155,17 @@ This will save you time.
 
 <!-- USER TYPE TOGGLE  -->
 <!--
-<form method='post'  action='#' class='for4' style=' float: left; position: relative; bottom:-225px;  '>
+<form method='post'  action='#' class='for4' style='float: left; position: relative; bottom:-300px;'>
 
-    <select style='height:30px;' onchange='window.location.href='?'+this.value'>
+    <select style="height:30px;" onchange="window.location.href='?'+this.value">
 
         <option value='user=citizen&'
                 {% if  data['user'] != 'agent'  %} selected {% endif %}
-        >User type - Individual</option>
+        >User type &nbsp;&nbsp;-&nbsp;&nbsp; Individual</option>
 
         <option value='user=agent&'
                 {% if  data['user'] == 'agent'  %} selected {% endif %}
-        >User type - Agent</option>
+        >User type &nbsp;&nbsp;-&nbsp;&nbsp; Agent</option>
 
     </select>
 

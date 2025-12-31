@@ -159,53 +159,53 @@
 
 <!-- ERROR LOGIC  drop down to toggle states  -->
 <!-- Best thing to do would be to replace 'errorthispage', 'errortypeone' and 'errortypetwo' with novel name for this page  -->
-<form method='post'  action='#' class='for4' style=' float: left; position: relative; bottom:-225px;  '>
+<form method='post'  action='#' class='for4' style='float: left; position: relative; bottom:-300px;'>
 
     <select style="height:30px;" onchange="window.location.href='?'+this.value">
 
         <option value='errorthispage=false&errortypeone=false&errortypetwo=false&errortypethree=false&errortypefour=false&errortypefive=false&errortypesix=false&errortypeseven=false&'
                 {% if  data['errorthispage'] != 'true'  %}selected{% endif %}
-        >Errors - Off</option>
+        >Errors &nbsp;&nbsp;&nbsp;-&nbsp;&nbsp; Off</option>
 
         <option value='errorthispage=true&errortypeone=true&errortypetwo=false&errortypethree=false&errortypefour=false&errortypefive=false&errortypesix=false&errortypeseven=false&'
                 {% if  data['errortypeone'] == 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] != 'true'  and data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  and  data['errortypeseven'] != 'true'  %}selected{% endif %}
-        >Error 1 - If answer is not a number when it should be</option>
+        >Error 1 &nbsp;&nbsp;-&nbsp;&nbsp; If answer is not a number when it should be</option>
 
         <option value='errorthispage=true&errortypeone=false&errortypetwo=true&errortypethree=false&errortypefour=false&errortypefive=false&errortypesix=false&errortypeseven=false&'
                 {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] == 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] != 'true'   and data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  and  data['errortypeseven'] != 'true'  %}selected{% endif %}
-        >Error 2 - If answer is not a whole number</option>
+        >Error 2 &nbsp;&nbsp;-&nbsp;&nbsp; If answer is not a whole number</option>
 
 
         {% if  ZERO_ALLOWED != false  %}
             <option value='errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=true&errortypefour=false&errortypefive=false&errortypesix=false&errortypeseven=false&'
                     {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] == 'true'  and  data['errortypefour'] != 'true'   and data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  and  data['errortypeseven'] != 'true'  %}selected{% endif %}
-            >Error 3 - If answer (number) is 0</option>
+            >Error 3 &nbsp;&nbsp;-&nbsp;&nbsp; If answer (number) is 0</option>
         {% endif %}
 
 
         <option value='errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=false&errortypefour=true&errortypefive=false&errortypesix=false&errortypeseven=false&'
                 {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] == 'true'  and  data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  and  data['errortypeseven'] != 'true'  %}selected{% endif %}
-        >Error 4 - If answer (number) is less than 0 (negative)</option>
+        >Error 4 &nbsp;&nbsp;-&nbsp;&nbsp; If answer (number) is less than 0 (negative)</option>
 
 
         {% if  LOWEST_NUMBER != 'false'  and  HIGHEST_NUMBER == 'false'  %}
             <option value='errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=false&errortypefour=false&errortypefive=true&errortypesix=false&errortypeseven=false&'
                     {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] != 'true'  and  data['errortypefive'] == 'true'  and  data['errortypesix'] != 'true'  and  data['errortypeseven'] != 'true'  %}selected{% endif %}
-            >Error 5 - If answer (number) is too low</option>
+            >Error 5 &nbsp;&nbsp;-&nbsp;&nbsp; If answer (number) is too low</option>
         {% endif %}
 
 
         {% if  LOWEST_NUMBER == 'false'  and  HIGHEST_NUMBER != 'false'  %}
             <option value='errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=false&errortypefour=false&errortypefive=false&errortypesix=true&errortypeseven=false&'
                     {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] != 'true'  and  data['errortypefive'] != 'true'  and  data['errortypesix'] == 'true'  and  data['errortypeseven'] != 'true'  %}selected{% endif %}
-            >Error 6 - If answer (number) is too high</option>
+            >Error 6 &nbsp;&nbsp;-&nbsp;&nbsp; If answer (number) is too high</option>
         {% endif %}
 
 
         {% if  LOWEST_NUMBER != 'false'  and  HIGHEST_NUMBER != 'false'  %}
             <option value='errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=false&errortypefour=false&errortypefive=false&errortypesix=false&errortypeseven=true&'
                     {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] != 'true'  and  data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  and  data['errortypeseven'] == 'true'  %}selected{% endif %}
-            >Error 7 - If answer must be between 2 numbers</option>
+            >Error 7 &nbsp;&nbsp;-&nbsp;&nbsp; If answer must be between 2 numbers</option>
         {% endif %}
 
     </select>
@@ -217,17 +217,17 @@
 
 <!-- USER TYPE TOGGLE  -->
 <!--
-<form method='post'  action='#' class='for4' style=' float: left; position: relative; bottom:-225px;  '>
+<form method='post'  action='#' class='for4' style='float: left; position: relative; bottom:-300px;'>
 
-    <select style='height:30px;' onchange='window.location.href='?'+this.value'>
+    <select style="height:30px;" onchange="window.location.href='?'+this.value">
 
         <option value='user=citizen&'
                 {% if  data['user'] != 'agent'  %} selected {% endif %}
-        >User type - Individual</option>
+        >User type &nbsp;&nbsp;-&nbsp;&nbsp; Individual</option>
 
         <option value='user=agent&'
                 {% if  data['user'] == 'agent'  %} selected {% endif %}
-        >User type - Agent</option>
+        >User type &nbsp;&nbsp;-&nbsp;&nbsp; Agent</option>
 
     </select>
 

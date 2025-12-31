@@ -20,7 +20,7 @@ module.exports = function (router)
     // 1. Change PAGENAME_FILE_UPLOAD_COMPLEX
     // 2. Change THE_NEXT_PAGE_NAME
 
-    router.post(sectionURL + 'PAGENAME_FILE_UPLOAD_COMPLEX-router/:pageName', function (req, res)
+    router.post( sectionURL + 'PAGENAME_FILE_UPLOAD_COMPLEX-router/:pageName', function (req, res)
     {
         let page_name_submitted = req.params.pageName;
 
@@ -29,8 +29,8 @@ module.exports = function (router)
         req.session.data['errortypeone'] = "false";
 
         // If file was not selected, reload page with error
-        if (req.session.data[section + '-' + page_name_submitted + '-file-upload'] == undefined ||
-            req.session.data[section + '-' + page_name_submitted + '-file-upload'] == "")
+        if (req.session.data[ section + '-' + page_name_submitted + '-file-upload'] == undefined ||
+            req.session.data[ section + '-' + page_name_submitted + '-file-upload'] == "")
         {
             // Trigger validation
             req.session.data['errorthispage'] = "true";
@@ -38,7 +38,7 @@ module.exports = function (router)
 
             // Reload the page
             // This page name needs to match the page the user was just on
-            res.redirect('../' + page_name_submitted);
+            res.redirect( '../' + page_name_submitted );
         }
         else
         {
@@ -46,12 +46,12 @@ module.exports = function (router)
             if (req.session.data['camefromcheckanswers'] == 'true')
             {
                 req.session.data['camefromcheckanswers'] = false;
-                res.redirect('check-answers');
+                res.redirect( '../' + 'check-answers' );
             }
             else
             {
                 // This page name needs to be the next page the user gets to after successfully continuing
-                res.redirect('../' + 'THE_NEXT_PAGE_NAME');
+                res.redirect( '../' + 'THE_NEXT_PAGE_NAME' );
             }
         }
     })

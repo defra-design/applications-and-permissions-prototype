@@ -20,7 +20,7 @@ module.exports = function (router)
     // 1. Change PAGENAME_NUMBER
     // 2. Change THE_NEXT_PAGE_NAME
 
-    router.post(sectionURL + 'PAGENAME_NUMBER-router/:pageName/:allowZero/:lowestNumber/:highestNumber', function (req, res)
+    router.post( sectionURL + 'PAGENAME_NUMBER-router/:pageName/:allowZero/:lowestNumber/:highestNumber', function (req, res)
     {
         let page_name_submitted = req.params.pageName;
         let allow_zero_submitted = req.params.allowZero;
@@ -55,20 +55,20 @@ module.exports = function (router)
 
 
         // Validation check if field is blank
-        if (req.session.data[section + '-' + page_name_submitted + '-number-input'] == undefined ||
-            req.session.data[section + '-' + page_name_submitted + '-number-input'] == "")
+        if (req.session.data[ section + '-' + page_name_submitted + '-number-input' ] == undefined ||
+            req.session.data[ section + '-' + page_name_submitted + '-number-input' ] == "")
         {
             // Trigger validation and relaunch the page
             req.session.data['errorthispage'] = "true";
             req.session.data['errortypeone'] = "true";
 
             // This page name needs to match the page the user was just on
-            res.redirect('../../../../' + page_name_submitted);
+            res.redirect( '../../../../' + page_name_submitted );
         }
         else
         {
             // Remove any commas which the user or this routing added
-            let nocommasinput = req.session.data[section + '-' + page_name_submitted + '-number-input'].replace(/,/g, '');
+            let nocommasinput = req.session.data[ section + '-' + page_name_submitted + '-number-input' ].replace(/,/g, '');
 
             // if not a number throw first error
             if( isNaN(nocommasinput) )
@@ -78,7 +78,7 @@ module.exports = function (router)
                 req.session.data['errortypetwo'] = "true";
 
                 // This page name needs to match the page the user was just on
-                res.redirect('../../../../' + page_name_submitted);
+                res.redirect( '../../../../' + page_name_submitted );
             }
             else
             {
@@ -94,7 +94,7 @@ module.exports = function (router)
                     req.session.data['errortypetwo'] = "true";
 
                     // This page name needs to match the page the user was just on
-                    res.redirect('../../../../' + page_name_submitted);
+                    res.redirect( '../../../../' + page_name_submitted );
                 }
 
                 else if ( allow_zero_submitted == 'false'  &&
@@ -105,7 +105,7 @@ module.exports = function (router)
                     req.session.data['errortypethree'] = "true";
 
                     // This page name needs to match the page the user was just on
-                    res.redirect('../../../../' + page_name_submitted);
+                    res.redirect( '../../../../' + page_name_submitted );
                 }
 
                 else if ( numberinputfloat < 0 )
@@ -115,7 +115,7 @@ module.exports = function (router)
                     req.session.data['errortypefour'] = "true";
 
                     // This page name needs to match the page the user was just on
-                    res.redirect('../../../../' + page_name_submitted);
+                    res.redirect( '../../../../' + page_name_submitted );
                 }
 
                 else if ( lowestNumberIsNumber &&
@@ -129,7 +129,7 @@ module.exports = function (router)
                     req.session.data['errortypeseven'] = "true";
 
                     // This page name needs to match the page the user was just on
-                    res.redirect('../../../../' + page_name_submitted);
+                    res.redirect( '../../../../' + page_name_submitted );
                 }
 
                 else if ( lowestNumberIsNumber &&
@@ -140,7 +140,7 @@ module.exports = function (router)
                     req.session.data['errortypefive'] = "true";
 
                     // This page name needs to match the page the user was just on
-                    res.redirect('../../../../' + page_name_submitted);
+                    res.redirect( '../../../../' + page_name_submitted );
                 }
 
                 else if ( highestNumberIsNumber &&
@@ -151,29 +151,29 @@ module.exports = function (router)
                     req.session.data['errortypesix'] = "true";
 
                     // Format the number with commas
-                    req.session.data[section + '-' + page_name_submitted + '-number-input'] = numberinputfloat.toLocaleString();
+                    req.session.data[ section + '-' + page_name_submitted + '-number-input' ] = numberinputfloat.toLocaleString();
 
                     // This page name needs to match the page the user was just on
-                    res.redirect('../../../../' + page_name_submitted);
+                    res.redirect( '../../../../' + page_name_submitted );
                 }
 
                 // everything with the input is fine so move on to next page
                 else
                 {
                     // Format the number with commas
-                    req.session.data[section + '-' + page_name_submitted + '-number-input'] = numberinputfloat.toLocaleString();
+                    req.session.data[ section + '-' + page_name_submitted + '-number-input' ] = numberinputfloat.toLocaleString();
 
 
                     // If the user needs to go back to 'check your answers' then take them directly there
                     if (req.session.data['camefromcheckanswers'] == 'true')
                     {
                         req.session.data['camefromcheckanswers'] = false;
-                        res.redirect('../../../../' + 'check-answers');
+                        res.redirect( '../../../../' + 'check-answers' );
                     }
                     else
                     {
                         // This page name needs to be the next page the user gets to after successfully continuing
-                        res.redirect('../../../../' + 'THE_NEXT_PAGE_NAME');
+                        res.redirect( '../../../../' + 'THE_NEXT_PAGE_NAME' );
                     }
                 }
             }

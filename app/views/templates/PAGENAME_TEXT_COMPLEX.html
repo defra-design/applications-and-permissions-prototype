@@ -179,33 +179,33 @@
 
 <!-- ERROR LOGIC  drop down to toggle states  -->
 <!-- Best thing to do would be to replace 'errorthispage', 'errortypeone' and 'errortypetwo' with novel name for this page  -->
-<form method='post'  action='#' class='for4' style=' float: left; position: relative; bottom:-225px; '>
+<form method='post'  action='#' class='for4' style=' float: left; position: relative; bottom:-300px;  '>
 
     <select style="height:30px;" onchange="window.location.href='?'+this.value">
 
         <option value='errorthispage=false&errortypeone=false&errortypetwo=false&errortypethree=false&errortypefour=false&errortypefive=false&errortypesix=false&'
                 {% if  data['errorthispage'] != 'true'  %}selected{% endif %}
-        >Errors - Off</option>
+        >Errors &nbsp;&nbsp;&nbsp;-&nbsp;&nbsp; Off</option>
 
         <option value='errorthispage=true&errortypeone=true&errortypetwo=false&errortypethree=false&errortypefour=false&errortypefive=false&errortypesix=false&'
                 {% if  data['errortypeone'] == 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] != 'true'  and data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  %}selected{% endif %}
-        >Error 1 - No answer entered</option>
+        >Error 1 &nbsp;&nbsp;-&nbsp;&nbsp; No answer entered</option>
 
         {% if  HIGHEST_NUMBER != 'false'  %}
             <option value='errorthispage=true&errortypeone=false&errortypetwo=true&errortypethree=false&errortypefour=false&errortypefive=false&errortypesix=false&'
                     {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] == 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] != 'true'   and data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  %}selected{% endif %}
-            >Error 2 - If answer is too long</option>
+            >Error 2 &nbsp;&nbsp;-&nbsp;&nbsp; If answer is too long</option>
         {% endif %}
 
         {% if  LOWEST_NUMBER != 'false'  %}
             <option value='errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=true&errortypefour=false&errortypefive=false&errortypesix=false&'
                     {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] == 'true'  and  data['errortypefour'] != 'true'   and data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  %}selected{% endif %}
-            >Error 3 - If answer is too short</option>
+            >Error 3 &nbsp;&nbsp;-&nbsp;&nbsp; If answer is too short</option>
         {% endif %}
 
         <option value='errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=false&errortypefour=true&errortypefive=false&errortypesix=false&'
                 {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] == 'true'  and  data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  %}selected{% endif %}
-        >Error 4 - If answer has characters that aren't allowed and you know what the characters are</option>
+        >Error 4 &nbsp;&nbsp;-&nbsp;&nbsp; If answer has characters that aren't allowed and you know what the characters are</option>
 
     </select>
 
@@ -213,19 +213,22 @@
 <!--  END OF ERROR LOGIC -->
 
 
+
+
+
 <!-- USER TYPE TOGGLE  -->
 <!--
-<form method='post'  action='#' class='for4' style=' float: left; position: relative; bottom:-225px;  '>
+<form method='post'  action='#' class='for4' style='float: left; position: relative; bottom:-300px;'>
 
-  <select style='height:30px;' onchange='window.location.href='?'+this.value'>
+  <select style="height:30px;" onchange="window.location.href='?'+this.value">
 
     <option value='user=citizen&'
             {% if  data['user'] != 'agent'  %} selected {% endif %}
-    >User type - Individual</option>
+    >User type &nbsp;&nbsp;-&nbsp;&nbsp; Individual</option>
 
     <option value='user=agent&'
             {% if  data['user'] == 'agent'  %} selected {% endif %}
-    >User type - Agent</option>
+    >User type &nbsp;&nbsp;-&nbsp;&nbsp; Agent</option>
 
   </select>
 
