@@ -84,12 +84,6 @@ This will save you time.
             {{
                 govukRadios
                 ({
-                    classes: 'govuk-radios--inline',
-
-                    name: SECTION + '-' + PAGENAME_YES_NO + '-radios-yes-no',
-
-                    id: SECTION + '-' + PAGENAME_YES_NO + '-radios-yes-no',
-
                     fieldset:
                     {
                         legend:
@@ -99,6 +93,12 @@ This will save you time.
                             classes: 'govuk-fieldset__legend--l'
                         }
                     },
+
+                    name: SECTION + '-' + PAGENAME_YES_NO + '-radios-yes-no',
+
+                    id: SECTION + '-' + PAGENAME_YES_NO + '-radios-yes-no',
+
+                    classes: 'govuk-radios--inline',
 
                     hint:
                     {

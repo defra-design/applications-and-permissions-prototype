@@ -18,7 +18,7 @@ module.exports = function (router)
     ////////////////////////////////////////////////////////////////////////////////////
 
     // 1. Change PAGENAME_YES_NO_COMPLEX
-    // 2. Change THE_NEXT_PAGE_NAME
+    // 2. Change THE_NEXT_PAGE_NAME for Yes and No
 
     router.post( sectionURL + 'PAGENAME_YES_NO_COMPLEX-router/:pageName', function (req, res)
     {

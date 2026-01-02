@@ -1,15 +1,21 @@
-{% extends "layouts/main.html" %}
+{% extends 'layouts/main.html' %}
 
 <!--
-NOTES ON USING THIS TEMPLATE Page
-This will save you time.
+    NOTES ON USING THIS TEMPLATE Page
+    This will save you time.
 
-1. Type your heading for the page after '% set pageHeadingTextHTML %'
-2. Type/customise the error messages after '% set errorTextHTML %'
-3. Use 'Find and replace' to replace "SECTION" with the name of the section of the service you're working on.
-4. Use 'Find and replace' to replace "PAGENAME_DATE" with whatever you named this page/file.
-5. Go to the javascript file 'templates.js' and copy the section 'DATE ENTRY  - NOT COMPLEX PAGE TYPE' into your routes.js file.
-6. Follow instructions at the top of the 'templates.js'.
+    1. Type the heading for the page after '% set pageHeadingTextHTML %'
+    2. Type the error message after '% set errorTextHTML %'
+    3. Type the routes file section after '% set SECTION %'
+    4. Type the error message after '% set PAGENAME_DATE %'
+    5. OPTIONAL: Type the hint text after '% set HINT_TEXT %'
+    6. OPTIONAL: Change limitations on entry. FUTURE_DATE_NOT_ALLOWED, etc
+
+    7. Go to the javascript folder 'templates'
+    8. Open 'date.js'
+    9. Copy into your routes.js file.
+    10. Rename PAGENAME_DATE in the URL to match the page name
+    11. Rename THE_NEXT_PAGE_NAME
 -->
 
 
@@ -23,56 +29,64 @@ This will save you time.
 {% set errorTextHTML %}
 
     <!--  NO DATE ENTERED - ALL 3 FIELDS ARE EMPTY  -->
-    {%  if  data['errortypeone'] == "true"  %}
-        Enter the date you [PLACEHOLDER]
+    {%  if  data['errortypeone'] == 'true'  %}
+        Enter the date you PLACEHOLDER
 
     <!--  DAY MISSING ONLY  -->
-    {%  elif  data['errortypetwo'] == "true"  %}
-        The date you [PLACEHOLDER] must include a day
+    {%  elif  data['errortypetwo'] == 'true'  %}
+        The date you PLACEHOLDER must include a day
 
     <!--  MONTH MISSING ONLY  -->
-    {%  elif  data['errortypethree'] == "true"  %}
-        The date you [PLACEHOLDER] must include a month
+    {%  elif  data['errortypethree'] == 'true'  %}
+        The date you PLACEHOLDER must include a month
 
     <!--  YEAR MISSING ONLY  -->
-    {%  elif  data['errortypefour'] == "true"  %}
-        The date you [PLACEHOLDER] must include a year
+    {%  elif  data['errortypefour'] == 'true'  %}
+        The date you PLACEHOLDER must include a year
 
     <!--  NOT VALID NUMBERS ENTERED IN DAY  -->
-    {%  elif  data['errortypefive'] == "true"  %}
-        The day you [PLACEHOLDER] must be a real day
+    {%  elif  data['errortypefive'] == 'true'  %}
+        The day you PLACEHOLDER must be a real day
 
     <!--  NOT VALID NUMBERS ENTERED IN MONTH  -->
-    {%  elif  data['errortypesix'] == "true"  %}
-        The month you [PLACEHOLDER] must be a number between 1 and 12
+    {%  elif  data['errortypesix'] == 'true'  %}
+        The month you PLACEHOLDER must be a number between 1 and 12
 
     <!--  NOT VALID NUMBERS ENTERED IN YEAR  -->
-    {%  elif  data['errortypeseven'] == "true"  %}
-        The year you [PLACEHOLDER] must be a real year
+    {%  elif  data['errortypeseven'] == 'true'  %}
+        The year you PLACEHOLDER must be a real year
 
     <!--  NOT 4 DIGITS FOR THE YEAR  -->
-    {%  elif  data['errortypeeight'] == "true"  %}
-        The year you [PLACEHOLDER] must include 4 digits
+    {%  elif  data['errortypeeight'] == 'true'  %}
+        The year you PLACEHOLDER must include 4 digits
 
     <!--  MUST BE A REAL DATE  -->
-    {%  elif  data['errortypenine'] == "true"  %}
-        The date you [PLACEHOLDER] must be a real date
+    {%  elif  data['errortypenine'] == 'true'  %}
+        The date you PLACEHOLDER must be a real date
 
     <!--  BEFORE MAX DATE  -->
-    {%  elif  data['errortypeten'] == "true"  %}
-        The date you [PLACEHOLDER] must be the same as or before [DATE] BUSINESS REQUIREMENT
+    {%  elif  data['errortypeten'] == 'true'  %}
+        The date you PLACEHOLDER must be the same as or before [DATE] BUSINESS REQUIREMENT
 
     <!--  AFTER MIN DATE  -->
-    {%  elif  data['errortypeeleven'] == "true"  %}
-        The date you [PLACEHOLDER] must be the same as or after [DATE] BUSINESS REQUIREMENT
+    {%  elif  data['errortypeeleven'] == 'true'  %}
+        The date you PLACEHOLDER must be the same as or after [DATE] BUSINESS REQUIREMENT
 
     <!--  NOT BEFORE USER DATE  -->
-    {%  elif  data['errortypetwelve'] == "true"  %}
-        The date you [PLACEHOLDER] must be before [NAME OF DATE], [DATE]
+    {%  elif  data['errortypetwelve'] == 'true'  %}
+        The date you PLACEHOLDER must be before [NAME OF DATE], [DATE]
 
     <!--  NOT AFTER USER DATE  -->
-    {%  elif  data['errortypethirteen'] == "true"  %}
-        The date you [PLACEHOLDER] must be after [NAME OF DATE], [DATE]
+    {%  elif  data['errortypethirteen'] == 'true'  %}
+        The date you PLACEHOLDER must be after [NAME OF DATE], [DATE]
+
+    <!--  NOT IN THE FUTURE  -->
+    {%  elif  data['errortypefourteen'] == 'true'  %}
+        The date you PLACEHOLDER must be today or before
+
+    <!--  NOT IN THE PAST  -->
+    {%  elif  data['errortypefifteen'] == 'true'  %}
+        The date you PLACEHOLDER must be today or after
 
     {% endif %}
 {% endset %}
@@ -80,7 +94,7 @@ This will save you time.
 
 <!-- Text that show in the browser tab. Does NOT need changing -->
 {% block pageTitle %}
-    {% if  data['errorthispage'] == "true"  %}
+    {% if  data['errorthispage'] == 'true'  %}
         Error:
     {% endif %}
 
@@ -88,21 +102,56 @@ This will save you time.
 {% endblock %}
 
 
+<!-- OPTIONAL: To stop dates in the future, change from 'false' to 'true' -->
+{% set FUTURE_DATE_NOT_ALLOWED %}false{% endset %}
+
+<!-- OPTIONAL: To stop dates in the past, change from 'false' to 'true' -->
+{% set PAST_DATE_NOT_ALLOWED %}false{% endset %}
+
+<!-- OPTIONAL: To stop dates before a business date, change from 'false' to 'true' -->
+<!--           Then enter the business date in the javascript -->
+{% set AFTER_BUSINESS_DATE_NOT_ALLOWED %}false{% endset %}
+
+<!-- OPTIONAL: To stop dates before a business date, change from 'false' to 'true' -->
+<!--           Then enter the business date in the javascript -->
+{% set BEFORE_BUSINESS_DATE_NOT_ALLOWED %}false{% endset %}
+
+<!-- OPTIONAL: To stop dates before a user entered date, change from 'false' to 'true' -->
+<!--           The enter the user entered dat session data name in the javascript -->
+{% set AFTER_OR_SAME_AS_USER_ENTERED_DATE_NOT_ALLOWED %}false{% endset %}
+
+<!-- OPTIONAL: To stop dates before a user entered date, change from 'false' to 'true' -->
+<!--           The enter the user entered dat session data name in the javascript -->
+{% set BEFORE_OR_SAME_AS_USER_ENTERED_DATE_NOT_ALLOWED %}false{% endset %}
+
+
+
+<!-- Set the section name -->
+{% set SECTION %}templates{% endset %}
+
+<!-- Set the page name -->
+{% set PAGENAME_DATE %}PAGENAME_DATE{% endset %}
+
+<!-- Set the hint text -->
+{% set HINT_TEXT %}For example, 27 3 2026{% endset %}
+
+
+
 {% block content %}
-<div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+<div class='govuk-grid-row'>
+    <div class='govuk-grid-column-two-thirds'>
 
 
         <!-- ERROR LOGIC 'error summary' -->
-        {% if data['errorthispage'] == "true" %}
+        {% if data['errorthispage'] == 'true' %}
             {{ govukErrorSummary
                 ({
-                    titleText: "There is a problem",
+                    titleText: 'There is a problem',
                     errorList:
                     [
                         {
                             html: errorTextHTML,
-                            href: "#SECTION-PAGENAME_DATE-date-input"
+                            href: '#' + SECTION + '-' + PAGENAME_DATE + '-date-input'
                         }
                     ]
                 })
@@ -111,72 +160,74 @@ This will save you time.
         <!--  END OF 'error summary' -->
 
 
-        <form action="PAGENAME_DATE-router" method="post" novalidate>
+        <form action='{{PAGENAME_DATE}}-router/{{PAGENAME_DATE}}/{{FUTURE_DATE_NOT_ALLOWED}},{{PAST_DATE_NOT_ALLOWED}},{{AFTER_BUSINESS_DATE_NOT_ALLOWED}},{{BEFORE_BUSINESS_DATE_NOT_ALLOWED}},{{AFTER_OR_SAME_AS_USER_ENTERED_DATE_NOT_ALLOWED}},{{BEFORE_OR_SAME_AS_USER_ENTERED_DATE_NOT_ALLOWED}}' method='post' novalidate>
 
-            {{ govukDateInput
+            {{
+                govukDateInput
                 ({
-                    id: "SECTION-PAGENAME_DATE-date-input",
-
-                    namePrefix: "SECTION-PAGENAME_DATE-date-input",
-
                     fieldset:
                     {
                         legend:
                         {
                             html: pageHeadingTextHTML,
                             isPageHeading: true,
-                            classes: "govuk-fieldset__legend--l"
+                            classes: 'govuk-fieldset__legend--l'
                         }
                     },
 
+                    id: SECTION + '-' + PAGENAME_DATE + '-date-input',
+
+                    namePrefix: SECTION + '-' + PAGENAME_DATE + '-date-input',
+            
                     hint:
                     {
-                        html: "For example, 27 3 " + data['previous-tax-year-start-date-year-only']
-                    },
+                        text: HINT_TEXT
+                    } if HINT_TEXT != 'PLACEHOLDER_HINT_TEXT',
 
-                    errorMessage: null if data['errorthispage'] != "true"
+                    errorMessage: null if data['errorthispage'] != 'true'
                                        else { html: errorTextHTML },
 
                     items:
                     [
                         {
-                            classes: "govuk-input--width-2 "  if (data['errorthispage'] != "true" or
-                                                                  data['errortypethree'] == "true" or
-                                                                  data['errortypefour'] == "true" or
-                                                                  data['errortypesix'] == "true" or
-                                                                  data['errortypeseven'] == "true" or
-                                                                  data['errortypeeight'] == "true" )
-                                                              else  "govuk-input--width-2 govuk-input--error",
-                            name: "day",
-                            value: data['SECTION-PAGENAME_DATE-date-input-day']
+                            classes: 'govuk-input--width-2'  if ( data['errorthispage'] != 'true' or
+                                                                  data['errortypethree'] == 'true' or
+                                                                  data['errortypefour'] == 'true' or
+                                                                  data['errortypesix'] == 'true' or
+                                                                  data['errortypeseven'] == 'true' or
+                                                                  data['errortypeeight'] == 'true' )
+                                                              else  'govuk-input--width-2 govuk-input--error',
+                            name: 'day',
+                            value: data[ SECTION + '-' + PAGENAME_DATE + '-date-input-day' ]
                         },
                         {
-                            classes: "govuk-input--width-2 "  if (data['errorthispage'] != "true" or
-                                                                  data['errortypetwo'] == "true" or
-                                                                  data['errortypefour'] == "true" or
-                                                                  data['errortypefive'] == "true" or
-                                                                  data['errortypeseven'] == "true" or
-                                                                  data['errortypeeight'] == "true" )
-                                                              else  "govuk-input--width-2 govuk-input--error",
-                            name: "month",
-                            value: data['SECTION-PAGENAME_DATE-date-input-month']
+                            classes: 'govuk-input--width-2'  if ( data['errorthispage'] != 'true' or
+                                                                  data['errortypetwo'] == 'true' or
+                                                                  data['errortypefour'] == 'true' or
+                                                                  data['errortypefive'] == 'true' or
+                                                                  data['errortypeseven'] == 'true' or
+                                                                  data['errortypeeight'] == 'true' )
+                                                              else  'govuk-input--width-2 govuk-input--error',
+                            name: 'month',
+                            value: data[ SECTION + '-' + PAGENAME_DATE + '-date-input-month' ]
                         },
                         {
-                            classes: "govuk-input--width-4 "  if (data['errorthispage'] != "true" or
-                                                                  data['errortypetwo'] == "true" or
-                                                                  data['errortypethree'] == "true" or
-                                                                  data['errortypefive'] == "true" or
-                                                                  data['errortypesix'] == "true"  )
-                                                              else  "govuk-input--width-4 govuk-input--error",
-                            name: "year",
-                            value: data['SECTION-PAGENAME_DATE-date-input-year']
+                            classes: 'govuk-input--width-4'  if ( data['errorthispage'] != 'true' or
+                                                                  data['errortypetwo'] == 'true' or
+                                                                  data['errortypethree'] == 'true' or
+                                                                  data['errortypefive'] == 'true' or
+                                                                  data['errortypesix'] == 'true'  )
+                                                              else  'govuk-input--width-4 govuk-input--error',
+                            name: 'year',
+                            value: data[ SECTION + '-' + PAGENAME_DATE + '-date-input-year' ]
                         }
                     ]
                 })
             }}
 
 
-            {{ govukButton({ text: "Continue" }) }}
+            {{ govukButton({ text: 'Continue' }) }}
+
 
         </form>
 
@@ -184,73 +235,95 @@ This will save you time.
 </div>
 
 
+
+
+
 <!-- ERROR LOGIC  drop down to toggle states  -->
-<!-- Best thing to do would be to replace 'errorthispage', 'errortypeone' and 'errortypetwo' with novel name for this page  -->
-<form method="post"  action="#" class="for4" style=" float: left; position: relative; bottom:-300px;   ">
+<form method='post'  action='#' class='for4' style=' float: left; position: relative; bottom:-300px; '>
 
     <select style="height:30px;" onchange="window.location.href='?'+this.value">
 
 
-        <option value="errorthispage=false&errortypeone=false&errortypetwo=false&errortypethree=false&errortypefour=false&errortypefive=false&errortypesix=false&errortypeseven=false&errortypeeight=false&errortypenine=false&errortypeten=false&errortypeeleven=false&errortypetwelve=false&errortypethirteen=false&errortypefourteen=false&"
-              {% if (data['errorthispage'] != "true") %}selected{% endif %}
+        <option value='errorthispage=false&errortypeone=false&errortypetwo=false&errortypethree=false&errortypefour=false&errortypefive=false&errortypesix=false&errortypeseven=false&errortypeeight=false&errortypenine=false&errortypeten=false&errortypeeleven=false&errortypetwelve=false&errortypethirteen=false&errortypefourteen=false&errortypefifteen=false&'
+              {% if (data['errorthispage'] != 'true') %}selected{% endif %}
         >Default</option>
 
         <!-- DATE EMPTY FIELDS   -->
-        <option value="errorthispage=true&errortypeone=true&errortypetwo=false&errortypethree=false&errortypefour=false&errortypefive=false&errortypesix=false&errortypeseven=false&errortypeeight=false&errortypenine=false&errortypeten=false&errortypeeleven=false&errortypetwelve=false&errortypethirteen=false&errortypefourteen=false&"
-              {% if data['errortypeone'] == 'true' and data['errortypetwo'] != 'true' and data['errortypethree'] != 'true'  and  data['errortypefour'] != 'true'  and  data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  and  data['errortypeseven'] != 'true'  and  data['errortypeeight'] != 'true'  and  data['errortypenine'] != 'true'  and  data['errortypeten'] != 'true'  and  data['errortypeeleven'] != 'true'  and  data['errortypetwelve'] != 'true'  and  data['errortypethirteen'] != 'true'  and  data['errortypefourteen'] != 'true'  %}selected{% endif %}
+        <option value='errorthispage=true&errortypeone=true&errortypetwo=false&errortypethree=false&errortypefour=false&errortypefive=false&errortypesix=false&errortypeseven=false&errortypeeight=false&errortypenine=false&errortypeten=false&errortypeeleven=false&errortypetwelve=false&errortypethirteen=false&errortypefourteen=false&errortypefifteen=false&'
+              {% if data['errortypeone'] == 'true' and data['errortypetwo'] != 'true' and data['errortypethree'] != 'true'  and  data['errortypefour'] != 'true'  and  data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  and  data['errortypeseven'] != 'true'  and  data['errortypeeight'] != 'true'  and  data['errortypenine'] != 'true'  and  data['errortypeten'] != 'true'  and  data['errortypeeleven'] != 'true'  and  data['errortypetwelve'] != 'true'  and  data['errortypethirteen'] != 'true'  and  data['errortypefourteen'] != 'true'  and  data['errortypefifteen'] != 'true'  %}selected{% endif %}
         >Error 1 &nbsp;&nbsp;-&nbsp;&nbsp; No date entered</option>
 
-        <option value="errorthispage=true&errortypeone=false&errortypetwo=true&errortypethree=false&errortypefour=false&errortypefive=false&errortypesix=false&errortypeseven=false&errortypeeight=false&errortypenine=false&errortypeten=false&errortypeeleven=false&errortypetwelve=false&errortypethirteen=false&errortypefourteen=false&"
-              {% if data['errortypeone'] != 'true' and data['errortypetwo'] == 'true' and data['errortypethree'] != 'true'  and  data['errortypefour'] != 'true'  and  data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  and  data['errortypeseven'] != 'true'  and  data['errortypeeight'] != 'true'  and  data['errortypenine'] != 'true'  and  data['errortypeten'] != 'true'  and  data['errortypeeleven'] != 'true'  and  data['errortypetwelve'] != 'true'  and  data['errortypethirteen'] != 'true'  and  data['errortypefourteen'] != 'true'  %}selected{% endif %}
+        <option value='errorthispage=true&errortypeone=false&errortypetwo=true&errortypethree=false&errortypefour=false&errortypefive=false&errortypesix=false&errortypeseven=false&errortypeeight=false&errortypenine=false&errortypeten=false&errortypeeleven=false&errortypetwelve=false&errortypethirteen=false&errortypefourteen=false&errortypefifteen=false&'
+              {% if data['errortypeone'] != 'true' and data['errortypetwo'] == 'true' and data['errortypethree'] != 'true'  and  data['errortypefour'] != 'true'  and  data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  and  data['errortypeseven'] != 'true'  and  data['errortypeeight'] != 'true'  and  data['errortypenine'] != 'true'  and  data['errortypeten'] != 'true'  and  data['errortypeeleven'] != 'true'  and  data['errortypetwelve'] != 'true'  and  data['errortypethirteen'] != 'true'  and  data['errortypefourteen'] != 'true'  and  data['errortypefifteen'] != 'true'  %}selected{% endif %}
         >Error 2 &nbsp;&nbsp;-&nbsp;&nbsp; Missing day</option>
 
-        <option value="errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=true&errortypefour=false&errortypefive=false&errortypesix=false&errortypeseven=false&errortypeeight=false&errortypenine=false&errortypeten=false&errortypeeleven=false&errortypetwelve=false&errortypethirteen=false&errortypefourteen=false&"
-              {% if data['errortypeone'] != 'true' and data['errortypetwo'] != 'true' and data['errortypethree'] == 'true'  and  data['errortypefour'] != 'true'  and  data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  and  data['errortypeseven'] != 'true'  and  data['errortypeeight'] != 'true'  and  data['errortypenine'] != 'true'  and  data['errortypeten'] != 'true'  and  data['errortypeeleven'] != 'true'  and  data['errortypetwelve'] != 'true'  and  data['errortypethirteen'] != 'true'  and  data['errortypefourteen'] != 'true'  %}selected{% endif %}
+        <option value='errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=true&errortypefour=false&errortypefive=false&errortypesix=false&errortypeseven=false&errortypeeight=false&errortypenine=false&errortypeten=false&errortypeeleven=false&errortypetwelve=false&errortypethirteen=false&errortypefourteen=false&errortypefifteen=false&'
+              {% if data['errortypeone'] != 'true' and data['errortypetwo'] != 'true' and data['errortypethree'] == 'true'  and  data['errortypefour'] != 'true'  and  data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  and  data['errortypeseven'] != 'true'  and  data['errortypeeight'] != 'true'  and  data['errortypenine'] != 'true'  and  data['errortypeten'] != 'true'  and  data['errortypeeleven'] != 'true'  and  data['errortypetwelve'] != 'true'  and  data['errortypethirteen'] != 'true'  and  data['errortypefourteen'] != 'true'  and  data['errortypefifteen'] != 'true'  %}selected{% endif %}
         >Error 3 &nbsp;&nbsp;-&nbsp;&nbsp; Missing month </option>
 
-        <option value="errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=false&errortypefour=true&errortypefive=false&errortypesix=false&errortypeseven=false&errortypeeight=false&errortypenine=false&errortypeten=false&errortypeeleven=false&errortypetwelve=false&errortypethirteen=false&errortypefourteen=false&"
-              {% if  data['errortypeone'] != 'true' and data['errortypetwo'] != 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] == 'true'  and  data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  and  data['errortypeseven'] != 'true'  and  data['errortypeeight'] != 'true'  and  data['errortypenine'] != 'true'  and  data['errortypeten'] != 'true'  and  data['errortypeeleven'] != 'true'  and  data['errortypetwelve'] != 'true'  and  data['errortypethirteen'] != 'true'  and  data['errortypefourteen'] != 'true'  %}selected{% endif %}
+        <option value='errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=false&errortypefour=true&errortypefive=false&errortypesix=false&errortypeseven=false&errortypeeight=false&errortypenine=false&errortypeten=false&errortypeeleven=false&errortypetwelve=false&errortypethirteen=false&errortypefourteen=false&errortypefifteen=false&'
+              {% if  data['errortypeone'] != 'true' and data['errortypetwo'] != 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] == 'true'  and  data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  and  data['errortypeseven'] != 'true'  and  data['errortypeeight'] != 'true'  and  data['errortypenine'] != 'true'  and  data['errortypeten'] != 'true'  and  data['errortypeeleven'] != 'true'  and  data['errortypetwelve'] != 'true'  and  data['errortypethirteen'] != 'true'  and  data['errortypefourteen'] != 'true'  and  data['errortypefifteen'] != 'true'  %}selected{% endif %}
         >Error 4 &nbsp;&nbsp;-&nbsp;&nbsp; Missing year</option>
 
 
         <!--  DATE INVALID INPUT    -->
-        <option value="errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=false&errortypefour=false&errortypefive=true&errortypesix=false&errortypeseven=false&errortypeeight=false&errortypenine=false&errortypeten=false&errortypeeleven=false&errortypetwelve=false&errortypethirteen=false&errortypefourteen=false&"
-                {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] != 'true'  and  data['errortypefive'] == 'true'  and  data['errortypesix'] != 'true'  and  data['errortypeseven'] != 'true'  and  data['errortypeeight'] != 'true'  and  data['errortypenine'] != 'true'  and  data['errortypeten'] != 'true'  and  data['errortypeeleven'] != 'true'  and  data['errortypetwelve'] != 'true'  and  data['errortypethirteen'] != 'true'  and  data['errortypefourteen'] != 'true'  %}selected{% endif %}
+        <option value='errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=false&errortypefour=false&errortypefive=true&errortypesix=false&errortypeseven=false&errortypeeight=false&errortypenine=false&errortypeten=false&errortypeeleven=false&errortypetwelve=false&errortypethirteen=false&errortypefourteen=false&errortypefifteen=false&'
+                {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] != 'true'  and  data['errortypefive'] == 'true'  and  data['errortypesix'] != 'true'  and  data['errortypeseven'] != 'true'  and  data['errortypeeight'] != 'true'  and  data['errortypenine'] != 'true'  and  data['errortypeten'] != 'true'  and  data['errortypeeleven'] != 'true'  and  data['errortypetwelve'] != 'true'  and  data['errortypethirteen'] != 'true'  and  data['errortypefourteen'] != 'true'  and  data['errortypefifteen'] != 'true'  %}selected{% endif %}
         >Error 5 &nbsp;&nbsp;-&nbsp;&nbsp; Invalid day</option>
 
-        <option value="errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=false&errortypefour=false&errortypefive=false&errortypesix=true&errortypeseven=false&errortypeeight=false&errortypenine=false&errortypeten=false&errortypeeleven=false&errortypetwelve=false&errortypethirteen=false&errortypefourteen=false&"
-                {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] != 'true'  and  data['errortypefive'] != 'true'  and  data['errortypesix'] == 'true'  and  data['errortypeseven'] != 'true'  and  data['errortypeeight'] != 'true'  and  data['errortypenine'] != 'true'  and  data['errortypeten'] != 'true'  and  data['errortypeeleven'] != 'true'  and  data['errortypetwelve'] != 'true'  and  data['errortypethirteen'] != 'true'  and  data['errortypefourteen'] != 'true'  %}selected{% endif %}
+        <option value='errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=false&errortypefour=false&errortypefive=false&errortypesix=true&errortypeseven=false&errortypeeight=false&errortypenine=false&errortypeten=false&errortypeeleven=false&errortypetwelve=false&errortypethirteen=false&errortypefourteen=false&errortypefifteen=false&'
+                {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] != 'true'  and  data['errortypefive'] != 'true'  and  data['errortypesix'] == 'true'  and  data['errortypeseven'] != 'true'  and  data['errortypeeight'] != 'true'  and  data['errortypenine'] != 'true'  and  data['errortypeten'] != 'true'  and  data['errortypeeleven'] != 'true'  and  data['errortypetwelve'] != 'true'  and  data['errortypethirteen'] != 'true'  and  data['errortypefourteen'] != 'true'  and  data['errortypefifteen'] != 'true'  %}selected{% endif %}
         >Error 6 &nbsp;&nbsp;-&nbsp;&nbsp; Invalid month</option>
 
-        <option value="errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=false&errortypefour=false&errortypefive=false&errortypesix=false&errortypeseven=true&errortypeeight=false&errortypenine=false&errortypeten=false&errortypeeleven=false&errortypetwelve=false&errortypethirteen=false&errortypefourteen=false&"
-                {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] != 'true'  and  data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  and  data['errortypeseven'] == 'true'  and  data['errortypeeight'] != 'true'  and  data['errortypenine'] != 'true'  and  data['errortypeten'] != 'true'  and  data['errortypeeleven'] != 'true'  and  data['errortypetwelve'] != 'true'  and  data['errortypethirteen'] != 'true'  and  data['errortypefourteen'] != 'true'  %}selected{% endif %}
+        <option value='errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=false&errortypefour=false&errortypefive=false&errortypesix=false&errortypeseven=true&errortypeeight=false&errortypenine=false&errortypeten=false&errortypeeleven=false&errortypetwelve=false&errortypethirteen=false&errortypefourteen=false&errortypefifteen=false&'
+                {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] != 'true'  and  data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  and  data['errortypeseven'] == 'true'  and  data['errortypeeight'] != 'true'  and  data['errortypenine'] != 'true'  and  data['errortypeten'] != 'true'  and  data['errortypeeleven'] != 'true'  and  data['errortypetwelve'] != 'true'  and  data['errortypethirteen'] != 'true'  and  data['errortypefourteen'] != 'true'  and  data['errortypefifteen'] != 'true'  %}selected{% endif %}
         >Error 7 &nbsp;&nbsp;-&nbsp;&nbsp; Invalid year</option>
 
-        <option value="errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=false&errortypefour=false&errortypefive=false&errortypesix=false&errortypeseven=false&errortypeeight=true&errortypenine=false&errortypeten=false&errortypeeleven=false&errortypetwelve=false&errortypethirteen=false&errortypefourteen=false&"
-              {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] != 'true'  and  data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  and  data['errortypeseven'] != 'true'  and  data['errortypeeight'] == 'true'  and  data['errortypenine'] != 'true'  and  data['errortypeten'] != 'true'  and  data['errortypeeleven'] != 'true'  and  data['errortypetwelve'] != 'true'  and  data['errortypethirteen'] != 'true'  and  data['errortypefourteen'] != 'true'  %}selected{% endif %}
+        <option value='errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=false&errortypefour=false&errortypefive=false&errortypesix=false&errortypeseven=false&errortypeeight=true&errortypenine=false&errortypeten=false&errortypeeleven=false&errortypetwelve=false&errortypethirteen=false&errortypefourteen=false&errortypefifteen=false&'
+              {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] != 'true'  and  data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  and  data['errortypeseven'] != 'true'  and  data['errortypeeight'] == 'true'  and  data['errortypenine'] != 'true'  and  data['errortypeten'] != 'true'  and  data['errortypeeleven'] != 'true'  and  data['errortypetwelve'] != 'true'  and  data['errortypethirteen'] != 'true'  and  data['errortypefourteen'] != 'true'  and  data['errortypefifteen'] != 'true'  %}selected{% endif %}
         >Error 8 &nbsp;&nbsp;-&nbsp;&nbsp; Year not 4 digits</option>
 
 
         <!-- DATE COMPARISON ERRORS   -->
-        <option value="errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=false&errortypefour=false&errortypefive=false&errortypesix=false&errortypeseven=false&errortypeeight=false&errortypenine=true&errortypeten=false&errortypeeleven=false&errortypetwelve=false&errortypethirteen=false&errortypefourteen=false&"
-              {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] != 'true'  and  data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  and  data['errortypeseven'] != 'true'  and  data['errortypeeight'] != 'true'  and  data['errortypenine'] == 'true'  and  data['errortypeten'] != 'true'  and  data['errortypeeleven'] != 'true'  and  data['errortypetwelve'] != 'true'  and  data['errortypethirteen'] != 'true'  and  data['errortypefourteen'] != 'true'  %}selected{% endif %}
+        <option value='errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=false&errortypefour=false&errortypefive=false&errortypesix=false&errortypeseven=false&errortypeeight=false&errortypenine=true&errortypeten=false&errortypeeleven=false&errortypetwelve=false&errortypethirteen=false&errortypefourteen=false&errortypefifteen=false&'
+              {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] != 'true'  and  data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  and  data['errortypeseven'] != 'true'  and  data['errortypeeight'] != 'true'  and  data['errortypenine'] == 'true'  and  data['errortypeten'] != 'true'  and  data['errortypeeleven'] != 'true'  and  data['errortypetwelve'] != 'true'  and  data['errortypethirteen'] != 'true'  and  data['errortypefourteen'] != 'true'  and  data['errortypefifteen'] != 'true'  %}selected{% endif %}
         >Error 9 &nbsp;&nbsp;-&nbsp;&nbsp; Date entered is not a real date in the Gregorian calendar</option>
 
-        <option value="errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=false&errortypefour=false&errortypefive=false&errortypesix=false&errortypeseven=false&errortypeeight=false&errortypenine=false&errortypeten=true&errortypeeleven=false&errortypetwelve=false&errortypethirteen=false&errortypefourteen=false&errortypefifteen=true&errortypesixteen=false&errortypeseventeen=false&"
-                {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] != 'true'  and  data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  and  data['errortypeseven'] != 'true'  and  data['errortypeeight'] != 'true'  and  data['errortypenine'] != 'true'  and  data['errortypeten'] == 'true'  and  data['errortypeeleven'] != 'true'  and  data['errortypetwelve'] != 'true'  and  data['errortypethirteen'] != 'true'  and  data['errortypefourteen'] != 'true'  %}selected{% endif %}
-        >Error 10 -&nbsp;&nbsp; Date entered must be same as or before Business Requirement date</option>
+        {% if  AFTER_BUSINESS_DATE_NOT_ALLOWED != 'false'  %}
+            <option value='errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=false&errortypefour=false&errortypefive=false&errortypesix=false&errortypeseven=false&errortypeeight=false&errortypenine=false&errortypeten=true&errortypeeleven=false&errortypetwelve=false&errortypethirteen=false&errortypefourteen=false&errortypefifteen=false&'
+                    {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] != 'true'  and  data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  and  data['errortypeseven'] != 'true'  and  data['errortypeeight'] != 'true'  and  data['errortypenine'] != 'true'  and  data['errortypeten'] == 'true'  and  data['errortypeeleven'] != 'true'  and  data['errortypetwelve'] != 'true'  and  data['errortypethirteen'] != 'true'  and  data['errortypefourteen'] != 'true'  and  data['errortypefifteen'] != 'true'  %}selected{% endif %}
+            >Error 10 -&nbsp;&nbsp; Date entered must be same as or before Business Requirement date</option>
+        {% endif %}
 
-        <option value="errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=false&errortypefour=false&errortypefive=false&errortypesix=false&errortypeseven=false&errortypeeight=false&errortypenine=false&errortypeten=false&errortypeeleven=true&errortypetwelve=false&errortypethirteen=false&errortypefourteen=false&"
-                {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] != 'true'  and  data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  and  data['errortypeseven'] != 'true'  and  data['errortypeeight'] != 'true'  and  data['errortypenine'] != 'true'  and  data['errortypeten'] != 'true'  and  data['errortypeeleven'] == 'true'  and  data['errortypetwelve'] != 'true'  and  data['errortypethirteen'] != 'true'  and  data['errortypefourteen'] != 'true'  %}selected{% endif %}
-        >Error 11 -&nbsp;&nbsp; Date entered must be same as or after Business Requirement date</option>
+        {% if  BEFORE_BUSINESS_DATE_NOT_ALLOWED != 'false'  %}
+            <option value='errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=false&errortypefour=false&errortypefive=false&errortypesix=false&errortypeseven=false&errortypeeight=false&errortypenine=false&errortypeten=false&errortypeeleven=true&errortypetwelve=false&errortypethirteen=false&errortypefourteen=false&errortypefifteen=false&'
+                    {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] != 'true'  and  data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  and  data['errortypeseven'] != 'true'  and  data['errortypeeight'] != 'true'  and  data['errortypenine'] != 'true'  and  data['errortypeten'] != 'true'  and  data['errortypeeleven'] == 'true'  and  data['errortypetwelve'] != 'true'  and  data['errortypethirteen'] != 'true'  and  data['errortypefourteen'] != 'true'  and  data['errortypefifteen'] != 'true'  %}selected{% endif %}
+            >Error 11 -&nbsp;&nbsp; Date entered must be same as or after Business Requirement date</option>
+        {% endif %}
 
-        <option value="errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=false&errortypefour=false&errortypefive=false&errortypesix=false&errortypeseven=false&errortypeeight=false&errortypenine=false&errortypeten=false&errortypeeleven=false&errortypetwelve=true&errortypethirteen=false&errortypefourteen=false&"
-                {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] != 'true'  and  data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  and  data['errortypeseven'] != 'true'  and  data['errortypeeight'] != 'true'  and  data['errortypenine'] != 'true'  and  data['errortypeten'] != 'true'  and  data['errortypeeleven'] != 'true'  and  data['errortypetwelve'] == 'true'  and  data['errortypethirteen'] != 'true'  and  data['errortypefourteen'] != 'true'  %}selected{% endif %}
-        >Error 12 -&nbsp;&nbsp; Date entered must be before a user entered date</option>
+        {% if  AFTER_OR_SAME_AS_USER_ENTERED_DATE_NOT_ALLOWED != 'false'  %}
+            <option value='errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=false&errortypefour=false&errortypefive=false&errortypesix=false&errortypeseven=false&errortypeeight=false&errortypenine=false&errortypeten=false&errortypeeleven=false&errortypetwelve=true&errortypethirteen=false&errortypefourteen=false&errortypefifteen=false&'
+                    {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] != 'true'  and  data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  and  data['errortypeseven'] != 'true'  and  data['errortypeeight'] != 'true'  and  data['errortypenine'] != 'true'  and  data['errortypeten'] != 'true'  and  data['errortypeeleven'] != 'true'  and  data['errortypetwelve'] == 'true'  and  data['errortypethirteen'] != 'true'  and  data['errortypefourteen'] != 'true'  and  data['errortypefifteen'] != 'true'  %}selected{% endif %}
+            >Error 12 -&nbsp;&nbsp; Date entered must be before a user entered date</option>
+        {% endif %}
 
-        <option value="errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=false&errortypefour=false&errortypefive=false&errortypesix=false&errortypeseven=false&errortypeeight=false&errortypenine=false&errortypeten=false&errortypeeleven=false&errortypetwelve=false&errortypethirteen=true&errortypefourteen=false&"
-              {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] != 'true'  and  data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  and  data['errortypeseven'] != 'true'  and  data['errortypeeight'] != 'true'  and  data['errortypenine'] != 'true'  and  data['errortypeten'] != 'true'  and  data['errortypeeleven'] != 'true'  and  data['errortypetwelve'] != 'true'  and  data['errortypethirteen'] == 'true'  and  data['errortypefourteen'] != 'true'  %}selected{% endif %}
-        >Error 13 -&nbsp;&nbsp; Date entered must be after a user entered date</option>
+        {% if  BEFORE_OR_SAME_AS_USER_ENTERED_DATE_NOT_ALLOWED != 'false'  %}
+            <option value='errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=false&errortypefour=false&errortypefive=false&errortypesix=false&errortypeseven=false&errortypeeight=false&errortypenine=false&errortypeten=false&errortypeeleven=false&errortypetwelve=false&errortypethirteen=true&errortypefourteen=false&errortypefifteen=false&'
+                  {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] != 'true'  and  data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  and  data['errortypeseven'] != 'true'  and  data['errortypeeight'] != 'true'  and  data['errortypenine'] != 'true'  and  data['errortypeten'] != 'true'  and  data['errortypeeleven'] != 'true'  and  data['errortypetwelve'] != 'true'  and  data['errortypethirteen'] == 'true'  and  data['errortypefourteen'] != 'true'  and  data['errortypefifteen'] != 'true'  %}selected{% endif %}
+            >Error 13 -&nbsp;&nbsp; Date entered must be after a user entered date</option>
+        {% endif %}
+
+        {% if  FUTURE_DATE_NOT_ALLOWED != 'false'  %}
+            <option value='errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=false&errortypefour=false&errortypefive=false&errortypesix=false&errortypeseven=false&errortypeeight=false&errortypenine=false&errortypeten=false&errortypeeleven=false&errortypetwelve=false&errortypethirteen=false&errortypefourteen=true&errortypefifteen=false&'
+                    {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] != 'true'  and  data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  and  data['errortypeseven'] != 'true'  and  data['errortypeeight'] != 'true'  and  data['errortypenine'] != 'true'  and  data['errortypeten'] != 'true'  and  data['errortypeeleven'] != 'true'  and  data['errortypetwelve'] != 'true'  and  data['errortypethirteen'] != 'true'  and  data['errortypefourteen'] == 'true'  and  data['errortypefifteen'] != 'true'  %}selected{% endif %}
+            >Error 14 -&nbsp;&nbsp; Date entered is in the future - which is not allowed</option>
+        {% endif %}
+
+        {% if  PAST_DATE_NOT_ALLOWED != 'false'  %}
+            <option value='errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=false&errortypefour=false&errortypefive=false&errortypesix=false&errortypeseven=false&errortypeeight=false&errortypenine=false&errortypeten=false&errortypeeleven=false&errortypetwelve=false&errortypethirteen=false&errortypefourteen=false&errortypefifteen=true&'
+                    {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] != 'true'  and  data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  and  data['errortypeseven'] != 'true'  and  data['errortypeeight'] != 'true'  and  data['errortypenine'] != 'true'  and  data['errortypeten'] != 'true'  and  data['errortypeeleven'] != 'true'  and  data['errortypetwelve'] != 'true'  and  data['errortypethirteen'] != 'true'  and  data['errortypefourteen'] != 'true'  and  data['errortypefifteen'] == 'true'  %}selected{% endif %}
+            >Error 15 -&nbsp;&nbsp; Date entered is in the past - which is not allowed</option>
+        {% endif %}
 
 
     </select>
@@ -262,16 +335,16 @@ This will save you time.
 
 <!-- USER TYPE TOGGLE  -->
 <!--
-<form method="post"  action="#" class="for4" style=" float: left; position: relative; bottom:-300px;   ">
+<form method='post'  action='#' class='for4' style=' float: left; position: relative; bottom:-300px;   '>
 
-    <select style="height:30px;" onchange="window.location.href='?'+this.value">
+    <select style='height:30px;' onchange='window.location.href='?'+this.value'>
 
-        <option value="user=citizen&"
-                {% if  data['user'] != "agent"  %} selected {% endif %}
+        <option value='user=citizen&'
+                {% if  data['user'] != 'agent'  %} selected {% endif %}
         >User type - Individual</option>
 
-        <option value="user=agent&"
-                {% if  data['user'] == "agent"  %} selected {% endif %}
+        <option value='user=agent&'
+                {% if  data['user'] == 'agent'  %} selected {% endif %}
         >User type - Agent</option>
 
     </select>

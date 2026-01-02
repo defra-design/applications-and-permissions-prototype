@@ -1,6 +1,7 @@
-const {log} = require("govuk-prototype-kit/migrator/logger");
+const {log} = require('govuk-prototype-kit/migrator/logger');
 
-let section = "/templates/";
+let section = 'templates';
+let sectionURL = '/' + 'templates' + '/';
 
 module.exports = function (router)
 {
@@ -17,36 +18,53 @@ module.exports = function (router)
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////
 
+    // 1. Change PAGENAME_DATE
+    // 2. Change THE_NEXT_PAGE_NAME
 
-    router.post(section + 'PAGENAME_DATE-router', function (req, res)
+    // 3. OPTIONAL Change 'default_next_page' for any specific radio which changes the next page
+
+    router.post( sectionURL + 'PAGENAME_DATE-router/:pageName/:arrayOfErrorToggles', function (req, res)
     {
+        let default_next_page= 'THE_NEXT_PAGE_NAME';
+
+        let page_name_submitted = req.params.pageName;
+        let arrayOfRadioOptionsText = req.params.arrayOfErrorToggles.split(',');
+        let errorFutureDateNotAllowed = arrayOfRadioOptionsText[0];
+        let errorPastDateNotAllowed = arrayOfRadioOptionsText[1];
+        let errorAfterBusinessDateNotAllowed = arrayOfRadioOptionsText[2];
+        let errorBeforeBusinessDateNotAllowed = arrayOfRadioOptionsText[3];
+        let errorAfterUserEnteredDateNotAllowed = arrayOfRadioOptionsText[4];
+        let errorBeforeUserEnteredDateNotAllowed = arrayOfRadioOptionsText[5];
+
+
+
         ////////////////////////////////////////////////////////////////////////////////////
         ////////////////           Resetting all errors to off              ////////////////
         ////////////////////////////////////////////////////////////////////////////////////
 
         // set in page errors to off
-        req.session.data['errorthispage'] = "false";
-        req.session.data['errortypeone'] = "false";
-        req.session.data['errortypetwo'] = "false";
-        req.session.data['errortypethree'] = "false";
-        req.session.data['errortypefour'] = "false";
-        req.session.data['errortypefive'] = "false";
-        req.session.data['errortypesix'] = "false";
-        req.session.data['errortypeseven'] = "false";
-        req.session.data['errortypeeight'] = "false";
-        req.session.data['errortypenine'] = "false";
-        req.session.data['errortypeten'] = "false";
-        req.session.data['errortypeeleven'] = "false";
-        req.session.data['errortypetwelve'] = "false";
-        req.session.data['errortypethirteen'] = "false";
-        req.session.data['errortypefourteen'] = "false";
+        req.session.data['errorthispage'] = 'false';
+        req.session.data['errortypeone'] = 'false';
+        req.session.data['errortypetwo'] = 'false';
+        req.session.data['errortypethree'] = 'false';
+        req.session.data['errortypefour'] = 'false';
+        req.session.data['errortypefive'] = 'false';
+        req.session.data['errortypesix'] = 'false';
+        req.session.data['errortypeseven'] = 'false';
+        req.session.data['errortypeeight'] = 'false';
+        req.session.data['errortypenine'] = 'false';
+        req.session.data['errortypeten'] = 'false';
+        req.session.data['errortypeeleven'] = 'false';
+        req.session.data['errortypetwelve'] = 'false';
+        req.session.data['errortypethirteen'] = 'false';
+        req.session.data['errortypefourteen'] = 'false';
+        req.session.data['errortypefifteen'] = 'false';
+
 
         // set javascript field check error to off
         let dayEmpty = false;
         let monthEmpty = false;
         let yearEmpty = false;
-
-
 
 
         ////////////////////////////////////////////////////////////////////////////////////
@@ -111,20 +129,20 @@ module.exports = function (router)
         ////////////////////////////////////////////////////////////////////////////////////
 
         // Validation check if day field is blank
-        if ( req.session.data['SECTION-PAGENAME_DATE-date-input-day'] == undefined
-            || req.session.data['SECTION-PAGENAME_DATE-date-input-day'] == "" )
+        if (   req.session.data[ section + '-' + page_name_submitted + '-date-input-day' ] == undefined
+            || req.session.data[ section + '-' + page_name_submitted + '-date-input-day' ] == '' )
         {
             dayEmpty = true;
         }
         // Validation check if month field is blank
-        if ( req.session.data['SECTION-PAGENAME_DATE-date-input-month'] == undefined
-            || req.session.data['SECTION-PAGENAME_DATE-date-input-month'] == "" )
+        if (   req.session.data[ section + '-' + page_name_submitted + '-date-input-month' ] == undefined
+            || req.session.data[ section + '-' + page_name_submitted + '-date-input-month' ] == '' )
         {
             monthEmpty = true;
         }
         // Validation check if year field is blank
-        if ( req.session.data['SECTION-PAGENAME_DATE-date-input-year'] == undefined
-            || req.session.data['SECTION-PAGENAME_DATE-date-input-year'] == "" )
+        if (   req.session.data[ section + '-' + page_name_submitted + '-date-input-year' ] == undefined
+            || req.session.data[ section + '-' + page_name_submitted + '-date-input-year' ] == '' )
         {
             yearEmpty = true;
         }
@@ -133,23 +151,23 @@ module.exports = function (router)
         // Redirect to same page if errors
         if (dayEmpty && monthEmpty && yearEmpty)
         {
-            req.session.data['errorthispage'] = "true";
-            req.session.data['errortypeone'] = "true";
+            req.session.data['errorthispage'] = 'true';
+            req.session.data['errortypeone'] = 'true';
         }
         else if (dayEmpty)
         {
-            req.session.data['errorthispage'] = "true";
-            req.session.data['errortypetwo'] = "true";
+            req.session.data['errorthispage'] = 'true';
+            req.session.data['errortypetwo'] = 'true';
         }
         else if (monthEmpty)
         {
-            req.session.data['errorthispage'] = "true";
-            req.session.data['errortypethree'] = "true";
+            req.session.data['errorthispage'] = 'true';
+            req.session.data['errortypethree'] = 'true';
         }
         else if (yearEmpty)
         {
-            req.session.data['errorthispage'] = "true";
-            req.session.data['errortypefour'] = "true";
+            req.session.data['errorthispage'] = 'true';
+            req.session.data['errortypefour'] = 'true';
         }
 
 
@@ -165,23 +183,23 @@ module.exports = function (router)
         ////////////////////////////////////////////////////////////////////////////////////
 
         // Check for non numbers being entered
-        if (req.session.data['errorthispage'] != "true")
+        if (req.session.data['errorthispage'] != 'true')
         {
             // if no error have been found so far then check for non numbers
-            if ( isNaN(req.session.data['SECTION-PAGENAME_DATE-date-input-day'])  )
+            if ( isNaN(req.session.data[ section + '-' + page_name_submitted + '-date-input-day' ])  )
             {
                 // one or more fields isn't a number and isn't empty
-                req.session.data['errorthispage'] = "true";
-                req.session.data['errortypefive'] = "true";
+                req.session.data['errorthispage'] = 'true';
+                req.session.data['errortypefive'] = 'true';
             }
 
             // Check if date numbers are 0 or impossibly high.
-            else if (       req.session.data['SECTION-PAGENAME_DATE-date-input-day'] < 1  ||
-                       31 < req.session.data['SECTION-PAGENAME_DATE-date-input-day'] )
+            else if (       req.session.data[ section + '-' + page_name_submitted + '-date-input-day' ] < 1  ||
+                       31 < req.session.data[ section + '-' + page_name_submitted + '-date-input-day' ] )
             {
                 // one or more fields isn't a number and isn't empty
-                req.session.data['errorthispage'] = "true";
-                req.session.data['errortypefive'] = "true";
+                req.session.data['errorthispage'] = 'true';
+                req.session.data['errortypefive'] = 'true';
             }
         }
 
@@ -193,22 +211,23 @@ module.exports = function (router)
         ////////////////////////////////////////////////////////////////////////////////////
 
         // Check for non numbers being entered
-        if (req.session.data['errorthispage'] != "true")
+        if (req.session.data['errorthispage'] != 'true')
         {
             // if no error have been found so far then check for non numbers
-            if ( isNaN(req.session.data['SECTION-PAGENAME_DATE-date-input-month']) )
+            if ( isNaN(req.session.data[ section + '-' + page_name_submitted + '-date-input-month' ]) )
             {
                 // one or more fields isn't a number and isn't empty
-                req.session.data['errorthispage'] = "true";
-                req.session.data['errortypesix'] = "true";
+                req.session.data['errorthispage'] = 'true';
+                req.session.data['errortypesix'] = 'true';
             }
                 // Check if date numbers are 0 or impossibly high. e.g. 14th month
             // Check for non numbers being entered
-            else if ( req.session.data['SECTION-PAGENAME_DATE-date-input-month'] < 1  ||  12 < req.session.data['SECTION-PAGENAME_DATE-date-input-month'] )
+            else if (        req.session.data[ section + '-' + page_name_submitted + '-date-input-month' ] < 1  ||
+                        12 < req.session.data[ section + '-' + page_name_submitted + '-date-input-month' ] )
             {
                 // one or more fields isn't a number and isn't empty
-                req.session.data['errorthispage'] = "true";
-                req.session.data['errortypesix'] = "true";
+                req.session.data['errorthispage'] = 'true';
+                req.session.data['errortypesix'] = 'true';
             }
         }
 
@@ -218,14 +237,14 @@ module.exports = function (router)
         ////////////////////////////////////////////////////////////////////////////////////
 
         // Check for non numbers being entered
-        if (req.session.data['errorthispage'] != "true")
+        if (req.session.data['errorthispage' ] != 'true')
         {
             // if no error have been found so far then check for non numbers
-            if (  isNaN(req.session.data['SECTION-PAGENAME_DATE-date-input-year']) )
+            if (  isNaN(req.session.data[ section + '-' + page_name_submitted + '-date-input-year' ]) )
             {
                 // one or more fields isn't a number and isn't empty
-                req.session.data['errorthispage'] = "true";
-                req.session.data['errortypeseven'] = "true";
+                req.session.data['errorthispage'] = 'true';
+                req.session.data['errortypeseven'] = 'true';
             }
         }
 
@@ -237,12 +256,13 @@ module.exports = function (router)
         //////////////         Error 8 - Year must be a 4 digit number         /////////////
         ////////////////////////////////////////////////////////////////////////////////////
 
-        if (req.session.data['errorthispage'] != "true")
+        if (req.session.data['errorthispage'] != 'true')
         {
-            if (  req.session.data['SECTION-PAGENAME_DATE-date-input-year'] < 1000  ||  9999 < req.session.data['SECTION-PAGENAME_DATE-date-input-year']  )
+            if (       req.session.data[ section + '-' + page_name_submitted + '-date-input-year' ] < 1000  ||
+                9999 < req.session.data[ section + '-' + page_name_submitted + '-date-input-year' ]  )
             {
-                req.session.data['errorthispage'] = "true";
-                req.session.data['errortypeeight'] = "true";
+                req.session.data['errorthispage'] = 'true';
+                req.session.data['errortypeeight'] = 'true';
             }
         }
 
@@ -258,17 +278,22 @@ module.exports = function (router)
         ////////////////////////////////////////////////////////////////////////////////////
 
         // Check for non numbers being entered
-        if (req.session.data['errorthispage'] != "true")
+        if (req.session.data['errorthispage'] != 'true')
         {
-            var quanityofdaysinmonth =  new Date(req.session.data['SECTION-PAGENAME_DATE-date-input-year'], req.session.data['SECTION-PAGENAME_DATE-date-input-month'], 0).getDate();
+            var quanityofdaysinmonth =
+                new Date(
+                    req.session.data[ section + '-' + page_name_submitted + '-date-input-year' ],
+                    req.session.data[ section + '-' + page_name_submitted + '-date-input-month' ],
+                    0).
+                    getDate();
 
             // Check if date numbers are 0 or impossibly high. e.g. 14th month
             // Check for non numbers being entered
-            if ( quanityofdaysinmonth < req.session.data['SECTION-PAGENAME_DATE-date-input-day'] )
+            if ( quanityofdaysinmonth < req.session.data[ section + '-' + page_name_submitted + '-date-input-day' ] )
             {
                 // one or more fields isn't a number and isn't empty
-                req.session.data['errorthispage'] = "true";
-                req.session.data['errortypenine'] = "true";
+                req.session.data['errorthispage'] = 'true';
+                req.session.data['errortypenine'] = 'true';
             }
         }
 
@@ -284,22 +309,21 @@ module.exports = function (router)
         inputdate.setHours(0,0,0,0);
 
         // If the date has no errors then make a date object
-        if (req.session.data['errorthispage'] != "true")
+        if (req.session.data['errorthispage'] != 'true')
         {
             inputdate = new Date(
-                req.session.data['SECTION-PAGENAME_DATE-date-input-year'],
-                req.session.data['SECTION-PAGENAME_DATE-date-input-month'] - 1,
-                req.session.data['SECTION-PAGENAME_DATE-date-input-day']
+                req.session.data[ section + '-' + page_name_submitted + '-date-input-year' ],
+                req.session.data[ section + '-' + page_name_submitted + '-date-input-month' ] - 1,
+                req.session.data[ section + '-' + page_name_submitted + '-date-input-day' ]
             );
             inputdate.setHours(0,0,0,0);
 
             // Save user input date without zeros and month has taxt, e.g. March
-            req.session.data['SECTION-PAGENAME_DATE-date-input-day'] = inputdate.getDate();
-            req.session.data['SECTION-PAGENAME_DATE-date-input-month-number'] = inputdate.getMonth() + 1;
-            req.session.data['SECTION-PAGENAME_DATE-date-input-month-text'] = inputdate.toLocaleString('default', {month: 'long'});
-            req.session.data['SECTION-PAGENAME_DATE-date-input-year'] = inputdate.getFullYear();
+            req.session.data[ section + '-' + page_name_submitted + '-date-input-day' ] = inputdate.getDate();
+            req.session.data[ section + '-' + page_name_submitted + '-date-input-month-number' ] = inputdate.getMonth() + 1;
+            req.session.data[ section + '-' + page_name_submitted + '-date-input-month-text' ] = inputdate.toLocaleString('default', {month: 'long'});
+            req.session.data[ section + '-' + page_name_submitted + '-date-input-year' ] = inputdate.getFullYear();
         }
-
 
 
 
@@ -308,22 +332,27 @@ module.exports = function (router)
         /////////     Error 10  -  Date is BEFORE BUSINESS REQUIREMENT DATE        /////////
         ////////////////////////////////////////////////////////////////////////////////////
 
-        if (req.session.data['errorthispage'] != "true")
+        if (req.session.data['errorthispage'] != 'true')
         {
             // If a user hasn't needed to enter the other date then skip this check
-            if (req.session.data['PLACEHOLDER-OTHER-DATE-IN-USE'] == "Yes")
+            if (errorBeforeBusinessDateNotAllowed != 'false')
             {
-                let PLACEHOLDERdateOTHER = new Date(
-                    req.session.data['PLACEHOLDERdateOTHER-year'],
-                    req.session.data['PLACEHOLDERdateOTHER-month'] - 1,
-                    req.session.data['PLACEHOLDERdateOTHER-day']
-                );
-                PLACEHOLDERdateOTHER.setHours(0,0,0,0);
+                // Add the number of the day month and year for this business date
+                let DAY_of_business_date_before = 0;
+                let MONTH_of_business_date_before = 0;
+                let YEAR_of_business_date_before = 0;
 
-                if ( inputdate < PLACEHOLDERdateOTHER )
+                let businessDateBeforeLimitName = new Date(
+                    DAY_of_business_date_before,
+                    MONTH_of_business_date_before- 1,
+                    YEAR_of_business_date_before
+                );
+                businessDateBeforeLimitName.setHours(0,0,0,0);
+
+                if ( inputdate < businessDateBeforeLimitName )
                 {
-                    req.session.data['errorthispage'] = "true";
-                    req.session.data['errortypetwelve'] = "true";
+                    req.session.data['errorthispage'] = 'true';
+                    req.session.data['errortypeten'] = 'true';
                 }
             }
         }
@@ -334,22 +363,27 @@ module.exports = function (router)
         /////////     Error 11  -  Date is AFTER BUSINESS REQUIREMENT DATE        /////////
         ////////////////////////////////////////////////////////////////////////////////////
 
-        if (req.session.data['errorthispage'] != "true")
+        if (req.session.data['errorthispage'] != 'true')
         {
             // If a user hasn't needed to enter the other date then skip this check
-            if (req.session.data['PLACEHOLDER-OTHER-DATE-IN-USE'] == "Yes")
+            if (errorAfterBusinessDateNotAllowed != 'false')
             {
-                let PLACEHOLDERdateOTHER = new Date(
-                    req.session.data['PLACEHOLDERdateOTHER-year'],
-                    req.session.data['PLACEHOLDERdateOTHER-month'] - 1,
-                    req.session.data['PLACEHOLDERdateOTHER-day']
-                );
-                PLACEHOLDERdateOTHER.setHours(0,0,0,0);
+                // Add the number of the day month and year for this business date
+                let DAY_of_business_date_after = 0;
+                let MONTH_of_business_date_after = 0;
+                let YEAR_of_business_date_after = 0;
 
-                if ( PLACEHOLDERdateOTHER < inputdate )
+                let businessDateAfterLimitName = new Date(
+                    DAY_of_business_date_after,
+                    MONTH_of_business_date_after- 1,
+                    YEAR_of_business_date_after
+                );
+                businessDateAfterLimitName.setHours(0,0,0,0);
+
+                if ( businessDateAfterLimitName < inputdate )
                 {
-                    req.session.data['errorthispage'] = "true";
-                    req.session.data['errortypetwelve'] = "true";
+                    req.session.data['errorthispage'] = 'true';
+                    req.session.data['errortypeeleven'] = 'true';
                 }
             }
         }
@@ -357,25 +391,30 @@ module.exports = function (router)
 
 
         ////////////////////////////////////////////////////////////////////////////////////
-        ///////   Error 12  -  Date is BEFORE or equal to other user entered date   ////////
+        ///////    Error 12  -  Date is BEFORE or same as other user entered date   ////////
         ////////////////////////////////////////////////////////////////////////////////////
 
-        if (req.session.data['errorthispage'] != "true")
+        if (req.session.data['errorthispage'] != 'true')
         {
             // If a user hasn't needed to enter the other date then skip this check
-            if (req.session.data['PLACEHOLDER-OTHER-DATE-IN-USE'] == "Yes")
+            if (errorBeforeUserEnteredDateNotAllowed != 'false')
             {
-                let inputPLACEHOLDERdateOTHER = new Date(
-                    req.session.data['PLACEHOLDERdateOTHER-year'],
-                    req.session.data['PLACEHOLDERdateOTHER-month'] - 1,
-                    req.session.data['PLACEHOLDERdateOTHER-day']
-                );
-                inputPLACEHOLDERdateOTHER.setHours(0,0,0,0);
+                // Rename this to match the session data of the other date inputted by the user
+                // DON'T include '-year', '-month' or '-month'
+                let userDateSessionDateDataNameBefore = 'PLACEHOLDERdateOTHER';
 
-                if ( inputdate <= inputPLACEHOLDERdateOTHER )
+                let inputUserDateBeforeLimit = new Date(
+                    req.session.data[ userDateSessionDateDataNameBefore + '-year' ],
+                    req.session.data[ userDateSessionDateDataNameBefore + '-month' ] - 1,
+                    req.session.data[ userDateSessionDateDataNameBefore + '-day' ]
+                );
+
+                inputUserDateBeforeLimit.setHours(0,0,0,0);
+
+                if ( inputdate <= inputUserDateBeforeLimit )
                 {
-                    req.session.data['errorthispage'] = "true";
-                    req.session.data['errortypetwelve'] = "true";
+                    req.session.data['errorthispage'] = 'true';
+                    req.session.data['errortypetwelve'] = 'true';
                 }
             }
         }
@@ -385,25 +424,68 @@ module.exports = function (router)
         ////////   Error 13  -  Date is AFTER or equal to other user entered date   ////////
         ////////////////////////////////////////////////////////////////////////////////////
 
-        if (req.session.data['errorthispage'] != "true")
+        if (req.session.data['errorthispage'] != 'true')
         {
             // If a user hasn't needed to enter the other date then skip this check
-            if (req.session.data['PLACEHOLDER-OTHER-DATE-IN-USE'] == "Yes")
+            if (errorAfterUserEnteredDateNotAllowed != 'false')
             {
-                let inputPLACEHOLDERdateOTHER = new Date(
-                    req.session.data['PLACEHOLDERdateOTHER-year'],
-                    req.session.data['PLACEHOLDERdateOTHER-month'] - 1,
-                    req.session.data['PLACEHOLDERdateOTHER-day']
-                );
-                inputPLACEHOLDERdateOTHER.setHours(0,0,0,0);
+                // Rename this to match the session data of the other date inputted by the user
+                // DON'T include '-year', '-month' or '-month'
+                let userDateSessionDateDataNameAfter = 'PLACEHOLDERdateOTHER';
 
-                if ( inputPLACEHOLDERdateOTHER <= inputdate )
+                let inputUserDateAfterLimit = new Date(
+                    req.session.data[ userDateSessionDateDataNameAfter + '-year' ],
+                    req.session.data[ userDateSessionDateDataNameAfter + '-month' ] - 1,
+                    req.session.data[ userDateSessionDateDataNameAfter + '-day' ]
+                );
+
+                inputUserDateAfterLimit.setHours(0,0,0,0);
+
+                if ( inputUserDateAfterLimit <= inputdate )
                 {
-                    req.session.data['errorthispage'] = "true";
-                    req.session.data['errortypetwelve'] = "true";
+                    req.session.data['errorthispage'] = 'true';
+                    req.session.data['errortypethirteen'] = 'true';
                 }
             }
         }
+
+
+        ////////////////////////////////////////////////////////////////////////////////////
+        ///////     Error 14  -  Date is in the FUTURE - Check if that is allowed    ///////
+        ////////////////////////////////////////////////////////////////////////////////////
+
+        if (req.session.data['errorthispage'] != 'true')
+        {
+            // If a user hasn't needed to enter the other date then skip this check
+            if (errorFutureDateNotAllowed != 'false')
+            {
+                if ( today <  inputdate )
+                {
+                    req.session.data['errorthispage'] = 'true';
+                    req.session.data['errortypefourteen'] = 'true';
+                }
+            }
+        }
+
+
+
+        ////////////////////////////////////////////////////////////////////////////////////
+        /////////    Error 15  -  Date is in the PAST - Check if that is allowed   /////////
+        ////////////////////////////////////////////////////////////////////////////////////
+
+        if (req.session.data['errorthispage'] != 'true')
+        {
+            // If a user hasn't needed to enter the other date then skip this check
+            if (errorPastDateNotAllowed != 'false')
+            {
+                if ( inputdate < today )
+                {
+                    req.session.data['errorthispage'] = 'true';
+                    req.session.data['errortypefifteen'] = 'true';
+                }
+            }
+        }
+
 
 
 
@@ -415,20 +497,19 @@ module.exports = function (router)
         if ( req.session.data['errorthispage'] == 'true' )
         {
             // Redirect to same page with errors
-            res.redirect('PAGENAME_DATE')
+            res.redirect( '../../' + page_name_submitted )
         }
         else if ( req.session.data['camefromcheckanswers'] == 'true' )
         {
             req.session.data['camefromcheckanswers'] = false;
-            res.redirect( 'check-answers' );
+            res.redirect( '../../' +  'check-answers' );
         }
         else
         {
             // No errors
             // redirect to the next page
 
-            // For PLACEHOLDER template only. This should go to the next page.
-            res.redirect('THE_NEXT_PAGE_NAME')
+            res.redirect( '../../' + default_next_page );
         }
 
 
