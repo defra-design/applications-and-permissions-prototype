@@ -21,8 +21,6 @@ module.exports = function (router)
     // 1. Change PAGENAME_DATE
     // 2. Change THE_NEXT_PAGE_NAME
 
-    // 3. OPTIONAL Change 'default_next_page' for any specific radio which changes the next page
-
     router.post( sectionURL + 'PAGENAME_DATE-router/:pageName/:arrayOfErrorToggles', function (req, res)
     {
         let default_next_page= 'THE_NEXT_PAGE_NAME';
