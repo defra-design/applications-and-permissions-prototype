@@ -1,5 +1,3 @@
-const {log} = require("govuk-prototype-kit/migrator/logger");
-
 let section = 'templates';
 let sectionURL = '/' + 'templates' + '/';
 
@@ -225,8 +223,8 @@ module.exports = function (router)
         else
         {
             // Trigger validation and reload the page
-            req.session.data['errorthispage'] = "true";
-            req.session.data['errortypeone'] = "true";
+            req.session.data['errorthispage'] = 'true';
+            req.session.data['errortypeone'] = 'true';
 
             // This page name needs to match the page the user was just on
             res.redirect('../../' + page_name_submitted );

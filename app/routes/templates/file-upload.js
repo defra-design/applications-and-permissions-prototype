@@ -1,5 +1,3 @@
-const {log} = require('govuk-prototype-kit/migrator/logger');
-
 let section = 'templates';
 let sectionURL = '/' + 'templates' + '/';
 
@@ -25,16 +23,16 @@ module.exports = function (router)
         let page_name_submitted = req.params.pageName;
 
         // Turn errors off by default
-        req.session.data['errorthispage'] = "false";
-        req.session.data['errortypeone'] = "false";
+        req.session.data['errorthispage'] = 'false';
+        req.session.data['errortypeone'] = 'false';
 
         // If file was not selected, reload page with error
         if (req.session.data[ section + '-' + page_name_submitted + '-file-upload'] == undefined ||
-            req.session.data[ section + '-' + page_name_submitted + '-file-upload'] == "")
+            req.session.data[ section + '-' + page_name_submitted + '-file-upload'] == '')
         {
             // Trigger validation
-            req.session.data['errorthispage'] = "true";
-            req.session.data['errortypeone'] = "true";
+            req.session.data['errorthispage'] = 'true';
+            req.session.data['errortypeone'] = 'true';
 
             // Reload the page
             // This page name needs to match the page the user was just on

@@ -1,5 +1,3 @@
-const {log} = require('govuk-prototype-kit/migrator/logger');
-
 let section = 'templates';
 let sectionURL = '/' + 'templates' + '/';
 

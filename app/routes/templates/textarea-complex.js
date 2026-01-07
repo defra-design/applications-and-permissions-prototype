@@ -1,5 +1,3 @@
-const {log} = require("govuk-prototype-kit/migrator/logger");
-
 let section = 'templates';
 let sectionURL = '/' + 'templates' + '/';
 
@@ -46,19 +44,19 @@ module.exports = function (router)
         }
 
 
-        req.session.data['errorthispage'] = "false";
-        req.session.data['errortypeone'] = "false";
-        req.session.data['errortypetwo'] = "false";
-        req.session.data['errortypethree'] = "false";
-        req.session.data['errortypefour'] = "false";
+        req.session.data['errorthispage'] = 'false';
+        req.session.data['errortypeone'] = 'false';
+        req.session.data['errortypetwo'] = 'false';
+        req.session.data['errortypethree'] = 'false';
+        req.session.data['errortypefour'] = 'false';
 
         // Validation check if field is blank
         if (req.session.data[ section + '-' + page_name_submitted + '-text-area-input' ] == undefined ||
-            req.session.data[ section + '-' + page_name_submitted + '-text-area-input' ] == "")
+            req.session.data[ section + '-' + page_name_submitted + '-text-area-input' ] == '')
         {
             // Trigger validation and relaunch the page
-            req.session.data['errorthispage'] = "true";
-            req.session.data['errortypeone'] = "true";
+            req.session.data['errorthispage'] = 'true';
+            req.session.data['errortypeone'] = 'true';
 
             // This page name needs to match the page the user was just on
             res.redirect( '../../../' + page_name_submitted );
@@ -69,8 +67,8 @@ module.exports = function (router)
                   highest_number_submitted_float < req.session.data[ section + '-' + page_name_submitted + '-text-area-input' ].length )
         {
             // Trigger validation and relaunch the page for over 15 characters
-            req.session.data['errorthispage'] = "true";
-            req.session.data['errortypetwo'] = "true";
+            req.session.data['errorthispage'] = 'true';
+            req.session.data['errortypetwo'] = 'true';
 
             // This page name needs to match the page the user was just on
             res.redirect( '../../../' + page_name_submitted );
@@ -81,8 +79,8 @@ module.exports = function (router)
                   req.session.data[ section + '-' + page_name_submitted + '-text-area-input' ].length < lowest_number_submitted_float )
         {
             // Trigger validation and relaunch the page for under 5 characters
-            req.session.data['errorthispage'] = "true";
-            req.session.data['errortypethree'] = "true";
+            req.session.data['errorthispage'] = 'true';
+            req.session.data['errortypethree'] = 'true';
 
             // This page name needs to match the page the user was just on
             res.redirect( '../../../' + page_name_submitted );
@@ -94,7 +92,7 @@ module.exports = function (router)
             const acceptableCharacters =  " abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ&:’\,.()-\n\r\n";
             let inputtext = req.session.data[ section + '-' + page_name_submitted + '-text-area-input' ];
 
-            let dissallowedCharacters = "";
+            let dissallowedCharacters = '';
 
             // go through every character in the input and save  illegals ones
             for (var i = 0; i < inputtext.length; i++)
@@ -121,8 +119,8 @@ module.exports = function (router)
                 req.session.data['dissallowedcharacters'] = dissallowedCharacters;
 
                 // Trigger validation and relaunch the page for invalid characters
-                req.session.data['errorthispage'] = "true";
-                req.session.data['errortypefour'] = "true";
+                req.session.data['errorthispage'] = 'true';
+                req.session.data['errortypefour'] = 'true';
 
                 // This page name needs to match the page the user was just on
                 res.redirect( '../../../' + page_name_submitted );

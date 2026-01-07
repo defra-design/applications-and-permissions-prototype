@@ -1,5 +1,3 @@
-const {log} = require('govuk-prototype-kit/migrator/logger');
-
 let section = 'templates';
 let sectionURL = '/' + 'templates' + '/';
 
@@ -25,20 +23,20 @@ module.exports = function (router)
     {
         let page_name_submitted = req.params.pageName;
 
-        req.session.data['errorthispage'] = "false";
-        req.session.data['errortypeone'] = "false";
-        req.session.data['errortypetwo'] = "false";
-        req.session.data['errortypethree'] = "false";
-        req.session.data['errortypefour'] = "false";
+        req.session.data['errorthispage'] = 'false';
+        req.session.data['errortypeone'] = 'false';
+        req.session.data['errortypetwo'] = 'false';
+        req.session.data['errortypethree'] = 'false';
+        req.session.data['errortypefour'] = 'false';
 
 
         // Validation check if line 1 field is blank
         if (req.session.data[ section + '-' + page_name_submitted + '-address-line-1'] == undefined ||
-            req.session.data[ section + '-' + page_name_submitted + '-address-line-1'] == "")
+            req.session.data[ section + '-' + page_name_submitted + '-address-line-1'] == '')
         {
             // Trigger validation and relaunch the page
-            req.session.data['errorthispage'] = "true";
-            req.session.data['errortypeone'] = "true";
+            req.session.data['errorthispage'] = 'true';
+            req.session.data['errortypeone'] = 'true';
 
             // This page name needs to match the page the user was just on
             res.redirect( '../' + page_name_submitted );
@@ -46,11 +44,11 @@ module.exports = function (router)
 
         // Validation check if town field is blank
         else if (req.session.data[ section + '-' + page_name_submitted + '-address-town'] == undefined ||
-                 req.session.data[ section + '-' + page_name_submitted + '-address-town'] == "")
+                 req.session.data[ section + '-' + page_name_submitted + '-address-town'] == '')
         {
             // Trigger validation and relaunch the page
-            req.session.data['errorthispage'] = "true";
-            req.session.data['errortypetwo'] = "true";
+            req.session.data['errorthispage'] = 'true';
+            req.session.data['errortypetwo'] = 'true';
 
             // This page name needs to match the page the user was just on
             res.redirect( '../' + page_name_submitted );
@@ -58,11 +56,11 @@ module.exports = function (router)
 
         // Validation check if postcode field is blank
         else if (req.session.data[ section + '-' + page_name_submitted + '-address-postcode'] == undefined ||
-                 req.session.data[ section + '-' + page_name_submitted + '-address-postcode'] == "")
+                 req.session.data[ section + '-' + page_name_submitted + '-address-postcode'] == '')
         {
             // Trigger validation and relaunch the page
-            req.session.data['errorthispage'] = "true";
-            req.session.data['errortypethree'] = "true";
+            req.session.data['errorthispage'] = 'true';
+            req.session.data['errortypethree'] = 'true';
 
             // This page name needs to match the page the user was just on
             res.redirect( '../' + page_name_submitted );
@@ -77,8 +75,8 @@ module.exports = function (router)
             if (result == false)
             {
                 // Trigger validation and relaunch the page
-                req.session.data['errorthispage'] = "true";
-                req.session.data['errortypefour'] = "true";
+                req.session.data['errorthispage'] = 'true';
+                req.session.data['errortypefour'] = 'true';
 
                 // This page name needs to match the page the user was just on
                 res.redirect( '../' + page_name_submitted );
