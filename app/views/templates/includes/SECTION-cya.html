@@ -1,0 +1,212 @@
+<!-- Turn on or off the change links -->
+{% set CHANGE %}false{% endset %}
+
+<!-- Set the section name -->
+{% set SECTION %}templates{% endset %}
+
+
+<dl class='govuk-summary-list'>
+
+    <div class='govuk-summary-list__row'>
+        <dt class='govuk-summary-list__key'>
+            Did_you_PLACEHOLDER
+        </dt>
+        <dd class='govuk-summary-list__value'>
+            {{ data[ 'DATA_OF_SECTION_PAGENAME_INPUT_TYPE' ] }}
+        </dd>
+
+        {%  if  CHANGE == 'true'  %}
+            <dd class='govuk-summary-list__actions'>
+                <a
+                    href='../{{SECTION}}/PAGENAME'
+                    class='govuk-link'
+                    >Change
+                    <span class='govuk-visually-hidden'>Did_you_PLACEHOLDER</span>
+                </a>
+            </dd>
+        {%  endif  %}
+    </div>
+
+
+    <!-- Show this question ONLY IF a user has entered or selected the specific answer  -->
+    {%  if  data[ 'DATA_OF_SECTION_PAGENAME_INPUT_TYPE' ] == 'PLACEHOLDER_ANSWER'  %}
+
+        <div class='govuk-summary-list__row'>
+            <dt class='govuk-summary-list__key'>
+                Did_you_PLACEHOLDER
+            </dt>
+            <dd class='govuk-summary-list__value'>
+                {{ data[ 'DATA_OF_SECTION_PAGENAME_INPUT_TYPE' ] }}
+            </dd>
+            {%  if  CHANGE == 'true'  %}
+                <dd class='govuk-summary-list__actions'>
+                    <a
+                        href='../{{SECTION}}/PAGENAME'
+                        class='govuk-link'
+                        >Change
+                        <span class='govuk-visually-hidden'>Did_you_PLACEHOLDER</span>
+                    </a>
+                </dd>
+            {%  endif  %}
+        </div>
+
+    {%  endif  %}
+
+
+
+    <!-- Show this question ONLY IF a user has selected a specific checkbox on a previous page  -->
+    {%  if (data[SECTION + '-' + PAGENAME_CHECKBOXES + '-checkboxes-formatted'] or []).
+            indexOf(PLACEHOLDER_CHECKBOXES_TEXT) > -1  %}
+
+        <div class='govuk-summary-list__row'>
+            <dt class='govuk-summary-list__key'>
+                Did_you_PLACEHOLDER
+            </dt>
+            <dd class='govuk-summary-list__value'>
+                {{ data[ 'DATA_OF_SECTION_PAGENAME_INPUT_TYPE' ] }}
+            </dd>
+            {%  if  CHANGE == 'true'  %}
+                <dd class='govuk-summary-list__actions'>
+                    <a
+                        href='../{{SECTION}}/PAGENAME'
+                        class='govuk-link'
+                        >Change
+                        <span class='govuk-visually-hidden'>Did_you_PLACEHOLDER</span>
+                    </a>
+                </dd>
+            {%  endif  %}
+        </div>
+
+    {%  endif  %}
+
+
+
+    <!-- Displaying checkboxes selected -->
+    <div class='govuk-summary-list__row'>
+        <dt class='govuk-summary-list__key'>
+            Which_checkboxes_PLACEHOLDER
+        </dt>
+        <dd class="govuk-summary-list__value" style="white-space: pre-wrap;">{{ data[ 'DATA_OF_SECTION_CHECHBOX_PAGENAME-checkboxes-formatted' ] }}</dd>
+        {%  if  CHANGE == 'true'  %}
+            <dd class='govuk-summary-list__actions'>
+                <a
+                    href='../{{SECTION}}/PAGENAME'
+                    class='govuk-link'
+                    >Change
+                    <span class='govuk-visually-hidden'>Which_checkboxes_PLACEHOLDER</span>
+                </a>
+            </dd>
+        {%  endif  %}
+    </div>
+
+
+
+    <!-- Manual address playback  -->
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+            What_address_PLACEHOLDER
+        </dt>
+        <dd class="govuk-summary-list__value">
+            {{ data[ 'DATA_OF_SECTION_PAGENAME-address-line-1' ] }}<br>
+            {{ data[ 'DATA_OF_SECTION_PAGENAME-address-line-2' ] }}<br>
+            {{ data[ 'DATA_OF_SECTION_PAGENAME-address-town' ] }}<br>
+            {{ data[ 'DATA_OF_SECTION_PAGENAME-address-county' ] }}<br>
+            {{ data[ 'DATA_OF_SECTION_PAGENAME-address-postcode' ] }}
+        </dd>
+        {%  if  CHANGE == 'true'  %}
+            <dd class='govuk-summary-list__actions'>
+                <a
+                    href='../{{SECTION}}/PAGENAME'
+                    class='govuk-link'
+                    >Change
+                    <span class='govuk-visually-hidden'>What_address_PLACEHOLDER</span>
+                </a>
+            </dd>
+        {%  endif  %}
+    </div>
+
+
+    <div class='govuk-summary-list__row'>
+        <dt class='govuk-summary-list__key'>
+            Did_you_PLACEHOLDER
+        </dt>
+        <dd class='govuk-summary-list__value'>
+            {{ data[ 'DATA_OF_SECTION_PAGENAME_INPUT_TYPE' ] }}
+        </dd>
+        {%  if  CHANGE == 'true'  %}
+            <dd class='govuk-summary-list__actions'>
+                <a
+                    href='../{{SECTION}}/PAGENAME'
+                    class='govuk-link'
+                    >Change
+                    <span class='govuk-visually-hidden'>Did_you_PLACEHOLDER</span>
+                </a>
+            </dd>
+        {%  endif  %}
+    </div>
+
+
+
+    <div class='govuk-summary-list__row'>
+        <dt class='govuk-summary-list__key'>
+            Did_you_PLACEHOLDER
+        </dt>
+        <dd class='govuk-summary-list__value'>
+            {{ data[ 'DATA_OF_SECTION_PAGENAME_INPUT_TYPE' ] }}
+        </dd>
+        {%  if  CHANGE == 'true'  %}
+            <dd class='govuk-summary-list__actions'>
+                <a
+                    href='../{{SECTION}}/PAGENAME'
+                    class='govuk-link'
+                    >Change
+                    <span class='govuk-visually-hidden'>Did_you_PLACEHOLDER</span>
+                </a>
+            </dd>
+        {%  endif  %}
+    </div>
+
+
+
+    <div class='govuk-summary-list__row'>
+        <dt class='govuk-summary-list__key'>
+            Did_you_PLACEHOLDER
+        </dt>
+        <dd class='govuk-summary-list__value'>
+            {{ data[ 'DATA_OF_SECTION_PAGENAME_INPUT_TYPE' ] }}
+        </dd>
+        {%  if  CHANGE == 'true'  %}
+            <dd class='govuk-summary-list__actions'>
+                <a
+                    href='../{{SECTION}}/PAGENAME'
+                    class='govuk-link'
+                    >Change
+                    <span class='govuk-visually-hidden'>Did_you_PLACEHOLDER</span>
+                </a>
+            </dd>
+        {%  endif  %}
+    </div>
+
+
+
+    <div class='govuk-summary-list__row'>
+        <dt class='govuk-summary-list__key'>
+            Did_you_PLACEHOLDER
+        </dt>
+        <dd class='govuk-summary-list__value'>
+            {{ data[ 'DATA_OF_SECTION_PAGENAME_INPUT_TYPE' ] }}
+        </dd>
+        {%  if  CHANGE == 'true'  %}
+        <dd class='govuk-summary-list__actions'>
+            <a
+                    href='../{{SECTION}}/PAGENAME'
+                    class='govuk-link'
+            >Change
+                <span class='govuk-visually-hidden'>Did_you_PLACEHOLDER</span>
+            </a>
+        </dd>
+        {%  endif  %}
+    </div>
+
+
+</dl>
