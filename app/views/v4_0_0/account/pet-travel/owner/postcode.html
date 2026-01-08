@@ -1,0 +1,104 @@
+{% extends "layouts/pet-travel.html" %}
+
+
+{% block pageTitle %} What is your postcode – {{ serviceName }} – GOV.UK {% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {% if data['error'] == 'p3notselected' %}
+    <div class="govuk-error-summary" data-module="govuk-error-summary">
+      <div role="alert">
+        <h2 class="govuk-error-summary__title">
+          There is a problem
+        </h2>
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            <li>
+              <a href="#">Enter your postcode</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+    {% if data['error'] == 'p17notselected' %}
+    <div class="govuk-error-summary" data-module="govuk-error-summary">
+      <div role="alert">
+        <h2 class="govuk-error-summary__title">
+          There is a problem
+        </h2>
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            <li>
+              <a href="#">Enter a full postcode in the correct format, for example XXX XXX or XXXXXX</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+  {# {% if data['returnPage'] === 'address' %}
+    <form
+      action="address"
+      method="POST"
+    >
+    {% else %} #}
+    <form class="form" action="address" method="post">
+    {# {% endif %} #}
+      <div class="govuk-form-group {% if data['error'] == 'p3notselected' %}govuk-form-group--error{% endif %} {% if data['error'] == 'p17notselected' %}govuk-form-group--error{% endif %}">
+
+        <h1 id="documents" class="govuk-label-wrapper">
+          <label class="govuk-label govuk-label--xl" for="postcode">
+            What is your postcode?
+          </label>
+        </h1>
+
+        <div id="postcode-hint" class="govuk-hint">
+          Enter a valid address in England, Scotland or wales. If you cannot find your address you can add it manually below.
+        </div>
+
+        <div class="govuk-form-group">
+
+          {% if data['error'] == 'p3notselected' %}
+          <p id="whereDoYouLive-error" class="govuk-error-message">
+            <span class="govuk-visually-hidden">Error:</span> Enter your postcode
+          </p>
+          {% endif %}
+
+          {% if data['error'] == 'p17notselected' %}
+          <p id="whereDoYouLive-error" class="govuk-error-message">
+            <span class="govuk-visually-hidden">Error:</span> Enter a full postcode in the correct format, for example XXX XXX or XXXXXX
+          </p>
+          {% endif %}
+
+          <input
+            class="govuk-input govuk-input govuk-input--width-10"
+            id="postcode"
+            name="postcode"
+            type="text"
+            aria-describedby="postcode-hint"
+          />
+        </div>
+
+
+      </div>
+        <div class="govuk-form-group">
+          {{ govukButton({ text: "Find address" }) }}
+          <p class="govuk-body">
+            <a class="govuk-link"
+              href="/v23/create/owner/address-manual"
+              >Enter the address manually</a
+            >
+          </p>
+        </div>
+    
+
+   
+  </div>
+</form>
+</div>
+{% endblock %}

@@ -1,0 +1,169 @@
+{% extends "layouts/v4_0_0" %}
+
+
+
+<!-- Setting the big main heading at the top of the page -->
+{% set pageHeadingTextHTML %}
+    Which border movements are allowed?
+{% endset %}
+
+
+<!-- Set the text for the error type -->
+{% set errorTextHTML %}
+    <!-- Nothing was selected -->
+    {%  if  data['errortypeone'] == "true"  %}
+         Select which border movements are allowed for this disease
+    {% endif %}
+{% endset %}
+
+
+<!-- Text that show in the browser tab. Does NOT need changing -->
+{% block pageTitle %}
+    {% if  data['errorthispage'] == "true"  %}
+        Error:
+    {% endif %}
+
+    {{ pageHeadingTextHTML }}
+{% endblock %}
+
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+        <!-- ERROR LOGIC 'error summary' -->
+        {% if data['errorthispage'] == "true" %}
+            {{ govukErrorSummary
+                ({
+                    titleText: "There is a problem",
+                    errorList:
+                    [
+                        {
+                            html: errorTextHTML,
+                            href: "#disease-configurator-devolved-administrations-list-checkboxes"
+                        }
+                    ]
+                })
+            }}
+        {% endif %}
+        <!--  END OF 'error summary' -->
+
+
+        <!-- form URL below turns off errors on the next page  -->
+        <form action="devolved-administrations-list-router" method="post" novalidate>
+
+            {{ govukCheckboxes
+                ({
+                    name: "disease-configurator-devolved-administrations-list-checkboxes",
+
+                    id: "disease-configurator-devolved-administrations-list-checkboxes",
+
+                    fieldset:
+                    {
+                        legend:
+                        {
+                            text: pageHeadingTextHTML,
+                            isPageHeading: true,
+                            classes: "govuk-fieldset__legend--l"
+                        }
+                    },
+
+                    hint:
+                    {
+                        text: "Select all that apply"
+                    },
+
+                    errorMessage: null if data['errorthispage'] != "true"
+                                       else { html: errorTextHTML },
+
+                    items:
+                    [
+                        {
+                            value: "England to England",
+                            text: "England to England",
+                            checked: (data['disease-configurator-devolved-administrations-list-checkboxes'] or []).indexOf('England to England') > -1
+                        },
+                        {
+                            value: "England to Wales",
+                            text: "England to Wales",
+                            checked: (data['disease-configurator-devolved-administrations-list-checkboxes'] or []).indexOf('England to Wales') > -1
+                        },
+                        {
+                            value: "England to Scotland",
+                            text: "England to Scotland",
+                            checked: (data['disease-configurator-devolved-administrations-list-checkboxes'] or []).indexOf('England to Scotland') > -1
+                        },
+
+                        {
+                            value: "Scotland to Scotland",
+                            text: "Scotland to Scotland",
+                            checked: (data['disease-configurator-devolved-administrations-list-checkboxes'] or []).indexOf('Scotland to Scotland') > -1
+                        },
+                        {
+                            value: "Scotland to England",
+                            text: "Scotland to England",
+                            checked: (data['disease-configurator-devolved-administrations-list-checkboxes'] or []).indexOf('Scotland to England') > -1
+                        },
+                        {
+                            value: "Scotland to Wales",
+                            text: "Scotland to Wales",
+                            checked: (data['disease-configurator-devolved-administrations-list-checkboxes'] or []).indexOf('Scotland to Wales') > -1
+                        },
+
+                        {
+                            value: "Wales to Wales",
+                            text: "Wales to Wales",
+                            checked: (data['disease-configurator-devolved-administrations-list-checkboxes'] or []).indexOf('Wales to Wales') > -1
+                        },
+                        {
+                            value: "Wales to England",
+                            text: "Wales to England",
+                            checked: (data['disease-configurator-devolved-administrations-list-checkboxes'] or []).indexOf('Wales to England') > -1
+                        },
+                        {
+                            value: "Wales to Scotland",
+                            text: "Wales to Scotland",
+                            checked: (data['disease-configurator-devolved-administrations-list-checkboxes'] or []).indexOf('Wales to Scotland') > -1
+                        }
+
+                    ]
+                })
+            }}
+
+
+            {{ govukButton({ text: "Continue" }) }}
+
+        </form>
+
+    </div>
+</div>
+
+
+
+
+<!-- ERROR LOGIC  drop down to toggle states  -->
+<form method="post"  action="#" class="for4" style=" float: left; position: relative; bottom:-225px;  ">
+
+    <select style="height:30px;" onchange="window.location.href='?'+this.value">
+
+        <option value="errorthispage=false&errortypeone=false&errortypetwo=false&"
+                {% if (data['errorthispage'] != "true") %}selected{% endif %}
+        >Errors - Off</option>
+
+        <!-- Nothing was selected -->
+        <option value="errorthispage=true&errortypeone=true&errortypetwo=false&"
+                {% if (data['errortypeone'] == 'true' and data['errortypetwo'] != 'true')  %}selected{% endif %}
+        >Error 1 - Must select at least one</option>
+
+    </select>
+
+</form>
+<!--  END OF ERROR LOGIC -->
+
+
+
+{% endblock %}
+
+
+

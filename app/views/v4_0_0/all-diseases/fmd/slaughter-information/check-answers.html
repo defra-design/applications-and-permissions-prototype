@@ -1,0 +1,141 @@
+{% extends "layouts/v4_0_0" %}
+
+{% set version = "v4_0_0" %}
+{% set bodyClasses = version %}
+
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-l">Check your answers before you continue your application</h1>
+
+        <dl class="govuk-summary-list">
+
+            <dl class="govuk-summary-list">
+
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                        Will the slaughter be done by a Slaughterman or Knackerman?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{ data['slaughter-information-slaughterman-or-knackerman-radios'] }}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="slaughterman-or-knackerman">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                </div>
+
+
+                {%  if  data['slaughter-information-slaughterman-or-knackerman-radios']  == "Slaughterman"  %}
+
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                            What is the name of the Slaughterman?
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                            {{ data['slaughter-information-name-first-name-text-input'] }}
+                        </dd>
+                        <dd class="govuk-summary-list__actions">
+                            <a class="govuk-link" href="name">Change<span class="govuk-visually-hidden"> </span></a>
+                        </dd>
+                    </div>
+
+                {%  else  %}
+
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                            What is the business name of the Knackerman?
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                            {{ data['slaughter-information-knackerman-business-name-text-input'] }}
+                        </dd>
+                        <dd class="govuk-summary-list__actions">
+                            <a class="govuk-link" href="knackerman-business-name">Change<span class="govuk-visually-hidden"> </span></a>
+                        </dd>
+                    </div>
+
+                {%  endif  %}
+
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                        What is the {{ data['slaughter-information-slaughterman-or-knackerman-radios'] }}'s WATOK (Welfare of Animals at the Time of Killing) licence number?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{ data['slaughter-information-watok-licence-number-text-input'] }}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="watok-licence-number">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                </div>
+
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                        What is the contact phone number for the {{ data['slaughter-information-slaughterman-or-knackerman-radios'] }}?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{ data['slaughter-information-contact-number-text-input'] }}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="contact-number">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                </div>
+
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                        What is the {{ data['slaughter-information-slaughterman-or-knackerman-radios'] }}'s vehicle number plate?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{ data['slaughter-information-vehicle-number-plate-text-input'] }}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="vehicle-number-plate">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                </div>
+
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                        What date do you expect the slaughter to take place?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{  data['movement-details-date-of-slaughter-input-day']  }}
+                        {{  data['movement-details-date-of-slaughter-input-month-text']  }}
+                        {{  data['movement-details-date-of-slaughter-input-year']  }}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="date-of-slaughter">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                </div>
+
+
+
+            </dl>
+
+        </dl>
+
+
+
+        <form action="../task-list?section-fmd-slaughter-information-complete=true&" method="post" novalidate>
+
+            <button type="submit" class="govuk-button" data-module="govuk-button">
+                Continue
+            </button>
+
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}
+
+
+
+
+

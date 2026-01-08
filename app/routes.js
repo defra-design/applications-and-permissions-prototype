@@ -31,6 +31,7 @@ require('./routes/v3_0_0/version.js');
 require('./routes/v3_0_1/version.js');
 require('./routes/v3_0_2/version.js');
 require('./routes/v3_0_3/version.js');
+require('./routes/v4_0_0/version.js');
 require('./routes/latest/version.js');
 
 

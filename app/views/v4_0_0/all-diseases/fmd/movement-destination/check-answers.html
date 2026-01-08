@@ -1,0 +1,400 @@
+{% extends "layouts/v4_0_0" %}
+
+{% set version = "v4_0_0" %}
+{% set bodyClasses = version %}
+
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-l">Check your answers before you continue your application</h1>
+
+        <dl class="govuk-summary-list">
+
+            {%  if data['about-the-movement-or-activity-what-is-moving-radios']  == "Milk"  %}
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                        What company are you selling your milk to?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{ data['movement-destination-milk-selling-company-name-text-input'] }}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="milk-selling-company-name">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                </div>
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                        Will a different company be transporting the milk?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{ data['movement-destination-same-transporting-company-yes-no-radios-yes-no'] }}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="same-transporting-company-yes-no">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                </div>
+
+                {%  if data['movement-destination-same-transporting-company-yes-no-radios-yes-no']  == "Yes"  %}
+
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                            What is the name of the company transporting the milk?
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                            {{ data['movement-destination-milk-transporting-company-name-text-input'] }}
+                        </dd>
+                        <dd class="govuk-summary-list__actions">
+                            <a class="govuk-link" href="milk-transporting-company-name">Change<span class="govuk-visually-hidden"> </span></a>
+                        </dd>
+                    </div>
+
+                {%  endif  %}
+
+            {%  endif  %}
+
+
+            <!--  LIVE ANIMALS  -->
+
+
+            {%  if data['about-the-movement-or-activity-what-is-moving-radios']  == "Live animals"  %}
+
+                {%  if data['about-the-movement-or-activity-slaughter-yes-no-radios-yes-no']  == "Yes"  %}
+                    <!--  LIVE ANIMAL MOVE TO SLAUGHTER  -->
+
+                        <div class="govuk-summary-list__row">
+                            <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                                What is the name of the approved abattoir?
+                            </dt>
+                            <dd class="govuk-summary-list__value">
+                                {{ data['movement-destination-abattoir-name-text-input'] }}
+                            </dd>
+                            <dd class="govuk-summary-list__actions">
+                                <a class="govuk-link" href="abattoir-name">Change<span class="govuk-visually-hidden"> </span></a>
+                            </dd>
+                        </div>
+
+                        <div class="govuk-summary-list__row">
+                            <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                                What is the address of the approved abattoir?
+                            </dt>
+                            <dd class="govuk-summary-list__value">
+                                {{ data['fmd-movement-destination-abattoir-address-line-1'] }}<br>
+                                {{ data['fmd-movement-destination-abattoir-address-line-2'] }}<br>
+                                {{ data['fmd-movement-destination-abattoir-address-town'] }}<br>
+                                {{ data['fmd-movement-destination-abattoir-address-county'] }}<br>
+                                {{ data['fmd-movement-destination-abattoir-address-postcode'] }}
+                            </dd>
+                            <dd class="govuk-summary-list__actions">
+                                <a class="govuk-link" href="abattoir-address">Change<span class="govuk-visually-hidden"> </span></a>
+                            </dd>
+                        </div>
+
+                        <div class="govuk-summary-list__row">
+                            <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                                Do you know the Food Standards Agency (FSA) number for the approved abattoir?
+                            </dt>
+                            <dd class="govuk-summary-list__value">
+                                {{ data['movement-destination-fsa-number-yes-no-radios-yes-no'] }}
+                            </dd>
+                            <dd class="govuk-summary-list__actions">
+                                <a class="govuk-link" href="fsa-number-yes-no">Change<span class="govuk-visually-hidden"> </span></a>
+                            </dd>
+                        </div>
+
+                        {%  if data['movement-destination-fsa-number-yes-no-radios-yes-no']  == "Yes"  %}
+
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                                    What is the Food Standards Agency (FSA) number for the approved abattoir?
+                                </dt>
+                                <dd class="govuk-summary-list__value">
+                                    {{ data['movement-destination-fsa-number-text-input'] }}
+                                </dd>
+                                <dd class="govuk-summary-list__actions">
+                                    <a class="govuk-link" href="fsa-number">Change<span class="govuk-visually-hidden"> </span></a>
+                                </dd>
+                            </div>
+
+                        {%  endif  %}
+
+
+                {%  else  %}
+                    <!--  LIVE ANIMAL MOVE TO LIVE  -->
+
+                        <div class="govuk-summary-list__row">
+                            <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                                Will the animals move on to a temporary land
+                            </dt>
+                            <dd class="govuk-summary-list__value">
+                                {{ data['movement-destination-tla-yes-no-radios-yes-no'] }}
+                            </dd>
+                            <dd class="govuk-summary-list__actions">
+                                <a class="govuk-link" href="tla-yes-no">Change<span class="govuk-visually-hidden"> </span></a>
+                            </dd>
+                        </div>
+
+
+                        {%  if data['movement-destination-tla-yes-no-radios-yes-no']  == "Yes"  %}
+
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                                    What is the temporary land association (TLA) or temporary county parish holding (tCPH) number?
+                                </dt>
+                                <dd class="govuk-summary-list__value">
+                                    {{ data['movement-destination-tla-or-tcph-number-text-input'] }}
+                                </dd>
+                                <dd class="govuk-summary-list__actions">
+                                    <a class="govuk-link" href="tla-or-tcph-number">Change<span class="govuk-visually-hidden"> </span></a>
+                                </dd>
+                            </div>
+
+
+                        {%  else  %}
+
+
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                                    Where are the animals going to?
+                                </dt>
+                                <dd class="govuk-summary-list__value">
+                                    {{ data['movement-destination-premises-type-radios'] }}
+                                </dd>
+                                <dd class="govuk-summary-list__actions">
+                                    <a class="govuk-link" href="premises-type">Change<span class="govuk-visually-hidden"> </span></a>
+                                </dd>
+                            </div>
+
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                                    What is the county parish holding (CPH) number of the destination premises?
+                                </dt>
+                                <dd class="govuk-summary-list__value">
+                                    {{ data['movement-destination-cph-number-text-input'] }}
+                                </dd>
+                                <dd class="govuk-summary-list__actions">
+                                    <a class="govuk-link" href="cph-number">Change<span class="govuk-visually-hidden"> </span></a>
+                                </dd>
+                            </div>
+
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                                    What is the destination premises address?
+                                </dt>
+                                <dd class="govuk-summary-list__value">
+                                    {{ data['fmd-movement-destination-address-line-1'] }}<br>
+                                    {{ data['fmd-movement-destination-address-line-2'] }}<br>
+                                    {{ data['fmd-movement-destination-address-town'] }}<br>
+                                    {{ data['fmd-movement-destination-address-county'] }}<br>
+                                    {{ data['fmd-movement-destination-address-postcode'] }}
+                                </dd>
+                                <dd class="govuk-summary-list__actions">
+                                    <a class="govuk-link" href="address">Change<span class="govuk-visually-hidden"> </span></a>
+                                </dd>
+                            </div>
+
+                        {%  endif  %}
+
+
+                        <div class="govuk-summary-list__row">
+                            <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                                What animals are kept on the destination premises?
+                            </dt>
+                            <dd class="govuk-summary-list__value">
+                                {{ data['movement-destination-animals-kept-on-premises-checkboxes'] }}
+                            </dd>
+                            <dd class="govuk-summary-list__actions">
+                                <a class="govuk-link" href="animals-kept-on-premises">Change<span class="govuk-visually-hidden"> </span></a>
+                            </dd>
+                        </div>
+
+
+                        {%  if data['movement-destination-animals-kept-on-premises-checkboxes']  == "Yes"  %}
+
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                                    What other clovenhooved animals are kept on the premises?
+                                </dt>
+                                <dd class="govuk-summary-list__value">
+                                    {{ data['origin-designated-cloven-hooved-animals-text-input'] }}
+                                </dd>
+                                <dd class="govuk-summary-list__actions">
+                                    <a class="govuk-link" href="cloven-hooved-animals">Change<span class="govuk-visually-hidden"> </span></a>
+                                </dd>
+                            </div>
+
+                        {%  endif  %}
+
+
+
+
+                {%  endif  %}
+
+            {%  endif  %}
+
+
+
+            {%  if data['about-the-movement-or-activity-what-is-moving-radios']  == "Carcasses"  %}
+
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                        Where are the carcasses going?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{ data['movement-destination-type-radios'] }}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="type">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                </div>
+
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                        Is the same business transporting and receiving the carcasses?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{ data['movement-destination-business-receiving-the-licence-radios-yes-no'] }}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="business-receiving-the-licence">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                </div>
+
+
+                {%  if data['movement-destination-business-receiving-the-licence-radios-yes-no']  == "No"  %}
+
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                            What is the name of the business transporting the carcasses?
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                            {{ data['movement-destination-transporting-business-name-text-input'] }}
+                        </dd>
+                        <dd class="govuk-summary-list__actions">
+                            <a class="govuk-link" href="transporting-business-name">Change<span class="govuk-visually-hidden"> </span></a>
+                        </dd>
+                    </div>
+
+                {%  endif  %}
+
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                        What is the name of the destination business?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{ data['movement-destination-business-name-text-input'] }}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="business-name">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                </div>
+
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                        What is the contact phone number of the destination business?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{ data['movement-destination-contact-number-text-input'] }}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="contact-number">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                </div>
+
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                        Do you know the address of the destination premises?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{ data['movement-destination-business-address-yes-no-radios-yes-no'] }}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="business-address-yes-no">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                </div>
+
+
+                {%  if data['movement-destination-business-address-yes-no-radios-yes-no']  == "Yes"  %}
+
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                            What is the address of the business removing the carcasses?
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                                {{ data['fmd-movement-destination-removing-business-address-line-1'] }}<br>
+                                {{ data['fmd-movement-destination-removing-business-address-line-2'] }}<br>
+                                {{ data['fmd-movement-destination-removing-business-address-town'] }}<br>
+                                {{ data['fmd-movement-destination-removing-business-address-county'] }}<br>
+                                {{ data['fmd-movement-destination-removing-business-address-postcode'] }}
+                        </dd>
+                        <dd class="govuk-summary-list__actions">
+                            <a class="govuk-link" href="removing-business-address">Change<span class="govuk-visually-hidden"> </span></a>
+                        </dd>
+                    </div>
+
+                {%  endif  %}
+
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                        Does the destination premises have a county parish holding (CPH) number?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{ data['movement-destination-cph-number-yes-no-radios-yes-no'] }}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="cph-number-yes-no">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                </div>
+
+
+                {%  if data['movement-destination-cph-number-yes-no-radios-yes-no']  == "Yes"  %}
+
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                            What is the county parish holding (CPH) number for the destination premises?
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                            {{ data['movement-destination-cph-number-text-input'] }}
+                        </dd>
+                        <dd class="govuk-summary-list__actions">
+                            <a class="govuk-link" href="cph-number">Change<span class="govuk-visually-hidden"> </span></a>
+                        </dd>
+                    </div>
+
+                {%  endif  %}
+
+
+            {%  endif  %}
+
+        </dl>
+
+
+
+        <form action="../task-list?section-fmd-movement-destination-complete=true&" method="post" novalidate>
+
+            <button type="submit" class="govuk-button" data-module="govuk-button">
+                Continue
+            </button>
+
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}
+
+
+
+
+

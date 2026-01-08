@@ -1,0 +1,327 @@
+{% extends "layouts/v4_0_0.html" %}
+
+
+
+<!-- Setting the big main heading at the top of the page -->
+{% set pageHeadingTextHTML %}
+    Configure a disease
+{% endset %}
+
+
+
+<!-- Text that show in the browser tab. Does NOT need changing -->
+{% block pageTitle %}
+    {{ pageHeadingTextHTML }}
+{% endblock %}
+
+
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-l">{{ pageHeadingTextHTML }}</h1>
+
+        <p id="whole-text-progress-count" class="govuk-body">You have
+            <span id="section-progress-count"></span> sections left to complete.
+        </p>
+
+        <p id="whole-text-all-complete" style="display: none;">All sections are complete.</p>
+
+
+        {{
+            govukTaskList
+            ({
+                idPrefix: "company-details",
+                items:
+                [
+
+                    {
+                        title:
+                        {
+                            text: "About the disease"
+                        },
+                        href: "about-the-disease/check-answers" if data['section-about-the-disease-complete'] == "true"  else "about-the-disease/disease-name",
+                        status:
+                        {
+                            text: "Completed",
+                            tag:
+                            {
+                                text: "Incomplete",
+                                classes: "govuk-tag--blue"
+                            } if data['section-about-the-disease-complete'] != "true"
+                        }
+                    } ,
+
+
+
+
+                    {
+                        title:
+                        {
+                            text: "General licences"
+                        },
+                        href: "general-licences/check-answers" if data['section-general-licences-complete'] == "true"  else "general-licences/any-general-licences",
+                        status:
+                        {
+                            text: "Completed",
+                            tag:
+                            {
+                                text: "Incomplete",
+                                classes: "govuk-tag--blue"
+                            } if data['section-general-licences-complete'] != "true"
+                        }
+                    } if data['section-about-the-disease-complete'] == "true" ,
+
+                    {
+                        title:
+                        {
+                            text: "General licences"
+                        },
+                        href: "",
+                        status:
+                        {
+                            text:  "Cannot start yet",
+                            classes: "govuk-task-list__status--cannot-start-yet"
+                        }
+                    } if data['section-about-the-disease-complete'] != "true" ,
+
+
+
+
+
+                    {
+                        title:
+                        {
+                            text: "Specific licences"
+                        },
+                        href: "specific-licences/check-answers" if data['section-specific-licences-complete'] == "true"  else "specific-licences/any-specific-licences",
+                        status:
+                        {
+                            text: "Completed",
+                            tag:
+                            {
+                                text: "Incomplete",
+                                classes: "govuk-tag--blue"
+                            } if data['section-specific-licences-complete'] != "true"
+                        }
+                    } if data['section-general-licences-complete'] == "true",
+
+                    {
+                        title:
+                        {
+                            text: "Specific licences"
+                        },
+                        href: "",
+                        status:
+                        {
+                            text:  "Cannot start yet",
+                            classes: "govuk-task-list__status--cannot-start-yet"
+                        }
+                    } if data['section-general-licences-complete'] != "true" ,
+
+
+
+
+
+                    {
+                        title:
+                        {
+                            text: "Movements allowed without needing a licence"
+                        },
+                        href: "without-licences/check-answers" if data['section-without-licences-complete'] == "true"  else "without-licences/any-without-licences",
+                        status:
+                        {
+                            text: "Completed",
+                            tag:
+                            {
+                                text: "Incomplete",
+                                classes: "govuk-tag--blue"
+                            } if data['section-without-licences-complete'] != "true"
+                        }
+                    } if data['section-specific-licences-complete'] == "true",
+
+                    {
+                        title:
+                        {
+                            text: "Movements allowed without needing a licence"
+                        },
+                        href: "",
+                        status:
+                        {
+                            text:  "Cannot start yet",
+                            classes: "govuk-task-list__status--cannot-start-yet"
+                        }
+                    } if data['section-specific-licences-complete'] != "true" ,
+
+
+
+
+
+                    {
+                        title:
+                        {
+                            text: "Devolved administrations"
+                        },
+                        href: "devolved-administrations/check-answers" if data['section-devolved-administrations-complete'] == "true" else "devolved-administrations/devolved-administrations-list",
+                        status:
+                        {
+                            text: "Completed",
+                            tag:
+                            {
+                                text: "Incomplete",
+                                classes: "govuk-tag--blue"
+                            } if data['section-devolved-administrations-complete'] != "true"
+                        }
+                    }
+
+
+
+                ]
+            })
+        }}
+
+
+
+        <!-- <p>You can <a href="#">message the outbreak team</a> if you need help with your application.</p> -->
+
+
+        <!-- go to routes.js for routing  -->
+
+
+        {{
+            govukButton
+            ({
+                text: "Review and submit",
+                classes: "govuk-button--secondary",
+                href: "#"
+            })
+        }}
+
+
+
+    </div>
+</div>
+
+
+
+
+<!-- TASKLIST STATES  drop down to toggle states -->
+<form method="post"  action="#" class="for4" style=" float: left; position: relative; bottom:-270px;  ">
+
+    <select style="height:30px;" onchange="window.location.href='?'+this.value">
+
+        <!--  NOTHING STARTED -->
+        <option value="section-about-the-disease-complete=false&section-general-licences-complete=false&section-specific-licences-complete=false&section-allowed-without-a-licence-complete=false&section-devolved-administrations-complete=false&"
+            {% if  data['section-about-the-disease-complete'] != "true" and
+                   data['section-general-licences-complete'] != "true" and
+                   data['section-specific-licences-complete'] != "true" and
+                   data['section-allowed-without-a-licence-complete'] != "true" and
+                   data['section-devolved-administrations-complete'] != "true"
+            %}selected{% endif %}
+        >Not Started</option>
+
+
+        <!--  ONTO THE FARM FROM A Unrestricted market -->
+        <option value="section-about-the-disease-complete=true&section-general-licences-complete=true&section-specific-licences-complete=false&section-allowed-without-a-licence-complete=false&section-devolved-administrations-complete=false&"
+                {% if  data['section-about-the-disease-complete'] == "true" and
+                       data['section-general-licences-complete'] != "true" and
+                       data['section-specific-licences-complete'] != "true" and
+                       data['section-allowed-without-a-licence-complete'] != "true" and
+                       data['section-devolved-administrations-complete'] != "true"
+                %}selected{% endif %}
+        >Origin complete - Only</option>
+
+
+        <!--  ON TO THE FARM FROM A FARM -->
+        <option value="section-about-the-disease-complete=true&section-general-licences-complete=true&section-specific-licences-complete=true&section-allowed-without-a-licence-complete=false&section-devolved-administrations-complete=false&"
+                {% if  data['section-about-the-disease-complete'] == "true" and
+                       data['section-general-licences-complete'] == "true" and
+                       data['section-specific-licences-complete'] == "true" and
+                       data['section-allowed-without-a-licence-complete'] != "true" and
+                       data['section-devolved-administrations-complete'] != "true"
+                %}selected{% endif %}
+        >All sections complete</option>
+
+
+        <!--  ON TO THE FARM FROM A FARM -->
+        <option value="section-about-the-disease-complete=true&section-general-licences-complete=true&section-specific-licences-complete=true&section-allowed-without-a-licence-complete=true&section-devolved-administrations-complete=false&"
+                {% if  data['section-about-the-disease-complete'] == "true" and
+                       data['section-general-licences-complete'] == "true" and
+                       data['section-specific-licences-complete'] == "true" and
+                       data['section-allowed-without-a-licence-complete'] == "true" and
+                       data['section-devolved-administrations-complete'] != "true"
+                %}selected{% endif %}
+        >All sections complete</option>
+
+
+        <!--  ON TO THE FARM FROM A FARM -->
+        <option value="section-about-the-disease-complete=true&section-general-licences-complete=true&section-specific-licences-complete=true&section-allowed-without-a-licence-complete=true&section-devolved-administrations-complete=true&"
+                {% if  data['section-about-the-disease-complete'] == "true" and
+                       data['section-general-licences-complete'] == "true" and
+                       data['section-specific-licences-complete'] == "true" and
+                       data['section-allowed-without-a-licence-complete'] == "true" and
+                       data['section-devolved-administrations-complete'] == "true"
+                %}selected{% endif %}
+        >All sections complete</option>
+
+
+    </select>
+
+</form>
+<!--  END OF TASKLIST STATES  -->
+
+
+
+
+<script>
+
+    // Update the progress count
+    window.onload = function ()
+    {
+        const elements = document.querySelectorAll('div.govuk-task-list__status');
+
+        let numItems = elements.length;
+
+        let completecounter = 0;
+
+        elements.forEach((element) =>
+        {
+            var tagtext = element.textContent;
+
+            if(tagtext.includes('Completed') )
+            {
+                completecounter++;
+            }
+        });
+
+        let remaniningcount = numItems - completecounter;
+
+
+        document.getElementById("section-progress-count").textContent = remaniningcount + " out of " + numItems;
+
+
+        // make button primary green if all done
+        // also change text at the top
+        if (completecounter == numItems)
+        {
+            const elementbutton = document.querySelector('.govuk-button');
+            elementbutton.classList.remove('govuk-button--secondary');
+            elementbutton.href="submit/check-answers";
+
+            document.getElementById('whole-text-progress-count').style.display = 'none';
+            document.getElementById('whole-text-all-complete').style.display = 'block';
+        }
+
+
+    }
+
+</script>
+
+{% endblock %}
+
+
+
+
+
+

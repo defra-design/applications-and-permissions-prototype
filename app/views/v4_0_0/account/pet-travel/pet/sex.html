@@ -1,0 +1,71 @@
+{% extends "layouts/pet-travel.html" %}
+
+{% block pageTitle %}What sex is your pet – {{ serviceName }} – GOV.UK{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {% if data['error'] == 'p19notselected' %}
+    <div class="govuk-error-summary" data-module="govuk-error-summary">
+      <div role="alert">
+        <h2 class="govuk-error-summary__title">
+          There is a problem
+        </h2>
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            <li>
+              <a href="#">Tell us if your pet is male or female</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+    <form class="form" action="date-birth" method="post">
+    <div class="govuk-form-group {% if data['error'] == 'p19notselected' %}govuk-form-group--error{% endif %}">
+      <fieldset class="govuk-fieldset">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+          <h1 id="documents" class="govuk-fieldset__heading">
+            {# <span class="govuk-caption-xl">{{ serviceName }}</span> #}
+            What sex is your pet?
+          </h1>
+        </legend>
+
+        <div class="govuk-form-group">
+          {% if data['error'] == 'p19notselected' %}
+          <p id="whereDoYouLive-error" class="govuk-error-message">
+            <span class="govuk-visually-hidden">Error:</span> Tell us if your pet is male or female 
+          </p>
+          {% endif %}
+
+          <div class="govuk-radios" data-module="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="petSex" name="petSex" type="radio" value="Female">
+              <label class="govuk-label govuk-radios__label" for="petSex">
+                Female
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="petSex-2" name="petSex" type="radio" value="Male">
+              <label class="govuk-label govuk-radios__label" for="petSex-2">
+                Male
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="govuk-button-group">
+          <button class="govuk-button" data-module="govuk-button">
+            Continue
+          </button>
+        </div>
+      </fieldset>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}
+
+

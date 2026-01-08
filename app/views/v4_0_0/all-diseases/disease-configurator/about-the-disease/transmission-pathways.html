@@ -1,0 +1,171 @@
+{% extends "layouts/v4_0_0" %}
+
+
+<!-- Setting the big main heading at the top of the page -->
+{% set pageHeadingTextHTML %}
+    Which transmission pathways apply for
+    {% if  data['disease-configurator-disease-name-text-input'] != ""
+            and data['disease-configurator-disease-name-text-input'] != undefined  %}
+        {{ data['disease-configurator-disease-name-text-input'] }}?
+    {% else %}
+        [ Disease Name ]?
+    {% endif %}
+{% endset %}
+
+
+<!-- Set the text for the error type -->
+{% set errorTextHTML %}
+    <!-- Nothing was selected -->
+    {%  if  data['errortypeone'] == "true"  %}
+         Select at least one PLACEHOLDER
+    {% endif %}
+{% endset %}
+
+
+<!-- Text that show in the browser tab. Does NOT need changing -->
+{% block pageTitle %}
+    {% if  data['errorthispage'] == "true"  %}
+        Error:
+    {% endif %}
+
+    {{ pageHeadingTextHTML }}
+{% endblock %}
+
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+        <!-- ERROR LOGIC 'error summary' -->
+        {% if data['errorthispage'] == "true" %}
+            {{ govukErrorSummary
+                ({
+                    titleText: "There is a problem",
+                    errorList:
+                    [
+                        {
+                            html: errorTextHTML,
+                            href: "#disease-configurator-transmission-pathways-checkboxes"
+                        }
+                    ]
+                })
+            }}
+        {% endif %}
+        <!--  END OF 'error summary' -->
+
+
+        <!-- form URL below turns off errors on the next page  -->
+        <form action="transmission-pathways-router" method="post" novalidate>
+
+            {{ govukCheckboxes
+                ({
+                    name: "disease-configurator-transmission-pathways-checkboxes",
+
+                    id: "disease-configurator-transmission-pathways-checkboxes",
+
+                    fieldset:
+                    {
+                        legend:
+                        {
+                            text: pageHeadingTextHTML,
+                            isPageHeading: true,
+                            classes: "govuk-fieldset__legend--l"
+                        }
+                    },
+
+                    hint:
+                    {
+                        text: "Select all that apply"
+                    },
+
+                    errorMessage: null if data['errorthispage'] != "true"
+                                       else { html: errorTextHTML },
+
+                    items:
+                    [
+                        {
+                            value: "Direct contact",
+                            text: "Direct contact",
+                            checked: (data['disease-configurator-transmission-pathways-checkboxes'] or []).indexOf('Direct contact') > -1
+                        },
+                        {
+                            value: "Indirect contact",
+                            text: "Indirect contact",
+                            checked: (data['disease-configurator-transmission-pathways-checkboxes'] or []).indexOf('Indirect contact') > -1
+                        },
+                        {
+                            value: "Airborne",
+                            text: "Airborne",
+                            checked: (data['disease-configurator-transmission-pathways-checkboxes'] or []).indexOf('Airborne') > -1
+                        },
+                        {
+                            value: "Water-borne",
+                            text: "Water-borne",
+                            checked: (data['disease-configurator-transmission-pathways-checkboxes'] or []).indexOf('Water-borne') > -1
+                        },
+                        {
+                            value: "Feed-borne or oral route",
+                            text: "Feed-borne or oral route",
+                            checked: (data['disease-configurator-transmission-pathways-checkboxes'] or []).indexOf('Feed-borne or oral route') > -1
+                        },
+                        {
+                            value: "Germinal products",
+                            text: "Germinal products",
+                            checked: (data['disease-configurator-transmission-pathways-checkboxes'] or []).indexOf('Germinal products') > -1
+                        },
+                        {
+                            value: "Vertical transmission",
+                            text: "Vertical transmission",
+                            checked: (data['disease-configurator-transmission-pathways-checkboxes'] or []).indexOf('Vertical transmission') > -1
+                        },
+                        {
+                            value: "Latrogenic",
+                            text: "Latrogenic",
+                            checked: (data['disease-configurator-transmission-pathways-checkboxes'] or []).indexOf('Latrogenic') > -1
+                        },
+                        {
+                            value: "Other vectors",
+                            text: "Other vectors",
+                            checked: (data['disease-configurator-transmission-pathways-checkboxes'] or []).indexOf('Other vectors') > -1
+                        }
+                    ]
+                })
+            }}
+
+
+            {{ govukButton({ text: "Continue" }) }}
+
+        </form>
+
+    </div>
+</div>
+
+
+
+
+<!-- ERROR LOGIC  drop down to toggle states  -->
+<form method="post"  action="#" class="for4" style=" float: left; position: relative; bottom:-265px;  ">
+
+    <select style="height:30px;" onchange="window.location.href='?'+this.value">
+
+        <option value="errorthispage=false&errortypeone=false&errortypetwo=false&"
+                {% if (data['errorthispage'] != "true") %}selected{% endif %}
+        >Errors - Off</option>
+
+        <!-- Nothing was selected -->
+        <option value="errorthispage=true&errortypeone=true&errortypetwo=false&"
+                {% if (data['errortypeone'] == 'true' and data['errortypetwo'] != 'true')  %}selected{% endif %}
+        >Error 1 - Must select at least one</option>
+
+    </select>
+
+</form>
+<!--  END OF ERROR LOGIC -->
+
+
+
+{% endblock %}
+
+
+

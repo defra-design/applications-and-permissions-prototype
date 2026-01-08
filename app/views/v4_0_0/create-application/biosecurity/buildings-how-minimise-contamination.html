@@ -1,0 +1,127 @@
+{% extends "layouts/v4_0_0.html" %}
+
+
+<!-- Setting the big main heading at the top of the page -->
+{% set pageHeadingTextHTML %}
+    Which measures are being taken to reduce the spread of TB during housing?
+{% endset %}
+
+
+<!-- Set the text for the error type -->
+{% set errorTextHTML %}
+    <!-- Nothing was selected -->
+    {%  if  data['errortypeone'] == "true"  %}
+         Select at least one PLACEHOLDER
+    {% endif %}
+{% endset %}
+
+
+<!-- Text that show in the browser tab. Does NOT need changing -->
+{% block pageTitle %}
+    {% if  data['errorthispage'] == "true"  %}
+        Error:
+    {% endif %}
+
+    {{ pageHeadingTextHTML }}
+{% endblock %}
+
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+        <!-- ERROR LOGIC 'error summary' -->
+        {% if data['errorthispage'] == "true" %}
+            {{ govukErrorSummary
+                ({
+                    titleText: "There is a problem",
+                    errorList:
+                    [
+                        {
+                            html: errorTextHTML,
+                            href: "#biosecurity-buildings-how-minimise-contamination-checkboxes"
+                        }
+                    ]
+                })
+            }}
+        {% endif %}
+        <!--  END OF 'error summary' -->
+
+
+        <!-- form URL below turns off errors on the next page  -->
+        <form action="buildings-how-minimise-contamination-router" method="post" novalidate>
+
+            {{ govukCheckboxes
+                ({
+                    name: "biosecurity-buildings-how-minimise-contamination-checkboxes",
+
+                    id: "biosecurity-buildings-how-minimise-contamination-checkboxes",
+
+                    fieldset:
+                    {
+                        legend:
+                        {
+                            text: pageHeadingTextHTML,
+                            isPageHeading: true,
+                            classes: "govuk-fieldset__legend--l"
+                        }
+                    },
+
+                    hint:
+                    {
+                        text: "Only select the measures you are taking. You do not need to select them all to receive your licence."
+                    },
+
+                    errorMessage: null if data['errorthispage'] != "true"
+                                       else { html: errorTextHTML },
+
+                    items:
+                    [
+                        {
+                            value: "Cleaning and disinfecting of shared buildings before the animals arrive",
+                            text: "Cleaning and disinfecting of shared buildings before the animals arrive",
+                            checked: (data['biosecurity-buildings-how-minimise-contamination-checkboxes'] or []).indexOf('Cleaning and disinfecting of shared buildings before the animals arrive') > -1
+                        },
+                        {
+                            value: "Isolation of incoming animals in a separate building, shed or pen on arrival",
+                            text: "Isolation of incoming animals in a separate building, shed or pen on arrival",
+                            checked: (data['biosecurity-buildings-how-minimise-contamination-checkboxes'] or []).indexOf('Isolation of incoming animals in a separate building, shed or pen on arrival') > -1
+                        },
+                        {
+                            value: "Incoming animals will be permanently housed ",
+                            text: "Incoming animals will be permanently housed ",
+                            checked: (data['biosecurity-buildings-how-minimise-contamination-checkboxes'] or []).indexOf('Incoming animals will be permanently housed ') > -1
+                        },
+                        {
+                            value: "Disinfection points located at the housing entrances and exits",
+                            text: "Disinfection points located at the housing entrances and exits",
+                            checked: (data['biosecurity-buildings-how-minimise-contamination-checkboxes'] or []).indexOf('Disinfection points located at the housing entrances and exits') > -1
+                        },
+                        {
+                            value: "Other measures",
+                            text: "Other measures",
+                            checked: (data['biosecurity-buildings-how-minimise-contamination-checkboxes'] or []).indexOf('Other measures') > -1
+                        }
+                    ]
+                })
+            }}
+
+
+            {{ govukButton({ text: "Continue" }) }}
+
+        </form>
+
+    </div>
+</div>
+
+
+
+
+
+{% endblock %}
+
+
+
+
+
