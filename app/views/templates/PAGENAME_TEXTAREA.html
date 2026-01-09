@@ -9,13 +9,15 @@
     3. Type the routes file section after '% set SECTION %'
     4. Type the error message after '% set PAGENAME_TEXTAREA %'
     5. OPTIONAL: Type the hint text after '% set HINT_TEXT %'
-    6. OPTIONAL: Change limitations on entry.  LOWEST_NUMBER, HIGHEST_NUMBER
+    6. OPTIONAL: Add limitations on entry.  LOWEST_NUMBER, HIGHEST_NUMBER
+    7. OPTIONAL: Add a character countdown below
 
-    7. Go to the javascript folder 'templates'
-    8. Open 'textarea.js'
-    9. Copy into your routes.js file.
-    10. Rename PAGENAME_TEXTAREA in the URL to match the page name
-    11. Rename THE_NEXT_PAGE_NAME
+
+    8. Go to the javascript folder 'templates'
+    9. Open 'textarea.js'
+    10. Copy into your routes.js file.
+    11. Rename PAGENAME_TEXTAREA in the URL to match the page name
+    12. Rename THE_NEXT_PAGE_NAME
 -->
 
 
@@ -25,11 +27,16 @@
 {% endset %}
 
 
+
 <!-- OPTIONAL: Set the lowest quantity of characters allowed. 1 or more. Replace the word false below.  e.g. 5  -->
 {% set LOWEST_NUMBER %}false{% endset %}
 
 <!-- OPTIONAL: Set the highest quantity of characters allowed. Replace the word false below.  e.g. 200 -->
 {% set HIGHEST_NUMBER %}false{% endset %}
+
+<!-- OPTIONAL: Show character countdown below  -->
+{% set SHOW_CHARACTER_COUNTDOWN %}false{% endset %}
+
 
 
 <!-- Set the text for each error type -->
@@ -102,33 +109,72 @@
         <!-- go to routes.js for routing  -->
         <form action='{{PAGENAME_TEXTAREA}}-router/{{PAGENAME_TEXTAREA}}/{{LOWEST_NUMBER}}/{{HIGHEST_NUMBER}}' method='post' novalidate>
 
-            {{
-                govukTextarea
-                ({
-                    label:
-                    {
-                        html: pageHeadingTextHTML,
-                        isPageHeading: true,
-                        classes: 'govuk-label--l'
-                    },
+            {% if SHOW_CHARACTER_COUNTDOWN == 'false' %}
 
-                    id: SECTION + '-' + PAGENAME_TEXTAREA + '-text-area-input',
+                {{
+                    govukTextarea
+                    ({
+                        label:
+                        {
+                            html: pageHeadingTextHTML,
+                            isPageHeading: true,
+                            classes: 'govuk-label--l'
+                        },
 
-                    name: SECTION + '-' + PAGENAME_TEXTAREA + '-text-area-input',
+                        id: SECTION + '-' + PAGENAME_TEXTAREA + '-text-area-input',
 
-                    hint:
-                    {
-                        text: HINT_TEXT
-                    } if HINT_TEXT != 'PLACEHOLDER_HINT_TEXT',
+                        name: SECTION + '-' + PAGENAME_TEXTAREA + '-text-area-input',
 
-                    errorMessage: null if data['errorthispage'] != 'true'
-                                       else { html: errorTextHTML },
+                        hint:
+                        {
+                            text: HINT_TEXT
+                        } if HINT_TEXT != 'PLACEHOLDER_HINT_TEXT',
 
-                    value: data[SECTION + '-' + PAGENAME_TEXTAREA + '-text-area-input'],
+                        errorMessage: null if data['errorthispage'] != 'true'
+                                           else { html: errorTextHTML },
 
-                    rows: '4'
-                })
-            }}
+                        value: data[SECTION + '-' + PAGENAME_TEXTAREA + '-text-area-input'],
+
+                        rows: '4'
+                    })
+                }}
+
+            {% else %}
+
+                {{
+                    govukCharacterCount
+                    ({
+                        maxlength: HIGHEST_NUMBER,
+
+                        label:
+                        {
+                            html: pageHeadingTextHTML,
+                            isPageHeading: true,
+                            classes: 'govuk-label--l'
+                        },
+
+
+
+                        id: SECTION + '-' + PAGENAME_TEXTAREA + '-text-area-input',
+
+                        name: SECTION + '-' + PAGENAME_TEXTAREA + '-text-area-input',
+
+                        hint:
+                        {
+                            text: HINT_TEXT
+                        } if HINT_TEXT != 'PLACEHOLDER_HINT_TEXT',
+
+                        errorMessage: null if data['errorthispage'] != 'true'
+                                           else { html: errorTextHTML },
+
+                        value: data[SECTION + '-' + PAGENAME_TEXTAREA + '-text-area-input'],
+
+                        rows: '4'
+                    })
+                }}
+
+
+            {% endif %}
 
 
             {{ govukButton({ text: 'Continue' }) }}
