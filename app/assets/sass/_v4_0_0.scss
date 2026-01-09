@@ -1,0 +1,28 @@
+.v4_0_0
+{
+    .defra-account-menu__list
+    {
+        margin-top: 1em;
+        float: right;
+        text-align: right;
+    }
+
+    .defra-account-menu__list-item
+    {
+        display: inline-block;
+    }
+
+    .layout-width-container--full
+    {
+        max-width: none;
+        margin: 0 15px;
+    }
+
+    @media (min-width: 40.0625em)
+    {
+        .layout-width-container--full
+        {
+            margin: 0 30px;
+        }
+    }
+}
