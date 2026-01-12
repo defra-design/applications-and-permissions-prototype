@@ -1,17 +1,20 @@
 {% extends "layouts/v4_0_0_case_management" %}
 
-{% set backlinkoff = "true" %}
+
+{% set backlinkoff = 'true' %}
+
 
 <!-- Setting the big main heading at the top of the page -->
-{% set pageHeadingTextHTML %}
-    TB movement licences cases
-{% endset %}
+{% set pageHeadingTextHTML %}My cases{% endset %}
+
 
 <!-- Text that show in the browser tab. Does NOT need changing -->
 {% block pageTitle %}
     {{ pageHeadingTextHTML }}
 {% endblock %}
 
+
+{% set navActive = pageHeadingTextHTML %}
 
 
 {% block content %}
@@ -32,10 +35,8 @@
 
             <thead class="govuk-table__head">
                 <tr class="govuk-table__row">
-                    <th scope="col" class="govuk-table__header">PLACEHOLDER</th>
-                    <th scope="col" class="govuk-table__header">PLACEHOLDER</th>
-                    <th scope="col" class="govuk-table__header">PLACEHOLDER</th>
-
+                    <th scope="col" class="govuk-table__header">Applicant</th>
+                    <th scope="col" class="govuk-table__header">Case age</th>
                     <th scope="col" class="govuk-table__header"></th>
                 </tr>
             </thead>
@@ -43,24 +44,26 @@
             <tbody class="govuk-table__body">
 
                 <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">APLACEHOLDER</td>
-                    <td class="govuk-table__cell">PLACEHOLDER</td>
-                    <td class="govuk-table__cell">PLACEHOLDER</td>
+                    <td class="govuk-table__cell">Tony Hayers</td>
+                    <td class="govuk-table__cell">Today</td>
                     <td class="govuk-table__cell govuk-!-text-align-right">
                         <a href="#">View details</a>
-                        <br>
-                        <a href="#">View public service</a>
                     </td>
                 </tr>
 
                 <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">PLACEHOLDER</td>
-                    <td class="govuk-table__cell">PLACEHOLDER</td>
-                    <td class="govuk-table__cell">PLACEHOLDER</td>
+                    <td class="govuk-table__cell">Lynn Benfield</td>
+                    <td class="govuk-table__cell">Yesterday</td>
                     <td class="govuk-table__cell govuk-!-text-align-right">
                         <a href="#">View details</a>
-                        <br>
-                        <a href="#">View public service</a>
+                    </td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">David Clifton</td>
+                    <td class="govuk-table__cell">4 working days ago</td>
+                    <td class="govuk-table__cell govuk-!-text-align-right">
+                        <a href="#">View details</a>
                     </td>
                 </tr>
 

@@ -25,4 +25,21 @@
             margin: 0 30px;
         }
     }
+
+
+    /* Pushes the last items (navigationEnd) to the right */
+    .div_right_aligned__item
+    {
+        display: flex;
+        flex-grow: 1;
+        justify-content: flex-end;
+    }
+
+    @media (max-width: 40.0625em)
+    {
+        .div_right_aligned__item
+        {
+            display: block;
+        }
+    }
 }

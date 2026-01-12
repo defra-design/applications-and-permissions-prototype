@@ -11,8 +11,6 @@
 {% block bodyStart %}
 
 
-
-
     {% if cookiesbanner == "accepted" %}
 
         {% set acceptHtml %}
@@ -108,33 +106,61 @@
         govukHeader
         ({
             homepageUrl: "",
-            serviceName: "Case Management for APHA",
-            serviceUrl: "",
             containerClasses: "layout-width-container--full"
         })
     }}
+
+        {% set navigationEndUserNameHtml %}
+            <div class="div_right_aligned__item">
+                <li class="govuk-service-navigation__item">
+                <span class="govuk-service-navigation__text">
+                    <strong>{{ data["staff-user-name"] }}</strong>
+                </span>
+                </li>
+                <li class="govuk-service-navigation__item">
+                    <a class="govuk-service-navigation__link" href="#">
+                        Sign out
+                    </a>
+                </li>
+            </div>
+        {% endset %}
 
 
     {% set navHtml %}
         {{
             govukServiceNavigation
             ({
+                homepageUrl: "#",
+                serviceName: "Animal disease movements",
+                serviceUrl: "#",
                 navigation:
                 [
                     {
-                        href: "#",
-                        text: "Navigation item 1"
+                        href: "my-cases",
+                        text: "My cases",
+                        active: true if navActive == 'My cases'
                     },
                     {
-                        href: "#",
-                        text: "Navigation item 2",
-                        active: true
+                        href: "unassigned-cases",
+                        text: "Unassigned cases",
+                        active: true if navActive == 'Unassigned cases'
                     },
                     {
-                        href: "#",
-                        text: "Navigation item 3"
+                        href: "all-cases",
+                        text: "All cases",
+                        active: true if navActive == 'All cases'
+                    },
+                    {
+                        href: "search-cases",
+                        text: "Search",
+                        active: true if navActive == 'Search'
                     }
-                ]
+                ],
+
+                slots:
+                {
+                    navigationEnd: navigationEndUserNameHtml | safe
+                }
 
             })
         }}
