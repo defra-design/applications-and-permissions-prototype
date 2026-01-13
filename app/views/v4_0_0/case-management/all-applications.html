@@ -1,0 +1,441 @@
+{% extends "layouts/v4_0_0_case_management" %}
+
+
+{% set backlinkoff = 'true' %}
+
+
+<!-- Setting the big main heading at the top of the page -->
+{% set pageHeadingTextHTML %}My open applications{% endset %}
+
+
+<!-- Text that show in the browser tab. Does NOT need changing -->
+{% block pageTitle %}
+    {{ pageHeadingTextHTML }}
+{% endblock %}
+
+
+{% set navActive = pageHeadingTextHTML %}
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+
+    <div class="govuk-grid-column-full">
+
+
+        <h1 class="govuk-heading-l">
+          {{ pageHeadingTextHTML }}
+        </h1>
+
+
+
+
+        <table class="govuk-table">
+
+            <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                    <th scope="col" class="govuk-table__header">Status</th>
+                    <th scope="col" class="govuk-table__header">SLA deadline</th>
+                    <th scope="col" class="govuk-table__header">Licence type</th>
+                    <th scope="col" class="govuk-table__header">Allocated to</th>
+                    <th scope="col" class="govuk-table__header govuk-!-text-align-right">Action</th>
+                </tr>
+            </thead>
+
+            <tbody class="govuk-table__body">
+
+
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Unallocated</td>
+                    <td class="govuk-table__cell">5 days remaining</td>
+                    <td class="govuk-table__cell">TB15</td>
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell govuk-!-text-align-right">
+                        <a href="#">View details</a>
+                    </td>
+                </tr>
+
+
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Unallocated</td>
+                    <td class="govuk-table__cell">5 days remaining</td>
+                    <td class="govuk-table__cell">TB15</td>
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell govuk-!-text-align-right">
+                        <a href="#">View details</a>
+                    </td>
+                </tr>
+
+
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Unallocated</td>
+                    <td class="govuk-table__cell">5 days remaining</td>
+                    <td class="govuk-table__cell">TB15</td>
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell govuk-!-text-align-right">
+                        <a href="#">View details</a>
+                    </td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Not started</td>
+                    <td class="govuk-table__cell">5 days remaining</td>
+                    <td class="govuk-table__cell">TB16</td>
+                    <td class="govuk-table__cell">Lynn Benfield</td>
+                    <td class="govuk-table__cell govuk-!-text-align-right">
+                        <a href="#">View details</a>
+                    </td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Started
+                                                {{govukTag({
+                                                    text: "Priority",
+                                                    classes: "govuk-tag--yellow"
+                                                })}}
+                    </td>
+                    <td class="govuk-table__cell">5 days remaining</td>
+                    <td class="govuk-table__cell">TB15</td>
+                    <td class="govuk-table__cell">Lynn Benfield</td>
+                    <td class="govuk-table__cell govuk-!-text-align-right">
+                        <a href="#">View details</a>
+                    </td>
+                </tr>
+
+
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Started</td>
+                    <td class="govuk-table__cell">5 days remaining</td>
+                    <td class="govuk-table__cell">TB16e</td>
+                    <td class="govuk-table__cell">Dan Moody</td>
+                    <td class="govuk-table__cell govuk-!-text-align-right">
+                        <a href="#">View details</a>
+                    </td>
+                </tr>
+
+
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Started</td>
+                    <td class="govuk-table__cell">5 days remaining</td>
+                    <td class="govuk-table__cell">TB16</td>
+                    <td class="govuk-table__cell">Susan Foley</td>
+                    <td class="govuk-table__cell govuk-!-text-align-right">
+                        <a href="#">View details</a>
+                    </td>
+                </tr>
+
+
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Started</td>
+                    <td class="govuk-table__cell">5 days remaining</td>
+                    <td class="govuk-table__cell">TB15</td>
+                    <td class="govuk-table__cell">Dan Moody</td>
+                    <td class="govuk-table__cell govuk-!-text-align-right">
+                        <a href="#">View details</a>
+                    </td>
+                </tr>
+
+
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Awaiting further info - Today</td>
+                    <td class="govuk-table__cell">5 days remaining</td>
+                    <td class="govuk-table__cell">TB15</td>
+                    <td class="govuk-table__cell">Dan Moody</td>
+                    <td class="govuk-table__cell govuk-!-text-align-right">
+                        <a href="#">View details</a>
+                    </td>
+                </tr>
+
+
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Pending VO decision - Today</td>
+                    <td class="govuk-table__cell">4 days remaining</td>
+                    <td class="govuk-table__cell">TB16</td>
+                    <td class="govuk-table__cell">Susan Foley</td>
+                    <td class="govuk-table__cell govuk-!-text-align-right">
+                        <a href="#">View details</a>
+                    </td>
+                </tr>
+
+
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">No required</td>
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">TB15</td>
+                    <td class="govuk-table__cell">Dan Moody</td>
+                    <td class="govuk-table__cell govuk-!-text-align-right">
+                        <a href="#">View details</a>
+                    </td>
+                </tr>
+
+
+
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Pending issue</td>
+                    <td class="govuk-table__cell">4 days remaining</td>
+                    <td class="govuk-table__cell">TB15</td>
+                    <td class="govuk-table__cell">Susan Foley</td>
+                    <td class="govuk-table__cell govuk-!-text-align-right">
+                        <a href="#">View details</a>
+                    </td>
+                </tr>
+
+
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Pending VO decision - Yesterday
+                                                    {{govukTag({
+                                                        text: "Priority",
+                                                        classes: "govuk-tag--yellow"
+                                                    })}}
+                    </td>
+                    <td class="govuk-table__cell">4 days remaining</td>
+                    <td class="govuk-table__cell">TB16</td>
+                    <td class="govuk-table__cell">Lynn Benfield</td>
+                    <td class="govuk-table__cell govuk-!-text-align-right">
+                        <a href="#">View details</a>
+                    </td>
+                </tr>
+
+
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Pending issue</td>
+                    <td class="govuk-table__cell">4 days remaining</td>
+                    <td class="govuk-table__cell">TB15</td>
+                    <td class="govuk-table__cell">Lynn Benfield</td>
+                    <td class="govuk-table__cell govuk-!-text-align-right">
+                        <a href="#">View details</a>
+                    </td>
+                </tr>
+
+
+
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Issued</td>
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">TB15</td>
+                    <td class="govuk-table__cell">Susan Foley</td>
+                    <td class="govuk-table__cell govuk-!-text-align-right">
+                        <a href="#">View details</a>
+                    </td>
+                </tr>
+
+
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Issued</td>
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">TB15</td>
+                    <td class="govuk-table__cell">Lynn Benfield</td>
+                    <td class="govuk-table__cell govuk-!-text-align-right">
+                        <a href="#">View details</a>
+                    </td>
+                </tr>
+
+
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Issued</td>
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">TB15</td>
+                    <td class="govuk-table__cell">Dan Moody</td>
+                    <td class="govuk-table__cell govuk-!-text-align-right">
+                        <a href="#">View details</a>
+                    </td>
+                </tr>
+
+
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Issued</td>
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">TB15</td>
+                    <td class="govuk-table__cell">Susan Foley</td>
+                    <td class="govuk-table__cell govuk-!-text-align-right">
+                        <a href="#">View details</a>
+                    </td>
+                </tr>
+
+
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Issued</td>
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">TB15</td>
+                    <td class="govuk-table__cell">Dan Moody</td>
+                    <td class="govuk-table__cell govuk-!-text-align-right">
+                        <a href="#">View details</a>
+                    </td>
+                </tr>
+
+
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Issued</td>
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">TB15</td>
+                    <td class="govuk-table__cell">Susan Foley</td>
+                    <td class="govuk-table__cell govuk-!-text-align-right">
+                        <a href="#">View details</a>
+                    </td>
+                </tr>
+
+
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Awaiting further info - 3 days ago</td>
+                    <td class="govuk-table__cell">1 day remaining</td>
+                    <td class="govuk-table__cell">TB15</td>
+                    <td class="govuk-table__cell">Susan Foley</td>
+                    <td class="govuk-table__cell govuk-!-text-align-right">
+                        <a href="#">View details</a>
+                    </td>
+                </tr>
+
+
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Pending VO decision - 2 days ago
+                        {{govukTag({
+                        text: "Priority",
+                        classes: "govuk-tag--yellow"
+                        })}}
+                    </td>
+                    <td class="govuk-table__cell">Overdue</td>
+                    <td class="govuk-table__cell">TB16</td>
+                    <td class="govuk-table__cell">Dan Moody</td>
+                    <td class="govuk-table__cell govuk-!-text-align-right">
+                        <a href="#">View details</a>
+                    </td>
+                </tr>
+
+
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Issued</td>
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">TB15</td>
+                    <td class="govuk-table__cell">Dan Moody</td>
+                    <td class="govuk-table__cell govuk-!-text-align-right">
+                        <a href="#">View details</a>
+                    </td>
+                </tr>
+
+
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Issued</td>
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">TB15</td>
+                    <td class="govuk-table__cell">Dan Moody</td>
+                    <td class="govuk-table__cell govuk-!-text-align-right">
+                        <a href="#">View details</a>
+                    </td>
+                </tr>
+
+
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Refused</td>
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">TB16</td>
+                    <td class="govuk-table__cell">Lynn Benfield</td>
+                    <td class="govuk-table__cell govuk-!-text-align-right">
+                        <a href="#">View details</a>
+                    </td>
+                </tr>
+
+
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Issued</td>
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">TB15</td>
+                    <td class="govuk-table__cell">Lynn Benfield</td>
+                    <td class="govuk-table__cell govuk-!-text-align-right">
+                        <a href="#">View details</a>
+                    </td>
+                </tr>
+
+
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Issued</td>
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">TB15</td>
+                    <td class="govuk-table__cell">Lynn Benfield</td>
+                    <td class="govuk-table__cell govuk-!-text-align-right">
+                        <a href="#">View details</a>
+                    </td>
+                </tr>
+
+
+
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Issued</td>
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">TB15</td>
+                    <td class="govuk-table__cell">Lynn Benfield</td>
+                    <td class="govuk-table__cell govuk-!-text-align-right">
+                        <a href="#">View details</a>
+                    </td>
+                </tr>
+
+
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Issued</td>
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">TB15</td>
+                    <td class="govuk-table__cell">Dan Moody</td>
+                    <td class="govuk-table__cell govuk-!-text-align-right">
+                        <a href="#">View details</a>
+                    </td>
+                </tr>
+
+
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Issued</td>
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">TB15</td>
+                    <td class="govuk-table__cell">Susan Foley</td>
+                    <td class="govuk-table__cell govuk-!-text-align-right">
+                        <a href="#">View details</a>
+                    </td>
+                </tr>
+
+
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Issued</td>
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">TB15</td>
+                    <td class="govuk-table__cell">Lynn Benfield</td>
+                    <td class="govuk-table__cell govuk-!-text-align-right">
+                        <a href="#">View details</a>
+                    </td>
+                </tr>
+
+
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Issued</td>
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">TB15</td>
+                    <td class="govuk-table__cell">Dan Moody</td>
+                    <td class="govuk-table__cell govuk-!-text-align-right">
+                        <a href="#">View details</a>
+                    </td>
+                </tr>
+
+
+
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Refused</td>
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">TB16</td>
+                    <td class="govuk-table__cell">Susan Foley</td>
+                    <td class="govuk-table__cell govuk-!-text-align-right">
+                        <a href="#">View details</a>
+                    </td>
+                </tr>
+
+
+            </tbody>
+        </table>
+
+
+
+
+    </div>
+
+
+</div>
+
+
+{% endblock %}
