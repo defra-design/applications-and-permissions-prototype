@@ -14,6 +14,11 @@
 {% endblock %}
 
 
+{% set questionHeadingStaffTextHTML %}
+    Staff name
+{% endset %}
+
+
 {% set navActive = pageHeadingTextHTML %}
 
 
@@ -27,6 +32,48 @@
         <h1 class="govuk-heading-l">
           {{ pageHeadingTextHTML }}
         </h1>
+
+        <details class='govuk-details' data-module='govuk-details'>
+            <summary class='govuk-details__summary'>
+                <span class='govuk-details__summary-text'>
+                    Filter applications
+                </span>
+            </summary>
+            <div class='govuk-details__text'>
+
+                {{
+                    govukInput
+                    ({
+                        label:
+                        {
+                            html: questionHeadingStaffTextHTML,
+                            isPageHeading: false,
+                            classes: ''
+                        },
+
+                        id: SECTION + '-' + PAGENAME_TEXT + '-text-input',
+
+                        name: SECTION + '-' + PAGENAME_TEXT + '-text-input',
+
+                        hint:
+                        {
+                            text: HINT_TEXT
+                        } if HINT_TEXT != 'PLACEHOLDER_HINT_TEXT',
+
+                        errorMessage: null if data['errorthispage'] != 'true'
+                                           else { html: errorTextHTML },
+
+                        value: data[SECTION + '-' + PAGENAME_TEXT + '-text-input'],
+
+                        classes: 'govuk-input--width-10'
+                    })
+                }}
+
+
+                {{ govukButton({ text: 'Filter' }) }}
+
+            </div>
+        </details>
 
 
         <table class="govuk-table">
@@ -205,7 +252,7 @@
                     <td class="govuk-table__cell">Pending VO decision</td>
                     <td class="govuk-table__cell">Yesterday</td>
                     <td class="govuk-table__cell">4 days remaining</td>
-                    <td class="govuk-table__cell">Priority</td>
+                    <td class="govuk-table__cell">Ugrent</td>
                     <td class="govuk-table__cell">TB16</td>
                     <td class="govuk-table__cell">Lynn Benfield</td>
                     <td class="govuk-table__cell govuk-!-text-align-right">
@@ -323,7 +370,7 @@
                     <td class="govuk-table__cell">Pending VO decision</td>
                     <td class="govuk-table__cell">2 days ago</td>
                     <td class="govuk-table__cell">Overdue</td>
-                    <td class="govuk-table__cell">Priority</td>
+                    <td class="govuk-table__cell">Ugrent</td>
                     <td class="govuk-table__cell">TB16</td>
                     <td class="govuk-table__cell">Alex Smith</td>
                     <td class="govuk-table__cell govuk-!-text-align-right">

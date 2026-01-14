@@ -1,0 +1,329 @@
+{% extends "layouts/v4_0_0_case_management" %}
+
+
+{% set backlinkoff = 'true' %}
+
+
+<!-- Setting the big main heading at the top of the page -->
+{% set pageHeadingTextHTML %}
+    Application details
+{% endset %}
+
+
+
+
+{% block content %}
+<div class='govuk-grid-row'>
+
+    <div class="govuk-grid-column-full">
+
+
+        <h1 class="govuk-heading-l">
+            {{ pageHeadingTextHTML }}
+        </h1>
+
+
+        <form action='{{PAGENAME_TEXT}}-router/{{PAGENAME_TEXT}}/{{LOWEST_NUMBER}}/{{HIGHEST_NUMBER}}' method='post' novalidate>
+
+
+        <div class="govuk-!-width-one-half">
+
+            {% set allocationButtonHtml %}
+                <div class="div_right_aligned__item">
+                    {{
+                        govukButton
+                        ({
+                            text: "Change allocation",
+                            classes: "govuk-button--secondary govuk-!-margin-bottom-0",
+                            href: "#"
+                        })
+                    }}
+                </div>
+            {% endset %}
+
+            {{
+                govukTable
+                ({
+                    caption: "",
+                    captionClasses: "govuk-table__caption--m",
+                    firstCellIsHeader: true,
+                    head:
+                    [
+                        {
+                            text: ""
+                        },
+                        {
+                            text: ""
+                        },
+                        {
+                            text: ""
+                        }
+                    ],
+                    rows:
+                    [
+                        [
+                            {
+                                text: "Allocated to"
+                            },
+                            {
+                                text: "Alex smith"
+                            },
+                            {
+                                html: allocationButtonHtml
+                            }
+                        ],
+                        [
+                            {
+                                text: "State"
+                            },
+                            {
+                                text: "Started"
+                            },
+                            {
+
+                            }
+                        ],
+                        [
+                            {
+                                text: "Licence type"
+                            },
+                            {
+                                text: "TB15"
+                            },
+                            {
+
+                            }
+                        ],
+                        [
+                            {
+                                text: "	Due date"
+                            },
+                            {
+                                text: "5 days remaining"
+                            },
+                            {
+
+                            }
+                        ],
+                        [
+                            {
+                                text: "Last updated"
+                            },
+                            {
+                                text: "Today"
+                            },
+                            {
+
+                            }
+                        ],
+                        [
+                            {
+                                text: "Priority"
+                            },
+                            {
+                                text: "Welfare"
+                            },
+                            {
+
+                            }
+                        ]
+                    ]
+                })
+            }}
+
+        </div>
+
+
+
+
+
+        {{
+            govukTable
+            ({
+                caption: "Application data",
+                captionClasses: "govuk-table__caption--m govuk-!-margin-top-9",
+                firstCellIsHeader: false,
+                head:
+                [
+                    {
+                        text: "Question"
+                    },
+                    {
+                        text: "Answer"
+                    }
+                ],
+                rows:
+                [
+                    [
+                        {
+                            text: "Are you moving the animals on or off your farm or premises?"
+                        },
+                        {
+                            text: "Off the farm or premises"
+                        }
+                    ],
+                    [
+                        {
+                            text: "Which type of premises are the animals moving off?"
+                        },
+                        {
+                            text: "TB restricted farm"
+                        }
+                    ],
+                    [
+                        {
+                            text: "What is the County Parish Holding (CPH) number of your farm or premises where the animals are moving off?"
+                        },
+                        {
+                            text: "91/885/6212"
+                        }
+                    ],
+                    [
+                        {
+                            text: "What is the address of your farm or premises where the animals are moving off?"
+                        },
+                        {
+                            html: "Hill top farm<br>River lane<br>Lincoln<br>LN7 3JR"
+                        }
+                    ],
+                    [
+                        {
+                            text: "Where are the animals going to?"
+                        },
+                        {
+                            text: "Approved finishing units and TB sales at orange markets"
+                        }
+                    ],
+                    [
+                        {
+                            text: "Enter any additional information (optional)"
+                        },
+                        {
+                            text: "None"
+                        }
+                    ],
+                    [
+                        {
+                            text: "What is the name of the person registered as the keeper of the animals?"
+                        },
+                        {
+                            text: "John Smith"
+                        }
+                    ],
+                    [
+                        {
+                            text: "What email address would you like the licence sent to?"
+                        },
+                        {
+                            text: "j.smith.76@gmail.com"
+                        }
+                    ]
+                ]
+            })
+        }}
+
+
+
+        <div class="govuk-!-margin-top-9">
+
+            <h2 class="govuk-heading-m">Actions</h2>
+
+        <div class="govuk-button-group">
+
+
+            {{
+                govukButton
+                ({
+                    text: 'Approve licence'
+
+                })
+            }}
+
+            {{
+                govukButton
+                ({
+                    text: 'Refer to a vet',
+                    classes: "govuk-button--secondary"
+                })
+            }}
+
+            {{
+                govukButton
+                ({
+                    text: 'Waiting for more details',
+                    classes: "govuk-button--secondary"
+                })
+            }}
+
+
+            {{
+                govukButton
+                ({
+                    text: 'Reject application',
+                    classes: "govuk-button--secondary"
+                })
+            }}
+
+        </div>
+
+
+        </div>
+
+
+
+
+
+        </form>
+
+
+
+        <div class="govuk-!-width-one-half govuk-!-margin-top-9">
+
+            {{
+                govukTable
+                ({
+                    caption: "History of this application",
+                    captionClasses: "govuk-table__caption--m",
+                    firstCellIsHeader: false,
+                    head:
+                    [
+                        {
+                            text: "Change"
+                        },
+                        {
+                            text: "Time"
+                        }
+                    ],
+                    rows:
+                    [
+                        [
+                            {
+                                text: "Started"
+                            },
+                            {
+                                text: "Today at 11:02am"
+                            }
+                        ],
+                        [
+                            {
+                                text: "Allocated to Alex Smith"
+                            },
+                            {
+                                text: "Today at 10:55am"
+                            }
+                        ]
+                    ]
+                })
+            }}
+
+        </div>
+
+
+    </div>
+</div>
+
+
+
+
+
+{% endblock %}
