@@ -10,6 +10,14 @@
 {% endset %}
 
 
+<!-- Setting the smaller secondary heading lower down the page -->
+{% set questionHeadingCPHTextHTML %}
+    County Parish Holding (CPH) number
+{% endset %}
+
+
+
+
 {% set navActive = pageHeadingTextHTML %}
 
 
@@ -86,6 +94,13 @@
         <!--  END OF 'error summary' -->
 
 
+
+
+        <h1 class="govuk-heading-l">
+            {{ pageHeadingTextHTML }}
+        </h1>
+
+
         <form action='{{PAGENAME_TEXT}}-router/{{PAGENAME_TEXT}}/{{LOWEST_NUMBER}}/{{HIGHEST_NUMBER}}' method='post' novalidate>
 
             {{
@@ -93,9 +108,9 @@
                 ({
                     label:
                     {
-                        html: pageHeadingTextHTML,
-                        isPageHeading: true,
-                        classes: 'govuk-label--l'
+                        html: questionHeadingCPHTextHTML,
+                        isPageHeading: false,
+                        classes: 'govuk-label--m'
                     },
 
                     id: SECTION + '-' + PAGENAME_TEXT + '-text-input',
@@ -115,6 +130,9 @@
                     classes: 'govuk-input--width-20'
                 })
             }}
+
+
+            <p>Or <a href="#">search using application reference</a></p>
 
 
             {{ govukButton({ text: 'Search' }) }}
