@@ -41,6 +41,7 @@
                 </div>
             {% endset %}
 
+
             {{
                 govukTable
                 ({
@@ -66,7 +67,7 @@
                                 text: "Allocated to"
                             },
                             {
-                                text: "Alex smith"
+                                text: "Alex smith"  if data['allocated'] == 'true'  else  "Unallocated"
                             },
                             {
                                 html: allocationButtonHtml
@@ -122,6 +123,17 @@
                             },
                             {
                                 text: "Welfare"
+                            },
+                            {
+
+                            }
+                        ],
+                        [
+                            {
+                                text: "Reference"
+                            },
+                            {
+                                text: "TB-7181-M5VL"
                             },
                             {
 
@@ -223,57 +235,58 @@
         }}
 
 
+        </form>
+
 
         <div class="govuk-!-margin-top-9">
 
             <h2 class="govuk-heading-m">Actions</h2>
 
-        <div class="govuk-button-group">
+            <div class="govuk-button-group">
 
 
-            {{
-                govukButton
-                ({
-                    text: 'Approve licence'
+                {{
+                    govukButton
+                    ({
+                        text: 'Approve licence'
 
-                })
-            }}
+                    })
+                }}
 
-            {{
-                govukButton
-                ({
-                    text: 'Refer to a vet',
-                    classes: "govuk-button--secondary"
-                })
-            }}
+                {{
+                    govukButton
+                    ({
+                        text: 'Referred to a vet',
+                        classes: "govuk-button--secondary",
+                        href: "my-applications?status=Referred to a vet&"
+                    })
+                }}
 
-            {{
-                govukButton
-                ({
-                    text: 'Waiting for more details',
-                    classes: "govuk-button--secondary"
-                })
-            }}
+                {{
+                    govukButton
+                    ({
+                        text: 'Waiting for more details',
+                        classes: "govuk-button--secondary"
+                    })
+                }}
 
+                {{
+                    govukButton
+                    ({
+                        text: 'Reject application',
+                        classes: "govuk-button--secondary"
+                    })
+                }}
 
-            {{
-                govukButton
-                ({
-                    text: 'Reject application',
-                    classes: "govuk-button--secondary"
-                })
-            }}
+            </div>
 
         </div>
 
 
-        </div>
 
 
 
 
-
-        </form>
 
 
 
@@ -303,13 +316,21 @@
                             {
                                 text: "Today at 11:02am"
                             }
-                        ],
+                        ] if data['started'] == 'true',
                         [
                             {
                                 text: "Allocated to Alex Smith"
                             },
                             {
                                 text: "Today at 10:55am"
+                            }
+                        ] if data['allocated'] == 'true',
+                        [
+                            {
+                                text: "Submitted"
+                            },
+                            {
+                                text: "Today at 7:13am"
                             }
                         ]
                     ]

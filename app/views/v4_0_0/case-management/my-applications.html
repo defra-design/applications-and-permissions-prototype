@@ -47,27 +47,40 @@
 
             <tbody class="govuk-table__body">
 
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">Dan Moody</td>
-                    <td class="govuk-table__cell">Not started</td>
-                    <td class="govuk-table__cell"></td>
-                    <td class="govuk-table__cell">5 days remaining</td>
-                    <td class="govuk-table__cell"></td>
-                    <td class="govuk-table__cell">TB15</td>
-                    <td class="govuk-table__cell govuk-!-text-align-right">
-                        <a href="#">View details</a>
-                    </td>
-                </tr>
+                {% if data['allocated'] == 'true' %}
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">Dan Moody</td>
+                        <td class="govuk-table__cell">Not started</td>
+                        <td class="govuk-table__cell"></td>
+                        <td class="govuk-table__cell">5 days remaining</td>
+                        <td class="govuk-table__cell">Welfare</td>
+                        <td class="govuk-table__cell">TB16</td>
+                        <td class="govuk-table__cell govuk-!-text-align-right">
+                            {% if data['started'] == 'true' %}
+                                <a href="application-details">View details</a>
+                            {% else %}
+                                {{
+                                    govukButton
+                                    ({
+                                        text: "Start",
+                                        classes: "govuk-button--secondary govuk-!-margin-bottom-0",
+                                        href: "application-details?started=true&"
+                                    })
+                                }}
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endif %}
 
                 <tr class="govuk-table__row">
                     <td class="govuk-table__cell">Sonja Scott</td>
                     <td class="govuk-table__cell">Started</td>
                     <td class="govuk-table__cell"></td>
                     <td class="govuk-table__cell">4 days remaining</td>
-                    <td class="govuk-table__cell">Welfare</td>
+                    <td class="govuk-table__cell"></td>
                     <td class="govuk-table__cell">TB15</td>
                     <td class="govuk-table__cell govuk-!-text-align-right">
-                        <a href="#">View details</a>
+                        <a href="application-details">View details</a>
                     </td>
                 </tr>
 
@@ -80,7 +93,7 @@
                     <td class="govuk-table__cell"></td>
                     <td class="govuk-table__cell">TB16e</td>
                     <td class="govuk-table__cell govuk-!-text-align-right">
-                        <a href="#">View details</a>
+                        <a href="application-details">View details</a>
                     </td>
                 </tr>
 
@@ -93,7 +106,7 @@
                     <td class="govuk-table__cell"></td>
                     <td class="govuk-table__cell">TB16</td>
                     <td class="govuk-table__cell govuk-!-text-align-right">
-                        <a href="#">View details</a>
+                        <a href="application-details">View details</a>
                     </td>
                 </tr>
 
@@ -107,7 +120,7 @@
                     <td class="govuk-table__cell"></td>
                     <td class="govuk-table__cell">TB15</td>
                     <td class="govuk-table__cell govuk-!-text-align-right">
-                        <a href="#">View details</a>
+                        <a href="application-details">View details</a>
                     </td>
                 </tr>
 
@@ -120,7 +133,7 @@
                     <td class="govuk-table__cell"></td>
                     <td class="govuk-table__cell">TB15</td>
                     <td class="govuk-table__cell govuk-!-text-align-right">
-                        <a href="#">View details</a>
+                        <a href="application-details">View details</a>
                     </td>
                 </tr>
 
