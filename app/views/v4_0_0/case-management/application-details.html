@@ -159,6 +159,67 @@
 
 
 
+        <div class="govuk-!-margin-top-9">
+
+            <h2 class="govuk-heading-m">Actions</h2>
+
+            <div class="govuk-button-group">
+
+
+
+                {%  if data['state'] == 'In progress'  %}
+
+                    {{
+                        govukButton
+                        ({
+                            text: 'Validate details',
+                            href: 'validation/name'
+                        })
+                    }}
+
+                {%  else  %}
+
+                    {{
+                        govukButton
+                        ({
+                            text: 'Issued licence'
+                        })
+                    }}
+
+                    {{
+                        govukButton
+                        ({
+                            text: 'Waiting for more details',
+                            classes: "govuk-button--secondary"
+                        })
+                    }}
+
+                    {{
+                        govukButton
+                        ({
+                            text: 'Referred to a vet',
+                            classes: "govuk-button--secondary",
+                            href: "my-applications?state=Referred to a vet&"
+                        })
+                    }}
+
+                    {{
+                        govukButton
+                        ({
+                            text: 'Rejected application',
+                            classes: "govuk-button--secondary"
+                        })
+                    }}
+
+                {%  endif  %}
+
+
+
+            </div>
+
+        </div>
+
+
 
         {{
             govukTable
@@ -249,49 +310,6 @@
         </form>
 
 
-        <div class="govuk-!-margin-top-9">
-
-            <h2 class="govuk-heading-m">Actions</h2>
-
-            <div class="govuk-button-group">
-
-
-                {{
-                    govukButton
-                    ({
-                        text: 'Issued licence'
-
-                    })
-                }}
-
-                {{
-                    govukButton
-                    ({
-                        text: 'Referred to a vet',
-                        classes: "govuk-button--secondary",
-                        href: "my-applications?state=Referred to a vet&"
-                    })
-                }}
-
-                {{
-                    govukButton
-                    ({
-                        text: 'Waiting for more details',
-                        classes: "govuk-button--secondary"
-                    })
-                }}
-
-                {{
-                    govukButton
-                    ({
-                        text: 'Rejected application',
-                        classes: "govuk-button--secondary"
-                    })
-                }}
-
-            </div>
-
-        </div>
 
 
 

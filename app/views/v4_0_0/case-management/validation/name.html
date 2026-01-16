@@ -1,0 +1,94 @@
+{% extends 'layouts/main.html' %}
+
+
+
+<!-- Setting the big main heading at the top of the page -->
+{% set pageHeadingTextHTML %}
+    Do the names match?
+{% endset %}
+
+
+
+{% block content %}
+<div class='govuk-grid-row'>
+    <div class='govuk-grid-column-two-thirds'>
+
+
+        <h1 class="govuk-heading-l">
+            {{ pageHeadingTextHTML }}
+        </h1>
+
+
+                    {{
+                govukTable
+                ({
+                    caption: "",
+                    firstCellIsHeader: false,
+                    head:
+                    [
+                        {
+                            text: "Application"
+                        },
+                        {
+                            text: "APHA record"
+                        }
+                    ],
+                    rows:
+                    [
+                        [
+                            {
+                                text: 'John Smith'
+                            },
+                            {
+                                text: 'John Henry Smith'
+                            }
+                        ],
+                        [
+                            {
+                                text: ""
+                            },
+                            {
+                                text: "Anne Smith"
+                            }
+                        ]
+                    ]
+                })
+            }}
+
+
+        <div class="govuk-button-group">
+
+            {{
+                govukButton
+                ({
+                    text: 'Names match',
+                    href: 'address'
+                })
+            }}
+
+
+            {{
+                govukButton
+                ({
+                    text: 'Names do not match',
+                    classes: "govuk-button--secondary"
+                })
+            }}
+
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+{% endblock %}
+
+
+
+
+
