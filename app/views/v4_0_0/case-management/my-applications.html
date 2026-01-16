@@ -50,13 +50,13 @@
                 {% if data['allocated'] == 'true' %}
                     <tr class="govuk-table__row">
                         <td class="govuk-table__cell">Dan Moody</td>
-                        <td class="govuk-table__cell">Not started</td>
-                        <td class="govuk-table__cell"></td>
+                        <td class="govuk-table__cell">{% if data['state'] %} {{data['state']}}  {% else %} New {% endif %}  </td>
+                        <td class="govuk-table__cell">{% if data['state'] %}Today{% endif %}</td>
                         <td class="govuk-table__cell">5 days remaining</td>
                         <td class="govuk-table__cell">Welfare</td>
                         <td class="govuk-table__cell">TB16</td>
                         <td class="govuk-table__cell govuk-!-text-align-right">
-                            {% if data['started'] == 'true' %}
+                            {% if data['state'] %}
                                 <a href="application-details">View details</a>
                             {% else %}
                                 {{
@@ -64,7 +64,7 @@
                                     ({
                                         text: "Start",
                                         classes: "govuk-button--secondary govuk-!-margin-bottom-0",
-                                        href: "application-details?started=true&"
+                                        href: "application-details?state=In progress&"
                                     })
                                 }}
                             {% endif %}

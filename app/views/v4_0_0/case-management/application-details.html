@@ -1,7 +1,7 @@
 {% extends "layouts/v4_0_0_case_management" %}
 
 
-{% set backlinkoff = 'true' %}
+{% set backlinkoff = 'false' %}
 
 
 <!-- Setting the big main heading at the top of the page -->
@@ -30,6 +30,16 @@
 
             {% set allocationButtonHtml %}
                 <div class="div_right_aligned__item">
+                    {% if data['allocated'] != 'true' %}
+                        {{
+                            govukButton
+                            ({
+                                text: "Allocate to me",
+                                classes: "govuk-button--secondary govuk-!-margin-bottom-0 govuk-!-margin-right-3",
+                                href: "my-applications?allocated=true"
+                            })
+                        }}
+                    {% endif %}
                     {{
                         govukButton
                         ({
@@ -64,6 +74,17 @@
                     [
                         [
                             {
+                                text: "State"
+                            },
+                            {
+                                text: data['state'] or 'New'
+                            },
+                            {
+
+                            }
+                            ],
+                        [
+                            {
                                 text: "Allocated to"
                             },
                             {
@@ -73,17 +94,7 @@
                                 html: allocationButtonHtml
                             }
                         ],
-                        [
-                            {
-                                text: "State"
-                            },
-                            {
-                                text: "Started"
-                            },
-                            {
 
-                            }
-                        ],
                         [
                             {
                                 text: "Licence type"
@@ -248,7 +259,7 @@
                 {{
                     govukButton
                     ({
-                        text: 'Approve licence'
+                        text: 'Issued licence'
 
                     })
                 }}
@@ -258,7 +269,7 @@
                     ({
                         text: 'Referred to a vet',
                         classes: "govuk-button--secondary",
-                        href: "my-applications?status=Referred to a vet&"
+                        href: "my-applications?state=Referred to a vet&"
                     })
                 }}
 
@@ -273,7 +284,7 @@
                 {{
                     govukButton
                     ({
-                        text: 'Reject application',
+                        text: 'Rejected application',
                         classes: "govuk-button--secondary"
                     })
                 }}
@@ -311,12 +322,20 @@
                     [
                         [
                             {
-                                text: "Started"
+                                text: "Referred to a vet"
+                            },
+                            {
+                                text: "Today at 11:08am"
+                            }
+                        ] if data['state'] == 'Referred to a vet',
+                        [
+                            {
+                                text: "In progress"
                             },
                             {
                                 text: "Today at 11:02am"
                             }
-                        ] if data['started'] == 'true',
+                        ] if data['state'] == 'In progress' or  data['state'] == 'Referred to a vet',
                         [
                             {
                                 text: "Allocated to Alex Smith"
