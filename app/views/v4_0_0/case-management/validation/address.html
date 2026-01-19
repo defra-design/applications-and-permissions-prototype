@@ -1,4 +1,7 @@
-{% extends 'layouts/main.html' %}
+{% extends "layouts/v4_0_0_case_management" %}
+
+
+{% set backlinkoff = 'false' %}
 
 
 
@@ -11,15 +14,16 @@
 
 {% block content %}
 <div class='govuk-grid-row'>
-    <div class='govuk-grid-column-two-thirds'>
+
+    <div class="govuk-grid-column-full">
 
 
         <h1 class="govuk-heading-l">
             {{ pageHeadingTextHTML }}
         </h1>
 
-
-                    {{
+        <div class="govuk-!-width-one-half">
+            {{
                 govukTable
                 ({
                     caption: "",
@@ -48,6 +52,8 @@
                 })
             }}
 
+        </div>
+
 
         <div class="govuk-button-group">
 
@@ -55,7 +61,7 @@
                 govukButton
                 ({
                     text: 'Addresses match',
-                    href: 'validation/name'
+                    href: '../application-details?validated=true&'
                 })
             }}
 

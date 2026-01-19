@@ -23,31 +23,13 @@
         </h1>
 
 
-        <form action='{{PAGENAME_TEXT}}-router/{{PAGENAME_TEXT}}/{{LOWEST_NUMBER}}/{{HIGHEST_NUMBER}}' method='post' novalidate>
-
-
         <div class="govuk-!-width-one-half">
 
             {% set allocationButtonHtml %}
                 <div class="div_right_aligned__item">
-                    {% if data['allocated'] != 'true' %}
-                        {{
-                            govukButton
-                            ({
-                                text: "Allocate to me",
-                                classes: "govuk-button--secondary govuk-!-margin-bottom-0 govuk-!-margin-right-3",
-                                href: "my-applications?allocated=true"
-                            })
-                        }}
+                    {% if data['allocated'] == 'true' %}
+                        <a href="#">Change allocation</a>
                     {% endif %}
-                    {{
-                        govukButton
-                        ({
-                            text: "Change allocation",
-                            classes: "govuk-button--secondary govuk-!-margin-bottom-0",
-                            href: "#"
-                        })
-                    }}
                 </div>
             {% endset %}
 
@@ -159,47 +141,26 @@
 
 
 
+
+
+
         <div class="govuk-!-margin-top-9">
 
             <h2 class="govuk-heading-m">Actions</h2>
 
             <div class="govuk-button-group">
 
+                {%  if data['state'] == 'Licence issued' %}
 
 
-                {%  if data['state'] == 'In progress'  %}
 
-                    {{
-                        govukButton
-                        ({
-                            text: 'Validate details',
-                            href: 'validation/name'
-                        })
-                    }}
-
-                {%  else  %}
+                {%  elif data['state'] == 'Referred to a vet' %}
 
                     {{
                         govukButton
                         ({
-                            text: 'Issued licence'
-                        })
-                    }}
-
-                    {{
-                        govukButton
-                        ({
-                            text: 'Waiting for more details',
-                            classes: "govuk-button--secondary"
-                        })
-                    }}
-
-                    {{
-                        govukButton
-                        ({
-                            text: 'Referred to a vet',
-                            classes: "govuk-button--secondary",
-                            href: "my-applications?state=Referred to a vet&"
+                            text: 'Issued licence',
+                            href: 'issued-licence/upload-licence'
                         })
                     }}
 
@@ -211,8 +172,80 @@
                         })
                     }}
 
+                {%  elif data['state'] == 'In progress'  and  data['validated'] != 'true' %}
+
+                    {{
+                        govukButton
+                        ({
+                            text: 'Validate details',
+                            href: 'validation/name'
+                        })
+                    }}
+
+                    {{
+                        govukButton
+                        ({
+                            text: 'Application not needed',
+                            classes: "govuk-button--secondary"
+                        })
+                    }}
+
+                    {{
+                        govukButton
+                        ({
+                            text: 'Waiting for more details',
+                            classes: "govuk-button--secondary"
+                        })
+                    }}
+
+                {%  elif data['validated'] == 'true'  %}
+
+                    {{
+                        govukButton
+                        ({
+                            text: 'Referred to a vet',
+                            href: "my-applications?state=Referred to a vet&"
+                        })
+                    }}
+
+                    {{
+                        govukButton
+                        ({
+                            text: 'Application not needed',
+                            classes: "govuk-button--secondary"
+                        })
+                    }}
+
+                    {{
+                        govukButton
+                        ({
+                            text: 'Waiting for more details',
+                            classes: "govuk-button--secondary"
+                        })
+                    }}
+
+
+                {%  else  %}
+
+                   {{
+                        govukButton
+                        ({
+                            text: "Allocate to me",
+                            href: "my-applications?allocated=true"
+                        })
+                    }}
+
+
                 {%  endif  %}
 
+
+                {{
+                    govukButton
+                    ({
+                        text: 'Add note',
+                        classes: "govuk-button--secondary"
+                    })
+                }}
 
 
             </div>
@@ -267,7 +300,7 @@
                             text: "What is the address of your farm or premises where the animals are moving off?"
                         },
                         {
-                            html: "Hill top farm<br>River lane<br>Lincoln<br>LN7 3JR"
+                            html: "Hill top farm<br>River lane<br>West Thornbridge<br>Lincoln<br>LN97GX"
                         }
                     ],
                     [
@@ -307,19 +340,14 @@
         }}
 
 
-        </form>
-
-
-
-
-
-
 
 
 
 
 
         <div class="govuk-!-width-one-half govuk-!-margin-top-9">
+
+
 
             {{
                 govukTable
@@ -334,32 +362,66 @@
                         },
                         {
                             text: "Time"
+                        },
+                        {
+                            text: "Person"
                         }
                     ],
                     rows:
                     [
                         [
                             {
+                                html: "Licence issued<br><a href='#'>Download licence</a>"
+                            },
+                            {
+                                text: "Today at 12:44am"
+                            },
+                            {
+                                text: "Alex Smith"
+                            }
+                        ] if data['state'] == 'Licence issued',
+                        [
+                            {
                                 text: "Referred to a vet"
                             },
                             {
                                 text: "Today at 11:08am"
+                            },
+                            {
+                                text: "Alex Smith"
                             }
-                        ] if data['state'] == 'Referred to a vet',
+                        ] if data['state'] == 'Referred to a vet'  or  data['state'] == 'Licence issued',
+                        [
+                            {
+                                text: "Details validated"
+                            },
+                            {
+                                text: "Today at 11:07am"
+                            },
+                            {
+                                text: "Alex Smith"
+                            }
+                        ] if data['validated'] == 'true',
                         [
                             {
                                 text: "In progress"
                             },
                             {
                                 text: "Today at 11:02am"
+                            },
+                            {
+                                text: "Alex Smith"
                             }
-                        ] if data['state'] == 'In progress' or  data['state'] == 'Referred to a vet',
+                        ] if data['state'] == 'In progress'  or  data['state'] == 'Referred to a vet'  or  data['state'] == 'Licence issued',
                         [
                             {
                                 text: "Allocated to Alex Smith"
                             },
                             {
                                 text: "Today at 10:55am"
+                            },
+                            {
+                                text: "Alex Smith"
                             }
                         ] if data['allocated'] == 'true',
                         [
@@ -368,6 +430,9 @@
                             },
                             {
                                 text: "Today at 7:13am"
+                            },
+                            {
+                                text: ""
                             }
                         ]
                     ]

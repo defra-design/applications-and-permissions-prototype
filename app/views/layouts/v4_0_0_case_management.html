@@ -193,7 +193,9 @@
         {% endif %}
 
         {% if backlinkoff != "true" %}
-            <a onclick="history.back();" href="#" class="govuk-back-link">Back</a>
+            <div class="layout-width-container--full">
+                <a onclick="history.back();" href="#" class="govuk-back-link">Back</a>
+            </div>
         {% endif %}
 
     {% endblock %}
