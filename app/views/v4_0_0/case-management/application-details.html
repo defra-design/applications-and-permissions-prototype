@@ -23,7 +23,7 @@
         </h1>
 
 
-        <div class="govuk-!-width-one-half">
+        <div style="display: flex;" class="govuk-!-width-two-thirds">
 
             {% set allocationButtonHtml %}
                 <div class="div_right_aligned__item">
@@ -34,107 +34,137 @@
             {% endset %}
 
 
-            {{
-                govukTable
-                ({
-                    caption: "",
-                    captionClasses: "govuk-table__caption--m",
-                    firstCellIsHeader: true,
-                    head:
-                    [
-                        {
-                            text: ""
-                        },
-                        {
-                            text: ""
-                        },
-                        {
-                            text: ""
-                        }
-                    ],
-                    rows:
-                    [
+            <div class="govuk-!-width-one-half">
+                {{
+                    govukTable
+                    ({
+                        caption: "",
+                        captionClasses: "govuk-table__caption--m",
+                        firstCellIsHeader: true,
+                        head:
                         [
                             {
-                                text: "State"
+                                text: ""
                             },
                             {
-                                text: data['state'] or 'New'
+                                text: ""
                             },
                             {
-
+                                text: ""
                             }
+                        ],
+                        rows:
+                        [
+                            [
+                                {
+                                    text: "State"
+                                },
+                                {
+                                    text: data['state'] or 'New'
+                                },
+                                {
+
+                                }
                             ],
-                        [
-                            {
-                                text: "Allocated to"
-                            },
-                            {
-                                text: "Alex smith"  if data['allocated'] == 'true'  else  "Unallocated"
-                            },
-                            {
-                                html: allocationButtonHtml
-                            }
-                        ],
 
-                        [
-                            {
-                                text: "Licence type"
-                            },
-                            {
-                                text: "TB16"
-                            },
-                            {
+                            [
+                                {
+                                    text: "Licence type"
+                                },
+                                {
+                                    text: "TB16"
+                                },
+                                {
 
-                            }
-                        ],
-                        [
-                            {
-                                text: "	Due date"
-                            },
-                            {
-                                text: "5 days remaining"
-                            },
-                            {
+                                }
+                            ],
+                            [
+                                {
+                                    text: "Last updated"
+                                },
+                                {
+                                    text: "Today"
+                                },
+                                {
 
-                            }
-                        ],
-                        [
-                            {
-                                text: "Last updated"
-                            },
-                            {
-                                text: "Today"
-                            },
-                            {
+                                }
+                            ],
+                            [
+                                {
+                                    text: "Priority"
+                                },
+                                {
+                                    text: "Welfare"
+                                },
+                                {
 
-                            }
-                        ],
-                        [
-                            {
-                                text: "Priority"
-                            },
-                            {
-                                text: "Welfare"
-                            },
-                            {
-
-                            }
-                        ],
-                        [
-                            {
-                                text: "Reference"
-                            },
-                            {
-                                text: "TB-7181-M5VL"
-                            },
-                            {
-
-                            }
+                                }
+                            ]
                         ]
-                    ]
-                })
-            }}
+                    })
+                }}
+            </div>
+
+
+            <div class="govuk-!-width-one-half">
+                {{
+                    govukTable
+                    ({
+                        caption: "",
+                        captionClasses: "govuk-table__caption--m",
+                        firstCellIsHeader: true,
+                        classes: "govuk-!-margin-left-9",
+                        head:
+                        [
+                            {
+                                text: ""
+                            },
+                            {
+                                text: ""
+                            },
+                            {
+                                text: ""
+                            }
+                        ],
+                        rows:
+                        [
+                            [
+                                {
+                                    text: "Allocated to"
+                                },
+                                {
+                                    text: "Alex smith"  if data['allocated'] == 'true'  else  "Unallocated"
+                                },
+                                {
+                                    html: allocationButtonHtml
+                                }
+                            ],
+                            [
+                                {
+                                    text: "Due date"
+                                },
+                                {
+                                    text: "5 days remaining"
+                                },
+                                {
+
+                                }
+                            ],
+                            [
+                                {
+                                    text: "Reference"
+                                },
+                                {
+                                    text: "TB-7181-M5VL"
+                                },
+                                {
+
+                                }
+                            ]
+                        ]
+                    })
+                }}
+            </div>
 
         </div>
 
@@ -144,7 +174,7 @@
 
 
 
-        <div class="govuk-!-margin-top-9">
+        <div class="">
 
             <h2 class="govuk-heading-m">Actions</h2>
 
@@ -492,7 +522,7 @@
                             text: "Upload a biosecurity map"
                         },
                         {
-                            html: "Licence issued<br><a href='#'>Download licence</a>"
+                            html: "<a href='#'>Download image</a>"
                         }
                     ]
                 ]
