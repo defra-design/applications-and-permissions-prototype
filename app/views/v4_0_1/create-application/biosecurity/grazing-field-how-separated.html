@@ -1,0 +1,96 @@
+{% extends "layouts/v4_0_1.html" %}
+
+
+<!-- Setting the big main heading at the top of the page -->
+{% set pageHeadingTextHTML %}
+    Which measures are being taken to reduce the spread of TB when the animals are grazing?
+{% endset %}
+
+
+<!-- Text that show in the browser tab. Does NOT need changing -->
+{% block pageTitle %}
+    {% if  data['errorthispage'] == "true"  %}
+        Error:
+    {% endif %}
+
+    {{ pageHeadingTextHTML }}
+{% endblock %}
+
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+
+        <!-- form URL below turns off errors on the next page  -->
+        <form action="grazing-field-how-separated-router" method="post" novalidate>
+
+            {{ govukCheckboxes
+                ({
+                    name: "biosecurity-grazing-field-how-separated-checkboxes",
+
+                    id: "biosecurity-grazing-field-how-separated-checkboxes",
+
+                    fieldset:
+                    {
+                        legend:
+                        {
+                            text: pageHeadingTextHTML,
+                            isPageHeading: true,
+                            classes: "govuk-fieldset__legend--l"
+                        }
+                    },
+
+                    hint:
+                    {
+                        text: "Only select the measures you are taking. You do not
+                                need to select them all to receive your licence."
+                    },
+
+                    errorMessage: null if data['errorthispage'] != "true"
+                                       else { html: errorTextHTML },
+
+                    items:
+                    [
+
+                        {
+                            value: "Roads create a boundary between the animals",
+                            text: "Roads create a boundary between the animals",
+                            checked: (data['biosecurity-grazing-field-how-separated-checkboxes'] or []).indexOf('Roads create a boundary between the animals') > -1
+                        },
+                        {
+                            value: "A minimum of 3 metres will separate the animals",
+                            text: "A minimum of 3 metres will separate the animals",
+                            hint:
+                            {
+                                text: "Such as by hedges, doubling fencing or walls"
+                            },
+                            checked: (data['biosecurity-grazing-field-how-separated-checkboxes'] or []).indexOf('A minimum of 3 metres will separate the animals') > -1
+                        },
+                        {
+                            value: "Other separation measures",
+                            text: "Other separation measures",
+                            checked: (data['biosecurity-grazing-field-how-separated-checkboxes'] or []).indexOf('Other separation measures') > -1
+                        }
+                    ]
+                })
+            }}
+
+
+            {{ govukButton({ text: "Continue" }) }}
+
+        </form>
+
+    </div>
+</div>
+
+
+
+
+
+
+{% endblock %}
+
+
+

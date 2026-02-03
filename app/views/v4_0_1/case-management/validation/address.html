@@ -1,0 +1,93 @@
+{% extends "layouts/v4_0_1_case_management" %}
+
+
+{% set backlinkoff = 'false' %}
+
+
+
+<!-- Setting the big main heading at the top of the page -->
+{% set pageHeadingTextHTML %}
+    Do the addresses match?
+{% endset %}
+
+
+
+{% block content %}
+<div class='govuk-grid-row'>
+
+    <div class="govuk-grid-column-full">
+
+
+        <h1 class="govuk-heading-l">
+            {{ pageHeadingTextHTML }}
+        </h1>
+
+        <div class="govuk-!-width-one-half">
+            {{
+                govukTable
+                ({
+                    caption: "",
+                    firstCellIsHeader: false,
+                    head:
+                    [
+                        {
+                            text: "Application"
+                        },
+                        {
+                            text: "APHA record"
+                        }
+                    ],
+                    rows:
+                    [
+                        [
+                            {
+                                html: 'Hill top farm<br>River lane<br>West Thornbridge<br>Lincoln<br>LN97GX'
+                            },
+
+                            {
+                                html: 'Hill Top Farm<br>River lane<br>West Thornbridge<br>Lincoln<br>LN9 7GX'
+                            }
+                        ]
+                    ]
+                })
+            }}
+
+        </div>
+
+
+        <div class="govuk-button-group">
+
+            {{
+                govukButton
+                ({
+                    text: 'Addresses match',
+                    href: '../application-details?validated=true&'
+                })
+            }}
+
+
+            {{
+                govukButton
+                ({
+                    text: 'Addresses do not match',
+                    classes: "govuk-button--secondary"
+                })
+            }}
+
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+{% endblock %}
+
+
+
+
+

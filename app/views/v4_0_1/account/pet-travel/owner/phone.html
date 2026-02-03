@@ -1,0 +1,91 @@
+{% extends "layouts/pet-travel.html" %}
+
+{% block pageTitle %} What is your phone number – {{ serviceName }} – GOV.UK {% endblock %}
+
+{# {% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Beta"
+    },
+    html: 'This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback (opens in new tab)</a>.'
+  }) }}
+  {% include "/v23/includes/service/nav-bar.html" %}
+  <a href="./postcode" class="govuk-back-link pet-travel-back-link">Back</a>
+{% endblock %} #}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {% if data['error'] == 'p6notselected' %}
+    <div class="govuk-error-summary" data-module="govuk-error-summary">
+      <div role="alert">
+        <h2 class="govuk-error-summary__title">
+          There is a problem
+        </h2>
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            <li>
+              <a href="#">Enter your phone number</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+    {% if data['error'] == 'p7notselected' %}
+    <div class="govuk-error-summary" data-module="govuk-error-summary">
+      <div role="alert">
+        <h2 class="govuk-error-summary__title">
+          There is a problem
+        </h2>
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            <li>
+              <a href="#">Enter your phone number, like 01632 960 001, 07700 900 982 or +49 30 12345678</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+  {% if data['returnPage'] === '/v23/create/check' %}
+    <form
+      action="../microchip/microchip"
+      method="POST"
+    >
+    {% else %}
+    <form class="form" action="../microchip/microchip" method="post">
+    {% endif %}
+      <div class="govuk-form-group {% if data['error'] == 'p6notselected' %}govuk-form-group--error{% endif %}{% if data['error'] == 'p7notselected' %}govuk-form-group--error{% endif %}">
+        <h1 id="documents" class="govuk-label-wrapper">
+          <label class="govuk-label govuk-label--xl" for="telephoneNumber">
+            What is your phone number?
+          </label>
+        </h1>
+        <div id="telephone-number-hint" class="govuk-hint">
+          We ask for your phone number in case we need to call you about your application. For international numbers include the country code.
+        </div>
+        {% if data['error'] == 'p6notselected' %}
+        <p id="whereDoYouLive-error" class="govuk-error-message">
+          <span class="govuk-visually-hidden">Error:</span> Enter your phone number
+        </p>
+        {% endif %}
+        {% if data['error'] == 'p7notselected' %}
+        <p id="whereDoYouLive-error" class="govuk-error-message">
+          <span class="govuk-visually-hidden">Error:</span> Enter your phone number, like 01632 960 001, 07700 900 982 or +49 30 12345678
+        </p>
+        {% endif %}
+        <input class="govuk-input govuk-input--width-20" id="telephoneNumber" name="telephoneNumber" type="tel" aria-describedby="telephone-number-hint" autocomplete="tel">
+      </div>
+
+      <div class="govuk-form-group">
+        {{ govukButton({ text: "Continue" }) }}
+      </div>
+    </form>
+
+  </div>
+</div>
+{% endblock %}

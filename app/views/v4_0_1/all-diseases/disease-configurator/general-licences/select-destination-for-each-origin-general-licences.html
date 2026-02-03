@@ -1,0 +1,183 @@
+{% extends "layouts/v4_0_1" %}
+
+
+
+
+<!-- Setting the big main heading at the top of the page -->
+{% set pageHeadingTextHTML %}
+    If the origin premises is
+    {% if  data['origin-general-licence-showing-in-loop'] != ""
+        and data['origin-general-licence-showing-in-loop'] != undefined  %}
+        {{ data['origin-general-licence-showing-in-loop'] }},
+    {% else %}
+        [ ORIGIN PLACEHOLDER ],
+    {% endif %}
+    which destinations are allowed for a movement to take place?
+{% endset %}
+
+
+<!-- Set the text for the error type -->
+{% set errorTextHTML %}
+    <!-- Nothing was selected -->
+    {%  if  data['errortypeone'] == "true"  %}
+         Select which destination premises are allowed
+    {% endif %}
+{% endset %}
+
+
+<!-- Text that show in the browser tab. Does NOT need changing -->
+{% block pageTitle %}
+    {% if  data['errorthispage'] == "true"  %}
+        Error:
+    {% endif %}
+
+    {{ pageHeadingTextHTML }}
+{% endblock %}
+
+
+
+<!-- Set the section name -->
+{% set SECTION %}disease-configurator-general-licence{% endset %}
+
+
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+        <!-- ERROR LOGIC 'error summary' -->
+        {% if data['errorthispage'] == "true" %}
+            {{ govukErrorSummary
+                ({
+                    titleText: "There is a problem",
+                    errorList:
+                    [
+                        {
+                            html: errorTextHTML,
+                            href: "#' + SECTION + '-select-destination-for-each-origin-general-licences-checkboxes"
+                        }
+                    ]
+                })
+            }}
+        {% endif %}
+        <!--  END OF 'error summary' -->
+
+
+        <!-- form URL below turns off errors on the next page  -->
+        <form action="select-destination-for-each-origin-general-licences-router" method="post" novalidate>
+
+            {{ govukCheckboxes
+                ({
+                    name: SECTION + '-select-destination-for-each-origin-general-licences-checkboxes',
+
+                    id: SECTION + '-select-destination-for-each-origin-general-licences-checkboxes',
+
+                    fieldset:
+                    {
+                        legend:
+                        {
+                            text: pageHeadingTextHTML,
+                            isPageHeading: true,
+                            classes: "govuk-fieldset__legend--l"
+                        }
+                    },
+
+                    hint:
+                    {
+                        text: "Select all that apply"
+                    },
+
+                    errorMessage: null if data['errorthispage'] != "true"
+                                       else { html: errorTextHTML },
+
+                    items:
+                    [
+                        {
+                            value: data[SECTION + '-destination-types-general-licences-checkboxes'][0],
+                            text: data[SECTION + '-destination-types-general-licences-checkboxes'][0],
+                            checked: (data['origin-destination-matrix-general-licences'][data['origin-general-licence-loop-counter']] or []).indexOf(data[SECTION + '-destination-types-general-licences-checkboxes'][0]) > -1
+                        } if data[SECTION + '-destination-types-general-licences-checkboxes'][0] != undefined,
+                        {
+                            value: data[SECTION + '-destination-types-general-licences-checkboxes'][1],
+                            text: data[SECTION + '-destination-types-general-licences-checkboxes'][1],
+                            checked: (data['origin-destination-matrix-general-licences'][data['origin-general-licence-loop-counter']] or []).indexOf(data[SECTION + '-destination-types-general-licences-checkboxes'][1]) > -1
+                        } if data[SECTION + '-destination-types-general-licences-checkboxes'][1] != undefined,
+                        {
+                            value: data[SECTION + '-destination-types-general-licences-checkboxes'][2],
+                            text: data[SECTION + '-destination-types-general-licences-checkboxes'][2],
+                            checked: (data['origin-destination-matrix-general-licences'][data['origin-general-licence-loop-counter']] or []).indexOf(data[SECTION + '-destination-types-general-licences-checkboxes'][2]) > -1
+                        } if data[SECTION + '-destination-types-general-licences-checkboxes'][2] != undefined,
+                        {
+                            value: data[SECTION + '-destination-types-general-licences-checkboxes'][3],
+                            text: data[SECTION + '-destination-types-general-licences-checkboxes'][3],
+                            checked: (data['origin-destination-matrix-general-licences'][data['origin-general-licence-loop-counter']] or []).indexOf(data[SECTION + '-destination-types-general-licences-checkboxes'][3]) > -1
+                        } if data[SECTION + '-destination-types-general-licences-checkboxes'][3] != undefined,
+                        {
+                            value: data[SECTION + '-destination-types-general-licences-checkboxes'][4],
+                            text: data[SECTION + '-destination-types-general-licences-checkboxes'][4],
+                            checked: (data['origin-destination-matrix-general-licences'][data['origin-general-licence-loop-counter']] or []).indexOf(data[SECTION + '-destination-types-general-licences-checkboxes'][4]) > -1
+                        } if data[SECTION + '-destination-types-general-licences-checkboxes'][4] != undefined,
+                        {
+                            value: data[SECTION + '-destination-types-general-licences-checkboxes'][5],
+                            text: data[SECTION + '-destination-types-general-licences-checkboxes'][5],
+                            checked: (data['origin-destination-matrix-general-licences'][data['origin-general-licence-loop-counter']] or []).indexOf(data[SECTION + '-destination-types-general-licences-checkboxes'][5]) > -1
+                        } if data[SECTION + '-destination-types-general-licences-checkboxes'][5] != undefined,
+                        {
+                            value: data[SECTION + '-destination-types-general-licences-checkboxes'][6],
+                            text: data[SECTION + '-destination-types-general-licences-checkboxes'][6],
+                            checked: (data['origin-destination-matrix-general-licences'][data['origin-general-licence-loop-counter']] or []).indexOf(data[SECTION + '-destination-types-general-licences-checkboxes'][6]) > -1
+                        } if data[SECTION + '-destination-types-general-licences-checkboxes'][6] != undefined,
+                        {
+                            value: data[SECTION + '-destination-types-general-licences-checkboxes'][7],
+                            text: data[SECTION + '-destination-types-general-licences-checkboxes'][7],
+                            checked: (data['origin-destination-matrix-general-licences'][data['origin-general-licence-loop-counter']] or []).indexOf(data[SECTION + '-destination-types-general-licences-checkboxes'][7]) > -1
+                        } if data[SECTION + '-destination-types-general-licences-checkboxes'][7] != undefined,
+                        {
+                            value: data[SECTION + '-destination-types-general-licences-checkboxes'][8],
+                            text: data[SECTION + '-destination-types-general-licences-checkboxes'][8],
+                            checked: (data['origin-destination-matrix-general-licences'][data['origin-general-licence-loop-counter']]  or []).indexOf(data[SECTION + '-destination-types-general-licences-checkboxes'][8]) > -1
+                        } if data[SECTION + '-destination-types-general-licences-checkboxes'][8] != undefined
+                    ]
+                })
+            }}
+
+
+            {{ govukButton({ text: "Continue" }) }}
+
+        </form>
+
+    </div>
+</div>
+
+
+
+
+<!-- ERROR LOGIC  drop down to toggle states  -->
+<form method="post"  action="#" class="for4" style=" float: left; position: relative; bottom:-225px;  ">
+
+    <select style="height:30px;" onchange="window.location.href='?'+this.value">
+
+        <option value="errorthispage=false&errortypeone=false&errortypetwo=false&"
+                {% if (data['errorthispage'] != "true") %}selected{% endif %}
+        >Errors - Off</option>
+
+        <!-- Nothing was selected -->
+        <option value="errorthispage=true&errortypeone=true&errortypetwo=false&"
+                {% if (data['errortypeone'] == 'true' and data['errortypetwo'] != 'true')  %}selected{% endif %}
+        >Error 1 - Must select at least one</option>
+
+    </select>
+
+</form>
+<!--  END OF ERROR LOGIC -->
+
+
+
+
+
+
+{% endblock %}
+
+
+

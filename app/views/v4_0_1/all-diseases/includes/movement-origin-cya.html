@@ -1,0 +1,58 @@
+
+
+    <dl class="govuk-summary-list">
+
+
+        <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key  govuk-!-font-weight-regular">
+                What is the address of the place where the products are coming from?
+            </dt>
+            <dd class="govuk-summary-list__value">
+                {{ data['movement-origin-product-address-line-1'] }}<br>
+                {{ data['movement-origin-product-address-line-2'] }}<br>
+                {{ data['movement-origin-product-address-town'] }}<br>
+                {{ data['movement-origin-product-address-county'] }}<br>
+                {{ data['movement-origin-product-address-postcode'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="../movement-origin/product-address">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        </div>
+
+
+
+        <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                Which types of premises are the animals moving off?
+            </dt>
+            <dd class="govuk-summary-list__value">
+                {{ data['origin-premises-type-radios'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="../movement-origin/premises-type">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        </div>
+
+
+
+
+
+        {%  if data['about-the-movement-movement-type-radios']  == "A short term visit or activity on a farm or premises"  %}
+
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                    Are any animals are involved in the activity?
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    {{ data['about-the-movement-animals-involved-activity-radios-yes-no'] }}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="../about-the-movement/animals-involved-activity">Change<span class="govuk-visually-hidden"> </span></a>
+                </dd>
+            </div>
+
+        {%  endif  %}
+
+
+
+    </dl>

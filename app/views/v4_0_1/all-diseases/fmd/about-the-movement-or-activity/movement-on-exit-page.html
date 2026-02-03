@@ -1,0 +1,59 @@
+{% extends "layouts/v4_0_1" %}
+
+{% set version = "v4_0_1" %}
+{% set bodyClasses = version %}
+
+<!--
+NOTES ON USING THIS TEMPLATE Page
+This will save you time.
+
+1. Type your heading for the page after '% set pageHeadingTextHTML %'
+2. Type/customise the error messages after '% set errorTextHTML %'
+3. Use 'Find and replace' to replace "SECTION" with the name of the section of the service you're working on.
+4. Use 'Find and replace' to replace "PAGENAME_NUMBER" with whatever you named this page/file.
+5. Go to the javascript file 'templates.js' and copy the section 'NUMBER ENTRY' into your routes.js file.
+6. Follow instructions at the top of the 'templates.js'.
+-->
+
+
+<!-- Setting the big main heading at the top of the page -->
+{% set pageHeadingTextHTML %}
+    This service does not allow licences for moving milk or carcasses onto premises
+{% endset %}
+
+
+
+<!-- Text that show in the browser tab. Does NOT need changing -->
+{% block pageTitle %}
+    {{ pageHeadingTextHTML }}
+{% endblock %}
+
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-xl">{{ pageHeadingTextHTML }}</h1>
+
+        <!-- go to routes.js for routing  -->
+        <form action="type" method="post" novalidate>
+
+
+            {{ govukButton({ text: "Continue" }) }}
+
+
+        </form>
+
+    </div>
+</div>
+
+
+
+
+
+{% endblock %}
+
+
+
+
+

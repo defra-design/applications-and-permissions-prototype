@@ -1,0 +1,147 @@
+{% extends "layouts/pet-travel.html" %}
+
+{% block pageTitle %}Is your pet microchipped – {{ serviceName }} – GOV.UK{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {% if data['error'] == 'p8notselected' %}
+    <div class="govuk-error-summary" data-module="govuk-error-summary">
+      <div role="alert">
+        <h2 class="govuk-error-summary__title">
+          There is a problem
+        </h2>
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            <li>
+              <a href="#">Tell us if your pet is microchipped</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+    {% if data['error'] == 'p9notselected' %}
+    <div class="govuk-error-summary" data-module="govuk-error-summary">
+      <div role="alert">
+        <h2 class="govuk-error-summary__title">
+          There is a problem
+        </h2>
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            <li>
+              <a href="#">Enter your pet’s 15-digit microchip number</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+    {% if data['error'] == 'p10notselected' %}
+    <div class="govuk-error-summary" data-module="govuk-error-summary">
+      <div role="alert">
+        <h2 class="govuk-error-summary__title">
+          There is a problem
+        </h2>
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            <li>
+              <a href="#">The microchip number is associated with another pet travel document</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+      <form class="form" action="date" method="post">
+    <div class="govuk-form-group {% if data['error'] == 'p8notselected' %}govuk-form-group--error{% endif %}">
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="contact-hint">
+
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+              <h1 id="documents" class="govuk-fieldset__heading">
+                Is your pet microchipped?
+              </h1>
+            </legend>
+
+            <div id="contact-hint" class="govuk-hint">
+              Check your pet's microchip certificate for the microchip number.
+            </div>
+
+            {% if data['error'] == 'p8notselected' %}
+            <p id="whereDoYouLive-error" class="govuk-error-message">
+              <span class="govuk-visually-hidden">Error:</span> Tell us if your details are correct
+            </p>
+            {% endif %}
+
+            <div class="govuk-radios" data-module="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="radio-microchip" name="radio-microchip" type="radio" value="Microchip" data-aria-controls="conditional-microchip-number" {% if data['error'] == 'p9notselected' %}checked{% endif %} {% if data['error'] == 'p10notselected' %}checked{% endif %}>
+                <label class="govuk-label govuk-radios__label" for="radio-microchip">
+                  Yes
+                </label>
+              </div>
+              <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-microchip-number">
+                <div class="govuk-form-group {% if data['error'] == 'p9notselected' %}govuk-form-group--error{% endif %} {% if data['error'] == 'p10notselected' %}govuk-form-group--error{% endif %}">
+                  <label class="govuk-label govuk-label--s" for="microchip-number">
+                    Enter your pet's microchip number
+                  </label>
+                  <div id="account-number-hint" class="govuk-hint">
+                    Must be 15 digits long
+                  </div>
+
+                  {% if data['error'] == 'p9notselected' %}
+                  <p id="whereDoYouLive-error" class="govuk-error-message">
+                    <span class="govuk-visually-hidden">Error:</span> Enter your pet’s 15-digit microchip number
+                  </p>
+                  {% endif %}
+
+                  {% if data['error'] == 'p10notselected' %}
+                  <p id="whereDoYouLive-error" class="govuk-error-message">
+                    <span class="govuk-visually-hidden">Error:</span> The microchip number is associated with another lifelong pet travel document
+                  </p>
+                  {% endif %}
+
+                  <input class="govuk-input govuk-input--width-20" id="microchip-number" name="microchip-number" type="input" spellcheck="false">
+                </div>                
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="radio-microchip-4" name="radio-microchip" type="radio" value="No">
+                <label class="govuk-label govuk-radios__label" for="radio-microchip-4">
+                  No
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+    </div>
+        <div class="govuk-form-group">
+          {{ govukButton({ text: "Continue" }) }}
+        </div>
+      </form>
+  </div>
+</div>
+{% endblock %}
+
+
+{% block pageScripts %}
+  {{ super() }}
+  <script>
+    {# $( document ).ready(function() {
+      accessibleAutocomplete.enhanceSelectElement({
+        selectElement: document.querySelector('#microchip-companies'),
+        autoselect: true,
+        showNoOptionsFound: false,
+        minLength: 2,
+        showAllValues: true,
+      });
+    }); #}
+  </script>
+{% endblock %}
+
+

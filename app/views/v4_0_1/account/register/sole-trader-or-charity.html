@@ -1,0 +1,52 @@
+{% extends "layouts/v4_0_1.html" %}
+
+{% set serviceName = "Get permission to move animals under disease controls" %}
+
+
+{% set pageHeading = "What kind of business or organisation are you?" %}
+
+{% set pageSection = "Register Defra account" %}
+
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <span class="govuk-caption-xl">{{ pageSection }}</span>
+
+        <div class="gem-c-title govuk-!-margin-top-0 govuk-!-margin-bottom-8">
+            <h1 class="gem-c-title__text govuk-heading-xl">
+                {{ pageHeading }}
+            </h1>
+        </div>
+
+    	<form method="post" action="personal-name">
+
+			{{ govukRadios({
+                fieldset: {
+                    legend: { text: pageHeading, isPageHeading: false, classes: "govuk-visually-hidden"  }
+                },
+                items: [
+                    { value: "Charity", text: 'Charity', checked: checked ('registrationOrganisationType','Charity') },
+                    { value: "Partnership", text: 'Partnership', checked: checked ('registrationOrganisationType','Partnership') },
+                    { value: "Sole trader", text: 'Sole trader', checked: checked ('registrationOrganisationType','Sole trader')   }
+                ],
+                name: "registrationOrganisationType",
+                id: "registrationOrganisationType"
+                
+            }) }}
+
+            <div class="govuk-button-group">
+                
+                {{govukButton({
+                    text: "Continue"
+                })}}
+                
+            </div>        
+        </form>
+
+    </div>    
+</div>
+
+{% endblock %}
