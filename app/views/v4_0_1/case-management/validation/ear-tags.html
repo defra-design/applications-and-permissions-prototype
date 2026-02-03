@@ -1,0 +1,71 @@
+{% extends "layouts/v4_0_1_case_management" %}
+
+
+{% set backlinkoff = 'false' %}
+
+
+
+<!-- Setting the big main heading at the top of the page -->
+{% set pageHeadingTextHTML %}
+    Ear tags are on the holding?
+{% endset %}
+
+
+
+{% block content %}
+<div class='govuk-grid-row'>
+
+    <div class="govuk-grid-column-full">
+
+
+        <h1 class="govuk-heading-l">
+            {{ pageHeadingTextHTML }}
+        </h1>
+
+        <div class="govuk-!-width-one-half">
+
+            <p>Check ear tags are on the holding</p>
+
+            <p>Automatic CTS check?</p>
+
+            <p>A SAM check?<br><br><br><br></p>
+
+        </div>
+
+
+        <div class="govuk-button-group">
+
+            {{
+                govukButton
+                ({
+                    text: 'Addresses match',
+                    href: 'badgers'
+                })
+            }}
+
+
+            {{
+                govukButton
+                ({
+                    text: 'Addresses do not match',
+                    classes: "govuk-button--secondary"
+                })
+            }}
+
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+{% endblock %}
+
+
+
+
+

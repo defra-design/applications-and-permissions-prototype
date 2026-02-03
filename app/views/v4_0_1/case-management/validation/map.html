@@ -1,0 +1,71 @@
+{% extends "layouts/v4_0_1_case_management" %}
+
+
+{% set backlinkoff = 'false' %}
+
+
+
+<!-- Setting the big main heading at the top of the page -->
+{% set pageHeadingTextHTML %}
+    Is the image a diagram or map?
+{% endset %}
+
+
+
+{% block content %}
+<div class='govuk-grid-row'>
+
+    <div class="govuk-grid-column-full">
+
+
+
+        <h1 class="govuk-heading-l">
+            {{ pageHeadingTextHTML }}
+        </h1>
+
+
+        <div class="govuk-!-width-one-half">
+
+            <p><a href="#">Open map</a></p>
+
+            <p>OR <br><br>[ MAP IMAGE }?<br><br><br><br><br></p>
+
+        </div>
+
+
+        <div class="govuk-button-group">
+
+            {{
+                govukButton
+                ({
+                    text: 'Yes, a diagram or map',
+                    href: 'ear-tags'
+                })
+            }}
+
+
+            {{
+                govukButton
+                ({
+                    text: 'No, not a map',
+                    classes: "govuk-button--secondary"
+                })
+            }}
+
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+{% endblock %}
+
+
+
+
+
