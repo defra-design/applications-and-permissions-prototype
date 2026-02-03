@@ -1,0 +1,116 @@
+{% extends "layouts/v4_0_1_case_management" %}
+
+
+{% set backlinkoff = 'true' %}
+
+
+<!-- Setting the big main heading at the top of the page -->
+{% set pageHeadingTextHTML %}Work with vets{% endset %}
+
+
+<!-- Text that show in the browser tab. Does NOT need changing -->
+{% block pageTitle %}
+    {{ pageHeadingTextHTML }}
+{% endblock %}
+
+
+{% set navActive = pageHeadingTextHTML %}
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+
+    <div class="govuk-grid-column-two-thirds">
+
+
+        <h1 class="govuk-heading-l">
+          {{ pageHeadingTextHTML }}
+        </h1>
+        
+
+        <table class="govuk-table">
+
+            <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                    <th scope="col" class="govuk-table__header">Action</th>
+                    <th scope="col" class="govuk-table__header">Applicant CPH?</th>
+                    <th scope="col" class="govuk-table__header">Priority</th>
+                    <th scope="col" class="govuk-table__header">Due date</th>
+
+                </tr>
+            </thead>
+
+            <tbody class="govuk-table__body">
+
+
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell" style="display: flex;  align-items: center;">
+                        <a href="">View details</a>
+                    </td>
+                    <td class="govuk-table__cell">1451/823/97</td>
+                    <td class="govuk-table__cell">Welfare</td>
+                    <td class="govuk-table__cell">5 days remaining</td>
+                </tr>
+
+
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">
+                        <a href="">View details</a>
+                    </td>
+                    <td class="govuk-table__cell">3655/991/24</td>
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">1 days remaining</td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">
+                        <a href="">View details</a>
+                    </td>
+                    <td class="govuk-table__cell">8318/242/33</td>
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">4 days remaining</td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">
+                        <a href="">View details</a>
+                    </td>
+                    <td class="govuk-table__cell">6855/192/08</td>
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">5 days remaining</td>
+                </tr>
+
+
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">
+                        <a href="">View details</a>
+                    </td>
+                    <td class="govuk-table__cell">9356/721/73</td>
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">5 days remaining</td>
+                </tr>
+
+
+
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">
+                        <a href="">View details</a>
+                    </td>
+                    <td class="govuk-table__cell">5875/121/28</td>
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">5 days remaining</td>
+                </tr>
+            </tbody>
+        </table>
+
+
+
+
+    </div>
+
+
+</div>
+
+
+{% endblock %}

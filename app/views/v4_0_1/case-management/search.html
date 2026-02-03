@@ -95,45 +95,70 @@
 
 
         <h1 class="govuk-heading-l">
-            {{ pageHeadingTextHTML }} for an application
+            {{ pageHeadingTextHTML }} for applications
         </h1>
 
 
-        <form action='{{PAGENAME_TEXT}}-router/{{PAGENAME_TEXT}}/{{LOWEST_NUMBER}}/{{HIGHEST_NUMBER}}' method='post' novalidate>
-
-            {{
-                govukInput
-                ({
-                    label:
-                    {
-                        html: questionHeadingCPHTextHTML,
-                        isPageHeading: false,
-                        classes: 'govuk-label--m'
-                    },
-
-                    id: SECTION + '-' + PAGENAME_TEXT + '-text-input',
-
-                    name: SECTION + '-' + PAGENAME_TEXT + '-text-input',
-
-                    hint:
-                    {
-                        text: HINT_TEXT
-                    } if HINT_TEXT != 'PLACEHOLDER_HINT_TEXT',
-
-                    errorMessage: null if data['errorthispage'] != 'true'
-                                       else { html: errorTextHTML },
-
-                    value: data[SECTION + '-' + PAGENAME_TEXT + '-text-input'],
-
-                    classes: 'govuk-input--width-20'
-                })
-            }}
+        <!-- <form action='{{PAGENAME_TEXT}}-router/{{PAGENAME_TEXT}}/{{LOWEST_NUMBER}}/{{HIGHEST_NUMBER}}' method='post' novalidate>  -->
 
 
-            <p>Or <a href="#">search using application reference</a></p>
+        <form action='#' method='post' novalidate>
+
+            <div style='display:flex; justify-content: space-between;'>
+
+                <div>
+
+                    {{
+                        govukInput
+                        ({
+                            label:
+                            {
+                                html: questionHeadingCPHTextHTML,
+                                isPageHeading: false,
+                                classes: ''
+                            },
+
+                            id: SECTION + '-' + PAGENAME_TEXT + '-text-input',
+
+                            name: SECTION + '-' + PAGENAME_TEXT + '-text-input',
+
+                            hint:
+                            {
+                                text: HINT_TEXT
+                            } if HINT_TEXT != 'PLACEHOLDER_HINT_TEXT',
+
+                            errorMessage: null if data['errorthispage'] != 'true'
+                                               else { html: errorTextHTML },
+
+                            value: data[SECTION + '-' + PAGENAME_TEXT + '-text-input'],
+
+                            classes: 'govuk-input--width-10'
+                        })
+                    }}
+
+                    {{ govukButton({ text: 'Search' }) }}
+
+                </div>
+
+                <div >
+
+                    <p>Alternative ways to search</p>
+
+                    <p><a href="#">Application reference</a></p>
+
+                    <p><a href="#">Postcode</a></p>
+
+                    <p><a href="#">Staff name</a></p>
+
+                </div>
+
+            </div>
 
 
-            {{ govukButton({ text: 'Search' }) }}
+
+
+
+
 
 
         </form>

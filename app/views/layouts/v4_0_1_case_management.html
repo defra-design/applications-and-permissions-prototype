@@ -136,14 +136,24 @@
                 navigation:
                 [
                     {
-                        href: "work-to-be-done",
-                        text: "Work to be done",
+                        href: '/' + version + '/case-management/work-to-be-done',
+                        text: 'Work to be done',
                         active: true if navActive == 'Work to be done'
                     },
                     {
-                        href: "search",
-                        text: "Search",
+                        href: '/' + version + '/case-management/search',
+                        text: 'Search',
                         active: true if navActive == 'Search'
+                    },
+                    {
+                        href: '/' + version + '/case-management/work-with-vets',
+                        text: 'Work with vets',
+                        active: true if navActive == 'Work with vets'
+                    },
+                    {
+                        href: '/' + version + '/case-management/close-to-deadline',
+                        text: 'Close to deadline',
+                        active: true if navActive == 'Close to deadline'
                     }
                 ],
 
