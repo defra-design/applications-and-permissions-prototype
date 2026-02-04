@@ -1,6 +1,5 @@
 {% extends "layouts/v4_0_1_case_management" %}
 
-
 {% set backlinkoff = 'true' %}
 
 
@@ -12,7 +11,6 @@
 {% set questionHeadingCPHTextHTML %}
     Enter the county parish holding (CPH) number
 {% endset %}
-
 
 
 
@@ -63,7 +61,7 @@
 {% set SECTION %}case-management{% endset %}
 
 <!-- Set the page name -->
-{% set PAGENAME_TEXT %}search{% endset %}
+{% set PAGENAME_TEXT %}search-results{% endset %}
 
 <!-- Set the hint text -->
 {% set HINT_TEXT %}PLACEHOLDER_HINT_TEXT{% endset %}
@@ -72,7 +70,7 @@
 
 {% block content %}
 <div class='govuk-grid-row'>
-    <div class='govuk-grid-column-two-thirds'>
+    <div class='govuk-grid-column-full'>
 
         <!-- ERROR LOGIC 'error summary' -->
         {% if data['errorthispage'] == 'true' %}
@@ -95,68 +93,133 @@
 
 
         <h1 class="govuk-heading-l">
-            {{ pageHeadingTextHTML }} for applications
+            {{ pageHeadingTextHTML }} results
         </h1>
 
+
+        <div class='govuk-!-width-two-thirds govuk-!-margin-bottom-5' style='display:flex; justify-content: space-between;'>
+
+            <div>
+
+                {{
+                    govukInput
+                    ({
+                        label:
+                        {
+                            html: questionHeadingCPHTextHTML,
+                            isPageHeading: false,
+                            classes: ''
+                        },
+
+                        id: SECTION + '-' + PAGENAME_TEXT + '-text-input',
+
+                        name: SECTION + '-' + PAGENAME_TEXT + '-text-input',
+
+                        hint:
+                        {
+                            text: HINT_TEXT
+                        } if HINT_TEXT != 'PLACEHOLDER_HINT_TEXT',
+
+                        errorMessage: null if data['errorthispage'] != 'true'
+                                           else { html: errorTextHTML },
+
+                        value: data[SECTION + '-' + PAGENAME_TEXT + '-text-input'],
+
+                        classes: 'govuk-input--width-10'
+                    })
+                }}
+
+                {{ govukButton({ text: 'Search' }) }}
+
+            </div>
+
+            <div >
+
+                <p>Alternative ways to search</p>
+
+                <p><a href="#">Application reference</a></p>
+
+                <p><a href="#">Postcode</a></p>
+
+                <p><a href="#">Staff name</a></p>
+
+            </div>
+
+        </div>
 
         <!-- <form action='{{PAGENAME_TEXT}}-router/{{PAGENAME_TEXT}}/{{LOWEST_NUMBER}}/{{HIGHEST_NUMBER}}' method='post' novalidate>  -->
 
 
-        <form action='search-results' method='post' novalidate>
+               <table class="govuk-table">
 
-            <div style='display:flex; justify-content: space-between;'>
+            <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                    <th scope="col" class="govuk-table__header">Action</th>
+                    <th scope="col" class="govuk-table__header">Status</th>
+                    <th scope="col" class="govuk-table__header">Date last worked on</th>
+                    <th scope="col" class="govuk-table__header">Priority</th>
+                    <th scope="col" class="govuk-table__header">Due date</th>
+                </tr>
+            </thead>
 
-                <div>
-
-                    {{
-                        govukInput
-                        ({
-                            label:
-                            {
-                                html: questionHeadingCPHTextHTML,
-                                isPageHeading: false,
-                                classes: ''
-                            },
-
-                            id: SECTION + '-' + PAGENAME_TEXT + '-text-input',
-
-                            name: SECTION + '-' + PAGENAME_TEXT + '-text-input',
-
-                            hint:
-                            {
-                                text: HINT_TEXT
-                            } if HINT_TEXT != 'PLACEHOLDER_HINT_TEXT',
-
-                            errorMessage: null if data['errorthispage'] != 'true'
-                                               else { html: errorTextHTML },
-
-                            value: data[SECTION + '-' + PAGENAME_TEXT + '-text-input'],
-
-                            classes: 'govuk-input--width-10'
-                        })
-                    }}
-
-                    {{ govukButton({ text: 'Search' }) }}
-
-                </div>
-
-                <div >
-
-                    <p>Alternative ways to search</p>
-
-                    <p><a href="#">Application reference</a></p>
-
-                    <p><a href="#">Postcode</a></p>
-
-                    <p><a href="#">Staff name</a></p>
-
-                </div>
-
-            </div>
+            <tbody class="govuk-table__body">
 
 
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell" style="display: flex;  align-items: center;">
+                        <a href="">View details</a>
+                    </td>
+                    <td class="govuk-table__cell">Refered to a vet</td>
+                    <td class="govuk-table__cell">Yesterday</td>
+                    <td class="govuk-table__cell">Welfare</td>
+                    <td class="govuk-table__cell">4 days remaining</td>
+                </tr>
 
-        </form>
+
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">
+                        <a href="">View details</a>
+                    </td>
+                    <td class="govuk-table__cell">Licence issued</td>
+                    <td class="govuk-table__cell">12 January 2026</td>
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell"></td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">
+                        <a href="">View details</a>
+                    </td>
+                    <td class="govuk-table__cell">Licence issued</td>
+                    <td class="govuk-table__cell">17 November 2025</td>
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell"></td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">
+                        <a href="">View details</a>
+                    </td>
+                    <td class="govuk-table__cell">Refused</td>
+                    <td class="govuk-table__cell">30 October 2025</td>
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell"></td>
+                </tr>
+
+
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">
+                        <a href="">View details</a>
+                    </td>
+                    <td class="govuk-table__cell">Licence issued</td>
+                    <td class="govuk-table__cell">12 August 2025</td>
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell"></td>
+                </tr>
+
+            </tbody>
+        </table>
+
 
     </div>
 </div>
