@@ -42,6 +42,46 @@
             <tbody class="govuk-table__body">
 
 
+                {% if data['firstonestarted'] != 'true' %}
+
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell" style="display: flex;  align-items: center;">
+                            {{
+                                govukButton
+                                ({
+                                    text: "Start",
+                                    classes: "govuk-button--secondary govuk-!-margin-bottom-1",
+                                    href: 'validation/name?firstonestarted=true&issuelicenceafterchecks=false&'
+                                })
+                            }}
+                        </td>
+                        <td class="govuk-table__cell">Welfare</td>
+                        <td class="govuk-table__cell">2 days remaining</td>
+                    </tr>
+
+                {% endif %}
+
+
+                {% if data['secondonestarted'] != 'true' %}
+
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">
+                            {{
+                                govukButton
+                                ({
+                                    text: "Start",
+                                    classes: "govuk-button--secondary govuk-!-margin-bottom-1",
+                                    href: 'validation/address2?secondonestarted=true&issuelicenceafterchecks=true&'
+                                })
+                            }}
+                        </td>
+                        <td class="govuk-table__cell">Welfare</td>
+                        <td class="govuk-table__cell">3 days remaining</td>
+                    </tr>
+
+                {% endif %}
+
+
                 <tr class="govuk-table__row">
                     <td class="govuk-table__cell" style="display: flex;  align-items: center;">
                         {{
@@ -49,39 +89,7 @@
                             ({
                                 text: "Start",
                                 classes: "govuk-button--secondary govuk-!-margin-bottom-1",
-                                href: 'validation/name'
-                            })
-                        }}
-                    </td>
-                    <td class="govuk-table__cell">Welfare</td>
-                    <td class="govuk-table__cell">2 days remaining</td>
-                </tr>
-
-
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        {{
-                            govukButton
-                            ({
-                                text: "Start",
-                                classes: "govuk-button--secondary govuk-!-margin-bottom-1",
-                                href: 'validation/address'
-                            })
-                        }}
-                    </td>
-                    <td class="govuk-table__cell">Welfare</td>
-                    <td class="govuk-table__cell">3 days remaining</td>
-                </tr>
-
-
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell" style="display: flex;  align-items: center;">
-                        {{
-                            govukButton
-                            ({
-                                text: "Start",
-                                classes: "govuk-button--secondary govuk-!-margin-bottom-1",
-                                href: 'validation/name'
+                                href: 'validation/cph-not-tb-restricted'
                             })
                         }}
                     </td>

@@ -34,13 +34,29 @@
 
         <div class="govuk-button-group govuk-!-margin-top-9">
 
-            {{
-                govukButton
-                ({
-                    text: 'Yes, they match',
-                    href: 'recent-movements-on'
-                })
-            }}
+            {% if data['issuelicenceafterchecks'] == 'true' %}
+
+                {{
+                    govukButton
+                    ({
+                        text: 'Yes, they match',
+                        href: '../issued-licence/issue-licence'
+                    })
+                }}
+
+            {% else %}
+
+                {{
+                    govukButton
+                    ({
+                        text: 'Yes, they match',
+                        href: 'check-complete'
+                    })
+                }}
+
+            {% endif %}
+
+
 
 
             {{
