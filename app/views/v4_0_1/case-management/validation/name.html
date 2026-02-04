@@ -7,7 +7,7 @@
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    Do the names match?
+    Does the name given in the application match the name held on APHA records?
 {% endset %}
 
 
@@ -15,7 +15,7 @@
 {% block content %}
 <div class='govuk-grid-row'>
 
-    <div class="govuk-grid-column-full">
+    <div class="govuk-grid-column-one-half">
 
 
 
@@ -24,7 +24,7 @@
         </h1>
 
 
-        <div class="govuk-!-width-one-half">
+        <div class="">
 
             {{
                 govukTable
@@ -70,7 +70,7 @@
             {{
                 govukButton
                 ({
-                    text: 'Names match',
+                    text: 'Yes, the names match',
                     href: 'address'
                 })
             }}
@@ -79,8 +79,8 @@
             {{
                 govukButton
                 ({
-                    text: 'Names do not match',
-                    classes: "govuk-button--secondary"
+                    text: "No, the names don't match",
+                    classes: 'govuk-button--secondary'
                 })
             }}
 

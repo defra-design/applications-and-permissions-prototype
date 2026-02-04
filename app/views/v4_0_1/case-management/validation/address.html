@@ -7,7 +7,7 @@
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    Do the addresses match?
+    Does the origin address given in the application match the address held on APHA records?
 {% endset %}
 
 
@@ -15,14 +15,14 @@
 {% block content %}
 <div class='govuk-grid-row'>
 
-    <div class="govuk-grid-column-full">
+    <div class="govuk-grid-column-one-half">
 
 
         <h1 class="govuk-heading-l">
             {{ pageHeadingTextHTML }}
         </h1>
 
-        <div class="govuk-!-width-one-half">
+        <div>
             {{
                 govukTable
                 ({
@@ -60,7 +60,7 @@
             {{
                 govukButton
                 ({
-                    text: 'Addresses match',
+                    text: 'Yes, the addresses match',
                     href: 'map'
                 })
             }}
@@ -69,7 +69,7 @@
             {{
                 govukButton
                 ({
-                    text: 'Addresses do not match',
+                    text: "No, the addresses don't match",
                     classes: "govuk-button--secondary"
                 })
             }}

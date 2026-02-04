@@ -7,7 +7,7 @@
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    Is the biosecurity map clear enough to process the application?
+    Heard movement limits
 {% endset %}
 
 
@@ -15,19 +15,20 @@
 {% block content %}
 <div class='govuk-grid-row'>
 
-    <div class="govuk-grid-column-one-half">
+    <div class="govuk-grid-column-full">
 
 
         <h1 class="govuk-heading-l">
             {{ pageHeadingTextHTML }}
         </h1>
 
+        <div class="govuk-!-width-one-half">
 
-        <div>
+            <p>Time window</p>
 
-            <p><a href="#">Open the map uploaded from the applicant (opens in a new tab)</a> </p>
+            <p>Multiple herds on holding</p>
 
-            <p>OR <br><br>[ MAP IMAGE }?<br><br><br><br><br></p>
+            <p>Maths done automatically?<br><br><br><br></p>
 
         </div>
 
@@ -37,8 +38,8 @@
             {{
                 govukButton
                 ({
-                    text: 'Yes, it is clear',
-                    href: 'ear-tags'
+                    text: 'Quantities are fine',
+                    href: 'badgers'
                 })
             }}
 
@@ -46,7 +47,7 @@
             {{
                 govukButton
                 ({
-                    text: "No, it’s unclear",
+                    text: 'Over the limit',
                     classes: "govuk-button--secondary"
                 })
             }}
