@@ -1,0 +1,285 @@
+{% extends "layouts/v4_0_2_case_management" %}
+
+
+{% set backlinkoff = 'true' %}
+
+
+<!-- Setting the big main heading at the top of the page -->
+{% set pageHeadingTextHTML %}Search for an application{% endset %}
+
+
+<!-- Setting the smaller secondary heading lower down the page -->
+{% set questionHeadingCPHTextHTML %}
+    Enter the staff name
+{% endset %}
+
+
+
+
+<!-- Set the text for each error type -->
+{% set errorTextHTML %}
+
+    {#  Error 1 - Select a valid country  #}
+    {% if  data['errortypeone'] == 'true'  %}
+        Enter the first 3 letters of the country name
+
+
+    {#  Error 2 - Already entered this country  #}
+    {% elif  data['errortypetwo'] == 'true'  %}
+        This country has already been added
+
+    {% endif %}
+{% endset %}
+
+
+<!-- Text that show in the browser tab. Does NOT need changing -->
+{% block pageTitle %}
+    {% if  data['errorthispage'] == 'true'  %}
+        Error:
+    {% endif %}
+
+    {{ pageHeadingTextHTML }}
+{% endblock %}
+
+
+
+<!-- Set the section name -->
+{% set SECTION %}case-management{% endset %}
+
+<!-- Set the page name -->
+{% set PAGENAME_TEXT %}staff-name{% endset %}
+
+<!-- Set the hint text -->
+{% set HINT_TEXT %}PLACEHOLDER_HINT_TEXT{% endset %}
+
+
+
+{% block content %}
+<div class='govuk-grid-row'>
+    <div class='govuk-grid-column-two-thirds'>
+
+        <!-- form URL below turns off errors on the next page  -->
+        <form action='{{PAGENAME_COUNTRY}}-router/{{PAGENAME_COUNTRY}}' method='post' novalidate>
+
+            <!-- ERROR LOGIC  error class is added to whole section if error is ture  -->
+            {%  if  data['errorthispage'] == 'true'  %}
+                <div class='govuk-form-group govuk-form-group--error' id='the-question-section'>
+            {% else %}
+                <div class='govuk-form-group'>
+            {% endif %}
+
+                    <h1 class='govuk-heading-l'>{{ pageHeadingTextHTML }}</h1>
+
+                    {% if HINT_TEXT != 'PLACEHOLDER_HINT_TEXT' %}
+                        <div id='account-number-hint' class='govuk-hint'>
+                            {{HINT_TEXT}}
+                        </div>
+                    {% endif %}
+
+                    <!-- ERROR LOGIC  error text next to field -->
+                    {%  if  data['errorthispage'] == 'true'  %}
+                        <p  class='govuk-error-message'>
+                            <span class='govuk-visually-hidden'>Error:</span>
+                            {{ errorTextHTML }}
+                        </p>
+                    {% endif %}
+                    <!--  END OF ERROR LOGIC -->
+
+                    <div class='govuk-form-group'>
+
+                        <div style='width: 300px;'>
+                            {%  if  data['errorthispage'] == 'true'  %}
+                                <div class='govuk-form-group autocomplete-wrapper' style='border:  2px solid red;'>
+                            {% else %}
+                                <div class='govuk-form-group autocomplete-wrapper'>
+                            {% endif %}
+
+                                    <!-- the name/id of the selector below is what he country will be saved as in session data -->
+                                    <select class='govuk-select'
+                                            id='{{SECTION}}-{{PAGENAME_COUNTRY}}-country-typeahead'
+                                            name='{{SECTION}}-{{PAGENAME_COUNTRY}}-country-typeahead'>
+
+                                        <option value='' disabled selected>Pick an option</option>
+                                        <option value='Oliver Smith'>Oliver Smith</option>
+                                        <option value='Olivia Jones'>Olivia Jones</option>
+                                        <option value='George Williams'>George Williams</option>
+                                        <option value='Amelia Taylor'>Amelia Taylor</option>
+                                        <option value='Harry Brown'>Harry Brown</option>
+                                        <option value='Isla Davies'>Isla Davies</option>
+                                        <option value='Jack Evans'>Jack Evans</option>
+                                        <option value='Ava Wilson'>Ava Wilson</option>
+                                        <option value='Arthur Thomas'>Arthur Thomas</option>
+                                        <option value='Emily Roberts'>Emily Roberts</option>
+                                        <option value='Charlie Johnson'>Charlie Johnson</option>
+                                        <option value='Sophie Robinson'>Sophie Robinson</option>
+                                        <option value='William Thompson'>William Thompson</option>
+                                        <option value='Grace Wright'>Grace Wright</option>
+                                        <option value='Thomas Walker'>Thomas Walker</option>
+                                        <option value='Florence White'>Florence White</option>
+                                        <option value='James Edwards'>James Edwards</option>
+                                        <option value='Charlotte Hughes'>Charlotte Hughes</option>
+                                        <option value='Henry Green'>Henry Green</option>
+                                        <option value='Daisy Hall'>Daisy Hall</option>
+                                        <option value='Alfie Lewis'>Alfie Lewis</option>
+                                        <option value='Poppy Harris'>Poppy Harris</option>
+                                        <option value='Leo Clarke'>Leo Clarke</option>
+                                        <option value='Mia Patel'>Mia Patel</option>
+                                        <option value='Oscar Jackson'>Oscar Jackson</option>
+                                        <option value='Isabella Wood'>Isabella Wood</option>
+                                        <option value='Archie Turner'>Archie Turner</option>
+                                        <option value='Evie Martin'>Evie Martin</option>
+                                        <option value='Theo Cooper'>Theo Cooper</option>
+                                        <option value='Ruby Hill'>Ruby Hill</option>
+                                        <option value='Freddie Ward'>Freddie Ward</option>
+                                        <option value='Lily Morris'>Lily Morris</option>
+                                        <option value='Noah Moore'>Noah Moore</option>
+                                        <option value='Freya Clark'>Freya Clark</option>
+                                        <option value='Ethan Lee'>Ethan Lee</option>
+                                        <option value='Alice King'>Alice King</option>
+                                        <option value='Jacob Baker'>Jacob Baker</option>
+                                        <option value='Sienna Harrison'>Sienna Harrison</option>
+                                        <option value='Isaac Morgan'>Isaac Morgan</option>
+                                        <option value='Jessica Allen'>Jessica Allen</option>
+                                        <option value='Finley James'>Finley James</option>
+                                        <option value='Phoebe Scott'>Phoebe Scott</option>
+                                        <option value='Lucas Phillips'>Lucas Phillips</option>
+                                        <option value='Harper Watson'>Harper Watson</option>
+                                        <option value='Mohammed Davis'>Mohammed Davis</option>
+                                        <option value='Rosie Parker'>Rosie Parker</option>
+                                        <option value='Edward Bennett'>Edward Bennett</option>
+                                        <option value='Matilda Griffiths'>Matilda Griffiths</option>
+                                        <option value='Louie Price'>Louie Price</option>
+                                        <option value='Elsie Bailey'>Elsie Bailey</option>
+                                        <option value='Teddy Young'>Teddy Young</option>
+                                        <option value='Sofia Khan'>Sofia Khan</option>
+                                        <option value='Sebastian Mitchell'>Sebastian Mitchell</option>
+                                        <option value='Chloe Cook'>Chloe Cook</option>
+                                        <option value='Adam Carter'>Adam Carter</option>
+                                        <option value='Ivy Richardson'>Ivy Richardson</option>
+                                        <option value='Samuel Shaw'>Samuel Shaw</option>
+                                        <option value='Willow Collins'>Willow Collins</option>
+                                        <option value='Max Bell'>Max Bell</option>
+                                        <option value='Evelyn Murphy'>Evelyn Murphy</option>
+                                        <option value='Liam Jenkins'>Liam Jenkins</option>
+                                        <option value='Eva Bailey'>Eva Bailey</option>
+                                        <option value='Alexander Simpson'>Alexander Simpson</option>
+                                        <option value='Millie Marshall'>Millie Marshall</option>
+                                        <option value='Elijah Collins'>Elijah Collins</option>
+                                        <option value='Imogen Bennett'>Imogen Bennett</option>
+                                        <option value='Roman Gray'>Roman Gray</option>
+                                        <option value='Layla Rose'>Layla Rose</option>
+                                        <option value='Toby Fox'>Toby Fox</option>
+                                        <option value='Lola Chapman'>Lola Chapman</option>
+                                        <option value='Jude Hunt'>Jude Hunt</option>
+                                        <option value='Elizabeth Palmer'>Elizabeth Palmer</option>
+                                        <option value='Reuben Mason'>Reuben Mason</option>
+                                        <option value='Erin Webb'>Erin Webb</option>
+                                        <option value='Benjamin Rogers'>Benjamin Rogers</option>
+                                        <option value='Molly Holmes'>Molly Holmes</option>
+                                        <option value='Arlo Stevens'>Arlo Stevens</option>
+                                        <option value='Harriet Matthews'>Harriet Matthews</option>
+                                        <option value='Luca Payne'>Luca Payne</option>
+                                        <option value='Maisie Knight'>Maisie Knight</option>
+                                        <option value='Zachary Owen'>Zachary Owen</option>
+                                        <option value='Maya Barker'>Maya Barker</option>
+                                        <option value='Reggie Fisher'>Reggie Fisher</option>
+                                        <option value='Thea Ellis'>Thea Ellis</option>
+                                        <option value='Hunter Murray'>Hunter Murray</option>
+                                        <option value='Eliza Powell'>Eliza Powell</option>
+                                        <option value='Daniel Dixon'>Daniel Dixon</option>
+                                        <option value='Rose Russell'>Rose Russell</option>
+                                        <option value='David Wilkinson'>David Wilkinson</option>
+                                        <option value='Bella Foster'>Bella Foster</option>
+                                        <option value='Dylan Butler'>Dylan Butler</option>
+                                        <option value='Violet Saunders'>Violet Saunders</option>
+                                        <option value='Jaxon Barnes'>Jaxon Barnes</option>
+                                        <option value='Aurora Brooks'>Aurora Brooks</option>
+                                        <option value='Caleb Harvey'>Caleb Harvey</option>
+                                        <option value='Lottie Pearson'>Lottie Pearson</option>
+                                        <option value='Rupert Reynolds'>Rupert Reynolds</option>
+                                        <option value='Hallie Fletcher'>Hallie Fletcher</option>
+
+                                    </select>
+                                </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                {{ govukButton({ text: 'Continue' }) }}
+
+
+            </form>
+
+    </div>
+</div>
+
+
+
+<!-- ERROR LOGIC  drop down to toggle states  -->
+<form method='post'  action='#' class='for4' style=' float: left; position: relative; bottom:-300px; '>
+
+    <select style="height:30px;" onchange="window.location.href='?'+this.value">
+
+        <option value='errorthispage=false&errortypeone=false&errortypetwo=false&'
+                {% if (data['errorthispage'] != 'true') %}selected{% endif %}
+        >Errors &nbsp;&nbsp;&nbsp;-&nbsp;&nbsp; Off</option>
+
+        <option value='errorthispage=true&errortypeone=true&errortypetwo=false&'
+                {% if (data['errortypeone'] == 'true' and data['errortypetwo'] != 'true')  %}selected{% endif %}
+        >Error 1 &nbsp;&nbsp;-&nbsp;&nbsp; Not a valid country</option>
+
+        <option value='errorthispage=true&errortypeone=false&errortypetwo=true&'
+                {% if (data['errortypeone'] != 'true' and data['errortypetwo'] == 'true')  %}selected{% endif %}
+        >Error 2 &nbsp;&nbsp;-&nbsp;&nbsp; Already entered this country</option>
+
+    </select>
+
+</form>
+<!--  END OF ERROR LOGIC -->
+
+
+
+<!-- USER TYPE TOGGLE  -->
+<!--
+<form method='post'  action='#' class='for4' style='float: left; position: relative; bottom:-300px;   '>
+
+    <select style="height:30px;" onchange="window.location.href='?'+this.value">
+
+        <option value='user=citizen&'
+                {% if  data['user'] != 'agent'  %} selected {% endif %}
+        >User type - Individual</option>
+
+        <option value='user=agent&'
+                {% if  data['user'] == 'agent'  %} selected {% endif %}
+        >User type - Agent</option>
+
+    </select>
+
+</form>
+-->
+<!--  END USER TYPE TOGGLE -->
+
+
+
+
+
+<!--  scripts for the country selection -->
+<!-- can add more countries and example in  -->
+<link rel='stylesheet' href='/public/locationautocomplete/location-autocomplete.min.css' />
+<script type='text/javascript' src='/public/locationautocomplete/location-autocomplete.min.js'></script>
+<script type='text/javascript'>
+    openregisterLocationPicker({
+        additionalSynonyms: [
+            { name: 'Albion', code: 'GB' }
+        ],
+        defaultValue: '',
+        selectElement: document.getElementById('{{SECTION}}-{{PAGENAME_COUNTRY}}-country-typeahead'),
+        url: '/public/locationautocomplete/location-autocomplete-graph.json'
+    })
+
+</script>
+
+{% endblock %}

@@ -5,12 +5,12 @@
 
 
 <!-- Setting the big main heading at the top of the page -->
-{% set pageHeadingTextHTML %}Search{% endset %}
+{% set pageHeadingTextHTML %}Open an application{% endset %}
 
 
 <!-- Setting the smaller secondary heading lower down the page -->
 {% set questionHeadingCPHTextHTML %}
-    Enter the county parish holding (CPH) number
+    Enter the application reference
 {% endset %}
 
 
@@ -63,7 +63,7 @@
 {% set SECTION %}case-management{% endset %}
 
 <!-- Set the page name -->
-{% set PAGENAME_TEXT %}search{% endset %}
+{% set PAGENAME_TEXT %}reference{% endset %}
 
 <!-- Set the hint text -->
 {% set HINT_TEXT %}PLACEHOLDER_HINT_TEXT{% endset %}
@@ -95,7 +95,7 @@
 
 
         <h1 class="govuk-heading-l">
-            {{ pageHeadingTextHTML }} for applications
+            {{ pageHeadingTextHTML }}
         </h1>
 
 
@@ -104,60 +104,35 @@
 
         <form action='search-results' method='post' novalidate>
 
-            <div style='display:flex; justify-content: space-between;'>
+            {{
+                govukInput
+                ({
+                    label:
+                    {
+                        html: questionHeadingCPHTextHTML,
+                        isPageHeading: false,
+                        classes: ''
+                    },
 
-                <div>
+                    id: SECTION + '-' + PAGENAME_TEXT + '-text-input',
 
-                    {{
-                        govukInput
-                        ({
-                            label:
-                            {
-                                html: questionHeadingCPHTextHTML,
-                                isPageHeading: false,
-                                classes: ''
-                            },
+                    name: SECTION + '-' + PAGENAME_TEXT + '-text-input',
 
-                            id: SECTION + '-' + PAGENAME_TEXT + '-text-input',
+                    hint:
+                    {
+                        text: HINT_TEXT
+                    } if HINT_TEXT != 'PLACEHOLDER_HINT_TEXT',
 
-                            name: SECTION + '-' + PAGENAME_TEXT + '-text-input',
+                    errorMessage: null if data['errorthispage'] != 'true'
+                                       else { html: errorTextHTML },
 
-                            hint:
-                            {
-                                text: HINT_TEXT
-                            } if HINT_TEXT != 'PLACEHOLDER_HINT_TEXT',
+                    value: data[SECTION + '-' + PAGENAME_TEXT + '-text-input'],
 
-                            errorMessage: null if data['errorthispage'] != 'true'
-                                               else { html: errorTextHTML },
+                    classes: 'govuk-input--width-10'
+                })
+            }}
 
-                            value: data[SECTION + '-' + PAGENAME_TEXT + '-text-input'],
-
-                            classes: 'govuk-input--width-10'
-                        })
-                    }}
-
-                    {{ govukButton({ text: 'Search' }) }}
-
-                </div>
-
-                <div >
-
-                    <p>Alternative ways to search</p>
-
-                    <p><a href="#">Application reference</a></p>
-
-                    <p><a href="#">Postcode</a></p>
-
-                    <p><a href="#">Email address</a></p>
-
-                    <p><a href="#">Staff name</a></p>
-
-
-                </div>
-
-            </div>
-
-
+            {{ govukButton({ text: 'Open application' }) }}
 
         </form>
 
