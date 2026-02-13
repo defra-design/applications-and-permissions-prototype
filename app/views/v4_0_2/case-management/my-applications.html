@@ -1,0 +1,153 @@
+{% extends "layouts/v4_0_2_case_management" %}
+
+
+{% set backlinkoff = 'true' %}
+
+
+<!-- Setting the big main heading at the top of the page -->
+{% set pageHeadingTextHTML %}My applications{% endset %}
+
+
+<!-- Text that show in the browser tab. Does NOT need changing -->
+{% block pageTitle %}
+    {{ pageHeadingTextHTML }}
+{% endblock %}
+
+
+{% set navActive = pageHeadingTextHTML %}
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+
+    <div class="govuk-grid-column-full">
+
+
+        <h1 class="govuk-heading-l">
+          {{ pageHeadingTextHTML }}
+        </h1>
+
+
+
+
+        <table class="govuk-table">
+
+            <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                    <th scope="col" class="govuk-table__header">Applicant name</th>
+                    <th scope="col" class="govuk-table__header">Status</th>
+                    <th scope="col" class="govuk-table__header">Last updated</th>
+                    <th scope="col" class="govuk-table__header">Due date</th>
+                    <th scope="col" class="govuk-table__header">Priority</th>
+                    <th scope="col" class="govuk-table__header">Licence type</th>
+                    <th scope="col" class="govuk-table__header govuk-!-text-align-right">Action</th>
+                </tr>
+            </thead>
+
+            <tbody class="govuk-table__body">
+
+                {% if data['allocated'] == 'true' %}
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">Dan Moody</td>
+                        <td class="govuk-table__cell">{% if data['state'] %} {{data['state']}}  {% else %} New {% endif %}  </td>
+                        <td class="govuk-table__cell">{% if data['state'] %}Today{% endif %}</td>
+                        <td class="govuk-table__cell">5 days remaining</td>
+                        <td class="govuk-table__cell">Welfare</td>
+                        <td class="govuk-table__cell">TB16</td>
+                        <td class="govuk-table__cell govuk-!-text-align-right">
+                            {% if data['state'] %}
+                                <a href="application-details">View details</a>
+                            {% else %}
+                                {{
+                                    govukButton
+                                    ({
+                                        text: "Start",
+                                        classes: "govuk-button--secondary govuk-!-margin-bottom-0",
+                                        href: "application-details?state=In progress&"
+                                    })
+                                }}
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endif %}
+
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Sonja Scott</td>
+                    <td class="govuk-table__cell">Started</td>
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">4 days remaining</td>
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">TB15</td>
+                    <td class="govuk-table__cell govuk-!-text-align-right">
+                        <a href="application-details">View details</a>
+                    </td>
+                </tr>
+
+
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Glenn Ponder</td>
+                    <td class="govuk-table__cell">Awaiting further info</td>
+                    <td class="govuk-table__cell">Yesterday</td>
+                    <td class="govuk-table__cell">4 days remaining</td>
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">TB16e</td>
+                    <td class="govuk-table__cell govuk-!-text-align-right">
+                        <a href="application-details">View details</a>
+                    </td>
+                </tr>
+
+
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Jennie Gresham</td>
+                    <td class="govuk-table__cell">Pending VO decision</td>
+                    <td class="govuk-table__cell">Today</td>
+                    <td class="govuk-table__cell">4 days remaining</td>
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">TB16</td>
+                    <td class="govuk-table__cell govuk-!-text-align-right">
+                        <a href="application-details">View details</a>
+                    </td>
+                </tr>
+
+
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Tony Hayer</td>
+                    <td class="govuk-table__cell">Pending VO decision
+                    </td>
+                    <td class="govuk-table__cell">Yesterday</td>
+                    <td class="govuk-table__cell">3 days remaining</td>
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">TB15</td>
+                    <td class="govuk-table__cell govuk-!-text-align-right">
+                        <a href="application-details">View details</a>
+                    </td>
+                </tr>
+
+
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Dave Clifton</td>
+                    <td class="govuk-table__cell">Pending issue</td>
+                    <td class="govuk-table__cell">Today</td>
+                    <td class="govuk-table__cell">3 days remaining</td>
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">TB15</td>
+                    <td class="govuk-table__cell govuk-!-text-align-right">
+                        <a href="application-details">View details</a>
+                    </td>
+                </tr>
+
+
+            </tbody>
+        </table>
+
+
+
+
+    </div>
+
+
+</div>
+
+
+{% endblock %}

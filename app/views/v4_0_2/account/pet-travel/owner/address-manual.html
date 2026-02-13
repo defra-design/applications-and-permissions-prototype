@@ -1,0 +1,161 @@
+{% extends "layouts/pet-travel.html" %}
+
+{% block pageTitle %} What is your address – {{ serviceName }} – GOV.UK {% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Beta"
+    },
+    html: 'This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback (opens in new tab)</a>.'
+  }) }}
+  {% include "/v23/includes/service/nav-bar.html" %}
+  <a href="./postcode" class="govuk-back-link pet-travel-back-link">Back</a>
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {% if data['error'] == 'p5notselected' %}
+    <div class="govuk-error-summary" data-module="govuk-error-summary">
+      <div role="alert">
+        <h2 class="govuk-error-summary__title">
+          There is a problem
+        </h2>
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            <li>
+              <a href="#">Enter line 1 of your address</a>
+            </li>
+            <li>
+              <a href="#">Enter your town or city</a>
+            </li>
+            <li>
+              <a href="#">Enter your postcode</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+    <form class="form" action="/v23/check-owner-manual-address" method="post">
+     <div class="govuk-form-group {% if data['error'] == 'p5notselected' %}govuk-form-group--error{% endif %}">
+      <fieldset class="govuk-fieldset">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+          <h1 id="documents" class="govuk-fieldset__heading">
+            What is your address?
+          </h1>
+        </legend>
+
+        <div id="contact-hint" class="govuk-hint">
+          Enter a valid address in England, Scotland or Wales.
+        </div>
+
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="address-line-1">
+            Address line 1
+          </label>
+          {% if data['error'] == 'p5notselected' %}
+          <p id="address-line-1-error" class="govuk-error-message">
+            <span class="govuk-visually-hidden">Error:</span> Enter line 1 of your address
+          </p>
+          {% endif %}
+          <input class="govuk-input" id="address-line-1" name="addressLine1" type="text" autocomplete="address-line1">
+        </div>
+
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="address-line-2">
+            Address line 2 (optional)
+          </label>
+          <input class="govuk-input" id="address-line-2" name="addressLine2" type="text" autocomplete="address-line2">
+        </div>
+
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="address-town">
+            Town or city
+          </label>
+          {% if data['error'] == 'p5notselected' %}
+          <p id="address-town-error" class="govuk-error-message">
+            <span class="govuk-visually-hidden">Error:</span> Enter your town or city
+          </p>
+          {% endif %}
+          <input class="govuk-input govuk-!-width-two-thirds" id="address-town" name="addressTown" type="text" autocomplete="address-level2">
+        </div>
+
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="address-county">
+            County (optional)
+          </label>
+          <input class="govuk-input govuk-!-width-two-thirds" id="address-county" name="addressCounty" type="text">
+        </div>
+
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="address-postcode">
+            Postcode
+          </label>
+          {% if data['error'] == 'p5notselected' %}
+          <p id="address-postcode-error" class="govuk-error-message">
+            <span class="govuk-visually-hidden">Error:</span> Enter your postcode
+          </p>
+          {% endif %}
+          <input class="govuk-input govuk-input--width-10" id="address-postcode" name="addressPostcode" type="text" autocomplete="postal-code">
+        </div>
+
+      </fieldset>
+    </div>
+
+    <div class="govuk-form-group">
+      {{ govukButton({ text: "Continue" }) }}
+    </div>
+    </form>
+
+  </div>
+</div>
+{% endblock %}
+
+
+{# 
+<fieldset class="govuk-fieldset">
+  <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+    <h1 class="govuk-fieldset__heading">
+      What is your address?
+    </h1>
+  </legend>
+  <div class="govuk-form-group govuk-form-group--error">
+    <label class="govuk-label" for="address-line-1">
+      Address line 1
+    </label>
+    <p id="address-line-1-error" class="govuk-error-message">
+      <span class="govuk-visually-hidden">Error:</span> Enter line 1 of your address
+    </p>
+    <input class="govuk-input govuk-input--error" id="address-line-1" name="addressLine1" type="text" aria-describedby="address-line-1-error" autocomplete="address-line1">
+  </div>
+  <div class="govuk-form-group">
+    <label class="govuk-label" for="address-line-2">
+      Address line 2 (optional)
+    </label>
+    <input class="govuk-input" id="address-line-2" name="addressLine2" type="text" autocomplete="address-line2">
+  </div>
+  <div class="govuk-form-group govuk-form-group--error">
+    <label class="govuk-label" for="address-town">
+      Town or city
+    </label>
+    
+    <input class="govuk-input govuk-!-width-two-thirds govuk-input--error" id="address-town" name="addressTown" type="text" aria-describedby="address-town-error" autocomplete="address-level2">
+  </div>
+  <div class="govuk-form-group">
+    <label class="govuk-label" for="address-county">
+      County (optional)
+    </label>
+    <input class="govuk-input govuk-!-width-two-thirds" id="address-county" name="addressCounty" type="text">
+  </div>
+  <div class="govuk-form-group govuk-form-group--error">
+    <label class="govuk-label" for="address-postcode">
+      Postcode
+    </label>
+    
+    <input class="govuk-input govuk-input--width-10 govuk-input--error" id="address-postcode" name="addressPostcode" type="text" aria-describedby="address-postcode-error" autocomplete="postal-code">
+  </div>
+</fieldset> #}

@@ -1,0 +1,93 @@
+{% extends "layouts/v4_0_2_case_management" %}
+
+
+{% set backlinkoff = 'false' %}
+
+
+
+<!-- Setting the big main heading at the top of the page -->
+{% set pageHeadingTextHTML %}
+    Does the origin address match the address held on APHA records?
+{% endset %}
+
+
+
+{% block content %}
+<div class='govuk-grid-row'>
+
+    <div class="govuk-grid-column-one-half">
+
+
+        <h1 class="govuk-heading-l">
+            {{ pageHeadingTextHTML }}
+        </h1>
+
+        <div>
+            {{
+                govukTable
+                ({
+                    caption: "",
+                    firstCellIsHeader: false,
+                    head:
+                    [
+                        {
+                            text: "Application"
+                        },
+                        {
+                            text: "APHA record"
+                        }
+                    ],
+                    rows:
+                    [
+                        [
+                            {
+                                html: 'River farm<br>New Road<br>East Riding<br>Yorkshire<br>HU91EE'
+                            },
+
+                            {
+                                html: 'River Farm<br>new rd<br>East riding<br>Shorkshire<br>HU91EE'
+                            }
+                        ]
+                    ]
+                })
+            }}
+
+        </div>
+
+
+        <div class="govuk-button-group">
+
+            {{
+                govukButton
+                ({
+                    text: 'Yes, the addresses match',
+                    href: 'map2'
+                })
+            }}
+
+
+            {{
+                govukButton
+                ({
+                    text: "No, the addresses don't match",
+                    classes: "govuk-button--secondary"
+                })
+            }}
+
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+{% endblock %}
+
+
+
+
+

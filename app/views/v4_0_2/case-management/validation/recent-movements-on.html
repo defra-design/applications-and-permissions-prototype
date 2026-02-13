@@ -1,0 +1,71 @@
+{% extends "layouts/v4_0_2_case_management" %}
+
+
+{% set backlinkoff = 'false' %}
+
+
+
+<!-- Setting the big main heading at the top of the page -->
+{% set pageHeadingTextHTML %}
+    Heard movement limits
+{% endset %}
+
+
+
+{% block content %}
+<div class='govuk-grid-row'>
+
+    <div class="govuk-grid-column-full">
+
+
+        <h1 class="govuk-heading-l">
+            {{ pageHeadingTextHTML }}
+        </h1>
+
+        <div class="govuk-!-width-one-half">
+
+            <p>Time window</p>
+
+            <p>Multiple herds on holding</p>
+
+            <p>Maths done automatically?<br><br><br><br></p>
+
+        </div>
+
+
+        <div class="govuk-button-group">
+
+            {{
+                govukButton
+                ({
+                    text: 'Quantities are fine',
+                    href: 'badgers'
+                })
+            }}
+
+
+            {{
+                govukButton
+                ({
+                    text: 'Over the limit',
+                    classes: "govuk-button--secondary"
+                })
+            }}
+
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+{% endblock %}
+
+
+
+
+

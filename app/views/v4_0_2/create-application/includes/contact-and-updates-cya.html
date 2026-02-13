@@ -1,0 +1,116 @@
+<dl class="govuk-summary-list">
+
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-!-width-one-half  govuk-!-font-weight-regular">
+            {% if  data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises"
+                  and (data['origin-type-of-origin-on-radios'] == "Unrestricted farms and markets"
+                    or data['origin-type-of-origin-on-radios'] == "Location after animals have been imported")
+            %}
+                What is the name of the person who will be the registered keeper of the animals?
+            {% else %}
+                What is the name of the person registered as the keeper of the animals?
+            {% endif %}
+        </dt>
+        <dd class="govuk-summary-list__value">
+            {{ data['contact-and-updates-licence-first-name-text-input'] }} {{ data['contact-and-updates-licence-last-name-text-input'] }}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="../contact-and-updates/licence-name?camefromcheckanswers=true&">Change<span class="govuk-visually-hidden"> </span></a>
+        </dd>
+    </div>
+
+
+    {% if  data['origin-to-or-from-own-premises-radios'] == "On to the farm or premises"
+            and (data['origin-type-of-origin-on-radios'] == "TB restricted farm"
+                or data['origin-type-of-origin-on-radios'] == "Another TB restricted origin")
+            and (data['destination-type-of-destination-radios'] == "TB restricted farm"
+                or data['destination-type-of-destination-radios'] == "Another TB restricted destination")
+    %}
+        <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key govuk-!-font-weight-regular">
+                What is your name?
+            </dt>
+            <dd class="govuk-summary-list__value">
+                {{ data['contact-and-updates-your-name-first-name-text-input'] }} {{ data['contact-and-updates-your-name-last-name-text-input'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="../contact-and-updates/your-name">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        </div>
+
+
+        <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key govuk-!-font-weight-regular">
+                What is the email address for the origin premises?
+            </dt>
+            <dd class="govuk-summary-list__value">
+                {{ data['contact-and-updates-origin-email-address-text-input'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="../contact-and-updates/origin-email-address">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key govuk-!-font-weight-regular">
+                What is your email address?
+            </dt>
+            <dd class="govuk-summary-list__value">
+                {{ data['contact-and-updates-destination-email-address-text-input'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="../contact-and-updates/destination-email-address">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        </div>
+
+
+
+    {%  else  %}
+
+        <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key govuk-!-font-weight-regular">
+                What email address would you like the licence sent to?
+            </dt>
+            <dd class="govuk-summary-list__value">
+                {{ data['contact-and-updates-licence-enter-email-address-text-input'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="../contact-and-updates/licence-enter-email-address">Change<span class="govuk-visually-hidden"> </span></a>
+            </dd>
+        </div>
+
+    {%  endif  %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Blocked for now
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-!-font-weight-regular">
+            Do you want a copy of your application sent to you?
+        </dt>
+        <dd class="govuk-summary-list__value">
+            {{ data['contact-and-updates-copy-of-application-radios-yes-no'] }}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="../contact-and-updates/copy-of-application">Change<span class="govuk-visually-hidden"> </span></a>
+        </dd>
+    </div>
+    -->
+
+
+
+</dl>

@@ -1,0 +1,68 @@
+{% extends "layouts/v4_0_2_case_management" %}
+
+
+{% set backlinkoff = 'false' %}
+
+
+
+<!-- Setting the big main heading at the top of the page -->
+{% set pageHeadingTextHTML %}
+    Is the biosecurity map clear enough to process the application?
+{% endset %}
+
+
+
+{% block content %}
+<div class='govuk-grid-row'>
+
+    <div class="govuk-grid-column-one-half">
+
+
+        <h1 class="govuk-heading-l">
+            {{ pageHeadingTextHTML }}
+        </h1>
+
+
+        <div>
+
+            <img src="/public/images/biosecuritydiagram.jpg" width="600" height="450">
+
+        </div>
+
+
+        <div class="govuk-button-group govuk-!-margin-top-6">
+
+            {{
+                govukButton
+                ({
+                    text: "Yes, it's clear",
+                    href: 'ear-tags'
+                })
+            }}
+
+
+            {{
+                govukButton
+                ({
+                    text: "No, it’s unclear",
+                    classes: "govuk-button--secondary"
+                })
+            }}
+
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+{% endblock %}
+
+
+
+
+

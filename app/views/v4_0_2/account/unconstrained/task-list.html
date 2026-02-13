@@ -1,0 +1,197 @@
+{% extends "layouts/registration.html" %}
+
+
+
+<!-- Setting the big main heading at the top of the page -->
+{% set pageHeadingTextHTML %}
+    Register for a Defra account
+{% endset %}
+
+
+
+<!-- Text that show in the browser tab. Does NOT need changing -->
+{% block pageTitle %}
+    {{ pageHeadingTextHTML }}
+{% endblock %}
+
+
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-l">{{ pageHeadingTextHTML }}</h1>
+
+        <p id="whole-text-progress-count" class="govuk-body">You have
+            <span id="section-progress-count"></span> sections left to complete.
+        </p>
+
+        <p id="whole-text-all-complete" style="display: none;">All sections are complete.</p>
+
+
+        {{
+            govukTaskList
+            ({
+                idPrefix: "company-details",
+                items:
+                [
+
+                    {
+                        title:
+                        {
+                            text: "About the account"
+                        },
+                        href: "about-the-account/check-answers" if data['section-about-the-account-complete'] == "true"  else "about-the-account/need-to-register",
+                            completed: data['section-about-the-account-complete'] == "true",
+                        status:
+                        {
+                            text: "Completed",
+                            tag:
+                            {
+                                text: "Incomplete",
+                                classes: "govuk-tag--blue"
+                            } if data['section-about-the-account-complete'] != "true"
+                        }
+                    },
+
+                    {
+                        title:
+                        {
+                            text: "Personal details"
+                        },
+                        href: "personal-details/check-answers" if data['section-personal-details-complete'] == "true"  else "personal-details/personal-details-start",
+                            completed: data['section-personal-details-complete'] == "true",
+                        status:
+                        {
+                            text: "Completed",
+                            tag:
+                            {
+                                text: "Incomplete",
+                                classes: "govuk-tag--blue"
+                            } if data['section-personal-details-complete'] != "true"
+                        }
+                    },
+
+
+                    {
+                        title:
+                        {
+                            text: "Business details"
+                        },
+                        href: "business-details/check-answers" if data['section-business-details-complete'] == "true"  else "business-details/uk-business-or-not",
+                            completed: data['section-business-details-complete'] == "true",
+                        status:
+                        {
+                            text: "Completed",
+                            tag:
+                            {
+                                text: "Incomplete",
+                                classes: "govuk-tag--blue"
+                            } if data['section-business-details-complete'] != "true"
+                        }
+                    } if data['section-personal-details-complete'] == "true" and data['unconstrained-personal-use-radios-yes-no'] == "No",
+
+
+                    {
+                        title:
+                        {
+                            text: "Account security"
+                        },
+                        href: "security/check-answers" if data['section-security-complete'] == "true"  else "security/memorable-word",
+                            completed: data['section-security-complete'] == "true",
+                        status:
+                        {
+                            text: "Completed",
+                            tag:
+                            {
+                                text: "Incomplete",
+                                classes: "govuk-tag--blue"
+                            } if data['section-security-complete'] != "true"
+                        }
+                    }
+
+
+
+                ]
+            })
+        }}
+
+
+
+        <!-- <p>You can <a href="#">message the outbreak team</a> if you need help with your application.</p> -->
+
+
+        <!-- go to routes.js for routing  -->
+
+
+        {{
+            govukButton
+            ({
+                text: "Review and submit",
+                classes: "govuk-button--secondary",
+                href: "#"
+            })
+        }}
+
+
+
+    </div>
+</div>
+
+
+
+
+
+
+
+<script>
+
+    // Update the progress count
+    window.onload = function ()
+    {
+        const elements = document.querySelectorAll('div.govuk-task-list__status');
+
+        let numItems = elements.length;
+
+        let completecounter = 0;
+
+        elements.forEach((element) =>
+        {
+            var tagtext = element.textContent;
+
+            if(tagtext.includes('Completed') )
+            {
+                completecounter++;
+            }
+        });
+
+        let remaniningcount = numItems - completecounter;
+
+
+        document.getElementById("section-progress-count").textContent = remaniningcount + " out of " + numItems;
+
+
+        // make button primary green if all done
+        // also change text at the top
+        if (completecounter == numItems)
+        {
+            const elementbutton = document.querySelector('.govuk-button');
+            elementbutton.classList.remove('govuk-button--secondary');
+            elementbutton.href="check-answers";
+
+            document.getElementById('whole-text-progress-count').style.display = 'none';
+            document.getElementById('whole-text-all-complete').style.display = 'block';
+        }
+
+
+    }
+
+</script>
+
+{% endblock %}
+
+
+
+
+
+

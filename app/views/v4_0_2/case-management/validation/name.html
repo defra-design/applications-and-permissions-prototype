@@ -1,0 +1,104 @@
+{% extends "layouts/v4_0_2_case_management" %}
+
+
+{% set backlinkoff = 'false' %}
+
+
+
+<!-- Setting the big main heading at the top of the page -->
+{% set pageHeadingTextHTML %}
+    Does the name given in the application match the name held on APHA records?
+{% endset %}
+
+
+
+{% block content %}
+<div class='govuk-grid-row'>
+
+    <div class="govuk-grid-column-one-half">
+
+
+
+        <h1 class="govuk-heading-l">
+            {{ pageHeadingTextHTML }}
+        </h1>
+
+        <p>The applicant’s information is checked against APHA records on systems like Sam.</p>
+
+        <div class="">
+
+            {{
+                govukTable
+                ({
+                    caption: "",
+                    firstCellIsHeader: false,
+                    head:
+                    [
+                        {
+                            text: "Application"
+                        },
+                        {
+                            text: "APHA record"
+                        }
+                    ],
+                    rows:
+                    [
+                        [
+                            {
+                                text: 'J Smith'
+                            },
+                            {
+                                text: 'John Henry Smith'
+                            }
+                        ],
+                        [
+                            {
+                                text: ""
+                            },
+                            {
+                                text: "Anne Smith"
+                            }
+                        ]
+                    ]
+                })
+            }}
+
+        </div>
+
+
+        <div class="govuk-button-group">
+
+            {{
+                govukButton
+                ({
+                    text: 'Yes, the names match',
+                    href: 'address'
+                })
+            }}
+
+
+            {{
+                govukButton
+                ({
+                    text: "No, the names don't match",
+                    classes: 'govuk-button--secondary'
+                })
+            }}
+
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+{% endblock %}
+
+
+
+
+

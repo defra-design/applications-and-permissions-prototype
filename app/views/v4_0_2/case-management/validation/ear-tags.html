@@ -1,0 +1,86 @@
+{% extends "layouts/v4_0_2_case_management" %}
+
+
+{% set backlinkoff = 'false' %}
+
+
+
+<!-- Setting the big main heading at the top of the page -->
+{% set pageHeadingTextHTML %}
+    Do the ear tags listed in the application match APHA’s records?
+{% endset %}
+
+
+
+{% block content %}
+<div class='govuk-grid-row'>
+
+    <div class="govuk-grid-column-one-half">
+
+
+        <h1 class="govuk-heading-l">
+            {{ pageHeadingTextHTML }}
+        </h1>
+
+        <div>
+
+            <p>You need to check ear tag details on Sam or the Cattle Tracing System (CTS).</p>
+
+            <p>UK 230011 200123<br>UK 230011 200124<br>UK 230011 200125<br>UK 230011 200123<br>
+                UK 230011 200124<br>UK 230011 200125</p>
+
+        </div>
+
+
+        <div class="govuk-button-group govuk-!-margin-top-9">
+
+            {% if data['issuelicenceafterchecks'] == 'true' %}
+
+                {{
+                    govukButton
+                    ({
+                        text: 'Yes, they match',
+                        href: '../issued-licence/issue-licence'
+                    })
+                }}
+
+            {% else %}
+
+                {{
+                    govukButton
+                    ({
+                        text: 'Yes, they match',
+                        href: 'check-complete'
+                    })
+                }}
+
+            {% endif %}
+
+
+
+
+            {{
+                govukButton
+                ({
+                    text: 'No, they don’t match',
+                    classes: "govuk-button--secondary"
+                })
+            }}
+
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+{% endblock %}
+
+
+
+
+

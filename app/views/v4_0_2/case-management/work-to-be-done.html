@@ -1,0 +1,192 @@
+{% extends "layouts/v4_0_2_case_management" %}
+
+
+{% set backlinkoff = 'true' %}
+
+
+<!-- Setting the big main heading at the top of the page -->
+{% set pageHeadingTextHTML %}Work to be done{% endset %}
+
+
+<!-- Text that show in the browser tab. Does NOT need changing -->
+{% block pageTitle %}
+    {{ pageHeadingTextHTML }}
+{% endblock %}
+
+
+{% set navActive = pageHeadingTextHTML %}
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+
+    <div class="govuk-grid-column-one-half">
+
+
+        <h1 class="govuk-heading-l">
+          {{ pageHeadingTextHTML }}
+        </h1>
+        
+
+        <table class="govuk-table">
+
+            <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                    <th scope="col" class="govuk-table__header">Action</th>
+                    <th scope="col" class="govuk-table__header">Priority</th>
+                    <th scope="col" class="govuk-table__header">Due date</th>
+                </tr>
+            </thead>
+
+            <tbody class="govuk-table__body">
+
+
+                {% if data['firstonestarted'] != 'true' %}
+
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell" style="display: flex;  align-items: center;">
+                            {{
+                                govukButton
+                                ({
+                                    text: "Start",
+                                    classes: "govuk-button--secondary govuk-!-margin-bottom-1",
+                                    href: 'validation/name?firstonestarted=true&issuelicenceafterchecks=false&'
+                                })
+                            }}
+                        </td>
+                        <td class="govuk-table__cell">Priority</td>
+                        <td class="govuk-table__cell">2 days remaining</td>
+                    </tr>
+
+                {% endif %}
+
+
+                {% if data['secondonestarted'] != 'true' %}
+
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">
+                            {{
+                                govukButton
+                                ({
+                                    text: "Review priority",
+                                    classes: "govuk-button--secondary govuk-!-margin-bottom-1",
+                                    href: 'validation/address2?secondonestarted=true&issuelicenceafterchecks=true&'
+                                })
+                            }}
+                        </td>
+                        <td class="govuk-table__cell">Priority</td>
+                        <td class="govuk-table__cell">3 days remaining</td>
+                    </tr>
+
+                {% endif %}
+
+
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell" style="display: flex;  align-items: center;">
+                        {{
+                            govukButton
+                            ({
+                                text: "Review priority",
+                                classes: "govuk-button--secondary govuk-!-margin-bottom-1",
+                                href: 'validation/cph-not-tb-restricted'
+                            })
+                        }}
+                    </td>
+                    <td class="govuk-table__cell">Priority</td>
+                    <td class="govuk-table__cell">5 days remaining</td>
+                </tr>
+
+
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell" style="display: flex;  align-items: center;">
+                        {{
+                            govukButton
+                            ({
+                                text: "Start",
+                                classes: "govuk-button--secondary govuk-!-margin-bottom-1",
+                                href: 'validation/cph-not-tb-restricted'
+                            })
+                        }}
+                    </td>
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">2 days remaining</td>
+                </tr>
+
+
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell" style="display: flex;  align-items: center;">
+                        {{
+                            govukButton
+                            ({
+                                text: "Start",
+                                classes: "govuk-button--secondary govuk-!-margin-bottom-1",
+                                href: 'validation/name'
+                            })
+                        }}
+                    </td>
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">3 days remaining</td>
+                </tr>
+
+
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell" style="display: flex;  align-items: center;">
+                        {{
+                            govukButton
+                            ({
+                                text: "Start",
+                                classes: "govuk-button--secondary govuk-!-margin-bottom-1",
+                                href: 'validation/name'
+                            })
+                        }}
+                    </td>
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">5 days remaining</td>
+                </tr>
+
+
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell" style="display: flex;  align-items: center;">
+                        {{
+                            govukButton
+                            ({
+                                text: "Start",
+                                classes: "govuk-button--secondary govuk-!-margin-bottom-1",
+                                href: 'validation/name'
+                            })
+                        }}
+                    </td>
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">5 days remaining</td>
+                </tr>
+
+
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell" style="display: flex;  align-items: center;">
+                        {{
+                            govukButton
+                            ({
+                                text: "Start",
+                                classes: "govuk-button--secondary govuk-!-margin-bottom-1",
+                                href: 'validation/name'
+                            })
+                        }}
+                    </td>
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">5 days remaining</td>
+                </tr>
+
+            </tbody>
+        </table>
+
+
+
+
+    </div>
+
+
+</div>
+
+
+{% endblock %}

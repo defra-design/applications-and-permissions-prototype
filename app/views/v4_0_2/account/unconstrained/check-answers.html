@@ -1,0 +1,299 @@
+{% extends "layouts/registration.html" %}
+
+
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-l">Check your answers before you continue your application</h1>
+
+
+
+        <h2 class="govuk-heading-m">About the account</h2>
+
+
+        <dl class="govuk-summary-list">
+
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                    Your Defra account terms and conditions
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    Accepted
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="terms-and-conditions">Change<span class="govuk-visually-hidden"> </span></a>
+                </dd>
+            </div>
+
+        </dl>
+
+
+
+        <h2 class="govuk-heading-m">Personal details</h2>
+
+        <dl class="govuk-summary-list">
+
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                    What name do you want to use to register?
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    {{ data['unconstrained-your-name-text-input'] }}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="your-name">Change<span class="govuk-visually-hidden"> </span></a>
+                </dd>
+            </div>
+
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                    What address do you want to use to register?
+                </dt>
+                <dd class="govuk-summary-list__value" >
+                    {%  if  data['uncontrained-before-tb']  == "true"  %}
+                        {{ data['unconstrained-your-address-address-line-1'] }}<br>
+                        {{ data['unconstrained-your-address-address-line-2'] }}<br>
+                        {{ data['unconstrained-your-address-address-town'] }}<br>
+                        {{ data['unconstrained-your-address-address-county'] }}<br>
+                        {{ data['unconstrained-your-address-address-postcode'] }}
+
+                    {%  elif  data['address']  != "undefined"
+                            and  data['unconstrained-your-address-select-radios'] != "Another address" %}
+                            {{ data['address']  }}
+
+                    {%  else  %}
+                        {{ data['unconstrained-your-address-address-line-1'] }}<br>
+                        {{ data['unconstrained-your-address-address-line-2'] }}<br>
+                        {{ data['unconstrained-your-address-address-town'] }}<br>
+                        {{ data['unconstrained-your-address-address-county'] }}<br>
+                        {{ data['unconstrained-your-address-address-postcode'] }}
+
+                    {%  endif  %}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="your-address">Change<span class="govuk-visually-hidden"> </span></a>
+                </dd>
+            </div>
+
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                    What phone number do you want to use to register?
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    {{ data['unconstrained-your-contact-number-text-input'] }}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="your-contact-number">Change<span class="govuk-visually-hidden"> </span></a>
+                </dd>
+            </div>
+
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                    Are you registering as an individual for personal use?
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    {{ data['unconstrained-personal-use-radios-yes-no'] }}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="personal-use">Change<span class="govuk-visually-hidden"> </span></a>
+                </dd>
+            </div>
+
+        </dl>
+
+
+        {% if    data['unconstrained-personal-use-radios-yes-no'] == "No"  %}
+
+            <h2 class="govuk-heading-m">Business details</h2>
+
+
+            <dl class="govuk-summary-list">
+
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                        Is the business registered to trade in the UK?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{ data['unconstrained-uk-business-or-not-radios-yes-no'] }}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="uk-business-or-not">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                </div>
+
+
+                {% if    data['unconstrained-uk-business-or-not-radios-yes-no'] == "Yes"  %}
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                        What type of business are you registering for?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{ data['unconstrained-business-type-radios'] }}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="business-type">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                </div>
+
+
+                {% if  data['unconstrained-business-type-radios'] == "Limited liability partnership (LLP)"
+                or  data['unconstrained-business-type-radios'] == "Limited liability (LTD)"  %}
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                        What is the business's Companies House number?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{ data['registrationCompanyNumber']}}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="companies-house-number">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                </div>
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                        Is this your business?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        Acme Org Ltd<br>
+                        1 Francis Crick Avenue<br>
+                        Cambridge Biomedical Campus<br>
+                        Cambridge<br>
+                        United Kingdom<br>
+                        CB2 0AA
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="business-address">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                </div>
+
+                {%  endif  %}
+
+
+                {%  endif  %}
+
+
+
+
+                {% if     data['unconstrained-uk-business-or-not-radios-yes-no'] == "No"
+                or (data['unconstrained-business-type-radios'] == "Partnership"
+                or  data['unconstrained-business-type-radios'] == "Another business type"  )
+
+                %}
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                        What is the business's name?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{ data['unconstrained-business-name-text-input'] }}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="business-name">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                </div>
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                        What is the business's address?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{ data['unconstrained-business-address-address-line-1'] }}<br>
+                        {{ data['unconstrained-business-address-address-line-2'] }}<br>
+                        {{ data['unconstrained-business-address-address-town'] }}<br>
+                        {{ data['unconstrained-business-address-address-county'] }}<br>
+                        {{ data['unconstrained-business-address-address-postcode'] }}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="business-address">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                </div>
+
+                {%  endif  %}
+
+
+                {% if  data['unconstrained-uk-business-or-not-radios-yes-no'] == "No"  or
+                data['unconstrained-business-type-radios'] != "Sole trader"  %}
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                        What is the business's phone number?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{ data['unconstrained-business-contact-number-text-input'] }}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="business-contact-number">Change<span class="govuk-visually-hidden"> </span></a>
+                    </dd>
+                </div>
+
+                {%  endif  %}
+
+            </dl>
+
+        {% endif %}
+
+
+
+
+        <h2 class="govuk-heading-m">Account security</h2>
+
+
+        <dl class="govuk-summary-list">
+
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                    Create a memorable word
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    {{ data['registrationMemorableWord']}}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="memorable-word">Change<span class="govuk-visually-hidden"> </span></a>
+                </dd>
+            </div>
+
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key  govuk-!-width-one-half govuk-!-font-weight-regular">
+                    Hint question
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    {{ data['registrationMemorableHint']}}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="memorable-word">Change<span class="govuk-visually-hidden"> </span></a>
+                </dd>
+            </div>
+
+        </dl>
+
+
+
+
+
+        <form action="confirmation" method="post" novalidate>
+
+            <button type="submit" class="govuk-button" data-module="govuk-button">
+                Continue
+            </button>
+
+        </form>
+
+    </div>
+</div>
+
+
+
+
+
+{% endblock %}
+
+
+
+
+
