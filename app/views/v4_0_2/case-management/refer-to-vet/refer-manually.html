@@ -1,0 +1,94 @@
+{% extends "layouts/v4_0_2_case_management" %}
+
+
+{% set backlinkoff = 'false' %}
+
+
+
+<!-- Setting the big main heading at the top of the page -->
+{% set pageHeadingTextHTML %}
+    Refer to a vet
+{% endset %}
+
+
+
+{% block content %}
+<div class='govuk-grid-row'>
+
+    <div class="govuk-grid-column-full">
+
+
+        <h1 class="govuk-heading-l">
+            {{ pageHeadingTextHTML }}
+        </h1>
+
+        <div class="govuk-!-width-one-half">
+
+            <p>The application has been fully checked.</p>
+
+            <p>Do the following steps:</p>
+
+            <ul class='govuk-body govuk-list--bullet'>
+                <li>Download a the TR284 document</li>
+                <li>Fill it in</li>
+                <li>Rename it to 09/643/3413</li>
+                <li>Open the vet allocation tool</li>
+                <li>Enter ABC, XYZ</li>
+                <li>Attach the TR284</li>
+                <li>Return here to mark the case as refered to a vet</li>
+            </ul>
+
+        </div>
+
+        {{
+            govukCheckboxes
+            ({
+                name: "waste",
+                fieldset:
+                {
+                    legend:
+                    {
+                        text: "Confirmation",
+                        isPageHeading: false,
+                        classes: "govuk-fieldset__legend--m"
+                    }
+                },
+                items:
+                [
+                    {
+                        value: "carcasses",
+                        text: "I confirm I've added the work to the vet allocation tool"
+                    }
+                ]
+            })
+        }}
+
+
+
+        <div class="govuk-button-group govuk-!-margin-top-7">
+
+            {{
+                govukButton
+                ({
+                    text: 'Complete work',
+                    href: 'refer-to-vet-confirmation'
+                })
+            }}
+
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+{% endblock %}
+
+
+
+
+

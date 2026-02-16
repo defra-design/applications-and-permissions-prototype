@@ -25,15 +25,6 @@
 
         <div style="display: flex;" class="govuk-!-width-two-thirds">
 
-            {% set allocationButtonHtml %}
-                <div class="div_right_aligned__item">
-                    {% if data['allocated'] == 'true' %}
-                        <a href="#">Change allocation</a>
-                    {% endif %}
-                </div>
-            {% endset %}
-
-
             <div class="govuk-!-width-one-half">
                 {{
                     govukTable
@@ -60,41 +51,30 @@
                                     text: "State"
                                 },
                                 {
-                                    text: data['state'] or 'New'
+                                    text: 'Referred to a vet'
                                 },
                                 {
 
                                 }
                             ],
 
-                            [
-                                {
-                                    text: "Licence type"
-                                },
-                                {
-                                    text: "TB16"
-                                },
-                                {
-
-                                }
-                            ],
-                            [
-                                {
-                                    text: "Last updated"
-                                },
-                                {
-                                    text: "Today"
-                                },
-                                {
-
-                                }
-                            ],
                             [
                                 {
                                     text: "Priority"
                                 },
                                 {
                                     text: "Welfare"
+                                },
+                                {
+
+                                }
+                            ],
+                            [
+                                {
+                                    text: "Due date"
+                                },
+                                {
+                                    text: "5 days remaining"
                                 },
                                 {
 
@@ -130,32 +110,22 @@
                         [
                             [
                                 {
-                                    text: "Allocated to"
+                                    text: "Applicant name"
                                 },
                                 {
-                                    text: "Alex smith"  if data['allocated'] == 'true'  else  "Unallocated"
+                                    text: "Ann Scott"
                                 },
                                 {
                                     html: allocationButtonHtml
                                 }
                             ],
-                            [
-                                {
-                                    text: "Due date"
-                                },
-                                {
-                                    text: "5 days remaining"
-                                },
-                                {
 
-                                }
-                            ],
                             [
                                 {
-                                    text: "Reference"
+                                    text: "Applicant CPH"
                                 },
                                 {
-                                    text: "TB-7181-M5VL"
+                                    text: "33/242/8318"
                                 },
                                 {
 
@@ -170,110 +140,19 @@
 
 
 
-
-
-
-
-        <div class="">
+        <div class="govuk-!-margin-top-5">
 
             <h2 class="govuk-heading-m">Actions</h2>
 
             <div class="govuk-button-group">
-
-                {%  if data['state'] == 'Licence issued' %}
-
-
-
-                {%  elif data['state'] == 'Referred to a vet' %}
-
-                    {{
-                        govukButton
-                        ({
-                            text: 'Issued licence',
-                            href: 'issued-licence/upload-licence'
-                        })
-                    }}
-
-                    {{
-                        govukButton
-                        ({
-                            text: 'Rejected application',
-                            classes: "govuk-button--secondary"
-                        })
-                    }}
-
-                {%  elif data['state'] == 'In progress'  and  data['validated'] != 'true' %}
-
-                    {{
-                        govukButton
-                        ({
-                            text: 'Validate details',
-                            href: 'validation/name'
-                        })
-                    }}
-
-                    {{
-                        govukButton
-                        ({
-                            text: 'Application not needed',
-                            classes: "govuk-button--secondary"
-                        })
-                    }}
-
-                    {{
-                        govukButton
-                        ({
-                            text: 'Waiting for more details',
-                            classes: "govuk-button--secondary"
-                        })
-                    }}
-
-                {%  elif data['validated'] == 'true'  %}
-
-                    {{
-                        govukButton
-                        ({
-                            text: 'Referred to a vet',
-                            href: "my-applications?state=Referred to a vet&"
-                        })
-                    }}
-
-                    {{
-                        govukButton
-                        ({
-                            text: 'Application not needed',
-                            classes: "govuk-button--secondary"
-                        })
-                    }}
-
-                    {{
-                        govukButton
-                        ({
-                            text: 'Waiting for more details',
-                            classes: "govuk-button--secondary"
-                        })
-                    }}
-
-
-                {%  else  %}
-
-                   {{
-                        govukButton
-                        ({
-                            text: "Allocate to me",
-                            href: "my-applications?allocated=true"
-                        })
-                    }}
-
-
-                {%  endif  %}
 
 
                 {{
                     govukButton
                     ({
                         text: 'Add note',
-                        classes: "govuk-button--secondary"
+                        classes: "govuk-button--secondary",
+                        href: 'add-note'
                     })
                 }}
 
@@ -284,260 +163,25 @@
 
 
 
-        {{
-            govukTable
-            ({
-                caption: "Application data",
-                captionClasses: "govuk-table__caption--m govuk-!-margin-top-9",
-                firstCellIsHeader: false,
-                head:
-                [
-                    {
-                        text: "Question"
-                    },
-                    {
-                        text: "Answer"
-                    }
-                ],
-                rows:
-                [
-                    [
-                        {
-                            text: "Are you moving the animals on or off your farm or premises?"
-                        },
-                        {
-                            text: "On to the farm or premises"
-                        }
-                    ],
-                    [
-                        {
-                            text: "Which type of premises are the animals moving off?"
-                        },
-                        {
-                            text: "TB restricted farm"
-                        }
-                    ],
-                    [
-                        {
-                            text: "What is the County Parish Holding (CPH) number of your farm or premises where the animals are moving off?"
-                        },
-                        {
-                            text: "91/885/6212"
-                        }
-                    ],
-                    [
-                        {
-                            text: "What is the address of your farm or premises where the animals are moving off?"
-                        },
-                        {
-                            html: "Hill top farm<br>River lane<br>West Thornbridge<br>Lincoln<br>LN97GX"
-                        }
-                    ],
-                    [
-                        {
-                            text: "Where are the animals going to?"
-                        },
-                        {
-                            text: "TB restricted farm"
-                        }
-                    ],
-                    [
-                        {
-                            text: "What is the county parish holding (CPH) number of your farm or premises where the animals are going to?"
-                        },
-                        {
-                            text: "22/915/6272"
-                        }
-                    ],
-                    [
-                        {
-                            text: "What is the address of your farm or premises where the animals are going to?"
-                        },
-                        {
-                            html: "Willow farm<br>New road<br>Thornchurch<br>Beverly<br>HU39UV"
-                        }
-                    ],
-                    [
-                        {
-                            text: "How many animals are you planning to move?"
-                        },
-                        {
-                            text: "12"
-                        }
-                    ],
-                    [
-                        {
-                            text: "What is the reason for the movement?"
-                        },
-                        {
-                            text: "Welfare"
-                        }
-                    ],
-                    [
-                        {
-                            text: "Enter any additional information (optional)"
-                        },
-                        {
-                            text: "None"
-                        }
-                    ],
-                    [
-                        {
-                            text: "What is the name of the person registered as the keeper of the animals?"
-                        },
-                        {
-                            text: "Pamela King"
-                        }
-                    ],
-                    [
-                        {
-                            text: "What is your name?"
-                        },
-                        {
-                            text: "John Smith"
-                        }
-                    ],
-                    [
-                        {
-                            text: "What is the email address for the origin premises?"
-                        },
-                        {
-                            text: "j.smith.76@gmail.com"
-                        }
-                    ],
-                    [
-                        {
-                            text: "What is your email address?"
-                        },
-                        {
-                            text: "pam.King.76@gmail.com"
-                        }
-                    ],
-                    [
-                        {
-                            text: "Will you move any calves under 42 days old?"
-                        },
-                        {
-                            text: "No"
-                        }
-                    ],
-                    [
-                        {
-                            text: "What are the dates of the last TB skin tests for the animals that are 42 days old or older?"
-                        },
-                        {
-                            text: "12/01/2026"
-                        }
-                    ],
-                    [
-                        {
-                            text: "Enter the ear tag numbers for these animals"
-                        },
-                        {
-                            html: "`UK 230011 200123<br>UK 230011 200124<br>UK 230011 200125<br>UK 230011 200123<br>UK 230011 200124<br>UK 230011 200125"
-                        }
-                    ],
-                    [
-                        {
-                            text: "Will you separate the incoming animals from the resident herd?"
-                        },
-                        {
-                            text: "Yes"
-                        }
-                    ],
-                    [
-                        {
-                            text: "Will the incoming animals be grazed?"
-                        },
-                        {
-                            text: "No"
-                        }
-                    ],
-                    [
-                        {
-                            text: "How will you manage slurry and manure?"
-                        },
-                        {
-                            html: "Manure is not purchased from other farms<br>Manure is stored for at least 3 weeks before spreading on pasture"
-                        }
-                    ],
-                    [
-                        {
-                            text: "What disinfectant are you using?"
-                        },
-                        {
-                            text: "FAM30"
-                        }
-                    ],
-                    [
-                        {
-                            text: "Confirmation of the dilution rate"
-                        },
-                        {
-                            text: "I confirm a dilution rate of 1:14 is used on the farm or premises"
-                        }
-                    ],
-                    [
-                        {
-                            text: "Will the incoming animals share any equipment and machinery with the resident herd?"
-                        },
-                        {
-                            text: "No"
-                        }
-                    ],
-                    [
-                        {
-                            text: "Will the incoming animals be housed?"
-                        },
-                        {
-                            text: "Yes"
-                        }
-                    ],
-                    [
-                        {
-                            text: "Which measures are being taken to reduce the spread of TB during housing?"
-                        },
-                        {
-                            text: "Isolation of incoming animals in a separate building, shed or pen on arrival"
-                        }
-                    ],
-                    [
-                        {
-                            text: "Which measures are staff taking to reduce the risk of spreading TB?"
-                        },
-                        {
-                            text: "Dedicated clothing and personal protective equipment (PPE)"
-                        }
-                    ],
-                    [
-                        {
-                            text: "Which measures are you taking to reduce the risk of infection from wildlife?"
-                        },
-                        {
-                            html: "Aluminium feed bins<br>Feed and water troughs raised over 90cm"
-                        }
-                    ],
-                    [
-                        {
-                            text: "Upload a biosecurity map"
-                        },
-                        {
-                            html: "<a href='#'>Download image</a>"
-                        }
-                    ]
-                ]
-            })
-        }}
+        {% if data['note-added'] == true %}
+
+            <div class="govuk-!-margin-top-5">
+
+                <h2 class="govuk-heading-m">Notes</h2>
+
+                <p>{{ data['case-management-add-note-text-area-input'] }}</p>
+
+                <p>Today at 12:08am<br>
+                   Alex Smith
+                </p>
+
+            </div>
+
+        {% endif %}
 
 
 
-
-
-
-
-        <div class="govuk-!-width-one-half govuk-!-margin-top-9">
-
-
+        <div class="govuk-!-width-one-half govuk-!-margin-top-7">
 
             {{
                 govukTable
@@ -561,65 +205,54 @@
                     [
                         [
                             {
-                                html: "Licence issued<br><a href='#'>Download licence</a>"
+                                text: "Note added"
                             },
                             {
-                                text: "Today at 12:44am"
+                                text: "Today at 12:08am"
                             },
                             {
                                 text: "Alex Smith"
                             }
-                        ] if data['state'] == 'Licence issued',
+                        ] if data['note-added'] == true,
                         [
                             {
                                 text: "Referred to a vet"
                             },
                             {
-                                text: "Today at 11:08am"
+                                text: "Yesterday at 11:08am"
                             },
                             {
                                 text: "Alex Smith"
                             }
-                        ] if data['state'] == 'Referred to a vet'  or  data['state'] == 'Licence issued',
+                        ],
                         [
                             {
                                 text: "Details validated"
                             },
                             {
-                                text: "Today at 11:07am"
+                                text: "Yesterday at 11:07am"
                             },
                             {
                                 text: "Alex Smith"
                             }
-                        ] if data['validated'] == 'true',
+                        ],
                         [
                             {
                                 text: "In progress"
                             },
                             {
-                                text: "Today at 11:02am"
+                                text: "Yesterday at 11:02am"
                             },
                             {
                                 text: "Alex Smith"
                             }
-                        ] if data['state'] == 'In progress'  or  data['state'] == 'Referred to a vet'  or  data['state'] == 'Licence issued',
-                        [
-                            {
-                                text: "Allocated to Alex Smith"
-                            },
-                            {
-                                text: "Today at 10:55am"
-                            },
-                            {
-                                text: "Alex Smith"
-                            }
-                        ] if data['allocated'] == 'true',
+                        ],
                         [
                             {
                                 text: "Submitted"
                             },
                             {
-                                text: "Today at 7:13am"
+                                text: "Yesterday at 7:13am"
                             },
                             {
                                 text: ""
@@ -630,6 +263,281 @@
             }}
 
         </div>
+
+
+
+
+        <div class="govuk-!-margin-top-9">
+
+            <h2 class="govuk-heading-m">Application</h2>
+
+                <details class='govuk-details' data-module='govuk-details'>
+                    <summary class='govuk-details__summary'>
+                        <span class='govuk-details__summary-text'>
+                            See details
+                        </span>
+                    </summary>
+                    <div class='govuk-details__text'>
+
+                        {{
+                        govukTable
+                        ({
+                            caption: "Application data",
+                            captionClasses: "govuk-table__caption--m govuk-!-margin-top-9",
+                            firstCellIsHeader: false,
+                            head:
+                            [
+                                {
+                                    text: "Question"
+                                },
+                                {
+                                    text: "Answer"
+                                }
+                            ],
+                            rows:
+                            [
+                                [
+                                    {
+                                        text: "Are you moving the animals on or off your farm or premises?"
+                                    },
+                                    {
+                                        text: "On to the farm or premises"
+                                    }
+                                ],
+                                [
+                                    {
+                                        text: "Which type of premises are the animals moving off?"
+                                    },
+                                    {
+                                        text: "TB restricted farm"
+                                    }
+                                ],
+                                [
+                                    {
+                                        text: "What is the County Parish Holding (CPH) number of your farm or premises where the animals are moving off?"
+                                    },
+                                    {
+                                        text: "33/242/8318"
+                                    }
+                                ],
+                                [
+                                    {
+                                        text: "What is the address of your farm or premises where the animals are moving off?"
+                                    },
+                                    {
+                                        html: "Hill top farm<br>River lane<br>West Thornbridge<br>Lincoln<br>LN97GX"
+                                    }
+                                ],
+                                [
+                                    {
+                                        text: "Where are the animals going to?"
+                                    },
+                                    {
+                                        text: "TB restricted farm"
+                                    }
+                                ],
+                                [
+                                    {
+                                        text: "What is the county parish holding (CPH) number of your farm or premises where the animals are going to?"
+                                    },
+                                    {
+                                        text: "22/915/6272"
+                                    }
+                                ],
+                                [
+                                    {
+                                        text: "What is the address of your farm or premises where the animals are going to?"
+                                    },
+                                    {
+                                        html: "Willow farm<br>New road<br>Thornchurch<br>Beverly<br>HU39UV"
+                                    }
+                                ],
+                                [
+                                    {
+                                        text: "How many animals are you planning to move?"
+                                    },
+                                    {
+                                        text: "12"
+                                    }
+                                ],
+                                [
+                                    {
+                                        text: "What is the reason for the movement?"
+                                    },
+                                    {
+                                        text: "Welfare"
+                                    }
+                                ],
+                                [
+                                    {
+                                        text: "Enter any additional information (optional)"
+                                    },
+                                    {
+                                        text: "None"
+                                    }
+                                ],
+                                [
+                                    {
+                                        text: "What is the name of the person registered as the keeper of the animals?"
+                                    },
+                                    {
+                                        text: "Pamela King"
+                                    }
+                                ],
+                                [
+                                    {
+                                        text: "What is your name?"
+                                    },
+                                    {
+                                        text: "John Smith"
+                                    }
+                                ],
+                                [
+                                    {
+                                        text: "What is the email address for the origin premises?"
+                                    },
+                                    {
+                                        text: "j.smith.76@gmail.com"
+                                    }
+                                ],
+                                [
+                                    {
+                                        text: "What is your email address?"
+                                    },
+                                    {
+                                        text: "pam.King.76@gmail.com"
+                                    }
+                                ],
+                                [
+                                    {
+                                        text: "Will you move any calves under 42 days old?"
+                                    },
+                                    {
+                                        text: "No"
+                                    }
+                                ],
+                                [
+                                    {
+                                        text: "What are the dates of the last TB skin tests for the animals that are 42 days old or older?"
+                                    },
+                                    {
+                                        text: "12/01/2026"
+                                    }
+                                ],
+                                [
+                                    {
+                                        text: "Enter the ear tag numbers for these animals"
+                                    },
+                                    {
+                                        html: "`UK 230011 200123<br>UK 230011 200124<br>UK 230011 200125<br>UK 230011 200123<br>UK 230011 200124<br>UK 230011 200125"
+                                    }
+                                ],
+                                [
+                                    {
+                                        text: "Will you separate the incoming animals from the resident herd?"
+                                    },
+                                    {
+                                        text: "Yes"
+                                    }
+                                ],
+                                [
+                                    {
+                                        text: "Will the incoming animals be grazed?"
+                                    },
+                                    {
+                                        text: "No"
+                                    }
+                                ],
+                                [
+                                    {
+                                        text: "How will you manage slurry and manure?"
+                                    },
+                                    {
+                                        html: "Manure is not purchased from other farms<br>Manure is stored for at least 3 weeks before spreading on pasture"
+                                    }
+                                ],
+                                [
+                                    {
+                                        text: "What disinfectant are you using?"
+                                    },
+                                    {
+                                        text: "FAM30"
+                                    }
+                                ],
+                                [
+                                    {
+                                        text: "Confirmation of the dilution rate"
+                                    },
+                                    {
+                                        text: "I confirm a dilution rate of 1:14 is used on the farm or premises"
+                                    }
+                                ],
+                                [
+                                    {
+                                        text: "Will the incoming animals share any equipment and machinery with the resident herd?"
+                                    },
+                                    {
+                                        text: "No"
+                                    }
+                                ],
+                                [
+                                    {
+                                        text: "Will the incoming animals be housed?"
+                                    },
+                                    {
+                                        text: "Yes"
+                                    }
+                                ],
+                                [
+                                    {
+                                        text: "Which measures are being taken to reduce the spread of TB during housing?"
+                                    },
+                                    {
+                                        text: "Isolation of incoming animals in a separate building, shed or pen on arrival"
+                                    }
+                                ],
+                                [
+                                    {
+                                        text: "Which measures are staff taking to reduce the risk of spreading TB?"
+                                    },
+                                    {
+                                        text: "Dedicated clothing and personal protective equipment (PPE)"
+                                    }
+                                ],
+                                [
+                                    {
+                                        text: "Which measures are you taking to reduce the risk of infection from wildlife?"
+                                    },
+                                    {
+                                        html: "Aluminium feed bins<br>Feed and water troughs raised over 90cm"
+                                    }
+                                ],
+                                [
+                                    {
+                                        text: "Upload a biosecurity map"
+                                    },
+                                    {
+                                        html: "<a href='#'>Download image</a>"
+                                    }
+                                ]
+                            ]
+                        })
+                    }}
+                </div>
+
+            </div>
+        </details>
+
+
+
+
+
+
+
+
+
+
+
 
 
     </div>

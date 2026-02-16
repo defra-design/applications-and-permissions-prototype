@@ -1,0 +1,62 @@
+{% extends "layouts/v4_0_2_case_management" %}
+
+
+{% set backlinkoff = 'false' %}
+
+
+
+<!-- Setting the big main heading at the top of the page -->
+{% set pageHeadingTextHTML %}
+    Request new map
+{% endset %}
+
+
+
+{% block content %}
+<div class='govuk-grid-row'>
+
+    <div class="govuk-grid-column-full">
+
+
+
+        <h1 class="govuk-heading-l">
+            {{ pageHeadingTextHTML }}
+        </h1>
+
+        <div class="govuk-!-width-one-half">
+
+            <p>This system will email the applicant asking them to upload a new map.</p>
+
+            <p>You might want to call the applicant to tell them.</p>
+
+            <p>Applicant phone number: 07891234567</p>
+
+        </div>
+
+        <div class="govuk-button-group govuk-!-margin-top-7">
+
+            {{
+                govukButton
+                ({
+                    text: 'Request another map',
+                    href: '#'
+                })
+            }}
+
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+{% endblock %}
+
+
+
+
+

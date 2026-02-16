@@ -1,0 +1,90 @@
+{% extends "layouts/v4_0_2_case_management" %}
+
+
+{% set backlinkoff = 'false' %}
+
+
+
+<!-- Setting the big main heading at the top of the page -->
+{% set pageHeadingTextHTML %}
+    Reject this application
+{% endset %}
+
+
+
+{% block content %}
+<div class='govuk-grid-row'>
+
+    <div class="govuk-grid-column-one-half">
+
+
+        <h1 class="govuk-heading-l">
+            {{ pageHeadingTextHTML }}
+        </h1>
+
+        <div class="govuk-!-width-one-half">
+
+            <p>Contact the applicant, NAME LASTNAME.</p>
+
+            <p>Applicant phone number: 07891234567</p>
+
+            <p>Applicant email address: applicant.name@gmail.com</p>
+
+            <p>Inform the applicant the CPH didn't match the name on the APHA record.</p>
+
+            <p>Tell them they can apply again with correct details.</p>
+
+        </div>
+
+        {{
+            govukCheckboxes
+            ({
+                name: "waste",
+                fieldset:
+                {
+                    legend:
+                    {
+                        text: "Confirmation",
+                        isPageHeading: false,
+                        classes: "govuk-fieldset__legend--m"
+                    }
+                },
+                items:
+                [
+                    {
+                        value: "I confirm I've contacted the applicant",
+                        text: "I confirm I've contacted the applicant"
+                    }
+                ]
+            })
+        }}
+
+
+
+        <div class="govuk-button-group govuk-!-margin-top-7">
+
+            {{
+                govukButton
+                ({
+                    text: 'Mark as rejected',
+                    href: '#'
+                })
+            }}
+
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+{% endblock %}
+
+
+
+
+

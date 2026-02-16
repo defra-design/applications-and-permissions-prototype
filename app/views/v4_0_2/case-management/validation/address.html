@@ -47,6 +47,15 @@
                             {
                                 html: 'Hill Top Farm<br>River lane<br>West Thornbridge<br>Lincoln<br>LN9 7GX'
                             }
+                        ],
+                        [
+                            {
+                                html: ''
+                            },
+
+                            {
+                                html: 'Willow Cottage<br>River lane<br>West Thornbridge<br>Lincoln<br>LN9 7GX'
+                            }
                         ]
                     ]
                 })
@@ -61,16 +70,17 @@
                 govukButton
                 ({
                     text: 'Yes, the addresses match',
-                    href: 'map'
+                    href: '../issued-licence/issue-licence'  if issuelicenceafterchecks == true
+                            else 'map'
                 })
             }}
-
 
             {{
                 govukButton
                 ({
                     text: "No, the addresses don't match",
-                    classes: "govuk-button--secondary"
+                    classes: "govuk-button--secondary",
+                    href: 'address-rejection'
                 })
             }}
 

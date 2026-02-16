@@ -23,13 +23,20 @@
             {{ pageHeadingTextHTML }}
         </h1>
 
-        <p>The licence will be emailed to the applicant.</p>
+        <p>You need to:</p>
+
+        <ul class="govuk-list govuk-list--bullet">
+            <li>Download licence TB15</li>
+            <li>Work out 45 days from the last testing date???</li>
+            <li>Change the dates to match the testing window???</li>
+            <li>Save the licence to your computer</li>
+        </ul>
 
         {{
             govukButton
             ({
-                text: 'Issue licence',
-                href: '../work-to-be-done'
+                text: 'Continue',
+                href: 'upload-licence'
             })
         }}
 

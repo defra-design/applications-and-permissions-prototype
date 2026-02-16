@@ -5,11 +5,11 @@
 
 
 <!-- Setting the big main heading at the top of the page -->
-{% set pageHeadingTextHTML %}Search for an application{% endset %}
+{% set pageHeadingTextHTML %}Search for applications{% endset %}
 
 
 <!-- Setting the smaller secondary heading lower down the page -->
-{% set questionHeadingCPHTextHTML %}
+{% set questionHeadingTextHTML %}
     Enter the staff name
 {% endset %}
 
@@ -58,6 +58,10 @@
 <div class='govuk-grid-row'>
     <div class='govuk-grid-column-two-thirds'>
 
+        <h1 class='govuk-heading-l'>
+            {{ pageHeadingTextHTML }}
+        </h1>
+
         <!-- form URL below turns off errors on the next page  -->
         <form action='{{PAGENAME_COUNTRY}}-router/{{PAGENAME_COUNTRY}}' method='post' novalidate>
 
@@ -68,7 +72,11 @@
                 <div class='govuk-form-group'>
             {% endif %}
 
-                    <h1 class='govuk-heading-l'>{{ pageHeadingTextHTML }}</h1>
+
+
+                    <legend class='govuk-fieldset__legend'>
+                        {{ questionHeadingTextHTML }}
+                    </legend>
 
                     {% if HINT_TEXT != 'PLACEHOLDER_HINT_TEXT' %}
                         <div id='account-number-hint' class='govuk-hint'>

@@ -72,7 +72,7 @@
 
 {% block content %}
 <div class='govuk-grid-row'>
-    <div class='govuk-grid-column-two-thirds'>
+    <div class='govuk-grid-column-full'>
 
         <!-- ERROR LOGIC 'error summary' -->
         {% if data['errorthispage'] == 'true' %}
@@ -99,12 +99,10 @@
         </h1>
 
 
-        <!-- <form action='{{PAGENAME_TEXT}}-router/{{PAGENAME_TEXT}}/{{LOWEST_NUMBER}}/{{HIGHEST_NUMBER}}' method='post' novalidate>  -->
+        <form action='{{PAGENAME_TEXT}}-router/{{PAGENAME_TEXT}}/{{LOWEST_NUMBER}}/{{HIGHEST_NUMBER}}' method='post' novalidate>
 
 
-        <form action='search-results' method='post' novalidate>
-
-            <div style='display:flex; justify-content: space-between;'>
+            <div class='govuk-!-width-two-thirds govuk-!-margin-bottom-5' style='display:flex; justify-content: space-between;'>
 
                 <div>
 
@@ -160,6 +158,80 @@
 
 
         </form>
+
+
+        {% if data['show-search-cph-results'] == 'true' %}
+
+            <table class="govuk-table">
+
+                <thead class="govuk-table__head">
+                    <tr class="govuk-table__row">
+                        <th scope="col" class="govuk-table__header">Action</th>
+                        <th scope="col" class="govuk-table__header">Status</th>
+                        <th scope="col" class="govuk-table__header">Date last worked on</th>
+                        <th scope="col" class="govuk-table__header">Priority</th>
+                        <th scope="col" class="govuk-table__header">Due date</th>
+                    </tr>
+                </thead>
+
+                <tbody class="govuk-table__body">
+
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell" style="display: flex;  align-items: center;">
+                            <a href="../application-details">View details</a>
+                        </td>
+                        <td class="govuk-table__cell">Referred to a vet</td>
+                        <td class="govuk-table__cell">Yesterday</td>
+                        <td class="govuk-table__cell">Welfare</td>
+                        <td class="govuk-table__cell">4 days remaining</td>
+                    </tr>
+
+
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">
+                            <a href="">View details</a>
+                        </td>
+                        <td class="govuk-table__cell">Licence issued</td>
+                        <td class="govuk-table__cell">12 January 2026</td>
+                        <td class="govuk-table__cell"></td>
+                        <td class="govuk-table__cell"></td>
+                    </tr>
+
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">
+                            <a href="">View details</a>
+                        </td>
+                        <td class="govuk-table__cell">Licence issued</td>
+                        <td class="govuk-table__cell">17 November 2025</td>
+                        <td class="govuk-table__cell"></td>
+                        <td class="govuk-table__cell"></td>
+                    </tr>
+
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">
+                            <a href="">View details</a>
+                        </td>
+                        <td class="govuk-table__cell">Refused</td>
+                        <td class="govuk-table__cell">30 October 2025</td>
+                        <td class="govuk-table__cell"></td>
+                        <td class="govuk-table__cell"></td>
+                    </tr>
+
+
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">
+                            <a href="">View details</a>
+                        </td>
+                        <td class="govuk-table__cell">Licence issued</td>
+                        <td class="govuk-table__cell">12 August 2025</td>
+                        <td class="govuk-table__cell"></td>
+                        <td class="govuk-table__cell"></td>
+                    </tr>
+
+                </tbody>
+            </table>
+
+        {% endif %}
 
     </div>
 </div>
