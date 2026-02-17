@@ -62,7 +62,7 @@ module.exports = function (router) {
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////                                                    ////////////////
-    ////////////////               COH SEARCH RESULTS                   ////////////////
+    ////////////////               CPH SEARCH RESULTS                   ////////////////
     ////////////////                                                    ////////////////
     ////////////////              TEXT ENTRY - MANDATORY                ////////////////
     ////////////////                 NOT COMPLEX PAGE                   ////////////////
@@ -307,6 +307,66 @@ module.exports = function (router) {
     })
 
 
+
+
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                    ////////////////
+    ////////////////               Staff name search                    ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////            COUNTRY ENTRY - MANDATORY               ////////////////
+    ////////////////                 NOT COMPLEX PAGE                   ////////////////
+    ////////////////                                                    ////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+
+    router.post( sectionURL + 'search/staff-name-router/:pageName', function (req, res)
+    {
+        let page_name_submitted = req.params.pageName;
+
+        req.session.data['errorthispage'] = 'false';
+        req.session.data['errortypeone'] = 'false';
+        req.session.data['errortypetwo'] = 'false';
+
+        // Validation check if the field is blank
+        if (req.session.data[ section + '-' + page_name_submitted + '-country-typeahead'] == undefined ||
+            req.session.data[ section + '-' + page_name_submitted + '-country-typeahead'] == '')
+        {
+            // Trigger validation and relaunch the page
+            req.session.data['errorthispage'] = 'true';
+            req.session.data['errortypeone'] = 'true';
+
+            // This page name needs to match the page the user was just on
+            res.redirect( '../' + page_name_submitted );
+        }
+
+
+
+        else
+        {
+            // everything with the input is fine so move on to next page
+
+            // If the user needs to go back to 'check your answers' then take them directly there
+            if (req.session.data['camefromcheckanswers'] == 'true')
+            {
+                req.session.data['camefromcheckanswers'] = false;
+                res.redirect( '../' + 'check-answers' );
+            }
+            else
+            {
+                req.session.data['show-search-staff-name-results'] = 'true';
+
+                // This page name needs to be the next page the user gets to after successfully continuing
+                res.redirect( '../' + page_name_submitted );
+            }
+        }
+    })
 
 
 
