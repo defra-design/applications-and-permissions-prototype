@@ -112,73 +112,31 @@ module.exports = function (router) {
             req.session.data['errorthispage'] = 'true';
             req.session.data['errortypeone'] = 'true';
 
-            // This page name needs to match the page the user was just on
-            res.redirect( '../../../' + page_name_submitted );
-        }
-
-        // Input too long
-        else if ( highestNumberIsNumber &&
-                  highest_number_submitted_float < req.session.data[ section + '-' + page_name_submitted + '-text-input' ].length )
-        {
-            // Trigger validation and relaunch the page for over 15 characters
-            req.session.data['errorthispage'] = 'true';
-            req.session.data['errortypetwo'] = 'true';
+            req.session.data['show-search-cph-results'] = 'false';
 
             // This page name needs to match the page the user was just on
             res.redirect( '../../../' + page_name_submitted );
         }
 
-        // Input too short
-        else if ( lowestNumberIsNumber &&
-                  req.session.data[ section + '-' + page_name_submitted + '-text-input' ].length < lowest_number_submitted_float   )
-        {
-            // Trigger validation and relaunch the page for under 5 characters
-            req.session.data['errorthispage'] = 'true';
-            req.session.data['errortypethree'] = 'true';
-
-            // This page name needs to match the page the user was just on
-            res.redirect( '../../../' + page_name_submitted );
-        }
 
         else
         {
-            // check no illegal charcters have been used
-            const acceptableCharacters =  " abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ&:’\,.()-";
-            let inputtext = req.session.data[ section + '-' + page_name_submitted + '-text-input' ];
-
-            let dissallowedCharacters = '';
-
-            // go through every character in the input and save  illegals ones
-            for (var i = 0; i < inputtext.length; i++)
+            let regexpattern = /^(\d{2})\/(\d{3})\/(\d{4})$/;
+            let cphentered = req.session.data[ section + '-' + page_name_submitted + '-text-input' ];
+            let cphnospaces = cphentered.trim();
+            let result = regexpattern.test(cphnospaces);
+            if (result == false)
             {
-                let  singlecharacter = inputtext.charAt(i);
+                // Trigger validation and relaunch the page
+                req.session.data['errorthispage'] = "true";
+                req.session.data['errortypetwo'] = "true";
 
-                if( acceptableCharacters.includes( singlecharacter ) )
-                {
-                    // character is fine, so skip it
-                }
-                else
-                {
-                    // save this invalid character
-                    // if character is alread in tsring then don't add it
-                    if( dissallowedCharacters.includes( singlecharacter ) == false )
-                    {
-                        dissallowedCharacters = dissallowedCharacters.concat(singlecharacter);
-                    }
-                }
-            }
-
-            if(0 < dissallowedCharacters.length)
-            {
-                req.session.data['dissallowedcharacters'] = dissallowedCharacters;
-
-                // Trigger validation and relaunch the page for invalid characters
-                req.session.data['errorthispage'] = 'true';
-                req.session.data['errortypefour'] = 'true';
+                req.session.data['show-search-cph-results'] = 'false';
 
                 // This page name needs to match the page the user was just on
                 res.redirect( '../../../' + page_name_submitted );
             }
+
             else
             {
                 // everything with the input is fine so move on to next page

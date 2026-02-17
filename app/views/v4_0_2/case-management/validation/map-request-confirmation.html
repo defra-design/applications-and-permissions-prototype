@@ -7,7 +7,7 @@
 
 <!-- Setting the big main heading at the top of the page -->
 {% set pageHeadingTextHTML %}
-    Request new map
+    New map requested
 {% endset %}
 
 
@@ -23,13 +23,9 @@
             {{ pageHeadingTextHTML }}
         </h1>
 
-        <div>
+        <div class="govuk-!-width-one-half">
 
-            <p>This system will email the applicant asking them to upload a new map.</p>
-
-            <p>You might want to call the applicant to tell them.</p>
-
-            <p>Applicant phone number: 07891234567</p>
+            <p>Once the new map is submitted the application can be worked on.</p>
 
         </div>
 
@@ -38,8 +34,8 @@
             {{
                 govukButton
                 ({
-                    text: 'Request another map',
-                    href: 'map-request-confirmation'
+                    text: 'Go to work to be done',
+                    href: '../work-to-be-done'
                 })
             }}
 
