@@ -482,7 +482,7 @@ module.exports = function (router) {
 
                 // This page name needs to match the page the user was just on
                 res.redirect('licence-enter-email-address');
-                }
+            }
             else
             {
                 // BLOCK UNTIL WE VERIFY EMAILL ADDRESSES

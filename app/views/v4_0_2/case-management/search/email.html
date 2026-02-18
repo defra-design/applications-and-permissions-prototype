@@ -29,20 +29,12 @@
 <!-- Set the text for each error type -->
 {% set errorTextHTML %}
     <!-- Error 1 - No answer selected -->
-    {% if data['errortypeone'] == 'true' %}
-        Enter_your_PLACEHOLDER
+    {% if data['errortypeone'] == "true" %}
+        Enter the email address
 
     <!-- Error 2 - If answer is too long -->
-    {% elif data['errortypetwo'] == 'true' %}
-        PLACEHOLDER must be {{HIGHEST_NUMBER}} characters or fewer
-
-    <!-- Error 3 - If answer is too short -->
-    {% elif data['errortypethree'] == 'true' %}
-        PLACEHOLDER must be {{LOWEST_NUMBER}} characters or more
-
-    <!-- Error 4 - If answer has characters that aren't allowed and you know what the characters are -->
-    {% elif data['errortypefour'] == 'true' %}
-        PLACEHOLDER must not include  {{ data['dissallowedcharacters'] }} [LIST_THE_CHARACTERS_USED]
+    {% elif data['errortypetwo'] == "true" %}
+        Enter an email address in the correct format, like name@example.com
 
     {% endif %}
 {% endset %}
@@ -72,7 +64,7 @@
 
 {% block content %}
 <div class='govuk-grid-row'>
-    <div class='govuk-grid-column-two-thirds'>
+    <div class='govuk-grid-column-full'>
 
         <!-- ERROR LOGIC 'error summary' -->
         {% if data['errorthispage'] == 'true' %}
@@ -99,10 +91,7 @@
         </h1>
 
 
-        <!-- <form action='{{PAGENAME_TEXT}}-router/{{PAGENAME_TEXT}}/{{LOWEST_NUMBER}}/{{HIGHEST_NUMBER}}' method='post' novalidate>  -->
-
-
-        <form action='search-results' method='post' novalidate>
+        <form action='{{PAGENAME_TEXT}}-router/{{PAGENAME_TEXT}}/{{LOWEST_NUMBER}}/{{HIGHEST_NUMBER}}' method='post' novalidate>
 
             {{
                 govukInput
@@ -136,6 +125,167 @@
 
 
         </form>
+
+
+        {% if data['show-search-email-results'] == 'true' %}
+
+            <table class="govuk-table">
+
+                <thead class="govuk-table__head">
+                    <tr class="govuk-table__row">
+                        <th scope="col" class="govuk-table__header">Action</th>
+                        <th scope="col" class="govuk-table__header">Status</th>
+                        <th scope="col" class="govuk-table__header">Date last worked on</th>
+                        <th scope="col" class="govuk-table__header">Priority</th>
+                        <th scope="col" class="govuk-table__header">Due date</th>
+                    </tr>
+                </thead>
+
+                <tbody class="govuk-table__body">
+
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell" style="display: flex;  align-items: center;">
+                            <a href="../application-details">View details</a>
+                        </td>
+                        <td class="govuk-table__cell">Referred to a vet</td>
+                        <td class="govuk-table__cell">Yesterday</td>
+                        <td class="govuk-table__cell">Priority</td>
+                        <td class="govuk-table__cell">4 days remaining</td>
+                    </tr>
+
+
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">
+                            <a href="">View details</a>
+                        </td>
+                        <td class="govuk-table__cell">Licence issued</td>
+                        <td class="govuk-table__cell">12 January 2026</td>
+                        <td class="govuk-table__cell"></td>
+                        <td class="govuk-table__cell"></td>
+                    </tr>
+
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">
+                            <a href="">View details</a>
+                        </td>
+                        <td class="govuk-table__cell">Licence issued</td>
+                        <td class="govuk-table__cell">17 November 2025</td>
+                        <td class="govuk-table__cell"></td>
+                        <td class="govuk-table__cell"></td>
+                    </tr>
+
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">
+                            <a href="">View details</a>
+                        </td>
+                        <td class="govuk-table__cell">Refused</td>
+                        <td class="govuk-table__cell">30 October 2025</td>
+                        <td class="govuk-table__cell"></td>
+                        <td class="govuk-table__cell"></td>
+                    </tr>
+
+
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">
+                            <a href="">View details</a>
+                        </td>
+                        <td class="govuk-table__cell">Licence issued</td>
+                        <td class="govuk-table__cell">12 August 2025</td>
+                        <td class="govuk-table__cell"></td>
+                        <td class="govuk-table__cell"></td>
+                    </tr>
+
+
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">
+                            <a href="">View details</a>
+                        </td>
+                        <td class="govuk-table__cell">Licence issued</td>
+                        <td class="govuk-table__cell">25 March 2025</td>
+                        <td class="govuk-table__cell"></td>
+                        <td class="govuk-table__cell"></td>
+                    </tr>
+
+
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">
+                            <a href="">View details</a>
+                        </td>
+                        <td class="govuk-table__cell">Licence issued</td>
+                        <td class="govuk-table__cell">23 January 2025</td>
+                        <td class="govuk-table__cell">Priority</td>
+                        <td class="govuk-table__cell"></td>
+                    </tr>
+
+
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">
+                            <a href="">View details</a>
+                        </td>
+                        <td class="govuk-table__cell">Licence issued</td>
+                        <td class="govuk-table__cell">3 December 2024</td>
+                        <td class="govuk-table__cell"></td>
+                        <td class="govuk-table__cell"></td>
+                    </tr>
+
+
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">
+                            <a href="">View details</a>
+                        </td>
+                        <td class="govuk-table__cell">Refused</td>
+                        <td class="govuk-table__cell">28 November 2024</td>
+                        <td class="govuk-table__cell"></td>
+                        <td class="govuk-table__cell"></td>
+                    </tr>
+
+
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">
+                            <a href="">View details</a>
+                        </td>
+                        <td class="govuk-table__cell">Licence issued</td>
+                        <td class="govuk-table__cell">16 September 2024</td>
+                        <td class="govuk-table__cell"></td>
+                        <td class="govuk-table__cell"></td>
+                    </tr>
+
+
+                </tbody>
+            </table>
+
+
+            {{
+                govukPagination
+                ({
+                    previous:
+                    {
+                        href: "#"
+                    } if false,
+                    next:
+                    {
+                        href: "#"
+                    },
+                    items:
+                    [
+                        {
+                            number: 1,
+                            current: true,
+                            href: "#"
+                        },
+                        {
+                            number: 2,
+                            href: "#"
+                        },
+                        {
+                            number: 3,
+                            href: "#"
+                        }
+                    ]
+                })
+            }}
+
+        {% endif %}
 
     </div>
 </div>
