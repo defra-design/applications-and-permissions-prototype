@@ -1,0 +1,53 @@
+{% extends "layouts/v4_0_2_case_management" %}
+
+
+{% set backlinkoff = 'false' %}
+
+
+
+<!-- Setting the big main heading at the top of the page -->
+{% set pageHeadingTextHTML %}
+    Issue licence
+{% endset %}
+
+
+
+
+{% block content %}
+
+<div class='govuk-grid-row'>
+    <div class='govuk-grid-column-two-thirds '>
+
+
+        <h1 class='govuk-heading-l'>
+            {{ pageHeadingTextHTML }}
+        </h1>
+
+        <p>You need to:</p>
+
+        <ul class="govuk-list govuk-list--bullet">
+            <li>Download licence TB15</li>
+            <li>Work out 45 days from the last testing date???</li>
+            <li>Change the dates to match the testing window???</li>
+            <li>Save the licence to your computer</li>
+        </ul>
+
+        {{
+            govukButton
+            ({
+                text: 'Continue',
+                href: 'upload-licence'
+            })
+        }}
+
+
+    </div>
+</div>
+
+
+
+
+
+{% endblock %}
+
+

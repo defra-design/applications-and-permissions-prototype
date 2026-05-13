@@ -1,0 +1,120 @@
+{% extends "layouts/registration.html" %}
+
+{% set serviceName = "Get permission to move animals under disease controls" %}
+
+
+{% if data['userType'] == "ThirdPartyCEO"  %}
+	{% set pageHeading = "Registration complete" %}
+	{% set pageSection = "" %}
+{% else %}
+	{% set pageHeading = "Registration of your Defra account complete" %}
+
+	{% set pageSection = "" %}
+	
+{% endif %}
+
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">        
+
+        {{ govukPanel({
+          titleText: pageHeading,
+          classes: "govuk-!-margin-bottom-7"            
+        }) }}
+
+
+		<h2 class="govuk-heading-m">What happens next</h2>
+
+		<p class="govuk-body">You will be sent a confirmation email.</p>
+
+		{% if data['uncontrained-before-tb'] == "true"  %}
+
+			<p class="govuk-body">
+				Some of the details you have given during your account registration will
+				auto-populate when complete your Bovine Tuberculosis (TB) movement licence
+				application.
+			</p>
+
+
+
+			<form method="post" action="../../create-application/task-list">
+
+				{{
+					govukButton
+					({
+						text: "Continue",
+						classes: "govuk-!-margin-top-3"
+					})
+				}}
+
+			</form>
+
+
+		{% endif %}
+
+
+		<!--
+
+
+		<p class="govuk-body">To access your Defra account, use your Government Gateway user ID and password to log in.</p>
+
+
+
+
+                   <p class="govuk-body">Your <a href="/account/?notification_banner=" target="_blank" class="govuk-link govuk-link--no-visited-state">Defra account (opens in new tab)</a> allows you to:
+
+
+                   <ul class="govuk-list govuk-list--bullet">
+                       <li>register for, access and manage online services from Defra</li>
+                       <li>access services on behalf of organisations that you represent</li>
+                   </ul>
+       -->
+
+               <!-- <div class="govuk-inset-text">
+                   <p class="govuk-body">You’ll need the Government Gateway details you used to sign in to Defra services each time you visit.</p>
+               </div> -->
+
+
+
+			
+			<!-- <p>With <a href="/account/?notification_banner=" target="_blank" class="govuk-link govuk-link--no-visited-state">your Defra account (opens in new tab)</a> you can now continue with <span class="govuk-!-font-weight-bold">{{ data.defaultService }}</span>, as well as registering with other online services from Defra.</p> -->
+			
+			<!-- <p>You can also manage defra services on behalf of businesses you may represent.</p>	
+			<ul class="govuk-list govuk-list--bullet">
+				<li>register with other Defra online services</li>
+				<li>manage defra services on behalf of businesses you represent</li>
+				<li>add team members</li>			
+			</ul> -->			
+			
+
+			<!--
+
+			<h2 class="govuk-heading-m">What you must do next</h2>  
+			<p class="govuk-body">You must return to the Defra service you signed into where you will be asked to provide any additional information that they need. </p>
+			
+			
+
+			<form method="post" action="../../create-application/task-list">
+				<input type="hidden" id="registrationStatus" name="registrationStatus" value="Enrolled" />
+
+
+				{{ govukButton({
+					text: "Continue",
+					classes: "govuk-!-margin-top-3"
+
+				})}}
+
+
+			</form>
+
+			-->
+
+
+  </div>
+</div>
+
+
+{% endblock %}

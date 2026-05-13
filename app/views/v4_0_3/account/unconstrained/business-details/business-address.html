@@ -1,0 +1,238 @@
+{% extends "layouts/registration.html" %}
+
+
+<!-- Setting the big main heading at the top of the page -->
+{% set pageHeadingTextHTML %}
+    What is the business's address?
+{% endset %}
+
+
+
+<!-- Error 1 - empty line 1-->
+{%  if  data['errortypeone'] == "true"  %}
+    <!-- Set the text for each error type -->
+    {%  set errorTextHTML  %}
+        Enter address line 1, typically the building and street
+    {%  endset  %}
+    {%  set errorMessageHrefHTML  %}
+        #unconstrained-business-address-address-line-1
+    {%  endset  %}
+
+<!-- Error 2 - empty city  -->
+{% elif data['errortypetwo'] == "true"  %}
+    {%  set errorTextHTML  %}
+            Enter town or city
+    {%  endset  %}
+    {%  set errorMessageHrefHTML  %}
+        #unconstrained-business-address-address-town
+    {%  endset  %}
+
+<!-- Error 3 - empty post code -->
+{% elif data['errortypethree'] == "true"  %}
+    {%  set errorTextHTML  %}
+            Enter postcode
+    {%  endset  %}
+    {%  set errorMessageHrefHTML  %}
+        #unconstrained-business-address-address-postcode
+    {%  endset  %}
+
+<!-- Error 3 - empty post code -->
+{% elif data['errortypefour'] == "true"  %}
+    {%  set errorTextHTML  %}
+            Enter a full UK postcode
+    {%  endset  %}
+    {%  set errorMessageHrefHTML  %}
+        #unconstrained-business-address-address-postcode
+    {%  endset  %}
+
+
+{%  else  %}
+    {%  set errorTextHTML  %}{%  endset  %}
+    {%  set errorMessageHrefHTML  %}{%  endset  %}
+
+{%  endif  %}
+
+
+
+<!-- Text that show in the browser tab. Does NOT need changing -->
+{%  block pageTitle  %}
+    {% if  data['errorthispage'] == "true"  %}
+        Error:
+    {% endif %}
+
+    {{ questionHeadingTextHTML }}
+{% endblock %}
+
+
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <!-- ERROR LOGIC 'error summary' -->
+        {% if data['errorthispage'] == "true" %}
+            {{ govukErrorSummary
+                ({
+                    titleText: "There is a problem",
+                    errorList:
+                    [
+                        {
+                            html: errorTextHTML,
+                            href: errorMessageHrefHTML
+                        }
+                    ]
+                })
+            }}
+        {% endif %}
+        <!--  END OF 'error summary' -->
+
+
+
+        <!-- go to routes.js for routing  -->
+        <form action="business-contact-number" method="post" novalidate>
+
+            {% call govukFieldset
+                ({
+                    legend:
+                    {
+                        html: pageHeadingTextHTML,
+                        classes: "govuk-fieldset__legend--l",
+                        isPageHeading: true
+                    }
+                })
+            %}
+
+                {{ govukInput
+                    ({
+                        label:
+                        {
+                            text: "Address line 1"
+                        },
+                        id: "unconstrained-business-address-address-line-1",
+                        name: "unconstrained-business-address-address-line-1",
+
+                        errorMessage:  null if data['errortypeone'] != "true"
+                                            else { html: errorTextHTML },
+
+                        value: data['unconstrained-business-address-address-line-1'],
+                        autocomplete: "address-line1"
+                    })
+                }}
+
+                {{ govukInput
+                    ({
+                        label:
+                        {
+                            text: "Address line 2 (optional)"
+                        },
+                        id: "unconstrained-business-address-address-line-2",
+                        name: "unconstrained-business-address-address-line-2",
+                        value: data['unconstrained-business-address-address-line-2'],
+                        autocomplete: "address-line2"
+                    })
+                }}
+
+                {{ govukInput
+                    ({
+                        label:
+                        {
+                            text: "Town or city"
+                        },
+                        classes: "govuk-!-width-two-thirds",
+                        id: "unconstrained-business-address-address-town",
+                        name: "unconstrained-business-address-address-town",
+
+                        errorMessage:  null if data['errortypetwo'] != "true"
+                                            else { html: errorTextHTML },
+
+                        value: data['unconstrained-business-address-address-town'],
+                        autocomplete: "address-level2"
+                    })
+                }}
+
+                {{  govukInput
+                    ({
+                        label:
+                        {
+                            text: "County (optional)"
+                        },
+                        classes: "govuk-!-width-two-thirds",
+                        id: "unconstrained-business-address-address-county",
+                        name: "unconstrained-business-address-address-county",
+                        value: data['unconstrained-business-address-address-county']
+                    })
+                }}
+
+
+                {{ govukInput
+                    ({
+                        label:
+                        {
+                            text: "Postcode"
+                        },
+                        classes: "govuk-input--width-10",
+                        id: "unconstrained-business-address-address-postcode",
+                        name: "unconstrained-business-address-address-postcode",
+                        value: data['unconstrained-business-address-address-postcode'],
+
+                        errorMessage:  null if (data['errortypethree'] != "true" and data['errortypefour'] != "true")
+                                            else { html: errorTextHTML },
+
+                        autocomplete: "postal-code"
+                    })
+                }}
+
+
+            {% endcall %}
+
+
+            {{ govukButton({ text: "Continue" }) }}
+
+
+        </form>
+
+    </div>
+</div>
+
+
+
+<!-- ERROR LOGIC  drop down to toggle states  -->
+<form method="post"  action="#" class="for4" style=" float: left; position: relative; bottom:-270px;  ">
+
+    <select style="height:30px;" onchange="window.location.href='?'+this.value">
+
+        <option value="errorthispage=false&errortypeone=false&errortypetwo=false&errortypethree=false&errortypefour=false&errortypefive=false&errortypesix=false&errortypeseven=false&"
+                {% if  data['errorthispage'] != "true"  %}selected{% endif %}
+        >Errors - Off</option>
+
+        <option value="errorthispage=true&errortypeone=true&errortypetwo=false&errortypethree=false&errortypefour=false&errortypefive=false&errortypesix=false&errortypeseven=false&"
+                {% if  data['errortypeone'] == 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] != 'true'  and data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  and  data['errortypeseven'] != 'true'  %}selected{% endif %}
+        >Error 1 - Address line 1 empty</option>
+
+        <option value="errorthispage=true&errortypeone=false&errortypetwo=true&errortypethree=false&errortypefour=false&errortypefive=false&errortypesix=false&errortypeseven=false&"
+                {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] == 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] != 'true'   and data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  and  data['errortypeseven'] != 'true'  %}selected{% endif %}
+        >Error 2 - Town or city empty </option>
+
+        <option value="errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=true&errortypefour=false&errortypefive=false&errortypesix=false&errortypeseven=false&"
+                {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] == 'true'  and  data['errortypefour'] != 'true'   and data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  and  data['errortypeseven'] != 'true'  %}selected{% endif %}
+        >Error 3 - Postcode empty</option>
+
+        <option value="errorthispage=true&errortypeone=false&errortypetwo=false&errortypethree=false&errortypefour=true&errortypefive=false&errortypesix=false&errortypeseven=false&"
+                {% if  data['errortypeone'] != 'true'  and  data['errortypetwo'] != 'true'  and  data['errortypethree'] != 'true'  and  data['errortypefour'] == 'true'   and data['errortypefive'] != 'true'  and  data['errortypesix'] != 'true'  and  data['errortypeseven'] != 'true'  %}selected{% endif %}
+        >Error 4 - Postcode - Wrong format</option>
+
+    </select>
+
+</form>
+<!--  END OF ERROR LOGIC -->
+
+
+
+
+
+{% endblock %}
+
+
+
+
+

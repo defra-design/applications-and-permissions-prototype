@@ -1,0 +1,75 @@
+{% extends "layouts/v4_0_2_case_management" %}
+
+
+{% set backlinkoff = 'false' %}
+
+
+
+<!-- Setting the big main heading at the top of the page -->
+{% set pageHeadingTextHTML %}
+    Review request for priority
+{% endset %}
+
+
+
+{% block content %}
+<div class='govuk-grid-row'>
+
+    <div class="govuk-grid-column-one-half">
+
+
+        <h1 class="govuk-heading-l">
+            {{ pageHeadingTextHTML }}
+        </h1>
+
+
+        <p>[[ PLACEHOLDER instructions on when to reject a welfare request. ]]</p>
+
+        <h2 class="govuk-heading-s">Priority type</h2>
+
+        <p>Welfare</p>
+
+
+        <h2 class="govuk-heading-s">Additional information</h2>
+
+        <p>The field is becoming flooded.  The cattle need to move to the main farm's buildings.</p>
+
+
+        <div class="govuk-button-group govuk-!-margin-top-7">
+
+            {{
+                govukButton
+                ({
+                    text: 'Yes, this is a welfare issue',
+                    href: 'address?secondonestarted=true&issuelicenceafterchecks=true&'
+                })
+            }}
+
+
+            {{
+                govukButton
+                ({
+                    text: "No, not a welfare issue",
+                    classes: 'govuk-button--secondary',
+                    href: 'review-priority-rejection'
+                })
+            }}
+
+        </div>
+
+
+    </div>
+</div>
+
+
+
+
+
+
+
+{% endblock %}
+
+
+
+
+

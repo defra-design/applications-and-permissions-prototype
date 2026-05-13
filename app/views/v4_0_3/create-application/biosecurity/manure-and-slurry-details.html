@@ -1,0 +1,130 @@
+{% extends "layouts/v4_0_2.html" %}
+
+{% extends "layouts/main.html" %}
+
+
+
+<!-- Setting the big main heading at the top of the page -->
+{% set pageHeadingTextHTML %}
+    How will you manage slurry and manure?
+{% endset %}
+
+
+<!-- Set the text for the error type -->
+{% set errorTextHTML %}
+    <!-- Nothing was selected -->
+    {%  if  data['errortypeone'] == "true"  %}
+         Select at least one PLACEHOLDER
+    {% endif %}
+{% endset %}
+
+
+<!-- Text that show in the browser tab. Does NOT need changing -->
+{% block pageTitle %}
+    {% if  data['errorthispage'] == "true"  %}
+        Error:
+    {% endif %}
+
+    {{ pageHeadingTextHTML }}
+{% endblock %}
+
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+        <!-- ERROR LOGIC 'error summary' -->
+        {% if data['errorthispage'] == "true" %}
+            {{ govukErrorSummary
+                ({
+                    titleText: "There is a problem",
+                    errorList:
+                    [
+                        {
+                            html: errorTextHTML,
+                            href: "#biosecurity-manure-and-slurry-details-checkboxes"
+                        }
+                    ]
+                })
+            }}
+        {% endif %}
+        <!--  END OF 'error summary' -->
+
+
+        <!-- form URL below turns off errors on the next page  -->
+        <form action="manure-and-slurry-details-router" method="post" novalidate>
+
+            {{ govukCheckboxes
+                ({
+                    name: "biosecurity-manure-and-slurry-details-checkboxes",
+
+                    id: "biosecurity-manure-and-slurry-details-checkboxes",
+
+                    fieldset:
+                    {
+                        legend:
+                        {
+                            text: pageHeadingTextHTML,
+                            isPageHeading: true,
+                            classes: "govuk-fieldset__legend--l"
+                        }
+                    },
+
+                    hint:
+                    {
+                        text: "Only select the measures you are taking. You do
+                                not need to select them all to receive your licence."
+                    },
+
+                    errorMessage: null if data['errorthispage'] != "true"
+                                       else { html: errorTextHTML },
+
+                    items:
+                    [
+                        {
+                            value: "Manure is not purchased from other farms",
+                            text: "Manure is not purchased from other farms",
+                            checked: (data['biosecurity-manure-and-slurry-details-checkboxes'] or []).indexOf('Manure is not purchased from other farms') > -1
+                        },
+                        {
+                            value: "Manure and slurry is securely stored so domestic and wild animals can't access it",
+                            text: "Manure and slurry is securely stored so domestic and wild animals can't access it",
+                            checked: (data['biosecurity-manure-and-slurry-details-checkboxes'] or []).indexOf("Manure and slurry is securely stored so domestic and wild animals can't access it") > -1
+                        },
+                        {
+                            value: "Manure is stored for at least 3 weeks before spreading on pasture",
+                            text: "Manure is stored for at least 3 weeks before spreading on pasture",
+                            checked: (data['biosecurity-manure-and-slurry-details-checkboxes'] or []).indexOf('Manure is stored for at least 3 weeks before spreading on pasture') > -1
+                        },
+                        {
+                            value: "Slurry is stored for at least 6 months before spreading on pasture",
+                            text: "Slurry is stored for at least 6 months before spreading on pasture",
+                            checked: (data['biosecurity-manure-and-slurry-details-checkboxes'] or []).indexOf('Slurry is stored for at least 6 months before spreading on pasture') > -1
+                        },
+                        {
+                            value: "Other measures",
+                            text: "Other measures",
+                            checked: (data['biosecurity-manure-and-slurry-details-checkboxes'] or []).indexOf('Other measures') > -1
+                        }
+                    ]
+                })
+            }}
+
+
+            {{ govukButton({ text: "Continue" }) }}
+
+        </form>
+
+    </div>
+</div>
+
+
+
+
+
+
+{% endblock %}
+
+
+

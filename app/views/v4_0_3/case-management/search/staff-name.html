@@ -1,0 +1,434 @@
+{% extends "layouts/v4_0_2_case_management" %}
+
+
+{% set backlinkoff = 'true' %}
+
+
+<!-- Setting the big main heading at the top of the page -->
+{% set pageHeadingTextHTML %}Search for applications{% endset %}
+
+
+<!-- Setting the smaller secondary heading lower down the page -->
+{% set questionHeadingTextHTML %}
+    Enter the staff name
+{% endset %}
+
+
+
+
+<!-- Set the text for each error type -->
+{% set errorTextHTML %}
+
+    {#  Error 1 - Select a valid country  #}
+    {% if  data['errortypeone'] == 'true'  %}
+        Enter the first 3 letters of the country name
+
+
+    {#  Error 2 - Already entered this country  #}
+    {% elif  data['errortypetwo'] == 'true'  %}
+        This country has already been added
+
+    {% endif %}
+{% endset %}
+
+
+<!-- Text that show in the browser tab. Does NOT need changing -->
+{% block pageTitle %}
+    {% if  data['errorthispage'] == 'true'  %}
+        Error:
+    {% endif %}
+
+    {{ pageHeadingTextHTML }}
+{% endblock %}
+
+
+
+<!-- Set the section name -->
+{% set SECTION %}case-management{% endset %}
+
+<!-- Set the page name -->
+{% set PAGENAME_COUNTRY %}staff-name{% endset %}
+
+<!-- Set the hint text -->
+{% set HINT_TEXT %}PLACEHOLDER_HINT_TEXT{% endset %}
+
+
+
+{% block content %}
+<div class='govuk-grid-row'>
+    <div class='govuk-grid-column-full'>
+
+        <h1 class='govuk-heading-l'>
+            {{ pageHeadingTextHTML }}
+        </h1>
+
+        <!-- form URL below turns off errors on the next page  -->
+        <form action='{{PAGENAME_COUNTRY}}-router/{{PAGENAME_COUNTRY}}' method='post' novalidate>
+
+            <!-- ERROR LOGIC  error class is added to whole section if error is ture  -->
+            {%  if  data['errorthispage'] == 'true'  %}
+                <div class='govuk-form-group govuk-form-group--error' id='the-question-section'>
+            {% else %}
+                <div class='govuk-form-group'>
+            {% endif %}
+
+
+
+                    <legend class='govuk-fieldset__legend'>
+                        {{ questionHeadingTextHTML }}
+                    </legend>
+
+                    {% if HINT_TEXT != 'PLACEHOLDER_HINT_TEXT' %}
+                        <div id='account-number-hint' class='govuk-hint'>
+                            {{HINT_TEXT}}
+                        </div>
+                    {% endif %}
+
+                    <!-- ERROR LOGIC  error text next to field -->
+                    {%  if  data['errorthispage'] == 'true'  %}
+                        <p  class='govuk-error-message'>
+                            <span class='govuk-visually-hidden'>Error:</span>
+                            {{ errorTextHTML }}
+                        </p>
+                    {% endif %}
+                    <!--  END OF ERROR LOGIC -->
+
+                    <div class='govuk-form-group'>
+
+                        <div style='width: 300px;'>
+                            {%  if  data['errorthispage'] == 'true'  %}
+                                <div class='govuk-form-group autocomplete-wrapper' style='border:  2px solid red;'>
+                            {% else %}
+                                <div class='govuk-form-group autocomplete-wrapper'>
+                            {% endif %}
+
+                                    <!-- the name/id of the selector below is what he country will be saved as in session data -->
+                                    <select class='govuk-select'
+                                            id='{{SECTION}}-{{PAGENAME_COUNTRY}}-country-typeahead'
+                                            name='{{SECTION}}-{{PAGENAME_COUNTRY}}-country-typeahead'>
+
+                                        <option value='' disabled selected>Pick an option</option>
+                                        <option value='Oliver Smith'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Oliver Smith'  %}selected{% endif %}>Oliver Smith</option>
+                                        <option value='Olivia Jones'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Olivia Jones'  %}selected{% endif %}>Olivia Jones</option>
+                                        <option value='George Williams'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'George Williams'  %}selected{% endif %}>George Williams</option>
+                                        <option value='Amelia Taylor'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Amelia Taylor'  %}selected{% endif %}>Amelia Taylor</option>
+                                        <option value='Harry Brown'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Harry Brown'  %}selected{% endif %}>Harry Brown</option>
+                                        <option value='Isla Davies'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Isla Davies'  %}selected{% endif %}>Isla Davies</option>
+                                        <option value='Jack Evans'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Jack Evans'  %}selected{% endif %}>Jack Evans</option>
+                                        <option value='Ava Wilson'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Ava Wilson'  %}selected{% endif %}>Ava Wilson</option>
+                                        <option value='Arthur Thomas'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Arthur Thomas'  %}selected{% endif %}>Arthur Thomas</option>
+                                        <option value='Emily Roberts'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Emily Roberts'  %}selected{% endif %}>Emily Roberts</option>
+                                        <option value='Charlie Johnson'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Charlie Johnson'  %}selected{% endif %}>Charlie Johnson</option>
+                                        <option value='Sophie Robinson'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Sophie Robinson'  %}selected{% endif %}>Sophie Robinson</option>
+                                        <option value='William Thompson'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'William Thompson'  %}selected{% endif %}>William Thompson</option>
+                                        <option value='Grace Wright'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Grace Wright'  %}selected{% endif %}>Grace Wright</option>
+                                        <option value='Thomas Walker'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Thomas Walker'  %}selected{% endif %}>Thomas Walker</option>
+                                        <option value='Florence White'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Florence White'  %}selected{% endif %}>Florence White</option>
+                                        <option value='James Edwards'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'James Edwards'  %}selected{% endif %}>James Edwards</option>
+                                        <option value='Charlotte Hughes'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Charlotte Hughes'  %}selected{% endif %}>Charlotte Hughes</option>
+                                        <option value='Henry Green'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Henry Green'  %}selected{% endif %}>Henry Green</option>
+                                        <option value='Daisy Hall'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Daisy Hall'  %}selected{% endif %}>Daisy Hall</option>
+                                        <option value='Alfie Lewis'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Alfie Lewis'  %}selected{% endif %}>Alfie Lewis</option>
+                                        <option value='Poppy Harris'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Poppy Harris'  %}selected{% endif %}>Poppy Harris</option>
+                                        <option value='Leo Clarke'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Leo Clarke'  %}selected{% endif %}>Leo Clarke</option>
+                                        <option value='Mia Patel'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Mia Patel'  %}selected{% endif %}>Mia Patel</option>
+                                        <option value='Oscar Jackson'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Oscar Jackson'  %}selected{% endif %}>Oscar Jackson</option>
+                                        <option value='Isabella Wood'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Isabella Wood'  %}selected{% endif %}>Isabella Wood</option>
+                                        <option value='Archie Turner'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Archie Turner'  %}selected{% endif %}>Archie Turner</option>
+                                        <option value='Evie Martin'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Evie Martin'  %}selected{% endif %}>Evie Martin</option>
+                                        <option value='Theo Cooper'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Theo Cooper'  %}selected{% endif %}>Theo Cooper</option>
+                                        <option value='Ruby Hill'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Ruby Hill'  %}selected{% endif %}>Ruby Hill</option>
+                                        <option value='Freddie Ward'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Freddie Ward'  %}selected{% endif %}>Freddie Ward</option>
+                                        <option value='Lily Morris'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Lily Morris'  %}selected{% endif %}>Lily Morris</option>
+                                        <option value='Noah Moore'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Noah Moore'  %}selected{% endif %}>Noah Moore</option>
+                                        <option value='Freya Clark'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Freya Clark'  %}selected{% endif %}>Freya Clark</option>
+                                        <option value='Ethan Lee'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Ethan Lee'  %}selected{% endif %}>Ethan Lee</option>
+                                        <option value='Alice King'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Alice King'  %}selected{% endif %}>Alice King</option>
+                                        <option value='Jacob Baker'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Jacob Baker'  %}selected{% endif %}>Jacob Baker</option>
+                                        <option value='Sienna Harrison'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Sienna Harrison'  %}selected{% endif %}>Sienna Harrison</option>
+                                        <option value='Isaac Morgan'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Isaac Morgan'  %}selected{% endif %}>Isaac Morgan</option>
+                                        <option value='Jessica Allen'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Jessica Allen'  %}selected{% endif %}>Jessica Allen</option>
+                                        <option value='Finley James'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Finley James'  %}selected{% endif %}>Finley James</option>
+                                        <option value='Phoebe Scott'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Phoebe Scott'  %}selected{% endif %}>Phoebe Scott</option>
+                                        <option value='Lucas Phillips'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Lucas Phillips'  %}selected{% endif %}>Lucas Phillips</option>
+                                        <option value='Harper Watson'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Harper Watson'  %}selected{% endif %}>Harper Watson</option>
+                                        <option value='Mohammed Davis'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Mohammed Davis'  %}selected{% endif %}>Mohammed Davis</option>
+                                        <option value='Rosie Parker'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Rosie Parker'  %}selected{% endif %}>Rosie Parker</option>
+                                        <option value='Edward Bennett'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Edward Bennett'  %}selected{% endif %}>Edward Bennett</option>
+                                        <option value='Matilda Griffiths'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Matilda Griffiths'  %}selected{% endif %}>Matilda Griffiths</option>
+                                        <option value='Louie Price'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Louie Price'  %}selected{% endif %}>Louie Price</option>
+                                        <option value='Elsie Bailey'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Elsie Bailey'  %}selected{% endif %}>Elsie Bailey</option>
+                                        <option value='Teddy Young'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Teddy Young'  %}selected{% endif %}>Teddy Young</option>
+                                        <option value='Sofia Khan'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Sofia Khan'  %}selected{% endif %}>Sofia Khan</option>
+                                        <option value='Sebastian Mitchell'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Sebastian Mitchell'  %}selected{% endif %}>Sebastian Mitchell</option>
+                                        <option value='Chloe Cook'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Chloe Cook'  %}selected{% endif %}>Chloe Cook</option>
+                                        <option value='Adam Carter'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Adam Carter'  %}selected{% endif %}>Adam Carter</option>
+                                        <option value='Ivy Richardson'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Ivy Richardson'  %}selected{% endif %}>Ivy Richardson</option>
+                                        <option value='Samuel Shaw'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Samuel Shaw'  %}selected{% endif %}>Samuel Shaw</option>
+                                        <option value='Willow Collins'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Willow Collins'  %}selected{% endif %}>Willow Collins</option>
+                                        <option value='Max Bell'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Max Bell'  %}selected{% endif %}>Max Bell</option>
+                                        <option value='Evelyn Murphy'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Evelyn Murphy'  %}selected{% endif %}>Evelyn Murphy</option>
+                                        <option value='Liam Jenkins'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Liam Jenkins'  %}selected{% endif %}>Liam Jenkins</option>
+                                        <option value='Eva Bailey'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Eva Bailey'  %}selected{% endif %}>Eva Bailey</option>
+                                        <option value='Alexander Simpson'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Alexander Simpson'  %}selected{% endif %}>Alexander Simpson</option>
+                                        <option value='Millie Marshall'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Millie Marshall'  %}selected{% endif %}>Millie Marshall</option>
+                                        <option value='Elijah Collins'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Elijah Collins'  %}selected{% endif %}>Elijah Collins</option>
+                                        <option value='Imogen Bennett'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Imogen Bennett'  %}selected{% endif %}>Imogen Bennett</option>
+                                        <option value='Roman Gray'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Roman Gray'  %}selected{% endif %}>Roman Gray</option>
+                                        <option value='Layla Rose'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Layla Rose'  %}selected{% endif %}>Layla Rose</option>
+                                        <option value='Toby Fox'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Toby Fox'  %}selected{% endif %}>Toby Fox</option>
+                                        <option value='Lola Chapman'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Lola Chapman'  %}selected{% endif %}>Lola Chapman</option>
+                                        <option value='Jude Hunt'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Jude Hunt'  %}selected{% endif %}>Jude Hunt</option>
+                                        <option value='Elizabeth Palmer'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Elizabeth Palmer'  %}selected{% endif %}>Elizabeth Palmer</option>
+                                        <option value='Reuben Mason'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Reuben Mason'  %}selected{% endif %}>Reuben Mason</option>
+                                        <option value='Erin Webb'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Erin Webb'  %}selected{% endif %}>Erin Webb</option>
+                                        <option value='Benjamin Rogers'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Benjamin Rogers'  %}selected{% endif %}>Benjamin Rogers</option>
+                                        <option value='Molly Holmes'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Molly Holmes'  %}selected{% endif %}>Molly Holmes</option>
+                                        <option value='Arlo Stevens'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Arlo Stevens'  %}selected{% endif %}>Arlo Stevens</option>
+                                        <option value='Harriet Matthews'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Harriet Matthews'  %}selected{% endif %}>Harriet Matthews</option>
+                                        <option value='Luca Payne'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Luca Payne'  %}selected{% endif %}>Luca Payne</option>
+                                        <option value='Maisie Knight'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Maisie Knight'  %}selected{% endif %}>Maisie Knight</option>
+                                        <option value='Zachary Owen'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Zachary Owen'  %}selected{% endif %}>Zachary Owen</option>
+                                        <option value='Maya Barker'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Maya Barker'  %}selected{% endif %}>Maya Barker</option>
+                                        <option value='Reggie Fisher'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Reggie Fisher'  %}selected{% endif %}>Reggie Fisher</option>
+                                        <option value='Thea Ellis'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Thea Ellis'  %}selected{% endif %}>Thea Ellis</option>
+                                        <option value='Hunter Murray'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Hunter Murray'  %}selected{% endif %}>Hunter Murray</option>
+                                        <option value='Eliza Powell'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Eliza Powell'  %}selected{% endif %}>Eliza Powell</option>
+                                        <option value='Daniel Dixon'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Daniel Dixon'  %}selected{% endif %}>Daniel Dixon</option>
+                                        <option value='Rose Russell'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Rose Russell'  %}selected{% endif %}>Rose Russell</option>
+                                        <option value='David Wilkinson'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'David Wilkinson'  %}selected{% endif %}>David Wilkinson</option>
+                                        <option value='Bella Foster'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Bella Foster'  %}selected{% endif %}>Bella Foster</option>
+                                        <option value='Dylan Butler'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Dylan Butler'  %}selected{% endif %}>Dylan Butler</option>
+                                        <option value='Violet Saunders'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Violet Saunders'  %}selected{% endif %}>Violet Saunders</option>
+                                        <option value='Jaxon Barnes'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Jaxon Barnes'  %}selected{% endif %}>Jaxon Barnes</option>
+                                        <option value='Aurora Brooks'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Aurora Brooks'  %}selected{% endif %}>Aurora Brooks</option>
+                                        <option value='Caleb Harvey'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Caleb Harvey'  %}selected{% endif %}>Caleb Harvey</option>
+                                        <option value='Lottie Pearson'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Lottie Pearson'  %}selected{% endif %}>Lottie Pearson</option>
+                                        <option value='Rupert Reynolds'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Rupert Reynolds'  %}selected{% endif %}>Rupert Reynolds</option>
+                                        <option value='Hallie Fletcher'  {%  if  data[ SECTION + '-' + PAGENAME_COUNTRY + '-country-typeahead'] == 'Hallie Fletcher'  %}selected{% endif %}>Hallie Fletcher</option>
+
+                                    </select>
+                                </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                {{ govukButton({ text: 'Continue' }) }}
+
+
+            </form>
+
+
+
+        {% if data['show-search-staff-name-results'] == 'true' %}
+
+            <table class="govuk-table">
+
+                <thead class="govuk-table__head">
+                    <tr class="govuk-table__row">
+                        <th scope="col" class="govuk-table__header">Action</th>
+                        <th scope="col" class="govuk-table__header">Status</th>
+                        <th scope="col" class="govuk-table__header">Date last worked on</th>
+                        <th scope="col" class="govuk-table__header">Priority</th>
+                        <th scope="col" class="govuk-table__header">Due date</th>
+                    </tr>
+                </thead>
+
+                <tbody class="govuk-table__body">
+
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell" style="display: flex;  align-items: center;">
+                            <a href="../application-details">View details</a>
+                        </td>
+                        <td class="govuk-table__cell">Referred to a vet</td>
+                        <td class="govuk-table__cell">Today</td>
+                        <td class="govuk-table__cell">Priority</td>
+                        <td class="govuk-table__cell">4 days remaining</td>
+                    </tr>
+
+
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">
+                            <a href="">View details</a>
+                        </td>
+                        <td class="govuk-table__cell">Licence issued</td>
+                        <td class="govuk-table__cell">24 February 2026</td>
+                        <td class="govuk-table__cell"></td>
+                        <td class="govuk-table__cell"></td>
+                    </tr>
+
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">
+                            <a href="">View details</a>
+                        </td>
+                        <td class="govuk-table__cell">Licence issued</td>
+                        <td class="govuk-table__cell">24 February 2026</td>
+                        <td class="govuk-table__cell"></td>
+                        <td class="govuk-table__cell"></td>
+                    </tr>
+
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">
+                            <a href="">View details</a>
+                        </td>
+                        <td class="govuk-table__cell">Refused</td>
+                        <td class="govuk-table__cell">24 February 2026</td>
+                        <td class="govuk-table__cell"></td>
+                        <td class="govuk-table__cell"></td>
+                    </tr>
+
+
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">
+                            <a href="">View details</a>
+                        </td>
+                        <td class="govuk-table__cell">Licence issued</td>
+                        <td class="govuk-table__cell">24 February 2026</td>
+                        <td class="govuk-table__cell"></td>
+                        <td class="govuk-table__cell"></td>
+                    </tr>
+
+
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">
+                            <a href="">View details</a>
+                        </td>
+                        <td class="govuk-table__cell">Licence issued</td>
+                        <td class="govuk-table__cell">20 February 2026</td>
+                        <td class="govuk-table__cell"></td>
+                        <td class="govuk-table__cell"></td>
+                    </tr>
+
+
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">
+                            <a href="">View details</a>
+                        </td>
+                        <td class="govuk-table__cell">Licence issued</td>
+                        <td class="govuk-table__cell">20 February 2026</td>
+                        <td class="govuk-table__cell">Priority</td>
+                        <td class="govuk-table__cell"></td>
+                    </tr>
+
+
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">
+                            <a href="">View details</a>
+                        </td>
+                        <td class="govuk-table__cell">Licence issued</td>
+                        <td class="govuk-table__cell">20 February 2026</td>
+                        <td class="govuk-table__cell"></td>
+                        <td class="govuk-table__cell"></td>
+                    </tr>
+
+
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">
+                            <a href="">View details</a>
+                        </td>
+                        <td class="govuk-table__cell">Refused</td>
+                        <td class="govuk-table__cell">19 February 2026</td>
+                        <td class="govuk-table__cell"></td>
+                        <td class="govuk-table__cell"></td>
+                    </tr>
+
+
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">
+                            <a href="">View details</a>
+                        </td>
+                        <td class="govuk-table__cell">Licence issued</td>
+                        <td class="govuk-table__cell">19 February 2026</td>
+                        <td class="govuk-table__cell"></td>
+                        <td class="govuk-table__cell"></td>
+                    </tr>
+
+
+                </tbody>
+            </table>
+
+
+            {{
+                govukPagination
+                ({
+                    previous:
+                    {
+                        href: "#"
+                    } if false,
+                    next:
+                    {
+                        href: "#"
+                    },
+                    items:
+                    [
+                        {
+                            number: 1,
+                            current: true,
+                            href: "#"
+                        },
+                        {
+                            number: 2,
+                            href: "#"
+                        },
+                        {
+                            ellipsis: true
+                        },
+                        {
+                            number: 34,
+                            href: "#"
+                        }
+                    ]
+                })
+            }}
+
+        {% endif %}
+
+    </div>
+</div>
+
+
+
+<!-- ERROR LOGIC  drop down to toggle states  -->
+<form method='post'  action='#' class='for4' style=' float: left; position: relative; bottom:-300px; '>
+
+    <select style="height:30px;" onchange="window.location.href='?'+this.value">
+
+        <option value='errorthispage=false&errortypeone=false&errortypetwo=false&'
+                {% if (data['errorthispage'] != 'true') %}selected{% endif %}
+        >Errors &nbsp;&nbsp;&nbsp;-&nbsp;&nbsp; Off</option>
+
+        <option value='errorthispage=true&errortypeone=true&errortypetwo=false&'
+                {% if (data['errortypeone'] == 'true' and data['errortypetwo'] != 'true')  %}selected{% endif %}
+        >Error 1 &nbsp;&nbsp;-&nbsp;&nbsp; Not a valid country</option>
+
+        <option value='errorthispage=true&errortypeone=false&errortypetwo=true&'
+                {% if (data['errortypeone'] != 'true' and data['errortypetwo'] == 'true')  %}selected{% endif %}
+        >Error 2 &nbsp;&nbsp;-&nbsp;&nbsp; Already entered this country</option>
+
+    </select>
+
+</form>
+<!--  END OF ERROR LOGIC -->
+
+
+
+<!--  scripts for the country selection -->
+<!-- can add more countries and example in  -->
+<link rel='stylesheet' href='/public/locationautocomplete/location-autocomplete.min.css' />
+<script type='text/javascript' src='/public/locationautocomplete/location-autocomplete.min.js'></script>
+<script type='text/javascript'>
+    openregisterLocationPicker({
+        additionalSynonyms: [
+            { name: 'Albion', code: 'GB' }
+        ],
+        defaultValue: '',
+        selectElement: document.getElementById('{{SECTION}}-{{PAGENAME_COUNTRY}}-country-typeahead'),
+        url: '/public/locationautocomplete/location-autocomplete-graph.json'
+    })
+
+</script>
+
+{% endblock %}

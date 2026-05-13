@@ -1,0 +1,163 @@
+{% extends "layouts/v4_0_2" %}
+
+{% set version = "v4_0_2" %}
+{% set bodyClasses = version %}
+
+
+
+<!-- Setting the big main heading at the top of the page -->
+{% set pageHeadingTextHTML %}
+    What animals are kept on the destination premises?
+{% endset %}
+
+
+<!-- Set the text for the error type -->
+{% set errorTextHTML %}
+    <!-- Nothing was selected -->
+    {%  if  data['errortypeone'] == "true"  %}
+         Select what animals are kept on the premises
+    {% endif %}
+{% endset %}
+
+
+<!-- Text that show in the browser tab. Does NOT need changing -->
+{% block pageTitle %}
+    {% if  data['errorthispage'] == "true"  %}
+        Error:
+    {% endif %}
+
+    {{ pageHeadingTextHTML }}
+{% endblock %}
+
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+        <!-- ERROR LOGIC 'error summary' -->
+        {% if data['errorthispage'] == "true" %}
+            {{ govukErrorSummary
+                ({
+                    titleText: "There is a problem",
+                    errorList:
+                    [
+                        {
+                            html: errorTextHTML,
+                            href: "#movement-destination-animals-kept-on-premises-checkboxes"
+                        }
+                    ]
+                })
+            }}
+        {% endif %}
+        <!--  END OF 'error summary' -->
+
+
+        <!-- form URL below turns off errors on the next page  -->
+        <form action="animals-kept-on-premises-router" method="post" novalidate>
+
+            {{ govukCheckboxes
+                ({
+                    name: "movement-destination-animals-kept-on-premises-checkboxes",
+
+                    id: "movement-destination-animals-kept-on-premises-checkboxes",
+
+                    fieldset:
+                    {
+                        legend:
+                        {
+                            text: pageHeadingTextHTML,
+                            isPageHeading: true,
+                            classes: "govuk-fieldset__legend--l"
+                        }
+                    },
+
+                    hint:
+                    {
+                        text: "Select all that apply"
+                    },
+
+                    errorMessage: null if data['errorthispage'] != "true"
+                                       else { html: errorTextHTML },
+
+                    items:
+                    [
+                        {
+                            value: "Cattle",
+                            text: "Cattle",
+                            checked: (data['movement-destination-animals-kept-on-premises-checkboxes'] or []).indexOf('Cattle') > -1
+                        },
+                        {
+                            value: "Sheep",
+                            text: "Sheep",
+                            checked: (data['movement-destination-animals-kept-on-premises-checkboxes'] or []).indexOf('Sheep') > -1
+                        },
+                        {
+                            value: "Goats",
+                            text: "Goats",
+                            checked: (data['movement-destination-animals-kept-on-premises-checkboxes'] or []).indexOf('Goats') > -1
+                        },
+                        {
+                            value: "Pigs",
+                            text: "Pigs",
+                            checked: (data['movement-destination-animals-kept-on-premises-checkboxes'] or []).indexOf('Pigs') > -1
+                        },
+                        {
+                            value: "Camelids",
+                            text: "Camelids",
+                            checked: (data['movement-destination-animals-kept-on-premises-checkboxes'] or []).indexOf('Camelids') > -1
+                        },
+                        {
+                            value: "Other cloven-hooved animals",
+                            text: "Other cloven-hooved animals",
+                            checked: (data['movement-destination-animals-kept-on-premises-checkboxes'] or []).indexOf('Other cloven-hooved animals') > -1
+                        },
+                        {
+                            divider: "or"
+                        },
+                        {
+                            value: "None of these animals",
+                            text: "None of these animals",
+                            checked: (data['movement-destination-animals-kept-on-premises-checkboxes'] or []).indexOf('None of these animals') > -1,
+                            behaviour: "exclusive"
+                        }
+                    ]
+                })
+            }}
+
+
+            {{ govukButton({ text: "Continue" }) }}
+
+        </form>
+
+    </div>
+</div>
+
+
+
+
+<!-- ERROR LOGIC  drop down to toggle states  -->
+<form method="post"  action="#" class="for4" style=" float: left; position: relative; bottom:-225px;  ">
+
+    <select style="height:30px;" onchange="window.location.href='?'+this.value">
+
+        <option value="errorthispage=false&errortypeone=false&errortypetwo=false&"
+                {% if (data['errorthispage'] != "true") %}selected{% endif %}
+        >Errors - Off</option>
+
+        <!-- Nothing was selected -->
+        <option value="errorthispage=true&errortypeone=true&errortypetwo=false&"
+                {% if (data['errortypeone'] == 'true' and data['errortypetwo'] != 'true')  %}selected{% endif %}
+        >Error 1 - Must select at least one</option>
+
+    </select>
+
+</form>
+<!--  END OF ERROR LOGIC -->
+
+
+
+{% endblock %}
+
+
+

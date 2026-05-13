@@ -1,0 +1,104 @@
+{% extends "layouts/pet-travel.html" %}
+
+{% block pageTitle %} Lifelong pet travel documents – {{ serviceName }} – GOV.UK {% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-three-quarters">
+    <h1 id="documents" class="govuk-heading-xl govuk-!-margin-bottom-4">
+      Lifelong pet travel documents
+    </h1>
+    <p class="govuk-body govuk-body-l">The lifelong pet travel document is only for people living in England, Scotland and Wales travelling to Northern Ireland with their dog, cat or ferret.</p>
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-three-quarters">
+
+    <form class="form" action="owner/full-name" method="post">
+      <button class="govuk-button" data-module="govuk-button">
+        Apply for a document
+      </button>
+    </form>
+
+      {% if data['pageState'] == "sign" %}
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header govuk-!-width-one-half">Pet name</th>
+            <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Status</th>
+            <th scope="col" class="govuk-table__header govuk-!-width-one-quarter govuk-table__header--numeric"></th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">Chester</th>
+          <td class="govuk-table__cell">
+            <strong class="govuk-tag govuk-tag--green">
+              Approved
+            </strong>
+          </td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="/v23/declaration/approved_toto">
+                  View<span class="govuk-visually-hidden"> document</span>
+                </a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">Hercules</th>
+          <td class="govuk-table__cell">
+            <strong class="govuk-tag govuk-tag--green">
+              Approved
+            </strong>
+          </td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="/v23/declaration/pending_hercules">
+                  View<span class="govuk-visually-hidden"> document</span>
+                </a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <!-- <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">Felix</th>
+          <td class="govuk-table__cell">
+            <strong class="govuk-tag govuk-tag--blue">
+              Pending
+            </strong>
+          </td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="/v23/declaration/pending_felix">
+                  View<span class="govuk-visually-hidden"> document</span>
+                </a>
+              </li>
+            </ul>
+          </td>
+        </tr> -->
+      </tbody>
+    </table>
+     
+
+      {% endif %}
+   
+
+    <!-- <p class="govuk-body"><a href="invalid" class="govuk-link">View invalid documents</a></p> -->
+
+  </div>
+</div>
+{% endblock %}
+
+
+
+
+
+
+

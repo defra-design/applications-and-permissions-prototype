@@ -1,0 +1,87 @@
+{% extends "layouts/pet-travel.html" %}
+
+{% block pageTitle %}Is your pet a cat, dog or ferret – {{ serviceName }} – GOV.UK {% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {% if data['error'] == 'p14notselected' %}
+    <div class="govuk-error-summary" data-module="govuk-error-summary">
+      <div role="alert">
+        <h2 class="govuk-error-summary__title">
+          There is a problem
+        </h2>
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            <li>
+              <a href="#">Select if you are taking a pet dog, cat or ferret</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+    {% if data['returnPage'] === '/v26/create/check' %}
+    <form
+      action="name"
+      method="POST"
+    >
+    {% else %} 
+    <form class="form" action="name" method="post">
+    {% endif %}
+
+    <div class="govuk-form-group {% if data['error'] == 'p14notselected' %}govuk-form-group--error{% endif %}">
+
+
+      <fieldset class="govuk-fieldset" aria-describedby="contact-hint">
+
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+          <h1 id="documents" class="govuk-fieldset__heading">
+            Is your pet a dog, cat or ferret?
+          </h1>
+        </legend>
+
+        {% if data['error'] == 'p14notselected' %}
+        <p id="whereDoYouLive-error" class="govuk-error-message">
+          <span class="govuk-visually-hidden">Error:</span> Select if you are taking a pet dog, cat or ferret
+        </p>
+        {% endif %}
+
+        <div class="govuk-form-group">
+          <div class="govuk-radios" data-module="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="pet-species-dog" name="petSpecie" type="radio" value="Dog">
+              <label class="govuk-label govuk-radios__label" for="pet-species-dog">
+                Dog
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="pet-species-cat" name="petSpecie" type="radio" value="Cat">
+              <label class="govuk-label govuk-radios__label" for="pet-species-cat">
+                Cat
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="pet-species-ferret" name="petSpecie" type="radio" value="Ferret">
+              <label class="govuk-label govuk-radios__label" for="pet-species-ferret">
+                Ferret
+              </label>
+              <input type="hidden" id="pet-breed" name="petBreed" value="-" />
+            </div>
+          </div>
+        </div>
+
+      </fieldset>
+
+    </div>
+        <div class="govuk-form-group">
+          {{ govukButton({ text: "Continue" }) }}
+        </div>
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,151 @@
+{% extends "layouts/registration.html" %}
+
+
+
+<!-- Setting the big main heading at the top of the page -->
+{% set pageHeadingTextHTML %}
+    What type of business are you registering for?
+{% endset %}
+
+
+<!-- Set the text for the error type -->
+{% set errorTextHTML %}
+    <!-- Nothing was selected -->
+    {% if data['errortypeone'] == "true" %}
+        Select where you did PLACEHOLDER
+    {% endif %}
+{% endset %}
+
+
+<!-- Text that show in the browser tab. Does NOT need changing -->
+{% block pageTitle %}
+    {% if  data['errorthispage'] == "true"  %}
+        Error:
+    {% endif %}
+
+    {{ pageHeadingTextHTML }}
+{% endblock %}
+
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+        <!-- ERROR LOGIC 'error summary' -->
+        {% if data['errorthispage'] == "true" %}
+            {{ govukErrorSummary
+                ({
+                    titleText: "There is a problem",
+                    errorList:
+                    [
+                        {
+                            html: errorTextHTML,
+                            href: "#unconstrained-business-type-radios"
+                        }
+                    ]
+                })
+            }}
+        {% endif %}
+        <!--  END OF 'error summary' -->
+
+
+        <!-- go to routes.js for routing  -->
+        <form action="business-type-router" method="post" novalidate>
+
+            {{ govukRadios
+                ({
+                    name: "unconstrained-business-type-radios",
+
+                    id: "unconstrained-business-type-radios",
+
+                    fieldset:
+                    {
+                        legend:
+                        {
+                            html: pageHeadingTextHTML,
+                            isPageHeading: true,
+                            classes: "govuk-fieldset__legend--l"
+                        }
+                    },
+
+
+                    errorMessage: null if data['errorthispage'] != "true"
+                                       else { html: errorTextHTML },
+
+                    items:
+                    [
+                        {
+                            value: "Sole trader",
+                            text: "Sole trader",
+                            hint:
+                            {
+                                text: "You don't have partners or pay corporation tax"
+                            },
+                            checked: data['unconstrained-business-type-radios'] == "Sole trader"
+                        },
+                        {
+                            value: "Partnership",
+                            text: "Partnership",
+                            checked: data['unconstrained-business-type-radios'] == "Partnership"
+                        },
+                        {
+                            value: "Limited liability partnership (LLP)",
+                            text: "Limited liability partnership (LLP)",
+                            hint:
+                            {
+                                text: "Registered on Companies House"
+                            },
+                            checked: data['unconstrained-business-type-radios'] == "Limited liability partnership (LLP)"
+                        },
+                        {
+                            value: "Limited liability (LTD)",
+                            text: "Limited liability (LTD)",
+                            hint:
+                            {
+                                text: "Registered on Companies House"
+                            },
+                            checked: data['unconstrained-business-type-radios'] == "Limited liability (LTD)"
+                        },
+                        {
+                            value: "Another business type",
+                            text: "Another business type",
+                            checked: data['unconstrained-business-type-radios'] == "Another business type"
+                        }
+                    ]
+                })
+            }}
+
+
+            {{ govukButton({ text: "Continue" }) }}
+
+        </form>
+
+    </div>
+</div>
+
+
+<!-- ERROR LOGIC  drop down to toggle states  -->
+<form method="post"  action="#" class="for4" style=" float: left; position: relative; bottom:-225px;  ">
+
+    <select style="height:30px;" onchange="window.location.href='?'+this.value">
+
+        <option value="errorthispage=false&errortypeone=false&errortypetwo=false&"
+                {% if (data['errorthispage'] != "true") %}selected{% endif %}
+        >Errors - Off</option>
+
+        <option value="errorthispage=true&errortypeone=true&errortypetwo=false&"
+                {% if (data['errortypeone'] == 'true' and data['errortypetwo'] != 'true')  %}selected{% endif %}
+        >Error 1 - Must select at least one</option>
+
+    </select>
+
+</form>
+<!--  END OF ERROR LOGIC -->
+
+
+
+
+{% endblock %}
+
+

@@ -1,0 +1,88 @@
+{% extends "layouts/pet-travel.html" %}
+
+{% block pageTitle %}What breed is your cat – {{ serviceName }} – GOV.UK {% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {% if data['error'] == 'p16notselected' %}
+    <div class="govuk-error-summary" data-module="govuk-error-summary">
+      <div role="alert">
+        <h2 class="govuk-error-summary__title">
+          There is a problem
+        </h2>
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            <li>
+              <a href="#">Select or enter the breed of your pet</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+    <form class="form" action="/v26/pet/check-pet-breed-cat" method="post">
+    <div class="govuk-form-group {% if data['error'] == 'p16notselected' %}govuk-form-group--error{% endif %}">
+
+      <fieldset class="govuk-fieldset" aria-describedby="pet-breed-hint">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+          <h1 id="documents" class="govuk-fieldset__heading govuk-!-static-margin-bottom-0">
+            <label class="govuk-label govuk-label--xl govuk-!-static-margin-bottom-0" for="cat-breeds">
+              What breed is your cat?
+            </label>
+          </h1>
+        </legend>
+
+        <div class="govuk-form-group">
+          <div id="pet-breed-hint" class="govuk-hint">
+            Type your cat's breed or select from the suggested options
+          </div>
+          {% if data['error'] == 'p16notselected' %}
+          <p id="whereDoYouLive-error" class="govuk-error-message">
+            <span class="govuk-visually-hidden">Error:</span> Select or enter the breed of your pet
+          </p>
+          {% endif %}
+          <label style="display: none;" for="dog-breeds-select">What breed is your dog?</label>
+          {% include "/v26/includes/service/cat-breeds.html" %}
+        </div>
+
+      </fieldset>
+
+    </div>
+        <div class="govuk-button-group">
+          <button class="govuk-button" data-module="govuk-button">
+            Continue
+          </button>
+        </div>
+    </form>
+
+  </div>
+</div>
+{% endblock %}
+
+{% block pageScripts %}
+  {{ super() }}
+  <script>
+    $( document ).ready(function() {
+      accessibleAutocomplete.enhanceSelectElement({
+        selectElement: document.querySelector('#cat-breeds'),
+        autoselect: false,
+        showNoOptionsFound: false,
+        minLength: 2,
+        showAllValues: true,
+        name: "petBreed",
+        onConfirm: (e) => {
+          $('#cat-breeds').on("click", function() {this.value=""});
+        },
+        dropdownArrow: () => '<svg class="autocomplete__dropdown-arrow-down" style="top: 8px;" viewBox="0 0 512 512"><path d="M256,298.3L256,298.3L256,298.3l174.2-167.2c4.3-4.2,11.4-4.1,15.8,0.2l30.6,29.9c4.4,4.3,4.5,11.3,0.2,15.5L264.1,380.9  c-2.2,2.2-5.2,3.2-8.1,3c-3,0.1-5.9-0.9-8.1-3L35.2,176.7c-4.3-4.2-4.2-11.2,0.2-15.5L66,131.3c4.4-4.3,11.5-4.4,15.8-0.2L256,298.3  z"></path></svg>'
+      });
+    });
+  </script>
+{% endblock %}
+
+
+
+
+

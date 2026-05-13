@@ -1,0 +1,58 @@
+{% extends "layouts/v4_0_2_case_management" %}
+
+
+{% set backlinkoff = 'false' %}
+
+
+
+<!-- Setting the big main heading at the top of the page -->
+{% set pageHeadingTextHTML %}
+    New map requested
+{% endset %}
+
+
+
+{% block content %}
+<div class='govuk-grid-row'>
+
+    <div class="govuk-grid-column-full">
+
+
+
+        <h1 class="govuk-heading-l">
+            {{ pageHeadingTextHTML }}
+        </h1>
+
+        <div class="govuk-!-width-one-half">
+
+            <p>Once the new map is submitted the application can be worked on.</p>
+
+        </div>
+
+        <div class="govuk-button-group govuk-!-margin-top-7">
+
+            {{
+                govukButton
+                ({
+                    text: 'Go to work to be done',
+                    href: '../work-to-be-done'
+                })
+            }}
+
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+{% endblock %}
+
+
+
+
+
