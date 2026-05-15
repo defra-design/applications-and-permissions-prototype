@@ -1,34 +1,35 @@
 {% extends "layouts/v4_0_2.html" %}
 
-
 <!-- Setting the big main heading at the top of the page -->
-{% set pageHeadingTextHTML %}
-    You need to contact the TB restricted premises the animals are moving onto
-{% endset %}
-
-
+{% set pageHeadingTextHTML %} You need to contact the TB restricted premises the
+animals are moving onto {% endset %}
 
 <!-- Text that show in the browser tab. Does NOT need changing -->
-{% block pageTitle %}
-    {{ pageHeadingTextHTML }}
-{% endblock %}
-
-
-{% block content %}
+{% block pageTitle %} {{ pageHeadingTextHTML }} {% endblock %} {% block content
+%}
 <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l">{{ pageHeadingTextHTML }}</h1>
 
-        <h1 class="govuk-heading-l">{{ pageHeadingTextHTML }}</h1>
+    <p>
+      When animals are moving onto a TB restricted premises, it is the
+      responsibility of the TB restricted premises to apply for a licence.
+    </p>
 
-        <p>When animals are moving onto a TB restricted premises, it is the responsibility of the TB restricted premises to apply for a licence.</p>
+    <p>
+      We need details about their biosecurity practices to process the licence.
+    </p>
 
-        <p>We need details about their biosecurity practices to process the licence.</p>
-
-    </div>
+    <p>
+      Alternatively, you can
+      <a
+        href="https://www.gov.uk/government/publications/tb-restricted-cattle-application-for-movement-licence-in-england"
+        target="_blank"
+      >
+        apply for a licence by completing the TB204 form (opens in a new tab)</a
+      >.
+    </p>
+  </div>
 </div>
 
-
-
 {% endblock %}
-
-
